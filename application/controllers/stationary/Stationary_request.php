@@ -313,7 +313,7 @@ class Stationary_request extends CI_Controller {
 									</body>
 									</html>";
 						 $img_url= base_url()."uploads/courier_receipt/".$stationary_courier_receipt;
-						$this->send_mail($agent_email,$from_email,$msg,$subject,$img_url); 
+						// $this->send_mail($agent_email,$from_email,$msg,$subject,$img_url); 
                         
                         // die;
 					 
@@ -340,7 +340,7 @@ class Stationary_request extends CI_Controller {
 									</body>
 									</html>";
                     //  echo $msg;                
-					 $this->send_mail($stationary_email,$from_email,$msg_stationary,$subject_stationary,$img_url);
+					//  $this->send_mail($stationary_email,$from_email,$msg_stationary,$subject_stationary,$img_url);
                     // die;
 
                     $this->session->set_flashdata('success_message'," Stationary Receipt Send Successfully.");
