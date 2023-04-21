@@ -67,25 +67,27 @@ class International_packages extends CI_Controller {
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');       
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC'); 
-        $international_packages = $this->master_model->getRecords('international_packages');
+        $international_packages = $this->master_model->getRecords('packages');
+		//print_r($international_packages); die;
 
         $record = array();
-        $fields = "international_packages.*,international_packages_dates.journey_date,international_packages_dates.single_seat_cost,international_packages_dates.twin_seat_cost,international_packages_dates.three_four_sharing_cost";
-        $this->db->where('international_packages.is_deleted','no');
-        $this->db->where('international_packages.is_active','yes');
-        $this->db->join("international_packages_dates", 'international_packages.id=international_packages_dates.package_id','left');
+        $fields = 	"packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('package_type','International Packages');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $this->db->group_by('package_id');
-        $international_packages_all = $this->master_model->getRecords('international_packages',array('international_packages.is_deleted'=>'no'),$fields);
+        $international_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
 
         $record = array();
-        $fields = "international_packages.*,international_packages_dates.*";
-        $this->db->where('international_packages.is_deleted','no');
-        $this->db->where('international_packages.is_active','yes');
-        $this->db->join("international_packages_dates", 'international_packages.id=international_packages_dates.package_id','left');
+        $fields = "packages.*,package_date.*";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         // $this->db->group_by('package_id');
-        $international_packages_dates = $this->master_model->getRecords('international_packages',array('international_packages.is_deleted'=>'no'),$fields);
+        $international_packages_dates = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
 		
         // $this->db->order_by('tour_number','ASC');
         // $international_packages = $this->master_model->getRecords('international_packages');
@@ -120,6 +122,68 @@ class International_packages extends CI_Controller {
         $this->load->view('front/common_view',$data);
     }
     
+    public function all_custom_international_packages()
+    {
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');    
+        $this->db->where('package_type','Custom International Package');   
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC'); 
+        $international_packages = $this->master_model->getRecords('packages');
+		//print_r($international_packages); die;
+
+        $record = array();
+        $fields = 	"packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('package_type','Custom International Package');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        $this->db->group_by('package_id');
+        $international_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+
+        $record = array();
+        $fields = "packages.*,package_date.*";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        // $this->db->group_by('package_id');
+        $international_packages_dates = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+		
+        // $this->db->order_by('tour_number','ASC');
+        // $international_packages = $this->master_model->getRecords('international_packages');
+        // $international_packages = $this->db->query("Select id, academic_year, tour_number, 
+        // tour_title, destinations, rating, cost, tour_number_of_days, image_name, short_description, 
+        // full_description, iternary, inclusion, terms_conditions, contact_us, is_deleted, is_active, created_at,
+        // CAST(tour_number as INT)  as tour_number_new from international_packages order by tour_number_new asc");
+        // $international_packages = $international_packages->result_array();
+        
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('id','ASC');
+        $website_basic_structure = $this->master_model->getRecords('website_basic_structure');
+        
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('id','ASC');
+        $social_media_link = $this->master_model->getRecords('social_media_link');
+        
+        $count= sizeof($international_packages);
+         $data = array('middle_content' => 'all_custom_international_packages',
+						'international_packages'       => $international_packages,
+                        'international_packages_all'       => $international_packages_all,
+                        'international_packages_dates'       => $international_packages_dates,
+                        'count'      => $count,
+                        'page_title' => 'International Packages', 
+                        'website_basic_structure' => $website_basic_structure,
+                        'social_media_link' => $social_media_link,
+                        );
+						
+        $this->arr_view_data['page_title']     =  "International Packages";
+        $this->load->view('front/common_view',$data);
+    }
+    
+
     public function package_details($id)
     {
         if($id=='') 
@@ -130,7 +194,8 @@ class International_packages extends CI_Controller {
         if(is_numeric($id))
         {
             $this->db->where('id',$id);
-            $package_details_data = $this->master_model->getRecords('international_packages');
+            $package_details_data = $this->master_model->getRecords('packages');
+			//print_r($package_details_data); die;
             // $this->db->where('package_id',$id);
             // $package_date_details_data = $this->master_model->getRecords('international_packages_dates');
         }
@@ -142,7 +207,7 @@ class International_packages extends CI_Controller {
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $this->db->where('package_id',$id);
-        $package_date_details_data = $this->master_model->getRecords('international_packages_dates');
+        $package_date_details_data = $this->master_model->getRecords('package_date');
        
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
@@ -154,12 +219,12 @@ class International_packages extends CI_Controller {
         $this->db->order_by('id','ASC');
         $social_media_link = $this->master_model->getRecords('social_media_link');
         
-		$fields = "international_package_iternary.*,packages.tour_title";
-        $this->db->order_by('international_package_iternary.day_number','asc');
-        $this->db->where('international_package_iternary.is_deleted','no');
-        $this->db->where('international_package_iternary.package_id',$id);
-        $this->db->join("packages", 'international_package_iternary.package_id=packages.id','left');
-        $package_iternary_data = $this->master_model->getRecords('international_package_iternary',array('international_package_iternary.is_deleted'=>'no'),$fields);
+		$fields = "package_iternary.*,packages.tour_title";
+        $this->db->order_by('package_iternary.day_number','asc');
+        $this->db->where('package_iternary.is_deleted','no');
+        $this->db->where('package_iternary.package_id',$id);
+        $this->db->join("packages", 'package_iternary.package_id=packages.id','left');
+        $package_iternary_data = $this->master_model->getRecords('package_iternary',array('package_iternary.is_deleted'=>'no'),$fields);
 		
         $data = array('middle_content' => 'international_package_details',
 						'package_details'       => $package_details_data,
@@ -255,6 +320,7 @@ class International_packages extends CI_Controller {
                         'media_source_name'    =>$media_source_name,
                         'package_id'    =>$id,
 						'wp_mobile_number'=>$wp_mobile_number,
+						'enquiry_from'    =>'front'
                     );
                     
                     $inserted_id = $this->master_model->insertRecord('international_booking_enquiry',$arr_insert,true);
@@ -349,6 +415,7 @@ class International_packages extends CI_Controller {
         $this->arr_view_data['page_title']     =  "Packages List";
         $this->load->view('front/common_view',$data);
     }
+
 
     public function send_mail($to_email,$from_email,$msg,$subject,$cc=null) {
          

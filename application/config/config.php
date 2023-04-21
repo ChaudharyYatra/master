@@ -28,7 +28,7 @@ $config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ?
 $config['base_url'] .= "://" . $_SERVER['HTTP_HOST'];
 $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 // $config['base_url'] ='http://localhost/Refer_Projects/choudharyyatra/';
-$config['base_url'] ='https://sumagosolutions.in/choudharyyatra/';
+$config['base_url'] ='http://localhost/choudhary_yatra_new_git/master';
 
 
 
@@ -393,8 +393,8 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_samesite'] = 'Lax';
-// $config['sess_expiration'] = 7200;
-$config['sess_expiration'] = 300;
+$config['sess_expiration'] = 7200;
+// $config['sess_expiration'] = 300;
 $config['sess_save_path'] = APPPATH . 'cache/session/';
 //$config['sess_save_path'] =  APPPATH . "/tmp";
 $config['sess_match_ip'] = FALSE;

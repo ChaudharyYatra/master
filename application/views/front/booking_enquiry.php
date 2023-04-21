@@ -26,7 +26,6 @@
                     <div class="payment-book">
                         <div class="booking-box">
                             <div class="customer-information mb-4">
-                                
                                 <form class="mb-2" method="post" onsubmit="return validateEnquiryForms()">
                                     <h5>Fill your information</h5>
                                     <div class="row">

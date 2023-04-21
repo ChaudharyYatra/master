@@ -41,12 +41,13 @@ class Booking_enquiry extends CI_Controller {
         // $this->db->join("domestic_followup", 'booking_enquiry.id=domestic_followup.booking_enquiry_id','left');
         $arr_data = $this->master_model->getRecords('booking_enquiry',array('booking_enquiry.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
+
+
+        // $this->db->where('is_deleted','no');
+        // $this->db->where('status','approved');
+        // $followup_reason_data = $this->master_model->getRecords('followup_reason');
         
-        $this->db->where('is_deleted','no');
-        $this->db->where('status','approved');
-        $followup_reason_data = $this->master_model->getRecords('followup_reason');
-        
-         $this->arr_view_data['followup_reason_data'] = $followup_reason_data;
+        //  $this->arr_view_data['followup_reason_data'] = $followup_reason_data;
          $this->arr_view_data['agent_sess_name']        = $agent_sess_name;
          $this->arr_view_data['module_url_path_domestic_followup'] = $this->module_url_path_domestic_followup;
          $this->arr_view_data['listing_page']    = 'yes';
@@ -564,12 +565,11 @@ class Booking_enquiry extends CI_Controller {
                 // $this->form_validation->set_rules('packages', 'packages', 'required');
                 $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
 				$this->form_validation->set_rules('wp_mobile_number', 'whatsapp mobile number', 'required');
-            if($this->input->post('tour_number')=='Other'){
-             $this->form_validation->set_rules('other_tour_name', 'enter destination name', 'required');
+                if($this->input->post('tour_number')=='Other'){
+                $this->form_validation->set_rules('other_tour_name', 'enter destination name', 'required');
 				$this->form_validation->set_rules('mrandmrs', 'Mr and Mrs', 'required');
                 $this->form_validation->set_rules('enq_seat_count', 'enq_seat_count', 'required');
-
-            }
+                }
                 
                 if($this->form_validation->run() == TRUE)
                 {

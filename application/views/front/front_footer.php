@@ -1052,5 +1052,262 @@ function validatedomesticreviewForms()
 <!--<script>-->
 <!--  AOS.init();-->
 <!--</script>-->
+
+
+<script>
+function custom_enquiry_form() 
+{
+  $("#full_name_error").hide();
+  $("#email_error").hide();
+  $("#mobile_number_error").hide();
+  $("#chechin_date_error").hide();
+  $("#checkout_error").hide();
+  $("#no_of_nights_error").hide();
+  $("#hotel_type_error").hide();
+  $("#no_of_couple_error").hide();
+  $("#meal_plan_error").hide();
+  $("#total_adult_error").hide();
+  $("#total_child_with_bed_error").hide();
+  $("#total_child_without_bed_error").hide();
+  $("#vehicle_type_error").hide();
+  $("#pick_up_from_error").hide();
+  $("#pickup_date_error").hide();
+
+  $("#pickup_time_error").hide();
+  $("#drop_to_error").hide();
+  $("#drop_date_error").hide();
+  $("#drop_time_error").hide();
+  // $("#special_note_error").hide();
+
+
+  var submiform='';
+  
+  var full_name_error = $('#full_name').val();
+  if (full_name_error == '' || full_name_error ==null) 
+  {
+    $('#full_name_error').text('Please enter full name.');
+    $('#full_name_error').show();
+    submiform=false;
+  }
+  
+  var email = $('#email').val();
+  if (email == '' || email ==null) 
+  {
+    $('#email_error').text('Please enter email address.');
+    $('#email_error').show();
+    submiform=false;
+  }
+  else
+  {
+      var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(!regex.test(email)) 
+        {
+           $('#email_error').text('Please enter valid email address.');
+            $('#email_error').show();
+            submiform=false;
+        }
+        else if(email)
+        {
+          var email_split = email.split('@');
+          var count = (email_split[1].match(/\./g) || []).length;
+          if(count > 2)
+          {
+              $('#email_error').text('Please enter valid email address.');
+              $('#email_error').show();
+              submiform=false;
+          }
+        }
+        // else
+        // {
+        //     isEmailExist();
+        // }
+  }
+  
+  var mobile_number_error = $('#mobile_number1').val();
+  if (mobile_number_error == '' || mobile_number_error ==null) 
+  {
+    $('#mobile_number_error').text('Please enter last name.');
+    $('#mobile_number_error').show();
+    submiform=false;
+  }
+  
+
+  
+  
+var mobile_number = $('#mobile_number1').val();
+  if (mobile_number == '' || mobile_number ==null) 
+  {
+    $('#mobile_number_error').text('Please enter mobile number.');
+    $('#mobile_number_error').show();
+    submiform=false;
+  }
+  else
+  {
+      var mobNum = $('#mobile_number1').val();
+      var filter = /^\d*(?:\.\d{1,2})?$/;
+        if(filter.test(mobNum)) {
+            if(mobNum.length < 10){
+                  $('#mobile_number_error').text('Please enter 10 digits mobile number');
+              $('#mobile_number_error').show();
+              submiform=false;
+             } 
+            }
+            
+         if(filter.test(mobNum)) {
+            if(mobNum.length > 10){
+                  $('#mobile_number_error').text('Please enter 10 digits mobile number');
+              $('#mobile_number_error').show();
+              submiform=false;
+             } 
+            }
+  }
+	
+	
+  var chechin_date_error = $('#checkin_date').val();
+  if (chechin_date_error == '' || chechin_date_error ==null) 
+  {
+    $('#chechin_date_error').text('Please select check in date.');
+    $('#chechin_date_error').show();
+    submiform=false;
+  }
+
+  var checkout_error = $('#checkout_date').val();
+  if (checkout_error == '' || checkout_error ==null) 
+  {
+    $('#checkout_error').text('Please select check out date.');
+    $('#checkout_error').show();
+    submiform=false;
+  }
+
+	var no_of_nights_error = $('#no_of_nights').val();
+  if (no_of_nights_error == '' || no_of_nights_error ==null) 
+  {
+    $('#no_of_nights_error').text('Please Enter no of nights.');
+    $('#no_of_nights_error').show();
+    submiform=false;
+  }
+	
+  var cbox = document.forms["myForm"]["gender"];
+  if (
+    cbox[0].checked == false &&
+    cbox[1].checked == false &&
+    cbox[2].checked == false
+  ) {
+    alert("Please Select Gender");
+    return false;
+  } else {
+    alert("Successfully Submited");
+    return true;
+  }
+
+  var no_of_couple_error = $('#no_of_couple').val();
+  if (no_of_couple_error == '' || no_of_couple_error ==null) 
+  {
+    $('#no_of_couple_error').text('Please Enter no of couple.');
+    $('#no_of_couple_error').show();
+    submiform=false;
+  }
+
+  var meal_plan_error = $('#meal_plan').val();
+  if (meal_plan_error == '' || meal_plan_error ==null) 
+  {
+    $('#meal_plan_error').text('Please select meal plan.');
+    $('#meal_plan_error').show();
+    submiform=false;
+  }
+
+  var total_adult_error = $('#total_adult').val();
+  if (total_adult_error == '' || total_adult_error ==null) 
+  {
+    $('#total_adult_error').text('Please enter total adult.');
+    $('#total_adult_error').show();
+    submiform=false;
+  }
+
+  var total_child_with_bed_error = $('#total_child_with_bed').val();
+  if (total_child_with_bed_error == '' || total_child_with_bed_error ==null) 
+  {
+    $('#total_child_with_bed_error').text('Please enter total child with bed.');
+    $('#total_child_with_bed_error').show();
+    submiform=false;
+  }
+
+  var total_child_without_bed_error = $('#total_child_without_bed').val();
+  if (total_child_without_bed_error == '' || total_child_without_bed_error ==null) 
+  {
+    $('#total_child_without_bed_error').text('Please enter total child with bed.');
+    $('#total_child_without_bed_error').show();
+    submiform=false;
+  }
+
+  var vehicle_type_error = $('#vehicle_type').val();
+  if (vehicle_type_error == '' || vehicle_type_error ==null) 
+  {
+    $('#vehicle_type_error').text('Please select vehicle type.');
+    $('#vehicle_type_error').show();
+    submiform=false;
+  }
+
+  var pick_up_from_error = $('#pick_up_from').val();
+  if (pick_up_from_error == '' || pick_up_from_error ==null) 
+  {
+    $('#pick_up_from_error').text('Please select pickup from.');
+    $('#pick_up_from_error').show();
+    submiform=false;
+  }
+
+  var pickup_date_error = $('#pickup_date').val();
+  if (pickup_date_error == '' || pick_up_from_error ==null) 
+  {
+    $('#pickup_date_error').text('Please select pickup date.');
+    $('#pickup_date_error').show();
+    submiform=false;
+  }
+
+  var pickup_time_error = $('#pickup_time').val();
+  if (pickup_time_error == '' || pickup_time_error ==null) 
+  {
+    $('#pickup_time_error').text('Please select pickup time.');
+    $('#pickup_time_error').show();
+    submiform=false;
+  }
+
+  var drop_to_error = $('#drop_to').val();
+  if (drop_to_error == '' || drop_to_error ==null) 
+  {
+    $('#drop_to_error').text('Please select drop to.');
+    $('#drop_to_error').show();
+    submiform=false;
+  }
+
+  var drop_date_error = $('#drop_date').val();
+  if (drop_date_error == '' || drop_date_error ==null) 
+  {
+    $('#drop_date_error').text('Please select drop date.');
+    $('#drop_date_error').show();
+    submiform=false;
+  }
+
+  var drop_time_error = $('#drop_time').val();
+  if (drop_time_error == '' || drop_time_error ==null) 
+  {
+    $('#drop_time_error').text('Please select drop time.');
+    $('#drop_time_error').show();
+    submiform=false;
+  }
+  
+  if(submiform==='')
+  {
+      return true;
+  }
+  else
+  {
+     return false; 
+  }
+  
+  
+}
+    
+</script>
 </body>
 </html>

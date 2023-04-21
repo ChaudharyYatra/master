@@ -34,6 +34,7 @@
                   <thead>
                   <tr>
                     <th>SN</th>
+                    <th>Package Type</th>
 					          <th>Tour Number</th>
                     <th>Tour Title</th>
                     <th>Package Cost</th>
@@ -50,9 +51,17 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
+                    <td><?php echo $info['package_type'] ?></td>
 					          <td><?php echo $info['tour_number'] ?></td>
                     <td><?php echo $info['tour_title'] ?></td>
+                    <?php if($info['cost']== 0) {?>
+                      <td> On Demand </td>
+                    <?php } else{
+                      ?>
                     <td><?php echo $info['cost'] ?></td>
+                    <?php 
+                  }
+                    ?>
                     <td>
                         <?php 
                         if($info['is_active']=='yes')

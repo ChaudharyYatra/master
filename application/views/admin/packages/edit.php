@@ -53,18 +53,35 @@
                           </div>
                       </div>
                       <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Package Type</label><br>
-                            <select class="select_css" name="package_type" id="package_type">
-                              <option value="">Select package type</option>
-                              <option value="Domestic Package" <?php if(isset($info['package_type'])){if("Domestic Package" == $info['package_type']) {echo 'selected';}}?>>Domestic Package</option>
-                              <option value="International Package" <?php if(isset($info['package_type'])){if("International Package" == $info['package_type']) {echo 'selected';}}?>>International Package</option>
-                              <option value="Custom Domestic Package" <?php if(isset($info['package_type'])){if("Custom Domestic Package" == $info['package_type']) {echo 'selected';}}?>>Custom Domestic Package</option>
-                              <option value="Custom International Package" <?php if(isset($info['package_type'])){if("Custom International Package" == $info['package_type']) {echo 'selected';}}?>>Custom International Package</option>
-                              <option value="Special Limited Offer" <?php if(isset($info['package_type'])){if("Special Limited Offer" == $info['package_type']) {echo 'selected';}}?>>Special Limited Offer</option>
-                            </select>
-                          </div>
+                        <div class="form-group">
+                          <label>Package Type</label><br>
+                          <select class="select_css" name="package_type" id="package_type">
+                          <option value="">Select package type</option>
+                            <?php
+                                  foreach($package_type as $package_type_info) 
+                                  { 
+                                ?>
+                                <!-- <option value="<?php //echo $package_type_info['package_type'];?>"><?php //echo $package_type_info['package_type'];?></option> -->
+                                <option value="<?php echo $package_type_info['package_type'];?>" <?php if(isset($info['package_type'])){if($package_type_info['package_type'] == $info['package_type']) {echo 'selected';}}?>><?php echo $package_type_info['package_type'];?></option>
+                                <?php } ?>
+                                <option value="Special Limited Offer" <?php if(isset($info['package_type'])){if("Special Limited Offer" == $info['package_type']) {echo 'selected';}}?>>Special Limited Offer</option>
+                          </select>
                         </div>
+                      </div>
+                      <?php if($info['package_type'] == 'Special Limited Offer') { ?>
+                      <div class="col-md-6 c_from_date">
+                              <div class="form-group">
+                                <label>From Date</label>
+                                <input type="date" class="form-control" name="from_date" placeholder="Enter Destinations" required="required" value="<?php echo $info['from_date']; ?>">
+                              </div>
+                        </div>
+                       <div class="col-md-6 c_from_date">
+                              <div class="form-group">
+                                <label>To Date</label>
+                                <input type="date" class="form-control" name="to_date" placeholder="Enter Rating" required="required" value="<?php echo $info['to_date']; ?>">
+                              </div>
+                        </div>
+                        <?php } ?>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Tour Number</label>
@@ -253,8 +270,8 @@
                           <div class="form-group">
                             <label>Uploaded Image</label><br>
                             <?php if(!empty($info['inclusion_img'])){ ?>
-                                      <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $info['inclusion_img']; ?>" width="50%">
-                                      <input type="hidden" name="old_inclusion_name" id="old_inclusion_name" value="<?php echo $info['inclusion_img']; ?>" required="required">
+                                      <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $info['inclusion']; ?>" width="50%">
+                                      <input type="hidden" name="old_inclusion_name" id="old_inclusion_name" value="<?php echo $info['inclusion']; ?>" required="required">
                                       <?php } ?>
                           </div>
                       </div>

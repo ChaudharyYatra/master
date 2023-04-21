@@ -12,6 +12,16 @@
 table.scrolldown tbody{
     height : auto !important;
 }
+
+.card_price{
+    font-size: 60%;
+}
+.card_price1{
+    font-size: 58%;
+}
+.card_price2{
+    font-size: 80%;
+}
     </style>
 
     <!-- banner starts -->
@@ -191,7 +201,7 @@ table.scrolldown tbody{
             <div class="trend-box">
                 <div class="row item-slider">
                     <?php  
-                   foreach($main_packages as $key => $main_packages_value) { ?>
+                   foreach($main_packages_all as $key => $main_packages_value) { ?>
                     <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
 						<a href="<?php echo base_url(); ?>packages/package_details/<?php echo $main_packages_value['id']; ?>">
                         <div class="trend-item rounded box-shadow bg-white" data-aos="fade-left" data-duration="100">
@@ -383,12 +393,12 @@ table.scrolldown tbody{
             </div>
             <div class="row align-items-center">
                 <div class="row item-slider">
-                    <?php if(count($international_packages)>0) { foreach($international_packages as $key => $international_packages_value) { ?>
+                    <?php if(count($international_packages_all)>0) { foreach($international_packages_all as $key => $international_packages_value) { ?>
                     <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
 						
                         <div class="trend-item rounded box-shadow bg-white card_bg" data-aos="fade-left" data-duration="100">
                             <div class="trend-image position-relative">
-                                <img src="<?php echo base_url(); ?>uploads/international_packages/<?php echo $international_packages_value['image_name']; ?>" alt="<?php echo $international_packages_value['image_name']; ?>" height="250px">
+                                <img src="<?php echo base_url(); ?>uploads/packages/<?php echo $international_packages_value['image_name']; ?>" alt="<?php echo $international_packages_value['image_name']; ?>" height="250px">
                                 <div class="color-overlay"></div>
                             </div>
                             <div class="trend-content p-4 pt-5 position-relative">
@@ -512,6 +522,813 @@ table.scrolldown tbody{
         </div>
     </section>
     <!-- top Destination ends -->
+
+    <!-- best Custom domestic packages Starts -->
+    
+    <section class="trending bg-grey pt-16 pb-5">
+        <div class="section-shape top-0" style="background-image: url(<?php echo base_url(); ?>assets/front/images/shape8.png);"></div>
+        <div class="container">
+        <div class="section-title mb-6 w-75 mx-auto text-center">
+                
+                <span>
+                    <img src=<?php echo base_url(); ?>india.png height="30%" width="60%" alt></img>
+                </span>
+                <h2 class="mb-1" data-aos="fade-up" data-duration="500">Personalized <span class="theme" data-aos="fade-up" data-duration="500">Domestic Packages</span></h2>  
+                <h4 class="mb_for_img theme_sub_title" data-aos="fade-up" data-duration="500">Let's Explore Our Own Colorful Land</h4>
+            </div>
+            <div class="trend-box">
+                <div class="row item-slider">
+                    <?php  
+                   foreach($custom_main_packages_all as $key => $main_packages_value) { ?>
+                    <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+						<a href="<?php echo base_url(); ?>packages/package_details/<?php echo $main_packages_value['id']; ?>">
+                        <div class="trend-item rounded box-shadow bg-white" data-aos="fade-left" data-duration="100">
+                            <div class="trend-image position-relative">
+                                <img src="<?php echo base_url(); ?>uploads/packages/<?php echo $main_packages_value['image_name']; ?>" alt="<?php echo $main_packages_value['image_name']; ?>" height="250px">
+                                <div class="color-overlay"></div>
+                            </div>
+                            <div class="trend-content p-4 pt-5 position-relative">
+                            <div class="new-trend2 bg-theme white px-3 py-2 rounded">
+                                <div class="entry-author">
+                                    <i class="icon-calendar"></i>
+                                    <span class="fw-bold"> <?php echo $main_packages_value['tour_number_of_days']; ?> Days Tours</span>
+                                </div>
+                            </div>
+                            <div class="new-trend term-btn bg-theme white px-3 py-2 rounded">
+                                <div class="entry-author">
+                                    <span class="fw-bold">Tour No. <?php echo $main_packages_value['tour_number']; ?></span>
+                                </div>
+                            </div>
+
+                                <h3 class="mb-1 card_title"><?php echo mb_substr($main_packages_value['tour_title'], 0, 18); ?></h3>
+                                <div class="rating-main d-flex align-items-center pb-2">
+                                    <div class="rating">
+                                        <?php if($main_packages_value['rating']=='1') { ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($main_packages_value['rating']=='2') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($main_packages_value['rating']=='3') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($main_packages_value['rating']=='4') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($main_packages_value['rating']=='5') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <?php } ?>
+                                    </div>
+
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="entry-meta">
+                                        <div class="entry-author d-flex align-items-center">
+                                            <p class="mb-0">Starting from<span class="theme fw-bold fs-5"> 
+                                                <?php 
+                                                if($main_packages_value['cost']>0){
+                                                ?>
+                                                <i class="fa fa-inr" aria-hidden="true"></i><span class="card_price2"> <?php echo $main_packages_value['cost'];?></span></span></p>
+                                                <?php } else{
+                                                ?>
+                                                <i class="fa fa-inr" aria-hidden="true"></i> <span class="card_price">On Demand</span> </span></p>
+                                                <?php } ?>
+                                        </div>
+                                    </div>  
+
+                                </div>
+                                <div class="entry-meta">
+                                    <div class="entry-author d-flex align-items-center">
+                                        <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $main_packages_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php echo $main_packages_value['id'] ?>">..More Dates</a></p> 
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="text-center">
+                                                <a href="#" class="nir-btn term-btn white fw-bold btn-width" data-bs-toggle="modal" data-bs-target="#InclusionModal_<?php echo $main_packages_value['id'] ?>">Inclusion</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="text-center">
+                                                <a href="#" class="nir-btn term-btn fw-bold btn-width white" data-bs-toggle="modal" data-bs-target="#itineraryModal_<?php echo $main_packages_value['id'] ?>">Itinerary</a>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="text-center">
+                                                <a href="<?php echo base_url(); ?>agent_list/index" class="nir-btn term-btn fw-bold btn-width white">Contact Us</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="text-center">
+                                                <a href="#" class="nir-btn term-btn fw-bold btn-width white" data-bs-toggle="modal" data-bs-target="#tcModal_<?php echo $main_packages_value['id'] ?>">T & C</a>
+                                            </div>
+                                        </div>
+                                </div>
+
+                            </div>
+                            <a href="<?php echo base_url(); ?>custom_domestic_booking_enquiry/custom_domestic_package_details/<?php echo $main_packages_value['id']; ?>">
+                            <div class="card-footer card_readmore" id="button-2">
+                                <div id="slide"></div>
+                                    <small class="card_css fw-bold">View More</small>
+                            </div>
+
+                        </div>
+							</a>
+                    </div>
+                    <?php } ?>
+                   
+                </div>
+            </div>  
+                <div class="col-lg-12 text-center">
+                    <a href="<?php echo base_url(); ?>custom_domestic_booking_enquiry/all_custom_domestic_packages" class="nir-btn">View All Packages</a>
+                </div>
+        </div>
+    </section>
+    <!-- best Custom domestic packages Ends -->
+
+    <!-- custom domestic packages Inclusion modal -->
+    <?php foreach($custom_main_packages_all as $key => $main_packages_all_value) { ?>
+        <div class="modal fade" id="InclusionModal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Inclusion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <!-- <?php //echo $main_packages_all_value['id'] ?> -->
+                    <?php if(!empty($main_packages_all_value['inclusion_img'])) { ?>
+                    <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $main_packages_all_value['inclusion_img']; ?>" width="100%"/> 
+                    <?php } ?>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- itinerary modal -->
+        <div class="modal fade" id="itineraryModal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Itinerary</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b" style="height:425px;">
+                        <div id="" class="set-margin set-padding set-border set-box-shadow center-block-horiz">
+                                <div class="responsive-wrapper"
+                                    style="-webkit-overflow-scrolling: touch;">
+
+                                    <?php if(!empty($main_packages_all_value['pdf_name'])) { ?>
+                                    <embed src="<?php echo base_url(); ?>uploads/package_daywise_program/<?php echo $main_packages_all_value['pdf_name']; ?>#toolbar=0" type="application/pdf" frameborder="0" width="100%" height="400px">
+                                    
+                                    <?php }?> 
+                                </div>
+
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms & Condition modal -->
+        <div class="modal fade" id="tcModal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Terms & Condition</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <!-- <?php //echo $main_packages_all_value['id'] ?> -->
+                    <?php if(!empty($main_packages_all_value['tc_img'])) { ?>
+                    <img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $main_packages_all_value['tc_img']; ?>" width="100%"/> 
+                    <?php } ?>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Date modal -->
+        <div class="modal fade" id="tour_dates_Modal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Dates</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <table class="table table-bordered scrolldown">
+                                    <thead>
+                                    <tr class="table_head">
+                                        <th>Dates</th>
+                                        <th>Single Per Seat</th>
+                                        <th>Twin Sharing Per Seat</th>
+                                        <th>3/4 Sharing Per Seat</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                <?php 
+                                $record = array();
+                                $fields = "package_date.*";
+                                $this->db->where('packages.id',$main_packages_all_value['id']);
+                                $this->db->where('packages.is_deleted','no');
+                                $this->db->where('packages.is_active','yes');
+                                $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+                                $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+                                // $this->db->group_by('package_id');
+                                $main_packages_date = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+                                
+                                foreach($main_packages_date as $main_packages_date_value){ ?>        
+                                    <tr>
+                                        <td><?php echo isset($main_packages_date_value['journey_date']) && $main_packages_date_value['journey_date']!=''? date('d-m-Y', strtotime($main_packages_date_value['journey_date'])):''; ?></td>
+                                        <td>₹ <?php echo $main_packages_date_value['single_seat_cost'];?></td>
+                                        <td>₹ <?php echo $main_packages_date_value['twin_seat_cost'];?></td>
+                                        <td>₹ <?php echo $main_packages_date_value['three_four_sharing_cost'];?></td>
+                                    </tr>
+                                <?php } ?>
+                                    </tbody>
+                                </table>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    <!-- custom domestic packages Inclusion modal -->
+
+
+    <!-- custom International packages top Destination starts -->
+    <section class="trending bg-grey pb-3 pt-5">
+    <div class="section-shape top-0" style="background-image: url(<?php echo base_url(); ?>assets/front/images/shape8.png);"></div>
+        <div class="container">
+            <div class="section-title mb-6 mt-8 w-75 mx-auto text-center">
+                <span>
+                    <img src=<?php echo base_url(); ?>international1.png height="20%" width="60%" alt></img>
+                </span>
+                <h2 class="mb-1" data-aos="fade-up" data-duration="500">Personalized <span class="theme" data-aos="fade-up" data-duration="500">International Packages</span></h2>
+                <h4 class="mb-1 theme_sub_title" data-aos="fade-up" data-duration="500">Let's Fly To Another Country</h4>
+            </div>
+            <div class="row align-items-center">
+                <div class="row item-slider">
+                    <?php if(count($custom_international_packages_all)>0) { foreach($custom_international_packages_all as $key => $international_packages_value) { ?>
+                    <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+						
+                        <div class="trend-item rounded box-shadow bg-white card_bg" data-aos="fade-left" data-duration="100">
+                            <div class="trend-image position-relative">
+                                <img src="<?php echo base_url(); ?>uploads/packages/<?php echo $international_packages_value['image_name']; ?>" alt="<?php echo $international_packages_value['image_name']; ?>" height="250px">
+                                <div class="color-overlay"></div>
+                            </div>
+                            <div class="trend-content p-4 pt-5 position-relative">
+                            <div class="new-trend2 bg-theme white px-3 py-2 rounded">
+                                <div class="entry-author">
+                                    <i class="icon-calendar"></i>
+                                    <span class="fw-bold"> <?php echo $international_packages_value['tour_number_of_days']; ?> Days Tours</span>
+                                </div>
+                            </div>
+                            <div class="new-trend term-btn bg-theme white px-3 py-2 rounded">
+                                <div class="entry-author">
+                                    <span class="fw-bold">Tour No. <?php echo $international_packages_value['tour_number']; ?></span>
+                                </div>
+                            </div>
+                                
+                                <h3 class="mb-1 card_title"><?php echo mb_substr($international_packages_value['tour_title'], 0, 18); ?></h3>
+                                <div class="rating-main d-flex align-items-center pb-2">
+                                    
+                                    <div class="rating">
+                                        <?php if($international_packages_value['rating']=='1') { ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($international_packages_value['rating']=='2') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($international_packages_value['rating']=='3') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($international_packages_value['rating']=='4') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($international_packages_value['rating']=='5') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <?php } ?>
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="entry-meta">
+                                        <div class="entry-author d-flex align-items-center">
+                                            <p class="mb-0">Starting from<span class="theme fw-bold fs-5">
+                                            <?php 
+                                                if($international_packages_value['cost']>0){
+                                                ?>
+                                                <i class="fa fa-inr" aria-hidden="true"></i> <?php echo $international_packages_value['cost'];?></span></p>
+                                                <?php } else{
+                                                ?>
+                                                <i class="fa fa-inr" aria-hidden="true"></i> <span class="card_price1">On Demand</span> </span></p>
+                                                <?php } ?>
+                                        </div>
+                                
+                                    </div>
+
+                                </div>                                
+                                    <div class="entry-meta">
+                                        <div class="entry-author d-flex align-items-center">
+                                            <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $international_packages_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_international<?php echo $international_packages_value['id'] ?>">..More Dates</a></p> 
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="text-center">
+                                        <a href="#" class="nir-btn term-btn white fw-bold btn-width" data-bs-toggle="modal" data-bs-target="#InclusionModal_<?php echo $international_packages_value['id'] ?>">Inclusion</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="text-center">
+                                        <a href="#" class="nir-btn term-btn fw-bold btn-width white" data-bs-toggle="modal" data-bs-target="#itineraryModal_<?php echo $international_packages_value['id'] ?>">Itinerary</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="text-center">
+                                        <a href="<?php echo base_url(); ?>agent_list/index" class="nir-btn term-btn fw-bold btn-width white">Contact Us</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="text-center">
+                                        <a href="#" class="nir-btn term-btn fw-bold btn-width white" data-bs-toggle="modal" data-bs-target="#tcModal_<?php echo $international_packages_value['id'] ?>">T & C</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            </div>
+
+                            <a href="<?php echo base_url(); ?>international_packages/package_details/<?php echo $international_packages_value['id']; ?>">
+                            <div class="card-footer card_readmore" id="button-2">
+                                <div id="slide"></div>
+                                    <small class="card_css fw-bold">View More</small>
+                            </div>
+                            </a>
+
+                        </div>
+							
+                    </div>
+                    <?php } } ?>
+                   
+                </div>
+                
+            </div>
+                <div class="col-lg-12 text-center">
+                    <a href="<?php echo base_url(); ?>international_packages/all_custom_international_packages" class="nir-btn">View All Packages</a>
+                </div>
+        </div>
+    </section>
+    <!--custom International packages top Destination ends -->
+    <!-- custom international packages popup modal -->
+    <?php foreach($custom_international_packages_all as $key => $international_packages_all_value) { ?>
+        <div class="modal fade" id="InclusionModal_<?php echo $international_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Inclusion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <!-- <?php //echo $international_packages_all_value['id'] ?> -->
+                    <?php if(!empty($international_packages_all_value['inclusion_img'])) { ?>
+                    <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $international_packages_all_value['inclusion_img']; ?>" width="100%"/> 
+                    <?php } ?>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- itinerary modal -->
+        <div class="modal fade" id="itineraryModal_<?php echo $international_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Itinerary</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b" style="height:425px;">
+                        <div id="" class="set-margin set-padding set-border set-box-shadow center-block-horiz">
+                                <div class="responsive-wrapper"
+                                    style="-webkit-overflow-scrolling: touch;">
+
+                                    <?php if(!empty($international_packages_all_value['pdf_name'])) { ?>
+                                    <embed src="<?php echo base_url(); ?>uploads/package_daywise_program/<?php echo $international_packages_all_value['pdf_name']; ?>#toolbar=0" type="application/pdf" frameborder="0" width="100%"  height="400px">
+                                    
+                                    <?php }?> 
+                                </div>
+
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms & Condition modal -->
+        <div class="modal fade" id="tcModal_<?php echo $international_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Terms & Condition</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <!-- <?php //echo $international_packages_all_value['id'] ?> -->
+                    <?php if(!empty($international_packages_all_value['tc_img'])) { ?>
+                    <img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $international_packages_all_value['tc_img']; ?>" width="100%" style=""/> 
+                    <?php } ?>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Date modal -->
+        <div class="modal fade" id="tour_dates_Modal_international<?php echo $international_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Dates</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <table class="table table-bordered scrolldown">
+                                    <thead>
+                                    <tr class="table_head">
+                                        <th>Dates</th>
+                                        <th>Single Per Seat</th>
+                                        <th>Twin Sharing Per Seat</th>
+                                        <th>3/4 Sharing Per Seat</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                <?php 
+                                $record = array();
+                                $fields = "package_date.*";
+                                $this->db->where('package_date.package_id',$international_packages_all_value['id']);
+                                //$this->db->where('international_packages_dates.is_deleted','no');
+                                $this->db->where('package_date.is_active','yes');
+                                //$this->db->join("international_packages_dates", //'international_packages.id=international_packages_dates.package_id','left');
+                                //$this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+                                // $this->db->group_by('package_id');
+                                $international_packages_dates = $this->master_model->getRecords('package_date',array('package_date.is_deleted'=>'no'),$fields);
+                            
+                                foreach($international_packages_dates as $international_packages_all_dates_value){ ?>        
+                                    <tr>
+                                        <td><?php echo isset($international_packages_all_dates_value['journey_date']) && $international_packages_all_dates_value['journey_date']!=''? date('d-m-Y', strtotime($international_packages_all_dates_value['journey_date'])):''; ?></td>
+                                        <td>₹ <?php echo $international_packages_all_dates_value['single_seat_cost'];?></td>
+                                        <td>₹ <?php echo $international_packages_all_dates_value['twin_seat_cost'];?></td>
+                                        <td>₹ <?php echo $international_packages_all_dates_value['three_four_sharing_cost'];?></td>
+                                    </tr>
+                                <?php } ?>
+                                    </tbody>
+                                </table>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    <!-- custom international packages popup modal -->
+
+    <!-- special limitted offer  -->
+    <section class="trending bg-grey pt-16 pb-5">
+            <div class="section-shape top-0" style="background-image: url(<?php echo base_url(); ?>assets/front/images/shape8.png);"></div>
+            <div class="container">
+            <div class="section-title mb-6 w-75 mx-auto text-center">
+                    
+                    <span>
+                        <img src=<?php echo base_url(); ?>india.png height="30%" width="60%" alt></img>
+                    </span>
+                    <h2 class="mb-1" data-aos="fade-up" data-duration="500">Exclusive <span class="theme" data-aos="fade-up" data-duration="500">Deals</span></h2>  
+                    <h4 class="mb_for_img theme_sub_title" data-aos="fade-up" data-duration="500">Let's Explore Our Own Colorful Land</h4>
+                </div>
+                <div class="trend-box">
+                    <div class="row item-slider">
+                        <?php  
+                    foreach($exclusive_deal_packages_all as $key => $main_packages_value) { ?>
+                        <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                            <a href="<?php echo base_url(); ?>packages/package_details/<?php echo $main_packages_value['id']; ?>">
+                            <div class="trend-item rounded box-shadow bg-white" data-aos="fade-left" data-duration="100">
+                                <div class="trend-image position-relative">
+                                    <img src="<?php echo base_url(); ?>uploads/packages/<?php echo $main_packages_value['image_name']; ?>" alt="<?php echo $main_packages_value['image_name']; ?>" height="250px">
+                                    <div class="color-overlay"></div>
+                                </div>
+                                <div class="trend-content p-4 pt-5 position-relative">
+                                <div class="new-trend2 bg-theme white px-3 py-2 rounded">
+                                    <div class="entry-author">
+                                        <i class="icon-calendar"></i>
+                                        <span class="fw-bold"> <?php echo $main_packages_value['tour_number_of_days']; ?> Days Tours</span>
+                                    </div>
+                                </div>
+                                <div class="new-trend term-btn bg-theme white px-3 py-2 rounded">
+                                    <div class="entry-author">
+                                        <span class="fw-bold">Tour No. <?php echo $main_packages_value['tour_number']; ?></span>
+                                    </div>
+                                </div>
+
+                                    <h3 class="mb-1 card_title"><?php echo mb_substr($main_packages_value['tour_title'], 0, 18); ?></h3>
+                                    <div class="rating-main d-flex align-items-center pb-2">
+                                        <div class="rating">
+                                            <?php if($main_packages_value['rating']=='1') { ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <?php }
+                                            if($main_packages_value['rating']=='2') {
+                                            ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <?php }
+                                            if($main_packages_value['rating']=='3') {
+                                            ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <?php }
+                                            if($main_packages_value['rating']=='4') {
+                                            ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <?php }
+                                            if($main_packages_value['rating']=='5') {
+                                            ?>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <?php } ?>
+                                        </div>
+
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="entry-meta">
+                                            <div class="entry-author d-flex align-items-center">
+                                                <p class="mb-0">Starting from<span class="theme fw-bold fs-5"> <i class="fa fa-inr" aria-hidden="true"></i> <?php echo $main_packages_value['cost'];?></span></p>
+                                            </div>
+                                        </div>  
+
+                                    </div>
+                                    <div class="entry-meta">
+                                        <div class="entry-author d-flex align-items-center">
+                                            <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $main_packages_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php echo $main_packages_value['id'] ?>">..More Dates</a></p> 
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="text-center">
+                                                    <a href="#" class="nir-btn term-btn white fw-bold btn-width" data-bs-toggle="modal" data-bs-target="#InclusionModal_<?php echo $main_packages_value['id'] ?>">Inclusion</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="text-center">
+                                                    <a href="#" class="nir-btn term-btn fw-bold btn-width white" data-bs-toggle="modal" data-bs-target="#itineraryModal_<?php echo $main_packages_value['id'] ?>">Itinerary</a>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="text-center">
+                                                    <a href="<?php echo base_url(); ?>agent_list/index" class="nir-btn term-btn fw-bold btn-width white">Contact Us</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="text-center">
+                                                    <a href="#" class="nir-btn term-btn fw-bold btn-width white" data-bs-toggle="modal" data-bs-target="#tcModal_<?php echo $main_packages_value['id'] ?>">T & C</a>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                </div>
+                                <a href="<?php echo base_url(); ?>packages/package_details/<?php echo $main_packages_value['id']; ?>">
+                                <div class="card-footer card_readmore" id="button-2">
+                                    <div id="slide"></div>
+                                        <small class="card_css fw-bold">View More</small>
+                                </div>
+
+                            </div>
+                                </a>
+                        </div>
+                        <?php } ?>
+                    
+                    </div>
+                </div>  
+                    <div class="col-lg-12 text-center">
+                        <a href="<?php echo base_url(); ?>packages/all_exclusive_deal" class="nir-btn">View All Packages</a>
+                    </div>
+            </div>
+        </section>
+        <!-- special limitted offer  -->
+
+        <!-- special limitted offer popup modal -->
+        <!-- Date modal -->
+        <?php  
+            foreach($exclusive_deal_packages_all as $key => $main_packages_all_value) { ?>
+        <div class="modal fade" id="tour_dates_Modal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Dates</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <table class="table table-bordered scrolldown">
+                                    <thead>
+                                    <tr class="table_head">
+                                        <th>Dates</th>
+                                        <th>Single Per Seat</th>
+                                        <th>Twin Sharing Per Seat</th>
+                                        <th>3/4 Sharing Per Seat</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                <?php 
+                                $record = array();
+                                $fields = "package_date.*";
+                                $this->db->where('packages.id',$main_packages_all_value['id']);
+                                $this->db->where('packages.is_deleted','no');
+                                $this->db->where('packages.is_active','yes');
+                                $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+                                $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+                                // $this->db->group_by('package_id');
+                                $main_packages_date = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+                                
+                                foreach($main_packages_date as $main_packages_date_value){ ?>        
+                                    <tr>
+                                        <td><?php echo isset($main_packages_date_value['journey_date']) && $main_packages_date_value['journey_date']!=''? date('d-m-Y', strtotime($main_packages_date_value['journey_date'])):''; ?></td>
+                                        <td>₹ <?php echo $main_packages_date_value['single_seat_cost'];?></td>
+                                        <td>₹ <?php echo $main_packages_date_value['twin_seat_cost'];?></td>
+                                        <td>₹ <?php echo $main_packages_date_value['three_four_sharing_cost'];?></td>
+                                    </tr>
+                                <?php } ?>
+                                    </tbody>
+                                </table>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- itinerary modal -->
+        <div class="modal fade" id="itineraryModal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Itinerary</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b" style="height:425px;">
+                        <div id="" class="set-margin set-padding set-border set-box-shadow center-block-horiz">
+                                <div class="responsive-wrapper"
+                                    style="-webkit-overflow-scrolling: touch;">
+
+                                    <?php if(!empty($main_packages_all_value['pdf_name'])) { ?>
+                                    <embed src="<?php echo base_url(); ?>uploads/package_daywise_program/<?php echo $main_packages_all_value['pdf_name']; ?>#toolbar=0" type="application/pdf" frameborder="0" width="100%" height="400px">
+                                    
+                                    <?php }?> 
+                                </div>
+
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Inclusion modal -->
+        <div class="modal fade" id="InclusionModal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Inclusion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <!-- <?php //echo $main_packages_all_value['id'] ?> -->
+                    <?php if(!empty($main_packages_all_value['inclusion_img'])) { ?>
+                    <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $main_packages_all_value['inclusion_img']; ?>" width="100%"/> 
+                    <?php } ?>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms & Condition modal -->
+        <div class="modal fade" id="tcModal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-c">
+                    <div class="modal-header modal-h">
+                        <h5 class="modal-title" id="exampleModalLabel">Terms & Condition</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-b">
+                    <!-- <?php //echo $main_packages_all_value['id'] ?> -->
+                    <?php if(!empty($main_packages_all_value['tc_img'])) { ?>
+                    <img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $main_packages_all_value['tc_img']; ?>" width="100%"/> 
+                    <?php } ?>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <?php } ?>
+        <!-- special limitted offer popup modal -->
 
 
     <!-- testimonial starts -->
@@ -671,7 +1488,7 @@ table.scrolldown tbody{
 </script>
 
 
-<?php foreach($main_packages as $key => $main_packages_all_value) { ?>
+<?php foreach($main_packages_all as $key => $main_packages_all_value) { ?>
 <!-- itinerary modal -->
 <div class="modal fade" id="itineraryModal_<?php echo $main_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
@@ -795,7 +1612,7 @@ table.scrolldown tbody{
 <!-- international pack modal -->
 
 
-<?php foreach($international_packages as $key => $international_packages_all_value) { ?>
+<?php foreach($international_packages_all as $key => $international_packages_all_value) { ?>
 <!-- itinerary modal -->
 <div class="modal fade" id="itineraryModal_<?php echo $international_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
@@ -810,7 +1627,7 @@ table.scrolldown tbody{
                             style="-webkit-overflow-scrolling: touch;">
 
                             <?php if(!empty($international_packages_all_value['pdf_name'])) { ?>
-                            <embed src="<?php echo base_url(); ?>uploads/international_package_daywise_program/<?php echo $international_packages_all_value['pdf_name']; ?>#toolbar=0" type="application/pdf" frameborder="0" width="100%"  height="400px">
+                            <embed src="<?php echo base_url(); ?>uploads/package_daywise_program/<?php echo $international_packages_all_value['pdf_name']; ?>#toolbar=0" type="application/pdf" frameborder="0" width="100%"  height="400px">
                             
                             <?php }?> 
                         </div>
@@ -835,7 +1652,7 @@ table.scrolldown tbody{
             <div class="modal-body modal-b">
             <!-- <?php //echo $international_packages_all_value['id'] ?> -->
             <?php if(!empty($international_packages_all_value['inclusion_img'])) { ?>
-            <img src="<?php echo base_url(); ?>uploads/international_inclusion_img/<?php echo $international_packages_all_value['inclusion_img']; ?>" width="100%"/> 
+            <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $international_packages_all_value['inclusion_img']; ?>" width="100%"/> 
             <?php } ?>
             </div>
             <!-- <div class="modal-footer">
@@ -856,7 +1673,7 @@ table.scrolldown tbody{
             <div class="modal-body modal-b">
             <!-- <?php //echo $international_packages_all_value['id'] ?> -->
             <?php if(!empty($international_packages_all_value['tc_img'])) { ?>
-            <img src="<?php echo base_url(); ?>uploads/international_tc_img/<?php echo $international_packages_all_value['tc_img']; ?>" width="100%" style=""/> 
+            <img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $international_packages_all_value['tc_img']; ?>" width="100%" style=""/> 
             <?php } ?>
             </div>
             <!-- <div class="modal-footer">
@@ -888,14 +1705,14 @@ table.scrolldown tbody{
                                 
                         <?php 
                         $record = array();
-                        $fields = "international_packages_dates.*";
-                        $this->db->where('international_packages_dates.package_id',$international_packages_all_value['id']);
+                        $fields = "package_date.*";
+                        $this->db->where('package_date.package_id',$international_packages_all_value['id']);
                         //$this->db->where('international_packages_dates.is_deleted','no');
-                        $this->db->where('international_packages_dates.is_active','yes');
+                        $this->db->where('package_date.is_active','yes');
                         //$this->db->join("international_packages_dates", //'international_packages.id=international_packages_dates.package_id','left');
                         //$this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
                         // $this->db->group_by('package_id');
-                        $international_packages_dates = $this->master_model->getRecords('international_packages_dates',array('international_packages_dates.is_deleted'=>'no'),$fields);
+                        $international_packages_dates = $this->master_model->getRecords('package_date',array('package_date.is_deleted'=>'no'),$fields);
                        
                         foreach($international_packages_dates as $international_packages_all_dates_value){ ?>        
                             <tr>

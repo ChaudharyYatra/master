@@ -73,25 +73,77 @@ class Home extends CI_Controller {
         $this->db->order_by('id','ASC');
         $sliders = $this->master_model->getRecords('sliders');
         
-        $record = array();
+        // $record = array();
         $fields = "packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
+        $this->db->where('package_type','Domestic Packages');
         $this->db->join("package_date", 'packages.id=package_date.package_id','right');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $this->db->group_by('package_date.package_id');
         $main_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
- 
-       $record = array();
-        $fields ="international_packages.*,international_packages_dates.journey_date,international_packages_dates.single_seat_cost,international_packages_dates.twin_seat_cost,international_packages_dates.three_four_sharing_cost";
-		 $this->db->join("international_packages_dates", 'international_packages.id=international_packages_dates.package_id','right');
-        $this->db->where('international_packages.is_deleted','no');
-        $this->db->where('international_packages.is_active','yes');
-        
+        // print_r($main_packages_all); die;
+
+        $fields ="packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
+		$this->db->join("package_date", 'packages.id=package_date.package_id','right');
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('package_type','International Packages');
         $this->db->group_by('package_id');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
-		$international_packages_all= 
-	$this->master_model->getRecords('international_packages',array('international_packages.is_deleted'=>'no'),$fields);
+		$international_packages_all= $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        // print_r($international_packages_all); die;
+
+        $fields = "packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('package_type','Custom Domestic Package');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','right');
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        $this->db->group_by('package_date.package_id');
+        $custom_main_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        // print_r($custom_main_packages_all); die; 
+
+        $fields ="packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
+		$this->db->join("package_date", 'packages.id=package_date.package_id','right');
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('package_type','Custom International Package');
+        $this->db->group_by('package_id');
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+		$custom_international_packages_all= $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        // print_r($international_packages_all); die;
+
+        // $exclusive_packages = $this->master_model->getRecord('packages');
+        // $t_f_date=$exclusive_packages['from_date'];
+    
+
+        // $this->db->where('package_type','Special Limited Offer');
+        // $exclusive_packages = $this->master_model->getRecords('packages');
+        // // foreach($exclusive_packages as $info){
+        //     $t_f_date=$info['from_date'];
+        // // }
+        //     // print_r($exclusive_packages); die;
+
+        // $today = date('Y-m-d');
+        // $from_date = $this->input->get('from_date');
+        // // print_r($from_date); die;
+        // $to_date = $this->input->get('to_date');
+
+
+        $today = date('Y-m-d');
+        $fields = "packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('packages.from_date <=',$today);
+        $this->db->where('packages.to_date >=',$today);
+        $this->db->where('package_type','Special Limited Offer');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','right');
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        $this->db->group_by('package_date.package_id');
+        $exclusive_deal_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        // print_r($exclusive_deal_packages_all); die;
+
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $this->db->order_by('id','ASC');
@@ -144,10 +196,11 @@ class Home extends CI_Controller {
        
          $data = array('middle_content' => 'index',
 						'sliders'       => $sliders,
-						'main_packages'       => $main_packages_all,
-                        //'main_packages_date'       => $main_packages_date,
-						'international_packages'  => $international_packages_all,
-                       // 'international_packages_dates'  => $international_packages_dates,
+						'main_packages_all'       => $main_packages_all,
+                        'custom_main_packages_all'       => $custom_main_packages_all,
+						'international_packages_all'  => $international_packages_all,
+                       'custom_international_packages_all'  => $custom_international_packages_all,
+                       'exclusive_deal_packages_all'  => $exclusive_deal_packages_all,
 						'top_packages'       => $top_packages,
 						'random_packages'       => $random_packages,
 						'core_features'       => $core_features,
@@ -170,17 +223,20 @@ class Home extends CI_Controller {
 
     public function all_packages_search()
     {
-       $destination_name = $this->input->post('destination_name');
-       //$tour_date = $this->input->post('tour_date');
-       $duration = $this->input->post('duration');
+        $destination_name = $this->input->post('destination_name');
+        //$tour_date = $this->input->post('tour_date');
+        $duration = $this->input->post('duration');
         $aData['msg'] = '';
+        
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
+        // $this->db->where('package_type','Domestic Packages');
         $this->db->where('tour_title',$destination_name);
         // $this->db->or_where('tour_number_of_days',$duration);
         $this->db->order_by('id','DESC');
         $main_packages = $this->master_model->getRecords('packages');
         $count= sizeof($main_packages);
+        // print_r($main_packages); die;
         
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');

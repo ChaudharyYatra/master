@@ -88,7 +88,7 @@
                               </div>
                       </div> -->
 					 
-					    <div class="col-md-6">
+					                  <div class="col-md-6">
                               <div class="form-group">
                                 <label>Media source</label>
                                   <select class="form-control niceSelect" name="media_source_name" id="media_source_name" 			          onfocus='this.size=3;' onblur='this.size=1;' 
@@ -101,7 +101,7 @@
                                       <?php } ?>
                                   </select>
                               </div>
-                      </div>
+                            </div>
 					 
                  <div class="col-md-6">
                               <div class="form-group">

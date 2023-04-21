@@ -2803,9 +2803,9 @@ $('#add_package').validate({ // initialize the plugin
             maxlength: 5,
             minlength: 1,
         },
-        cost: {
-            required: true,
-        },
+        // cost: {
+        //     required: true,
+        // },
         tour_number_of_days: {
             required: true,
         },
@@ -2829,7 +2829,37 @@ $('#add_package').validate({ // initialize the plugin
         },
         package_full_image: {
             required: true,
-        }
+        },
+        from_date: {
+            required : function(element) {
+                var action = $("#package_type").val();
+                if(action == "Special Limited Offer") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        to_date: {
+            required : function(element) {
+                var action = $("#package_type").val();
+                if(action == "Special Limited Offer") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        cost: {
+            required : function(element) {
+                var action = $("#package_type").val();
+                if(action == "Custom Domestic Package" || action == "Custom International Package") { 
+                    return false;
+                } else {
+                    return true;
+                }
+            }    
+        },
         
     },
 
@@ -2880,6 +2910,12 @@ $('#add_package').validate({ // initialize the plugin
         },
         package_full_image : {
             required : "Please upload image",
+        },
+        from_date : {
+            required : "Please select from date",
+        },
+        to_date : {
+            required : "Please select to date",
         }
     
     }
@@ -2919,9 +2955,6 @@ $('#edit_package').validate({ // initialize the plugin
             maxlength: 5,
             minlength: 1,
         },
-        cost: {
-            required: true,
-        },
         tour_number_of_days: {
             required: true,
         },
@@ -2945,7 +2978,37 @@ $('#edit_package').validate({ // initialize the plugin
         },
         old_new_name: {
             required: true,
-        }
+        },
+        from_date: {
+            required : function(element) {
+                var action = $("#package_type").val();
+                if(action == "Special Limited Offer") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        to_date: {
+            required : function(element) {
+                var action = $("#package_type").val();
+                if(action == "Special Limited Offer") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        cost: {
+            required : function(element) {
+                var action = $("#package_type").val();
+                if(action == "Custom Domestic Package" || action == "Custom International Package") { 
+                    return false;
+                } else {
+                    return true;
+                }
+            }    
+        },
         
     },
 
@@ -5584,13 +5647,17 @@ $('#edit_zone_master').validate({ // initialize the plugin
 <!-- add domestic packages on click of special limited offer show and hide -->
 <script>
     $(document).ready(function (){
-        $(".c_from_date").hide();
+        // $(".c_from_date").hide();
 
     $("#package_type").change(function () {
         var tno = $("#package_type").val();
         if(tno=='Special Limited Offer')
         {
             $(".c_from_date").show();
+        }
+        else
+        {
+            $(".c_from_date").hide();
         }
         });
     });

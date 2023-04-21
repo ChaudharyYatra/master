@@ -717,7 +717,7 @@ $('#add_bookingenquiry').validate({ // initialize the plugin
 		mrandmrs : {
             required : "Please enter Mr / Mrs",
         },
-enq_seat_count : {
+        enq_seat_count : {
             required : "Please enter seat count",
         },
 		other_tour_name: {       
