@@ -53,18 +53,19 @@
                         <div class="form-group">
                           <label>Package Type</label><br>
                           <select class="select_css" name="package_type" id="package_type">
+                          <option value="">Select package type</option>
                             <?php
                                   foreach($package_type as $package_type_info) 
                                   { 
                                 ?>
-                            <option value="<?php echo $package_type_info['id'];?>"><?php echo $package_type_info['package_type'];?></option>
+                            <option value="<?php echo $package_type_info['package_type'];?>"><?php echo $package_type_info['package_type'];?></option>
                                 <?php } ?>
                               <option value="Special Limited Offer">Special Limited Offer</option>
                           </select>
                         </div>
                       </div>
                       
-                      <div class="col-md-6 c_from_date">
+                        <div class="col-md-6 c_from_date">
                               <div class="form-group">
                                 <label>From Date</label>
                                 <input type="date" class="form-control" name="from_date" placeholder="Enter Destinations" required="required">

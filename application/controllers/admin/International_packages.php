@@ -14,6 +14,7 @@ class International_packages extends CI_Controller{
         $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/international_packages";
         $this->module_url_path_dates    =  base_url().$this->config->item('admin_panel_slug')."/international_packages_dates";
 		$this->module_url_path_iternary    =  base_url().$this->config->item('admin_panel_slug')."/international_package_iternary";
+        $this->module_packages    =  base_url().$this->config->item('admin_panel_slug')."/packages";
         $this->module_title       = "International Packages";
         $this->module_url_slug    = "international_packages";
         $this->module_view_folder = "international_packages/";    
@@ -23,8 +24,9 @@ class International_packages extends CI_Controller{
 	public function index()
 	{
         $this->db->where('is_deleted','no');
+        $this->db->where('package_type','International Packages');
 		$this->db->order_by('tour_number','ASC');
-        $arr_data = $this->master_model->getRecords('international_packages');
+        $arr_data = $this->master_model->getRecords('packages');
         
         $this->arr_view_data['module_url_path_dates'] = $this->module_url_path_dates;
 		$this->arr_view_data['module_url_path_iternary'] = $this->module_url_path_iternary;
@@ -33,6 +35,7 @@ class International_packages extends CI_Controller{
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['module_packages'] = $this->module_packages;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
        
@@ -373,6 +376,7 @@ class International_packages extends CI_Controller{
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['module_packages'] = $this->module_packages;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."add";
         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
     }

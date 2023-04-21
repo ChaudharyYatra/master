@@ -24,7 +24,7 @@ class Packages extends CI_Controller{
 	{
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
-		$this->db->order_by('tour_number','ASC');
+		$this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $arr_data = $this->master_model->getRecords('packages');
         
         $this->arr_view_data['module_url_path_dates'] = $this->module_url_path_dates;
@@ -301,7 +301,6 @@ class Packages extends CI_Controller{
 
               
                 $academic_year  = $this->input->post('academic_year'); 
-                $package_type  = $this->input->post('package_type');
                 $tour_number        = trim($this->input->post('tour_number'));
                 $tour_title        = trim($this->input->post('tour_title'));
                 $destinations = trim($this->input->post('destinations'));
@@ -311,12 +310,14 @@ class Packages extends CI_Controller{
                 $short_description = trim($this->input->post('short_description'));
                 $full_description = trim($this->input->post('full_description'));
                 $boarding_office = implode(",", $this->input->post('boarding_office')); 
-                $hotel_type = trim($this->input->post('hotel_type')); 
-                $zone_name = trim($this->input->post('zone_name')); 
+                $package_type = trim($this->input->post('package_type'));
+                $hotel_type = trim($this->input->post('hotel_type'));
+                $zone_name = trim($this->input->post('zone_name'));
+                $from_date = trim($this->input->post('from_date'));
+                $to_date = trim($this->input->post('to_date'));
                 
                 $arr_insert = array(
                     'academic_year'   =>   $academic_year,
-                    'package_type'   =>   $package_type,
                     'tour_number'          => $tour_number,
                     'tour_title'          => $tour_title,
                     'destinations'          => $destinations,
@@ -331,8 +332,11 @@ class Packages extends CI_Controller{
                     'inclusion_img'             => $inclusion_img_filename,
                     'tc_img'             => $tc_img_filename,
                     'boarding_office'  => $boarding_office,
-                    'hotel_type'  => $hotel_type,
-                    'zone_name'  => $zone_name
+                    'package_type'             => $package_type,
+                    'hotel_type'             => $hotel_type,
+                    'zone_name'  => $zone_name,
+                    'from_date'             => $from_date,
+                    'to_date'  => $to_date
                 );
                 
                 $inserted_id = $this->master_model->insertRecord('packages',$arr_insert,true);
@@ -362,23 +366,26 @@ class Packages extends CI_Controller{
         $this->db->where('is_active','yes');
         $academic_years_data = $this->master_model->getRecords('academic_years');
 
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
-        $hotel_type_info = $this->master_model->getRecords('hotel_type');
-        
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
-        $zone_info = $this->master_model->getRecords('zone_master');
-        
+        $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $package_type = $this->master_model->getRecords('package_type');
 
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $hotel_type_info = $this->master_model->getRecords('hotel_type');
+
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $zone_info = $this->master_model->getRecords('zone_master');
+
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['academic_years_data'] = $academic_years_data;
+        $this->arr_view_data['package_type'] = $package_type;
         $this->arr_view_data['hotel_type_info'] = $hotel_type_info;
         $this->arr_view_data['zone_info'] = $zone_info;
-        $this->arr_view_data['package_type'] = $package_type;
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -498,7 +505,7 @@ class Packages extends CI_Controller{
                 $this->form_validation->set_rules('tour_number', 'Tour Number', 'required');
                 $this->form_validation->set_rules('tour_title', 'Tour Title', 'required');
                 $this->form_validation->set_rules('rating', 'Rating', 'required');
-                $this->form_validation->set_rules('cost', 'Single Per Seat', 'required');
+                // $this->form_validation->set_rules('cost', 'Single Per Seat', 'required');
                 $this->form_validation->set_rules('tour_number_of_days', 'Tour Number of Days', 'required');
                 // $this->form_validation->set_rules('image_name','Package Image', 'callback_handle_upload[edit]');
                 if($this->form_validation->run() == TRUE)
@@ -687,10 +694,125 @@ class Packages extends CI_Controller{
                 $new_img_filename = $old_new_name;
                 
             }
+			
+			// ===============
+            $old_inclusion_name = $this->input->post('old_inclusion_name');
+                
+            if(!empty($_FILES['inclusion_img']) && $_FILES['inclusion_img']['name'] !='')
+            {
+            
+            $file_name     = $_FILES['inclusion_img']['name']; 
+
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+
+            $file_name = $_FILES['inclusion_img'];
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+
+            if($file_name['name']!="")
+            {
+                
+                $ext = explode('.',$_FILES['inclusion_img']['name']); 
+                $config['file_name'] = rand(1000,90000);
+
+                if(!in_array($ext[1],$arr_extension))
+                {
+                    $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                }
+            }   
+
+            $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+        
+            $config['upload_path']   = './uploads/inclusion_img/';
+            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+            $config['max_size']      = '10000';
+            $config['file_name']     = $file_name_to_dispaly_pdf;
+            $config['overwrite']     = TRUE;
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config); // Important
+            
+            if(!$this->upload->do_upload('inclusion_img'))
+            {  
+                
+                $data['error'] = $this->upload->display_errors();
+                $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                redirect($this->module_url_path.'/edit/'.$id);
+            }
+            if($file_name['name']!="")
+            {   
+                $file_name = $this->upload->data();
+                $inclusion_img_filename = $file_name_to_dispaly_pdf;
+            }
+            else
+            {
+                $inclusion_img_filename = $this->input->post('inclusion_img',TRUE);
+                
+            }
+            }
+            else
+            {
+                $inclusion_img_filename = $old_inclusion_name;
+                
+            }
+
+            // ===============
+
+            $old_tc_name = $this->input->post('old_tc_name');
+                
+            if(!empty($_FILES['tc_img']) && $_FILES['tc_img']['name'] !='')
+            {
+            $file_name     = $_FILES['tc_img']['name'];
+
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+
+            $file_name = $_FILES['tc_img'];
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+
+            if($file_name['name']!="")
+            {
+                $ext = explode('.',$_FILES['tc_img']['name']); 
+                $config['file_name'] = rand(1000,90000);
+
+                if(!in_array($ext[1],$arr_extension))
+                {
+                    $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                }
+            }   
+
+            $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+        
+            $config['upload_path']   = './uploads/tc_img/';
+            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+            $config['max_size']      = '10000';
+            $config['file_name']     = $file_name_to_dispaly_pdf;
+            $config['overwrite']     = TRUE;
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config); // Important
+            
+            if(!$this->upload->do_upload('tc_img'))
+            {  
+                $data['error'] = $this->upload->display_errors();
+                $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                redirect($this->module_url_path.'/edit/'.$id);
+            }
+            if($file_name['name']!="")
+            {   
+                $file_name = $this->upload->data();
+                $tc_img_filename = $file_name_to_dispaly_pdf;
+            }
+            else
+            {
+                $tc_img_filename = $this->input->post('tc_img',TRUE);
+                
+            }
+             }
+            else
+            {
+                $tc_img_filename = $old_tc_name;
+                
+            }
 
                 
-                $academic_year  = $this->input->post('academic_year');
-                $package_type  = $this->input->post('package_type');
+                $academic_year  = $this->input->post('academic_year'); 
                 $tour_number        = trim($this->input->post('tour_number'));
                 $tour_title        = trim($this->input->post('tour_title'));
                 $destinations = trim($this->input->post('destinations'));
@@ -699,16 +821,19 @@ class Packages extends CI_Controller{
                 $tour_number_of_days = trim($this->input->post('tour_number_of_days'));
                 $short_description = trim($this->input->post('short_description'));
                 $full_description = trim($this->input->post('full_description'));               
-                $inclusion = trim($this->input->post('inclusion'));
-                $terms_conditions = trim($this->input->post('terms_conditions'));
-                $contact_us = trim($this->input->post('contact_us'));
+                //$inclusion = trim($this->input->post('inclusion'));
+                //$terms_conditions = trim($this->input->post('terms_conditions'));
+                //$contact_us = trim($this->input->post('contact_us'));
                 $boarding_office = implode(",", $this->input->post('boarding_office'));
-                $hotel_type = trim($this->input->post('hotel_type')); 
-                $zone_name = trim($this->input->post('zone_name')); 
+                $package_type = trim($this->input->post('package_type'));
+                $hotel_type = trim($this->input->post('hotel_type'));
+                $zone_name = trim($this->input->post('zone_name'));
+                $from_date = trim($this->input->post('from_date'));
+                $to_date = trim($this->input->post('to_date'));
+
 
                 $arr_update = array(
                     'academic_year'   =>   $academic_year,
-                    'package_type'   =>   $package_type,
                     'tour_number'          => $tour_number,
                     'tour_title'          => $tour_title,
                     'destinations'          => $destinations,
@@ -717,15 +842,19 @@ class Packages extends CI_Controller{
                     'tour_number_of_days'          => $tour_number_of_days,
                     'short_description'        => $short_description,
                     'full_description'        => $full_description,                    
-                    'inclusion'        => $inclusion,
-                    'terms_conditions'        => $terms_conditions,
-                    'contact_us'        => $contact_us,
+                    'inclusion'        => $inclusion_img_filename,
+                    'tc_img'        => $tc_img_filename,
+                    //'terms_conditions'        => $terms_conditions,
+                    //'contact_us'        => $contact_us,
                     'image_name'    => $filename,
                     'pdf_name'    => $pdf_filename,
                     'package_full_image'    => $new_img_filename,
                     'boarding_office'             => $boarding_office,
-                    'hotel_type'  => $hotel_type,
-                    'zone_name'  => $zone_name
+                    'package_type'             => $package_type,
+                    'hotel_type'             => $hotel_type,
+                    'zone_name'  => $zone_name,
+                    'from_date'             => $from_date,
+                    'to_date'  => $to_date
                 );
                 
                     $arr_where     = array("id" => $id);
@@ -753,18 +882,26 @@ class Packages extends CI_Controller{
         $this->db->where('is_active','yes');
         $academic_years_data = $this->master_model->getRecords('academic_years');
 
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $package_type = $this->master_model->getRecords('package_type');
+
+        $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $hotel_type_info = $this->master_model->getRecords('hotel_type');
-        
+
+        $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $zone_info = $this->master_model->getRecords('zone_master');
         
         $this->arr_view_data['academic_years_data']        = $academic_years_data;
         $this->arr_view_data['arr_data']        = $arr_data;
-        $this->arr_view_data['hotel_type_info'] = $hotel_type_info;
-        $this->arr_view_data['zone_info'] = $zone_info;
+        $this->arr_view_data['hotel_type_info']        = $hotel_type_info;
+        $this->arr_view_data['zone_info']        = $zone_info;
+        $this->arr_view_data['package_type']        = $package_type;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;

@@ -28,7 +28,7 @@ $config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ?
 $config['base_url'] .= "://" . $_SERVER['HTTP_HOST'];
 $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 // $config['base_url'] ='http://localhost/Refer_Projects/choudharyyatra/';
-$config['base_url'] ='http://localhost/choudharyyatra_newgit/master';
+$config['base_url'] ='http://localhost/choudhary_yatra_new_git/master';
 
 
 

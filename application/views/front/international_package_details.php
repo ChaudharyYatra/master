@@ -37,7 +37,7 @@
                 <li><a data-toggle="tab" href="#terms_condition">Terms & Conditions</a></li>
                 <li><a data-toggle="tab" href="#contact_us">Contact Us</a></li>      
 				<!-- <li><a data-toggle="tab" href="#review">Review</a></li> -->
-                <li class="active"><a data-toggle="tab" href="<?php echo base_url();?>international_packages/booking_enquiry/<?php echo $package_details_value['id']; ?>" class="bordernone">Book Now</a></li>
+                <li class="active"><a data-toggle="tab" href="<?php echo base_url();?>international_packages/booking_enquiry/<?php echo $package_details_value['id']; ?>" class="bordernone">Enquiry Now</a></li>
             </ul>
         </div>
        
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="description-images mb-4">
-                    <?php if(!empty($package_details_value['international_package_full_image'])) { ?><img src="<?php echo base_url(); ?>uploads/international_package_full_image/<?php echo $package_details_value['international_package_full_image']; ?>" alt="image" class="w-100 rounded package_d_height" >
+                    <?php if(!empty($package_details_value['package_full_image'])) { ?><img src="<?php echo base_url(); ?>uploads/package_full_image/<?php echo $package_details_value['package_full_image']; ?>" alt="image" class="w-100 rounded package_d_height" >
                          <?php }?>
                     </div>
                 
@@ -139,37 +139,24 @@
                 </div>
             </div>
 				
-                <div  id="iternary"  class="accrodion-grp faq-accrodion mb-4"data-grp-name="faq-accrodion">
-                <h4 class="text-center">Itinerary</h4>
-                <h5 class="text-center">Download Our Brief Daily Program</h5>
-                
-                <div class="download-btn">
+                <div  id="iternary"  class="accrodion-grp faq-accrodion mb-4 bg-white"data-grp-name="faq-accrodion">
+                    <h4 class="text-center">Itinerary</h4>
+                    <h5 class="text-center">For More Details</h5>
                     
-                    <?php 
-                    if(!empty($package_details_value['pdf_name'])) { 
-                    ?><button type="button" class="btn nir-btn" data-bs-toggle="modal" data-bs-target="#itineraryModal_<?php echo $package_details_value['id'] ?>">
-                    Check Daily Routinea 
-                    </button><?php } ?> 
-                </div>
-
-                <!-- <?php 
-                //$status ='active';
-                //foreach($package_iternary_data as $iternary_data)
-                //{
-                ?>
-                    <div class="accrodion <?php //echo $status;?>">
-                        <div class="accrodion-title rounded">
-                            <h5 class="mb-0"><span>Day <?php //echo $iternary_data['day_number'];?></span></h5>
-                        </div>
-                        <div class="accrodion-content" style="display: block;">
-                            <div class="inner">
-                                <p><?php //echo $iternary_data['iternary_desc'];?></p>
-                            </div>
-                        </div>
+                    <div class="download-btn">
+                        <p class="mb-3 text_justify">
+                            <center>
+                                <a href="<?php echo base_url();?>international_packages/booking_enquiry/<?php echo $package_details_value['id']; ?>"><button type="button" class="btn nir-btn mb-2">
+                                Click Here
+                                </button></a>
+                            </center>
+                        </p>
+                        <!-- <?php 
+                        //if(!empty($package_details_value['pdf_name'])) { 
+                        ?><button type="button" class="btn nir-btn" data-bs-toggle="modal" data-bs-target="#itineraryModal_<?php //echo $package_details_value['id'] ?>">
+                        Check Daily Routinea 
+                        </button><?php //} ?>  -->
                     </div>
-                <?php 
-                //$status='';
-                //} ?>     -->
                     
                 </div>
 
@@ -179,15 +166,13 @@
                             <div class="eentry-button d-flex justify-content-center align-items-center mb-2">
                             <h4>Inclusion</h4>
                             </div>
-                            <p class="mb-3">
+                            <p class="mb-3 text_justify">
                                 <!--<p>Inclusion</p>-->
                                 <!-- <?php //echo $package_details_value['inclusion'];?> -->
-                                <div class="download-btn">
-                                    <?php 
-                                    if(!empty($package_details_value['inclusion_img'])) { 
-                                    ?><button type="button" class="btn nir-btn" data-bs-toggle="modal" data-bs-target="#InclusionModal_<?php echo $package_details_value['id'] ?>">
-                                    View 
-                                    </button><?php } ?> 
+
+                                <div class="description-images mb-4 pack-details">
+                                <?php if(!empty($package_details_value['inclusion_img'])) { ?><img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $package_details_value['inclusion_img']; ?>" alt="image" class="w-100 rounded" >
+                                    <?php }?>
                                 </div>
                             </p>
                         </div>
@@ -200,14 +185,11 @@
                             <div class="eentry-button d-flex justify-content-center align-items-center mb-2">
                                     <h4>Terms & Conditions</h4>
                             </div>
-                            <p class="mb-3">
+                            <p class="mb-3 text_justify">
                                 <!-- <?php //echo $package_details_value['terms_conditions'];?> -->
-                                <div class="download-btn">
-                                    <?php 
-                                    if(!empty($package_details_value['tc_img'])) { 
-                                    ?><button type="button" class="btn nir-btn" data-bs-toggle="modal" data-bs-target="#tcModal_<?php echo $package_details_value['id'] ?>">
-                                    Read
-                                    </button><?php } ?> 
+                                <div class="description-images mb-4 pack-details">
+                                <?php if(!empty($package_details_value['tc_img'])) { ?><img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $package_details_value['tc_img']; ?>" alt="image" class="w-100 rounded" >
+                                    <?php }?>
                                 </div>
                             </p>
                         </div>
@@ -280,7 +262,7 @@
             <div class="modal-body modal-b">
             <!-- <?php //echo $international_packages_all_value['id'] ?> -->
             <?php if(!empty($international_packages_all_value['pdf_name'])) { ?>
-            <img src="<?php echo base_url(); ?>uploads/international_package_daywise_program/<?php echo $international_packages_all_value['pdf_name']; ?>" width="100%"/> 
+            <img src="<?php echo base_url(); ?>uploads/package_daywise_program/<?php echo $international_packages_all_value['pdf_name']; ?>" width="100%"/> 
             <?php } ?>
             </div>
             <!-- <div class="modal-footer">
@@ -301,7 +283,7 @@
             <div class="modal-body modal-b">
             <!-- <?php //echo $international_packages_all_value['id'] ?> -->
             <?php if(!empty($international_packages_all_value['inclusion_img'])) { ?>
-            <img src="<?php echo base_url(); ?>uploads/international_inclusion_img/<?php echo $international_packages_all_value['inclusion_img']; ?>" width="100%"/> 
+            <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $international_packages_all_value['inclusion_img']; ?>" width="100%"/> 
             <?php } ?>
             </div>
             <!-- <div class="modal-footer">
@@ -322,7 +304,7 @@
             <div class="modal-body modal-b">
             <!-- <?php //echo $international_packages_all_value['id'] ?> -->
             <?php if(!empty($international_packages_all_value['tc_img'])) { ?>
-            <img src="<?php echo base_url(); ?>uploads/international_tc_img/<?php echo $international_packages_all_value['tc_img']; ?>" width="100%" style=""/> 
+            <img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $international_packages_all_value['tc_img']; ?>" width="100%" style=""/> 
             <?php } ?>
             </div>
             <!-- <div class="modal-footer">

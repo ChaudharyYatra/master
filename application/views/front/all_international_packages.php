@@ -53,7 +53,7 @@ table.scrolldown tbody{
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="trend-item rounded box-shadow card_bg" data-aos="fade-up" data-duration="500">
                         <div class="trend-image position-relative">
-                            <img src="<?php echo base_url(); ?>uploads/international_packages/<?php echo $international_packages_all_value['image_name']; ?>" alt="image" height="250px">
+                            <img src="<?php echo base_url(); ?>uploads/packages/<?php echo $international_packages_all_value['image_name']; ?>" alt="image" height="250px">
                             <div class="color-overlay"></div>
                         </div>
                         <div class="trend-content p-4 pt-4 position-relative w-100">
@@ -196,7 +196,7 @@ table.scrolldown tbody{
                             style="-webkit-overflow-scrolling: touch;">
 
                             <?php if(!empty($international_packages_all_value['pdf_name'])) { ?>
-                            <embed src="<?php echo base_url(); ?>uploads/international_package_daywise_program/<?php echo $international_packages_all_value['pdf_name']; ?>#toolbar=0" type="application/pdf" frameborder="0" width="100%"  height="400px">
+                            <embed src="<?php echo base_url(); ?>uploads/package_daywise_program/<?php echo $international_packages_all_value['pdf_name']; ?>#toolbar=0" type="application/pdf" frameborder="0" width="100%"  height="400px">
                             
                             <?php }?> 
                         </div>
@@ -221,7 +221,7 @@ table.scrolldown tbody{
             <div class="modal-body modal-b">
             <!-- <?php //echo $international_packages_all_value['id'] ?> -->
             <?php if(!empty($international_packages_all_value['inclusion_img'])) { ?>
-            <img src="<?php echo base_url(); ?>uploads/international_inclusion_img/<?php echo $international_packages_all_value['inclusion_img']; ?>" width="100%"/> 
+            <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $international_packages_all_value['inclusion_img']; ?>" width="100%"/> 
             <?php } ?>
             </div>
             <!-- <div class="modal-footer">
@@ -242,7 +242,7 @@ table.scrolldown tbody{
             <div class="modal-body modal-b">
             <!-- <?php //echo $international_packages_all_value['id'] ?> -->
             <?php if(!empty($international_packages_all_value['tc_img'])) { ?>
-            <img src="<?php echo base_url(); ?>uploads/international_tc_img/<?php echo $international_packages_all_value['tc_img']; ?>" width="100%" style=""/> 
+            <img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $international_packages_all_value['tc_img']; ?>" width="100%" style=""/> 
             <?php } ?>
             </div>
             <!-- <div class="modal-footer">
@@ -274,14 +274,14 @@ table.scrolldown tbody{
                                 
                         <?php 
                         $record = array();
-                        $fields = "international_packages_dates.*";
-                        $this->db->where('international_packages.id',$international_packages_all_value['id']);
-                        $this->db->where('international_packages.is_deleted','no');
-                        $this->db->where('international_packages.is_active','yes');
-                        $this->db->join("international_packages_dates", 'international_packages.id=international_packages_dates.package_id','left');
+                        $fields = "package_date.*";
+                        $this->db->where('packages.id',$international_packages_all_value['id']);
+                        $this->db->where('packages.is_deleted','no');
+                        $this->db->where('packages.is_active','yes');
+                        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
                         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
                         // $this->db->group_by('package_id');
-                        $international_packages_dates = $this->master_model->getRecords('international_packages',array('international_packages.is_deleted'=>'no'),$fields);
+                        $international_packages_dates = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
                         
                         foreach($international_packages_dates as $international_packages_all_dates_value){ ?>        
                             <tr>
