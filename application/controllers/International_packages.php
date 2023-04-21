@@ -357,7 +357,7 @@ class International_packages extends CI_Controller {
 									</html>";
 						//echo $msg;
 						$subject='Thank You For Enquiry';
-						$this->send_mail($email,$from_email,$msg,$subject,$cc=null);
+						// $this->send_mail($email,$from_email,$msg,$subject,$cc=null);
 						//die;
 						
 						$msg_email="<html>
@@ -381,7 +381,7 @@ class International_packages extends CI_Controller {
 									</body>
 									</html>";
 									$subject_email=' New Enquiry from customer';
-						$this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
+						// $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
 
                         $this->session->set_flashdata('success_message',"Enquiry Added Successfully.");
                         redirect(base_url().'international_packages/confirm_enquiry');

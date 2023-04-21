@@ -135,7 +135,7 @@ class Stationary_order extends CI_Controller {
 									</html>";
 						//echo $msg;
 						
-						$this->send_mail($agent_email,$from_email,$msg,$subject,$cc=null);
+						// $this->send_mail($agent_email,$from_email,$msg,$subject,$cc=null);
 					 
 					 $subject_stationary='New Order From Agent - #'.$s_order_no;
 					 $stationary_email='vivekpatilss23@gmail.com';
@@ -160,7 +160,7 @@ class Stationary_order extends CI_Controller {
 										<a href=".base_url()."stationary/login>Click Here To View Your Order</a>
 									</body>
 									</html>";
-					 $this->send_mail($stationary_email,$from_email,$msg_stationary,$subject_stationary,$cc=null);
+					//  $this->send_mail($stationary_email,$from_email,$msg_stationary,$subject_stationary,$cc=null);
 					 
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)."Added Successfully.");
                      redirect($this->module_url_path.'/index');
@@ -355,7 +355,7 @@ public function received()
 									</html>";
 						// echo $msg;
 						// die;
-						$this->send_mail($agent_email,$from_email,$msg,$subject,$cc=null); 
+						// $this->send_mail($agent_email,$from_email,$msg,$subject,$cc=null); 
                         
                         // die;
 					 
@@ -382,7 +382,7 @@ public function received()
 									</body>
 									</html>";
                     //  echo $msg;                
-					 $this->send_mail($stationary_email,$from_email,$msg_stationary,$subject_stationary,$cc=null);
+					//  $this->send_mail($stationary_email,$from_email,$msg_stationary,$subject_stationary,$cc=null);
                     // die;
 
                     $this->session->set_flashdata('success_message',ucfirst($this->module_title)."Added Successfully.");

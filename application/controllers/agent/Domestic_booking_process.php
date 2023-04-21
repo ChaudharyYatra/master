@@ -151,7 +151,7 @@ class Domestic_booking_process extends CI_Controller {
 									</html>";
 						// echo $msg;
 						$subject='Thank You For Enquiry';
-						$this->send_mail($email_address,$from_email,$msg,$subject,$cc=null);
+						// $this->send_mail($email_address,$from_email,$msg,$subject,$cc=null);
 						// die;
 						
 						$msg_email="<html>
@@ -175,7 +175,7 @@ class Domestic_booking_process extends CI_Controller {
 									</body>
 									</html>";
 									$subject_email=' New Enquiry from customer';
-						$this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
+						// $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
 
 					 	//die;
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
@@ -278,7 +278,7 @@ class Domestic_booking_process extends CI_Controller {
 									</html>";
 						// echo $msg;
 						$subject='Thank You For Enquiry';
-						$this->send_mail($email_address,$from_email,$msg,$subject,$cc=null);
+						// $this->send_mail($email_address,$from_email,$msg,$subject,$cc=null);
 						// die;
 						
 						$msg_email="<html>
@@ -302,7 +302,7 @@ class Domestic_booking_process extends CI_Controller {
 									</body>
 									</html>";
 									$subject_email=' New Enquiry from customer';
-						$this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
+						// $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
 
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
                      redirect($this->module_url_path.'/index');
@@ -427,7 +427,7 @@ class Domestic_booking_process extends CI_Controller {
                                </html>";
                    // echo $msg;
                    $subject='Thank You For Enquiry';
-                   $this->send_mail($user_email,$from_email,$msg,$subject,$cc=null);
+                //    $this->send_mail($user_email,$from_email,$msg,$subject,$cc=null);
                    // die;
                    
                    $msg_email="<html>
@@ -451,7 +451,7 @@ class Domestic_booking_process extends CI_Controller {
                                </body>
                                </html>";
                                $subject_email=' New Enquiry from customer';
-                   $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
+                //    $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
                    
                     $this->session->set_flashdata('success_message',ucfirst($this->module_title_followup). " Added Successfully.");
                     redirect($this->module_url_path_domestic_followup.'/index/'.$enquiry_id);
