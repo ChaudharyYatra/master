@@ -143,11 +143,10 @@
                                     <th style="width:15%;">Middle name</th>
                                     <th style="width:15%;">Last name</th>
                                     <th style="width:10%;">DOB</th>
-                                    <th style="width:10%;">Age</th>
                                     <th style="width:15%;">Anniversary Date (Optional)</th>
-                                    <th style="width:15%;">Mobile Number (Optional)</th>
                                     <th style="width:15%;">Relation</th>
                                     <th style="width:10%;">Upload Tourist Image</th>
+                                    <th style="width:10%;">Upload Tourist AadharCard Image</th>
                                     <th style="width:10%;">Action</th>
                                 
                                 </tr>
@@ -194,13 +193,7 @@
                                     <input type="date" class="form-control row_set" name="dob[]" id="dob" max="<?php echo date("Y-m-d");?>" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['dob'];} ?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control row_set" name="age[]" id="age" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['age'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                                </td>
-                                <td>
                                     <input type="date" class="form-control row_set" name="anniversary_date[]" id="anniversary_date" max="<?php echo date("Y-m-d");?>" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['anniversary_date'];} ?>">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control row_set" name="mobile_number[]" id="mobile_number" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['mobile_number'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10" minlength="10">
                                 </td>
                                 <td>
                                 <select class="select_css row_set" name="relation[]" id="relation">
@@ -220,6 +213,14 @@
                                     value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['img_encoded'];} ?>">
                                     <div id="imagePreview_traveller_img1" class="mt-2 img_size_cast">
                                         <img src="<?php echo base_url(); ?>uploads/traveller/<?php echo $all_traveller_info_value['image_name'];?>" width="100%" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['image_name'];} ?>"/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="file" name="aadhar_image_name[]" id="aadhar_image_name1" onchange="encodeImgtoBase64aadhar_img(this)" attr_id='1'>
+                                    <input type="hidden" id="document_file_aadhar_img1" name="document_file_aadhar_img[]" 
+                                    value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['aadhar_img_encoded'];} ?>">
+                                    <div id="imagePreview_aadhar_img1" class="mt-2 img_size_cast">
+                                        <img src="<?php echo base_url(); ?>uploads/traveller_aadhar/<?php  echo $all_traveller_info_value['aadhar_image_name'];?>" width="100%" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['aadhar_image_name'];} ?>"/>
                                     </div>
                                 </td>
                                 <td>
@@ -258,13 +259,7 @@
                                     <input type="date" class="form-control row_set" name="dob[]" id="dob" max="<?php echo date("Y-m-d");?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control row_set" name="age[]" id="age" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                                </td>
-                                <td>
                                     <input type="date" class="form-control row_set" name="anniversary_date[]" id="anniversary_date" max="<?php echo date("Y-m-d");?>">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control row_set" name="mobile_number[]" id="mobile_number" maxlength="10" minlength="10" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['mobile_number'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                                 </td>
                                 <td>
                                 <select class="select_css row_set" name="relation[]" id="relation">
@@ -290,6 +285,14 @@
                                         <div id="imagePreview_traveller_img<?php echo $img_count;?>" class="mt-2 img_size_cast">
                                             <img src="<?php echo base_url(); ?>uploads/traveller/" width="100%" />
                                         </div>
+                                </td>
+                                <td>
+                                    <input type="file" name="aadhar_image_name[]" id="aadhar_image_name<?php echo $img_count;?>" onchange="encodeImgtoBase64aadhar_img(this)" attr_id='<?php echo $img_count;?>'>
+                                    <input type="hidden" id="document_file_aadhar_img<?php echo $img_count;?>" name="document_file_aadhar_img[]" 
+                                    value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['aadhar_img_encoded'];} ?>">
+                                    <div id="imagePreview_aadhar_img<?php echo $img_count;?>" class="mt-2 img_size_cast">
+                                        <img src="<?php echo base_url(); ?>uploads/traveller_aadhar/" width="100%" />
+                                    </div>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary resetBtn" id="resetBtn" name="Clear" value="Reset">Reset</button>

@@ -474,6 +474,15 @@
                                         </div>
                                     </td>
                                     <td>
+                                        <input type="file" name="aadhar_image_name[]" id="aadhar_image_name`+img_count+`" onchange="encodeImgtoBase64aadhar_img(this)" attr_id="`+img_count+`">
+    
+                                        <input type="hidden" id="document_file_aadhar_img`+img_count+`" name="document_file_aadhar_img[]"
+                                            value="">
+                                            <div id="imagePreview_aadhar_img`+img_count+`" class="mt-2 img_size_cast">
+                                                <img src="<?php echo base_url(); ?>assets/uploads/traveller_aadhar/" width="100%" />
+                                            </div>
+                                    </td>
+                                    <td>
                                         <button type="button" id="resetBtn" class="btn btn-primary resetBtn" name="Clear" value="Reset">Reset</button>
                                     </td>
 
@@ -2369,7 +2378,129 @@ function totalamount_three() {
 </script>
 <!-- add all traveller info image and seatcount count -->
 
+<script>
+//passbook_img doc
+ var count = $('#seat_count_add').val(); 
+ //for(var i=1; i<count; i++){
+    function encodeImgtoBase64aadhar_img(element) {
+        var img_id =$(element).attr('attr_id');
+         var document_file_aadhar_img='document_file_aadhar_img'+img_id;
+         var imagePreview_aadhar_img='imagePreview_aadhar_img'+img_id;
+         var aadhar_image_name='aadhar_image_name'+img_id;
+//alert(image_name);
 
+        //  alert(image_name);
+         var fileCheckpassbook_img ='';
+         $("#"+document_file_aadhar_img).val('');
+         document.getElementById(imagePreview_aadhar_img).innerHTML = '';
+         $("label").remove('.error');
+         var fileInputaadhar_img = document.getElementById(aadhar_image_name);
+         //alert(fileInputaadhar_img);
+         var filePathaadhar_img = fileInputaadhar_img.value;
+        // alert(filePathaadhar_img);
+         var allowedExtensionsaadhar_img = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+            if (!allowedExtensionsaadhar_img.exec(filePathaadhar_img)) {
+                fileCheckaadhar_img = fileInputaadhar_img.files[0];
+               // alert(fileCheckaadhar_img);
+                if(fileCheckaadhar_img)
+                {
+                    console.log('eeeeeeeeerrrrrrrrrrrrr');
+                    fileInputaadhar_img.value = '';
+                    return false;
+                }
+            } else {
+                var file = fileInputaadhar_img.files[0];
+                if (file.size > 2000005) 
+                {
+                     console.log('sssiiizzeeeee');
+                     fileInputaadhar_img.value = '';
+                     $('#imagePreview_aadhar_img').empty();
+                     return false;
+                    }
+                     //Image preview
+                    if (fileInputaadhar_img.files && fileInputaadhar_img.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var allowedExtensionsaadhar_imgNew = /(\.pdf)$/i;
+                            if (!allowedExtensionsaadhar_imgNew.exec(filePathaadhar_img)) {
+                                document.getElementById(imagePreview_aadhar_img).innerHTML = '<img src="' + e.target.result + '"/>';
+                                
+                            }
+                                };
+                                reader.readAsDataURL(fileInputaadhar_img.files[0]);
+                                }
+                    }
+                                var img = element.files[0];
+                                var reader = new FileReader();
+                                reader.onloadend = function() {
+                                    $("#"+document_file_aadhar_img).val(reader.result);
+                                    }
+                                    reader.readAsDataURL(img);
+                                    }
+                                    //);
+                                    //}
+</script>
+
+<script>
+//passbook_img doc
+ var count = $('#seat_count_edit').val();
+//  alert(count); 
+ //for(var i=1; i<count; i++){
+    function encodeImgtoBase64aadhar_img_edit(element) {
+        // alert('hiiiiii');
+         var img_id =$(element).attr('attr_id');
+         var document_file_aadhar_img='document_file_aadhar_img'+img_id;
+         var imagePreview_aadhar_img='imagePreview_aadhar_img'+img_id;
+         var aadhar_image_name='aadhar_image_name'+img_id;
+          //alert(image_name);
+         var fileCheckpassbook_img ='';
+         $("#"+document_file_aadhar_img).val('');
+         document.getElementById(imagePreview_aadhar_img).innerHTML = '';
+         $("label").remove('.error');
+         var fileInputaadhar_img = document.getElementById(aadhar_image_name);
+        // alert(fileInputaadhar_img);
+         var filePathaadhar_img = fileInputaadhar_img.value;
+         var allowedExtensionsaadhar_img = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+            if (!allowedExtensionsaadhar_img.exec(filePathaadhar_img)) {
+                // alert('yesssssssssssss');
+                fileCheckaadhar_img = fileInputaadhar_img.files[0];
+                if(fileCheckaadhar_img)
+                {
+                    console.log('eeeeeeeeerrrrrrrrrrrrr');
+                    fileInputaadhar_img.value = '';
+                    return false;
+                }
+            } else {
+               // alert('Noooooooooooooooooooo');
+                var file = fileInputaadhar_img.files[0];
+                if (file.size > 2000005) 
+                {
+                     console.log('sssiiizzeeeee');
+                     fileInputaadhar_img.value = '';
+                     $('#imagePreview_aadhar_img').empty();
+                     return false;
+                    }
+                     //Image preview
+                    if (fileInputaadhar_img.files && fileInputaadhar_img.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var allowedExtensionsaadhar_imgNew = /(\.pdf)$/i;
+                            if (!allowedExtensionsaadhar_imgNew.exec(filePathaadhar_img)) {
+                                document.getElementById(imagePreview_aadhar_img).innerHTML = '<img src="' + e.target.result + '"/>';}
+                                };
+                                reader.readAsDataURL(fileInputaadhar_img.files[0]);
+                                }
+                                }
+                                var img = element.files[0];
+                                var reader = new FileReader();
+                                reader.onloadend = function() {
+                                    $("#"+document_file_aadhar_img).val(reader.result);
+                                    }
+                                    reader.readAsDataURL(img);
+                                    }
+                                    //);
+                                    //}
+</script>
 
 <!-- inter all traveller info  add code 16-03-2023======================================== -->
 <script>
@@ -2454,6 +2585,15 @@ function totalamount_three() {
                                         <div id="imagePreview_traveller_img`+img_count+`" class="mt-2 img_size_cast">
                                             <img class="traveller_img" src="<?php echo base_url(); ?>assets/uploads/inter_traveller/" width="100%" />
                                         </div>
+                                    </td>
+                                    <td>
+                                        <input type="file" name="aadhar_image_name[]" id="aadhar_image_name`+img_count+`" onchange="encodeImgtoBase64aadhar_img(this)" attr_id="`+img_count+`">
+    
+                                        <input type="hidden" id="document_file_aadhar_img`+img_count+`" name="document_file_aadhar_img[]"
+                                            value="">
+                                            <div id="imagePreview_aadhar_img`+img_count+`" class="mt-2 img_size_cast">
+                                                <img src="<?php echo base_url(); ?>assets/uploads/traveller_aadhar/" width="100%" />
+                                            </div>
                                     </td>
                                     <td>
                                         <button type="button" id="resetBtn" class="btn btn-primary resetBtn" name="Clear" value="Reset">Reset</button>
