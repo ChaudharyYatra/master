@@ -1,6 +1,6 @@
 <?php 
 //   Controller for: home page
-// Author: Mahesh Mhaske
+// Author: 
 // Start Date: 16-08-2022
 // last updated: 16-08-2022
 defined('BASEPATH') OR exit('No direct script access allowed');

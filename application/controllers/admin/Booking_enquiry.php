@@ -128,7 +128,7 @@ class Booking_enquiry extends CI_Controller{
                                             </html>";
                                 // echo $msg;
                                 $subject='Thank You For Enquiry';
-                                $this->send_mail($row['email'],$from_email,$msg,$subject,$cc=null);
+                                // $this->send_mail($row['email'],$from_email,$msg,$subject,$cc=null);
                                 // die;
                             }
                                 $msg_email="<html>
@@ -153,7 +153,7 @@ class Booking_enquiry extends CI_Controller{
                                             </html>";
                                         // echo $msg;
                                         $subject_email=' New Enquiry from customer';
-                                        $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
+                                        // $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
                                         // die;
                                     }
                                 

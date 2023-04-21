@@ -46,15 +46,6 @@
 
             </ul>
           </li>
-          
-          <li class="nav-item">
-            <a href="<?php echo base_url(); ?>agent/website_visitor_data/index" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>
-               Customised Enquiries
-              </p>
-            </a>
-          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -132,6 +123,24 @@
                 </a>
                </li>
             </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>agent/website_visitor_data/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Domastic Customised Enquiries
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>agent/international_website_visitor_data/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               International Customised Enquiries
+              </p>
+            </a>
           </li>
                
          <li class="nav-item">

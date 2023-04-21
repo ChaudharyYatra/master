@@ -126,7 +126,7 @@
 					 <div class="col-md-6">
                         <div class="form-group">
                           <label>Enter Seat Count</label>
-                          <input type="text" class="form-control" name="enq_seat_count" id="enq_seat_count" placeholder="Enter seat count" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                          <input type="text" class="form-control" name="enq_seat_count" id="enq_seat_count" value="<?php if(!empty($visitor_data)){ echo $visitor_data['total_seat'];} ?>" placeholder="Enter seat count" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                       </div>
                       

@@ -38,7 +38,7 @@
                         <div class="form-group">
                           <label>Mr / Mrs</label><br>
                           <select class="select_css" name="mrandmrs" id="mrandmrs">
-                            <option value="">select Mrs / Mrs</option>
+                            <option value="">select Title</option>
                             <option value="Mr">Mr</option>
                             <option value="Mrs">Mrs</option>
                           </select>
@@ -47,19 +47,19 @@
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>First name</label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter First Name" required="required" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control" name="first_name" id="first_name" value="<?php if(!empty($visitor_data)){ echo $visitor_data['first_name'];} ?>" placeholder="Enter First Name" required="required" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Last name</label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name" required="required" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name" value="<?php if(!empty($visitor_data)){ echo $visitor_data['last_name'];} ?>" required="required" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Mobile number</label>
-                                <input type="text" class="form-control" name="mobile_number" id="mobile_number" placeholder="Enter Mobile Number" minlength="10" maxlength="10" required="required" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control" name="mobile_number" id="mobile_number" placeholder="Enter Mobile Number" value="<?php if(!empty($visitor_data)){ echo $visitor_data['mobile_number'];} ?>" minlength="10" maxlength="10" required="required" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
 					 
@@ -73,7 +73,7 @@
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Email address</label>
-                                <input type="text" class="form-control" name="email_address" id="email_address" placeholder="Enter Email Address" required="required">
+                                <input type="text" class="form-control" name="email_address" id="email_address" placeholder="Enter Email Address" value="<?php if(!empty($visitor_data)){ echo $visitor_data['email'];} ?>" required="required">
                               </div>
                       </div>
                       <div class="col-md-6">
@@ -123,7 +123,7 @@
                    <div class="col-md-6">
                         <div class="form-group">
                           <label>Enter Seat Count</label>
-                          <input type="text" class="form-control" name="enq_seat_count" id="enq_seat_count" placeholder="Enter seat count">
+                          <input type="text" class="form-control" name="enq_seat_count" id="enq_seat_count"  value="<?php if(!empty($visitor_data)){ echo $visitor_data['total_seat'];} ?>" placeholder="Enter seat count">
                         </div>
                       </div>
                      

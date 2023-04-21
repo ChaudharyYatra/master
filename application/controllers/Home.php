@@ -254,8 +254,11 @@ class Home extends CI_Controller {
                 $this->form_validation->set_rules('mobile_number', 'Mobile Number', 'required');
                 $this->form_validation->set_rules('department_id', 'Department', 'required');
                 $this->form_validation->set_rules('agent_id', 'Agent Id', 'required');
+                $this->form_validation->set_rules('interested_in', 'Interted In', 'required');
+                $this->form_validation->set_rules('interested_in_gr_int', 'Type Of Tour', 'required');
 				$this->form_validation->set_rules('form_date', 'From Date', 'required');
 				$this->form_validation->set_rules('to_date', 'To Date', 'required');
+                $this->form_validation->set_rules('total_seat', 'Total Seat', 'required');
 
     
                 if($this->form_validation->run() == TRUE)
@@ -267,8 +270,11 @@ class Home extends CI_Controller {
                     $mobile_number     = $this->input->post('mobile_number');
                     $department_id     = $this->input->post('department_id');
                     $agent_id         = $this->input->post('agent_id');
+                    $interested_in         = $this->input->post('interested_in');
+                    $interested_in_gr_int  = $this->input->post('interested_in_gr_int');
                     $form_date         = $this->input->post('form_date');
 					$to_date           = $this->input->post('to_date');
+                    $total_seat           = $this->input->post('total_seat');
                     // $package_id        = $id;
      
                     $arr_insert = array(
@@ -278,9 +284,12 @@ class Home extends CI_Controller {
                         'mobile_number' => $mobile_number,
                         'department_id'        => $department_id,
                         'booking_center'     => $agent_id,
+                        'interested_in'     => $interested_in,
+                        'interested_in_gr_int'  => $interested_in_gr_int,
                         'form_date'    =>$form_date,
                         'to_date'    =>$to_date,
                         'ip_addess' => $ip,
+                        'total_seat' => $total_seat
                     );
                     
                     $inserted_id = $this->master_model->insertRecord('website_visitor_data',$arr_insert,true);

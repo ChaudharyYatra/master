@@ -35,7 +35,10 @@
                   <tr>
                     <th>SN</th>
                     <th>Stationary Name</th>
-					  <th>Quantity</th>
+                    <th>Financial Year</th>
+                    <th>Series</th>
+					          <th>Quantity</th>
+                    <th>Series Item</th>
                     <th>Is Active?</th>
                     <th>Action</th>
                   </tr>
@@ -50,7 +53,10 @@
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $info['stationary_name'] ?></td>
+                    <td><?php echo $info['year'] ?></td>
+                    <td><?php echo $info['from_series'] ?> - <?php echo $info['to_series'] ?></td>
                     <td><?php echo $info['stationary_quantity'] ?></td>
+                    <td><?php echo $info['series_yes_no'] ?></td>
                     <td>
                         <?php 
                         if($info['is_active']=='yes')
@@ -67,7 +73,9 @@
                           <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
 					   echo rtrim($aid, '='); ?>" title="Update"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php $aid=base64_encode($info['id']); 
-					   echo rtrim($aid, '='); ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
+					   echo rtrim($aid, '='); ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>&nbsp;/&nbsp;
+             <a href="<?php echo $module_url_path;?>/add_stock/<?php $aid=base64_encode($info['id']); 
+					   echo rtrim($aid, '='); ?>" title="Add Stock"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a>
                           
                     </td>
                   </tr>
