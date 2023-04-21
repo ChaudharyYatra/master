@@ -13,6 +13,7 @@ class Booking_enquiry extends CI_Controller {
         if($this->session->userdata('agent_sess_id')=="") 
         { 
                 redirect(base_url().'agent/login'); 
+                
         }
         $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/booking_enquiry";
         $this->module_url_path_domestic_followup    =  base_url().$this->config->item('agent_panel_slug')."/domestic_booking_enquiry_followup";
