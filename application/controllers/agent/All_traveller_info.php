@@ -32,14 +32,15 @@ class All_traveller_info extends CI_Controller {
 
         $this->arr_view_data['agent_sess_name']        = $agent_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
-        //  $this->arr_view_data['arr_data']        = $arrn_data;
+        //  $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
-        $this->arr_view_data['middle_content']  = $this->module_view_folder."add";
+        $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
         
         }
+
 
         public function add($iid="")
         {  
@@ -168,6 +169,7 @@ class All_traveller_info extends CI_Controller {
                 $all_traveller_count = $this->input->post('all_traveller_count'); 
                 $d_hidden = $this->input->post('d_hidden');
                 $anniversary_date  = $this->input->post('anniversary_date'); 
+                $document_file_aadhar_img = $this->input->post('document_file_aadhar_img');
                 
                 if(!empty($all_traveller_info))
                 {
@@ -204,6 +206,32 @@ class All_traveller_info extends CI_Controller {
                             $file_traveller_img = 'uploads/traveller/'.$file_name_traveller_img.".".$image_type_traveller_img;
                             file_put_contents($file_traveller_img, $image_base64_traveller_img);
                         }
+                        
+                        // ---------------------------
+                        if($document_file_aadhar_img != '')
+                        {   
+                            if(isset($document_file_aadhar_img[$i]) && !empty($document_file_aadhar_img[$i]))
+                            {
+                                $aadhar_img_encoded = $document_file_aadhar_img[$i];
+                                $image_parts_aadhar_img = explode(";base64,", $document_file_aadhar_img[$i]);
+                            } else {
+                                $image_parts_aadhar_img = explode(";base64,", $document_file_aadhar_img[$i]); 
+                            }      
+                            $image_base64_aadhar_img = base64_decode($image_parts_aadhar_img[1]);
+                            
+                            $image_type_aux_aadharimg = explode("image/", $image_parts_aadhar_img[0]);
+                            if(count($image_type_aux_aadharimg)>1) {
+                                $image_type_aadhar_img = $image_type_aux_aadharimg[1];
+                                $file_name_aadhar_img = "aadhar_img_".time().date("Ymd").$i;
+                            } else {
+                                $image_type_aux_aadharimg = explode("data:application/", $image_parts_aadhar_img[0]);
+                                $image_type_aadhar_img = $image_type_aux_aadharimg[1];
+                                $file_name_aadhar_img = "aadhar_img_".time().date("Ymd").$i;
+                            }
+                            $fname_aadhar_img=$file_name_aadhar_img.".".$image_type_aadhar_img;
+                            $file_aadhar_img = 'uploads/traveller_aadhar/'.$file_name_aadhar_img.".".$image_type_aadhar_img;
+                            file_put_contents($file_aadhar_img, $image_base64_aadhar_img);
+                        }
     
                         $arr_insert = array(
                         'domestic_enquiry_id' =>   $domestic_enquiry_id,
@@ -217,7 +245,9 @@ class All_traveller_info extends CI_Controller {
                         'anniversary_date'=>$anniversary_date[$i],
                         'all_traveller_relation'=>$relation[$i],
                         'image_name'=>$fname_traveller_img,
+                        'aadhar_image_name' =>$fname_aadhar_img,
                         'img_encoded'=>$img_encoded,
+                        'aadhar_img_encoded'=>$aadhar_img_encoded,
                         'flat_no' =>   $flat_no,
                         'building_house_nm'   =>   $building_house_nm,
                         'street_name'   =>   $street_name,   
@@ -673,23 +703,5 @@ class All_traveller_info extends CI_Controller {
                     // print_r($data); die;
     echo json_encode($data); 
 }
-
-public function userNameList(){
-
-    $user_data = $this->input->post('did');
-    // print_r($user_data); die;
-    $record = array();
-    $fields = "all_traveller_info.first_name";
-    $this->db->like('first_name', $user_data);
-    $this->db->or_like('first_name', $user_data);
-    $this->db->group_by('first_name',$user_data);
-    $arr_data = $this->master_model->getRecords('all_traveller_info','',$fields);
-    
-    // echo $arr_data->row()->first_name;   
-
-    echo json_encode($arr_data); 
-
-}
-
 
 }

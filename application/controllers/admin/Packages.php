@@ -46,7 +46,7 @@ class Packages extends CI_Controller{
 	
     public function add()
     {   
-          $this->db->where('is_active','yes');
+        $this->db->where('is_active','yes');
         $this->db->where('is_deleted','no');
         $agent_data = $this->master_model->getRecords('agent');
         $this->arr_view_data['agent_data'] = $agent_data;
@@ -499,9 +499,9 @@ class Packages extends CI_Controller{
             // die;
             
             $this->db->where('is_active','yes');
-        $this->db->where('is_deleted','no');
-        $agent_data = $this->master_model->getRecords('agent');
-        $this->arr_view_data['agent_data'] = $agent_data;
+            $this->db->where('is_deleted','no');
+            $agent_data = $this->master_model->getRecords('agent');
+            $this->arr_view_data['agent_data'] = $agent_data;
         
             if($this->input->post('submit'))
             {

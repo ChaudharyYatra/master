@@ -7,6 +7,9 @@
     color:#000 !important;
   }
   
+  .offcanvas-end{
+    width:600px !important;
+  }
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -62,16 +65,17 @@
               <!-- /.card-header -->
               <div class="card-body">
                   <?php  if(count($arr_data) > 0 ) 
-              { ?>
-              <form method="post" enctype="multipart/form-data" action="#">
+               { ?>
+               <form method="post" enctype="multipart/form-data" action="#">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>SN</th>
-                    <th>Stationary Name</th>
-                    <th>Quantity</th>
-                    <th>Sending Quantity</th>
-                  </tr>
+                    <tr>
+                      <th>SN</th>
+                      <th>Stationary Name</th>
+                      <th>Quantity</th>
+                      <th>Sending Quantity</th>
+                      <th>Select</th>
+                    </tr>
                   </thead>
                   <tbody>
                     
@@ -81,6 +85,7 @@
                       $s_send = []; 
                       foreach($arr_data as $info)
                       { 
+                        // print_r($arr_data);  die;
                         array_push($s_send,$info['id']);
                         ?>
                       <tr>
@@ -95,19 +100,37 @@
                           if($info['send_qty']=='0')
                             {
                           ?>
-                            <input type="text" name="send_qty[]" class="send_qty" id="send_qty_<?php echo $info['id'] ?>" onkeyup="send_qty()" required/>
+                            <input type="text" name="send_qty[]" class="send_qty" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" id="send_qty_<?php echo $info['id'] ?>" onkeyup="send_qty()" required/>
                           <?php } 
                             if($info['send_qty']>'0' && $info['is_sended']=='yes')
                             {
                           ?>
-                            <input type="text" name="send_qty[]" class="send_qty" id="send_qty" value="<?php echo $info['send_qty'] ?>" disabled/>
+                            <input type="text" name="send_qty[]" class="send_qty" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" id="send_qty" value="<?php echo $info['send_qty'] ?>" disabled/>
                           <?php } 
                           else { ?>
-                            <input type="text" name="send_qty[]" class="send_qty" id="send_qty" required/>
+                            <input type="text" name="send_qty[]" class="send_qty" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" id="send_qty" required/>
                           <?php } ?>
                         </td>
+                        <td>
+                        <!-- <button class="btn btn-primary send" name="send" id="send" attr_send_val="<?php //echo $info['send_qty'] ?>" attr-series_yes_no="<?php //echo $info['series_yes_no'] ?>" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo_<?php //echo $i; ?>">
+                          Send
+                        </button> -->
+                        
+                        <button type="button" class="btn btn-primary send" name="send" id="send" data-toggle="modal" data-target="#exampleModal_<?php echo $i; ?>">
+                          Details
+                        </button>
+                        
+                        </td>
+                       
                       </tr>
+
                       
+                      <!-- <div id="sending">
+
+                      </div> -->
+                      
+                        
+                                            
                       <?php $i++; } ?>
 
                       <input type="hidden" class="form-control" name="s_send" id="s_send" value="<?php echo implode (",",$s_send); ?>" />
@@ -115,20 +138,21 @@
                   </tbody>
                   
                 </table>
+
                 <center>
                 <!-- <button type="submit" class="btn btn-primary d-flex justify-content-center" id="submit" name="submit" value="send">Send</button> data-bs-toggle="modal" data-bs-target="#exampleModal"-->
-                <button type="button" id="submit" name="submit" class="btn btn-primary sendButton" >
+                <button type="button" id="submit" name="submit" class="btn btn-primary sendButton">
                   Send
                 </button>
-              </center>
+               </center>
                 </form>
                 <!-- <button class="btn">Send<button> -->
                  <?php } else
                 { echo '<div class="alert alert-danger alert-dismissable">
-                <i class="fa fa-ban"></i>
-                <b>Alert!</b>
-                Sorry No records available
-              </div>' ; } ?>
+                          <i class="fa fa-ban"></i>
+                          <b>Alert!</b>
+                          Sorry No records available
+                        </div>' ; } ?>
                
               </div>
               <!-- /.card-body -->
@@ -154,69 +178,113 @@
     }
 </script>
 
+<?php  
+                      
+$i=1; 
+$s_send = []; 
+foreach($arr_data as $info)
+{ 
+  // print_r($arr_data);  die;
+  array_push($s_send,$info['id']);
+  ?>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal_send" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-  <form method="post" action="<?php echo $module_url_path;?>/send_receipt" enctype="multipart/form-data">
-
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal_<?php echo $i; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Courier/ Transport Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-header float-right">
+          <h5>Stationary details</h5>
+          <div class="text-right">
+            <i data-dismiss="modal" aria-label="Close" class="fa fa-close"></i>
+          </div>
       </div>
-      <div class="modal-body">
-            <div class="col-md-12">
-              <div class="row">
-              <input type="hidden" class="form-control" name="od_id" id="od_id" value="" />
-              <input type="hidden" class="form-control" name="o_id" id="o_id" value="<?php echo $info['order_id'] ?>" />
-			  <input type="hidden" class="form-control" name="agent_id" id="agent_id" value="<?php echo $info['agent_id'] ?>" />
-                <div class="col-md-7 mb-4">
-                  <label>Courier Company Name</label>
-                    <div class="input-group">
-                        <select class="form-control niceSelect" name="courier_company_name" id="courier_company_name" onfocus='this.size=4;' onblur='this.size=1;' 
-                            onchange='this.size=1; this.blur();' required="required">
-                            <option value="">Select courier company name</option>
+      <?php 
+            if($info['series_yes_no']=='Yes'){
+            ?>
+        <div class="modal-body">
+            
 
-                            <?php foreach($courier_company_name_data as $courier_company_name){ ?> 
-                            <option value="<?php echo $courier_company_name['id'];?>"><?php echo $courier_company_name['courier_company_name'];?></option> 
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-5 mb-2">
-                  <label class="col-form-label">Dispatch Date:</label>
-                  <input type="date" class="form-control" name="dispatch_date" id="dispatch_date" required="required" max="<?php echo date("Y-m-d"); ?>">
-                </div>
-                <div class="col-md-12 mb-2">
-                  <label class="col-form-label">Upload receipt:</label>
-                  <input type="file" name="courier_receipt" id="courier_receipt" required="required">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label class="col-form-label">Courier Comment:</label>
-                  <textarea class="form-control" name="courier_comment" id="courier_comment" required="required"></textarea>
-                  
-                </div>
-              </div>
+
+          <!-- <div> -->
+
+          
+          <form method="post" action="<?php echo $module_url_path;?>/save_details"> 
+          <input type="hidden" class="form-control order_id" name="order_id" id="o_id" value="<?php echo $info['order_id'] ?>" />
+            <input type="hidden" class="form-control order_d_id" name="order_d_id" id="order_d_id" value="<?php echo $info['id'] ?>" />
+            <input type="hidden" class="form-control order_d_id" name="form_type" id="form_type" value="searies" />
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Financial Year</th>
+                  <th scope="col">Series</th>
+                  <th scope="col">Remark</th>
+                </tr>
+              </thead>
+              
+              <input type="hidden" class="form-control order_id" name="order_id" id="o_id" value="<?php echo $info['order_id'] ?>" />
+              <input type="hidden" class="form-control order_d_id" name="order_d_id" id="order_d_id" value="<?php echo $info['id'] ?>" />
+              <tbody id="series_yes">
+                
+                
+              </tbody>
+      
+            </table>
+            </form>
             </div>
-            <!-- <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary d-flex justify-content-center" id="submit" name="submit" value="send">Send</button>
-            </div> -->
-       
+            <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submit" name="save" value="save">Save</button>
+        <!-- <button type="submit" class="btn btn-primary d-flex justify-content-center" id="submit" name="submit" value="send">Send</button> -->
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary d-flex justify-content-center" id="submit" name="submit" value="send">Send</button>
-      </div>
-    </div>
+          <?php } else{ ?>
+            <div class="modal-body">
+            
+            <form method="post" action="<?php echo $module_url_path;?>/save_details" > 
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Financial Year</th>
+                  <th scope="col">Remark</th>
+                </tr>
+              </thead>
+              <tbody id="series_no">
+              <tr>
+                  <td>
+                    <select class="form-control" style="width: 100%;" name="academic_year[]" id="academic_year" required="required">
+                      <option value="">Select Year</option>
+                      <?php
+                          foreach($academic_years_data as $academic_years_info) 
+                          { 
+                      ?>
+                          <option value="<?php echo $academic_years_info['id']; ?>"><?php echo $academic_years_info['year']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </td>
+                  
+                  
+                  <td>
+                    <textarea class="form-control" name="remark[]" id="remark">   </textarea>  
+                  </td>
+               </tr>
+                
+              </tbody>
+            </table>
+          
+          
 
-    </form>
+          </div>
+
+
+        <!-- </div> -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submit" name="save" value="save">Save</button>
+        <!-- <button type="submit" class="btn btn-primary d-flex justify-content-center" id="submit" name="submit" value="send">Send</button> -->
+      </div>
+      </form>
+      <?php } ?>
+    </div>
   </div>
 </div>
-  
 
-</body>
-</html>
+<?php $i++; } ?>

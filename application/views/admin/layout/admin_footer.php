@@ -2730,12 +2730,56 @@ $('#add_stationary').validate({ // initialize the plugin
         stationary_name: {
             required: true,
         },
+        stationary_quantity: {
+            required: true,
+        },
+        financial_year: {
+            required: true,
+        },
+        series_yes_no: {
+            required: true,
+        },
+        from_series: {
+            required : function(element) {
+                var action = $("#Yes").val();
+                if(action == "Yes") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        to_series: {
+            required : function(element) {
+                var action = $("#Yes").val();
+                if(action == "Yes") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
         
     },
 
     messages :{
         stationary_name : {
             required : "Please enter stationary",
+        },
+        stationary_quantity : {
+            required : "Please enter stationary quantity",
+        },
+        financial_year : {
+            required : "Select financial year",
+        },
+        series_yes_no : {
+            required : "Please select is it series item yes or no",
+        },
+        from_series : {
+            required : "Please select from series",
+        },
+        to_series : {
+            required : "Please select to series",
         },
     
     }
@@ -2758,12 +2802,56 @@ $('#edit_stationary').validate({ // initialize the plugin
         stationary_name: {
             required: true,
         },
+        stationary_quantity: {
+            required: true,
+        },
+        financial_year: {
+            required: true,
+        },
+        series_yes_no: {
+            required: true,
+        },
+        from_series: {
+            required : function(element) {
+                var action = $("#Yes").val();
+                if(action == "Yes") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        to_series: {
+            required : function(element) {
+                var action = $("#Yes").val();
+                if(action == "Yes") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
         
     },
 
     messages :{
         stationary_name : {
             required : "Please enter stationary",
+        },
+        stationary_quantity : {
+            required : "Please enter stationary quantity",
+        },
+        financial_year : {
+            required : "Select financial year",
+        },
+        series_yes_no : {
+            required : "Please select is it series item yes or no",
+        },
+        from_series : {
+            required : "Please select from series",
+        },
+        to_series : {
+            required : "Please select to series",
         },
     
     }
@@ -5664,3 +5752,64 @@ $('#edit_zone_master').validate({ // initialize the plugin
 </script>
 
 <!-- add domestic packages on click of special limited offer show and hide -->
+
+<!-- for stationary  series if yes show 2 textbox financial year from & to -->
+<script>
+    $(document).ready(function (){
+        // $(".if_series_yes_div").hide();
+
+    $("#Yes").change(function () {
+        var tno = $("#Yes").val();
+        if(tno=='Yes')
+        {
+            $(".if_series_yes_div").show();
+        }
+        else
+        {
+            $(".if_series_yes_div").hide();
+        }
+        });
+        $("#No").change(function () {
+        var tno = $("#No").val();
+        if(tno=='No')
+        {
+            $(".if_series_yes_div").hide();
+        }
+        else if(tno=='No')
+        {
+            $(".if_series_yes_div").show();
+        }
+        });
+    });
+</script>
+<!-- End for stationary  series if yes show 2 textbox financial year from & to -->
+
+<script>  
+
+ $(document).ready(function(){ 
+  // var i = '0';
+   
+    //var newFields = $('');
+
+    $("#pages_per_book").keyup(function(e){
+        var pages=$(this).val();
+        var stationary_quantity=$('#stationary_quantity').val();
+        var from_series=$('#from_series').val();
+        var to_series=$('#to_series').val();
+
+        var diff=to_series-from_series;
+        var final_diff= diff+1;
+
+        var new_book_qty=final_diff/pages;
+         //alert(new_book_qty);
+        //alert(stationary_quantity);
+        if (new_book_qty != stationary_quantity) {
+          // alert('Stationary Quantity And Inserted pages are not matched');
+           $('#submit_slider').prop('disabled', true);
+        }else{
+           $('#submit_slider').prop('disabled', false);
+
+        }
+    });
+ });
+ </script>    

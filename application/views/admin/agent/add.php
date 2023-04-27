@@ -34,14 +34,14 @@
               <form method="post" enctype="multipart/form-data" id="add_agent">
                 <div class="card-body">
                  <div class="row">
-					 <div class="col-md-6">
+					            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Arrrange Id</label>
                                 <input type="text" class="form-control" name="arrange_id" id="arrange_id" placeholder="Enter Arrange Id" required="required">
                                 <span class="error"><?php echo form_error('arrange_id'); ?></span>
                               </div>
                       </div>
-					 <div class="col-md-6">
+					              <div class="col-md-6">
                               <div class="form-group">
                                 <label>City Name</label>
                                 <input type="text" class="form-control" name="city" id="city" placeholder="Enter City Name" required="required">

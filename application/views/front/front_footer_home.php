@@ -1034,8 +1034,11 @@ function validateCustomisedForms()
   $("#mobile_number_error").hide();
   $("#department_id_error").hide();
   $("#agent_id_error").hide();
+  $("#interested_in_error").hide();
+  $("#interested_in_gr_int_error").hide();
   $("#form_date_error").hide();
   $("#to_date_error").hide();
+  $("#total_seat_error").hide();
   
   var submiform='';
   
@@ -1147,6 +1150,30 @@ var mobile_number = $('#mobile_number').val();
   {
     $('#agent_id_error').text('Please select Booking Centre.');
     $('#agent_id_error').show();
+    submiform=false;
+  }
+
+  var interested_in = $('#interested_in').val();
+  if (interested_in == '' || interested_in ==null) 
+  {
+    $('#interested_in_error').text('Please select interted in.');
+    $('#interested_in_error').show();
+    submiform=false;
+  }
+
+  var interested_in_gr_int = $('#interested_in_gr_int').val();
+  if (interested_in_gr_int == '' || interested_in_gr_int ==null) 
+  {
+    $('#interested_in_gr_int_error').text('Please select type of tour.');
+    $('#interested_in_gr_int_error').show();
+    submiform=false;
+  }
+
+  var total_seat = $('#total_seat').val();
+  if (total_seat == '' || total_seat ==null) 
+  {
+    $('#total_seat_error').text('Please enter total seat count.');
+    $('#total_seat_error').show();
     submiform=false;
   }
 

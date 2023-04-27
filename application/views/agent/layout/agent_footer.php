@@ -406,30 +406,56 @@
                 var img_count=parseInt(i)+1+parseInt(count);
             
                 // alert(i);
-        var structure = $(`<tr>
-                   <td><select class="select_css" name="mrandmrs[]" id="mrandmrs">
+        var structure = $(`
+                    <style>
+                        img{
+                        width:25% !important;
+                        height:25% !important;
+                        }
+                        table{
+                        table-layout: fixed;
+                        display: block;
+                        overflow: auto;
+                        }
+                        .for_row_set .row_set{
+                            width:135px;
+
+                        }
+                        .for_row_set .row_set1{
+                            width:70px;
+
+                        }
+                    </style>
+                <tr>
+                                    <td><select class="select_css row_set1" name="mrandmrs[]" id="mrandmrs">
                                         <option value="">select Mr / Mrs</option>
                                         <option value="Mr">Mr</option>
                                         <option value="Mrs">Mrs</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="first_name[]" id="first_name" >
+                                        <input type="text" class="form-control row_set" name="first_name[]" id="first_name">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="middle_name[]" id="middle_name">
+                                        <input type="text" class="form-contro row_set" name="middle_name[]" id="middle_name">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="last_name[]" id="last_name">
+                                        <input type="text" class="form-control row_set" name="last_name[]" id="last_name">
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control" name="dob[]" id="dob" max="<?php echo date("Y-m-d");?>">
+                                        <input type="date" class="form-control row_set" name="dob[]" id="dob" max="<?php echo date("Y-m-d");?>">
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control" name="anniversary_date[]" id="anniversary_date" max="<?php echo date("Y-m-d");?>">
+                                        <input type="text" class="form-control row_set" name="age[]" id="age" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                                     </td>
                                     <td>
-                                    <select class="select_css" name="relation[]" id="relation">
+                                        <input type="date" class="form-control row_set" name="anniversary_date[]" id="anniversary_date" max="<?php echo date("Y-m-d");?>" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['anniversary_date'];} ?>">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" maxlength="10" minlength="10" name="mobile_number[]" id="mobile_number" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['mobile_number'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </td>
+                                    <td>
+                                    <select class="select_css row_set" name="relation[]" id="relation">
                                         <option value="">Select</option>
                                         <?php
                                         foreach($relation_data as $relation_data_info){ 
@@ -444,8 +470,17 @@
                                     <input type="hidden" id="document_file_traveller_img`+img_count+`" name="document_file_traveller_img[]"
                                         value="">
                                         <div id="imagePreview_traveller_img`+img_count+`" class="mt-2 img_size_cast">
-                                            <img src="<?php echo base_url(); ?>assets/uploads/traveller/" width="100%" />
+                                            <img class="traveller_img" src="<?php echo base_url(); ?>assets/uploads/inter_traveller/" width="100%" />
                                         </div>
+                                    </td>
+                                    <td>
+                                        <input type="file" name="aadhar_image_name[]" id="aadhar_image_name`+img_count+`" onchange="encodeImgtoBase64aadhar_img(this)" attr_id="`+img_count+`">
+    
+                                        <input type="hidden" id="document_file_aadhar_img`+img_count+`" name="document_file_aadhar_img[]"
+                                            value="">
+                                            <div id="imagePreview_aadhar_img`+img_count+`" class="mt-2 img_size_cast">
+                                                <img src="<?php echo base_url(); ?>assets/uploads/traveller_aadhar/" width="100%" />
+                                            </div>
                                     </td>
                                     <td>
                                         <button type="button" id="resetBtn" class="btn btn-primary resetBtn" name="Clear" value="Reset">Reset</button>
@@ -461,6 +496,37 @@
     });
 
 </script>
+
+<script>
+
+        $(function(){
+					var calculateAge = function(time){
+						var months = Math.round(time/(24*60*60*1000*30));
+						//alert(months);
+						var years = parseInt(months / 12);
+						//alert(years);
+						months = months % 12;
+						return years;
+					}; 
+
+					// return years +" yrs and " + months + " months";
+
+					$('input[name="dob[]"]').change(function(){
+						var birthDate = new Date($(this).val()).getTime();
+						var presentDate = new Date().getTime();
+
+                        var age = presentDate - birthDate;
+                        var currentRow=$(this).closest("tr"); 
+                        var col3=currentRow.find('input[name="age[]"]').val(calculateAge(age)); 
+						//alert(birthDate);
+						//alert(presentDate);
+						
+						// $('input[name="age[]"]').val(calculateAge(age));
+					});
+					});
+   
+</script>
+
 <!-- <script>
 
     $(document).ready(function(){
@@ -1186,7 +1252,7 @@ $('.received_qty').on('keyup', function() {
      if(parseInt(p) <= parseInt(col3) && p >0)
      {
          
-$(".received_qty").each(function () {                
+    $(".received_qty").each(function () {                
     var s_send = $(this).val(); 
      if(s_send!='')
      {
@@ -1500,6 +1566,9 @@ $('#all_traveller_info').validate({ // initialize the plugin
         "dob[]": {
             required: true,
         },
+        "age[]": {
+            required: true,
+        },
         "relation[]": {
             required: true,
         },
@@ -1543,8 +1612,8 @@ $('#all_traveller_info').validate({ // initialize the plugin
         },
         phone_no: {
             required: true,
-            maxlength:10,
-            minlength:10
+            maxlength:8,
+            minlength:8
         },
         email_id: {
             required: true,
@@ -1566,6 +1635,9 @@ $('#all_traveller_info').validate({ // initialize the plugin
         },
         "dob[]" : {
             required : "Please select date of birth",
+        },
+        "age[]" : {
+            required : "Please enter age",
         },
         "relation[]" : {
             required : "Please select relation",
@@ -1610,8 +1682,8 @@ $('#all_traveller_info').validate({ // initialize the plugin
         },
         phone_no : {
             required : "Please enter mobile number",
-            maxlength: "Please enter maximum 10 digit number",
-            minlength: "Please enter minimum 10 digit number"
+            maxlength: "Please enter maximum 8 digit number",
+            minlength: "Please enter minimum 8 digit number"
         },
         email_id : {
             required : "Please enter email id",
@@ -2306,7 +2378,129 @@ function totalamount_three() {
 </script>
 <!-- add all traveller info image and seatcount count -->
 
+<script>
+//passbook_img doc
+ var count = $('#seat_count_add').val(); 
+ //for(var i=1; i<count; i++){
+    function encodeImgtoBase64aadhar_img(element) {
+        var img_id =$(element).attr('attr_id');
+         var document_file_aadhar_img='document_file_aadhar_img'+img_id;
+         var imagePreview_aadhar_img='imagePreview_aadhar_img'+img_id;
+         var aadhar_image_name='aadhar_image_name'+img_id;
+//alert(image_name);
 
+        //  alert(image_name);
+         var fileCheckpassbook_img ='';
+         $("#"+document_file_aadhar_img).val('');
+         document.getElementById(imagePreview_aadhar_img).innerHTML = '';
+         $("label").remove('.error');
+         var fileInputaadhar_img = document.getElementById(aadhar_image_name);
+         //alert(fileInputaadhar_img);
+         var filePathaadhar_img = fileInputaadhar_img.value;
+        // alert(filePathaadhar_img);
+         var allowedExtensionsaadhar_img = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+            if (!allowedExtensionsaadhar_img.exec(filePathaadhar_img)) {
+                fileCheckaadhar_img = fileInputaadhar_img.files[0];
+               // alert(fileCheckaadhar_img);
+                if(fileCheckaadhar_img)
+                {
+                    console.log('eeeeeeeeerrrrrrrrrrrrr');
+                    fileInputaadhar_img.value = '';
+                    return false;
+                }
+            } else {
+                var file = fileInputaadhar_img.files[0];
+                if (file.size > 2000005) 
+                {
+                     console.log('sssiiizzeeeee');
+                     fileInputaadhar_img.value = '';
+                     $('#imagePreview_aadhar_img').empty();
+                     return false;
+                    }
+                     //Image preview
+                    if (fileInputaadhar_img.files && fileInputaadhar_img.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var allowedExtensionsaadhar_imgNew = /(\.pdf)$/i;
+                            if (!allowedExtensionsaadhar_imgNew.exec(filePathaadhar_img)) {
+                                document.getElementById(imagePreview_aadhar_img).innerHTML = '<img src="' + e.target.result + '"/>';
+                                
+                            }
+                                };
+                                reader.readAsDataURL(fileInputaadhar_img.files[0]);
+                                }
+                    }
+                                var img = element.files[0];
+                                var reader = new FileReader();
+                                reader.onloadend = function() {
+                                    $("#"+document_file_aadhar_img).val(reader.result);
+                                    }
+                                    reader.readAsDataURL(img);
+                                    }
+                                    //);
+                                    //}
+</script>
+
+<script>
+//passbook_img doc
+ var count = $('#seat_count_edit').val();
+//  alert(count); 
+ //for(var i=1; i<count; i++){
+    function encodeImgtoBase64aadhar_img_edit(element) {
+        // alert('hiiiiii');
+         var img_id =$(element).attr('attr_id');
+         var document_file_aadhar_img='document_file_aadhar_img'+img_id;
+         var imagePreview_aadhar_img='imagePreview_aadhar_img'+img_id;
+         var aadhar_image_name='aadhar_image_name'+img_id;
+          //alert(image_name);
+         var fileCheckpassbook_img ='';
+         $("#"+document_file_aadhar_img).val('');
+         document.getElementById(imagePreview_aadhar_img).innerHTML = '';
+         $("label").remove('.error');
+         var fileInputaadhar_img = document.getElementById(aadhar_image_name);
+        // alert(fileInputaadhar_img);
+         var filePathaadhar_img = fileInputaadhar_img.value;
+         var allowedExtensionsaadhar_img = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+            if (!allowedExtensionsaadhar_img.exec(filePathaadhar_img)) {
+                // alert('yesssssssssssss');
+                fileCheckaadhar_img = fileInputaadhar_img.files[0];
+                if(fileCheckaadhar_img)
+                {
+                    console.log('eeeeeeeeerrrrrrrrrrrrr');
+                    fileInputaadhar_img.value = '';
+                    return false;
+                }
+            } else {
+               // alert('Noooooooooooooooooooo');
+                var file = fileInputaadhar_img.files[0];
+                if (file.size > 2000005) 
+                {
+                     console.log('sssiiizzeeeee');
+                     fileInputaadhar_img.value = '';
+                     $('#imagePreview_aadhar_img').empty();
+                     return false;
+                    }
+                     //Image preview
+                    if (fileInputaadhar_img.files && fileInputaadhar_img.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var allowedExtensionsaadhar_imgNew = /(\.pdf)$/i;
+                            if (!allowedExtensionsaadhar_imgNew.exec(filePathaadhar_img)) {
+                                document.getElementById(imagePreview_aadhar_img).innerHTML = '<img src="' + e.target.result + '"/>';}
+                                };
+                                reader.readAsDataURL(fileInputaadhar_img.files[0]);
+                                }
+                                }
+                                var img = element.files[0];
+                                var reader = new FileReader();
+                                reader.onloadend = function() {
+                                    $("#"+document_file_aadhar_img).val(reader.result);
+                                    }
+                                    reader.readAsDataURL(img);
+                                    }
+                                    //);
+                                    //}
+</script>
 
 <!-- inter all traveller info  add code 16-03-2023======================================== -->
 <script>
@@ -2343,7 +2537,7 @@ function totalamount_three() {
                     }
                     </style>
                     <tr>
-                   <td><select class="select_css row_set1" name="mrandmrs[]" id="mrandmrs">
+                                    <td><select class="select_css row_set1" name="mrandmrs[]" id="mrandmrs">
                                         <option value="">select Mr / Mrs</option>
                                         <option value="Mr">Mr</option>
                                         <option value="Mrs">Mrs</option>
@@ -2360,6 +2554,18 @@ function totalamount_three() {
                                     </td>
                                     <td>
                                         <input type="date" class="form-control row_set" name="dob[]" id="dob" max="<?php echo date("Y-m-d");?>">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" name="age[]" id="age" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control row_set" name="anniversary_date[]" id="anniversary_date" max="<?php echo date("Y-m-d");?>" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['anniversary_date'];} ?>">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" maxlength="10" minlength="10" name="mobile_number[]" id="mobile_number" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['mobile_number'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" name="last_name[]" id="last_name">
                                     </td>
                                     <td>
                                     <select class="select_css row_set" name="relation[]" id="relation">
@@ -2379,6 +2585,15 @@ function totalamount_three() {
                                         <div id="imagePreview_traveller_img`+img_count+`" class="mt-2 img_size_cast">
                                             <img class="traveller_img" src="<?php echo base_url(); ?>assets/uploads/inter_traveller/" width="100%" />
                                         </div>
+                                    </td>
+                                    <td>
+                                        <input type="file" name="aadhar_image_name[]" id="aadhar_image_name`+img_count+`" onchange="encodeImgtoBase64aadhar_img(this)" attr_id="`+img_count+`">
+    
+                                        <input type="hidden" id="document_file_aadhar_img`+img_count+`" name="document_file_aadhar_img[]"
+                                            value="">
+                                            <div id="imagePreview_aadhar_img`+img_count+`" class="mt-2 img_size_cast">
+                                                <img src="<?php echo base_url(); ?>assets/uploads/traveller_aadhar/" width="100%" />
+                                            </div>
                                     </td>
                                     <td>
                                         <button type="button" id="resetBtn" class="btn btn-primary resetBtn" name="Clear" value="Reset">Reset</button>

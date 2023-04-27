@@ -78,7 +78,7 @@ class Stationary_order extends CI_Controller {
 				$today=date('Y-m-d');
                  $arr_insert = array(
                     'agent_id' =>   $id,
-                    'order_status' => 'Pending',
+                    'order_status' => 'Requested',
                     'order_desc' => $stationary_order_desc
                 );
                 $inserted_id = $this->master_model->insertRecord('stationary_order',$arr_insert,true);

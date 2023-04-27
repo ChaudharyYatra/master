@@ -5,10 +5,39 @@
     } 
 
     table.scrolldown tbody td, thead th {
-  width : 260px;
-  /* border-right: 2px solid black; */
-}
+    width : 260px;
+    /* border-right: 2px solid black; */
+    }
 
+    table.scrolldown tbody{
+        height : auto !important;
+    }
+
+    .modal-open .modal .modal-dialog .modal-content {
+    overflow-y: auto;
+    height: 80vh;
+    border-radius: 10px;
+    }
+
+    .modal-open .modal .modal-dialog .modal-content::-webkit-scrollbar {
+    width: 5px;
+    }
+
+    .modal-open .modal .modal-dialog .modal-content::-webkit-scrollbar-track {
+    background-color: #ebebeb; 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    }
+
+    .modal-open .modal .modal-dialog .modal-content::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: #6d6d6d; 
+        /* #029E9D */
+    }
+    .modal-footer{
+        margin-bottom:-20px;
+    }
 table.scrolldown tbody{
     height : auto !important;
 }
@@ -1749,7 +1778,11 @@ table.scrolldown tbody{
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Customer Travelling information</h5>
+        <center>
+      <h5 class="mb-1" data-aos="fade-up" data-duration="500">Need any help ? <span class="theme" data-aos="fade-up" data-duration="500">Fill the form & our agent will contact you soon.</span></h5>  
+        </center>        
+        <!-- <h5 class="mb_for_img theme_sub_title" data-aos="fade-up" data-duration="500">Travelling information</h5> -->
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Customer Travelling information</h5> -->
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form class="mb-2" method="post" onsubmit="return validateCustomisedForms()" action="<?php echo base_url();?>home/website_visitor_data">
@@ -1802,35 +1835,71 @@ table.scrolldown tbody{
                     <span class="text-danger float-left" id="agent_id_error" style="display:none"></span>
                 </div>
             </div> 
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group mb-2">
+                    <div class="input-box">
+                        <select class="" name="interested_in" id="interested_in" placeholder="Interted In">
+                            <option value="">Interested In</option>
+                            <option value="Domastic">Domastic Tour</option>
+                            <option value="International">International Tour</option>
+                        </select>
+                    </div>
+                    <span class="text-danger float-left" id="interested_in_error" style="display:none"></span>
+                </div>
+            </div> 
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group mb-2">
+                    <div class="input-box">
+                        <select class="" name="interested_in_gr_int" id="interested_in_gr_int" placeholder="Interted In">
+                            <option value="">Type Of Tour</option>
+                            <option value="Group">Group Tour</option>
+                            <option value="Customize">Customize Tour</option>
+                        </select>
+                    </div>
+                    <span class="text-danger float-left" id="interested_in_gr_int_error" style="display:none"></span>
+                </div>
+            </div> 
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label class="front_css">Travelling From Date</label>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label class="front_css">Travelling To Date</label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="front_css">Traveller Seat Count</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group mb-2">
                             <input type="date" placeholder="From date" name="form_date" id="form_date" min="<?php echo date("Y-m-d");?>">
                             <span class="text-danger float-left" id="form_date_error" style="display:none"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group mb-2">
                             <input type="date" placeholder="To date" name="to_date" id="to_date" min="<?php echo date("Y-m-d");?>">
                             <span class="text-danger float-left" id="to_date_error" style="display:none"></span>
                         </div>
                     </div>  
+                    <div class="col-md-6">
+                        <div class="form-group mb-2">
+                            <input type="text" placeholder="Total Seat" name="total_seat" id="total_seat" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
+                            <span class="text-danger float-left" id="total_seat_error" style="display:none"></span>
+                        </div>
+                    </div>
                 </div> 
             </div>    
+            
+            
+
         </div>
         </div>
 
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" value="submit" name="submit" id="submit">Submit</button>
+            <button type="submit" class="btn nir-btn term-btn fw-bold white" value="submit" name="submit" id="submit">Submit</button>
         </div>
         </form>
     </div>

@@ -146,6 +146,7 @@
                                     <th style="width:15%;">Anniversary Date (Optional)</th>
                                     <th style="width:15%;">Relation</th>
                                     <th style="width:10%;">Upload Tourist Image</th>
+                                    <th style="width:10%;">Upload Tourist AadharCard Image</th>
                                     <th style="width:10%;">Action</th>
                                 
                                 </tr>
@@ -215,6 +216,14 @@
                                     </div>
                                 </td>
                                 <td>
+                                    <input type="file" name="aadhar_image_name[]" id="aadhar_image_name1" onchange="encodeImgtoBase64aadhar_img(this)" attr_id='1'>
+                                    <input type="hidden" id="document_file_aadhar_img1" name="document_file_aadhar_img[]" 
+                                    value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['aadhar_img_encoded'];} ?>">
+                                    <div id="imagePreview_aadhar_img1" class="mt-2 img_size_cast">
+                                        <img src="<?php echo base_url(); ?>uploads/traveller_aadhar/<?php  echo $all_traveller_info_value['aadhar_image_name'];?>" width="100%" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['aadhar_image_name'];} ?>"/>
+                                    </div>
+                                </td>
+                                <td>
                                     <button type="button" class="btn btn-primary resetBtn" id="resetBtn" name="Clear" value="Reset">Reset</button>
                                 </td>
                                 
@@ -276,6 +285,14 @@
                                         <div id="imagePreview_traveller_img<?php echo $img_count;?>" class="mt-2 img_size_cast">
                                             <img src="<?php echo base_url(); ?>uploads/traveller/" width="100%" />
                                         </div>
+                                </td>
+                                <td>
+                                    <input type="file" name="aadhar_image_name[]" id="aadhar_image_name<?php echo $img_count;?>" onchange="encodeImgtoBase64aadhar_img(this)" attr_id='<?php echo $img_count;?>'>
+                                    <input type="hidden" id="document_file_aadhar_img<?php echo $img_count;?>" name="document_file_aadhar_img[]" 
+                                    value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['aadhar_img_encoded'];} ?>">
+                                    <div id="imagePreview_aadhar_img<?php echo $img_count;?>" class="mt-2 img_size_cast">
+                                        <img src="<?php echo base_url(); ?>uploads/traveller_aadhar/" width="100%" />
+                                    </div>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary resetBtn" id="resetBtn" name="Clear" value="Reset">Reset</button>

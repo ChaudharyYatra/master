@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Website_visitor_data extends CI_Controller{
+class International_website_visitor_data extends CI_Controller{
 
 	public function __construct()
 	{
@@ -11,11 +11,11 @@ class Website_visitor_data extends CI_Controller{
                 redirect(base_url().'agent/login'); 
         }
 	
-        $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/website_visitor_data";
-        $this->module_booking_enquiry    =  base_url().$this->config->item('agent_panel_slug')."/booking_enquiry";
-        $this->module_title       = "Website Visitor Data";
-        $this->module_url_slug    = "website_visitor_data";
-        $this->module_view_folder = "website_visitor_data/";    
+        $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/International_website_visitor_data";
+        $this->module_booking_enquiry    =  base_url().$this->config->item('agent_panel_slug')."/international_booking_enquiry";
+        $this->module_title       = "International Website Visitor Data";
+        $this->module_url_slug    = "international_website_visitor_data";
+        $this->module_view_folder = "international_website_visitor_data/";    
         $this->load->library('upload');
         $this->load->model('member');
 	}
@@ -30,7 +30,7 @@ class Website_visitor_data extends CI_Controller{
        $fields = "website_visitor_data.*,agent.agent_name,agent.booking_center,department.department";
        $this->db->order_by('website_visitor_data.created_at','desc');
        $this->db->where('website_visitor_data.is_deleted','no');
-       $this->db->where('website_visitor_data.interested_in','Domastic');
+       $this->db->where('website_visitor_data.interested_in','International');
        $this->db->where('website_visitor_data.booking_center',$id);
        $this->db->join("agent", 'website_visitor_data.booking_center=agent.id','left');
        $this->db->join("department", 'website_visitor_data.department_id=department.id','left');

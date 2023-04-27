@@ -353,3 +353,102 @@ $(".send_qty").each(function () {
 
 </script>
 
+<!-- new code stationary as per client changes -->
+
+<script>
+
+    $('.send_qty').keyup(function(){
+        // $('#traveller_table .remove_row').remove();
+        var count = $(this).val();
+        var attrval =$(this).attr('attr-series_yes_no');
+//     alert(attrval);
+//     alert(count);
+
+//     $("#send_qty").each(function () {                
+//      var s_send = $(this).val();
+//      alert(s_send);
+//      }); 
+     
+if(attrval =="Yes"){ 
+// alert('Doneeeee');
+
+            for(var i=0; i<count; i++){
+            
+        var structure = $(` 
+
+               <tr>
+                  <td>
+                    <select class="form-control" style="width: 100%;" name="academic_year[]" id="academic_year" required="required">
+                      <option value="">Select year</option>
+                      <?php
+                          foreach($academic_years_data as $academic_years_info) 
+                          { 
+                      ?>
+                          <option value="<?php echo $academic_years_info['id']; ?>"><?php echo $academic_years_info['year']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-control" style="width: 100%;" name="from_series[]" id="from_series" required="required">
+                        <option value="">Select series</option>
+                        <?php
+                            foreach($from_series_data as $from_series_info) 
+                            { 
+                        ?>
+                            <option value="<?php echo $from_series_info['id']; ?>"> <?php echo $from_series_info['from_series']; ?> - <?php echo $from_series_info['to_series']; ?> </option>
+                        <?php } ?>
+                    </select>
+                  </td>
+                  <td>
+                    <textarea class="form-control" name="remark[]" id="remark"></textarea>  
+                  </td>
+               </tr>
+                                   
+
+               `);
+        
+         
+            //alert(i);                       
+            $('#series_yes').append(structure); 
+        }
+     }
+     else{
+          // alert('noooooo');
+          for(var i=0; i<count; i++){
+
+        var structure = $(` 
+
+               <tr>
+                  <td>
+                    <select class="form-control" style="width: 100%;" name="academic_year[]" id="academic_year" required="required">
+                      <option value="">Select Year</option>
+                      <?php
+                          foreach($academic_years_data as $academic_years_info) 
+                          { 
+                      ?>
+                          <option value="<?php echo $academic_years_info['id']; ?>"><?php echo $academic_years_info['year']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </td>
+                  
+                  
+                  <td>
+                    <textarea class="form-control" name="remark[]" id="remark"></textarea>  
+                  </td>
+               </tr>
+                                   
+
+                    `);
+        
+         
+            //alert(i);                       
+            // $('#series_no').append(structure); 
+        }
+          
+     }
+       
+    });
+
+</script>
+
+<!-- ========== -->
