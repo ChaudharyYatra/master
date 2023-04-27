@@ -84,6 +84,8 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo base_url(); ?>packages/all_packages">Domestic Tours</a></li>
                                         <li><a href="<?php echo base_url(); ?>international_packages/all_packages">International Tours</a></li>
+                                        <li><a href="<?php echo base_url(); ?>custom_domestic_booking_enquiry/all_custom_domestic_packages">Personalized Domestic Tours</a></li>
+                                        <li><a href="<?php echo base_url(); ?>international_packages/all_custom_international_packages">Personalized International Tours</a></li>
                                     </ul> 
                                 </li>
                                 <li><a href="<?php echo base_url(); ?>gallery/index">Gallery</a></li>

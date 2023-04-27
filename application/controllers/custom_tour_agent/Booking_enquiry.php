@@ -43,9 +43,10 @@ class Booking_enquiry extends CI_Controller {
         // // print_r($arr_data); die;
 
         $record = array();
-        $fields = "custom_domestic_booking_enquiry.*,packages.tour_title,packages.tour_number as tno";
+        $fields = "custom_domestic_booking_enquiry.*,packages.tour_title,packages.tour_number as tno,agent.agent_name";
         $this->db->where('custom_domestic_booking_enquiry.is_deleted','no');
         $this->db->join("packages", 'custom_domestic_booking_enquiry.package_id=packages.id','left');
+        $this->db->join("agent", 'custom_domestic_booking_enquiry.agent_id=agent.id','left');
         $arr_data = $this->master_model->getRecords('custom_domestic_booking_enquiry',array('custom_domestic_booking_enquiry.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
         
@@ -147,12 +148,15 @@ class Booking_enquiry extends CI_Controller {
                 $no_of_couple        = $this->input->post('no_of_couple'); 
 
                 $meal_plan         = $this->input->post('meal_plan'); 
+                $meal_plan_name         = $this->input->post('meal_plan_name'); 
                 $total_adult             = $this->input->post('total_adult');
                 $total_child_with_bed     = $this->input->post('total_child_with_bed');
 
                 $total_child_without_bed            = $this->input->post('total_child_without_bed');
                 $vehicle_type         = $this->input->post('vehicle_type');
+                $other_vehicle_name         = $this->input->post('other_vehicle_name');
                 $pick_up_from         = $this->input->post('pick_up_from');
+                $other_pickup_from_name         = $this->input->post('other_pickup_from_name');
 
                 $pickup_date        = $this->input->post('pickup_date'); 
                 $pickup_time         = $this->input->post('pickup_time'); 
@@ -178,16 +182,20 @@ class Booking_enquiry extends CI_Controller {
 						'no_of_couple'=>$no_of_couple,
 
                         'meal_plan'    =>$meal_plan,
+                        'other_meal_plan'    =>$meal_plan_name,
                         'total_adult'    =>$total_adult,
 						'total_child_with_bed'=>$total_child_with_bed,
 
                         'total_child_without_bed'    =>$total_child_without_bed,
                         'vehicle_type'    =>$vehicle_type,
+                        'other_vehicle_name'    =>$other_vehicle_name,
 						'pick_up_from'=>$pick_up_from,
+						'other_pickup_from_name'=>$other_pickup_from_name,
 
                         'pickup_date'    =>$pickup_date,
                         'pickup_time'    =>$pickup_time,
 						'drop_to'=>$drop_to,
+						'other_drop_to_name'=>$other_drop_to_name,
 
                         'drop_date'    =>$drop_date,
                         'drop_time'    =>$drop_time,
@@ -584,18 +592,22 @@ class Booking_enquiry extends CI_Controller {
 
                 $no_of_couple        = $this->input->post('no_of_couple'); 
 
-                $meal_plan         = $this->input->post('meal_plan'); 
+                $meal_plan         = $this->input->post('meal_plan');
+                $meal_plan_name         = $this->input->post('meal_plan_name'); 
                 $total_adult             = $this->input->post('total_adult');
                 $total_child_with_bed     = $this->input->post('total_child_with_bed');
 
                 $total_child_without_bed            = $this->input->post('total_child_without_bed');
                 $vehicle_type         = $this->input->post('vehicle_type');
+                $other_vehicle_name         = $this->input->post('other_vehicle_name');
                 $pick_up_from         = $this->input->post('pick_up_from');
+                $other_pickup_from_name         = $this->input->post('other_pickup_from_name');
 
                 $pickup_date        = $this->input->post('pickup_date'); 
                 $pickup_time         = $this->input->post('pickup_time'); 
                 $drop_to             = trim($this->input->post('drop_to'));
-                
+                $other_drop_to_name             = $this->input->post('other_drop_to_name');
+
                 $drop_date     = trim($this->input->post('drop_date'));
                 $drop_time            = $this->input->post('drop_time');
                 $special_note            = $this->input->post('special_note');
@@ -616,16 +628,20 @@ class Booking_enquiry extends CI_Controller {
 						'no_of_couple'=>$no_of_couple,
 
                         'meal_plan'    =>$meal_plan,
+                        'other_meal_plan'    =>$meal_plan_name,
                         'total_adult'    =>$total_adult,
 						'total_child_with_bed'=>$total_child_with_bed,
 
                         'total_child_without_bed'    =>$total_child_without_bed,
                         'vehicle_type'    =>$vehicle_type,
+                        'other_vehicle_name'    =>$other_vehicle_name,
 						'pick_up_from'=>$pick_up_from,
+						'other_pickup_from_name'=>$other_pickup_from_name,
 
                         'pickup_date'    =>$pickup_date,
                         'pickup_time'    =>$pickup_time,
 						'drop_to'=>$drop_to,
+						'other_drop_to_name'=>$other_drop_to_name,
 
                         'drop_date'    =>$drop_date,
                         'drop_time'    =>$drop_time,

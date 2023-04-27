@@ -2853,7 +2853,7 @@ $('#add_package').validate({ // initialize the plugin
         cost: {
             required : function(element) {
                 var action = $("#package_type").val();
-                if(action == "Custom Domestic Package" || action == "Custom International Package") { 
+                if(action == "3" || action == "4" || action == "Special Limited Offer") { 
                     return false;
                 } else {
                     return true;
@@ -3002,7 +3002,7 @@ $('#edit_package').validate({ // initialize the plugin
         cost: {
             required : function(element) {
                 var action = $("#package_type").val();
-                if(action == "Custom Domestic Package" || action == "Custom International Package") { 
+                if(action == "3" || action == "4" || action == "Special Limited Offer") { 
                     return false;
                 } else {
                     return true;

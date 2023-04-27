@@ -65,7 +65,7 @@ class Followup_booking_enquiry extends CI_Controller{
                 $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');
                 $this->db->join("department", 'department.id= agent.department','left');
                 $arr_data_booking_enquiry=$this->master_model->getRecords('booking_enquiry',array('booking_enquiry.is_deleted'=>'no'),$fields);
-                print_r($arr_data_booking_enquiry); die;
+                // print_r($arr_data_booking_enquiry); die;
                 
                 $this->arr_view_data['agent_sess_name'] = $agent_sess_name;
                 $this->arr_view_data['listing_page']    = 'yes';

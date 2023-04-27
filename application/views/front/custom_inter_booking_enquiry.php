@@ -22,7 +22,7 @@
         <div class="breadcrumb-outer">
             <div class="container">
                 <div class="breadcrumb-content text-center">
-                    <h1 class="mb-3">Custom Domestic Booking </h1><h1 class="mt-5">Enquiry</h1>
+                    <h1 class="mb-3">Custom International Booking </h1><h1 class="mt-5">Enquiry</h1>
                     <nav aria-label="breadcrumb" class="d-block">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>home">Home</a></li>
@@ -44,7 +44,7 @@
                     <div class="payment-book">
                         <div class="booking-box">
                             <div class="customer-information mb-4">
-                                <form class="mb-2" method="post" onsubmit="return custom_enquiry_form()">
+                                <form class="mb-2" method="post" onsubmit="return custom_inter_enquiry_form()">
                                     <h5>Fill your information</h5>
                                     <div class="row">
                                         <div class="col-md-12">

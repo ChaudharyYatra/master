@@ -5,7 +5,7 @@
 // last updated: 05-09-2022
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class International_packages extends CI_Controller {
+class Custom_inter_booking_enquiry extends CI_Controller {
 	 
 	function __construct() {
 
@@ -13,114 +13,66 @@ class International_packages extends CI_Controller {
 
         $this->arr_view_data = [];
 	 }
-
     
-//     public function packages_list($id)
-//     {
-        
-//         if ($id=='') 
-//         {
-//             redirect(base_url().'/home');
-//         }   
+    public function all_packages()
+    {
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');       
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC'); 
+        $international_packages = $this->master_model->getRecords('packages');
+		//print_r($international_packages); die;
 
-//         if(is_numeric($id))
-//         {
-//             // $where = array();
-//             // $where_in_packages_ids = array();
-           
-//             //     	$package_id_list = $this->master_model->getSingleRecord('package_mapping',array('is_deleted'=>'no','is_active'=>'yes','id'=>$id),'group_concat(package_id) as package_ids');
+        $record = array();
+        $fields = 	"packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('package_type','4');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        $this->db->group_by('package_id');
+        $international_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
 
-//             //         if($package_id_list)
-//             //         {
-//             //         	$where_in_packages_ids = explode(',',$package_id_list['package_ids']);
-//             //      	}
-                 	
-//             //         if(!empty($where_in_packages_ids))
-//             //             {
-//             //             	$this->db->where_in('id', $where_in_packages_ids);
-//             //           	}
-              	
-//             $this->db->order_by('packages.id','desc');
-//          	$where['packages.is_deleted'] = 'no';
-//          	$where['packages.is_active'] = 'yes';
-// 			$packages_data = $this->master_model->getRecords('packages', $where);
-//         }
-//         else
-//         {
-//             redirect(base_url().'home');
-//         }
-         
-       
-        
-//         $data = array('middle_content' => 'packages_list',
-// 						'packages_data'       => $packages_data,
-// 						);
-						
-//         $this->arr_view_data['page_title']     =  "Packages List";
-//         $this->load->view('front/common_view',$data);
-//     }
-    
-    
-    
-    // public function all_packages()
-    // {
-    //     $this->db->where('is_deleted','no');
-    //     $this->db->where('is_active','yes');       
-    //     $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC'); 
-    //     $international_packages = $this->master_model->getRecords('packages');
-	// 	//print_r($international_packages); die;
-
-    //     $record = array();
-    //     $fields = 	"packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
-    //     $this->db->where('packages.is_deleted','no');
-    //     $this->db->where('packages.is_active','yes');
-    //     $this->db->where('package_type','2');
-    //     $this->db->join("package_date", 'packages.id=package_date.package_id','left');
-    //     $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
-    //     $this->db->group_by('package_id');
-    //     $international_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
-
-    //     $record = array();
-    //     $fields = "packages.*,package_date.*";
-    //     $this->db->where('packages.is_deleted','no');
-    //     $this->db->where('packages.is_active','yes');
-    //     $this->db->join("package_date", 'packages.id=package_date.package_id','left');
-    //     $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
-    //     // $this->db->group_by('package_id');
-    //     $international_packages_dates = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        $record = array();
+        $fields = "packages.*,package_date.*";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        // $this->db->group_by('package_id');
+        $international_packages_dates = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
 		
-    //     // $this->db->order_by('tour_number','ASC');
-    //     // $international_packages = $this->master_model->getRecords('international_packages');
-    //     // $international_packages = $this->db->query("Select id, academic_year, tour_number, 
-    //     // tour_title, destinations, rating, cost, tour_number_of_days, image_name, short_description, 
-    //     // full_description, iternary, inclusion, terms_conditions, contact_us, is_deleted, is_active, created_at,
-    //     // CAST(tour_number as INT)  as tour_number_new from international_packages order by tour_number_new asc");
-    //     // $international_packages = $international_packages->result_array();
+        // $this->db->order_by('tour_number','ASC');
+        // $international_packages = $this->master_model->getRecords('international_packages');
+        // $international_packages = $this->db->query("Select id, academic_year, tour_number, 
+        // tour_title, destinations, rating, cost, tour_number_of_days, image_name, short_description, 
+        // full_description, iternary, inclusion, terms_conditions, contact_us, is_deleted, is_active, created_at,
+        // CAST(tour_number as INT)  as tour_number_new from international_packages order by tour_number_new asc");
+        // $international_packages = $international_packages->result_array();
         
-    //     $this->db->where('is_deleted','no');
-    //     $this->db->where('is_active','yes');
-    //     $this->db->order_by('id','ASC');
-    //     $website_basic_structure = $this->master_model->getRecords('website_basic_structure');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('id','ASC');
+        $website_basic_structure = $this->master_model->getRecords('website_basic_structure');
         
-    //     $this->db->where('is_deleted','no');
-    //     $this->db->where('is_active','yes');
-    //     $this->db->order_by('id','ASC');
-    //     $social_media_link = $this->master_model->getRecords('social_media_link');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('id','ASC');
+        $social_media_link = $this->master_model->getRecords('social_media_link');
         
-    //     $count= sizeof($international_packages);
-    //      $data = array('middle_content' => 'all_international_packages',
-	// 					'international_packages'       => $international_packages,
-    //                     'international_packages_all'       => $international_packages_all,
-    //                     'international_packages_dates'       => $international_packages_dates,
-    //                     'count'      => $count,
-    //                     'page_title' => 'International Packages', 
-    //                     'website_basic_structure' => $website_basic_structure,
-    //                     'social_media_link' => $social_media_link,
-    //                     );
+        $count= sizeof($international_packages);
+         $data = array('middle_content' => 'all_international_packages',
+						'international_packages'       => $international_packages,
+                        'international_packages_all'       => $international_packages_all,
+                        'international_packages_dates'       => $international_packages_dates,
+                        'count'      => $count,
+                        'page_title' => 'International Packages', 
+                        'website_basic_structure' => $website_basic_structure,
+                        'social_media_link' => $social_media_link,
+                        );
 						
-    //     $this->arr_view_data['page_title']     =  "International Packages";
-    //     $this->load->view('front/common_view',$data);
-    // }
+        $this->arr_view_data['page_title']     =  "International Packages";
+        $this->load->view('front/common_view',$data);
+    }
     
     public function all_custom_international_packages()
     {
@@ -135,11 +87,12 @@ class International_packages extends CI_Controller {
         $fields = 	"packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
-        $this->db->where('package_type','Custom International Package');
+        $this->db->where('package_type','4');
         $this->db->join("package_date", 'packages.id=package_date.package_id','left');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $this->db->group_by('package_id');
         $international_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        // print_r($international_packages_all); die;
 
         $record = array();
         $fields = "packages.*,package_date.*";
@@ -179,12 +132,12 @@ class International_packages extends CI_Controller {
                         'social_media_link' => $social_media_link,
                         );
 						
-        $this->arr_view_data['page_title']     =  "International Packages";
+        $this->arr_view_data['page_title']     =  "Custom International Packages";
         $this->load->view('front/common_view',$data);
     }
     
 
-    public function package_details($id)
+    public function custom_inter_package_details($id)
     {
         if($id=='') 
         {
@@ -226,36 +179,34 @@ class International_packages extends CI_Controller {
         $this->db->join("packages", 'package_iternary.package_id=packages.id','left');
         $package_iternary_data = $this->master_model->getRecords('package_iternary',array('package_iternary.is_deleted'=>'no'),$fields);
 		
-        $data = array('middle_content' => 'international_package_details',
+        $data = array('middle_content' => 'custom_inter_package_details',
 						'package_details'       => $package_details_data,
 						'package_date_details_data'       => $package_date_details_data,
 						'website_basic_structure'       => $website_basic_structure,
 						'social_media_link'       => $social_media_link,
 					    'package_iternary_data'       => $package_iternary_data,
-						'page_title'       => 'Package Details',
+						'page_title'       => 'Custom Package Details',
 						);
 						
         $this->arr_view_data['page_title']     =  "Package Details";
         $this->load->view('front/common_view',$data);
     }
     
-	public function booking_enquiry($id)
+	public function custom_international_booking_enquiry($id)
     {
         
         if ($id=='') 
         {
-            redirect(base_url.'/international_packages/all_packages');
+            redirect(base_url.'/packages/all_packages');
         }   
 
         if(is_numeric($id))
-        {
-
-
-            $this->db->order_by('international_packages.id','desc');
-            $where['international_packages.is_deleted'] = 'no';
-            $where['international_packages.is_active'] = 'yes';
-            $international_packages_data = $this->master_model->getRecords('international_packages');
-
+        {     	
+            $this->db->order_by('packages.id','desc');
+         	$where['packages.is_deleted'] = 'no';
+         	$where['packages.is_active'] = 'yes';
+			$packages_data = $this->master_model->getRecords('packages');
+            
             $fields = "agent.*,department.department";
             $this->db->where('department.is_deleted','no');
             $this->db->where('department.is_active','yes');
@@ -267,7 +218,7 @@ class International_packages extends CI_Controller {
             $this->db->where('is_active','yes');
             $this->db->order_by('id','ASC');
             $website_basic_structure = $this->master_model->getRecords('website_basic_structure');
-
+            
             $this->db->where('is_deleted','no');
             $this->db->where('is_active','yes');
             $this->db->order_by('id','ASC');
@@ -282,115 +233,214 @@ class International_packages extends CI_Controller {
             $this->db->where('is_active','yes');
             $this->db->order_by('id','ASC');
             $social_media_link = $this->master_model->getRecords('social_media_link');
-
+            
             $this->db->where('is_deleted','no');
             $this->db->where('is_active','yes');
             $this->db->order_by('id','ASC');
             $media_source = $this->master_model->getRecords('media_source');
 
+            $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $this->db->order_by('id','ASC');
+            $meal_plan = $this->master_model->getRecords('meal_plan');
+            // print_r($meal_plan); die;
+
+            $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $this->db->order_by('id','ASC');
+            $vehicle_type = $this->master_model->getRecords('vehicle_type');
+            // print_r($vehicle_type); die;
+
+            $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $this->db->order_by('id','ASC');
+            $pick_up_from = $this->master_model->getRecords('pick_up_from');
+            // print_r($pick_up_from); die;
+
+            $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $this->db->order_by('id','ASC');
+            $drop_to = $this->master_model->getRecords('drop_to');
+            // print_r($drop_to); die;
+
             if(isset($_POST['submit']))
             {
-                $this->form_validation->set_rules('first_name', 'First Name', 'required');
-                $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+                $this->form_validation->set_rules('full_name', 'Full Name', 'required');
                 $this->form_validation->set_rules('email', 'Email', 'required');
-                $this->form_validation->set_rules('mobile_number', 'Mobile Number', 'required');
-                $this->form_validation->set_rules('gender', 'Gender', 'required');
-                $this->form_validation->set_rules('agent_id', 'Agent ID', 'required');
-				$this->form_validation->set_rules('wp_mobile_number', 'Whatsapp Mobile Number', 'required');
+                $this->form_validation->set_rules('mobile_number1', 'Mobile Number 1', 'required');
+
+                // $this->form_validation->set_rules('mobile_number2', 'Mobile Number 2', 'required');
+                $this->form_validation->set_rules('checkin_date', 'checkin_date', 'required');
+                $this->form_validation->set_rules('checkout_date', 'checkout_date', 'required');
+
+				$this->form_validation->set_rules('no_of_nights', 'no_of_nights', 'required');
+                $this->form_validation->set_rules('hotel_type[]', 'hotel_type', 'required');
+                $this->form_validation->set_rules('no_of_couple', 'no_of_couple', 'required');
+
+                $this->form_validation->set_rules('meal_plan', 'meal_plan', 'required');
+                $this->form_validation->set_rules('total_adult', 'total_adult', 'required');
+                $this->form_validation->set_rules('total_child_with_bed', 'total_child_with_bed', 'required');
+
+                $this->form_validation->set_rules('total_child_without_bed', 'total_child_without_bed', 'required');
+                $this->form_validation->set_rules('vehicle_type', 'vehicle_type', 'required');
+				$this->form_validation->set_rules('pick_up_from', 'pick_up_from', 'required');
+
+                $this->form_validation->set_rules('pickup_date', 'pickup_date', 'required');
+                $this->form_validation->set_rules('pickup_time', 'pickup_time', 'required');
+                $this->form_validation->set_rules('drop_to', 'drop_to', 'required');
+
+                $this->form_validation->set_rules('drop_date', 'drop_date', 'required');
+                $this->form_validation->set_rules('drop_time', 'drop_time', 'required');
+                // $this->form_validation->set_rules('special_note', 'special_note', 'required');
+              
     
+                
                 if($this->form_validation->run() == TRUE)
                 {
-                    $first_name        = $this->input->post('first_name'); 
-                    $last_name         = $this->input->post('last_name'); 
-                    $email             = trim($this->input->post('email'));
-                    $mobile_number     = trim($this->input->post('mobile_number'));
-                    $gender            = $this->input->post('gender');
-                    $agent_id         = $this->input->post('agent_id');
-                    $media_source_name         = $this->input->post('media_source_name');
-					$wp_mobile_number     = trim($this->input->post('wp_mobile_number'));
+                    $full_name        = $this->input->post('full_name'); 
+                    $email         = $this->input->post('email'); 
+                    $mobile_number1             = trim($this->input->post('mobile_number1'));
+
+                    $mobile_number2     = trim($this->input->post('mobile_number2'));
+                    $checkin_date            = $this->input->post('checkin_date');
+                    $checkout_date         = $this->input->post('checkout_date');
+
+                    $no_of_nights         = $this->input->post('no_of_nights');
+					// $hotel_type     = $this->input->post('hotel_type');
+                    // $hotel_type_arr_data   		  = $hotel_type_data;
+                    $hotel_type_data=implode(',',$this->input->post('hotel_type'));
+
+                    $no_of_couple        = $this->input->post('no_of_couple'); 
+
+                    $meal_plan         = $this->input->post('meal_plan'); 
+                    $meal_plan_name         = $this->input->post('meal_plan_name'); 
+                    $total_adult             = $this->input->post('total_adult');
+                    $total_child_with_bed     = $this->input->post('total_child_with_bed');
+
+                    $total_child_without_bed            = $this->input->post('total_child_without_bed');
+                    $vehicle_type         = $this->input->post('vehicle_type');
+                    $other_vehicle_name         = $this->input->post('other_vehicle_name');
+                    $pick_up_from         = $this->input->post('pick_up_from');
+                    $other_pickup_from_name         = $this->input->post('other_pickup_from_name');
+
+                    $pickup_date        = $this->input->post('pickup_date'); 
+                    $pickup_time         = $this->input->post('pickup_time'); 
+                    $drop_to             = $this->input->post('drop_to');
+                    $other_drop_to_name             = $this->input->post('other_drop_to_name');
+                    
+                    $drop_date     = trim($this->input->post('drop_date'));
+                    $drop_time            = $this->input->post('drop_time');
+                    $special_note            = $this->input->post('special_note');
                     $package_id        = $id;
+                   
     
                     $arr_insert = array(
-                        'first_name'    =>   $first_name,
-                        'last_name'     => $last_name,
-                        'email'         => $email,
-                        'mobile_number' => $mobile_number,
-                        'gender'        => $gender,
-                        'agent_id'     => $agent_id,
-                        'media_source_name'    =>$media_source_name,
-                        'package_id'    =>$id,
-						'wp_mobile_number'=>$wp_mobile_number,
-						'enquiry_from'    =>'front'
+                        'full_name'    =>   $full_name,
+                        'email'     => $email,
+                        'mobile_number1'         => $mobile_number1,
+
+                        'mobile_number2' => $mobile_number2,
+                        'checkin_date'        => $checkin_date,
+                        'checkout_date'     => $checkout_date,
+
+                        'no_of_nights'    =>$no_of_nights,
+                        'hotel_type'    =>$hotel_type_data,
+						'no_of_couple'=>$no_of_couple,
+
+                        'meal_plan'    =>$meal_plan,
+                        'other_meal_plan'    =>$meal_plan_name,
+                        'total_adult'    =>$total_adult,
+						'total_child_with_bed'=>$total_child_with_bed,
+
+                        'total_child_without_bed'    =>$total_child_without_bed,
+                        'vehicle_type'    =>$vehicle_type,
+                        'other_vehicle_name'    =>$other_vehicle_name,
+						'pick_up_from'=>$pick_up_from,
+						'other_pickup_from_name'=>$other_pickup_from_name,
+
+                        'pickup_date'    =>$pickup_date,
+                        'pickup_time'    =>$pickup_time,
+						'drop_to'=>$drop_to,
+						'other_drop_to_name'=>$other_drop_to_name,
+
+                        'drop_date'    =>$drop_date,
+                        'drop_time'    =>$drop_time,
+						'special_note'=>$special_note,
+                        'package_id'=>$package_id
+
                     );
                     
-                    $inserted_id = $this->master_model->insertRecord('international_booking_enquiry',$arr_insert,true);
+                    $inserted_id = $this->master_model->insertRecord('custom_domestic_booking_enquiry',$arr_insert,true);
+                    
+                    // $this->db->where('is_deleted','no');
+                    // $this->db->where('is_active','yes');
+                    // $this->db->where('id',$agent_id);
+                    // $this->db->order_by('id','DESC');
+                    // $agent_data_email = $this->master_model->getRecord('agent');
+                    // $agent_email=$agent_data_email['email'];
+					// $agent_name=$agent_data_email['agent_name'];
+                    
                 
-                    $this->db->where('is_deleted','no');
-                    $this->db->where('is_active','yes');
-                    $this->db->where('id',$agent_id);
-                    $this->db->order_by('id','DESC');
-                    $agent_data_email = $this->master_model->getRecord('agent');
-                    $agent_email=$agent_data_email['email'];
-					$agent_name=$agent_data_email['agent_name'];
-
-                    if($inserted_id > 0)
-                    {    
-                        $from_email='chaudharyyatra8@gmail.com';
-						$msg="<html>
-									<head>
-										<style type='text/css'>
-											body {font-family: Verdana, Geneva, sans-serif}
-										</style>
-									</head>
-									<body background=".base_url()."uploads/email/email1.jpg>
-										<h3>Dear&nbsp;".$first_name."&nbsp;".$last_name."</h3>
-										<p>I hope this message finds you well. I am writing to let you know that a new inquiry has been 											    
-										encountered in your account from a customer. We would appreciate it if you could assist them with their travel-related needs.
-										</p>
-										<p>Please review the inquiry details and take the necessary action to resolve the inquiry. If you have any questions or need any additional information, 
-										please do not hesitate to contact Head Office. 
-										</p>
-										<p>Thank you for your prompt attention to this matter.</p>
-										<p>Sincerely,</p>
-										<h5>CoudharyYatra Company</h5>
-									</body>
-									</html>";
-						//echo $msg;
-						$subject='Thank You For Enquiry';
-						// $this->send_mail($email,$from_email,$msg,$subject,$cc=null);
-						//die;
+                    // if($inserted_id > 0)
+                    // {    
+					// 	$from_email='chaudharyyatra8@gmail.com';
+					// 	$msg="<html>
+					// 				<head>
+					// 					<style type='text/css'>
+					// 						body {font-family: Verdana, Geneva, sans-serif}
+					// 					</style>
+					// 				</head>
+					// 				<body background=".base_url()."uploads/email/email1.jpg>
+					// 					<h3>Dear&nbsp;".$first_name."&nbsp;".$last_name."</h3>
+					// 					<p>We are so glad to welcome you as a customer of <b>Choudhary Yatra Company Pvt. 
+					// 						Ltd.</b> We hope that you will have an unforgettable and amazing journey with us.
+					// 					</p>
+					// 					<p>Our team of experienced professionals is ready to provide you with the best 
+					// 						possible service. We are committed to making your travel experience enjoyable 
+					// 						and hassle-free. Our staff is available to answer any questions you have 
+					// 						and to provide assistance.</p>
+					// 					<p>We look forward to being your travel partner with you for many years to come.</p>
+					// 					<p>Sincerely,</p>
+					// 					<h5>ChoudharyYatra Company</h5>
+					// 				</body>
+					// 				</html>";
+					// 	//echo $msg;
+					// 	$subject='Thank You For Enquiry';
+					// 	$this->send_mail($email,$from_email,$msg,$subject,$cc=null);
+					// 	//die;
 						
-						$msg_email="<html>
-									<head>
-										<style type='text/css'>
-											body {font-family: Verdana, Geneva, sans-serif}
-										</style>
-									</head>
-									<body background=".base_url()."uploads/email/email1.jpg>
-										<h3>Dear&nbsp;".$agent_name."</h3>
-										<p>I hope this message finds you well. I am writing to let you know that a new inquiry has been encountered in your account from a customer. We would 
-                                            appreciate it if you could assist them with their travel-related needs.
-										</p>
-										<p>Please review the inquiry details and take the necessary action to resolve the inquiry. If you have any questions or need any additional information, please do 
-                                            not hesitate to contact Head Office. 
-										</p>
-										<p>Thank you for your prompt attention to this matter.</p>
-										<p>Sincerely,</p>
-										<h5>CoudharyYatra Company</h5>
-										<a href=".base_url()."admin/login>Click Here</a>
-									</body>
-									</html>";
-									$subject_email=' New Enquiry from customer';
-						// $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
-
-                        $this->session->set_flashdata('success_message',"Enquiry Added Successfully.");
-                        redirect(base_url().'international_packages/confirm_enquiry');
-                    }
-                    else
-                    {
-                        $this->session->set_flashdata('error_message'," Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
-                    }
-                        redirect(base_url().'international_packages/booking_enquiry/'.$id);
+					// 	$msg_email="<html>
+					// 				<head>
+					// 					<style type='text/css'>
+					// 						body {font-family: Verdana, Geneva, sans-serif}
+					// 					</style>
+					// 				</head>
+					// 				<body background=".base_url()."uploads/email/email1.jpg>
+					// 					<h3>Dear&nbsp;".$agent_name."</h3>
+					// 					<p>I hope this message finds you well. I am writing to let you know that a new inquiry has been encountered in your account from a customer. We would 
+                    //                         appreciate it if you could assist them with their travel-related needs.
+					// 					</p>
+					// 					<p>Please review the inquiry details and take the necessary action to resolve the inquiry. If you have any questions or need any additional information, please do 
+                    //                         not hesitate to contact Head Office. 
+					// 					</p>
+					// 					<p>Thank you for your prompt attention to this matter.</p>
+					// 					<p>Sincerely,</p>
+					// 					<h5>ChoudharyYatra Company</h5>
+					// 					<a href=".base_url()."admin/login>Click Here</a>
+					// 				</body>
+					// 				</html>";
+					// 				$subject_email=' New Enquiry from customer';
+					// 	$this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
+						
+                    //     $this->session->set_flashdata('success_message',"Enquiry Added Successfully.");
+                    //     redirect(base_url().'packages/confirm_enquiry');
+                        
+                    // }
+                    // else
+                    // {
+                    //     $this->session->set_flashdata('error_message'," Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
+                    // }
+                    //     redirect(base_url().'packages/booking_enquiry/'.$id);
                 }   
             }
 
@@ -402,20 +452,24 @@ class International_packages extends CI_Controller {
          
        
         
-        $data = array('middle_content' => 'international_booking_enquiry',
-				 		'international_packages_data'       => $international_packages_data,
+        $data = array('middle_content' => 'custom_inter_booking_enquiry',
+						'packages_data'       => $packages_data,
+						'meal_plan'       => $meal_plan,
+						'vehicle_type'       => $vehicle_type,
+						'drop_to'       => $drop_to,
+						'pick_up_from'       => $pick_up_from,
 						'website_basic_structure'       => $website_basic_structure,
 						'social_media_link'       => $social_media_link,
                         'agent_data'    => $Aagent_data,
                         'department_data' => $department_data,
                         'media_source' => $media_source,
-                        'page_title'    => 'International Booking Enquiry',
+                        'page_title'    => 'Custom International Booking Enquiry',
 						);
 						
         $this->arr_view_data['page_title']     =  "Packages List";
+        // $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->load->view('front/common_view',$data);
     }
-
 
     public function send_mail($to_email,$from_email,$msg,$subject,$cc=null) {
          

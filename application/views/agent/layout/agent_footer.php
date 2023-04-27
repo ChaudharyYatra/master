@@ -96,8 +96,8 @@
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script>
+<!-- <script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script> -->
+<!-- <script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 
@@ -3541,5 +3541,539 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
         
     }
 </script>
+
+
+<!-- validation for custom booking enquiry -->
+<script>
+$(document).ready(function () {
+$('#custom_add_bookingenquiry').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        full_name: {
+            required: true,
+        },
+        email: {
+            required: true,
+            email:true,
+            // regxp: '/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/',
+        },
+        mobile_number1: {
+            required: true,
+            maxlength:10,
+            minlength:10
+        },
+        tour_number: {
+            required: true,
+        },
+        other_tour_name: {
+            required : function(element) {
+                var action = $("#tour_number").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+		checkin_date: {
+            required: true,
+        },
+        
+        checkout_date: {
+            required: true,
+        },
+        
+        no_of_nights: {
+            required: true,
+        },
+		"hotel_type[]": {
+            required: true,
+        },
+        no_of_couple: {
+            required: true,
+        },
+        meal_plan: {
+            required: true,
+        },
+        meal_plan_name: {
+            required : function(element) {
+                var action = $("#meal_plan").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        total_adult: {
+            required: true,
+        },
+        total_child_with_bed: {
+            required: true,
+        },
+        total_child_without_bed: {
+            required: true,
+        },
+        vehicle_type: {
+            required: true,
+        },
+        other_vehicle_name: {
+            required : function(element) {
+                var action = $("#vehicle_type").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        pick_up_from: {
+            required: true,
+        },
+        other_pickup_from_name: {
+            required : function(element) {
+                var action = $("#pick_up_from").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        pickup_date: {
+            required: true,
+        },
+        pickup_time: {
+            required: true,
+        },
+        drop_to: {
+            required: true,
+        },
+        other_drop_to_name: {
+            required : function(element) {
+                var action = $("#drop_to").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        drop_date: {
+            required: true,
+        },
+        drop_time: {
+            required: true,
+        }
+		
+        
+    },
+
+    messages :{
+        full_name : {
+            required : "Please enter full name",
+        },
+        email : {
+            required : "Please enter email address",
+            email: "Please enter a valid email address"
+        },
+        mobile_number1 : {
+            required : "Please enter mobile number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        tour_number : {
+            required : "Please enter tour number",
+        },
+        other_tour_name: {       
+                required: "Please enter destination name",   
+        },
+        checkin_date : {
+            required : "Please select check in dates",
+        },
+        
+		checkout_date : {
+            required : "Please select checkout date",
+        },
+        
+        no_of_nights : {
+            required : "Please enter no of nights",
+        },
+        "hotel_type[]" : {
+            required : "Please select hotel type",
+        },
+        no_of_couple : {
+            required : "Please enter no of couple",
+        },
+		meal_plan : {
+            required : "Please select meal plan",
+        },
+        meal_plan_name : {
+            required : "Please enter meal plan name",
+        },
+        total_adult : {
+            required : "Please enter total adult",
+        },
+		total_child_with_bed: {       
+                required: "Please enter total child with bed",   
+        },
+        total_child_without_bed: {       
+                required: "Please enter total child without bed",   
+        },
+        vehicle_type: {       
+                required: "Please select vehicle type",   
+        },
+        other_vehicle_name: {       
+                required: "Please enter vehicle name",   
+        },
+        pick_up_from: {       
+                required: "Please select pick up from",   
+        },
+        other_pickup_from_name: {       
+                required: "Please select pick up from name",   
+        },
+        pickup_date: {       
+                required: "Please enter pick up date",   
+        },
+        pickup_time: {       
+                required: "Please enter pick up time",   
+        },
+        drop_to: {       
+                required: "Please select drop to",   
+        },
+        other_drop_to_name: {       
+                required: "Please enter drop to name",   
+        },
+        drop_date: {       
+                required: "Please enter drop date",   
+        },
+        drop_time: {       
+                required: "Please enter drop time",   
+        }
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add custom Booking Enquiry -->
+
+<!-- jquery validation on edit custom Booking Enquiry -->
+<script>
+$(document).ready(function () {
+$('#custom_edit_bookingenquiry').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        full_name: {
+            required: true,
+        },
+        email: {
+            required: true,
+            email:true,
+            // regxp: '/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/',
+        },
+        mobile_number1: {
+            required: true,
+            maxlength:10,
+            minlength:10
+        },
+        tour_number: {
+            required: true,
+        },
+        other_tour_name: {
+            required : function(element) {
+                var action = $("#tour_number").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+		checkin_date: {
+            required: true,
+        },
+        
+        checkout_date: {
+            required: true,
+        },
+        
+        no_of_nights: {
+            required: true,
+        },
+		"hotel_type[]": {
+            required: true,
+        },
+        no_of_couple: {
+            required: true,
+        },
+        meal_plan: {
+            required: true,
+        },
+        total_adult: {
+            required: true,
+        },
+        total_child_with_bed: {
+            required: true,
+        },
+        total_child_without_bed: {
+            required: true,
+        },
+        vehicle_type: {
+            required: true,
+        },
+        pick_up_from: {
+            required: true,
+        },
+        pickup_date: {
+            required: true,
+        },
+        pickup_time: {
+            required: true,
+        },
+        drop_to: {
+            required: true,
+        },
+        drop_date: {
+            required: true,
+        },
+        drop_time: {
+            required: true,
+        },
+        meal_plan_name: {
+            required : function(element) {
+                var action = $("#meal_plan").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        other_vehicle_name: {
+            required : function(element) {
+                var action = $("#vehicle_type").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        other_pickup_from_name: {
+            required : function(element) {
+                var action = $("#pick_up_from").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        },
+        other_drop_to_name: {
+            required : function(element) {
+                var action = $("#drop_to").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        }
+		
+        
+    },
+
+    messages :{
+        full_name : {
+            required : "Please enter full name",
+        },
+        email : {
+            required : "Please enter email address",
+            email: "Please enter a valid email address"
+        },
+        mobile_number1 : {
+            required : "Please enter mobile number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        tour_number : {
+            required : "Please enter tour number",
+        },
+        other_tour_name: {       
+                required: "Please enter destination name",   
+        },
+        checkin_date : {
+            required : "Please select check in dates",
+        },
+        
+		checkout_date : {
+            required : "Please select checkout date",
+        },
+        
+        no_of_nights : {
+            required : "Please enter no of nights",
+        },
+        "hotel_type[]" : {
+            required : "Please select hotel type",
+        },
+        no_of_couple : {
+            required : "Please enter no of couple",
+        },
+		meal_plan : {
+            required : "Please select meal plan",
+        },
+        total_adult : {
+            required : "Please enter total adult",
+        },
+		total_child_with_bed: {       
+                required: "Please enter total child with bed",   
+        },
+        total_child_without_bed: {       
+                required: "Please enter total child without bed",   
+        },
+        vehicle_type: {       
+                required: "Please select vehicle type",   
+        },
+        pick_up_from: {       
+                required: "Please select pick up from",   
+        },
+        pickup_date: {       
+                required: "Please enter pick up date",   
+        },
+        pickup_time: {       
+                required: "Please enter pick up time",   
+        },
+        drop_to: {       
+                required: "Please select drop to",   
+        },
+        drop_date: {       
+                required: "Please enter drop date",   
+        },
+        drop_time: {       
+                required: "Please enter drop time",   
+        },
+        meal_plan_name : {
+            required : "Please enter meal plan name",
+        },
+        other_vehicle_name: {       
+                required: "Please enter vehicle name",   
+        },
+        other_pickup_from_name: {       
+                required: "Please select pick up from name",   
+        },
+        other_drop_to_name: {       
+                required: "Please enter drop to name",   
+        }
+        
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit custom Booking Enquiry -->
+
+<!-- other feilds  -->
+<script type="text/javascript">
+    function Mealplan(val){
+    var element=document.getElementById('other_meal_plan_div');
+	var element2=document.getElementById('meal_plan_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	element2.value="";	
+    }
+
+</script>
+<script type="text/javascript">
+function Vehicle(val){
+    var element=document.getElementById('other_vehicle_type_div');
+	var element2=document.getElementById('other_vehicle_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	  element2.value="";	
+    }
+  </script>
+  <script type="text/javascript">
+  function Pickupfrom(val){
+    var element=document.getElementById('other_pickup_from_div');
+	var element2=document.getElementById('other_pickup_from_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	  element2.value="";	
+    }
+  </script>
+  <script type="text/javascript">
+  function dropto(val){
+    var element=document.getElementById('other_dropto_div');
+	var element2=document.getElementById('other_drop_to_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	  element2.value="";	
+    }
+  </script>
+  <!-- other feilds -->
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $('.checkin_date').datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+    minDate: 'dateToday',
+});
+$('.checkout_date').datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+    minDate: 'dateToday',
+});
+$('.checkin_date').datepicker().bind("change", function () {
+    var minValue = $(this).val();
+    minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
+    $('.checkout_date').datepicker("option", "minDate", minValue);
+    calculate();
+});
+$('.checkout_date').datepicker().bind("change", function () {
+    var maxValue = $(this).val();
+    maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
+    $('.checkin_date').datepicker("option", "maxDate", maxValue);
+    calculate();
+});
+
+function calculate() {
+    var d1 = $('.checkin_date').datepicker('getDate');
+    var d2 = $('.checkout_date').datepicker('getDate');
+    var oneDay = 24*60*60*1000;
+    var diff = 0;
+    if (d1 && d2) {
+  
+      diff = Math.round(Math.abs((d2.getTime() - d1.getTime())/(oneDay)));
+    }
+    $('.no_of_nights').val(diff);
+  }
+  </script>
+
+
+
+
+
+
 
 

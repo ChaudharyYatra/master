@@ -13,6 +13,9 @@ table.scrolldown tbody{
 .card_price1{
     font-size: 58%;
 }
+.card_price2{
+    font-size: 80%;
+}
 
 </style>  
 
@@ -124,23 +127,23 @@ table.scrolldown tbody{
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="entry-meta">
                                     <div class="entry-author d-flex align-items-center">
-                                        <p class="mb-0">Starting from<span class="theme fw-bold fs-5">
+                                        <p class="mb-0">Starting from<span class="theme fw-bold fs-5 card_price2">
                                         <?php 
                                                 if($main_packages_all_value['cost']>0){
                                                 ?>
-                                                <i class="fa fa-inr" aria-hidden="true"></i> <?php echo $main_packages_all_value['cost'];?></span></p>
+                                                <span class="card_price2"> <?php echo $main_packages_all_value['cost'];?></span></span></p>
                                                 <?php } else{
                                                 ?>
-                                                <i class="fa fa-inr" aria-hidden="true"></i> <span class="card_price">On Demand</span> </span></p>
+                                                <i class="fa fa-inr" aria-hidden="true"></i> <span class="card_price2">On Demand</span> </span></p>
                                                 <?php } ?>
                                     </div>
                                 </div>  
                             </div>
-                            <div class="entry-meta">
+                            <!-- <div class="entry-meta">
                                 <div class="entry-author d-flex align-items-center">
-                                    <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $main_packages_all_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php echo $main_packages_all_value['id'] ?>">..More Dates</a></p> 
+                                    <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php //echo $main_packages_all_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php //echo $main_packages_all_value['id'] ?>">..More Dates</a></p> 
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- <div class="entry-meta mb-2">
                                 <div class="entry-author d-flex align-items-center">
                                     <p class="mb-0">Starting from<span class="theme fw-bold fs-5"> <i class="fa fa-inr" aria-hidden="true"></i> <?php //echo $main_packages_all_value['cost'];?></span></p>

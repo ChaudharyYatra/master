@@ -1,3 +1,8 @@
+<style>
+  .mealplan_css{
+            border: 1px solid red !important;
+        }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -74,33 +79,33 @@
                       <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
                               <div class="form-group">
                                 <label>Enquiry destination name</label>
-                                <input type="text" class="form-control" name="other_tour_name" id="other_tour_name" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control mealplan_css" name="other_tour_name" id="other_tour_name" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Checkin Date</label>
-                                <input type="date" class="form-control" placeholder="" name="checkin_date" id="checkin_date">
+                                <input type="text" class="form-control checkin_date" placeholder="" name="checkin_date" id="checkin_date">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Checkout Date</label>
-                                <input type="date" class="form-control" placeholder="" name="checkout_date" id="checkout_date">
+                                <input type="text" class="form-control checkout_date" placeholder="" name="checkout_date" id="checkout_date">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>No Of Nights</label>
-                                <input type="text" class="form-control" name="no_of_nights" id="no_of_nights">
+                                <input type="text" class="form-control no_of_nights" name="no_of_nights" id="no_of_nights">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Hotel Type</label><br>
                                             <input type="checkbox" name="hotel_type[]" id="hotel_type" value="All Hotels">&nbsp;&nbsp;All Hotels
-                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="3 STAR">&nbsp;&nbsp; 3 STAR
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="2 STAR">&nbsp;&nbsp; 2 STAR
+                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="3 STAR">&nbsp;&nbsp; 3 STAR
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="4 STAR">&nbsp;&nbsp; 4 STAR
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="5 STAR">&nbsp;&nbsp; 5 STAR <br>
                                             <input type="checkbox" name="hotel_type[]" id="hotel_type" value="HOMESTAYS WITHOUT POOL">&nbsp;&nbsp;HOMESTAYS WITHOUT POOL
@@ -119,15 +124,23 @@
 					                  <div class="col-md-6">
                               <div class="form-group">
                                 <label>Meal Plan</label>
-                                  <select class="form-control niceSelect" name="meal_plan" id="meal_plan" onfocus='this.size=3;' onblur='this.size=1;' 
-                                        onchange='this.size=1; this.blur();'>
+                                  <select class="form-control niceSelect" name="meal_plan" id="meal_plan" onchange='Mealplan(this.value); 
+                                  this.blur();' onfocus='this.size=6;' onblur='this.size=1;'>
                                       <option value="">Select Meal Plan</option>
+                                      <option value="Other">Other</option>
                                       <?php foreach($meal_plan as $meal_plan_info){ ?> 
                                           <option value="<?php echo $meal_plan_info['id'];?>"><?php echo $meal_plan_info['meal_plan_name'];?></option>
                                       <?php } ?>
                                   </select>
                               </div>
                             </div>
+                            <div class="col-md-6" id="other_meal_plan_div" style='display:none;'>
+                                <div class="form-group">
+                                    <label>Other Meal Plan Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="meal_plan_name" id="meal_plan_name" placeholder="Enter meal plan name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                            </div>
+
 
                             <div class="col-md-6">
                               <div class="form-group">
@@ -153,33 +166,50 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Select Vehicle Type</label>
-                                <select class="form-control niceSelect" name="vehicle_type" id="vehicle_type" onfocus='this.size=3;' onblur='this.size=1;' 
-                                        onchange='this.size=1; this.blur();'>
+                                <select class="form-control niceSelect" name="vehicle_type" id="vehicle_type" onchange='Vehicle(this.value); 
+                                                            this.blur();' onfocus='this.size=3;' onblur='this.size=1;' 
+                                        >
                                     <option value="">Select vehicle type</option>
+                                    <option value="Other">Other</option>
                                     <?php foreach($vehicle_type as $vehicle_type_info){ ?> 
                                         <option value="<?php echo $vehicle_type_info['id'];?>"><?php echo $vehicle_type_info['vehicle_type_name'];?></option>
                                     <?php } ?>
                                 </select>
                               </div>
                             </div>
+                            <div class="col-md-6" id="other_vehicle_type_div" style='display:none;'>
+                                <div class="form-group">
+                                    <label>Other Vehicle Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="other_vehicle_name" id="other_vehicle_name" placeholder="Enter vehicle name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                            </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Pick Up From</label>
-                                <select class="form-control niceSelect" name="pick_up_from" id="pick_up_from" onfocus='this.size=3;' onblur='this.size=1;' 
-                                        onchange='this.size=1; this.blur();'>
+                                <select class="form-control niceSelect" name="pick_up_from" id="pick_up_from" onchange='Pickupfrom(this.value); 
+                                                            this.blur();' onfocus='this.size=3;' onblur='this.size=1;' 
+                                        >
                                   <option value="">Select Pick Up From</option>
+                                  <option value="Other">Other</option>
                                   <?php foreach($pick_up_from as $pick_up_from_info){ ?> 
                                       <option value="<?php echo $pick_up_from_info['id'];?>"><?php echo $pick_up_from_info['pick_up_name'];?></option>
                                   <?php } ?>
                                 </select>
                               </div>
                             </div>
+                            <div class="col-md-6" id="other_pickup_from_div" style='display:none;'>
+                                <div class="form-group">
+                                    <label>Other Pick Up From Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="other_pickup_from_name" id="other_pickup_from_name" placeholder="Enter Pick Up name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                            </div>
+
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Pickup Allo. Date</label>
-                                <input type="date" class="form-control" name="pickup_date" id="pickup_date">
+                                <input type="date" class="form-control" name="pickup_date" id="pickup_date" min="<?php echo date("Y-m-d"); ?>">
                               </div>
                             </div>
 
@@ -193,20 +223,28 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Drop to</label>
-                                <select class="form-control niceSelect" name="drop_to" id="drop_to" onfocus='this.size=3;' onblur='this.size=1;' 
-                                        onchange='this.size=1; this.blur();'>
+                                <select class="form-control niceSelect" name="drop_to" id="drop_to" onchange='dropto(this.value); 
+                                                            this.blur();' onfocus='this.size=3;' onblur='this.size=1;' 
+                                        >
                                     <option value="">Select Drop To</option>
+                                    <option value="Other">Other</option>
                                     <?php foreach($drop_to as $drop_to_info){ ?> 
                                         <option value="<?php echo $drop_to_info['id'];?>"><?php echo $drop_to_info['drop_to_name'];?></option>
                                     <?php } ?>
                                 </select>
                               </div>
                             </div>
+                            <div class="col-md-6" id="other_dropto_div" style='display:none;'>
+                                <div class="form-group">
+                                    <label>Other Drop To Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="other_drop_to_name" id="other_drop_to_name" placeholder="Enter Drop To Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                            </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Drop Allocation Date</label>
-                                <input type="date" class="form-control" name="drop_date" id="drop_date">
+                                <input type="date" class="form-control" name="drop_date" id="drop_date" min="<?php echo date("Y-m-d"); ?>">
                               </div>
                             </div>
 
@@ -223,11 +261,6 @@
                                 <textarea type="text" class="form-control" name="special_note" id="special_note" placeholder="Enter Special Note"></textarea>
                               </div>
                             </div>
-					 
-                                    
-					 
-					 
-                      
                     </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

@@ -26,7 +26,7 @@ class Packages extends CI_Controller {
         $fields = "packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
-        $this->db->where('package_type','Domestic Packages');
+        $this->db->where('package_type','1');
         $this->db->join("package_date", 'packages.id=package_date.package_id','left');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $this->db->group_by('package_id');

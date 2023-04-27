@@ -43,11 +43,11 @@ class Booking_enquiry extends CI_Controller {
         // print_r($arr_data); die;
 
 
-        // $this->db->where('is_deleted','no');
-        // $this->db->where('status','approved');
-        // $followup_reason_data = $this->master_model->getRecords('followup_reason');
+        $this->db->where('is_deleted','no');
+        $this->db->where('status','approved');
+        $followup_reason_data = $this->master_model->getRecords('followup_reason');
         
-        //  $this->arr_view_data['followup_reason_data'] = $followup_reason_data;
+         $this->arr_view_data['followup_reason_data'] = $followup_reason_data;
          $this->arr_view_data['agent_sess_name']        = $agent_sess_name;
          $this->arr_view_data['module_url_path_domestic_followup'] = $this->module_url_path_domestic_followup;
          $this->arr_view_data['listing_page']    = 'yes';
@@ -62,7 +62,7 @@ class Booking_enquiry extends CI_Controller {
         
      }
 
-   public function add()
+    public function add()
      {  
          $agent_sess_name = $this->session->userdata('agent_name');
          $id=$this->session->userdata('agent_sess_id');

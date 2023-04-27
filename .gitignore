@@ -18,8 +18,9 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
 #uploads
+uploads
 
-#images
+images
 application/config/config.php
 application/config/database.php
 

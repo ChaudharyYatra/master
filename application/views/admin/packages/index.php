@@ -48,6 +48,7 @@
                    $i=1; 
                    foreach($arr_data as $info) 
                    { 
+                    // print_r($info); die;
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
@@ -82,16 +83,21 @@
                         </button>
                         <div class="dropdown-menu" role="menu">
                           <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($info['id']); 
-					   echo rtrim($aid, '='); ?>" ><button class="dropdown-item">View</button></a>
+					                  echo rtrim($aid, '='); ?>" ><button class="dropdown-item">View</button></a>
                           <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
-					   echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Edit</button></a>
-                          <a href="<?php echo $module_url_path_dates;?>/add/<?php $aid=base64_encode($info['id']); 
-					   echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Add Dates</button></a>
+					                  echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Edit</button></a>
+
+                            <?php if($info['pid']!='3' && $info['pid']!='4' && $info['pid']!='Special Limited Offer'){
+                              ?>
+                              <a href="<?php echo $module_url_path_dates;?>/add/<?php $aid=base64_encode($info['id']); 
+                                echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Add Dates</button></a>
+                            <?php } ?>
+                            
 							            <!-- <a href="<?php //echo $module_url_path_iternary; ?>/add/<?php //echo $info['id']; ?>" ><button class="dropdown-item">Add Itinerary</button></a>		 -->
-							            <a href="<?php echo $module_url_path_review;?>/index/<?php $aid=base64_encode($info['id']); 
-					   echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Review</button></a>
+							            <!-- <a href="<?php //echo $module_url_path_review;?>/index/<?php //$aid=base64_encode($info['id']); 
+					                  //echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Review</button></a> -->
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php $aid=base64_encode($info['id']); 
-					   echo rtrim($aid, '='); ?>" title="Delete"><button class="dropdown-item">Delete</button></a>
+					                  echo rtrim($aid, '='); ?>" title="Delete"><button class="dropdown-item">Delete</button></a>
                         </div>
                       </div>
                     </td>

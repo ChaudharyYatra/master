@@ -6407,3 +6407,15 @@ table.scrolldown tbody td {
   overflow-y: scroll;
   /* padding: 10px; */
 }
+
+/* new date time picker for custom enquiry form */
+.ui-datepicker-month{
+  width: 48% !important;
+  padding: 10px !important;
+  margin-right: 2px !important;
+}
+.ui-datepicker-year{
+  width: 48% !important;
+  padding: 10px !important;
+  margin-right: 2px !important;
+}

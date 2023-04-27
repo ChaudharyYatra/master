@@ -13,6 +13,9 @@ table.scrolldown tbody{
 .card_price1{
     font-size: 58%;
 }
+.card_price2{
+    font-size: 80%;
+}
 </style>  
 
 <!-- BreadCrumb Starts -->  
@@ -135,11 +138,11 @@ table.scrolldown tbody{
                                 
                                     </div>
                             </div>
-                            <div class="entry-meta">
+                            <!-- <div class="entry-meta">
                                 <div class="entry-author d-flex align-items-center">
-                                    <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $international_packages_all_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php echo $international_packages_all_value['id'] ?>">..More Dates</a></p> 
+                                    <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php //echo $international_packages_all_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php //echo $international_packages_all_value['id'] ?>">..More Dates</a></p> 
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- <p class=" border-b pb-2 mb-2"><?php //echo mb_substr($international_packages_all_value['short_description'], 0, 70); ?></p> -->
                             
                             <!-- <div class="entry-meta">
@@ -174,7 +177,7 @@ table.scrolldown tbody{
 
                         </div>
                         
-                        <a href="<?php echo base_url(); ?>international_packages/package_details/<?php echo $international_packages_all_value['id']; ?>">
+                        <a href="<?php echo base_url(); ?>custom_inter_booking_enquiry/custom_inter_package_details/<?php echo $international_packages_all_value['id']; ?>">
                         <div class="card-footer card_readmore" id="button-2">
                             <div id="slide"></div>
                                 <small class="card_css fw-bold">View More</small>

@@ -1,3 +1,8 @@
+<style>
+  .mealplan_css{
+            border: 1px solid red !important;
+        }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -31,36 +36,32 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <?php
-                   foreach($arr_data as $info) 
-                  //  print_r($arr_data); die;
-                   { 
-                     ?>
-                            <form method="post" enctype="multipart/form-data" id="custom_edit_bookingenquiry">
+              <form method="post" enctype="multipart/form-data" id="custom_add_bookingenquiry">
                 <div class="card-body">
                   <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Full Name</label><br>
-                          <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Enter full name" value="<?php echo $info['full_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" >
+                          <input type="text" class="form-control" name="full_name" id="full_name" value="" placeholder="Enter full name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                          <input type="hidden" class="form-control" name="agent_id" id="agent_id" value="<?php echo $agent_data['id']; ?>">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Email</label>
-                          <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email" pattern="^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" value="<?php echo $info['email']; ?>">
+                          <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email" pattern="^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
                         </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Mobile number </label>
-                                <input type="text"  class="form-control" name="mobile_number1" id="mobile_number1" placeholder="Enter mobile number" value="<?php echo $info['mobile_number1']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text"  class="form-control" name="mobile_number1" id="mobile_number1" placeholder="Enter mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
 					            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Mobile number(optional)</label>
-                                <input type="text" class="form-control" name="mobile_number2" id="mobile_number2" placeholder="Enter mobile number" value="<?php echo $info['mobile_number2']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control" name="mobile_number2" id="mobile_number2" placeholder="Enter mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
                       <div class="col-md-6">
@@ -71,7 +72,7 @@
                                     <option value="">Select tour title</option>
                                     <option value="Other">Other</option>
                                     <?php foreach($packages_data as $packages_data_value){ ?> 
-                                        <option value="<?php echo $packages_data_value['id'];?>" <?php if(isset($info['package_id'])){if($packages_data_value['id'] == $info['package_id']) {echo 'selected';}}?>><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
+                                        <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
                                     <?php } ?>
                                   </select>
                               </div>
@@ -79,53 +80,44 @@
                       <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
                               <div class="form-group">
                                 <label>Enquiry destination name</label>
-                                <input type="text" class="form-control" name="other_tour_name" id="other_tour_name" value="<?php echo $info['other_tour_name']; ?>" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control mealplan_css" name="other_tour_name" id="other_tour_name" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Checkin Date</label>
-                                <input type="text" class="form-control checkin_date" placeholder="" name="checkin_date" id="checkin_date" value="<?php echo $info['checkin_date']; ?>">
+                                <input type="text" class="form-control checkin_date" placeholder="" name="checkin_date" id="checkin_date">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Checkout Date</label>
-                                <input type="text" class="form-control checkout_date" placeholder="" name="checkout_date" id="checkout_date" value="<?php echo $info['checkout_date']; ?>">
+                                <input type="text" class="form-control checkout_date" placeholder="" name="checkout_date" id="checkout_date">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>No Of Nights</label>
-                                <input type="text" class="form-control no_of_nights" name="no_of_nights" id="no_of_nights" value="<?php echo $info['no_of_nights']; ?>">
+                                <input type="text" class="form-control no_of_nights" name="no_of_nights" id="no_of_nights">
                               </div>
                       </div>
-
                       <div class="col-md-6">
                               <div class="form-group">
-                                <?php 
-                                $quali1=array();
-                                  $p = $info['hotel_type'];
-                                  $quali1 = explode(',',$p);
-                                  // print_r($quali1); die;
-                                ?>
-                                <label>Hotel Type
-                                  <?php ?>
-                                </label><br>
-                                            <input type="checkbox" name="hotel_type[]" id="hotel_type" value="All Hotels" <?php if(in_array('All Hotels',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;All Hotels
-                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="2 STAR" <?php if(in_array('2 STAR',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; 2 STAR
-                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="3 STAR" <?php if(in_array('3 STAR',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; 3 STAR
-                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="4 STAR" <?php if(in_array('4 STAR',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; 4 STAR
-                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="5 STAR" <?php if(in_array('5 STAR',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; 5 STAR <br>
-                                            <input type="checkbox" name="hotel_type[]" id="hotel_type" value="HOMESTAYS WITHOUT POOL" <?php if(in_array('HOMESTAYS WITHOUT POOL',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;HOMESTAYS WITHOUT POOL
-                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="BEACH PROPERTIES" <?php if(in_array('BEACH PROPERTIES',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; BEACH PROPERTIES<br>
-                                            <input type="checkbox" name="hotel_type[]" id="hotel_type" value="DELUXE COTTAGES" <?php if(in_array('DELUXE COTTAGES',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;DELUXE COTTAGES<br>
+                                <label>Hotel Type</label><br>
+                                            <input type="checkbox" name="hotel_type[]" id="hotel_type" value="All Hotels">&nbsp;&nbsp;All Hotels
+                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="2 STAR">&nbsp;&nbsp; 2 STAR
+                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="3 STAR">&nbsp;&nbsp; 3 STAR
+                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="4 STAR">&nbsp;&nbsp; 4 STAR
+                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="5 STAR">&nbsp;&nbsp; 5 STAR <br>
+                                            <input type="checkbox" name="hotel_type[]" id="hotel_type" value="HOMESTAYS WITHOUT POOL">&nbsp;&nbsp;HOMESTAYS WITHOUT POOL
+                                &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="BEACH PROPERTIES">&nbsp;&nbsp; BEACH PROPERTIES<br>
+                                            <input type="checkbox" name="hotel_type[]" id="hotel_type" value="DELUXE COTTAGES">&nbsp;&nbsp;DELUXE COTTAGES<br>
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>No Of Couple </label> <br>
-                                <input type="text" class="form-control" name="no_of_couple" id="no_of_couple" value="<?php echo $info['no_of_couple']; ?>"oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control" name="no_of_couple" id="no_of_couple" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
                       
@@ -134,12 +126,11 @@
                               <div class="form-group">
                                 <label>Meal Plan</label>
                                   <select class="form-control niceSelect" name="meal_plan" id="meal_plan" onchange='Mealplan(this.value); 
-                                  this.blur();' onfocus='this.size=3;' onblur='this.size=1;' 
-                                       >
+                                  this.blur();' onfocus='this.size=6;' onblur='this.size=1;'>
                                       <option value="">Select Meal Plan</option>
-                                      <option value="Other" <?php if(isset($info['meal_plan'])){if("Other" == $info['meal_plan']) {echo 'selected';}}?>>Other</option>
+                                      <option value="Other">Other</option>
                                       <?php foreach($meal_plan as $meal_plan_info){ ?> 
-                                          <option value="<?php echo $meal_plan_info['id'];?>" <?php if(isset($info['meal_plan'])){if($meal_plan_info['id'] == $info['meal_plan']) {echo 'selected';}}?>><?php echo $meal_plan_info['meal_plan_name'];?></option>
+                                          <option value="<?php echo $meal_plan_info['id'];?>"><?php echo $meal_plan_info['meal_plan_name'];?></option>
                                       <?php } ?>
                                   </select>
                               </div>
@@ -147,28 +138,29 @@
                             <div class="col-md-6" id="other_meal_plan_div" style='display:none;'>
                                 <div class="form-group">
                                     <label>Other Meal Plan Name</label>
-                                    <input type="text" class="form-control mealplan_css" name="meal_plan_name" id="meal_plan_name" value="<?php echo $info['meal_plan_name']; ?>" placeholder="Enter meal plan name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control mealplan_css" name="meal_plan_name" id="meal_plan_name" placeholder="Enter meal plan name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                             </div>
+
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Total Adult</label>
-                                <input type="text" class="form-control" name="total_adult" id="total_adult" placeholder="" value="<?php echo $info['total_adult']; ?>">
+                                <input type="text" class="form-control" name="total_adult" id="total_adult" placeholder="">
                               </div>
                             </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Total Child With Bed</label>
-                                <input type="text" class="form-control" name="total_child_with_bed" id="total_child_with_bed" placeholder="" value="<?php echo $info['total_child_with_bed']; ?>">
+                                <input type="text" class="form-control" name="total_child_with_bed" id="total_child_with_bed" placeholder="">
                               </div>
                             </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Total Child Without Bed</label>
-                                <input type="text" class="form-control" name="total_child_without_bed" id="total_child_without_bed" placeholder="" value="<?php echo $info['total_child_without_bed']; ?>">
+                                <input type="text" class="form-control" name="total_child_without_bed" id="total_child_without_bed" placeholder="">
                               </div>
                             </div>
 
@@ -179,9 +171,9 @@
                                                             this.blur();' onfocus='this.size=3;' onblur='this.size=1;' 
                                         >
                                     <option value="">Select vehicle type</option>
-                                    <option value="Other" <?php if(isset($info['vehicle_type'])){if("Other" == $info['vehicle_type']) {echo 'selected';}}?>>Other</option>
+                                    <option value="Other">Other</option>
                                     <?php foreach($vehicle_type as $vehicle_type_info){ ?> 
-                                        <option value="<?php echo $vehicle_type_info['id'];?>" <?php if(isset($info['vehicle_type'])){if($vehicle_type_info['id'] == $info['vehicle_type']) {echo 'selected';}}?>><?php echo $vehicle_type_info['vehicle_type_name'];?></option>
+                                        <option value="<?php echo $vehicle_type_info['id'];?>"><?php echo $vehicle_type_info['vehicle_type_name'];?></option>
                                     <?php } ?>
                                 </select>
                               </div>
@@ -200,9 +192,9 @@
                                                             this.blur();' onfocus='this.size=3;' onblur='this.size=1;' 
                                         >
                                   <option value="">Select Pick Up From</option>
-                                  <option value="Other" <?php if(isset($info['pick_up_from'])){if("Other" == $info['pick_up_from']) {echo 'selected';}}?>>Other</option>
+                                  <option value="Other">Other</option>
                                   <?php foreach($pick_up_from as $pick_up_from_info){ ?> 
-                                      <option value="<?php echo $pick_up_from_info['id'];?>" <?php if(isset($info['pick_up_from'])){if($pick_up_from_info['id'] == $info['pick_up_from']) {echo 'selected';}}?>><?php echo $pick_up_from_info['pick_up_name'];?></option>
+                                      <option value="<?php echo $pick_up_from_info['id'];?>"><?php echo $pick_up_from_info['pick_up_name'];?></option>
                                   <?php } ?>
                                 </select>
                               </div>
@@ -214,59 +206,62 @@
                                 </div>
                             </div>
 
+
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Pickup Allo. Date</label>
-                                <input type="date" class="form-control" name="pickup_date" id="pickup_date" min="<?php echo date("Y-m-d"); ?>" value="<?php echo $info['pickup_date']; ?>">
+                                <input type="date" class="form-control" name="pickup_date" id="pickup_date" min="<?php echo date("Y-m-d"); ?>">
                               </div>
                             </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Pick Up Time</label>
-                                <input type="time" class="form-control" name="pickup_time" id="pickup_time" value="<?php echo $info['pickup_time']; ?>">
+                                <input type="time" class="form-control" name="pickup_time" id="pickup_time">
                               </div>
                             </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Drop to</label>
-                                <select class="form-control niceSelect" name="drop_to" id="drop_to" onfocus='this.size=3;' onblur='this.size=1;' 
-                                        onchange='this.size=1; this.blur();'>
+                                <select class="form-control niceSelect" name="drop_to" id="drop_to" onchange='dropto(this.value); 
+                                                            this.blur();' onfocus='this.size=3;' onblur='this.size=1;' 
+                                        >
                                     <option value="">Select Drop To</option>
-                                    <option value="Other" <?php if(isset($info['drop_to'])){if("Other" == $info['drop_to']) {echo 'selected';}}?>>Other</option>
+                                    <option value="Other">Other</option>
                                     <?php foreach($drop_to as $drop_to_info){ ?> 
-                                        <option value="<?php echo $drop_to_info['id'];?>" <?php if(isset($info['drop_to'])){if($drop_to_info['id'] == $info['drop_to']) {echo 'selected';}}?>><?php echo $drop_to_info['drop_to_name'];?></option>
+                                        <option value="<?php echo $drop_to_info['id'];?>"><?php echo $drop_to_info['drop_to_name'];?></option>
                                     <?php } ?>
                                 </select>
                               </div>
+                            </div>
+                            <div class="col-md-6" id="other_dropto_div" style='display:none;'>
+                                <div class="form-group">
+                                    <label>Other Drop To Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="other_drop_to_name" id="other_drop_to_name" placeholder="Enter Drop To Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
                             </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Drop Allocation Date</label>
-                                <input type="date" class="form-control" name="drop_date" id="drop_date" min="<?php echo date("Y-m-d"); ?>" value="<?php echo $info['drop_date']; ?>">
+                                <input type="date" class="form-control" name="drop_date" id="drop_date" min="<?php echo date("Y-m-d"); ?>">
                               </div>
                             </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Drop Time</label>
-                                <input type="time" class="form-control" name="drop_time" id="drop_time" value="<?php echo $info['drop_time']; ?>">
+                                <input type="time" class="form-control" name="drop_time" id="drop_time">
                               </div>
                             </div>
 
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Special Note</label>
-                                <textarea type="text" class="form-control" name="special_note" id="special_note" placeholder="Enter Special Note"><?php echo $info['special_note']; ?></textarea>
+                                <textarea type="text" class="form-control" name="special_note" id="special_note" placeholder="Enter Special Note"></textarea>
                               </div>
                             </div>
-					 
-                                    
-					 
-					 
-                      
                     </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -275,7 +270,6 @@
                   <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>
               </form>
-              <?php } ?>
             </div>
             <!-- /.card -->
             </div>
@@ -285,7 +279,6 @@
 
           </div>
           <!--/.col (right) -->
-        </div>
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->

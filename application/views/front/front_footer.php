@@ -1054,7 +1054,7 @@ function validatedomesticreviewForms()
 <!--</script>-->
 
 
-<script>
+<!-- <script>
 function custom_enquiry_form() 
 {
   $("#full_name_error").hide();
@@ -1063,18 +1063,21 @@ function custom_enquiry_form()
   $("#chechin_date_error").hide();
   $("#checkout_error").hide();
   $("#no_of_nights_error").hide();
-  $("#hotel_type_error").hide();
   $("#no_of_couple_error").hide();
   $("#meal_plan_error").hide();
+  $("#meal_plan_name_error").hide();
   $("#total_adult_error").hide();
   $("#total_child_with_bed_error").hide();
   $("#total_child_without_bed_error").hide();
   $("#vehicle_type_error").hide();
+  $("#other_vehicle_name_error").hide();
   $("#pick_up_from_error").hide();
+  $("#other_pickup_from_name_error").hide();
   $("#pickup_date_error").hide();
 
   $("#pickup_time_error").hide();
   $("#drop_to_error").hide();
+  $("#other_drop_to_name_error").hide();
   $("#drop_date_error").hide();
   $("#drop_time_error").hide();
   // $("#special_note_error").hide();
@@ -1187,18 +1190,18 @@ var mobile_number = $('#mobile_number1').val();
     submiform=false;
   }
 	
-  var cbox = document.forms["myForm"]["gender"];
-  if (
-    cbox[0].checked == false &&
-    cbox[1].checked == false &&
-    cbox[2].checked == false
-  ) {
-    alert("Please Select Gender");
-    return false;
-  } else {
-    alert("Successfully Submited");
-    return true;
-  }
+  // var cbox = document.forms["myForm"]["gender"];
+  // if (
+  //   cbox[0].checked == false &&
+  //   cbox[1].checked == false &&
+  //   cbox[2].checked == false
+  // ) {
+  //   alert("Please Select Gender");
+  //   return false;
+  // } else {
+  //   alert("Successfully Submited");
+  //   return true;
+  // }
 
   var no_of_couple_error = $('#no_of_couple').val();
   if (no_of_couple_error == '' || no_of_couple_error ==null) 
@@ -1213,6 +1216,14 @@ var mobile_number = $('#mobile_number1').val();
   {
     $('#meal_plan_error').text('Please select meal plan.');
     $('#meal_plan_error').show();
+    submiform=false;
+  }
+
+  var meal_plan_name_error = $('#meal_plan_name').val();
+  if (meal_plan_name_error == '' || meal_plan_name_error ==null) 
+  {
+    $('#meal_plan_name_error').text('Please Enter Other meal plan.');
+    $('#meal_plan_name_error').show();
     submiform=false;
   }
 
@@ -1248,6 +1259,22 @@ var mobile_number = $('#mobile_number1').val();
     submiform=false;
   }
 
+  var other_vehicle_name_error = $('#other_vehicle_name').val();
+  if (other_vehicle_name_error == '' || other_vehicle_name_error ==null) 
+  {
+    $('#other_vehicle_name_error').text('Please Enter Other vehicle type.');
+    $('#other_vehicle_name_error').show();
+    submiform=false;
+  }
+
+  var other_pickup_from_name_error = $('#other_pickup_from_name').val();
+  if (other_pickup_from_name_error == '' || other_pickup_from_name_error ==null) 
+  {
+    $('#other_pickup_from_name_error').text('Please Enter Other Pickup From.');
+    $('#other_pickup_from_name_error').show();
+    submiform=false;
+  }
+
   var pick_up_from_error = $('#pick_up_from').val();
   if (pick_up_from_error == '' || pick_up_from_error ==null) 
   {
@@ -1280,6 +1307,14 @@ var mobile_number = $('#mobile_number1').val();
     submiform=false;
   }
 
+  var other_drop_to_name_error = $('#other_drop_to_name').val();
+  if (other_drop_to_name_error == '' || other_drop_to_name_error ==null) 
+  {
+    $('#other_drop_to_name_error').text('Please Enter Other Drop To.');
+    $('#other_drop_to_name_error').show();
+    submiform=false;
+  }
+
   var drop_date_error = $('#drop_date').val();
   if (drop_date_error == '' || drop_date_error ==null) 
   {
@@ -1307,7 +1342,95 @@ var mobile_number = $('#mobile_number1').val();
   
   
 }
-    
+
+</script> -->
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $('.checkin_date').datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+    minDate: 'dateToday',
+});
+$('.checkout_date').datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+    minDate: 'dateToday',
+});
+$('.checkin_date').datepicker().bind("change", function () {
+    var minValue = $(this).val();
+    minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
+    $('.checkout_date').datepicker("option", "minDate", minValue);
+    calculate();
+});
+$('.checkout_date').datepicker().bind("change", function () {
+    var maxValue = $(this).val();
+    maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
+    $('.checkin_date').datepicker("option", "maxDate", maxValue);
+    calculate();
+});
+
+function calculate() {
+    var d1 = $('.checkin_date').datepicker('getDate');
+    var d2 = $('.checkout_date').datepicker('getDate');
+    var oneDay = 24*60*60*1000;
+    var diff = 0;
+    if (d1 && d2) {
+  
+      diff = Math.round(Math.abs((d2.getTime() - d1.getTime())/(oneDay)));
+    }
+    $('.no_of_nights').val(diff);
+  }
+  </script>
+
+<script type="text/javascript">
+    function Mealplan(val){
+    var element=document.getElementById('other_meal_plan_div');
+	var element2=document.getElementById('meal_plan_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	element2.value="";	
+    }
+
 </script>
+<script type="text/javascript">
+function Vehicle(val){
+    var element=document.getElementById('other_vehicle_type_div');
+	var element2=document.getElementById('other_vehicle_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	  element2.value="";	
+    }
+  </script>
+  <script type="text/javascript">
+  function Pickupfrom(val){
+    var element=document.getElementById('other_pickup_from_div');
+	var element2=document.getElementById('other_pickup_from_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	  element2.value="";	
+    }
+  </script>
+  <script type="text/javascript">
+  function dropto(val){
+    var element=document.getElementById('other_dropto_div');
+	var element2=document.getElementById('other_drop_to_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	  element2.value="";	
+    }
+  </script>
 </body>
 </html>
