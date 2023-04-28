@@ -22,11 +22,14 @@ class Packages extends CI_Controller{
 
 	public function index()
 	{
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
+        $fields = "packages.*,package_type.package_type,package_type.id as pid";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
 		$this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
-        $arr_data = $this->master_model->getRecords('packages');
-        
+        $this->db->join("package_type", 'packages.package_type=package_type.id','left');
+        $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
+
         $this->arr_view_data['module_url_path_dates'] = $this->module_url_path_dates;
 		$this->arr_view_data['module_url_path_iternary'] = $this->module_url_path_iternary;
 		$this->arr_view_data['module_url_path_review'] = $this->module_url_path_review;
@@ -370,6 +373,7 @@ class Packages extends CI_Controller{
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $package_type = $this->master_model->getRecords('package_type');
+        // print_r($package_type); die;
 
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
@@ -886,6 +890,7 @@ class Packages extends CI_Controller{
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $package_type = $this->master_model->getRecords('package_type');
+        // print_r($package_type); die;
 
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');

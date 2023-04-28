@@ -54,11 +54,11 @@
                           <label>Package Type</label><br>
                           <select class="select_css" name="package_type" id="package_type">
                           <option value="">Select package type</option>
-                            <?php
+                                <?php
                                   foreach($package_type as $package_type_info) 
                                   { 
                                 ?>
-                            <option value="<?php echo $package_type_info['package_type'];?>"><?php echo $package_type_info['package_type'];?></option>
+                            <option value="<?php echo $package_type_info['id'];?>"><?php echo $package_type_info['package_type'];?></option>
                                 <?php } ?>
                               <option value="Special Limited Offer">Special Limited Offer</option>
                           </select>

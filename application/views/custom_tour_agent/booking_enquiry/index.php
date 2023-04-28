@@ -43,15 +43,17 @@
                   <thead>
                   <tr>
                     <th>SN</th>
+                    <th>Agent Name</th>
                     <th>Tour No.</th>
                     <th>Customer Name</th>
                     <th>Package</th>
                     <th>Email</th>
                     <th>Contact Number</th>
-                    <!-- <th>Enquiry Date</th> -->
+                    
                     <th>Followup form</th>
                     <th>Followup List</th>
                     <th>Action</th>
+                    
                   </tr>
                   </thead>
                   <tbody>
@@ -68,6 +70,7 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
+                    <td><?php echo $info['agent_name']; ?></td>
                     <td><?php echo $info['tno']; ?></td>
                     <td><?php echo $info['full_name']; ?></td>
                     <td><?php echo $info['tour_title']; ?></td>

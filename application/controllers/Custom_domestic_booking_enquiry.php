@@ -86,7 +86,7 @@ class Custom_domestic_booking_enquiry extends CI_Controller {
         $fields = "packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
-        $this->db->where('package_type','Custom Domestic Package');
+        $this->db->where('package_type','3');
         $this->db->join("package_date", 'packages.id=package_date.package_id','left');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $this->db->group_by('package_id');
@@ -548,16 +548,20 @@ class Custom_domestic_booking_enquiry extends CI_Controller {
                     $no_of_couple        = $this->input->post('no_of_couple'); 
 
                     $meal_plan         = $this->input->post('meal_plan'); 
+                    $meal_plan_name         = $this->input->post('meal_plan_name'); 
                     $total_adult             = $this->input->post('total_adult');
                     $total_child_with_bed     = $this->input->post('total_child_with_bed');
 
                     $total_child_without_bed            = $this->input->post('total_child_without_bed');
                     $vehicle_type         = $this->input->post('vehicle_type');
+                    $other_vehicle_name         = $this->input->post('other_vehicle_name');
                     $pick_up_from         = $this->input->post('pick_up_from');
+                    $other_pickup_from_name         = $this->input->post('other_pickup_from_name');
 
                     $pickup_date        = $this->input->post('pickup_date'); 
                     $pickup_time         = $this->input->post('pickup_time'); 
-                    $drop_to             = trim($this->input->post('drop_to'));
+                    $drop_to             = $this->input->post('drop_to');
+                    $other_drop_to_name             = $this->input->post('other_drop_to_name');
                     
                     $drop_date     = trim($this->input->post('drop_date'));
                     $drop_time            = $this->input->post('drop_time');
@@ -579,16 +583,20 @@ class Custom_domestic_booking_enquiry extends CI_Controller {
 						'no_of_couple'=>$no_of_couple,
 
                         'meal_plan'    =>$meal_plan,
+                        'other_meal_plan'    =>$meal_plan_name,
                         'total_adult'    =>$total_adult,
 						'total_child_with_bed'=>$total_child_with_bed,
 
                         'total_child_without_bed'    =>$total_child_without_bed,
                         'vehicle_type'    =>$vehicle_type,
+                        'other_vehicle_name'    =>$other_vehicle_name,
 						'pick_up_from'=>$pick_up_from,
+						'other_pickup_from_name'=>$other_pickup_from_name,
 
                         'pickup_date'    =>$pickup_date,
                         'pickup_time'    =>$pickup_time,
 						'drop_to'=>$drop_to,
+						'other_drop_to_name'=>$other_drop_to_name,
 
                         'drop_date'    =>$drop_date,
                         'drop_time'    =>$drop_time,
@@ -659,8 +667,8 @@ class Custom_domestic_booking_enquiry extends CI_Controller {
 					// 				$subject_email=' New Enquiry from customer';
 					// 	$this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
 						
-                    //     $this->session->set_flashdata('success_message',"Enquiry Added Successfully.");
-                    //     redirect(base_url().'packages/confirm_enquiry');
+                        $this->session->set_flashdata('success_message',"Enquiry Added Successfully.");
+                        redirect(base_url().'custom_domestic_booking_enquiry/custom_booking_enquiry_confirm');
                         
                     // }
                     // else
@@ -793,7 +801,7 @@ class Custom_domestic_booking_enquiry extends CI_Controller {
     }
 	
 	
-    public function confirm_enquiry()
+    public function custom_booking_enquiry_confirm()
     {
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
@@ -812,7 +820,7 @@ class Custom_domestic_booking_enquiry extends CI_Controller {
         $this->db->join("department", 'agent.department=department.id','left');
         $agents_list = $this->master_model->getRecords('agent',array('agent.is_deleted'=>'no','agent.is_active'=>'yes'),$fields);
         
-        $data = array('middle_content' => 'booking_enquiry_confirm',
+        $data = array('middle_content' => 'custom_booking_enquiry_confirm',
                         'page_title' => 'Enquiry Confirm',
                         'website_basic_structure' => $website_basic_structure,
                         'agents_list' => $agents_list,

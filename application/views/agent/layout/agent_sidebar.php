@@ -46,6 +46,23 @@
 
             </ul>
           </li>
+          
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>agent/website_visitor_data/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Website Visitor Enquiry
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>agent/fixed_Customized_enquiries/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Fixed & Customized Enquiries
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">

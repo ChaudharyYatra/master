@@ -649,11 +649,11 @@ table.scrolldown tbody{
                                     </div>  
 
                                 </div>
-                                <div class="entry-meta">
+                                <!-- <div class="entry-meta">
                                     <div class="entry-author d-flex align-items-center">
-                                        <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $main_packages_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php echo $main_packages_value['id'] ?>">..More Dates</a></p> 
+                                        <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php //secho $main_packages_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php //echo $main_packages_value['id'] ?>">..More Dates</a></p> 
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="row">
                                         <div class="col-lg-6">
@@ -913,17 +913,17 @@ table.scrolldown tbody{
                                                 <?php } else{
                                                 ?>
                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="card_price1">On Demand</span> </span></p>
-                                                <?php } ?>
+                                            <?php } ?>
                                         </div>
                                 
                                     </div>
 
                                 </div>                                
-                                    <div class="entry-meta">
+                                    <!-- <div class="entry-meta">
                                         <div class="entry-author d-flex align-items-center">
-                                            <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $international_packages_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_international<?php echo $international_packages_value['id'] ?>">..More Dates</a></p> 
+                                            <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php //echo $international_packages_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_international<?php //echo $international_packages_value['id'] ?>">..More Dates</a></p> 
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="row">
                                 <div class="col-lg-6">
@@ -952,7 +952,7 @@ table.scrolldown tbody{
 
                             </div>
 
-                            <a href="<?php echo base_url(); ?>international_packages/package_details/<?php echo $international_packages_value['id']; ?>">
+                            <a href="<?php echo base_url(); ?>custom_inter_booking_enquiry/custom_inter_package_details/<?php echo $international_packages_value['id']; ?>">
                             <div class="card-footer card_readmore" id="button-2">
                                 <div id="slide"></div>
                                     <small class="card_css fw-bold">View More</small>
@@ -968,7 +968,7 @@ table.scrolldown tbody{
                 
             </div>
                 <div class="col-lg-12 text-center">
-                    <a href="<?php echo base_url(); ?>international_packages/all_custom_international_packages" class="nir-btn">View All Packages</a>
+                    <a href="<?php echo base_url(); ?>Custom_inter_booking_enquiry/all_custom_international_packages" class="nir-btn">View All Packages</a>
                 </div>
         </div>
     </section>
@@ -1178,7 +1178,15 @@ table.scrolldown tbody{
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                         <div class="entry-meta">
                                             <div class="entry-author d-flex align-items-center">
-                                                <p class="mb-0">Starting from<span class="theme fw-bold fs-5"> <i class="fa fa-inr" aria-hidden="true"></i> <?php echo $main_packages_value['cost'];?></span></p>
+                                                <p class="mb-0">Starting from<span class="theme fw-bold fs-5">
+                                                <?php 
+                                                if($main_packages_value['cost']>0){
+                                                ?>
+                                                <i class="fa fa-inr" aria-hidden="true"></i> <?php echo $main_packages_value['cost'];?></span></p>
+                                                <?php } else{
+                                                ?>
+                                                <i class="fa fa-inr" aria-hidden="true"></i> <span class="card_price1">On Demand</span> </span></p>
+                                            <?php } ?>
                                             </div>
                                         </div>  
 
