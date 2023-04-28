@@ -197,7 +197,7 @@
                                   <option value="">Select Tour Date</option>
                                   <?php foreach($add_journey_date as $add_journey_date_value){ ?> 
                                       <!-- <option value="<?php //echo $add_journey_date_value['id'];?>" <?php //if($add_journey_date_value['id']==$booking_data['tour_date']){echo "selected";} ?>><?php //echo $add_journey_date_value['journey_date'];?></option> -->
-                                      <option value="<?php echo $add_journey_date_value['p_date_id'];?>" <?php if(isset($booking_data['tour_date'])){if($add_journey_date_value['p_date_id'] == $booking_data['tour_date']) {echo 'selected';}}?>><?php echo date('d-m-Y', strtotime($add_journey_date_value['journey_date']));?></option>
+                                      <option value="<?php echo $add_journey_date_value['p_date_id'];?>" <?php if(isset($booking_data['tour_date'])){if($add_journey_date_value['p_date_id'] == $booking_data['tour_date']) {echo 'selected';}}?>><?php echo date('d-m-Y',strtotime($add_journey_date_value['journey_date']));?></option>
                                   <?php } ?>
                                 </select>
                             </div>
@@ -205,7 +205,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>hotel Type</label>
-                                <input type="text" class="form-control" name="hotel_type" id="hotel_type" placeholder="Enter hotel type" value="<?php echo $arr_packages_data_booking['hotel_type_name'];?>"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" readonly>
+                              <input type="text" class="form-control" name="hotel_type" id="hotel_type" placeholder="Enter hotel type" value="<?php if(!empty($arr_packages_data_booking)){ echo $arr_packages_data_booking['hotel_type_name'];}?>"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" readonly>
                             </div>
                           </div>
                     </div>

@@ -361,7 +361,7 @@ class Booking_basic_info extends CI_Controller {
          $this->arr_view_data['action']          = 'add';
          $this->arr_view_data['agent_data']        = $agent_data;
          $this->arr_view_data['agent_booking_enquiry_data']        = $agent_booking_enquiry_data;
-         $this->arr_view_data['package_agent_booking_enquiry_data']        = $package_agent_booking_enquiry_data;
+         $this->arr_view_data['package_agent_booking_enquiry_data']  = $package_agent_booking_enquiry_data;
          $this->arr_view_data['agent_department']        = $agent_department;
          $this->arr_view_data['media_source_data']        = $media_source_data;
          $this->arr_view_data['booking_data']        = $booking_data;

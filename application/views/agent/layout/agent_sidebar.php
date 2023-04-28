@@ -169,6 +169,15 @@
             </ul>
           </li>
 
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>agent/request_code_number/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Request Code Number
+              </p>
+            </a>
+          </li>
+
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>agent/profile/index" class="nav-link">

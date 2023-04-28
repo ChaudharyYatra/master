@@ -64,7 +64,7 @@
                   <tr>
                     <th>Package Starting From Cost</th>
                     <td>Rs. <?php echo $info['cost']; ?></td>
- <th>Image</th>
+                    <th>Image</th>
                     <td><img src="<?php echo base_url(); ?>uploads/packages/<?php echo $info['image_name']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
                     
                   

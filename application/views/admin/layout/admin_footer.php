@@ -2664,6 +2664,8 @@ $('#edit_agentpercentage').validate({ // initialize the plugin
 </script>
 <!-- jquery validation on edit agent percentage -->
 
+
+
 <!-- jquery validation on add media source -->
 <script>
 $(document).ready(function () {
@@ -3752,6 +3754,83 @@ $('#add_agent').validate({ // initialize the plugin
 </script>
 <!-- jquery validation on add agent -->
 
+<!-- jquery validation on add supervision -->
+<script>
+$(document).ready(function () {
+
+$('#add_supervision').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        supervision_name: {
+            required: true,
+        },
+        mobile_number1: {
+            required: true,
+            maxlength:10,
+            minlength:10,
+            
+        },
+        mobile_number2: {
+            maxlength:10,
+            minlength:10
+        },
+        email: {
+            required: true,
+            email:true
+
+        },
+        password: {
+            required: true,
+            minlength: 5
+        },
+        confirm_pass: {
+            required: true,
+            equalTo: "#password", 
+            minlength: 5
+
+        }  
+    },
+
+    messages :{
+        supervision_name : {
+            required : "Please enter supervisor name",
+        },
+        mobile_number1 : {
+            required : "Please enter mobile number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        mobile_number2 : {
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        mobile_number3 : {
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        email : {
+            required : "Please enter email address",
+            email: "Please enter a valid email address"
+        },
+        password : {
+            required : "Please enter password",
+            minlength : "Please enter 5 digit or character length",
+        },
+        confirm_pass : {
+            required : "Please enter confirm password",
+            equalTo : "New password and Confirm Password can't match",
+            minlength : "Please enter 5 digit or character length"
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add supervision -->
+
 <!-- jquery validation on edit Agent -->
 <script>
 $(document).ready(function () {
@@ -3889,6 +3968,86 @@ $('#edit_agent').validate({ // initialize the plugin
 
 </script>
 <!-- jquery validation on edit agent -->
+
+<!-- jquery validation on edit supervision -->
+<script>
+$(document).ready(function () {
+
+$('#edit_supervision').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        supervision_name: {
+            required: true,
+        },
+        mobile_number1: {
+            required: true,
+            maxlength:10,
+            minlength:10,
+            
+        },
+        mobile_number2: {
+            maxlength:10,
+            minlength:10
+        },
+        mobile_number3: {
+            maxlength:10,
+            minlength:10
+        },
+        email: {
+            required: true,
+            email:true
+
+        },
+        password: {
+            required: true,
+            minlength: 5
+        },
+        confirm_pass: {
+            required: true,
+            equalTo: "#password", 
+            minlength: 5
+
+        }  
+    },
+
+    messages :{
+        supervision_name : {
+            required : "Please enter supervisor name",
+        },
+        mobile_number1 : {
+            required : "Please enter mobile number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        mobile_number2 : {
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        email : {
+            required : "Please enter email address",
+            email: "Please enter a valid email address"
+        },
+        registration_date : {
+            required : "Please enter registration date",
+        },
+        password : {
+            required : "Please enter password",
+            minlength : "Please enter 5 digit or character length",
+        },
+        confirm_pass : {
+            required : "Please enter confirm password",
+            equalTo : "New password and Confirm Password can't match",
+            minlength : "Please enter 5 digit or character length"
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit supervision -->
 
 <!-- jquery validation on add courier -->
 <script>

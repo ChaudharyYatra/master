@@ -41,7 +41,6 @@ class All_traveller_info extends CI_Controller {
         
         }
 
-
         public function add($iid="")
         {  
             $agent_sess_name = $this->session->userdata('agent_name');
@@ -169,6 +168,8 @@ class All_traveller_info extends CI_Controller {
                 $all_traveller_count = $this->input->post('all_traveller_count'); 
                 $d_hidden = $this->input->post('d_hidden');
                 $anniversary_date  = $this->input->post('anniversary_date'); 
+                $age  = $this->input->post('age');
+                $mobile_number  = $this->input->post('mobile_number');
                 $document_file_aadhar_img = $this->input->post('document_file_aadhar_img');
                 
                 if(!empty($all_traveller_info))
@@ -242,7 +243,9 @@ class All_traveller_info extends CI_Controller {
                         'middle_name'   =>   $middle_name[$i],   
                         'last_name'    =>$last_name[$i],
                         'dob'=>$dob[$i], 
+                        'age'=>$age[$i],
                         'anniversary_date'=>$anniversary_date[$i],
+                        'mobile_number'=>$mobile_number[$i], 
                         'all_traveller_relation'=>$relation[$i],
                         'image_name'=>$fname_traveller_img,
                         'aadhar_image_name' =>$fname_aadhar_img,

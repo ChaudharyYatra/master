@@ -100,7 +100,7 @@
                     <div class="col-md-3 if_series_yes_div">
                       <div class="form-group">
                           <label>Pages Per Book <span class="req_field">*</span></label>
-                          <input type="text" class="form-control if_series_yes_no" name="pages_per_book" id="pages_per_book" placeholder="Enter pages per book" required="required" value="<?php echo $info['pages_per_book']; ?>" />
+                          <input type="text" class="form-control if_series_yes_no" name="pages_per_book" id="pages_per_book" placeholder="Enter pages per book" required="required" value="<?php echo $info['to_series']; ?>" />
                       </div>
                     </div>
                     

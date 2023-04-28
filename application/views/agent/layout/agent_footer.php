@@ -496,34 +496,34 @@
     });
 
 </script>
-
+<!-- Auto calculate AGE as we select DOB -->
 <script>
 
-        $(function(){
-					var calculateAge = function(time){
-						var months = Math.round(time/(24*60*60*1000*30));
-						//alert(months);
-						var years = parseInt(months / 12);
-						//alert(years);
-						months = months % 12;
-						return years;
-					}; 
+    $(function(){
+        var calculateAge = function(time){
+            var months = Math.round(time/(24*60*60*1000*30));
+            //alert(months);
+            var years = parseInt(months / 12);
+            //alert(years);
+            months = months % 12;
+            return years;
+        }; 
 
-					// return years +" yrs and " + months + " months";
+        // return years +" yrs and " + months + " months";
 
-					$('input[name="dob[]"]').change(function(){
-						var birthDate = new Date($(this).val()).getTime();
-						var presentDate = new Date().getTime();
+        $('input[name="dob[]"]').change(function(){
+            var birthDate = new Date($(this).val()).getTime();
+            var presentDate = new Date().getTime();
 
-                        var age = presentDate - birthDate;
-                        var currentRow=$(this).closest("tr"); 
-                        var col3=currentRow.find('input[name="age[]"]').val(calculateAge(age)); 
-						//alert(birthDate);
-						//alert(presentDate);
-						
-						// $('input[name="age[]"]').val(calculateAge(age));
-					});
-					});
+            var age = presentDate - birthDate;
+            var currentRow=$(this).closest("tr"); 
+            var col3=currentRow.find('input[name="age[]"]').val(calculateAge(age)); 
+            //alert(birthDate);
+            //alert(presentDate);
+            
+            // $('input[name="age[]"]').val(calculateAge(age));
+        });
+        });
    
 </script>
 
@@ -906,6 +906,72 @@ enq_seat_count : {
 
 </script>
 <!-- jquery validation on edit Booking Enquiry -->
+
+<script>
+$(document).ready(function () {
+$('#add_request_code').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        stationary_type: {
+            required: true,
+        },
+        image_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        stationary_type : {
+            required : "Please select stationary type",
+        },
+        image_name : {
+            required : "Please select image",
+        },
+        
+    
+    }
+});
+
+});
+
+</script>
+
+<script>
+$(document).ready(function () {
+$('#edit_request_code').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        stationary_type: {
+            required: true,
+        },
+        old_img_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        stationary_type : {
+            required : "Please select stationary type",
+        },
+        old_img_name : {
+            required : "Please select image",
+        },
+        
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add Booking Enquiry -->
+
 <!-- jquery validation on add international Enquiry -->
 <script>
 $(document).ready(function () {
