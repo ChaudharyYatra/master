@@ -696,7 +696,8 @@ class Booking_basic_info extends CI_Controller {
             $this->db->where('is_deleted','no');
             $this->db->where('is_active','yes');
             $this->db->where('id',$boarding_office_location);
-            $data = $this->master_model->getRecords('packages');
+            $data = $this->master_model->getRecord('packages');
+
             $boarding = $data['boarding_office'];
             // print_r($boarding); die;
             
@@ -712,8 +713,8 @@ class Booking_basic_info extends CI_Controller {
                 $this->db->where('is_deleted','no');
                 $this->db->where('is_active','yes');
                 $this->db->where('id',$p);
-                $data1 = $this->master_model->getRecords('agent');
-                // print_r($data1);
+                $data1 = $this->master_model->getRecord('agent');
+                // print_r($data1); die;
                 //$bname=$data1;   
                 array_push($all_b,$data1);
                     

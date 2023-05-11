@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                                <input type="text" name="full_name" id="full_name" placeholder="Enter full name">
+                                                <input type="text" name="full_name" id="full_name" placeholder="Enter full name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                                 <span class="text-danger float-left" id="full_name_error" style="display:none"></span>
                                             </div>
                                         </div>
@@ -80,13 +80,13 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                                <input type="text" name="mobile_number1" id="mobile_number1" placeholder="Enter mobile number">
+                                                <input type="text" name="mobile_number1" id="mobile_number1" placeholder="Enter mobile number" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
                                                 <span class="text-danger float-left" id="mobile_number_error" style="display:none"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                                <input type="text" name="mobile_number2" id="mobile_number2" placeholder="Enter mobile number">
+                                                <input type="text" name="mobile_number2" id="mobile_number2" placeholder="Enter mobile number" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
                                                 <!-- <span class="text-danger float-left" id="last_name_error" style="display:none"></span> -->
                                             </div>
                                         </div>
@@ -193,7 +193,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
                                                 <label class="label_color">No Of Couple<span class="star_color"> *</span></label>
-                                                <input type="text" name="no_of_couple" id="no_of_couple">
+                                                <input type="text" name="no_of_couple" id="no_of_couple" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
                                                 <span class="text-danger float-left" id="no_of_couple_error" style="display:none"></span>
                                             </div>
                                         </div>
@@ -225,21 +225,21 @@
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
                                             <label class="label_color">Total Adult<span class="star_color"> *</span></label>
-                                                <input type="text" name="total_adult" id="total_adult" placeholder="">
+                                                <input type="text" name="total_adult" id="total_adult" placeholder="" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
                                                 <span class="text-danger float-left" id="total_adult_error" style="display:none"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
                                             <label class="label_color">Total Child With Bed<span class="star_color"> *</span></label>
-                                                <input type="text" name="total_child_with_bed" id="total_child_with_bed" placeholder="">
+                                                <input type="text" name="total_child_with_bed" id="total_child_with_bed" placeholder="" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
                                                 <span class="text-danger float-left" id="total_child_with_bed_error" style="display:none"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
                                             <label class="label_color">Total Child Without Bed<span class="star_color"> *</span></label>
-                                                <input type="text" name="total_child_without_bed" id="total_child_without_bed" placeholder="">
+                                                <input type="text" name="total_child_without_bed" id="total_child_without_bed" placeholder="" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
                                                 <span class="text-danger float-left" id="total_child_without_bed_error" style="display:none"></span>
                                             </div>
                                         </div>

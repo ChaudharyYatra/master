@@ -103,7 +103,7 @@
                               </div>
                             </div>
 					 
-                 <div class="col-md-6">
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Tour number</label>
                                   <select class="form-control" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
