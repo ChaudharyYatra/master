@@ -24,17 +24,24 @@ class Packages extends CI_Controller{
 	{
         $fields = "packages.*,package_type.package_type,package_type.id as pid";
         $this->db->where('packages.is_deleted','no');
-        $this->db->where('packages.is_active','yes');
+        // $this->db->where('packages.is_active','yes');
 		$this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $this->db->join("package_type", 'packages.package_type=package_type.id','left');
         $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
+
+        // $this->db->where('is_active','yes');
+        // $this->db->where('is_deleted','no');
+        // $this->db->where('package_type','Special Limited Offer');
+        // $package_type = $this->master_model->getRecords('packages');
+        // // print_r($package_type); die;
 
         $this->arr_view_data['module_url_path_dates'] = $this->module_url_path_dates;
 		$this->arr_view_data['module_url_path_iternary'] = $this->module_url_path_iternary;
 		$this->arr_view_data['module_url_path_review'] = $this->module_url_path_review;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
+        // $this->arr_view_data['package_type']        = $package_type;s
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -58,13 +65,11 @@ class Packages extends CI_Controller{
             $this->form_validation->set_rules('tour_title', 'Tour Title', 'required');
             $this->form_validation->set_rules('rating', 'Rating', 'required');
             $this->form_validation->set_rules('cost', 'Single Per Seat', 'required');
-
-            
             
             if($this->form_validation->run() == TRUE)
             {
                 $this->db->where('is_active','yes');
-                $tourNo_check = $this->master_model->getRecords('packages',array('is_deleted'=>'no','tour_number'=>trim($this->input->post('tour_number'))));
+                $tourNo_check = $this->master_model->getRecords('packages',array('is_deleted'=>'no','tour_number'=>trim($this->input->post('tour_number')),'package_type'=>trim($this->input->post('package_type'))));
                 if(count($tourNo_check)==0){
 
                 $file_name     = $_FILES['image_name']['name'];
@@ -402,11 +407,10 @@ class Packages extends CI_Controller{
     
    
   // Active/Inactive
-  
   public function active_inactive($id,$type)
     {
-	  $id=base64_decode($id);
-        if($id!='' && ($type == "yes" || $type == "no") )
+	  	$id=base64_decode($id);
+        if($id!="" && ($type == "yes" || $type == "no") )
         {   
             $this->db->where('id',$id);
             $arr_data = $this->master_model->getRecords('packages');
@@ -442,6 +446,46 @@ class Packages extends CI_Controller{
         }
         redirect($this->module_url_path.'/index');   
     }
+  
+//   public function active_inactive($id,$type)
+//     {
+// 	  $id=base64_decode($id);
+//         if($id!='' && ($type == "yes" || $type == "no") )
+//         {   
+//             $this->db->where('id',$id);
+//             $arr_data = $this->master_model->getRecords('packages');
+//             if(empty($arr_data))
+//             {
+//                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
+//                redirect($this->module_url_path.'/index');
+//             }   
+
+//             $arr_update =  array();
+
+//             if($type == 'yes')
+//             {
+//                 $arr_update['is_active'] = "no";
+//             }
+//             else
+//             {
+//                 $arr_update['is_active'] = "yes";
+//             }
+            
+//             if($this->master_model->updateRecord('packages',$arr_update,array('id' => $id)))
+//             {
+//                 $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
+//             }
+//             else
+//             {
+//              $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
+//             }
+//         }
+//         else
+//         {
+//            $this->session->set_flashdata('error_message','Invalid Selection Of Record');
+//         }
+//         redirect($this->module_url_path.'/index');   
+//     }
 
     
     // Delete

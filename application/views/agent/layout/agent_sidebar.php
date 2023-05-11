@@ -49,7 +49,7 @@
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>agent/website_visitor_data/index" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                Website Visitor Enquiry
               </p>
@@ -57,7 +57,7 @@
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>agent/fixed_Customized_enquiries/index" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                Fixed & Customized Enquiries
               </p>
@@ -142,24 +142,41 @@
             </ul>
           </li>
 
+
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>agent/website_visitor_data/index" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-               Domastic Customised Enquiries
+                 Website Customized Enquiries
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>agent/website_visitor_data/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Domestic Customised Enquiries</p>
+                </a>
+              </li>
+               
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>agent/agent/international_website_visitor_data/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>International Customised Enquiries</p>
+                </a>
+               </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>agent/contact_general_enquiry/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               General Enquiries
               </p>
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="<?php echo base_url(); ?>agent/international_website_visitor_data/index" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>
-               International Customised Enquiries
-              </p>
-            </a>
-          </li>
-               
          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>

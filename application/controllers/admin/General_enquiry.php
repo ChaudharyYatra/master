@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Contact_us extends CI_Controller{
+class General_enquiry extends CI_Controller{
 
 	public function __construct()
 	{
@@ -18,10 +18,11 @@ class Contact_us extends CI_Controller{
         // $this->user_id            =  $this->session->userdata('nabcons_id');
         // $this->name               =  $this->session->userdata('nabcons_username');
         // $this->ip                 =  $this->input->ip_address();
-        $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/contact_us";
-        $this->module_title       = "Contact Us";
-        $this->module_url_slug    = "contact_us";
-        $this->module_view_folder = "contact_us/";    
+        $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/general_enquiry";
+        $this->module_url_path_followup   =  base_url().$this->config->item('admin_panel_slug')."/general_enquiry_followup";
+        $this->module_title       = "General Enquiry";
+        $this->module_url_slug    = "general_enquiry";
+        $this->module_view_folder = "general_enquiry/";    
         // $this->load->library('upload');
 	}
 
@@ -42,6 +43,7 @@ class Contact_us extends CI_Controller{
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['module_url_path_followup'] = $this->module_url_path_followup;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
 	}

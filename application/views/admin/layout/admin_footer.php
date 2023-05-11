@@ -5739,7 +5739,7 @@ $('#edit_zone_master').validate({ // initialize the plugin
 
     $("#package_type").change(function () {
         var tno = $("#package_type").val();
-        if(tno=='Special Limited Offer')
+        if(tno=='7')
         {
             $(".c_from_date").show();
         }

@@ -52,7 +52,13 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
+                    <?php if($info['package_type']!="Special Limited Offer"){
+                      ?>
                     <td><?php echo $info['package_type'] ?></td>
+                    <?php }else{
+                      ?>
+                      <td>Special Limited Offer</td>
+                    <?php } ?>
 					          <td><?php echo $info['tour_number'] ?></td>
                     <td><?php echo $info['tour_title'] ?></td>
                     <?php if($info['cost']== 0) {?>
@@ -87,7 +93,7 @@
                           <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
 					                  echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Edit</button></a>
 
-                            <?php if($info['pid']!='3' && $info['pid']!='4' && $info['pid']!='Special Limited Offer'){
+                            <?php if($info['pid']!='3' && $info['pid']!='4' && $info['pid']!='7'){
                               ?>
                               <a href="<?php echo $module_url_path_dates;?>/add/<?php $aid=base64_encode($info['id']); 
                                 echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Add Dates</button></a>

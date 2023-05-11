@@ -693,7 +693,7 @@ function validateEnquiryForms()
   }
   
   
-var mobile_number = $('#mobile_number').val();
+  var mobile_number = $('#mobile_number').val();
   if (mobile_number == '' || mobile_number ==null) 
   {
     $('#mobile_number_error').text('Please enter mobile number.');
@@ -781,8 +781,6 @@ var mobile_number = $('#mobile_number').val();
     submiform=false;
   }
 
-  
-  
   if(submiform==='')
   {
       return true;
@@ -796,6 +794,196 @@ var mobile_number = $('#mobile_number').val();
 }
     
 </script>
+
+<script>
+function contactEnquiryForms() 
+{
+  $("#first_name_error").hide();
+  $("#last_name_error").hide();
+  $("#email_error").hide();
+  $("#mobile_number_error").hide();
+  $("#gender_error").hide();
+  $("#media_source_name_error").hide();
+  $("#department_id_error").hide();
+  $("#agent_id_error").hide();
+  $("#wp_mobile_number_error").hide();
+  $("#tour_number").hide();
+  $("#other_tour_name_div").hide();
+  
+  var submiform='';
+  
+  var first_name = $('#first_name').val();
+  if (first_name == '' || first_name ==null) 
+  {
+    $('#first_name_error').text('Please enter first name.');
+    $('#first_name_error').show();
+    submiform=false;
+  }
+  
+  
+  var last_name = $('#last_name').val();
+  if (last_name == '' || last_name ==null) 
+  {
+    $('#last_name_error').text('Please enter last name.');
+    $('#last_name_error').show();
+    submiform=false;
+  }
+  
+  var email = $('#email').val();
+  if (email == '' || email ==null) 
+  {
+    $('#email_error').text('Please enter email address.');
+    $('#email_error').show();
+    submiform=false;
+  }
+  else
+  {
+      var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(!regex.test(email)) 
+        {
+           $('#email_error').text('Please enter valid email address.');
+            $('#email_error').show();
+            submiform=false;
+        }
+        else if(email)
+        {
+          var email_split = email.split('@');
+          var count = (email_split[1].match(/\./g) || []).length;
+          if(count > 2)
+          {
+              $('#email_error').text('Please enter valid email address.');
+              $('#email_error').show();
+              submiform=false;
+          }
+        }
+        // else
+        // {
+        //     isEmailExist();
+        // }
+  }
+  
+  
+  var mobile_number = $('#mobile_number').val();
+  if (mobile_number == '' || mobile_number ==null) 
+  {
+    $('#mobile_number_error').text('Please enter mobile number.');
+    $('#mobile_number_error').show();
+    submiform=false;
+  }
+  else
+  {
+      var mobNum = $('#mobile_number').val();
+      var filter = /^\d*(?:\.\d{1,2})?$/;
+        if(filter.test(mobNum)) {
+            if(mobNum.length < 10){
+                  $('#mobile_number_error').text('Please enter 10 digits mobile number');
+              $('#mobile_number_error').show();
+              submiform=false;
+             } 
+            }
+            
+         if(filter.test(mobNum)) {
+            if(mobNum.length > 10){
+                  $('#mobile_number_error').text('Please enter 10 digits mobile number');
+              $('#mobile_number_error').show();
+              submiform=false;
+             } 
+            }
+  }
+	
+	var wp_mobile_number = $('#wp_mobile_number').val();
+  if (wp_mobile_number == '' || wp_mobile_number ==null) 
+  {
+    $('#wp_mobile_number_error').text('Please enter whatsapp mobile number.');
+    $('#wp_mobile_number_error').show();
+    submiform=false;
+  }
+  else
+  {
+      var mobNum = $('#wp_mobile_number').val();
+      var filter = /^\d*(?:\.\d{1,2})?$/;
+        if(filter.test(mobNum)) {
+            if(mobNum.length < 10){
+                  $('#wp_mobile_number_error').text('Please enter 10 digits whatsapp mobile number');
+              $('#wp_mobile_number_error').show();
+              submiform=false;
+             } 
+            }
+            
+         if(filter.test(mobNum)) {
+            if(mobNum.length > 10){
+                  $('#wp_mobile_number_error').text('Please enter 10 digits whatsapp mobile number');
+              $('#wp_mobile_number_error').show();
+              submiform=false;
+             } 
+            }
+  }
+
+  var gender = $('#gender').val();
+  if (gender == '' || gender ==null) 
+  {
+    $('#gender_error').text('Please select gender.');
+    $('#gender_error').show();
+    submiform=false;
+  }
+
+  var media_source_name = $('#media_source_name').val();
+  if (media_source_name == '' || media_source_name ==null) 
+  {
+    $('#media_source_name_error').text('Please select media source.');
+    $('#media_source_name_error').show();
+    submiform=false;
+  }
+
+	var department_id = $('#department_id').val();
+  if (department_id == '' || department_id ==null) 
+  {
+    $('#department_id_error').text('Please select department.');
+    $('#department_id_error').show();
+    submiform=false;
+  }
+	
+  var agent_id = $('#agent_id').val();
+  if (agent_id == '' || agent_id ==null) 
+  {
+    $('#agent_id_error').text('Please select Booking Centre.');
+    $('#agent_id_error').show();
+    submiform=false;
+  }
+
+  var tour_number = $('#tour_number').val();
+  if (tour_number == '' || tour_number ==null) 
+  {
+    $('#tour_number1').text('Please Select Tour.');
+    $('#tour_number1').show();
+    submiform=false;
+  }
+
+  var tour_number_other = $('#tour_number').val();
+  if(tour_number_other == 'other'){
+  var other_tour_name = $('#other_tour_name').val();
+  if (other_tour_name == '' || other_tour_name ==null) 
+  {
+    $('#other_tour_name1').text('Please Enter Destination Name.');
+    $('#other_tour_name1').show();
+    submiform=false;
+  }
+}
+
+  if(submiform==='')
+  {
+      return true;
+  }
+  else
+  {
+     return false; 
+  }
+  
+  
+}
+    
+</script>
+
 <script>
   $(document).ready(function(){
   $('#dept_id').on('change',function(){
@@ -1054,7 +1242,7 @@ function validatedomesticreviewForms()
 <!--</script>-->
 
 
-<!-- <script>
+<script>
 function custom_enquiry_form() 
 {
   $("#full_name_error").hide();
@@ -1065,19 +1253,19 @@ function custom_enquiry_form()
   $("#no_of_nights_error").hide();
   $("#no_of_couple_error").hide();
   $("#meal_plan_error").hide();
-  $("#meal_plan_name_error").hide();
+  // $("#meal_plan_name_error").hide();
   $("#total_adult_error").hide();
   $("#total_child_with_bed_error").hide();
   $("#total_child_without_bed_error").hide();
   $("#vehicle_type_error").hide();
-  $("#other_vehicle_name_error").hide();
+  // $("#other_vehicle_name_error").hide();
   $("#pick_up_from_error").hide();
-  $("#other_pickup_from_name_error").hide();
+  // $("#other_pickup_from_name_error").hide();
   $("#pickup_date_error").hide();
 
   $("#pickup_time_error").hide();
   $("#drop_to_error").hide();
-  $("#other_drop_to_name_error").hide();
+  // $("#other_drop_to_name_error").hide();
   $("#drop_date_error").hide();
   $("#drop_time_error").hide();
   // $("#special_note_error").hide();
@@ -1189,19 +1377,6 @@ var mobile_number = $('#mobile_number1').val();
     $('#no_of_nights_error').show();
     submiform=false;
   }
-	
-  // var cbox = document.forms["myForm"]["gender"];
-  // if (
-  //   cbox[0].checked == false &&
-  //   cbox[1].checked == false &&
-  //   cbox[2].checked == false
-  // ) {
-  //   alert("Please Select Gender");
-  //   return false;
-  // } else {
-  //   alert("Successfully Submited");
-  //   return true;
-  // }
 
   var no_of_couple_error = $('#no_of_couple').val();
   if (no_of_couple_error == '' || no_of_couple_error ==null) 
@@ -1219,13 +1394,13 @@ var mobile_number = $('#mobile_number1').val();
     submiform=false;
   }
 
-  var meal_plan_name_error = $('#meal_plan_name').val();
-  if (meal_plan_name_error == '' || meal_plan_name_error ==null) 
-  {
-    $('#meal_plan_name_error').text('Please Enter Other meal plan.');
-    $('#meal_plan_name_error').show();
-    submiform=false;
-  }
+  // var meal_plan_name_error = $('#meal_plan_name').val();
+  // if (meal_plan_name_error == '' || meal_plan_name_error ==null) 
+  // {
+  //   $('#meal_plan_name_error').text('Please Enter Other meal plan.');
+  //   $('#meal_plan_name_error').show();
+  //   submiform=false;
+  // }
 
   var total_adult_error = $('#total_adult').val();
   if (total_adult_error == '' || total_adult_error ==null) 
@@ -1259,21 +1434,21 @@ var mobile_number = $('#mobile_number1').val();
     submiform=false;
   }
 
-  var other_vehicle_name_error = $('#other_vehicle_name').val();
-  if (other_vehicle_name_error == '' || other_vehicle_name_error ==null) 
-  {
-    $('#other_vehicle_name_error').text('Please Enter Other vehicle type.');
-    $('#other_vehicle_name_error').show();
-    submiform=false;
-  }
+  // var other_vehicle_name_error = $('#other_vehicle_name').val();
+  // if (other_vehicle_name_error == '' || other_vehicle_name_error ==null) 
+  // {
+  //   $('#other_vehicle_name_error').text('Please Enter Other vehicle type.');
+  //   $('#other_vehicle_name_error').show();
+  //   submiform=false;
+  // }
 
-  var other_pickup_from_name_error = $('#other_pickup_from_name').val();
-  if (other_pickup_from_name_error == '' || other_pickup_from_name_error ==null) 
-  {
-    $('#other_pickup_from_name_error').text('Please Enter Other Pickup From.');
-    $('#other_pickup_from_name_error').show();
-    submiform=false;
-  }
+  // var other_pickup_from_name_error = $('#other_pickup_from_name').val();
+  // if (other_pickup_from_name_error == '' || other_pickup_from_name_error ==null) 
+  // {
+  //   $('#other_pickup_from_name_error').text('Please Enter Other Pickup From.');
+  //   $('#other_pickup_from_name_error').show();
+  //   submiform=false;
+  // }
 
   var pick_up_from_error = $('#pick_up_from').val();
   if (pick_up_from_error == '' || pick_up_from_error ==null) 
@@ -1307,13 +1482,13 @@ var mobile_number = $('#mobile_number1').val();
     submiform=false;
   }
 
-  var other_drop_to_name_error = $('#other_drop_to_name').val();
-  if (other_drop_to_name_error == '' || other_drop_to_name_error ==null) 
-  {
-    $('#other_drop_to_name_error').text('Please Enter Other Drop To.');
-    $('#other_drop_to_name_error').show();
-    submiform=false;
-  }
+  // var other_drop_to_name_error = $('#other_drop_to_name').val();
+  // if (other_drop_to_name_error == '' || other_drop_to_name_error ==null) 
+  // {
+  //   $('#other_drop_to_name_error').text('Please Enter Other Drop To.');
+  //   $('#other_drop_to_name_error').show();
+  //   submiform=false;
+  // }
 
   var drop_date_error = $('#drop_date').val();
   if (drop_date_error == '' || drop_date_error ==null) 
@@ -1343,10 +1518,10 @@ var mobile_number = $('#mobile_number1').val();
   
 }
 
-</script> -->
+</script>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $('.checkin_date').datepicker({
@@ -1388,8 +1563,8 @@ function calculate() {
   </script>
 
 <script type="text/javascript">
-    function Mealplan(val){
-    var element=document.getElementById('other_meal_plan_div');
+  function Mealplan(val){
+  var element=document.getElementById('other_meal_plan_div');
 	var element2=document.getElementById('meal_plan_name');
     if(val=='Other')
     element.style.display='block';
@@ -1401,7 +1576,7 @@ function calculate() {
 </script>
 <script type="text/javascript">
 function Vehicle(val){
-    var element=document.getElementById('other_vehicle_type_div');
+  var element=document.getElementById('other_vehicle_type_div');
 	var element2=document.getElementById('other_vehicle_name');
     if(val=='Other')
     element.style.display='block';
@@ -1412,7 +1587,7 @@ function Vehicle(val){
   </script>
   <script type="text/javascript">
   function Pickupfrom(val){
-    var element=document.getElementById('other_pickup_from_div');
+  var element=document.getElementById('other_pickup_from_div');
 	var element2=document.getElementById('other_pickup_from_name');
     if(val=='Other')
     element.style.display='block';
@@ -1423,7 +1598,7 @@ function Vehicle(val){
   </script>
   <script type="text/javascript">
   function dropto(val){
-    var element=document.getElementById('other_dropto_div');
+  var element=document.getElementById('other_dropto_div');
 	var element2=document.getElementById('other_drop_to_name');
     if(val=='Other')
     element.style.display='block';
@@ -1432,5 +1607,25 @@ function Vehicle(val){
 	  element2.value="";	
     }
   </script>
+
+  <script>
+  $(".selectall").click(function(){
+          $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+
+  });
+  </script>
+
+<script type="text/javascript">
+    function CheckColors(val){
+    var element=document.getElementById('other_tour_name_div');
+	var element2=document.getElementById('other_tour_name');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	element2.value="";	
+    }
+
+</script>
 </body>
 </html>

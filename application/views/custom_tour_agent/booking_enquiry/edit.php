@@ -112,7 +112,7 @@
                                 <label>Hotel Type
                                   <?php ?>
                                 </label><br>
-                                            <input type="checkbox" name="hotel_type[]" id="hotel_type" value="All Hotels" <?php if(in_array('All Hotels',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;All Hotels
+                                            <input type="checkbox" class="selectall" name="hotel_type[]" id="hotel_type" value="All Hotels" <?php if(in_array('All Hotels',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;All Hotels
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="2 STAR" <?php if(in_array('2 STAR',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; 2 STAR
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="3 STAR" <?php if(in_array('3 STAR',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; 3 STAR
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="4 STAR" <?php if(in_array('4 STAR',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; 4 STAR
@@ -258,7 +258,7 @@
 
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Special Note</label>
+                                <label>Describe Your Visit Places & Special Notes</label>
                                 <textarea type="text" class="form-control" name="special_note" id="special_note" placeholder="Enter Special Note"><?php echo $info['special_note']; ?></textarea>
                               </div>
                             </div>

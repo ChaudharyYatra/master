@@ -17,7 +17,10 @@
 
 
 <!-- jQuery -->
-<script src="<?php echo base_url(); ?>assets/admin/plugins/jquery/jquery.min.js"></script>
+<!-- <script src="<?php //echo base_url(); ?>assets/admin/plugins/jquery/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/jquery-validation/jquery.validate.min.js"></script>
@@ -96,9 +99,7 @@
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 
 
 <script>
@@ -4031,8 +4032,8 @@ function Vehicle(val){
   <!-- other feilds -->
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script>
     $('.checkin_date').datepicker({
     dateFormat: 'yy-mm-dd',
@@ -4070,6 +4071,12 @@ function calculate() {
     }
     $('.no_of_nights').val(diff);
   }
+  </script>
+  <script>
+  $(".selectall").click(function(){
+          $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+
+  });
   </script>
 
 

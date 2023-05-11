@@ -118,23 +118,19 @@
                                                 <span class="text-danger float-left" id="agent_id_error" style="display:none"></span>
 
                                             </div>
-                                        </div>                                      
-                   
-
+                                        </div>   
                                     </div>
                                 
-                            </div>
                            
-                                <div class="booking-terms border-t pt-3 mt-3">
+                                    <div class="booking-terms border-t pt-3 mt-3">
                                     <!-- <form class="d-lg-flex align-items-center"> -->
                                         <div class="form-group mb-2 w-75">
                                             <!--<input type="checkbox"> By continuing, you agree to the <a href="#">Terms and Conditions.</a>-->
                                         </div>
                                         <!-- <a href="#" class="nir-btn float-lg-end w-25" name="submit">CONFIRM BOOKING</a> -->
                                         <input type="submit" class="nir-btn float-lg-end w-25" id="submit" value="submit" name="submit">
-
-                                    </form>
-                    
+                                    </div>
+                                </form>
                                 </div>
                             </div>
                         </div>

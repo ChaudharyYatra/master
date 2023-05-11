@@ -64,11 +64,11 @@
                                 <!-- <option value="<?php //echo $package_type_info['package_type'];?>"><?php //echo $package_type_info['package_type'];?></option> -->
                                 <option value="<?php echo $package_type_info['id'];?>" <?php if(isset($info['package_type'])){if($package_type_info['id'] == $info['package_type']) {echo 'selected';}}?>><?php echo $package_type_info['package_type'];?></option>
                                 <?php } ?>
-                                <option value="Special Limited Offer" <?php if(isset($info['package_type'])){if("Special Limited Offer" == $info['package_type']) {echo 'selected';}}?>>Special Limited Offer</option>
+                                <!-- <option value="Special Limited Offer" <?php //if(isset($info['package_type'])){if("Special Limited Offer" == $info['package_type']) {echo 'selected';}}?>>Special Limited Offer</option> -->
                           </select>
                         </div>
                       </div>
-                      <?php if($info['package_type'] == 'Special Limited Offer') { ?>
+                      <?php if($info['package_type'] == '7') { ?>
                       <div class="col-md-6 c_from_date">
                               <div class="form-group">
                                 <label>From Date</label>

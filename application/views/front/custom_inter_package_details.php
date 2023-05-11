@@ -11,7 +11,7 @@
         <div class="breadcrumb-outer">
             <div class="container">
                 <div class="breadcrumb-content text-center">
-                    <h1 class="mb-3"><?php echo $page_title; ?></h1>
+                <h1 class="mb-3">Customized International </h1><h1 class="mt-5">Package Details</h1>
                     <nav aria-label="breadcrumb" class="d-block">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>/home">Home</a></li>

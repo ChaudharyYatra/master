@@ -7,7 +7,15 @@
 table.scrolldown tbody{
     height : auto !important;
 }
-
+.card_price{
+    font-size: 60%;
+}
+.card_price1{
+    font-size: 58%;
+}
+.card_price2{
+    font-size: 80%;
+}
 </style>  
 
     <!-- BreadCrumb Starts -->  
@@ -118,15 +126,29 @@ table.scrolldown tbody{
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="entry-meta">
                                     <div class="entry-author d-flex align-items-center">
-                                        <p class="mb-0">Starting from<span class="theme fw-bold fs-5"> <i class="fa fa-inr" aria-hidden="true"></i> <?php echo $main_packages_all_value['cost'];?></span></p>
+                                    <p class="mb-0">Starting from<span class="theme fw-bold fs-5">
+                                                <?php 
+                                                if($main_packages_all_value['cost']>0){
+                                                ?>
+                                                <i class="fa fa-inr" aria-hidden="true"></i> <?php echo $main_packages_all_value['cost'];?></span></p>
+                                                <?php } else{
+                                                ?>
+                                                 <span class="card_price">On Demand</span> </span></p>
+                                            <?php } ?>
                                     </div>
                                 </div>  
                             </div>
                             <div class="entry-meta">
                                 <div class="entry-author d-flex align-items-center">
-                                    <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $main_packages_all_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php echo $main_packages_all_value['id'] ?>">..More Dates</a></p> 
+                                    <p class="mb-2 card_price2">From Date :<span class="theme fw-bold"> <?php echo $main_packages_all_value['from_date'];?></span>...
+                                    <p class="mb-2 card_price2">To Date :<span class="theme fw-bold"> <?php echo $main_packages_all_value['to_date'];?></span></p>
                                 </div>
                             </div>
+                            <!-- <div class="entry-meta">
+                                <div class="entry-author d-flex align-items-center">
+                                    <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php //echo $main_packages_all_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php //echo $main_packages_all_value['id'] ?>">..More Dates</a></p> 
+                                </div>
+                            </div> -->
                             <!-- <div class="entry-meta mb-2">
                                 <div class="entry-author d-flex align-items-center">
                                     <p class="mb-0">Starting from<span class="theme fw-bold fs-5"> <i class="fa fa-inr" aria-hidden="true"></i> <?php //echo $main_packages_all_value['cost'];?></span></p>
@@ -158,7 +180,7 @@ table.scrolldown tbody{
                             </div>
                         </div>
                         
-                        <a href="<?php echo base_url(); ?>packages/package_details/<?php echo $main_packages_all_value['id']; ?>">
+                        <a href="<?php echo base_url(); ?>exclusive_packages/exclusive_package_details/<?php echo $main_packages_all_value['id']; ?>">
                         <div class="card-footer card_readmore" id="button-2">
                             <div id="slide"></div>
                                 <small class="card_css fw-bold">View More</small>

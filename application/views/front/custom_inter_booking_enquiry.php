@@ -6,6 +6,9 @@
         .mealplan_css{
             border: 1px solid red !important;
         }
+        .star_color{
+            color: red;
+        }
         /* .ui-datepicker-calendar{
             display:none !important;
         }
@@ -22,7 +25,7 @@
         <div class="breadcrumb-outer">
             <div class="container">
                 <div class="breadcrumb-content text-center">
-                    <h1 class="mb-3">Custom International Booking </h1><h1 class="mt-5">Enquiry</h1>
+                    <h1 class="mb-3">Customized International</h1><h1 class="mt-5">Booking Enquiry</h1>
                     <nav aria-label="breadcrumb" class="d-block">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>home">Home</a></li>
@@ -50,13 +53,13 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="label_color">FullName</label>
+                                                    <label class="label_color">Full Name<span class="star_color"> *</span></label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <label class="label_color">Email</label>
+                                                    <label class="label_color">Email<span class="star_color"> *</span></label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <label class="label_color">Mobile No.</label>
+                                                    <label class="label_color">Mobile No.<span class="star_color"> *</span></label>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label class="label_color">Mobile No.(optional)</label>
@@ -91,26 +94,26 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label class="label_color">Checkin Date</label>
+                                                    <label class="label_color">Checkin Date<span class="star_color"> *</span></label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label class="label_color">Checkout Date</label>
+                                                    <label class="label_color">Checkout Date<span class="star_color"> *</span></label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label class="label_color">No Of Nights</label>
+                                                    <label class="label_color">No Of Nights<span class="star_color"> *</span></label>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group mb-2">
-                                                <input type="text" placeholder="" class="checkin_date" name="checkin_date" id="checkin_date">
+                                                <input type="text" placeholder="" autocomplete="off" class="checkin_date" name="checkin_date" id="checkin_date">
                                                 <span class="text-danger float-left" id="chechin_date_error" style="display:none"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group mb-2">
-                                                <input type="text" placeholder="" class="checkout_date" name="checkout_date" id="checkout_date">
+                                                <input type="text" placeholder="" autocomplete="off" class="checkout_date" name="checkout_date" id="checkout_date">
                                                 <span class="text-danger float-left" id="checkout_error" style="display:none"></span>
                                             </div>
                                         </div>
@@ -126,7 +129,7 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <label class="label_color">Hotel Type</label>
+                                                <label class="label_color">Hotel Type<span class="star_color"> *</span></label>
                                             </div>
                                         </div>
                                     </div>
@@ -135,49 +138,49 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="form-group mb-2">
-                                                    <input type="checkbox" name="hotel_type[]" id="hotel_type" value="All Hotels">&nbsp;&nbsp;All Hotels
+                                                    <input type="checkbox" class="selectall" name="hotel_type[]" id="hotel_type" value="All Hotels">&nbsp;&nbsp;All Hotels
                                                     <!-- <span class="text-danger float-left" id="email_error" style="display:none"></span> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group mb-2">
-                                                    <input type="checkbox" name="hotel_type[]" id="hotel_type" value="2 STAR">&nbsp;&nbsp; 2 STAR
+                                                    <input type="checkbox" class="xyz" name="hotel_type[]" id="hotel_type" value="2 STAR">&nbsp;&nbsp; 2 STAR
                                                     <!-- <span class="text-danger float-left" id="mobile_number_error" style="display:none"></span> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group mb-2">
-                                                    <input type="checkbox" name="hotel_type[]" id="hotel_type" value="3 STAR">&nbsp;&nbsp; 3 STAR
+                                                    <input type="checkbox" class="xyz" name="hotel_type[]" id="hotel_type" value="3 STAR">&nbsp;&nbsp; 3 STAR
                                                     <!-- <span class="text-danger float-left" id="wp_mobile_number_error" style="display:none"></span> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group mb-2">
-                                                    <input type="checkbox" name="hotel_type[]" id="hotel_type" value="4 STAR">&nbsp;&nbsp; 4 STAR
+                                                    <input type="checkbox" class="xyz" name="hotel_type[]" id="hotel_type" value="4 STAR">&nbsp;&nbsp; 4 STAR
                                                     <!-- <span class="text-danger float-left" id="wp_mobile_number_error" style="display:none"></span> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group mb-2">
-                                                    <input type="checkbox" name="hotel_type[]" id="hotel_type" value="5 STAR">&nbsp;&nbsp; 5 STAR
+                                                    <input type="checkbox" class="xyz" name="hotel_type[]" id="hotel_type" value="5 STAR">&nbsp;&nbsp; 5 STAR
                                                     <!-- <span class="text-danger float-left" id="wp_mobile_number_error" style="display:none"></span> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group mb-2">
-                                                    <input type="checkbox" name="hotel_type[]" id="hotel_type" value="HOMESTAYS WITHOUT POOL">&nbsp;&nbsp; HOMESTAYS WITHOUT POOL
+                                                    <input type="checkbox" class="xyz" name="hotel_type[]" id="hotel_type" value="HOMESTAYS WITHOUT POOL">&nbsp;&nbsp; HOMESTAYS WITHOUT POOL
                                                     <!-- <span class="text-danger float-left" id="wp_mobile_number_error" style="display:none"></span> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group mb-2">
-                                                    <input type="checkbox" name="hotel_type[]" id="hotel_type" value="BEACH PROPERTIES">&nbsp;&nbsp; BEACH PROPERTIES
+                                                    <input type="checkbox" class="xyz" name="hotel_type[]" id="hotel_type" value="BEACH PROPERTIES">&nbsp;&nbsp; BEACH PROPERTIES
                                                     <!-- <span class="text-danger float-left" id="wp_mobile_number_error" style="display:none"></span> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mb-2">
-                                                    <input type="checkbox" name="hotel_type[]" id="hotel_type" value="DELUXE COTTAGES">&nbsp;&nbsp; DELUXE COTTAGES
+                                                    <input type="checkbox" class="xyz" name="hotel_type[]" id="hotel_type" value="DELUXE COTTAGES">&nbsp;&nbsp; DELUXE COTTAGES
                                                     <!-- <span class="text-danger float-left" id="wp_mobile_number_error" style="display:none"></span> -->
                                                 </div>
                                             </div><br>
@@ -189,7 +192,7 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                                <label class="label_color">No Of Couple</label>
+                                                <label class="label_color">No Of Couple<span class="star_color"> *</span></label>
                                                 <input type="text" name="no_of_couple" id="no_of_couple">
                                                 <span class="text-danger float-left" id="no_of_couple_error" style="display:none"></span>
                                             </div>
@@ -197,7 +200,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
                                                 <div class="input-box">
-                                                    <label class="label_color">Meal Plan</label>
+                                                    <label class="label_color">Meal Plan<span class="star_color"> *</span></label>
                                                     <select class="niceSelect" name="meal_plan" id="meal_plan" onchange='Mealplan(this.value); 
                                                             this.blur();'>
                                                         <option value="">Select Meal Plan</option>
@@ -213,7 +216,7 @@
 
                                         <div class="col-md-3" id="other_meal_plan_div" style='display:none;'>
                                             <div class="form-group">
-                                                <label>Other Meal Plan Name</label>
+                                                <label>Other Meal Plan Name<span class="star_color"> *</span></label>
                                                 <input type="text" class="form-control mealplan_css" name="meal_plan_name" id="meal_plan_name" placeholder="Enter meal plan name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                             </div>
                                             <span class="text-danger float-left" id="meal_plan_name_error" style="display:none"></span>
@@ -221,21 +224,21 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                            <label class="label_color">Total Adult</label>
+                                            <label class="label_color">Total Adult<span class="star_color"> *</span></label>
                                                 <input type="text" name="total_adult" id="total_adult" placeholder="">
                                                 <span class="text-danger float-left" id="total_adult_error" style="display:none"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                            <label class="label_color">Total Child With Bed</label>
+                                            <label class="label_color">Total Child With Bed<span class="star_color"> *</span></label>
                                                 <input type="text" name="total_child_with_bed" id="total_child_with_bed" placeholder="">
                                                 <span class="text-danger float-left" id="total_child_with_bed_error" style="display:none"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                            <label class="label_color">Total Child Without Bed</label>
+                                            <label class="label_color">Total Child Without Bed<span class="star_color"> *</span></label>
                                                 <input type="text" name="total_child_without_bed" id="total_child_without_bed" placeholder="">
                                                 <span class="text-danger float-left" id="total_child_without_bed_error" style="display:none"></span>
                                             </div>
@@ -244,7 +247,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
                                                 <div class="input-box">
-                                                    <label class="label_color">Select Vehicle Type</label>
+                                                    <label class="label_color">Select Vehicle Type<span class="star_color"> *</span></label>
                                                     <select class="niceSelect" name="vehicle_type" id="vehicle_type" onchange='Vehicle(this.value); 
                                                             this.blur();'>
                                                         <option value="">Select vehicle type</option>
@@ -260,7 +263,7 @@
 
                                         <div class="col-md-3" id="other_vehicle_type_div" style='display:none;'>
                                             <div class="form-group">
-                                                <label>Other Vehicle Name</label>
+                                                <label>Other Vehicle Name<span class="star_color"> *</span></label>
                                                 <input type="text" class="form-control mealplan_css" name="other_vehicle_name" id="other_vehicle_name" placeholder="Enter vehicle name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                             </div>
                                             <span class="text-danger float-left" id="other_vehicle_name_error" style="display:none"></span>
@@ -269,7 +272,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
                                                 <div class="input-box">
-                                                    <label class="label_color">Pick Up From </label>
+                                                    <label class="label_color">Pick Up From<span class="star_color"> *</span></label>
                                                     <select class="niceSelect" name="pick_up_from" id="pick_up_from" onchange='Pickupfrom(this.value); 
                                                             this.blur();'>
                                                         <option value="">Select Pick Up From</option>
@@ -284,7 +287,7 @@
                                         </div>
                                         <div class="col-md-3" id="other_pickup_from_div" style='display:none;'>
                                             <div class="form-group">
-                                                <label>Other Pick Up From Name</label>
+                                                <label>Other Pick Up From Name<span class="star_color"> *</span></label>
                                                 <input type="text" class="form-control mealplan_css" name="other_pickup_from_name" id="other_pickup_from_name" placeholder="Enter Pick Up name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                             </div>
                                             <span class="text-danger float-left" id="other_pickup_from_name_error" style="display:none"></span>
@@ -292,14 +295,14 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                                <label class="label_color">Pickup Allo. Date</label>
+                                                <label class="label_color">Pickup Allo. Date<span class="star_color"> *</span></label>
                                                 <input type="date" name="pickup_date" id="pickup_date" min="<?php echo date("Y-m-d"); ?>">
                                                 <span class="text-danger float-left" id="pickup_date_error" style="display:none"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                                <label class="label_color">Pick Up Time</label>
+                                                <label class="label_color">Pick Up Time<span class="star_color"> *</span></label>
                                                 <input type="time" name="pickup_time" id="pickup_time">
                                                 <span class="text-danger float-left" id="pickup_time_error" style="display:none"></span>
                                             </div>
@@ -308,7 +311,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
                                                 <div class="input-box">
-                                                <label class="label_color">Drop to </label>
+                                                <label class="label_color">Drop to<span class="star_color"> *</span></label>
                                                     <select class="niceSelect" name="drop_to" id="drop_to" onchange='dropto(this.value); 
                                                             this.blur();'>
                                                         <option value="">Select Drop To</option>
@@ -323,7 +326,7 @@
                                         </div>
                                         <div class="col-md-3" id="other_dropto_div" style='display:none;'>
                                             <div class="form-group">
-                                                <label>Other Drop To Name</label>
+                                                <label>Other Drop To Name<span class="star_color"> *</span></label>
                                                 <input type="text" class="form-control mealplan_css" name="other_drop_to_name" id="other_drop_to_name" placeholder="Enter Drop To Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                             </div>
                                             <span class="text-danger float-left" id="other_drop_to_name_error" style="display:none"></span>
@@ -331,14 +334,14 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                            <label class="label_color">Drop Allocation Date</label>
+                                            <label class="label_color">Drop Allocation Date<span class="star_color"> *</span></label>
                                                 <input type="date" name="drop_date" id="drop_date" min="<?php echo date("Y-m-d"); ?>">
                                                 <span class="text-danger float-left" id="drop_date_error" style="display:none"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-2">
-                                            <label class="label_color">Drop Time</label>
+                                            <label class="label_color">Drop Time<span class="star_color"> *</span></label>
                                                 <input type="time"  name="drop_time" id="drop_time">
                                                 <span class="text-danger float-left" id="drop_time_error" style="display:none"></span>
                                             </div>
@@ -348,8 +351,8 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <label class="label_color">Special Note</label>
+                                                <div class="col-md-6">
+                                                    <label class="label_color">Describe Your Visit Places & Special Notes</label>
                                                 </div>
                                             </div>
                                         </div>

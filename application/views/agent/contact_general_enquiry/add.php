@@ -34,7 +34,7 @@
               <form method="post" enctype="multipart/form-data" id="add_bookingenquiry">
                 <div class="card-body">
                  <div class="row">
-					            <div class="col-md-6">
+					<div class="col-md-6">
                         <div class="form-group">
                           <label>Title</label><br>
                           <select class="select_css" name="mrandmrs" id="mrandmrs">
@@ -103,7 +103,7 @@
                               </div>
                             </div>
 					 
-                            <div class="col-md-6">
+                 <div class="col-md-6">
                               <div class="form-group">
                                 <label>Tour number</label>
                                   <select class="form-control" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
@@ -115,7 +115,7 @@
                                     <?php } ?>
                                   </select>
                               </div>
-                            </div>
+                      </div>
 					 
 					 <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
                               <div class="form-group">

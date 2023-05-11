@@ -61,7 +61,8 @@ class Meal_plan extends CI_Controller{
             {
                 $meal_plan_name = $this->input->post('meal_plan_name'); 
                 $arr_insert = array(
-                    'meal_plan_name'   =>   $meal_plan_name
+                    'meal_plan_name'   =>   $meal_plan_name,
+                    'status'                  => 'approved'
                 );
                 
                 $this->db->where('meal_plan_name',$meal_plan_name);
@@ -122,10 +123,12 @@ class Meal_plan extends CI_Controller{
             if($type == 'yes')
             {
                 $arr_update['is_active'] = "no";
+                $arr_update['status'] = "rejected";
             }
             else
             {
                 $arr_update['is_active'] = "yes";
+                $arr_update['status'] = "approved";
             }
             
             if($this->master_model->updateRecord('meal_plan',$arr_update,array('id' => $id)))

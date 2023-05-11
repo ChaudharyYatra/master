@@ -11,7 +11,7 @@
         <div class="breadcrumb-outer">
             <div class="container">
                 <div class="breadcrumb-content text-center">
-                    <h1 class="mb-3">customized Domestic </h1><h1 class="mt-5">Package Details</h1>
+                    <h1 class="mb-3"><?php echo $page_title; ?></h1>
                     <nav aria-label="breadcrumb" class="d-block">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>/home">Home</a></li>
@@ -38,7 +38,7 @@
                 <li><a data-toggle="tab" href="#contact_us">Contact Us</a></li>
 				<!-- <li><a data-toggle="tab" href="#review">Review</a></li> -->
                 <!--<li><a data-toggle="tab" href="#single-map">Map</a></li>-->
-                <li class="active"><a data-toggle="tab" href="<?php echo base_url();?>custom_domestic_booking_enquiry/custom_domestic_booking_enquiry/<?php echo $package_details_value['id']; ?>" class="bordernone">Book Now</a></li>
+                <li class="active"><a data-toggle="tab" href="<?php echo base_url();?>packages/booking_enquiry/<?php echo $package_details_value['id']; ?>" class="bordernone">Book Now</a></li>
             </ul>
         </div>
        
@@ -112,34 +112,34 @@
                 </div>
             	
 				<!-- <div id="dates" class="trend-item box-shadow bg-white mb-2 rounded overflow-hidden dates">
-                    <div class="trend-content-main p-4 pb-2">
-                        <div class="trend-content">
-                            <div class="eentry-button d-flex justify-content-center align-items-center mb-2">
-                                    <h4>Tour Dates & Costs</h4>
-                            </div>
-                            <table class="table table-bordered scrolldown">
-                                <thead>
-                                <tr class="table_head">
-                                    <th>Dates</th>
-                                    <th>Single Per Seat</th>
-                                    <th>Twin Sharing Per Seat</th>
-                                    <th>3/4 Sharing Per Seat</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                            <?php //foreach($package_date_details_data as $date_data){ ?>        
-                                <tr>
-                                    <td><?php //echo date('d-m-Y', strtotime($date_data['journey_date'])); ?></td>
-                                    <td>₹ <?php //echo $date_data['single_seat_cost'];?></td>
-                                    <td>₹ <?php //echo $date_data['twin_seat_cost'];?></td>
-                                    <td>₹ <?php //echo $date_data['three_four_sharing_cost'];?></td>
-                                </tr>
-                            <?php //} ?>
-                                </tbody>
-                            </table>
+                <div class="trend-content-main p-4 pb-2">
+                    <div class="trend-content">
+                        <div class="eentry-button d-flex justify-content-center align-items-center mb-2">
+                                <h4>Tour Dates & Costs</h4>
                         </div>
+                        <table class="table table-bordered scrolldown">
+                            <thead>
+                            <tr class="table_head">
+                                <th>Dates</th>
+                                <th>Single Per Seat</th>
+                                <th>Twin Sharing Per Seat</th>
+                                <th>3/4 Sharing Per Seat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                        <?php //foreach($package_date_details_data as $date_data){ ?>        
+                            <tr>
+                                <td><?php //echo date('d-m-Y', strtotime($date_data['journey_date'])); ?></td>
+                                <td>₹ <?php //echo $date_data['single_seat_cost'];?></td>
+                                <td>₹ <?php //echo $date_data['twin_seat_cost'];?></td>
+                                <td>₹ <?php //echo $date_data['three_four_sharing_cost'];?></td>
+                            </tr>
+                        <?php //} ?>
+                            </tbody>
+                        </table>
                     </div>
-                </div> -->
+                </div>
+            </div> -->
             <!-- Button trigger modal -->
 
            
