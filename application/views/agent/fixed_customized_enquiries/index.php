@@ -43,14 +43,12 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Tour No.</th>
                     <th>Customer Name</th>
+                    <th>Tour No.</th>
                     <th>Package</th>
+                    <th>Other Tour</th>
                     <th>Email</th>
                     <th>Contact Number</th>
-                    <!-- <th>Enquiry Date</th> -->
-                    <!-- <th>Followup form</th>
-                    <th>Followup List</th> -->
                     <th>Action</th>
                     <th>Status</th>
                   </tr>
@@ -61,6 +59,7 @@
                    $i=1; 
                    foreach($arr_data as $info) 
                    { 
+                    // print_r($info); die;
                     $enq_id=$info['id'];
                     $query=$this->db->query("select * from custom_domestic_followup where booking_enquiry_id=$enq_id");
                     $followupdata=$query->result_array();
@@ -69,9 +68,10 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['tno']; ?></td>
                     <td><?php echo $info['full_name']; ?></td>
+                    <td><?php echo $info['tno']; ?></td>
                     <td><?php echo $info['tour_title']; ?></td>
+                    <td><?php echo $info['other_tour_name']; ?></td>
                     <td><?php echo $info['email']; ?></td>
                     <td><?php echo $info['mobile_number1']; ?></td>
                     <!-- <td><?php //echo date("d-m-Y",strtotime($info['created_at'])); ?></td> -->

@@ -179,11 +179,38 @@ class Fixed_customized_enquiries extends CI_Controller {
                         'drop_time'    =>$drop_time,
 						'special_note'=>$special_note,
                         'package_id'=>$tour_number,
-                        'other_tour_name'    =>$other_tour_name
+                        'other_tour_name'    =>$other_tour_name,
+                        'enquiry_from'=>"Agent"
+                        
 
                  );
                  
                 $inserted_id = $this->master_model->insertRecord('custom_domestic_booking_enquiry',$arr_insert,true);
+
+                $arr_insert = array(
+                    'meal_plan_name'    =>$meal_plan_name,
+                    'status'            => 'pending'
+                );
+                $inserted_id = $this->master_model->insertRecord('meal_plan',$arr_insert,true);
+
+                $arr_insert = array(
+                    'vehicle_type_name'    =>$other_vehicle_name,
+                    'status'            => 'pending'
+                );
+                $inserted_id = $this->master_model->insertRecord('vehicle_type',$arr_insert,true);
+
+                $arr_insert = array(
+                    'pick_up_name'    =>$other_pickup_from_name,
+                    'status'            => 'pending'
+                );
+                $inserted_id = $this->master_model->insertRecord('pick_up_from',$arr_insert,true);
+
+                $arr_insert = array(
+                    'drop_to_name'    =>$other_drop_to_name,
+                    'status'            => 'pending'
+                );
+                $inserted_id = $this->master_model->insertRecord('drop_to',$arr_insert,true);
+
                 if($inserted_id >0){
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
                      redirect($this->module_url_path.'/index');
@@ -200,8 +227,11 @@ class Fixed_customized_enquiries extends CI_Controller {
 
          $this->db->where('is_deleted','no');
 		 $this->db->order_by('tour_number','ASC');
+         $this->db->where('package_type','3');
+         $this->db->or_where('package_type','4');
+         $this->db->or_where('package_type','7');
          $packages_data = $this->master_model->getRecords('packages');
-        //  print_r($packages_data); die;
+        //  print_r($packages_data); die;   
          
          $this->arr_view_data['action']          = 'add';
          $this->arr_view_data['packages_data'] = $packages_data;
@@ -220,25 +250,29 @@ class Fixed_customized_enquiries extends CI_Controller {
 
          $this->db->where('is_deleted','no');
          $this->db->where('is_active','yes');
+            $this->db->where('status','approved');
          $this->db->order_by('id','ASC');
          $meal_plan = $this->master_model->getRecords('meal_plan');
          // print_r($meal_plan); die;
 
          $this->db->where('is_deleted','no');
          $this->db->where('is_active','yes');
-         $this->db->order_by('id','ASC');
+            $this->db->where('status','approved');
+            $this->db->order_by('id','ASC');
          $vehicle_type = $this->master_model->getRecords('vehicle_type');
          // print_r($vehicle_type); die;
 
          $this->db->where('is_deleted','no');
          $this->db->where('is_active','yes');
-         $this->db->order_by('id','ASC');
+            $this->db->where('status','approved');
+            $this->db->order_by('id','ASC');
          $pick_up_from = $this->master_model->getRecords('pick_up_from');
          // print_r($pick_up_from); die;
 
          $this->db->where('is_deleted','no');
          $this->db->where('is_active','yes');
-         $this->db->order_by('id','ASC');
+            $this->db->where('status','approved');
+            $this->db->order_by('id','ASC');
          $drop_to = $this->master_model->getRecords('drop_to');
          // print_r($drop_to); die;
          
@@ -277,11 +311,15 @@ class Fixed_customized_enquiries extends CI_Controller {
         }   
         
         $record = array();
-        $fields = "custom_domestic_booking_enquiry.*,packages.tour_title,packages.tour_number as tno,agent.id";
+        $fields = "custom_domestic_booking_enquiry.*,packages.tour_title,packages.tour_number as tno,agent.id,meal_plan.meal_plan_name,vehicle_type.vehicle_type_name,pick_up_from.pick_up_name,drop_to.drop_to_name";
         $this->db->where('custom_domestic_booking_enquiry.is_deleted','no');
         $this->db->where('custom_domestic_booking_enquiry.id',$eid);
         $this->db->join("agent", 'custom_domestic_booking_enquiry.agent_id=agent.id','left');
         $this->db->join("packages", 'custom_domestic_booking_enquiry.package_id=packages.id','left');
+        $this->db->join("meal_plan", 'custom_domestic_booking_enquiry.meal_plan=meal_plan.id','left');
+        $this->db->join("vehicle_type", 'custom_domestic_booking_enquiry.vehicle_type=vehicle_type.id','left');
+        $this->db->join("pick_up_from", 'custom_domestic_booking_enquiry.pick_up_from=pick_up_from.id','left');
+        $this->db->join("drop_to", 'custom_domestic_booking_enquiry.drop_to=drop_to.id','left');   
         $arr_data = $this->master_model->getRecords('custom_domestic_booking_enquiry',array('custom_domestic_booking_enquiry.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
         

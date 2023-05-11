@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="breadcrumb-content text-center">
                     <!-- <h1 class="mb-3"><?php //echo $page_title; ?></h1> -->
-                    <h1 class="mb-3">Reach Upto Us</h1>
+                    <h1 class="mb-3">Reach to Us</h1>
                     <nav aria-label="breadcrumb" class="d-block">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>home">Home</a></li>
@@ -30,7 +30,7 @@
                                     <img class="mb_for_img_cont" src=<?php echo base_url(); ?>uploads\do_not_delete\contact_img.PNG height="30%" width="30%" alt></img>
                                 </span>
                                 <!-- <h3 class="mb-1">CONTACT US</h3> -->
-                                <h2 class="mb-1" data-aos="fade-up" data-duration="500">Still thinking..? <span class="theme" data-aos="fade-up" data-duration="500">Call us Start Packing</span></h2>
+                                <h2 class="mb-1" data-aos="fade-up" data-duration="500">Still thinking..? <span class="theme" data-aos="fade-up" data-duration="500">Call us & Start Packing</span></h2>
                                 
                             </div>
                              <?php foreach($website_basic_structure as $key => $website_basic_structure_value) { ?>
@@ -71,15 +71,152 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-12 mt-3">
+                                <div class="map rounded overflow-hiddenb rounded mb-md-1" data-aos="fade-up" data-duration="500">
+                                    <div style="width: 100%; border:1px solid black; border-radius:10px;">
+                                        <iframe height="450" class="map-border" src="<?php echo $website_basic_structure_value['map']; ?>"></iframe>
+                                    </div>
+                                </div>
+                            </div>
                             
-                            <div id="contact-form1" class="contact-us-form">
+                            <div id="contact-form1" class="contact-us-form mt-5">
                                 <div class="row">
-                                   
-                                    
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div id="contactform-error-msg"></div>
                                         
-                                        <form method="post" action="<?php echo base_url();?>contact_us/index" onsubmit="return validatecontactForms()" data-aos="fade-up" data-duration="500">
+                                    <form class="mb-2" method="post" onsubmit="return contactEnquiryForms()">
+                                    <h5>&nbsp; Fill your information</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-2">
+                                                
+                                                <input type="text" placeholder="First Name" name="first_name" id="first_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                                <span class="text-danger float-left" id="first_name_error" style="display:none"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-2">
+                                                
+                                                <input type="text" placeholder="Last Name" name="last_name" id="last_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                                <span class="text-danger float-left" id="last_name_error" style="display:none"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-2">
+                                                
+                                                <input type="text" placeholder="Email Address" name="email" id="email">
+                                                <span class="text-danger float-left" id="email_error" style="display:none"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-2">
+                                                
+                                                <input type="text" placeholder="Mobile Number" name="mobile_number" id="mobile_number" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
+                                                <span class="text-danger float-left" id="mobile_number_error" style="display:none"></span>
+                                            </div>
+                                        </div>
+										<div class="col-md-6">
+                                            <div class="form-group mb-2">
+                                                
+                                                <input type="text" placeholder="WhatsApp Mobile Number" name="wp_mobile_number" id="wp_mobile_number" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9 ]/g, '').replace(/(\..*)\./g, '$1');">
+                                                <span class="text-danger float-left" id="wp_mobile_number_error" style="display:none"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-2">
+                                                <!-- <label>Tour number</label> -->
+                                                <select class="niceSelect" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
+                                                this.blur();' onfocus='this.size=6;' onblur='this.size=1;'>
+                                                    <option value="">Select tour title</option>
+                                                    <option value="Other">Other</option>
+                                                    <?php foreach($packages_data as $packages_data_value){ ?> 
+                                                        <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <span class="text-danger float-left" id="tour_number1" style="display:none"></span>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
+                                            <div class="form-group">
+                                                <!-- <label>Enquiry destination name</label> -->
+                                                <input type="text" class="" name="other_tour_name" id="other_tour_name" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                            </div>
+                                            <span class="text-danger float-left" id="other_tour_name1" style="display:none"></span>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group mb-2">
+                                                
+                                                <div class="input-box">
+                                                    <select class="niceSelect" name="gender" id="gender">
+                                                        <option value="">Select Gender</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger float-left" id="gender_error" style="display:none"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group mb-2">
+                                                <div class="input-box">
+                                                    <select class="niceSelect" name="media_source_name" id="media_source_name">
+                                                        <option value="">Media Source</option>
+                                                        <?php foreach($media_source as $media_source_info){ ?> 
+                                                            <option value="<?php echo $media_source_info['id'];?>"><?php echo $media_source_info['media_source_name'];?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger float-left" id="media_source_name_error" style="display:none"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group mb-2">
+                                                <div class="input-box">
+                                                    <select class="niceSelect" name="department_id" id="department_id">
+                                                        <option value="">Select Region</option>
+                                                        <?php foreach($department_data as $department){ ?> 
+                                                            <option value="<?php echo $department['id'];?>"><?php echo $department['department'];?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger float-left" id="department_id_error" style="display:none"></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group mb-2">
+                                                <div class="input-box">
+                                                    <select class="" name="agent_id" id="agent_id">
+                                                        <option value="">Select Yout Nearest Booking Centre</option>
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger float-left" id="agent_id_error" style="display:none"></span>
+                                            </div>
+                                        </div> 
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group mb-2">
+                                                <div class="input-box">
+                                                    <textarea type="text" name="message" class="form-control form_css" id="message" placeholder="Message"></textarea>
+                                                    <span class="text-danger float-left" id="msg_error" style="display:none"></span>
+                                                </div> 
+                                            </div>  
+                                        </div>  
+                                    </div>
+                                
+                           
+                                    <div class="booking-terms border-t pt-1 mt-1">
+                                    <!-- <form class="d-lg-flex align-items-center"> -->
+                                        <div class="form-group mb-2 w-75">
+                                            <!--<input type="checkbox"> By continuing, you agree to the <a href="#">Terms and Conditions.</a>-->
+                                        </div>
+                                        <!-- <a href="#" class="nir-btn float-lg-end w-25" name="submit">CONFIRM BOOKING</a> -->
+                                        <input type="submit" class="nir-btn float-lg-end w-25" id="submit" value="submit" name="submit">
+                                    </div>
+                                </form>
+                                        <!-- <form method="post" action="<?php //echo base_url();?>contact_us/index" onsubmit="return validatecontactForms()" data-aos="fade-up" data-duration="500">
                                             <div class="form-group mb-2">
                                                 <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                                 <span class="text-danger float-left" id="fname_error" style="display:none"></span>
@@ -103,18 +240,11 @@
                                             <div class="comment-btn text-right">
                                                 <input type="submit" class="nir-btn" name="submit" value="Send Message">
                                             </div>
-                                        </form>
+                                        </form> -->
                                         
                                     </div>
                                     
-                                    <div class="col-lg-6">
-                                        <div class="map rounded overflow-hiddenb rounded mb-md-4" data-aos="fade-up" data-duration="500">
-                                            <div style="width: 100%">
-                                                <iframe height="450" class="map-border" src="<?php echo $website_basic_structure_value['map']; ?>"></iframe>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
+                                    
                                 </div>
                             </div>
                             <?php } ?>

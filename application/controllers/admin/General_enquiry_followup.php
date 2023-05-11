@@ -5,37 +5,37 @@
 // last updated: 16-08-2022
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Domestic_booking_enquiry_followup extends CI_Controller {
+class General_enquiry_followup extends CI_Controller {
 	 
 	function __construct() {
 
         parent::__construct();
-        if($this->session->userdata('custom_agent_sess_id')=="") 
+        if($this->session->userdata('chy_admin_id')=="") 
         { 
-                redirect(base_url().'custom_tour_agent/login'); 
+                redirect(base_url().'admin/login'); 
         }
-        $this->module_url_path    =  base_url().$this->config->item('custom_tour_agent_panel_slug')."custom_tour_agent/domestic_booking_enquiry_followup";
-        $this->module_url_booking_basic_info    =  base_url().$this->config->item('custom_tour_agent_panel_slug')."custom_tour_agent/booking_basic_info";
-        $this->module_url_path_booking_enq    =  base_url().$this->config->item('custom_tour_agent_panel_slug')."custom_tour_agent/booking_enquiry";
-        $this->module_title       = "Customized Domestic Booking Enquiry Followup";
-        $this->module_title_followup = "Domestic Booking Enquiry Followup";
-        $this->module_url_slug    = "domestic_booking_enquiry_followup";
-        $this->module_view_folder = "domestic_booking_enquiry_followup/";
+        $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/general_enquiry_followup";
+        $this->module_url_booking_basic_info    =  base_url().$this->config->item('admin_panel_slug')."/booking_basic_info";
+        $this->module_url_path_booking_enq    =  base_url().$this->config->item('admin_panel_slug')."/general_enquiry";
+        $this->module_title       = "General Enquiry Followup";
+        // $this->module_title_followup = "Domestic Booking Enquiry Followup";
+        $this->module_url_slug    = "general_enquiry_followup";
+        $this->module_view_folder = "general_enquiry_followup/";
         $this->arr_view_data = [];
 	 }
 
      public function index($i)
      {
-         $custom_agent_name = $this->session->userdata('custom_agent_name');
-         $id=$this->session->userdata('custom_agent_sess_id');
+         $agent_sess_name = $this->session->userdata('agent_name');
+         $id=$this->session->userdata('agent_sess_id');
 
         $record = array();
-        $fields = "custom_domestic_followup.*,followup_reason.create_followup_reason";
-        $this->db->where('custom_domestic_followup.is_deleted','no');
-        $this->db->where('booking_enquiry_id',$i);
-        $this->db->join("followup_reason", 'custom_domestic_followup.followup_reason=followup_reason.id','left');
+        $fields = "general_enquiries_followup.*,followup_reason.create_followup_reason";
+        $this->db->where('general_enquiries_followup.is_deleted','no');
+        $this->db->where('general_enquiry_id',$i);
+        $this->db->join("followup_reason", 'general_enquiries_followup.followup_reason=followup_reason.id','left');
 		$this->db->order_by('id','ASC');
-        $arr_data = $this->master_model->getRecords('custom_domestic_followup',array('custom_domestic_followup.is_deleted'=>'no'),$fields);
+        $arr_data = $this->master_model->getRecords('general_enquiries_followup',array('general_enquiries_followup.is_deleted'=>'no'),$fields);
         
         // $this->db->where('is_deleted','no');
         // $this->db->where('booking_enquiry_id',$i);
@@ -44,7 +44,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
 
          $this->db->where('is_deleted','no');
          $this->db->where('id',$i);
-         $arr_data_details = $this->master_model->getRecords('booking_enquiry');
+         $arr_data_details = $this->master_model->getRecords('enquiries');
 
          $this->db->where('is_deleted','no');
         $this->db->where('status','approved');
@@ -52,7 +52,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
         
         $this->arr_view_data['followup_reason_data'] = $followup_reason_data;
          
-         $this->arr_view_data['custom_agent_name'] = $custom_agent_name;
+         $this->arr_view_data['agent_sess_name'] = $agent_sess_name;
          $this->arr_view_data['listing_page']    = 'yes';
          $this->arr_view_data['arr_data']        = $arr_data;
          $this->arr_view_data['arr_data_details']        = $arr_data_details;
@@ -62,7 +62,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
          $this->arr_view_data['module_url_booking_basic_info'] = $this->module_url_booking_basic_info;
          $this->arr_view_data['module_url_path_booking_enq'] = $this->module_url_path_booking_enq;
          $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
-         $this->load->view('custom_tour_agent/layout/agent_combo',$this->arr_view_data);
+         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
         
      }
 
@@ -74,7 +74,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
       if(is_numeric($id) && ($type == "yes" || $type == "no") )
       {   
           $this->db->where('id',$id);
-          $arr_data = $this->master_model->getRecord('custom_domestic_followup');
+          $arr_data = $this->master_model->getRecord('domestic_followup');
         //   print_r($arr_data); die;
            $enq_id = $arr_data['booking_enquiry_id'];
           
@@ -95,7 +95,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
               $arr_update['is_followup_status'] = "no";
           }
           
-          if($this->master_model->updateRecord('custom_domestic_followup',$arr_update,array('id' => $id)))
+          if($this->master_model->updateRecord('domestic_followup',$arr_update,array('id' => $id)))
           {
               $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
           }
@@ -115,8 +115,6 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
 
     public function edit($id)
     {
-        $custom_agent_name = $this->session->userdata('custom_agent_name');
-         $id=$this->session->userdata('custom_agent_sess_id');
             if ($id=='') 
             {
                 $this->session->set_flashdata('error_message','Invalid Selection Of Record');
@@ -126,7 +124,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
             if(is_numeric($id))
             {   
                 $this->db->where('id',$id);
-                $arr_data = $this->master_model->getRecord('custom_domestic_followup');
+                $arr_data = $this->master_model->getRecord('domestic_followup');
                 // print_r($arr_data); die;
                  $edit_id = $arr_data['booking_enquiry_id']; 
                 if($this->input->post('submit'))
@@ -149,7 +147,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
                     );
                     
                         $arr_where     = array("id" => $id);
-                        $this->master_model->updateRecord('custom_domestic_followup',$arr_update,$arr_where);
+                        $this->master_model->updateRecord('domestic_followup',$arr_update,$arr_where);
                         if($id > 0)
                         {
                             $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");
@@ -170,16 +168,15 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
             
             $this->db->order_by('id','desc');
             $this->db->where('is_deleted','no');
-            $domestic_followup_data = $this->master_model->getRecords('custom_domestic_followup');
+            $domestic_followup_data = $this->master_model->getRecords('domestic_followup');
             
             $this->arr_view_data['academic_years_data']        = $academic_years_data;
-            $this->arr_view_data['custom_agent_name']        = $custom_agent_name;
             $this->arr_view_data['arr_data']        = $arr_data;
             $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
             $this->arr_view_data['module_title']    = $this->module_title;
             $this->arr_view_data['module_url_path'] = $this->module_url_path;
             $this->arr_view_data['middle_content']  = $this->module_view_folder."edit";
-            $this->load->view('custom_tour_agent/layout/agent_combo',$this->arr_view_data);
+            $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
         
     }
 
@@ -189,7 +186,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
          if(is_numeric($id))
          {   
              $this->db->where('id',$id);
-             $arr_data = $this->master_model->getRecord('custom_domestic_followup');
+             $arr_data = $this->master_model->getRecord('domestic_followup');
              $delete_id = $arr_data['booking_enquiry_id']; 
  
              if(empty($arr_data))
@@ -200,7 +197,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
              $arr_update = array('is_deleted' => 'yes');
              $arr_where = array("id" => $id);
                   
-             if($this->master_model->updateRecord('custom_domestic_followup',$arr_update,$arr_where))
+             if($this->master_model->updateRecord('domestic_followup',$arr_update,$arr_where))
              {
                  $this->session->set_flashdata('success_message',$this->module_title.' Deleted Successfully.');
              }
@@ -219,8 +216,8 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
 
      public function domestic_followup()
      {
-         $custom_agent_name = $this->session->userdata('custom_agent_name');
-         $id=$this->session->userdata('custom_agent_sess_id');
+         $agent_sess_name = $this->session->userdata('agent_name');
+         $id=$this->session->userdata('agent_sess_id');
           
           if($this->input->post('submit'))
           {
@@ -233,8 +230,8 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
               { 
                   $enquiry_id  = $this->input->post('enquiry_id'); 
                   
-                $this->db->where('booking_enquiry_id',$enquiry_id);
-                $arr_data = $this->master_model->getRecords('custom_domestic_followup');
+                $this->db->where('general_enquiry_id',$enquiry_id);
+                $arr_data = $this->master_model->getRecords('general_enquiries_followup');
                 $c = count($arr_data); 
                 $follow_up_time="";
                 $next_followup_date="";
@@ -256,12 +253,12 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
                       'follow_up_time'   =>   $follow_up_time, 
                       'next_followup_date'   =>   $next_followup_date, 
                       'follow_up_comment'   =>   $follow_up_comment,
-                      'booking_enquiry_id'   =>   $enquiry_id,
+                      'general_enquiry_id'   =>   $enquiry_id,
                       'follow_up_date' => $current_date,
                       'followup_reason' => $followup_reason
                   );
                   
-                 $inserted_id = $this->master_model->insertRecord('custom_domestic_followup',$arr_insert,true);
+                 $inserted_id = $this->master_model->insertRecord('general_enquiries_followup',$arr_insert,true);
                 //   print_r($inserted_id); die;
 
                  $this->db->where('is_deleted','no');
@@ -273,7 +270,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
                  $this->db->where('is_deleted','no');
                 //  $this->db->where('is_active','yes');
                  $this->db->where('id',$enquiry_id);
-                 $booking_enquiry_data = $this->master_model->getRecord('booking_enquiry');
+                 $booking_enquiry_data = $this->master_model->getRecord('enquiries');
 
                  $agent_email=$agent_data_email['email'];
                  $agent_name=$agent_data_email['agent_name'];
@@ -287,13 +284,13 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
                      'not_interested'   => $not_interested
                  );
                  $arr_where     = array("id" => $enquiry_id);
-                $this->master_model->updateRecord('custom_domestic_booking_enquiry',$arr_update,$arr_where);
+                $this->master_model->updateRecord('enquiries',$arr_update,$arr_where);
 
                 $arr_update = array(
                     'is_followup_status'   =>   'yes'
                 );
                 $arr_where     = array("id" => $inserted_id-1);
-                $this->master_model->updateRecord('custom_domestic_followup',$arr_update,$arr_where);
+                $this->master_model->updateRecord('general_enquiries_followup',$arr_update,$arr_where);
                              
                   if($inserted_id > 0)
                   {

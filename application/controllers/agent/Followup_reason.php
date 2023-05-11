@@ -48,7 +48,7 @@ class Followup_reason extends CI_Controller{
             if($this->form_validation->run() == TRUE)
             {
                
-                $create_followup_reason        = $this->input->post('create_followup_reason'); 
+                $create_followup_reason    = $this->input->post('create_followup_reason'); 
 
                 $arr_insert = array(
                     'create_followup_reason'   =>   $create_followup_reason,

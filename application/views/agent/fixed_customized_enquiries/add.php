@@ -104,7 +104,7 @@
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Hotel Type</label><br>
-                                            <input type="checkbox" name="hotel_type[]" id="hotel_type" value="All Hotels">&nbsp;&nbsp;All Hotels
+                                            <input type="checkbox" class="selectall" name="hotel_type[]" id="hotel_type" value="All Hotels">&nbsp;&nbsp;All Hotels
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="2 STAR">&nbsp;&nbsp; 2 STAR
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="3 STAR">&nbsp;&nbsp; 3 STAR
                                 &nbsp;&nbsp;<input type="checkbox" name="hotel_type[]" id="hotel_type" value="4 STAR">&nbsp;&nbsp; 4 STAR
@@ -258,7 +258,7 @@
 
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Special Note</label>
+                                <label>Describe Your Visit Places & Special Notes</label>
                                 <textarea type="text" class="form-control" name="special_note" id="special_note" placeholder="Enter Special Note"></textarea>
                               </div>
                             </div>

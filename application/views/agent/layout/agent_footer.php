@@ -1452,7 +1452,6 @@ $('.received_qty').on('keyup', function() {
     element.style.display='none';
 	element2.value="";	
     }
-
 </script>
 
 <!-- jquery validation on add booking basic info-->
@@ -4310,8 +4309,8 @@ function Vehicle(val){
   <!-- other feilds -->
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script>
     $('.checkin_date').datepicker({
     dateFormat: 'yy-mm-dd',
@@ -4349,6 +4348,13 @@ function calculate() {
     }
     $('.no_of_nights').val(diff);
   }
+  </script>
+
+<script>
+  $(".selectall").click(function(){
+          $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+
+  });
   </script>
 
 

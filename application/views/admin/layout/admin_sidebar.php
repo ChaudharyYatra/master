@@ -385,10 +385,10 @@
           </li>
           
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>admin/contact_us/index" class="nav-link">
-              <i class="nav-icon fas fa fa-phone"></i>
+            <a href="<?php echo base_url(); ?>admin/general_enquiry/index" class="nav-link">
+              <i class="nav-icon fas fa fa-book"></i>
               <p>
-                Contact Us
+                General Enquiries
               </p>
             </a>
           </li>

@@ -61,7 +61,8 @@ class Pickup_from extends CI_Controller{
             {
                 $pick_up_name = $this->input->post('pick_up_name'); 
                 $arr_insert = array(
-                    'pick_up_name'   =>   $pick_up_name
+                    'pick_up_name'   =>   $pick_up_name,
+                    'status'                  => 'approved'
                 );
                 
                 $this->db->where('pick_up_name',$pick_up_name);
@@ -122,10 +123,12 @@ class Pickup_from extends CI_Controller{
             if($type == 'yes')
             {
                 $arr_update['is_active'] = "no";
+                $arr_update['status'] = "rejected";
             }
             else
             {
                 $arr_update['is_active'] = "yes";
+                $arr_update['status'] = "approved";
             }
             
             if($this->master_model->updateRecord('pick_up_from',$arr_update,array('id' => $id)))

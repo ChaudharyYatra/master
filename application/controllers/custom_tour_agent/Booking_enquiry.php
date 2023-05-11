@@ -17,7 +17,7 @@ class Booking_enquiry extends CI_Controller {
         $this->module_url_path    =  base_url().$this->config->item('custom_tour_agent_panel_slug')."custom_tour_agent/booking_enquiry";
         $this->module_url_path_domestic_followup    =  base_url().$this->config->item('custom_tour_agent_panel_slug')."custom_tour_agent/domestic_booking_enquiry_followup";
 		$this->module_url_path_booking_basic_info    =  base_url().$this->config->item('custom_tour_agent_panel_slug')."/booking_basic_info";
-        $this->module_title       = "Custom Booking Enquiry";
+        $this->module_title       = "Customized Booking Enquiry";
         $this->module_title_followup       = "Domestic Booking Enquiry Followup";
         $this->module_url_slug    = "booking_enquiry";
         $this->module_view_folder = "booking_enquiry/";
@@ -43,8 +43,9 @@ class Booking_enquiry extends CI_Controller {
         // // print_r($arr_data); die;
 
         $record = array();
-        $fields = "custom_domestic_booking_enquiry.*,packages.tour_title,packages.tour_number as tno,agent.agent_name";
+        $fields = "custom_domestic_booking_enquiry.*,packages.tour_title,packages.tour_number as tno,agent.agent_name,agent.booking_center";
         $this->db->where('custom_domestic_booking_enquiry.is_deleted','no');
+        $this->db->order_by('custom_domestic_booking_enquiry.created_at','desc');
         $this->db->join("packages", 'custom_domestic_booking_enquiry.package_id=packages.id','left');
         $this->db->join("agent", 'custom_domestic_booking_enquiry.agent_id=agent.id','left');
         $arr_data = $this->master_model->getRecords('custom_domestic_booking_enquiry',array('custom_domestic_booking_enquiry.is_deleted'=>'no'),$fields);
@@ -161,6 +162,7 @@ class Booking_enquiry extends CI_Controller {
                 $pickup_date        = $this->input->post('pickup_date'); 
                 $pickup_time         = $this->input->post('pickup_time'); 
                 $drop_to             = trim($this->input->post('drop_to'));
+                $other_drop_to_name             = trim($this->input->post('other_drop_to_name'));
                 
                 $drop_date     = trim($this->input->post('drop_date'));
                 $drop_time            = $this->input->post('drop_time');
@@ -201,11 +203,36 @@ class Booking_enquiry extends CI_Controller {
                         'drop_time'    =>$drop_time,
 						'special_note'=>$special_note,
                         'package_id'=>$tour_number,
-                        'other_tour_name'    =>$other_tour_name
+                        'other_tour_name'    =>$other_tour_name,
+                        'enquiry_from'=>"Custom Tour Agent"
 
                  );
                  
                 $inserted_id = $this->master_model->insertRecord('custom_domestic_booking_enquiry',$arr_insert,true);
+
+                $arr_insert = array(
+                    'meal_plan_name'    =>$meal_plan_name,
+                    'status'            => 'pending'
+                );
+                $inserted_id = $this->master_model->insertRecord('meal_plan',$arr_insert,true);
+
+                $arr_insert = array(
+                    'vehicle_type_name'    =>$other_vehicle_name,
+                    'status'            => 'pending'
+                );
+                $inserted_id = $this->master_model->insertRecord('vehicle_type',$arr_insert,true);
+
+                $arr_insert = array(
+                    'pick_up_name'    =>$other_pickup_from_name,
+                    'status'            => 'pending'
+                );
+                $inserted_id = $this->master_model->insertRecord('pick_up_from',$arr_insert,true);
+
+                $arr_insert = array(
+                    'drop_to_name'    =>$other_drop_to_name,
+                    'status'            => 'pending'
+                );
+                $inserted_id = $this->master_model->insertRecord('drop_to',$arr_insert,true);
                 //  $id = $this->db->inserted_id();
                 //  $this->db->where('is_deleted','no');
                 //  $this->db->where('is_active','yes');
@@ -286,6 +313,9 @@ class Booking_enquiry extends CI_Controller {
 
          $this->db->where('is_deleted','no');
 		 $this->db->order_by('tour_number','ASC');
+         $this->db->where('package_type','3');
+         $this->db->or_where('package_type','4');
+         $this->db->or_where('package_type','7');
          $packages_data = $this->master_model->getRecords('packages');
         //  print_r($packages_data); die;
          
@@ -306,11 +336,13 @@ class Booking_enquiry extends CI_Controller {
 
          $this->db->where('is_deleted','no');
          $this->db->where('is_active','yes');
+         $this->db->where('status','approved');
          $this->db->order_by('id','ASC');
          $meal_plan = $this->master_model->getRecords('meal_plan');
          // print_r($meal_plan); die;
 
          $this->db->where('is_deleted','no');
+         $this->db->where('status','approved');
          $this->db->where('is_active','yes');
          $this->db->order_by('id','ASC');
          $vehicle_type = $this->master_model->getRecords('vehicle_type');
@@ -318,12 +350,14 @@ class Booking_enquiry extends CI_Controller {
 
          $this->db->where('is_deleted','no');
          $this->db->where('is_active','yes');
+         $this->db->where('status','approved');
          $this->db->order_by('id','ASC');
          $pick_up_from = $this->master_model->getRecords('pick_up_from');
          // print_r($pick_up_from); die;
 
          $this->db->where('is_deleted','no');
          $this->db->where('is_active','yes');
+         $this->db->where('status','approved');
          $this->db->order_by('id','ASC');
          $drop_to = $this->master_model->getRecords('drop_to');
          // print_r($drop_to); die;
@@ -672,6 +706,9 @@ class Booking_enquiry extends CI_Controller {
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $this->db->order_by('tour_number','ASC');
+        $this->db->where('package_type','3');
+         $this->db->or_where('package_type','4');
+         $this->db->or_where('package_type','7');
         $packages_data = $this->master_model->getRecords('packages');
 
         $this->db->order_by('id','desc');

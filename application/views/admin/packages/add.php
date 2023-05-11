@@ -60,7 +60,7 @@
                                 ?>
                             <option value="<?php echo $package_type_info['id'];?>"><?php echo $package_type_info['package_type'];?></option>
                                 <?php } ?>
-                              <option value="Special Limited Offer">Special Limited Offer</option>
+                              <!-- <option value="Special Limited Offer">Special Limited Offer</option> -->
                           </select>
                         </div>
                       </div>

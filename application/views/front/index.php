@@ -1185,7 +1185,7 @@ table.scrolldown tbody{
                                                 <i class="fa fa-inr" aria-hidden="true"></i> <?php echo $main_packages_value['cost'];?></span></p>
                                                 <?php } else{
                                                 ?>
-                                                <i class="fa fa-inr" aria-hidden="true"></i> <span class="card_price1">On Demand</span> </span></p>
+                                                 <span class="card_price">On Demand</span> </span></p>
                                             <?php } ?>
                                             </div>
                                         </div>  
@@ -1193,7 +1193,8 @@ table.scrolldown tbody{
                                     </div>
                                     <div class="entry-meta">
                                         <div class="entry-author d-flex align-items-center">
-                                            <p class="mb-2">Tour Date&nbsp;<span class="theme fw-bold"> <?php echo $main_packages_value['journey_date'];?></span> <a href="" class="package-date" data-bs-toggle="modal" data-bs-target="#tour_dates_Modal_<?php echo $main_packages_value['id'] ?>">..More Dates</a></p> 
+                                            <p class="mb-2 card_price2">From Date :<span class="theme fw-bold"> <?php echo $main_packages_value['from_date'];?></span>.....
+                                            <p class="mb-2 card_price2">To Date :<span class="theme fw-bold"> <?php echo $main_packages_value['to_date'];?></span></p>
                                         </div>
                                     </div>
 
@@ -1223,7 +1224,7 @@ table.scrolldown tbody{
                                     </div>
 
                                 </div>
-                                <a href="<?php echo base_url(); ?>packages/package_details/<?php echo $main_packages_value['id']; ?>">
+                                <a href="<?php echo base_url(); ?>Exclusive_packages/exclusive_package_details/<?php echo $main_packages_value['id']; ?>">
                                 <div class="card-footer card_readmore" id="button-2">
                                     <div id="slide"></div>
                                         <small class="card_css fw-bold">View More</small>
@@ -1237,7 +1238,7 @@ table.scrolldown tbody{
                     </div>
                 </div>  
                     <div class="col-lg-12 text-center">
-                        <a href="<?php echo base_url(); ?>packages/all_exclusive_deal" class="nir-btn">View All Packages</a>
+                        <a href="<?php echo base_url(); ?>Exclusive_packages/all_exclusive_deal" class="nir-btn">View All Packages</a>
                     </div>
             </div>
         </section>

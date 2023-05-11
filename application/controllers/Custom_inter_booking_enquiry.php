@@ -185,7 +185,7 @@ class Custom_inter_booking_enquiry extends CI_Controller {
 						'website_basic_structure'       => $website_basic_structure,
 						'social_media_link'       => $social_media_link,
 					    'package_iternary_data'       => $package_iternary_data,
-						'page_title'       => 'Custom Package Details',
+						'page_title'       => 'Customized International Package Details',
 						);
 						
         $this->arr_view_data['page_title']     =  "Package Details";
@@ -240,6 +240,7 @@ class Custom_inter_booking_enquiry extends CI_Controller {
             $media_source = $this->master_model->getRecords('media_source');
 
             $this->db->where('is_deleted','no');
+            $this->db->where('status','approved');
             $this->db->where('is_active','yes');
             $this->db->order_by('id','ASC');
             $meal_plan = $this->master_model->getRecords('meal_plan');
@@ -366,11 +367,38 @@ class Custom_inter_booking_enquiry extends CI_Controller {
                         'drop_date'    =>$drop_date,
                         'drop_time'    =>$drop_time,
 						'special_note'=>$special_note,
-                        'package_id'=>$package_id
+                        'package_id'=>$package_id,
+                        'enquiry_from'=>"Website",
+                        'Package_type'=>"Custom International Enquiry"
+                        
 
                     );
                     
                     $inserted_id = $this->master_model->insertRecord('custom_domestic_booking_enquiry',$arr_insert,true);
+                    
+                    $arr_insert = array(
+                        'meal_plan_name'    =>$meal_plan_name,
+                        'status'            => 'pending'
+                    );
+                    $inserted_id = $this->master_model->insertRecord('meal_plan',$arr_insert,true);
+
+                    $arr_insert = array(
+                        'vehicle_type_name'    =>$other_vehicle_name,
+                        'status'            => 'pending'
+                    );
+                    $inserted_id = $this->master_model->insertRecord('vehicle_type',$arr_insert,true);
+
+                    $arr_insert = array(
+                        'pick_up_name'    =>$other_pickup_from_name,
+                        'status'            => 'pending'
+                    );
+                    $inserted_id = $this->master_model->insertRecord('pick_up_from',$arr_insert,true);
+
+                    $arr_insert = array(
+                        'drop_to_name'    =>$other_drop_to_name,
+                        'status'            => 'pending'
+                    );
+                    $inserted_id = $this->master_model->insertRecord('drop_to',$arr_insert,true);
                     
                     // $this->db->where('is_deleted','no');
                     // $this->db->where('is_active','yes');
@@ -432,8 +460,8 @@ class Custom_inter_booking_enquiry extends CI_Controller {
 					// 				$subject_email=' New Enquiry from customer';
 					// 	$this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
 						
-                    //     $this->session->set_flashdata('success_message',"Enquiry Added Successfully.");
-                    //     redirect(base_url().'packages/confirm_enquiry');
+                        $this->session->set_flashdata('success_message',"Enquiry Added Successfully.");
+                        redirect(base_url().'custom_domestic_booking_enquiry/custom_booking_enquiry_confirm');
                         
                     // }
                     // else
@@ -463,7 +491,7 @@ class Custom_inter_booking_enquiry extends CI_Controller {
                         'agent_data'    => $Aagent_data,
                         'department_data' => $department_data,
                         'media_source' => $media_source,
-                        'page_title'    => 'Custom International Booking Enquiry',
+                        'page_title'    => 'Customized International Booking Enquiry',
 						);
 						
         $this->arr_view_data['page_title']     =  "Packages List";

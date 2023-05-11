@@ -28,6 +28,7 @@
             <?php
                    foreach($arr_data as $info) 
                    { 
+                    // print_r($info); die;
                      ?>
             <div class="card card-primary">
               <div class="card-header">
@@ -50,9 +51,13 @@
                   </tr>
                   
                   <tr>
-					  
-                    <th>Tour No</th>
-                    <td><?php echo $info['package_id']; ?> - <?php echo $info['tour_title']; ?></td>
+                    <?php if($info['package_id']=='Other'){?>
+                      <th>Tour Name</th>
+                      <td><?php echo $info['package_id']; ?> - <?php echo $info['other_tour_name']; ?></td>
+                    <?php } else{ ?>
+                      <th>Tour No</th>
+                      <td><?php echo $info['package_id']; ?> - <?php echo $info['tour_title']; ?></td>
+                    <?php } ?>
                       
                     <th>Check In Date</th>
                     <td><?php echo $info['checkin_date']; ?></td>
@@ -74,8 +79,15 @@
                   </tr>
 
                   <tr>
-                    <th>Meal Plan</th>
-                    <td><?php echo $info['meal_plan']; ?></td>
+                    <?php if($info['meal_plan']=='Other'){?>
+                      <th>Meal Plan</th>
+                      <td><?php echo $info['meal_plan']; ?> - <?php echo $info['other_meal_plan']; ?></td>
+                    <?php } else{ ?>
+                      <th>Meal Plan</th>
+                      <td><?php echo $info['meal_plan_name']; ?></td>
+                    <?php } ?>
+                    
+                    
 					  
                     <th>Total Adult</th>
                     <td><?php echo $info['total_adult']; ?></td>
@@ -88,11 +100,24 @@
                     <th>Total Child Without Bed</th>
                     <td><?php echo $info['total_child_without_bed']; ?></td>
 					  
-                    <th>Select Vehicle Type</th>
-                    <td><?php echo $info['vehicle_type']; ?></td>
+                    <?php if($info['vehicle_type']=='Other'){?>
+                      <th>Select Vehicle Type</th>
+                      <td><?php echo $info['vehicle_type']; ?> - <?php echo $info['other_vehicle_name']; ?></td>
+                    <?php } else{ ?>
+                      <th>Select Vehicle Type</th>
+                      <td><?php echo $info['vehicle_type_name']; ?></td>
+                    <?php } ?>
 
-                    <th>Pick Up From</th>
-                    <td><?php echo $info['pick_up_from']; ?></td>
+                    
+                    <?php if($info['vehicle_type']=='Other'){?>
+                      <th>Pick Up From</th>
+                      <td><?php echo $info['pick_up_from']; ?> - <?php echo $info['other_pickup_from_name']; ?></td>
+                    <?php } else{ ?>
+                      <th>Pick Up From</th>
+                      <td><?php echo $info['pick_up_name']; ?></td>
+                    <?php } ?>
+
+                    
                   </tr>
 
                   <tr>
@@ -102,8 +127,15 @@
                     <th>Pick Up Time</th>
                     <td><?php echo $info['pickup_time']; ?></td>
 
-                    <th>Drop to</th>
-                    <td><?php echo $info['drop_to']; ?></td>
+                    <?php if($info['drop_to']=='Other'){?>
+                      <th>Drop to</th>
+                      <td><?php echo $info['drop_to']; ?> - <?php echo $info['other_drop_to_name']; ?></td>
+                    <?php } else{ ?>
+                      <th>Drop to</th>
+                      <td><?php echo $info['drop_to_name']; ?></td>
+                    <?php } ?>
+
+                    
                   </tr>
 
                   <tr>

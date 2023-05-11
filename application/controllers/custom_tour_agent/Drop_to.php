@@ -61,7 +61,8 @@ class Drop_to extends CI_Controller{
             {
                 $drop_to_name = $this->input->post('drop_to_name'); 
                 $arr_insert = array(
-                    'drop_to_name'   =>   $drop_to_name
+                    'drop_to_name'   =>   $drop_to_name,
+                    'status'                  => 'approved'
                 );
                 
                 $this->db->where('drop_to_name',$drop_to_name);
@@ -122,10 +123,12 @@ class Drop_to extends CI_Controller{
             if($type == 'yes')
             {
                 $arr_update['is_active'] = "no";
+                $arr_update['status'] = "rejected";
             }
             else
             {
                 $arr_update['is_active'] = "yes";
+                $arr_update['status'] = "approved";
             }
             
             if($this->master_model->updateRecord('drop_to',$arr_update,array('id' => $id)))

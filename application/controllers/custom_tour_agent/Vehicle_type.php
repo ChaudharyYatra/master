@@ -61,7 +61,8 @@ class Vehicle_type extends CI_Controller{
             {
                 $vehicle_type_name = $this->input->post('vehicle_type_name'); 
                 $arr_insert = array(
-                    'vehicle_type_name'   =>   $vehicle_type_name
+                    'vehicle_type_name'   =>   $vehicle_type_name,
+                    'status'                  => 'approved'
                 );
                 
                 $this->db->where('vehicle_type_name',$vehicle_type_name);
@@ -122,10 +123,12 @@ class Vehicle_type extends CI_Controller{
             if($type == 'yes')
             {
                 $arr_update['is_active'] = "no";
+                $arr_update['status'] = "rejected";
             }
             else
             {
                 $arr_update['is_active'] = "yes";
+                $arr_update['status'] = "approved";
             }
             
             if($this->master_model->updateRecord('vehicle_type',$arr_update,array('id' => $id)))
