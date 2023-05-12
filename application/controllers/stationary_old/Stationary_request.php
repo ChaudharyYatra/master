@@ -63,10 +63,10 @@ class Stationary_request extends CI_Controller {
         }   
 
          $record = array();
-         $fields = "stationary_order_details.*,stationary_order_details.stationary_name as sta_id,stationary.stationary_name,
-         stationary.series_yes_no,agent.agent_name,agent.booking_center,department.department,stationary.id as stid";
+         $fields = "stationary_order_details.*,stationary_order_details.stationary_name as sta_id,stationary.stationary_name,stationary.series_yes_no,agent.agent_name,agent.booking_center,department.department";
          $this->db->order_by('stationary_order_details.created_at','desc');
          $this->db->where('stationary_order_details.is_deleted','no');
+        //  $this->db->where('stationary_order_details.is_sended','no');
          $this->db->where('stationary_order_details.order_id',$id);
          $this->db->join("stationary", 'stationary_order_details.stationary_name=stationary.id','left');
          $this->db->join("agent", 'stationary_order_details.agent_id=agent.id','left');
@@ -115,7 +115,8 @@ class Stationary_request extends CI_Controller {
     {  
         $stationary_sess_name = $this->session->userdata('stationary_name');
         $id = $this->session->userdata('stationary_sess_id');
-       
+        // print_r($_REQUEST);
+        // die;
         if($this->input->post('o_id'))
         { 
                 $send_qty  = $this->input->post('s_send'); 
@@ -163,66 +164,6 @@ class Stationary_request extends CI_Controller {
   
     }
 
-    public function save_details()
-    {   
-        $stationary_sess_name = $this->session->userdata('stationary_name');
-        $id = $this->session->userdata('stationary_sess_id');
-        
-        print_r($_REQUEST);
-        die;
-        if($this->input->post('save_series'))
-        {
-                $academic_year  = $this->input->post('academic_year');
-                $from_series  = $this->input->post('from_series');
-                $remark  = $this->input->post('remark');
-                $order_id  = $this->input->post('order_id');
-                $order_d_id  = $this->input->post('order_d_id');
-            
-
-                $c=count($academic_year);
-                for($i=0; $i<$c; $i++){
-
-                    $arr_insert = array(
-                        'academic_year'   =>   $academic_year[$i],
-                        'from_series'   =>   $from_series[$i],
-                        'remark'   =>   $remark[$i],
-                        'order_id'   =>   $order_id,
-                        'order_details_id'   => $order_d_id
-                    );
-
-                    $inserted_id = $this->master_model->insertRecord('stationary_series_details',$arr_insert,true);
-                //}   
-               
-                $arr_insert = null;
-                echo 'true';
-
-            } 
-           
-        }else if($this->input->post('no_series'))
-        {
-
-                $academic_year  = $this->input->post('academic_year');
-                $remark  = $this->input->post('remark');
-                $order_id  = $this->input->post('order_id');
-                $order_d_id  = $this->input->post('order_d_id');
-
-                    $arr_insert = array(
-                        'academic_year'   =>   $academic_year,
-                        'remark'   =>   $remark,
-                        'order_id'   =>   $order_id,
-                        'order_details_id'   => $order_d_id
-                    );
-
-                    $inserted_id = $this->master_model->insertRecord('stationary_series_details',$arr_insert,true);
-
-                $arr_insert = null;
-                echo 'true';
-        }else{
-            echo 'false';
-        }
-
-    }
-
     public function check_stock()
     {  
         if($this->input->post('send_qty'))
@@ -261,7 +202,7 @@ class Stationary_request extends CI_Controller {
         
         //  print_r($_REQUEST);
         // die;
-        if($this->input->post('submit_doc'))
+        if($this->input->post('submit'))
         {
       
                 $file_name     = $_FILES['courier_receipt']['name'];
@@ -428,7 +369,19 @@ class Stationary_request extends CI_Controller {
         }
 
         // die;
-        // redirect($this->module_url_path.'/index');
+        $this->db->where('is_deleted','no');
+        $arr_data = $this->master_model->getRecords('stationary_order');
+
+
+        $this->arr_view_data['stationary_sess_name'] = $stationary_sess_name;
+        // $this->arr_view_data['action']          = 'details';
+        $this->arr_view_data['arr_data']        = $arr_data;
+        // $this->arr_view_data['stationary_order_details'] = $stationary_order_details;
+        $this->arr_view_data['page_title']      = " Add ".$this->module_title;
+        $this->arr_view_data['module_title']    = $this->module_title;
+        $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
+        $this->load->view('stationary/layout/stationary_combo',$this->arr_view_data);
     }
 
     public function send_mail($to_email,$from_email,$msg,$subject,$img_file=null,$cc=null) {
@@ -508,20 +461,70 @@ class Stationary_request extends CI_Controller {
           }
     }
 
-    
+    public function save_details()
+    {   
+        $stationary_sess_name = $this->session->userdata('stationary_name');
+        $id = $this->session->userdata('stationary_sess_id');
+        print-r($_REQUEST);
+        die;
+        if($this->input->post('save'))
+        {
+            // $this->form_validation->set_rules('academic_year', 'Academic Year', 'required');
+            // $this->form_validation->set_rules('from_series', 'from_series', 'required');
+            // $this->form_validation->set_rules('remark', 'remark', 'required');
+            
+            
+            if($this->form_validation->run() == TRUE)
+            {
+                $form_type  = $this->input->post('form_type');
+                if($form_type="searies")
+            {
+                $academic_year  = $this->input->post('academic_year');
+                $from_series  = $this->input->post('from_series');
+                $remark  = $this->input->post('remark');
+                $order_id  = $this->input->post('order_id');
+                $order_d_id  = $this->input->post('order_d_id');
+            
 
-    public function get_series(){ 
-        // POST data 
-        $stationary_id = $this->input->post('stationary_id');
-        
-                // $this->db->where('is_deleted','no');
-                // $this->db->where('is_active','yes');
-                $this->db->where('stationary_id',$stationary_id);
-                $data = $this->master_model->getRecords('stationary_details');
-        // print_r($data);
-        // die;
-        echo json_encode($data); 
-      }
+            $c=count($academic_year);
+                for($i=0; $i<$c; $i++){
+
+                    $arr_insert = array(
+                        'academic_year'   =>   $academic_year[$i],
+                        'from_series'   =>   $from_series[$i],
+                        'remark'   =>   $remark[$i],
+                        'order_id'   =>   $order_id,
+                        'order_details_id'   => $order_d_id
+                    );
+
+                    $inserted_id = $this->master_model->insertRecord('stationary_series_details',$arr_insert,true);
+                }   
+                }
+                $arr_insert = null;
+
+                               
+                if($inserted_id > 0)
+                {
+                    $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
+                    redirect($this->module_url_path.'/index');
+                }
+
+                else
+                {
+                    $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
+                }
+                redirect($this->module_url_path.'/index');
+            } 
+        }
+       
+        $this->arr_view_data['stationary_sess_name'] = $stationary_sess_name;
+        $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['page_title']      = " Add ".$this->module_title;
+        $this->arr_view_data['module_title']    = $this->module_title;
+        $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
+        $this->load->view('stationary/layout/stationary_combo',$this->arr_view_data);
+    }
 
 
 

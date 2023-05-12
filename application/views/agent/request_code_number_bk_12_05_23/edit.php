@@ -41,10 +41,10 @@
 					
                     <div class="col-md-6">
                         <div class="form-group">
-                        <label>Document Type</label>
+                        <label>Stationary Type</label>
                             <select class="form-control niceSelect" name="stationary_type" id="stationary_type" onfocus='this.size=3;' onblur='this.size=1;' 
                                 onchange='this.size=1; this.blur();'>
-                                <option value="">Select Type</option>
+                                <option value="">Select Stationary Type</option>
                                 <?php
                                 foreach($stationary_data as $stationary_data_info){ 
                                 ?>

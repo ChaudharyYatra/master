@@ -16,7 +16,7 @@ class Supervision_request extends CI_Controller {
                 redirect(base_url().'supervision/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('supervision_panel_slug')."supervision/supervision_request";
-        $this->module_title       = "Supervision Request ";
+        $this->module_title       = "Request ";
         $this->module_url_slug    = "supervision_request";
         $this->module_view_folder = "supervision_request/";
         $this->arr_view_data = [];
@@ -42,6 +42,7 @@ class Supervision_request extends CI_Controller {
         $record = array();
         $fields = "request_code_number.*,stationary.stationary_name,agent.agent_name,agent.booking_center,supervision.supervision_name";
         $this->db->where('request_code_number.is_deleted','no');
+        $this->db->where('request_code_number.status','no');
         $this->db->join("stationary", 'request_code_number.stationary_type=stationary.id','left');
         $this->db->join("agent", 'request_code_number.agent_id=agent.id','left');
         $this->db->join("supervision", 'request_code_number.superviser_id=supervision.id','left');
@@ -115,7 +116,10 @@ class Supervision_request extends CI_Controller {
                     $sup_r_id  = $this->input->post('sup_r_id'); 
 
                     $arr_update = array(
-                    'enter_code'          => $enter_code
+                    'enter_code'    => $enter_code,
+                    'is_hold'       => 'no',
+                    'superviser_id' => '0',
+                    'status'        => 'yes'
                         
                     );
                     
@@ -161,12 +165,15 @@ class Supervision_request extends CI_Controller {
                );
             
                 $arr_where     = array("id" => $req_id);
-                $this->master_model->updateRecord('request_code_number',$arr_update,$arr_where);
-
+                $update_id=$this->master_model->updateRecord('request_code_number',$arr_update,$arr_where);
+               if($update_id){
                         // print_r($data); die;
                 $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
 
        echo 'true';
+               }else{
+                echo 'false';
+               }
     }
 
     public function update_hold_val(){ 
@@ -181,7 +188,8 @@ class Supervision_request extends CI_Controller {
         $this->db->where('request_code_number.is_deleted','no');
         $this->db->join("supervision", 'request_code_number.superviser_id=supervision.id','left');
         $arr_data = $this->master_model->getRecords('request_code_number',array('request_code_number.is_deleted'=>'no'),$fields);
-        
+
+
         foreach($arr_data as $request_tbl_data){
 
         $get_req_id =$request_tbl_data['id'];
@@ -189,7 +197,7 @@ class Supervision_request extends CI_Controller {
         $set_time =  date(strtotime(date('Y-m-d H:i:s'))) - date(strtotime($request_tbl_data['hold_time'])) ; 
         $get_right_time = floor($set_time)/(60);
 
-            if( $get_right_time > '2'){
+            if( $get_right_time > '5'){
 
                 $arr_update = array(
                     'is_hold'  => 'no',
@@ -210,17 +218,55 @@ class Supervision_request extends CI_Controller {
         }
 
         public function refresh_pg(){ 
+            $supervision_sess_name = $this->session->userdata('supervision_name');
+           $iid = $this->session->userdata('supervision_sess_id');  
+
+            // $abc=$this->input->post('did');
             // echo 'Done refresh'; die;
 
             $record = array();
             $fields = "request_code_number.*,supervision.supervision_name";
             $this->db->where('request_code_number.is_deleted','no');
+            // $this->db->where('request_code_number.is_hold','yes');
+            // $this->db->where('request_code_number.superviser_id',$iid);
+            // $this->db->where('request_code_number.id',$abc);
             $this->db->join("supervision", 'request_code_number.superviser_id=supervision.id','left');
             $arr_data = $this->master_model->getRecords('request_code_number',array('request_code_number.is_deleted'=>'no'),$fields);
+       
+    
+            // if(!empty($arr_data)){
+            //     echo 'true';
+            // }else{
+
+            //     echo 'false';
+            // }
 
             echo json_encode($arr_data);
+            
         }
 
+        public function release_hold(){ 
+
+            $supervision_sess_name = $this->session->userdata('supervision_name');
+            $id = $this->session->userdata('supervision_sess_id');  
+        
+             $req_id = $this->input->post('attr_cancel_val'); 
+            // $now_time =  date('Y-m-d H:i:s');
+                
+                    $arr_update = array(
+                        'is_hold'  => 'no',
+                        'superviser_id' => '0'
+                       );
+                    
+                        $arr_where     = array("id" => $req_id);
+                        $this->master_model->updateRecord('request_code_number',$arr_update,$arr_where);
+        
+                                // print_r($data); die;
+                        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
+        
+               echo 'true';
+            }
+        
 
 
 }

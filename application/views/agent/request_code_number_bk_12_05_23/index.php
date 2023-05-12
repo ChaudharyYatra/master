@@ -43,12 +43,11 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Document Type</th>
+                    <th>Stationary Type</th>
                     <th>Image</th>
                     <th>Image 2</th>
                     <th>Image 3</th>
-                    <th>Remark</th>
-                    <th>Code</th>
+                    <th>Stationary Remark</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -72,15 +71,11 @@
                     <td><img src="<?php echo base_url(); ?>uploads/stationary_request_code3/<?php echo $info['image_name']; ?>" width="70px;" height="50px;" alt="Image Not Uploded"></td>
 
                     <td><?php echo $info['stationary_remark']; ?></td>
-                    
-                    <td><?php echo $info['enter_code']; ?></td>
 
                     <td>
                       <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id'];  ?>" ><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
                       <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
                     </td>
-                    
-                    
 
                   </tr>
                   

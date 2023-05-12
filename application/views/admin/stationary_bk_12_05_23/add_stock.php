@@ -31,18 +31,20 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-         
-            <form method="post" enctype="multipart/form-data" id="edit_stationary" action="<?php echo $module_url_path;?>/add_stock/<?php $aid=base64_encode($arr_data['id']); 
+              <?php
+                   foreach($arr_data as $info) 
+                   { 
+                     ?>
+            <form method="post" enctype="multipart/form-data" id="edit_stationary" action="<?php echo $module_url_path;?>/add_stock/<?php $aid=base64_encode($info['id']); 
 					   echo rtrim($aid, '='); ?>">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <input type="hidden" disabled class="form-control" name="stationary_id" id="stationary_id" placeholder="Enter Stationary ID" value="<?php echo $arr_data['id']; ?>" />
+                        <input type="hidden" disabled class="form-control" name="stationary_id" id="stationary_id" placeholder="Enter Stationary ID" value="<?php echo $info['id']; ?>" />
 
                           <label>Stationary Name <span class="req_field">*</span></label>
-                          <input type="text" class="form-control" name="stationary_name" id="stationary_name" placeholder="Enter Stationary Name" required="required" value="<?php echo $arr_data['stationary_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');"/>
-                          <input type="hidden" class="form-control" name="stationary_id" id="stationary_id" placeholder="Enter Stationary Name" required="required" value="<?php echo $arr_data['id']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');"/>
+                          <input type="text" class="form-control" name="stationary_name" id="stationary_name" placeholder="Enter Stationary Name" required="required" value="<?php echo $info['stationary_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');"/>
                       </div>
                     </div>
                     
@@ -59,10 +61,10 @@
                             <select class="form-control" style="width: 100%;" name="financial_year" id="financial_year" required="required">
                                 <option value="">Select Year</option>
                                 <?php
-                                   foreach($academic_years_data as $academic_years_arr_data) 
+                                   foreach($academic_years_data as $academic_years_info) 
                                    { 
                                 ?>
-                                   <option value="<?php echo $academic_years_arr_data['id']; ?>" ><?php echo $academic_years_arr_data['year']; ?></option>
+                                   <option value="<?php echo $academic_years_info['id']; ?>" ><?php echo $academic_years_info['year']; ?></option>
                                <?php } ?>
                               </select>
                           </div>
@@ -72,14 +74,13 @@
                       <label>Is It Series Item <span class="req_field">*</span></label>
                       <div class="form-group">
                         
-                          <input type="radio" id="Yes" name="series_yes_no" value="Yes" disabled
-                          <?php if($arr_data['series_yes_no'] == 'Yes'){echo "checked";} ?>> &nbsp;
+                          <input type="radio" id="Yes" name="series_yes_no" value="Yes"> &nbsp;
                           <label for="html">Yes</label>  &nbsp; &nbsp; 
-                          <input type="radio" id="No" name="series_yes_no" value="No" disabled <?php if($arr_data['series_yes_no'] == 'No'){echo "checked";} ?>> &nbsp;
+                          <input type="radio" id="No" name="series_yes_no" value="No"> &nbsp;
                           <label for="html">No</label><br>
                       </div>
                     </div>
-                    <?php if($arr_data['series_yes_no'] == 'Yes') { ?>
+                    <?php if($info['series_yes_no'] == 'Yes') { ?>
                     <div class="col-md-3 if_series_yes_div">
                       <div class="form-group">
                           <label>From Series <span class="req_field">*</span></label>
@@ -99,14 +100,13 @@
                           <textarea class="form-control" name="stationary_remark" id="stationary_remark" placeholder="Enter Stationary Remark"></textarea>
                       </div>
                     </div>
-                    <?php if($arr_data['series_yes_no'] == 'Yes') { ?>
                     <div class="col-md-3 if_series_yes_div">
                       <div class="form-group">
                           <label>Pages Per Book <span class="req_field">*</span></label>
                           <input type="text" class="form-control if_series_yes_no" name="pages_per_book" id="pages_per_book" placeholder="Enter pages per book" required="required" />
                       </div>
                     </div>
-                    <?php } ?>
+                    
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -115,7 +115,7 @@
 				  <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger">Cancel</button></a>
                 </div>
               </form>
-              <?php //} ?>
+              <?php } ?>
             </div>
             <!-- /.card -->
             </div>

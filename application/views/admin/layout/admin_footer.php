@@ -5971,4 +5971,66 @@ $('#edit_zone_master').validate({ // initialize the plugin
         }
     });
  });
- </script>    
+ </script>   
+ 
+ <script>
+      $(document).ready(function(){
+    // $('#submit_str').on('click', function () {
+        $('#from_series').keyup(function(){ 
+        var from_series = $('#from_series').val();
+        var stationary_id = $('#stationary_id').val();
+
+        $.ajax({
+                         method: 'post',
+                          url:'<?=base_url()?>admin/stationary/get_series',
+                          data: {from_series_no: from_series,
+                            stationary_id_no: stationary_id
+                        },
+                          dataType: 'json',
+                          cache: false,
+                          success: function(response) {
+                            console.log(response);
+                              if (response=="123") {
+                                // alert('You have already used this series');
+                                $('#submit_slider').prop('disabled', true);
+                              } else if(response!="123") {
+                                $('#submit_slider').prop('disabled', false);
+                                // alert('okkk');
+                            }
+                          },
+                          
+                      });
+
+    });    
+
+});
+
+
+ </script>
+
+<script>
+		    $(function(){
+  $('.header-level').click(function(){
+    $(this).next('.sub-level').find('table').toggle();
+  });
+});
+</script>
+
+<script>
+		    $(function(){
+  $('.header-level').click(function(){
+    $(this).next('.sub-level').toggle();
+  });
+});
+</script>
+
+<!-- <script>
+$('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        .collapse('toggle')
+})
+</script> -->
+
+ 
