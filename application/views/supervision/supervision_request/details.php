@@ -71,11 +71,11 @@
                   <thead>
                     <tr>
                       <th>SN</th>
-                      <th>Stationary Type</th>
+                      <th>Document Type</th>
                       <th>Image</th>
                       <th>Image 2</th>
                       <th>Image 3</th>
-                      <th>Stationary Remark</th>
+                      <th>Remark</th>
                     </tr>
                   </thead>
                   <tbody>

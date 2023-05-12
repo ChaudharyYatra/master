@@ -25,13 +25,32 @@ class Dashboard extends CI_Controller{
 	{
                 $supervision_sess_name = $this->session->userdata('supervision_name');
                 $id = $this->session->userdata('supervision_sess_id');
-                
+
+                $record = array();
+                $fields = "request_code_number.*,stationary.stationary_name,agent.agent_name,agent.booking_center,supervision.supervision_name";
+                $this->db->where('request_code_number.is_deleted','no');
+                $this->db->where('request_code_number.status','no');
+                $this->db->join("stationary", 'request_code_number.stationary_type=stationary.id','left');
+                $this->db->join("agent", 'request_code_number.agent_id=agent.id','left');
+                $this->db->join("supervision", 'request_code_number.superviser_id=supervision.id','left');
+                $request_code_number = $this->master_model->getRecords('request_code_number',array('request_code_number.is_deleted'=>'no'),$fields);
+                $arr_data['request_code_number'] = count($request_code_number);
+
+                $record = array();
+                $fields = "request_code_number.*,stationary.stationary_name,agent.agent_name,agent.booking_center,supervision.supervision_name";
+                $this->db->where('request_code_number.is_deleted','no');
+                $this->db->where('request_code_number.status','yes');
+                $this->db->join("stationary", 'request_code_number.stationary_type=stationary.id','left');
+                $this->db->join("agent", 'request_code_number.agent_id=agent.id','left');
+                $this->db->join("supervision", 'request_code_number.superviser_id=supervision.id','left');
+                $request_code_completed = $this->master_model->getRecords('request_code_number',array('request_code_number.is_deleted'=>'no'),$fields);
+                $arr_data['request_code_completed'] = count($request_code_completed);
 
                 
         
         $this->arr_view_data['supervision_sess_name']        = $supervision_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
-        // $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;

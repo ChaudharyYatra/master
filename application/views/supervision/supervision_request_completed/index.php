@@ -2,7 +2,7 @@
   .img-size{
 /* 	padding: 0;
 	margin: 0; */
-	height: 480px;
+	height: 500px;
 	width: 100%;
 	background-size: cover;
 	overflow: hidden;
@@ -10,6 +10,9 @@
 .modal-content {
    /* width: 700px; */
   border:none;
+}
+.modal-body {
+   /* padding: 0; */
 }
 
 .carousel-control-prev-icon {
@@ -23,14 +26,6 @@
 	height: 48px;
 }
 
-.modal-dialog{
-    overflow-y: initial !important
-}
-.modal-body{
-  /* padding: 0; */
-    height: 450px;
-    overflow-y: auto;
-}
 
 </style>
 <!-- Content Wrapper. Contains page content -->
@@ -65,9 +60,6 @@
               <div class="card-body">
                   <?php  if(count($arr_data) > 0 ) 
               { ?>
-
-                <input type="hidden" class="form-control" name="sess_id" id="sess_id" value="<?php echo $iid; ?>">
-
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -103,63 +95,28 @@
 
                     <td><?php echo $info['stationary_remark']; ?></td>
 
-                    <td>
-                      <div id="for_refresh">
-                        <?php if($info['enter_code']!='' && $info['status']=='yes'){ ?>
-                          
-                            <button style="display:block" class="btn bg-success btn-md testbtn" id="btnid<?php echo $info['id'] ?>" data-toggle="modal" attr-refresh="<?php echo $info['id'] ?>" data-target="#myModal1_<?php echo $info['id'] ?>">
-                              Done
-                            </button>
-
-                            <button style="display:none" class="btn bg-danger btn-md newid testbtn" id="btnholdid<?php echo $info['id'] ?>" attr-refresh="<?php echo $info['id'] ?>" title="This Request Hold By <?php echo $info['supervision_name'] ?>" data-toggle="modal" >
-                              Hold
-                            </button>
-                            <button  style="display:none" class="btn btn-primary btn-md newid testbtn" id="btnaltid<?php echo $info['id'] ?>" data-toggle="modal" attr-refresh="<?php echo $info['id'] ?>" attr_hold="<?php echo $info['id'] ?>" data-target="#myModal1_<?php echo $info['id'] ?>">
-                              Allocate
-                            </button> 
-                          
-
-                        <?php 
-                        // $user_id=$this->session->userdata()
-                        // if($info['enter_code']!=''){
-                        //   $style = '';
-                         } else 
-                        if($info['is_hold']=='yes' && $info['superviser_id']!=$iid && $info['status']=='no'){
-                          $style = 'display: none;';
-?>
-                      <button style="display:block" class="btn bg-danger btn-md newid testbtn" id="btnholdid<?php echo $info['id'] ?>" attr-refresh="<?php echo $info['id'] ?>" title="This Request Hold By <?php echo $info['supervision_name'] ?>" data-toggle="modal" >
-                              Hold
-                            </button>
-                            <button  style="display:none" class="btn btn-primary btn-md newid testbtn" id="btnaltid<?php echo $info['id'] ?>" data-toggle="modal" attr-refresh="<?php echo $info['id'] ?>" attr_hold="<?php echo $info['id'] ?>" data-target="#myModal1_<?php echo $info['id'] ?>">
-                              Allocate
-                            </button> 
-
-                            <button style="display:none" class="btn bg-success btn-md testbtn" id="btnid<?php echo $info['id'] ?>" data-toggle="modal" attr-refresh="<?php echo $info['id'] ?>" data-target="#myModal1_<?php echo $info['id'] ?>">
-                              Done
-                            </button>
-                            <?php 
-                        } 
-                        else if($info['is_hold']=='no' && $info['superviser_id']!=$iid){
-                          $style = ''; 
-                          ?>
-                           <button  style="<?php echo $style; ?>" class="btn btn-primary btn-md newid testbtn" id="btnaltid<?php echo $info['id'] ?>" data-toggle="modal" attr-refresh="<?php echo $info['id'] ?>" attr_hold="<?php echo $info['id'] ?>" data-target="#myModal1_<?php echo $info['id'] ?>">
-                              Allocate
-                            </button> 
-                            <button style="display:none" class="btn bg-danger btn-md newid testbtn" id="btnholdid<?php echo $info['id'] ?>" attr-refresh="<?php echo $info['id'] ?>" title="This Request Hold By <?php echo $info['supervision_name'] ?>" data-toggle="modal" >
-                              Hold
-                            </button>
-
-                            <button style="display:none" class="btn bg-success btn-md testbtn" id="btnid<?php echo $info['id'] ?>" data-toggle="modal" attr-refresh="<?php echo $info['id'] ?>" data-target="#myModal1_<?php echo $info['id'] ?>">
-                              Done
-                            </button>
-                          <?php 
-                        }
-
-                        ?>
-                       
-                      </div>
-                    </td>
-                    
+                    <!-- <td>
+                      <a href="<?php //echo $module_url_path;?>/details/<?php //echo $info['id'];  ?>" ><i class="fas fa-eye" aria-hidden="true" style="color:black";></i></a> &nbsp;
+                    </td> -->
+                    <?php if($info['enter_code']!=''){ ?>
+                      <td>
+                        <button class="btn bg-success btn-md" data-toggle="modal" data-target="#myModal1_<?php echo $info['id'] ?>">
+                          Done
+                        </button>
+                      </td>
+                    <?php } else if($info['is_hold']=='yes' && $info['superviser_id']!=$iid){ ?>
+                      <td>
+                        <button class="btn bg-danger btn-md newid" id="to_change" title="This Request Hold By <?php echo $info['supervision_name'] ?>" data-toggle="modal" >
+                          Hold
+                        </button>
+                      </td>
+                    <?php } else{ ?>
+                      <td>
+                        <button class="btn btn-primary btn-md newid" data-toggle="modal" attr_hold="<?php echo $info['id'] ?>" data-target="#myModal1_<?php echo $info['id'] ?>">
+                          Allocate
+                        </button>
+                      </td>
+                    <?php } ?>
 
                   </tr>
                   
@@ -263,42 +220,23 @@ foreach($arr_data as $info)
             </a>
           </div>
 
-            
+            <form method="post" action="<?php echo $module_url_path; ?>/edit" >
+            <input type="hidden" class="form-control" name="sup_r_id" id="sup_r_id" value="<?php echo $info['id']; ?>">
+            <?php if($info['enter_code']!=''){ ?>
+              <input type="text" readonly class="form-control" name="enter_code" id="enter_code" placeholder="Enter Code" value="<?php echo $info['enter_code'] ?>" required>
+            <?php } else{ ?>
+              <input type="text" class="form-control" name="enter_code" id="enter_code" placeholder="Enter Code" value="<?php echo $info['enter_code'] ?>" required>
+            <?php } ?>
         </div>
         
         <div class="modal-footer">
-          <div class="container">
-            <div class="row">
-              
-              <div class="col-md-6">
-                <form method="post" id="enter_code" action="<?php echo $module_url_path; ?>/edit" >
-                <input type="hidden" class="form-control" name="sup_r_id" id="sup_r_id" value="<?php echo $info['id']; ?>">
-                <?php if($info['enter_code']!=''){ ?>
-                  <input type="text" readonly class="form-control enter_code" name="enter_code" id="enter_code<?php echo $info['id']; ?>" placeholder="Enter Code" value="<?php echo $info['enter_code'] ?>" required>
-                <?php } else{ ?>
-                  <input type="text" class="form-control enter_code" name="enter_code" id="enter_code<?php echo $info['id']; ?>" placeholder="Enter Code" value="<?php echo $info['enter_code'] ?>" required>
-                <?php } ?>
-              </div>
-
-              <div class="col-md-3">
-                
-              </div>
-
-              <div class="col-md-3">
-                <?php if($info['enter_code']!=''){ ?>
-                    <button type="submit" hidden class="btn btn-primary" name="send" value="send" id="send">Send</button>
-                  <?php } else{ ?>
-                    <button type="submit" class="btn btn-primary" name="send" value="send" id="send">Send</button>
-                  <?php } ?>
-                  <button type="button" attr_cancle_btn="<?php echo $info['id'] ?>" class="btn btn-secondary release" data-dismiss="modal">Close</button>
-                </div>
-                </form>
-              </div>
-
-            </div>
-          </div>
-            
-
+          <?php if($info['enter_code']!=''){ ?>
+            <button type="submit" hidden class="btn btn-primary" name="send" value="send" id="send">Send</button>
+          <?php } else{ ?>
+            <button type="submit" class="btn btn-primary" name="send" value="send" id="send">Send</button>
+          <?php } ?>
+          <button type="button" attr_cancle_btn="<?php echo $info['id'] ?>" class="btn btn-default release" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>

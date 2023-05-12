@@ -35,7 +35,7 @@
                    foreach($arr_data as $info) 
                    { 
                      ?>
-              <form method="post" enctype="multipart/form-data">
+              <form method="post" enctype="multipart/form-data" id="profile_edit">
                 <div class="card-body">
                  <div class="row">
 					 
@@ -54,7 +54,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Mobile Number 2</label>
-                          <input type="text" class="form-control" name="mobile_number2" id="mobile_number2" placeholder="Enter 10 Digits Mobile Number" maxlength="10" minlength="10" pattern="[789]{1}[0-9]{9}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required" value="<?php echo $info['mobile_number2']; ?>">
+                          <input type="text" class="form-control" name="mobile_number2" id="mobile_number2" placeholder="Enter 10 Digits Mobile Number" maxlength="10" minlength="10" pattern="[789]{1}[0-9]{9}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $info['mobile_number2']; ?>">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Email</label>
+                          <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" required="required"  value="<?php echo $info['email']; ?>" required>
                         </div>
                       </div>
                        

@@ -5,6 +5,7 @@
   a{
     text-decoration:none;
   }
+
 </style>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -21,7 +22,7 @@
         <div class="image">
         </div>
         <div class="info">
-          <center><a href="#" class="d-block"><?php echo $supervision_sess_name; ?></a> <span class="designation">(Superviser)</span></center>
+          <center><a href="#" class="d-block"><?php echo $supervision_sess_name; ?></a> <span class="designation">(Document Code Request)</span></center>
         </div>
       </div>
 
@@ -53,7 +54,16 @@
             <a href="<?php echo base_url(); ?>supervision/supervision_request/index" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
-                Supervision Requests
+                Requests For Code
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>supervision/supervision_request_completed/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Code Allocation Completed
               </p>
             </a>
           </li>

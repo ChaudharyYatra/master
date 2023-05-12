@@ -162,6 +162,40 @@
       });  
  </script>
 
+<!-- <script>  
+ $(document).ready(function(){
+  $(".newid").click(function() {  
+  
+    // var agent_id = '1'; 
+
+          var attrval =$(this).attr('attr_hold');
+          //  var for_m_hold = $(this).val();
+           alert(attrval);
+
+           
+           if(attrval != '')  
+           {  
+                $.ajax({  
+                     url:"<?php //echo base_url(); ?>supervision/supervision_request/refresh_pg",  
+                     method:"post",  
+                     data:{attrval:attrval},  
+                     dataType: 'json',
+                     success:function(responce){ 
+                      // alert('alert done');
+                      // alert(data['iid']);
+                        if(data['iid']!='iid' ){
+                          setTimeout(function(){  
+                            location.reload();  
+                          }1000);  
+                              
+                        }
+                     }  
+                });  
+           } 
+          }); 
+      });  
+ </script> -->
+
 
 <script>
 function fetchdata(){
@@ -202,10 +236,109 @@ $(document).ready(function(){
 
 </script>
 
-<script type="text/javascript">  
-   setTimeout(function(){  
-       location.reload();  
-   },60000);  
+<script>  
+ $(document).ready(function(){
+  $(".release").click(function() {  
+  
+    // var agent_id = '1'; 
+
+          var attr_cancel_val =$(this).attr('attr_cancle_btn');
+          //  var for_m_hold = $(this).val();
+          //  alert(attr_cancel_val);
+
+           
+           if(attr_cancel_val != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>supervision/supervision_request/release_hold",  
+                     method:"post",  
+                     data:{attr_cancel_val:attr_cancel_val},  
+                     dataType: 'json',
+                     success:function(responce){ 
+                      // alert('alert done');
+                         if(responce = 'true')
+                         {
+                          console.log('now done'); 
+                              // alert(responce);
+                          // redirect($this->module_url_path.'agent/booking_enquiry/index');
+                         }
+                     }  
+                });  
+           } 
+          }); 
+      });  
+ </script>
+
+
+
+<!-- <script type="text/javascript">  
+                   
+      setTimeout(function(){  
+
+        $.ajax({  
+          url:"<?php //echo base_url(); ?>supervision/supervision_request/refresh_pg",  
+          method:"get",  
+        //  data:{get_sess_id:get_sess_id},  
+          dataType: 'json',
+          success:function(responce){ 
+          // alert('alert done');
+          // alert(data['iid']);
+          
+          }
+        });
+
+    }1000);  
+ 
+</script> -->
+
+<script>
+
+
+
+
+function fetch_sess(){
+   var super_id = $('#sess_id').val();
+   $.ajax({
+  url: '<?php echo base_url(); ?>supervision/supervision_request/refresh_pg',
+  dataType: 'json',
+  success: function(response){
+   $.each(response,function(index,data){    
+    //console.log(data);
+    //console.log(data['is_hold']);
+    var btnalt_id = 'btnaltid'+data['id'];
+    var btnhold_id = 'btnholdid'+data['id'];
+    var btn_id= 'btnid'+data['id'];
+	  var text_box_id= 'enter_code'+data['id'];
+	   
+    if(data['is_hold']=='yes' && data['superviser_id']!=super_id && data['status']=='no')
+    {
+      $('#'+btnalt_id).css("display", "none");
+      $('#'+btn_id).css("display", "none");
+      $('#'+btnhold_id).css("display", "block");
+
+    }else if(data['is_hold']=='no' && data['superviser_id']=='0' && data['status']=='no')
+    {
+       $('#'+btnalt_id).css("display", "block");
+      $('#'+btnhold_id).css("display", "none");
+      $('#'+btn_id).css("display", "none");
+
+    }else if(data['enter_code']!='' && data['status']=='yes')
+    {
+       $('#'+btnalt_id).css("display", "none");
+      $('#'+btnhold_id).css("display", "none");
+      $('#'+btn_id).css("display", "block");
+	    $('#'+text_box_id).prop("disabled", true);
+
+    }
+          });
+  }
+ });
+}
+
+$(document).ready(function(){
+ setInterval(fetch_sess,1000);
+});
+
 </script>
 
 <!-- <script type="text/javascript">
@@ -231,3 +364,75 @@ var interval = setInterval(function () { myFunction(); }, 6000);
         });
     }
 </script> -->
+
+<script>
+$(document).ready(function () {
+
+$('#profile_edit').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        supervision_name: {
+            required: true,
+        },
+        mobile_number1: {
+            required: true,
+            maxlength:10,
+            minlength:10
+        },
+        email: {
+            required: true,
+            email:true
+        },
+        
+    },
+
+    messages :{
+        supervision_name : {
+            required : "Please enter first name",
+        },
+        mobile_number1 : {
+            required : "Please enter mobile number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        email : {
+            required : "Please enter email address",
+            email: "Please enter a valid email address"
+        },
+        
+    
+    }
+});
+
+});
+
+</script>
+
+<script>
+$(document).ready(function () {
+
+$('#enter_code').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        enter_code: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        enter_code : {
+            required : "Please enter code",
+        },
+        
+    
+    }
+});
+
+});
+
+</script>

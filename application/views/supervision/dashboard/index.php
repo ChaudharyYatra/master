@@ -25,12 +25,47 @@
       <div class="row">
           
 
-          
+      <?php 
+            if($arr_data['request_code_number'] >0 ){
 
-          
+          ?> 
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <a class="underline" href="<?php echo base_url(); ?>supervision/supervision_request/index">
+            <div class="small-box bg-info">
+              <div class="inner">
+              <h3><?php echo  $arr_data['request_code_number']; ?></h3>
+              <p>Request for code</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+        <?php } ?>
 
-          
-          
+
+        <?php 
+            if($arr_data['request_code_completed'] >0 ){
+
+          ?> 
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <a class="underline" href="<?php echo base_url(); ?>supervision/supervision_request_completed/index">
+            <div class="small-box bg-success">
+              <div class="inner">
+              <h3><?php echo  $arr_data['request_code_completed']; ?></h3>
+              <p>Request for code Completed</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+        <?php } ?>
+ 
 
         </div>
         <!-- /.row -->
