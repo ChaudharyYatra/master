@@ -32,25 +32,7 @@
                 </a>
           </li>
 
-          <!-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Master
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-               
-              <li class="nav-item">
-                <a href="<?php //echo base_url(); ?>agent/followup_reason/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Followup Reason</p>
-                </a>
-               </li>
-
-            </ul>
-          </li> -->
+          
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_manager/suggestion_module/index" class="nav-link">
@@ -68,6 +50,33 @@
                Instruction Module
               </p>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Asign Tour
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/birthday_module/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Birthday Module</p>
+                </a>
+               </li>
+
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/anniversary_module/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Anniversary Module</p>
+                </a>
+               </li>
+
+            </ul>
           </li>
           <!-- <li class="nav-item">
             <a href="<?php //echo base_url(); ?>agent/fixed_Customized_enquiries/index" class="nav-link">
