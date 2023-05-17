@@ -43,10 +43,10 @@ class Login extends CI_Controller{
                     foreach($arr_data as $agent_data)
                     {
                         $this->session->set_userdata('tour_manager_email',$agent_data['email']);
-                        $this->session->set_userdata('tour_manager_mobile',$agent_data['mobile_number1']);
+                        $this->session->set_userdata('tour_manager_mobile',$agent_data['contact']);
                         $this->session->set_userdata('tour_manager_sess_id',$agent_data['id']);
                         $this->session->set_userdata('tour_manager_name',$agent_data['name']);
-                        $this->session->set_userdata('tour_manager_login_count',$agent_data['login_count']);
+                        // $this->session->set_userdata('tour_manager_login_count',$agent_data['login_count']);
 
                         // $agent = $agent_data['id'];
                         // $var = $agent_data['login_count'];
