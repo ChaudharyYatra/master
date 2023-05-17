@@ -501,7 +501,7 @@ $(".send_qty").each(function () {
         var remark = $('input[name="remark[]"]').map(function () {
             return this.value; // $(this).val()
         }).get();
-
+// alert(from_series);
         $.ajax({
                           method: 'post',
                           url:'<?=base_url()?>stationary/stationary_request/save_details',
