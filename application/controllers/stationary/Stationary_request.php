@@ -168,8 +168,8 @@ class Stationary_request extends CI_Controller {
         $stationary_sess_name = $this->session->userdata('stationary_name');
         $id = $this->session->userdata('stationary_sess_id');
         
-        print_r($_REQUEST);
-        die;
+        // print_r($_REQUEST);
+        // die;
         if($this->input->post('save_series'))
         {
                 $academic_year  = $this->input->post('academic_year');
@@ -191,6 +191,13 @@ class Stationary_request extends CI_Controller {
                     );
 
                     $inserted_id = $this->master_model->insertRecord('stationary_series_details',$arr_insert,true);
+
+                    $arr_insert_details = array(
+                        'is_sended'   =>   '1'
+                    );
+                    $arr_where_details = array("id" => $from_series[$i]);
+                    $result = $this->master_model->updateRecord('stationary_details',$arr_insert_details,$arr_where_details);
+
                 //}   
                
                 $arr_insert = null;
@@ -515,7 +522,7 @@ class Stationary_request extends CI_Controller {
         $stationary_id = $this->input->post('stationary_id');
         
                 // $this->db->where('is_deleted','no');
-                // $this->db->where('is_active','yes');
+                $this->db->where('is_sended','0');
                 $this->db->where('stationary_id',$stationary_id);
                 $data = $this->master_model->getRecords('stationary_details');
         // print_r($data);

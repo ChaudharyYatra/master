@@ -51,7 +51,6 @@
                     <th>Package</th>
                     <th>Email</th>
                     <th>Contact Number</th>
-                    
                     <th>Followup form</th>
                     <th>Followup List</th>
                     <th>Action</th>

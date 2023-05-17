@@ -383,6 +383,15 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>admin/suggestion_module/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Suggestion Module
+              </p>
+            </a>
+          </li>
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>admin/general_enquiry/index" class="nav-link">
