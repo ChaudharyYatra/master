@@ -48,7 +48,7 @@
                    </tr>
                    <tr>
                     <th>Date</th>
-                    <td><?php echo date("d-m-Y",strtotime($info['date'])); ?></td>
+                    <td><?php echo date("d-m-Y",strtotime($info['created_at'])); ?></td>
                     
                     <th>Priority</th>
                     <td><?php echo $info['priority']; ?></td>
