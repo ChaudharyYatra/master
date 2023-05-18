@@ -228,6 +228,18 @@
                   <p>Package Type</p>
                 </a>
                </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/expense_type/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Expense Type</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/expense_category/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Expense Category</p>
+                </a>
+               </li>
             </ul>
           </li>
           
@@ -380,6 +392,15 @@
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Stationary Details
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>admin/instruction_list/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Task/Instruction List
               </p>
             </a>
           </li>

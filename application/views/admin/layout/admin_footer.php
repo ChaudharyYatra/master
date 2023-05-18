@@ -6033,4 +6033,359 @@ $('.accordian-body').on('show.bs.collapse', function () {
 })
 </script> -->
 
+<!-- ADD More instraction vivek -->
+
+<script>
+    
+
+        var i=1;
+    $('#add_more_instraction').click(function() {
+       // alert('hhhh');
+            i++;
+    var structure = $('<div class="row" style="width:100% !important" id="new_row'+i+'">'+
+                        '<div class="col-md-6">'+
+                            '<div class="form-group">'+
+                                '<label>Enter Instraction Point</label>'+
+                                '<div class="form-group">'+
+                                    '<textarea type="text" class="form-control" name="instraction[]" id="instraction" placeholder="Enter Instraction" required="required"></textarea>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+
+                        `<div class="col-md-2">`+
+                            `<div class="form-group">`+
+                                `<label>Select Priority</label><br>`+
+                                `<select class="form-control" name="priority[]" id="priority">
+                                <option value="">Select</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                                </select>`+
+                            `</div>`+
+                        `</div>`+
+                        
+
+
+                        '<div class="col-md-1 pt-4 d-flex justify-content-center align-self-center">'+
+                            '<div class="form-group">'+
+                            '<label></label>'+
+                                '<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>'+
+                            '</div>'+
+                        '</div>'+   
+                    '</div>');
+$('#main_row').append(structure); 
+
+});
+
+
+$(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#new_row'+button_id+'').remove();  
+      });
+
+</script>
+
+<!-- ===      === -->
+
+<script>
+    
+
+    var i=1;
+    $('#add_more_instraction_for_cust').click(function() {
+       // alert('hhhh');
+            i++;
+    var structure = $('<div class="row" style="width:100% !important" id="new_row'+i+'">'+
+                        '<div class="col-md-6">'+
+                            '<div class="form-group">'+
+                                '<label>Enter Instraction Point</label>'+
+                                '<div class="form-group">'+
+                                    '<textarea type="text" class="form-control" name="instraction[]" id="instraction" placeholder="Enter Instraction" required="required"></textarea>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+
+                        `<div class="col-md-2">`+
+                            `<div class="form-group">`+
+                                `<label>Select Priority</label><br>`+
+                                `<select class="form-control" name="priority[]" id="priority">
+                                <option value="">Select</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                                </select>`+
+                            `</div>`+
+                        `</div>`+
+                        
+
+
+                        '<div class="col-md-1 pt-4 d-flex justify-content-center align-self-center">'+
+                            '<div class="form-group">'+
+                            '<label></label>'+
+                                '<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>'+
+                            '</div>'+
+                        '</div>'+   
+                    '</div>');
+$('#main_row_cust').append(structure); 
+
+});
+
+
+$(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#new_row'+button_id+'').remove();  
+      });
+
+</script>
+
+<!--  -->
+
+<script>
+  $(".delete_instruction").click(function() { 
+   
+     var delete_instruction_id =  $(this).attr('value');
+// alert(delete_instruction_id);
+
+     if(delete_instruction_id!='')
+     {
+          $.ajax({
+                          type: "POST",
+                          url:'<?=base_url()?>admin/instruction_list/delete',
+                          data: {request_id: delete_instruction_id
+                           },
+                         //  dataType: 'json',
+                         //  cache: false,
+                          success: function(response) {
+                              console.log(response);
+                               if (response= true) {
+                                // window.location.href = "<//?=base_url()?>admin/instruction_list/index";
+                                  alert('Delete Sucessfully');
+                              } else {
+                                  alert('error');
+
+                              }
+                          },
+                          
+                      });
+     }
+     // else{
+     //      $('.sendButton').attr("disabled", true);
+     // }
+}); 
+
+</script>
+
+<script>
+  $(".delete_instruction_cust").click(function() { 
+   
+     var delete_instruction_cust_id =  $(this).attr('value');
+// alert(delete_instruction_cust_id);
+
+     if(delete_instruction_cust_id!='')
+     {
+          $.ajax({
+                          type: "POST",
+                          url:'<?=base_url()?>admin/instruction_list/cust_instraction_delete',
+                          data: {request_id: delete_instruction_cust_id
+                           },
+                         //  dataType: 'json',
+                         //  cache: false,
+                          success: function(response) {
+                              console.log(response);
+                               if (response= true) {
+                                // window.location.href = "<//?=base_url()?>admin/instruction_list/edit/";
+                                  alert('Delete Sucessfully');
+                              } else {
+                                  alert('error');
+
+                              }
+                          },
+                          
+                      });
+     }
+     // else{
+     //      $('.sendButton').attr("disabled", true);
+     // }
+}); 
+
+</script>
+
+<!-- end add more instruction Vivek -->
+
+<!-- jquery validation on add expense type -->
+<script>
+$(document).ready(function () {
+
+$('#add_expense_type').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        expense_type: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        expense_type : {
+            required : "Please enter Expense Type",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add expense type -->
+<!-- jquery validation on add expense type -->
+<script>
+$(document).ready(function () {
+
+$('#edit_expense_type').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        expense_type: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        expense_type : {
+            required : "Please enter Expense Type",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add expense type -->
+
+<!-- add more for expense category add -->
+<script>
+    
+
+        var i=1;
+    $('#add_more_category').click(function() {
+       // alert('hhhh');
+            i++;
+    var structure = $('<div class="row" style="width:100% !important" id="new_row'+i+'">'+
+    `<div class="col-md-5">`+
+                    `<div class="form-group">`+
+                        `<label>Expense Type</label>`+
+                        `<select class="select_css" name="expense_type[]" id="expense_type" required="required">
+                        <option value="">Select Expense Type</option>
+                        <?php foreach($arr_data as $info){ ?> 
+                            <option value="<?php echo $info['id'];?>"><?php echo $info['expense_type_name'];?></option>
+                        <?php } ?>
+                        </select>`+
+                    `</div>`+
+                `</div>`+
+
+                `<div class="col-md-5">`+
+                  `<div class="form-group">`+
+                    `<label>Expense Category</label>`+
+                    `<input type="text" class="form-control" name="expense_category[]" id="expense_category" placeholder="Enter Expense Category">`+
+                    `<input type="hidden" readonly class="form-control" name="expense_type_id[]" id="expense_type_id" placeholder="Enter tour number" value="<?php echo $info['id'] ?>" required="required">`+
+                    `</div>`+
+                `</div>`+
+                        
+
+
+                        '<div class="col-md-1 pt-4 d-flex justify-content-center align-self-center">'+
+                            '<div class="form-group">'+
+                            '<label></label>'+
+                                '<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>'+
+                            '</div>'+
+                        '</div>'+   
+                    '</div>');
+$('#main_row').append(structure); 
+
+});
+
+
+$(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#new_row'+button_id+'').remove();  
+      });
+
+</script>
+<!-- add more for expense category add -->
+
+<!-- jquery validation on add expense Category  -->
+<script>
+$(document).ready(function () {
+
+$('#add_expense_category').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        "expense_type[]": {
+            required: true,
+        },
+        "expense_category[]": {
+            required: true,
+        }
+        
+    },
+
+    messages :{
+        "expense_type[]" : {
+            required : "Please select Expense Type",
+        },
+        "expense_category[]" : {
+            required : "Please enter Expense Category",
+        }
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add expense Category  -->
+
+<!-- jquery validation on add expense Category -->
+<script>
+$(document).ready(function () {
+
+$('#edit_expense_category').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+        "expense_type[]": {
+            required: true,
+        },
+        "expense_category[]": {
+            required: true,
+        }
+        
+    },
+
+    messages :{
+        "expense_type[]" : {
+            required : "Please select Expense Type",
+        },
+        "expense_category[]" : {
+            required : "Please enter Expense Category",
+        }
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add expense Category -->
+
+
+
+
  

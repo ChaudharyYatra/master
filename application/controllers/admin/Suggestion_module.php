@@ -94,15 +94,14 @@ class Suggestion_module extends CI_Controller{
  
                 if($inserted_id > 0)
                 {
-                    $this->session->set_flashdata('success_message',ucfirst($this->Remark)." Added Successfully.");
+                    $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
                     redirect($this->module_url_path.'/index');
                 }
- 
-                 else
-                 {
-                     $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
-                 }
-                 redirect($this->module_url_path.'/index');
+                else
+                {
+                    $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
+                }
+                redirect($this->module_url_path.'/index');
              }  
             }
              else{
