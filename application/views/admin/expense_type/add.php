@@ -33,7 +33,6 @@
               <!-- form start -->
               <form method="post" enctype="multipart/form-data" id="add_expense_type">
                 <div class="card-body">
-                 
                   <div class="form-group">
                     <label>Expense Type</label>
                     <input type="text" class="form-control" name="expense_type" id="expense_type" placeholder="Enter Expense Type">

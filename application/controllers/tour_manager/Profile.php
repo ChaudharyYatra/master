@@ -231,7 +231,7 @@ class Profile extends CI_Controller {
 
          
          $this->arr_view_data['arr_data']        = $arr_data;
-         $this->arr_view_data['profile_update_count']  = $profile_update_count;
+        //  $this->arr_view_data['profile_update_count']  = $profile_update_count;
          $this->arr_view_data['tour_manager_sess_name'] = $tour_manager_sess_name;
          $this->arr_view_data['page_title']      = "Edit Profile ".$this->module_title;
          $this->arr_view_data['module_title']    = $this->module_title;
