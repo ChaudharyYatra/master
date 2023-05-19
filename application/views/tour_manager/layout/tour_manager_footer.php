@@ -1878,7 +1878,7 @@ $('#all_traveller_info').validate({ // initialize the plugin
      });
    });
  });
- </script>
+</script>
 
 <script type='text/javascript'>
   // baseURL variable
@@ -4458,6 +4458,126 @@ $('#suugestion_edit').validate({ // initialize the plugin
 
 </script>
 <!-- tour manager module suugestion mosule validation -->
+
+<!-- Tour Expenses dependency start -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#expense_type').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>tour_manager/tour_expenses/get_category',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#expense_category').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#expense_category').append('<option value="'+data['id']+'">'+data['expense_category']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+<!-- Tour Expenses dependency start -->
+
+<!-- tour manager module suugestion mosule validation -->
+<script>
+$(document).ready(function () {
+$('#add_tour_expenses').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        expense_type: {
+            required: true,
+        },
+        expense_category: {
+            required: true,
+        },
+        expense_amt: {
+            required: true,
+        },
+        expense_date: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        expense_type : {
+            required : "Please Select Expense Type",
+        },
+        expense_category : {
+            required : "Please Select Expense Category",
+        },
+        expense_amt : {
+            required : "Please Enter Expense Amount",
+        },
+        expense_date : {
+            required : "Please Enter Expense Date",
+        },
+    }
+});
+
+});
+
+</script>
+
+<script>
+$(document).ready(function () {
+$('#edit_tour_expenses').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+        expense_type: {
+            required: true,
+        },
+        expense_category: {
+            required: true,
+        },
+        expense_amt: {
+            required: true,
+        },
+        expense_date: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        expense_type : {
+            required : "Please Select Expense Type",
+        },
+        expense_category : {
+            required : "Please Select Expense Category",
+        },
+        expense_amt : {
+            required : "Please Enter Expense Amount",
+        },
+        expense_date : {
+            required : "Please Enter Expense Date",
+        },
+    }
+});
+
+});
+
+</script>
+<!-- tour manager module suugestion mosule validation -->
+
 
 
 

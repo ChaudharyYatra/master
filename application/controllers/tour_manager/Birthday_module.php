@@ -38,7 +38,6 @@ class Birthday_module extends CI_Controller{
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
         $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
-       
 	}
         
     

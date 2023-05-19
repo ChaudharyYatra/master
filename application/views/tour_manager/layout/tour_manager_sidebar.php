@@ -53,6 +53,15 @@
           </li>
 
           <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_manager/tour_expenses/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               Tour Expenses
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
