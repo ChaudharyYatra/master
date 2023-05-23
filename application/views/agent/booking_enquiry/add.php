@@ -91,7 +91,7 @@
 					                  <div class="col-md-6">
                               <div class="form-group">
                                 <label>Media source</label>
-                                  <select class="form-control niceSelect" name="media_source_name" id="media_source_name" 			          onfocus='this.size=3;' onblur='this.size=1;' 
+                                  <select class="form-control niceSelect" name="media_source_name" id="media_source_name" onfocus='this.size=3;' onblur='this.size=1;' 
                                         onchange='this.size=1; this.blur();'>
                                       <option value="">Select media source</option>
                                       <?php

@@ -43,8 +43,8 @@
                     <div class="col-md-6">
                               <div class="form-group">
                                 <label>Tour No / Name</label>
-                                  <select class="form-control" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
-                                  this.blur();' onfocus='this.size=6;' onblur='this.size=1;'>
+                                  <select class="form-control" name="tour_number" id="tour_number" onfocus='this.size=5;' onblur='this.size=1;' 
+                                        onchange='this.size=1; this.blur();'>
                                     <option value="">Select tour title</option>
                                     <!-- <option value="Other">Other</option> -->
                                     <?php foreach($packages_data as $packages_data_value){ ?> 
@@ -53,6 +53,7 @@
                                   </select>
                               </div>
                             </div>
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Priority</label><br>
