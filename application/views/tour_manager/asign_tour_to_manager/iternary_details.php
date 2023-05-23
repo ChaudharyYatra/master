@@ -106,7 +106,8 @@
                     
                   </table>
                     <br>
-
+                    
+                  <?php if($arr_data[0]['iternary_desc']!= '') {?>
                     <div class="scrollbar" id="style-3">
                     <div class="force-overflow">
                   <?php
@@ -137,8 +138,7 @@
                    <?php } ?>
               </div>
               </div>
-                
-            
+                <?php } ?>
           <!--/.col (left) -->
           <!-- right column -->
           <div class="col-md-6">
