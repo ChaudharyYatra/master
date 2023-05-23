@@ -6386,6 +6386,48 @@ $('#edit_expense_category').validate({ // initialize the plugin
 <!-- jquery validation on add expense Category -->
 
 
+<script>
+$(document).ready(function () {
+$('#add_instraction').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        tour_number: {
+            required: true,
+        },
+        image_name: {
+            required: true,
+        },
+        "instraction[]": {
+            required: true,
+        },
+        "priority[]": {
+            required: true,
+        },
+        
+    },
 
+    messages :{
+        tour_number : {
+            required : "Please Select Tour",
+        },
+        image_name : {
+            required : "Please Select Image or PDF",
+        },
+        "instraction[]" : {
+            required : "Please Enter Instruction",
+        },
+        "priority[]" : {
+            required : "Please Select Priority",
+        },
+        
+    
+    }
+});
+
+});
+
+</script>
 
  

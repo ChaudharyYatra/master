@@ -31,8 +31,8 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              
-              <form method="post" enctype="multipart/form-data" id="add_package">
+              <!-- in form id="add_instraction"  jquery validation can't work required only work-->
+              <form method="post" enctype="multipart/form-data" id="">
                 <div class="card-body">
                   <div class="row">
 

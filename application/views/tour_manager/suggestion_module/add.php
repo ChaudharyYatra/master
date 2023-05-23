@@ -34,12 +34,12 @@
               <form method="post" enctype="multipart/form-data" id="suugestion_add">
                 <div class="card-body">
                     <div class="row">
-				    <div class="col-md-6">
+				              <div class="col-md-6">
                         <div class="form-group">
                             <label>Title</label>
                             <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
-                    </div>
+                      </div>
                     <div class="col-md-6">
                               <div class="form-group">
                                 <label>Tour No / Name</label>
@@ -67,7 +67,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Upload Photo/PDF</label>
-                            <input type="file" name="image_name" id="image_name" accept="image/*">
+                            <input type="file" name="image_name" id="image_name">
                             <br><span class="text-danger">Please select only PDF,JPG,PNG,JPEG,PDF format files.</span>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit" value="submit" id="submit_slider">Submit</button>
-					<a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger">Cancel</button></a>
+					        <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger">Cancel</button></a>
                 </div>
               </form>
             </div>

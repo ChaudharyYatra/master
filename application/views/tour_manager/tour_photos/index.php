@@ -1,5 +1,11 @@
+<style>
+    .itinerary_css{
+        text-decoration:none !important;
+    }
+    </style>
+
 <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -9,7 +15,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
+              <!-- <a href="<?php //echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a> -->
               
             </ol>
           </div>
@@ -34,10 +40,10 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Package Type</th>
-					          <th>Tour Number</th>
                     <th>Tour Title</th>
-                    <th>Package Cost</th>
+                    <th>Destination</th>
+                    <th>Journey Date</th>
+                    <th>Tour Photo</th>
                     <th>Is Active?</th>
                     <th>Action</th>
                   </tr>
@@ -52,35 +58,26 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <?php if($info['package_type']!="Special Limited Offer"){
-                      ?>
-                    <td><?php echo $info['package_type'] ?></td>
-                    <?php }else{
-                      ?>
-                      <td>Special Limited Offer</td>
-                    <?php } ?>
-					          <td><?php echo $info['tour_number'] ?></td>
-                    <td><?php echo $info['tour_title'] ?></td>
-                    <?php if($info['cost']== 0) {?>
-                      <td> On Demand </td>
-                    <?php } else{
-                      ?>
-                    <td><?php echo $info['cost'] ?></td>
-                    <?php 
-                  }
-                    ?>
+					          <td><?php echo $info['tour_number'] ?> - <?php echo $info['tour_title'] ?></td>
+                    <td><?php echo $info['destination'] ?></td>
+                    <td><?php echo date("d-m-Y",strtotime($info['journey_date'])) ?></td>
                     <td>
-                        <?php 
-                        if($info['is_active']=='yes')
-                          {
-                        ?>
-                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
-							echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-success btn-sm">YES</button></a>
-                        <?php } else { ?>
-                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
-							echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</button> </a>
-                        <?php } ?>
+                      <img src="<?php echo base_url(); ?>uploads/tour_photos/<?php echo $info['image_name']; ?>" width="70px;" height="30px;" alt="Slider Image">
                     </td>
+
+                    <td>
+                      <?php 
+                      if($info['is_active']=='yes')
+                        {
+                      ?>
+                      <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+                        echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-success btn-sm">YES</button></a>
+                      <?php } else { ?>
+                      <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+                        echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</button> </a>
+                      <?php } ?>
+                    </td>
+
                     <td>
                       <div class="btn-group">
                         <button type="button" class="btn btn-default">Action</button>
@@ -88,22 +85,12 @@
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu" role="menu">
-                          <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($info['id']); 
-					                  echo rtrim($aid, '='); ?>" ><button class="dropdown-item">View</button></a>
+                          <!-- <a href="<?php //echo $module_url_path;?>/details/<?php //$aid=base64_encode($info['id']); 
+					                  //echo rtrim($aid, '='); ?>" class="itinerary_css"><button class="dropdown-item">View</button></a> -->
                           <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
-					                  echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Edit</button></a>
-
-                            <?php if($info['pid']!='3' && $info['pid']!='4' && $info['pid']!='7'){
-                              ?>
-                              <a href="<?php echo $module_url_path_dates;?>/add/<?php $aid=base64_encode($info['id']); 
-                                echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Add Dates</button></a>
-                            <?php } ?>
-                            
-							            <a href="<?php echo $module_url_path_iternary; ?>/add/<?php echo $info['id']; ?>" ><button class="dropdown-item">Add Itinerary</button></a>		
-							            <!-- <a href="<?php //echo $module_url_path_review;?>/index/<?php //$aid=base64_encode($info['id']); 
-					                  //echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Review</button></a> -->
+					                  echo rtrim($aid, '='); ?>" class="itinerary_css"><button class="dropdown-item">Edit</button></a>
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php $aid=base64_encode($info['id']); 
-					                  echo rtrim($aid, '='); ?>" title="Delete"><button class="dropdown-item">Delete</button></a>
+					                  echo rtrim($aid, '='); ?>" title="Delete" class="itinerary_css"><button class="dropdown-item">Delete</button></a>
                         </div>
                       </div>
                     </td>

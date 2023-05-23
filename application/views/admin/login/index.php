@@ -18,7 +18,6 @@
     <img src="<?php echo base_url(); ?>uploads/do_not_delete/logo.png" alt="Chaudhary Yatra" style="width:40%;"></img>
 <div class="login-box">
   <!-- /.login-logo -->
-    
    <?php  if($this->session->flashdata('error_message1')!=''){ ?>
   <div class="alert alert-danger alert-dismissible">
 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="sess_clo">&times;</button>
