@@ -91,7 +91,7 @@
                                 <input type="text" class="form-control" name="tour_title" id="tour_title" placeholder="Enter Tour Title" required="required">
                               </div>
                       </div>
-                      <div class="col-md-6">
+                        <div class="col-md-6">
                               <div class="form-group">
                                 <label>Destinations</label>
                                 <input type="text" class="form-control" name="destinations" id="destinations" placeholder="Enter Destinations" required="required">

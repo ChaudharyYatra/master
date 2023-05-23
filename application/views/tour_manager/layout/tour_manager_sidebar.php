@@ -72,18 +72,32 @@
             <ul class="nav nav-treeview">
                
               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/asign_tour_to_manager/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asign Tour To Manager</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="<?php echo base_url(); ?>tour_manager/birthday_module/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Birthday Module</p>
                 </a>
-               </li>
+              </li>
 
-               <li class="nav-item">
+              <li class="nav-item">
                 <a href="<?php echo base_url(); ?>tour_manager/anniversary_module/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Anniversary Module</p>
                 </a>
-               </li>
+              </li>
+
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/tour_photos/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tour Photos</p>
+                </a>
+              </li>
 
             </ul>
           </li>
