@@ -146,8 +146,6 @@ class Tour_photos extends CI_Controller{
             redirect($this->module_url_path.'/index');
         }
 
-
-
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['tour_manager_sess_name'] = $tour_manager_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
@@ -175,7 +173,6 @@ class Tour_photos extends CI_Controller{
 
         if($id!='')
         {   
-            
             if($this->input->post('submit'))
             {
                 $this->form_validation->set_rules('destinations', 'destinations', 'required');
@@ -277,7 +274,7 @@ class Tour_photos extends CI_Controller{
     
         $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
-        $this->arr_view_data['arr_data_main']        = $arr_data_main;
+        // $this->arr_view_data['arr_data_main']        = $arr_data_main;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
