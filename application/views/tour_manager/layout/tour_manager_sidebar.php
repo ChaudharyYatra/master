@@ -65,7 +65,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Asign Tour
+                My Tour Operation
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -74,7 +74,7 @@
               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>tour_manager/asign_tour_to_manager/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Asign Tour To Manager</p>
+                  <p>My Asigned Tour</p>
                 </a>
               </li>
 
@@ -98,6 +98,13 @@
                   <p>Tour Photos</p>
                 </a>
               </li>
+
+              <!-- <li class="nav-item">
+                <a href="<?php //echo base_url(); ?>tour_manager/daily_attendance/add" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daily Attendance</p>
+                </a>
+              </li> -->
 
             </ul>
           </li>
