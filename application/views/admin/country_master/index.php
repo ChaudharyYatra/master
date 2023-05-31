@@ -18,27 +18,23 @@
     </section>
 
     <!-- Main content -->
-    
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-              <?php $this->load->view('agent/layout/agent_alert'); ?>
+              <?php $this->load->view('admin/layout/admin_alert'); ?>
             <div class="card">
              
               <!-- /.card-header -->
               <div class="card-body">
-                  <?php  //if(count($arr_data) > 0 ) 
-              //{ ?>
+                  <?php  if(count($arr_data) > 0 ) 
+              { ?>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Expense Type</th>
-                    <th>Expense Category</th>
-                    <th>Expense Amount</th>
-                    <th>Expense Date</th>
-                    <th>Expense Remark</th>
+                    <th>Country Name</th>
+                    <th>Is Active?</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -51,30 +47,32 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['expense_type_name'] ?></td>
-                    <td><?php echo $info['expense_category'] ?></td>
-                    <td><?php echo $info['expense_amt'] ?></td>
-                    <td><?php echo date("d-m-Y",strtotime($info['expense_date'])) ?></td>
-                    <td><?php echo $info['tour_expenses_remark'] ?></td>
-
+                    <td><?php echo $info['country_name'] ?></td>
                     <td>
-                    <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($info['id']); 
-					            echo rtrim($aid, '='); ?>" title="View"><i class="fas fa-eye" aria-hidden="true" style="color:black";></i></a> &nbsp;/&nbsp;
-                    <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
-					            echo rtrim($aid, '='); ?>" title="Update"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
-                    <a href="<?php echo $module_url_path;?>/delete/<?php $aid=base64_encode($info['id']); 
-					            echo rtrim($aid, '='); ?>" onclick="return confirm('Are You Sure You Want To Delete This Record?')"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
+                        <?php 
+                        if($info['is_active']=='yes')
+                          {
+                        ?>
+                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-success btn-sm">YES</button></a>
+                        <?php } else { ?>
+                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</button> </a>
+                        <?php } ?>
+                    </td>
+                    <td>
+                          <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id'];  ?>" title="Edit"><i class="fa fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
+                          <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
+                          
                     </td>
                   </tr>
                   <?php $i++; } ?>
                   </tbody>
                 </table>
-                 <?php //} else
-            //     { echo '<div class="alert alert-danger alert-dismissable">
-            //     <i class="fa fa-ban"></i>
-            //     <b>Alert!</b>
-            //     Sorry No records available
-            //   </div>' ; } ?>
+                 <?php } else
+                { echo '<div class="alert alert-danger alert-dismissable">
+                <i class="fa fa-ban"></i>
+                <b>Alert!</b>
+                Sorry No records available
+              </div>' ; } ?>
               </div>
               <!-- /.card-body -->
             </div>
@@ -86,6 +84,7 @@
       </div>
       <!-- /.container-fluid -->
     </section>
+
     <!-- /.content -->
   </div>
   

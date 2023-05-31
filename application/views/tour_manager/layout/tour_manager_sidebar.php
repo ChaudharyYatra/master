@@ -79,18 +79,18 @@
               </li>
 
               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>tour_manager/birthday_module/index" class="nav-link">
+                <a href="<?php echo base_url(); ?>tour_manager/birthday_and_anniversary/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Birthday Module</p>
+                  <p>Birthday & Anniversary Module</p>
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="<?php echo base_url(); ?>tour_manager/anniversary_module/index" class="nav-link">
+              <!-- <li class="nav-item">
+                <a href="<?php //echo base_url(); ?>tour_manager/anniversary_module/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Anniversary Module</p>
                 </a>
-              </li>
+              </li> -->
 
               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>tour_manager/tour_photos/index" class="nav-link">

@@ -56,20 +56,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Expense Type</label>
-                                <select class="select_css" name="expense_type" id="expense_type" required>
-                                    <option value="">Select Expense Type</option>
-                                    <?php foreach($expense_type_data as $expense_type_info){ ?> 
-                                        <option value="<?php echo $expense_type_info['id'];?>"><?php echo $expense_type_info['expense_type_name'];?></option>
-                                    <?php } ?>
+                            <label>Tour No / Name</label>
+                                <select class="form-control" name="tour_number" id="tour_number" onfocus='this.size=5;' onblur='this.size=1;' 
+                                    onchange='this.size=1; this.blur();'>
+                                <option value="">Select tour title</option>
+                                <!-- <option value="Other">Other</option> -->
+                                <?php foreach($packages_data as $packages_data_value){ ?> 
+                                    <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
+                                <?php } ?>
                                 </select>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Select Category</label>
-                                <select class="select_css" name="expense_category" id="expense_category">
-                                        <option value="">Select Category</option>
+                                <label>Tour date</label>
+                                <select class="select_css" name="tour_date" id="tour_date" required>
+                                <option value="">Select Tour Date</option>
                                         <?php //foreach($district_data as $district_data_value){ ?> 
                                         <option value="<?php //echo $district_data_value['id'];?>" <?php //if($district_data_value['id']==$all_traveller_info_value['district_name']){echo "selected";} ?>><?php //echo $district_data_value['district'];?></option>
                                         <?php //} ?>
@@ -79,26 +82,84 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Expenses Amount</label>
+                                <label>Expenses date</label>
+                                <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" max="<?php echo date("Y-m-d"); ?>" required>s
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Expense Head</label>
+                                <select class="select_css" name="expense_type" id="expense_type" required>
+                                    <option value="">Select Expense Head Type</option>
+                                    <?php foreach($expense_type_data as $expense_type_info){ ?> 
+                                        <option value="<?php echo $expense_type_info['id'];?>"><?php echo $expense_type_info['expense_type_name'];?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sub-Expenses Head</label>
+                                <select class="select_css" name="expense_category" id="expense_category">
+                                        <option value="">Select Sub-Expenses Head</option>
+                                        <?php //foreach($district_data as $district_data_value){ ?> 
+                                        <option value="<?php //echo $district_data_value['id'];?>" <?php //if($district_data_value['id']==$all_traveller_info_value['district_name']){echo "selected";} ?>><?php //echo $district_data_value['district'];?></option>
+                                        <?php //} ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Place</label>
+                                <input type="text" class="form-control" name="expense_place" id="expense_place" placeholder="Enter Place" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bill Number</label>
+                                <input type="text" class="form-control" name="bill_number" id="bill_number" placeholder="Enter bill Number" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total Pax</label>
+                                <input type="text" class="form-control" name="total_pax" id="total_pax" placeholder="Enter total pax" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bill Amount</label>
                                 <input type="text" class="form-control" name="expense_amt" id="expense_amt" placeholder="Enter Expense Amount" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Expenses date</label>
-                                <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" required>
+                                <label>Upload Photo/PDF</label>
+                                <input type="file" name="image_name" id="image_name">
+                                <br><span class="text-danger">Please select only PDF,JPG,PNG,JPEG,PDF format files.</span>
+                            </div>
+                        </div>
+                            
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label>Upload Photo/PDF</label>
+                            <input type="file" name="image_name_2" id="image_name_2">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                             </div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>Remark(optional)</label>
+                                <label>Expenses Details(optional)</label>
                                 <textarea class="form-control" name="tour_expenses_remark" id="tour_expenses_remark" placeholder="Enter Expense Remark"></textarea>
                             </div>
                         </div>
-
-
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button>

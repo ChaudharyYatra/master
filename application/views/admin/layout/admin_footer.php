@@ -6430,4 +6430,231 @@ $('#add_instraction').validate({ // initialize the plugin
 
 </script>
 
+<!-- City master country wise state display dependency start -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#country_id').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/city_master/get_state',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#state_id').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#state_id').append('<option value="'+data['id']+'">'+data['state_name']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+<!------ City master country wise state display dependency start ---->
+
+<!-- tour expenses tour no wise date display dependency start -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#tour_number').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/tour_expenses/get_date',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#tour_date').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#tour_date').append('<option value="'+data['id']+'">'+data['journey_date']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+<!------ tour expenses tour no wise date display dependency start ---->
+
+<!-- tour expenses ajax  -->
+<script>  
+ $(document).ready(function(){
+  $("#expenses_submit").click(function() {  
+//   alert('hiiiiiiiiiiii');
+    // var agent_id = '1'; 
+
+        //   var attr_cancel_val =$(this).attr('attr_cancle_btn');
+        var super_id = $('#tour_number').val();
+        var date_super_id = $('#tour_date').val();
+          //  var for_m_hold = $(this).val();
+        //    alert(super_id);
+        //    alert(date_super_id);
+
+           
+           if(super_id != '' && date_super_id != '')  
+           {  
+            // alert('hiiiiiiiiiiii');
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>admin/tour_expenses/tour_expenses_data",  
+                     method:"POST",  
+                     data:{super_id:super_id , date_super_id:date_super_id},  
+                     dataType: 'json',
+                     success:function(response){ 
+                        // alert('hiiiiiiiii');
+                        //   console.log(response); 
+                     
+                        //   $('#tour_date').find('option').not(':first').remove();
+                        var expenses_id = 0;
+                        var img_count=parseInt(i)+1;
+                        $.each(response,function(index,data){  
+                            expenses_id++;
+                            console.log(data);
+                            // $('#tour_date').append('<option value="'+data['id']+'">'+data['journey_date']+'</option>');
+                            $('#tid').append(`<tr><td>`+ expenses_id +`</td>
+                            <td>`+ data['expense_type_name'] +`</td>
+                            <td>`+ data['expense_category'] +`</td>
+                            <td>`+ data['expense_place'] +`</td>
+                            <td>`+ data['bill_number'] +`</td>
+                            <td>`+ data['total_pax'] +`</td>
+                            <td>`+ data['expense_amt'] +`</td>
+                            <td>`+ data['expense_date'] +`</td>
+                            <td>
+                                <input type="hidden" id="old_img_name`+img_count+`" name="old_img_name[]"
+                                    value="">
+                                    <div id="old_img_name`+img_count+`" class="mt-2 img_size_cast">
+                                        <img class="image_name" src="<?php echo base_url(); ?>uploads/tour_expenses/`+data['image_name']+`" width="60%" />
+                                        <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/tour_expenses/`+data['image_name']+`">Download</a>
+                                    </div>
+                            </td>
+                            <td>
+                                <input type="hidden" id="old_new_name`+img_count+`" name="old_new_name[]"
+                                    value="">
+                                    <div id="old_new_name`+img_count+`" class="mt-2 img_size_cast">
+                                        <img class="image_name_2" src="<?php echo base_url(); ?>uploads/tour_expenses/`+data['image_name_2']+`" width="60%" />
+                                        <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/tour_expenses/`+data['image_name_2']+`">Download</a>
+                                    </div>
+                            </td>
+                                        
+                            <td>`+ data['tour_expenses_remark'] +`</td>
+                                    </tr>`);
+                        });
+                        
+                     } 
+
+                });  
+           } 
+          }); 
+      });  
+ </script>
+<!-- tour expenses ajax  -->
+
+<!-- inter all traveller info  add code 16-03-2023======================================== -->
+<script>
+
+    $(document).ready(function(){
+        // $('#traveller_table .remove_row').remove();
+        var count = $('#inter_seat_count_add').val();
+    
+    //alert('kkkkkk');
+    //$('#add_more').click(function() {
+    //alert(count);
+            //i++;
+            for(var i=1; i<count; i++){
+                var img_count=parseInt(i)+1;
+            
+                // alert(i);
+        var structure = 
+                    (`<tr>
+                                    <td><select class="select_css row_set1" name="mrandmrs[]" id="mrandmrs">
+                                        <option value="">select Mr / Mrs</option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" name="first_name[]" id="first_name">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-contro row_set" name="middle_name[]" id="middle_name">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" name="last_name[]" id="last_name">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control row_set" name="dob[]" id="dob" max="<?php echo date("Y-m-d");?>">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" name="age[]" id="age" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control row_set" name="anniversary_date[]" id="anniversary_date" max="<?php echo date("Y-m-d");?>" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['anniversary_date'];} ?>">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" maxlength="10" minlength="10" name="mobile_number[]" id="mobile_number" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['mobile_number'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control row_set" name="last_name[]" id="last_name">
+                                    </td>
+                                    <td>
+                                    <select class="select_css row_set" name="relation[]" id="relation">
+                                        <option value="">Select</option>
+                                        <?php
+                                        foreach($relation_data as $relation_data_info){ 
+                                        ?>
+                                        <option value="<?php echo $relation_data_info['id']; ?>"><?php echo $relation_data_info['relation']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    </td>
+                                    <td>
+                                    <input type="file" name="image_name[]" id="image_name`+img_count+`" onchange="encodeImgtoBase64traveller_img(this)" attr_id="`+img_count+`">
+
+                                    <input type="hidden" id="document_file_traveller_img`+img_count+`" name="document_file_traveller_img[]"
+                                        value="">
+                                        <div id="imagePreview_traveller_img`+img_count+`" class="mt-2 img_size_cast">
+                                            <img class="traveller_img" src="<?php echo base_url(); ?>assets/uploads/inter_traveller/" width="100%" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="file" name="aadhar_image_name[]" id="aadhar_image_name`+img_count+`" onchange="encodeImgtoBase64aadhar_img(this)" attr_id="`+img_count+`">
+    
+                                        <input type="hidden" id="document_file_aadhar_img`+img_count+`" name="document_file_aadhar_img[]"
+                                            value="">
+                                            <div id="imagePreview_aadhar_img`+img_count+`" class="mt-2 img_size_cast">
+                                                <img src="<?php echo base_url(); ?>assets/uploads/traveller_aadhar/" width="100%" />
+                                            </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" id="resetBtn" class="btn btn-primary resetBtn" name="Clear" value="Reset">Reset</button>
+                                    </td>
+
+                                </tr>`);
+        
+         
+            //alert(i);                       
+            $('#inter_traveller_table_add').append(structure); 
+        }
+       
+    });
+
+</script>
  

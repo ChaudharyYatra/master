@@ -117,12 +117,12 @@
                               </div>
                             </div>
 					 
-					 <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
+					                  <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
                               <div class="form-group">
                                 <label>Enquiry destination name</label>
                                 <input type="text" class="form-control" name="other_tour_name" id="other_tour_name" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
-                      </div>
+                            </div>
 					 <div class="col-md-6">
                         <div class="form-group">
                           <label>Enter Seat Count</label>
