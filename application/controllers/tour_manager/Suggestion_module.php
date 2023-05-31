@@ -24,10 +24,11 @@ class Suggestion_module extends CI_Controller{
         $id = $this->session->userdata('tour_manager_sess_id'); 
 
         $record = array();
-        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number";
+        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number,package_type.package_type";
         $this->db->where('suggestion_module.is_deleted','no');
         $this->db->order_by('suggestion_module.id','desc');
         $this->db->join("packages", 'suggestion_module.tour_number=packages.id','left');
+        $this->db->join("package_type", 'suggestion_module.package_type=package_type.id','left');
         $arr_data = $this->master_model->getRecords('suggestion_module',array('suggestion_module.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
@@ -50,6 +51,7 @@ class Suggestion_module extends CI_Controller{
 
         if($this->input->post('submit'))
         {
+            if($_FILES['image_name']['name']!=''){
                 $file_name     = $_FILES['image_name']['name'];
                 $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg','PDF','pdf');
 
@@ -92,17 +94,132 @@ class Suggestion_module extends CI_Controller{
                     $filename = $this->input->post('image_name',TRUE);
                 }
               
-                $title            = $this->input->post('title'); 
+            } 
+            else{
+               $filename  = '';
+            }
+// =========================================== upload photo 2 =========================================//
+            if($_FILES['image_name_2']['name']!=''){
+                $file_name     = $_FILES['image_name_2']['name'];
+                
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
+
+                $file_name = $_FILES['image_name_2'];
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','PDF','pdf');
+
+                if($file_name['name']!="")
+                {
+                    $ext = explode('.',$_FILES['image_name_2']['name']); 
+                    $config['file_name'] = rand(1000,90000);
+
+                    if(!in_array($ext[1],$arr_extension))
+                    {
+                        $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                    }
+                }   
+
+               $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+            
+                $config['upload_path']   = './uploads/suggestion_image/';
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
+                $config['max_size']      = '10000';
+                $config['file_name']     = $file_name_to_dispaly_pdf;
+                $config['overwrite']     = TRUE;
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config); // Important
+                
+                if(!$this->upload->do_upload('image_name_2'))
+                {  
+                    $data['error'] = $this->upload->display_errors();
+                    $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                    redirect($this->module_url_path.'/edit/'.$id);
+                }
+                if($file_name['name']!="")
+                {   
+                    $file_name = $this->upload->data();
+                    $new_img_filename = $file_name_to_dispaly_pdf;
+                }
+                else
+                {
+                    $new_img_filename = $this->input->post('image_name_2',TRUE);
+                    
+                }
+
+            } 
+            else{
+               $new_img_filename  = '';
+            }
+// =================================================================================================//
+
+// =========================================== upload photo 3 =========================================//
+if($_FILES['image_name_3']['name']!=''){
+$file_name     = $_FILES['image_name_3']['name'];
+
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
+
+                $file_name = $_FILES['image_name_3'];
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
+
+                if($file_name['name']!="")
+                {
+                    $ext = explode('.',$_FILES['image_name_3']['name']); 
+                    $config['file_name'] = rand(1000,90000);
+
+                    if(!in_array($ext[1],$arr_extension))
+                    {
+                        $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                    }
+                }   
+
+                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+            
+                $config['upload_path']   = './uploads/suggestion_image/';
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|PDF|pdf';  
+                $config['max_size']      = '10000';
+                $config['file_name']     = $file_name_to_dispaly_pdf;
+                $config['overwrite']     = TRUE;
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config); // Important
+                
+                if(!$this->upload->do_upload('image_name_3'))
+                {  
+                    $data['error'] = $this->upload->display_errors();
+                    $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                    redirect($this->module_url_path.'/edit/'.$id);
+                }
+                if($file_name['name']!="")
+                {   
+                    $file_name = $this->upload->data();
+                    $inclusion_img_filename = $file_name_to_dispaly_pdf;
+                }
+                else
+                {
+                    $inclusion_img_filename = $this->input->post('image_name_3',TRUE);
+                    
+                }
+            } 
+            else{
+               $inclusion_img_filename  = '';
+            }
+// =================================================================================================//
+
+                $city            = $this->input->post('city'); 
+                $other_city            = $this->input->post('other_city'); 
+                $package_type            = $this->input->post('package_type'); 
                 $description        = trim($this->input->post('description'));
                 $priority      = trim($this->input->post('priority'));
                 $tour_number      = trim($this->input->post('tour_number'));
                 $arr_insert = array(
-                    'title'   =>   $title,
+                    'city'   =>   $city,
+                    'other_city'   =>   $other_city,
+                    'package_type'   =>   $package_type,
                     'description'          => $description,
                     'priority'        => $priority,
                     'tour_number'        => $tour_number,
                     'tour_manager_id'        => $id,
                     'image_name'    => $filename,
+                    'image_name_2'    => $new_img_filename,
+                    'image_name_3'    => $inclusion_img_filename,
                     'status'            => 'pending'
                 );
                 
@@ -122,12 +239,24 @@ class Suggestion_module extends CI_Controller{
         }
 
         $this->db->where('is_deleted','no');
-		 $this->db->order_by('tour_number','ASC');
-         $packages_data = $this->master_model->getRecords('packages');
+		$this->db->order_by('tour_number','ASC');
+        $packages_data = $this->master_model->getRecords('packages');
         //  print_r($packages_data); die;
+
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $package_type = $this->master_model->getRecords('package_type');
+        // print_r($package_type); die;
+
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $city = $this->master_model->getRecords('city');
+        // print_r($package_type); die;
 
         $this->arr_view_data['tour_manager_sess_name']          = $tour_manager_sess_name;
         $this->arr_view_data['packages_data']          = $packages_data;
+        $this->arr_view_data['city']          = $city;
+        $this->arr_view_data['package_type']          = $package_type;
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -136,10 +265,6 @@ class Suggestion_module extends CI_Controller{
         $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
     }
 
-    
-
-
-    
    
   // Active/Inactive
   
@@ -246,14 +371,15 @@ class Suggestion_module extends CI_Controller{
             $arr_data = $this->master_model->getRecords('suggestion_module');
             if($this->input->post('submit'))
             {
-                	 $old_img_name = $this->input->post('old_img_name');
+                $old_img_name = $this->input->post('old_img_name');
+                
                     if(!empty($_FILES['image_name']) && $_FILES['image_name']['name'] !='')
                     {
                     $file_name     = $_FILES['image_name']['name'];
-                    $arr_extension = array('png','jpg','jpeg','JPEG','PNG','JPG','PDF','pdf');
+                    $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg','PDF','pdf');
 
                     $file_name = $_FILES['image_name'];
-                    $arr_extension = array('png','jpg','jpeg','JPEG','PNG','JPG','PDF','pdf');
+                    $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
 
                     if($file_name['name']!="")
                     {
@@ -270,7 +396,7 @@ class Suggestion_module extends CI_Controller{
                     $file_name_to_dispaly =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
                     
                     $config['upload_path']   = './uploads/suggestion_image/';
-                    $config['allowed_types'] = 'JPEG|PNG|JPG|png|jpg|jpeg|PDF|pdf';  
+                    $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|PDF|pdf';  
                     $config['max_size']      = '10000';
                     $config['file_name']     = $file_name_to_dispaly;
                     $config['overwrite']     = TRUE;
@@ -281,7 +407,7 @@ class Suggestion_module extends CI_Controller{
                     {  
                         $data['error'] = $this->upload->display_errors();
                         $this->session->set_flashdata('error_message',$this->upload->display_errors());
-                         redirect($this->module_url_path.'/edit/'.$id);
+                        redirect($this->module_url_path.'/edit/'.$id);
                     }
                     if($file_name['name']!="")
                     {   
@@ -289,7 +415,6 @@ class Suggestion_module extends CI_Controller{
                         $filename = $file_name_to_dispaly;
                         if($old_img_name!='') unlink('./uploads/suggestion_image/'.$old_img_name);
                     }
-
                     else
                     {
                         $filename = $this->input->post('image_name',TRUE);
@@ -299,19 +424,149 @@ class Suggestion_module extends CI_Controller{
                 {
                     $filename = $old_img_name;
                 }
+
+                // =============================upload 1=============================================
+
+                // =============================upload 2=============================================
+                $old_new_name = $this->input->post('old_new_name');
                 
-                    $title            = $this->input->post('title'); 
-                    $description        = trim($this->input->post('description'));
-                    $priority      = trim($this->input->post('priority'));
-                    $tour_number      = trim($this->input->post('tour_number'));
-                    $arr_update = array(
-                    'title'   =>   $title,
+                if(!empty($_FILES['image_name_2']) && $_FILES['image_name_2']['name'] !='')
+                {
+               $file_name     = $_FILES['image_name_2']['name'];
+                
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
+
+                $file_name = $_FILES['image_name_2'];
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
+
+                if($file_name['name']!="")
+                {
+                    $ext = explode('.',$_FILES['image_name_2']['name']); 
+                    $config['file_name'] = rand(1000,90000);
+
+                    if(!in_array($ext[1],$arr_extension))
+                    {
+                        $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                        redirect($this->module_url_path.'/edit/'.$id);
+                    }
+                }   
+
+               $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+            
+                $config['upload_path']   = './uploads/suggestion_image/';
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|PDF|pdf';  
+                $config['max_size']      = '10000';
+                $config['file_name']     = $file_name_to_dispaly_pdf;
+                $config['overwrite']     = TRUE;
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config); // Important
+                
+                if(!$this->upload->do_upload('image_name_2'))
+                {  
+                    $data['error'] = $this->upload->display_errors();
+                    $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                    redirect($this->module_url_path.'/edit/'.$id);
+                }
+                if($file_name['name']!="")
+                {   
+                    $file_name = $this->upload->data();
+                    $new_img_filename = $file_name_to_dispaly_pdf;
+                    if($old_new_name!='') unlink('./uploads/suggestion_image/'.$old_new_name);
+                }
+                else
+                {
+                    $new_img_filename = $this->input->post('image_name_2',TRUE);
+                    
+                }
+            }
+            else
+            {
+                $new_img_filename = $old_new_name;
+                
+            }
+			
+                // =============================upload 2=============================================
+                // =============================upload 3============================================
+                $old_inclusion_name = $this->input->post('old_inclusion_name');
+                
+            if(!empty($_FILES['image_name_3']) && $_FILES['image_name_3']['name'] !='')
+            {
+            
+            $file_name     = $_FILES['image_name_3']['name']; 
+
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
+
+            $file_name = $_FILES['image_name_3'];
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
+
+            if($file_name['name']!="")
+            {
+                
+                $ext = explode('.',$_FILES['image_name_3']['name']); 
+                $config['file_name'] = rand(1000,90000);
+
+                if(!in_array($ext[1],$arr_extension))
+                {
+                    $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                }
+            }   
+
+            $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+        
+            $config['upload_path']   = './uploads/suggestion_image/';
+            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|PDF|pdf';  
+            $config['max_size']      = '10000';
+            $config['file_name']     = $file_name_to_dispaly_pdf;
+            $config['overwrite']     = TRUE;
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config); // Important
+            
+            if(!$this->upload->do_upload('image_name_3'))
+            {  
+                
+                $data['error'] = $this->upload->display_errors();
+                $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                redirect($this->module_url_path.'/edit/'.$id);
+            }
+            if($file_name['name']!="")
+            {   
+                $file_name = $this->upload->data();
+                $inclusion_img_filename = $file_name_to_dispaly_pdf;
+                if($old_inclusion_name!='') unlink('./uploads/suggestion_image/'.$old_inclusion_name);
+            }
+            else
+            {
+                $inclusion_img_filename = $this->input->post('image_name_3',TRUE);
+                
+            }
+            }
+            else
+            {
+                $inclusion_img_filename = $old_inclusion_name;
+                
+            }
+
+                // =============================upload 3============================================
+
+                
+                $city            = $this->input->post('city'); 
+                $other_city            = $this->input->post('other_city'); 
+                $package_type            = $this->input->post('package_type'); 
+                $description        = trim($this->input->post('description'));
+                $priority      = trim($this->input->post('priority'));
+                $tour_number      = trim($this->input->post('tour_number'));
+                $arr_update = array(
+                    'city'   =>   $city,
+                    'other_city'   =>   $other_city,
+                    'package_type'   =>   $package_type,
                     'description'          => $description,
                     'priority'        => $priority,
                     'tour_number'        => $tour_number,
-                    // 'tour_manager_id'        => $id,
-                    'image_name'    => $filename
-                    );
+                    'tour_manager_id'        => $id,
+                    'image_name'    => $filename,
+                    'image_name_2'    => $new_img_filename,
+                    'image_name_3'    => $inclusion_img_filename,
+                );
                     $arr_where     = array("id" => $id);
                    $this->master_model->updateRecord('suggestion_module',$arr_update,$arr_where);
                     if($id > 0)
@@ -336,8 +591,20 @@ class Suggestion_module extends CI_Controller{
         $this->db->where('id',$id);
         $suggestion_data = $this->master_model->getRecords('suggestion_module');
         //  print_r($suggestion_data); die;
+
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $city = $this->master_model->getRecords('city');
+        // print_r($package_type); die;
+
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $package_type = $this->master_model->getRecords('package_type');
+        // print_r($package_type); die;
         
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['package_type']        = $package_type;
+        $this->arr_view_data['city']        = $city;
         $this->arr_view_data['suggestion_data']        = $suggestion_data;
         $this->arr_view_data['packages_data']        = $packages_data;
         $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
@@ -363,9 +630,10 @@ class Suggestion_module extends CI_Controller{
         }   
         
         $record = array();
-        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number";
+        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number,package_type.package_type";
         $this->db->where('suggestion_module.is_deleted','no');
         $this->db->where('suggestion_module.id',$id);
+        $this->db->join("package_type", 'suggestion_module.package_type=package_type.id','left');
         $this->db->join("packages", 'suggestion_module.tour_number=packages.id','left');
         $arr_data = $this->master_model->getRecords('suggestion_module',array('suggestion_module.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
@@ -378,5 +646,17 @@ class Suggestion_module extends CI_Controller{
         $this->arr_view_data['middle_content']  = $this->module_view_folder."details";
         $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
     }
-   
+
+    public function get_package(){ 
+        // POST data 
+        // $all_b=array();
+       $district_data = $this->input->post('did');
+        // print_r($boarding_office_location); die;
+                        $this->db->where('is_deleted','no');
+                        $this->db->where('is_active','yes');
+                        $this->db->where('package_type',$district_data);   
+                        $data = $this->master_model->getRecords('packages');
+        echo json_encode($data);
+    }
+
 }

@@ -45,7 +45,8 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Title</th>
+                    <th>City</th>
+                    <th>Other City Name</th>
                     <th>Tour Name</th>
                     <th>Description</th>
                     <th>Status</th>
@@ -63,7 +64,12 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['title'] ?></td>
+                    <td><?php echo $info['city'] ?></td>
+                    <?php if($info['city']== 'Other'){?>
+                    <td><?php echo $info['other_city'] ?></td>
+                    <?php } else {?>
+                      <td> <b>--</b> </td>
+                    <?php } ?>
                     <td><?php echo $info['tour_number'] ?> - <?php echo $info['tour_title'] ?></td>
                     <td><?php echo mb_substr($info['description'], 0, 18) ?>...</td>
                     <td><?php echo $info['status'] ?></td>

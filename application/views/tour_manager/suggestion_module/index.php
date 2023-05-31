@@ -47,11 +47,11 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Title</th>
+                    <th>Package Type</th>
                     <th>Tour Name</th>
                     <th>Description</th>
                     <th>Priority</th>
-                    <th>Status</th>
+                    <th>Action</th>
                     <!-- <th>Is Active?</th> -->
                     <th>Remark</th>
                     <th>Action</th>
@@ -66,7 +66,7 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['title'] ?></td>
+                    <td><?php echo $info['package_type'] ?></td>
                     <td><?php echo $info['tour_number'] ?> - <?php echo $info['tour_title'] ?></td>
                     <td class="card_title"><?php echo mb_substr($info['description'], 0, 18) ?>...</td>
                     <!-- <td> -->

@@ -85,7 +85,7 @@
                     <th>id</th>
                     <th>instraction</th>
                     <th>priority</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                   </tr>
                   </thead>
                   <tbody>
@@ -98,9 +98,9 @@
                         <td><?php echo $i; ?></td>
                         <td><?php echo $info['instraction']; ?></td>
                         <td><?php echo $info['priority']; ?></td>
-                        <td>
+                        <!-- <td>
                           
-                        </td>
+                        </td> -->
                       </tr>
                     <?php $i++; } ?>
                   </tbody>

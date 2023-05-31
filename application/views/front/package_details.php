@@ -149,7 +149,7 @@
 
                     <!-- <div class="description-images mb-4 img-pack_hight">
                     <?php //if(!empty($package_details_value['pdf_name'])) { ?><img src="<?php //echo base_url(); ?>uploads/package_daywise_program/<?php //echo $package_details_value['pdf_name']; ?>" alt="image" class="w-100 rounded" >
-                         <?php// }?>
+                         <?php //}?>
                     </div> -->
                     
                     <!-- embed responsive iframe --> 
@@ -161,14 +161,14 @@
                         style="-webkit-overflow-scrolling: touch; overflow: auto;">
 
                         <?php if(!empty($package_details_value['pdf_name'])) { ?><iframe src="<?php echo base_url(); ?>uploads/package_daywise_program/<?php echo $package_details_value['pdf_name']; ?>" alt="image" class="w-100 rounded" >
-                         <?php }?> 
+                         <?php  }?> 
                         <p style="font-size: 110%;"><em><strong>ERROR: </strong>  
                     An &#105;frame should be displayed here but your browser version does not support &#105;frames. </em>Please update your browser to its most recent version and try again.</p>
                         </iframe>
                         
                     </div>
 
-                </div>
+                    </div>
 
                 <!-- <?php 
                 //$status ='active';
@@ -186,8 +186,8 @@
                         </div>
                     </div>
                 <?php 
-                $status='';
-               //} ?>     -->
+                //$status='';
+              // } ?>     -->
                     
                 </div>
 
@@ -198,13 +198,11 @@
                             <h4>Inclusion</h4>
                             </div>
                             <p class="mb-3 text_justify">
-
                                 <div class="description-images mb-4 pack-details">
                                 <?php if(!empty($package_details_value['inclusion_img'])) { ?><img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $package_details_value['inclusion_img']; ?>" alt="image" class="w-100 rounded" >
                                     <?php }?>
                                 </div>
                                 <!-- <?php //echo $package_details_value['inclusion'];?> -->
-                                    
                             </p>
                         </div>
                     </div>
@@ -218,14 +216,12 @@
                             </div>
                             <p class="mb-3 text_justify">
                                 <!-- <?php //echo $package_details_value['terms_conditions'];?> -->
-                                
                                 <div class="description-images mb-4 pack-details">
                                 <?php if(!empty($package_details_value['tc_img'])) { ?><img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $package_details_value['tc_img']; ?>" alt="image" class="w-100 rounded" >
                                     <?php }?>
                                 </div>
                             </p>
                             </div>
-
                         </div>
                     </div>
                 </div>

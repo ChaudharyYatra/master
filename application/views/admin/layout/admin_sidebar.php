@@ -246,7 +246,24 @@
                   <p>Role Type</p>
                 </a>
                </li>
-
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/country/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Country Master</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/state/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>State Master</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/city_master/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>City Master</p>
+                </a>
+               </li>
             </ul>
           </li>
           
@@ -394,6 +411,15 @@
             </ul>
           </li>
           
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>admin/tour_expenses/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Tour Expenses
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>admin/stationary_details/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>

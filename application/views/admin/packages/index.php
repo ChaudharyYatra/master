@@ -99,7 +99,7 @@
                                 echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Add Dates</button></a>
                             <?php } ?>
                             
-							            <!-- <a href="<?php //echo $module_url_path_iternary; ?>/add/<?php //echo $info['id']; ?>" ><button class="dropdown-item">Add Itinerary</button></a>		 -->
+							            <a href="<?php echo $module_url_path_iternary; ?>/add/<?php echo $info['id']; ?>" ><button class="dropdown-item">Add Itinerary</button></a>		
 							            <!-- <a href="<?php //echo $module_url_path_review;?>/index/<?php //$aid=base64_encode($info['id']); 
 					                  //echo rtrim($aid, '='); ?>" ><button class="dropdown-item">Review</button></a> -->
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php $aid=base64_encode($info['id']); 

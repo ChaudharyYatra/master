@@ -41,7 +41,7 @@ class Packages extends CI_Controller{
 		$this->arr_view_data['module_url_path_review'] = $this->module_url_path_review;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
-        // $this->arr_view_data['package_type']        = $package_type;s
+        // $this->arr_view_data['package_type']        = $package_type;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -376,7 +376,6 @@ class Packages extends CI_Controller{
 
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
         $package_type = $this->master_model->getRecords('package_type');
         // print_r($package_type); die;
 

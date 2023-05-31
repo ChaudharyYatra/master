@@ -162,7 +162,7 @@
                             </div>
                           </div>
                           
-                      <div class="col-md-4">
+                        <div class="col-md-4">
                           <div class="form-group">
                             <label>Upload Image</label><br>
                             <input type="file" name="image_name" id="image_name_package">
@@ -170,11 +170,11 @@
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                              <br>
                              
-                    <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span>
-                    <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span>
-                    <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
+                            <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span>
+                            <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span>
+                            <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
                           </div>
-                      </div>
+                        </div>
                       
                       <div class="col-md-2">
                           <div class="form-group">

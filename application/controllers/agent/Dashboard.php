@@ -85,7 +85,6 @@ class Dashboard extends CI_Controller{
 
     function enquiry_view()  
       {  
-                
                 $agent_id=$this->session->userdata('agent_sess_id');
                 $arr_where     = array("agent_id" => $agent_id);
                 $arr_update = array("is_view"=>'yes');
@@ -94,10 +93,8 @@ class Dashboard extends CI_Controller{
             return true;
       }
 
-
       function international_view()  
       {  
-                
                 $agent_id=$this->session->userdata('agent_sess_id');
                 $arr_where     = array("agent_id" => $agent_id);
                 $arr_update = array("is_view"=>'yes');
@@ -105,7 +102,6 @@ class Dashboard extends CI_Controller{
                 
             return true;
       }
-
 
       function check_notification_count()  
       {  
