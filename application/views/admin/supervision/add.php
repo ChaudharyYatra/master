@@ -35,8 +35,22 @@
                 <div class="card-body">
                  <div class="row">
                       <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Select Type <span class="req_field">*</span></label>
+                          <select class="select_css" name="role_type" id="role_type">
+                              <option value="">Select role type</option>
+                            <?php
+                              foreach($role_type as $role_type_info) 
+                              { 
+                            ?>
+                              <option value="<?php echo $role_type_info['id'];?>"><?php echo $role_type_info['role_name'];?></option>
+                            <?php } ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
                               <div class="form-group">
-                                <label>supervisor Name <span class="req_field">*</span></label>
+                                <label>Name <span class="req_field">*</span></label>
                                 <input type="text" class="form-control" name="supervision_name" id="supervision_name" placeholder="Enter Supervision Name"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">
                               </div>
                       </div>

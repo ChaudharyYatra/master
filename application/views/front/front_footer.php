@@ -167,7 +167,7 @@
         <!-- login registration modal -->
         <div class="modal fade log-reg" id="exampleModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content set_front-_modal">
                 <div class="modal-body">
                     <div class="post-tabs">
                         <!-- tab navs -->
@@ -195,13 +195,13 @@
                                             </button>
                                         </div> -->
                                         <!-- <hr class="log-reg-hr position-relative my-4 overflow-visible"> -->
-                                        <form method="post" action="<?php echo base_url(); ?>user_login_reg/index" onsubmit="return validateloginForms()">
+                                        <form method="post" action="<?php echo base_url(); ?>user_profile/index" onsubmit="return validateloginForms()">
                                             <div class="form-group mb-2">
-                                                <input type="text" class="form-control" name="email_login" id="email_login" placeholder="Email Address" value="">
-                                                <span class="text-danger float-left" id="emaillogin_error" style="display:none"></span>
+                                                <input type="text" class="form-control" name="mobile" id="mobile_login" placeholder="Mobile Number" value="">
+                                                <span class="text-danger float-left" id="mobilelogin_error" style="display:none"></span>
                                             </div>
                                             <div class="form-group mb-2">
-                                                <input type="password" class="form-control" name="pass_login" id="pass_login" placeholder="Password" value="">
+                                                <input type="password" class="form-control" name="password" id="pass_login" placeholder="Password" value="">
                                                 <span class="text-danger float-left" id="passlogin_error" style="display:none"></span>
                                             </div>
                                             <div class="form-group mb-2">
@@ -210,7 +210,7 @@
                                                 <a class="float-end" href="#">Lost your password?</a>
                                             </div>
                                             <div class="comment-btn mb-2 pb-2 text-center border-b">
-                                                <input type="submit" class="nir-btn w-100" id="submit_l" value="Login" name="login">
+                                                <input type="submit" class="nir-btn w-100" id="submit_l" value="Login" name="submit">
                                             </div>
                                             
                                         </form>
@@ -455,41 +455,61 @@ function validateregForms()
 <script>
     function validateloginForms() 
 {
-  $("#emaillogin_error").hide();
+  $("#mobilelogin_error").hide();
   $("#passlogin_error").hide();
   
   
   var submiform='';
   
-  var emaillogin = $('#email_login').val();
-  if (emaillogin == '' || emaillogin ==null) 
+  var mobilelogin = $('#mobile_login').val();
+  if (mobilelogin == '' || mobilelogin ==null) 
   {
-    $('#emaillogin_error').text('Please enter email address.');
-    $('#emaillogin_error').show();
+    $('#mobilelogin_error').text('Please enter mobile number.');
+    $('#mobilelogin_error').show();
     submiform=false;
   }
   else
   {
-      var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if(!regex.test(emaillogin)) 
-        {
-           $('#emaillogin_error').text('Please enter valid email address.');
-            $('#emaillogin_error').show();
-            submiform=false;
-        }
-        else if(emaillogin)
-        {
-          var email_split = emaillogin.split('@');
-          var count = (email_split[1].match(/\./g) || []).length;
-          if(count > 2)
-          {
-              $('#emailid_error').text('Please enter valid email address.');
-              $('#emailid_error').show();
+      var mobNum = $('#mobile_login').val();
+      var filter = /^\d*(?:\.\d{1,2})?$/;
+        if(filter.test(mobNum)) {
+            if(mobNum.length < 10){
+                  $('#mobilelogin_error').text('Please enter 10 digits mobile number');
+              $('#mobilelogin_error').show();
               submiform=false;
-          }
-        }
-       
+             } 
+            }
+            
+         if(filter.test(mobNum)) {
+            if(mobNum.length > 10){
+                  $('#mobilelogin_error').text('Please enter 10 digits mobile number');
+              $('#mobilelogin_error').show();
+              submiform=false;
+             } 
+            }
   }
+  // else
+  // {
+  //     var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  //       if(!regex.test(emaillogin)) 
+  //       {
+  //          $('#emaillogin_error').text('Please enter valid email address.');
+  //           $('#emaillogin_error').show();
+  //           submiform=false;
+  //       }
+  //       else if(emaillogin)
+  //       {
+  //         var email_split = emaillogin.split('@');
+  //         var count = (email_split[1].match(/\./g) || []).length;
+  //         if(count > 2)
+  //         {
+  //             $('#emailid_error').text('Please enter valid email address.');
+  //             $('#emailid_error').show();
+  //             submiform=false;
+  //         }
+  //       }
+       
+  // }
   
   var password = $('#pass_login').val();
   if (password == '' || password ==null) 
@@ -1627,5 +1647,68 @@ function Vehicle(val){
     }
 
 </script>
+
+
+<script>
+function validateFeedbackForms() 
+{
+  $("#categories_error").hide();
+  $("#rating_error").hide();
+  $("#msg_error").hide();
+  $("#image_name_error").hide();
+  
+  var submiform='';
+
+
+  var gender = $('#categories').val();
+  if (gender == '' || gender ==null) 
+  {
+    $('#categories_error').text('Please select categories.');
+    $('#categories_error').show();
+    submiform=false;
+  }
+
+  var gender = $('#rating').val();
+  if (gender == '' || gender ==null) 
+  {
+    $('#rating_error').text('Please select rating.');
+    $('#rating_error').show();
+    submiform=false;
+  }
+
+  var gender = $('#message').val();
+  if (gender == '' || gender ==null) 
+  {
+    $('#msg_error').text('Please enter feedback.');
+    $('#msg_error').show();
+    submiform=false;
+  }
+
+  var gender = $('#image_name').val();
+  if (gender == '' || gender ==null) 
+  {
+    $('#image_name_error').text('Please select image.');
+    $('#image_name_error').show();
+    submiform=false;
+  }
+
+  
+  
+  if(submiform==='')
+  {
+      return true;
+  }
+  else
+  {
+     return false; 
+  }
+  
+  
+}
+    
+</script>
+
+
+
 </body>
 </html>

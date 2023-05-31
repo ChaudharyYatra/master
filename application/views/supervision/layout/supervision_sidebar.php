@@ -12,7 +12,7 @@
     <!-- Brand Logo -->
     <a href="<?php echo base_url(); ?>supervision/dashboard" class="brand-link">
 
-      <img src="<?php echo base_url(); ?>uploads/do_not_delete/logo.png" alt="Chaudhary Yatra" style="width:100%;"></img>
+      <img src="<?php echo base_url(); ?>uploads/do_not_delete/logo.png" alt="Choudhary Yatra" style="width:100%;"></img>
     </a>
 
     <!-- Sidebar -->
@@ -22,12 +22,13 @@
         <div class="image">
         </div>
         <div class="info">
-          <center><a href="#" class="d-block"><?php echo $supervision_sess_name; ?></a> <span class="designation">(Document Code Request)</span></center>
+          <center><a href="#" class="d-block"><?php echo $supervision_sess_name; ?></a></center>
         </div>
       </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
+        <?php if($this->session->userdata['supervision_role']=='3') {?>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
                 <a href="<?php echo base_url(); ?>supervision/dashboard/index" class="nav-link">
@@ -35,20 +36,7 @@
                   <p>Dashboard</p>
                 </a>
           </li>
-          <!-- <li class="nav-item">
-                <a href="<?php //echo base_url(); ?>agent/booking_enquiry/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Domestic Booking Enquiry</p>
-                </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?php //echo base_url(); ?>agent/international_booking_enquiry/index" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>
-               International Booking Enquiry
-              </p>
-            </a>
-          </li> -->
+    
 
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>supervision/supervision_request/index" class="nav-link">
@@ -67,13 +55,6 @@
               </p>
             </a>
           </li>
-
-          <!-- <li class="nav-item">
-                <a href="<?php //echo base_url(); ?>stationary/stationary_order_reject/reject" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Reject Stationary Order</p>
-                </a>
-          </li> -->
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>supervision/profile/index" class="nav-link">
@@ -99,6 +80,96 @@
             </a>
            </li>
         </ul>
+        <?php } elseif($this->session->userdata['supervision_role']=='4'){?>
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_operation_manager/dashboard/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+          </li>
+    
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_operation_manager/assign_staff/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Assign Staff
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_operation_manager/profile/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Profile
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_operation_manager/change_password/change_password" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+              Change Password
+              </p>
+            </a>
+          </li>
+               
+           <li class="nav-item">
+            <a href="<?php echo base_url(); ?>supervision/login/logout" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+           </li>
+        </ul>
+        
+
+        <?php } elseif($this->session->userdata['supervision_role']=='5'){?>
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+                <a href="<?php echo base_url(); ?>account/dashboard/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+          </li>
+    
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>account/tour_expences/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Tour Expences
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>account/profile/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Profile
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>account/change_password/change_password" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+              Change Password
+              </p>
+            </a>
+          </li>
+               
+           <li class="nav-item">
+            <a href="<?php echo base_url(); ?>supervision/login/logout" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+           </li>
+        </ul>
+        <?php }?>
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>

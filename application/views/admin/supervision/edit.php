@@ -38,6 +38,21 @@
               <form method="post" enctype="multipart/form-data" id="edit_supervision">
                 <div class="card-body">
                   <div class="row">
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Select Type <span class="req_field">*</span></label>
+                          <select class="select_css" name="role_type" id="role_type">
+                              <option value="">Select role type</option>
+                                <?php
+                                  foreach($role_type as $role_type_info) 
+                                  { 
+                                ?>
+                                <option value="<?php echo $role_type_info['id'];?>" <?php if(isset($info['role_type'])){if($role_type_info['id'] == $info['role_type']) {echo 'selected';}}?>><?php echo $role_type_info['role_name'];?></option>
+                                <?php } ?>
+                          </select>
+                        </div>
+                      </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>supervisor Name <span class="req_field">*</span></label>
