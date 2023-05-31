@@ -323,6 +323,7 @@ class Tour_photos extends CI_Controller{
 // Active/Inactive
 public function active_inactive($id,$type)
 {
+      $id=base64_decode($id);
     if($id!="" && ($type == "yes" || $type == "no") )
     {   
         $this->db->where('id',$id);
@@ -359,6 +360,7 @@ public function active_inactive($id,$type)
     }
     redirect($this->module_url_path.'/index');   
 }
+
 
 
 // =======================================================================================================

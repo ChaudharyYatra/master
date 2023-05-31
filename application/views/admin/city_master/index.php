@@ -1,12 +1,3 @@
-<style>
-  .a_text{
-    text-decoration: none;
-  }
-  .take_followup_btn{
-    padding: 3%;
-  }
-</style>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -14,11 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><?php echo $page_title; ?></h1>
+            <h1><?php echo $module_title; ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <!-- <a href="<?php //echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a> -->
+              <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
+              
             </ol>
           </div>
         </div>
@@ -31,7 +23,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-              <?php $this->load->view('agent/layout/agent_alert'); ?>
+              <?php $this->load->view('admin/layout/admin_alert'); ?>
             <div class="card">
              
               <!-- /.card-header -->
@@ -42,10 +34,11 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Customer Name</th>
-                    <th>Birth date</th>
-                    <th>Age</th>
-                    <th>Mobile Number</th>
+                    <th>Country Name</th>
+                    <th>State Name</th>
+                    <th>City Name</th>
+                    <th>Is Active?</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -57,24 +50,34 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['first_name']; ?> <?php echo $info['middle_name']; ?> <?php echo $info['last_name']; ?></td>
-                    <td><?php echo date("d-m-Y",strtotime($info['dob'])); ?></td>
-                    <td><?php echo $info['age']; ?></td>
-                    <td><?php echo $info['mobile_number']; ?></td>
+                    <td><?php echo $info['country_name'] ?></td>
+                    <td><?php echo $info['state_name'] ?></td>
+                    <td><?php echo $info['city_name'] ?></td>
+                    <td>
+                        <?php 
+                        if($info['is_active']=='yes')
+                          {
+                        ?>
+                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-success btn-sm">YES</button></a>
+                        <?php } else { ?>
+                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</button> </a>
+                        <?php } ?>
+                    </td>
+                    <td>
+                          <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id'];  ?>" title="Edit"><i class="fa fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
+                          <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
+                          
+                    </td>
                   </tr>
-
                   <?php $i++; } ?>
-                  
                   </tbody>
-                  
                 </table>
-                <?php } else
+                 <?php } else
                 { echo '<div class="alert alert-danger alert-dismissable">
                 <i class="fa fa-ban"></i>
                 <b>Alert!</b>
                 Sorry No records available
               </div>' ; } ?>
-               
               </div>
               <!-- /.card-body -->
             </div>
@@ -88,6 +91,7 @@
     </section>
     <!-- /.content -->
   </div>
+  
 
 </body>
 </html>

@@ -376,7 +376,6 @@ class Packages extends CI_Controller{
 
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
         $package_type = $this->master_model->getRecords('package_type');
         // print_r($package_type); die;
 

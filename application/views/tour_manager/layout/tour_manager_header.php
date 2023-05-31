@@ -258,24 +258,24 @@ if($check_login_data['password_change']=='no' && $this->router->fetch_method()!=
     <!-- Right navbar links -->
     
       <li class="nav-item dropdown">
-        <!-- <a class="nav-link" data-toggle="dropdown" href="#">
+        <a class="nav-link" data-toggle="dropdown" href="#">
         <div class="ringing-bell">
           <i class='fa fa-bell faa-ring animated fa-2x' style="color:red;"></i>
         </div>
-        <span class="badge badge-warning navbar-badge" id="total_notification_count"></span>
-          <span class="badge badge-warning navbar-badge" id="notification_count">15</span> -->
-        <!-- </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"> -->
-          <!--<span class="dropdown-item dropdown-header count">15 Notifications</span>-->
-          <!-- <div class="dropdown-divider"></div>
-          <a href="" class="dropdown-item" id="notification_count">  -->
+        <span class="badge badge-warning navbar-badge" id="total_count"></span>
+          <!-- <span class="badge badge-warning navbar-badge" id="notification_count">15</span> -->
+          </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <!-- <span class="dropdown-item dropdown-header count">15 Notifications</span> -->
+         <div class="dropdown-divider"></div> 
+          <a href="" class="dropdown-item" id="birthdate_count"> 
             <!-- <span class="float-right text-muted text-md">3 mins</span> -->
-          <!-- </a>
+           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item" id="international_count"> -->
+          <a href="#" class="dropdown-item" id="anniversary_count">
             <!-- <i class="fas fa-users mr-2"></i> 8 friend requests -->
             <!-- <span class="float-right text-muted text-md">12 hours</span> -->
-          <!-- </a> -->
+          </a>
           <!-- <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-file mr-2"></i> 3 new reports

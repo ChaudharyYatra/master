@@ -4365,7 +4365,7 @@ $('#suugestion_add').validate({ // initialize the plugin
     $error.appendTo($element.closest("div"));
   },
     rules: {
-        title: {
+        city: {
             required: true,
         },
         tour_number: {
@@ -4374,18 +4374,27 @@ $('#suugestion_add').validate({ // initialize the plugin
         priority: {
             required: true,
         },
-        // image_name: {
-        //     required: true,
-        // },
+        package_type: {
+            required: true,
+        },
         description: {
             required: true,
         },
+        // image_name: {
+        //     required: true,
+        // },
+        // image_name_2: {
+        //     required: true,
+        // },
+        // image_name_3: {
+        //     required: true,
+        // }
         
     },
 
     messages :{
-        title : {
-            required : "Please Enter Title",
+        city : {
+            required : "Please Select City",
         },
         tour_number : {
             required : "Please Select tour",
@@ -4393,12 +4402,21 @@ $('#suugestion_add').validate({ // initialize the plugin
         priority : {
             required : "Please select priority",
         },
-        // image_name : {
-        //     required : "Please select image / pdf",
-        // },
+        package_type : {
+            required : "Please select package type",
+        },
         description : {
             required : "Please Enter Description",
         },
+        // image_name : {
+        //     required : "Please Select image / Pdf",
+        // },
+        // image_name_2 : {
+        //     required : "Please Select image / Pdf",
+        // },
+        // image_name_3 : {
+        //     required : "Please Select image / Pdf",
+        // }
         
     
     }
@@ -4414,8 +4432,8 @@ $('#suugestion_edit').validate({ // initialize the plugin
     errorPlacement: function($error, $element) {
     $error.appendTo($element.closest("div"));
   },
-    rules: {
-        title: {
+  rules: {
+        city: {
             required: true,
         },
         tour_number: {
@@ -4424,18 +4442,27 @@ $('#suugestion_edit').validate({ // initialize the plugin
         priority: {
             required: true,
         },
-        // image_name: {
-        //     required: true,
-        // },
+        package_type: {
+            required: true,
+        },
         description: {
             required: true,
         },
+        // image_name: {
+        //     required: true,
+        // },
+        // image_name_2: {
+        //     required: true,
+        // },
+        // image_name_3: {
+        //     required: true,
+        // }
         
     },
 
     messages :{
-        title : {
-            required : "Please Enter Title",
+        city : {
+            required : "Please Select City",
         },
         tour_number : {
             required : "Please Select tour",
@@ -4443,13 +4470,21 @@ $('#suugestion_edit').validate({ // initialize the plugin
         priority : {
             required : "Please select priority",
         },
-        // image_name : {
-        //     required : "Please select image / pdf",
-        // },
+        package_type : {
+            required : "Please select package type",
+        },
         description : {
             required : "Please Enter Description",
         },
-        
+        // image_name : {
+        //     required : "Please Select image / Pdf",
+        // },
+        // image_name_2 : {
+        //     required : "Please Select image / Pdf",
+        // },
+        // image_name_3 : {
+        //     required : "Please Select image / Pdf",
+        // }
     
     }
 });
@@ -4500,6 +4535,21 @@ $('#add_tour_expenses').validate({ // initialize the plugin
     $error.appendTo($element.closest("div"));
   },
     rules: {
+        tour_number: {
+            required: true,
+        },
+        tour_date: {
+            required: true,
+        },
+        expense_place: {
+            required: true,
+        },
+        bill_number: {
+            required: true,
+        },
+        total_pax: {
+            required: true,
+        },
         expense_type: {
             required: true,
         },
@@ -4512,10 +4562,28 @@ $('#add_tour_expenses').validate({ // initialize the plugin
         expense_date: {
             required: true,
         },
+        image_name: {
+            required: true,
+        },
         
     },
 
     messages :{
+        tour_number : {
+            required : "Please Select Tour title",
+        },
+        tour_date : {
+            required : "Please Select tour date",
+        },
+        expense_place : {
+            required : "Please Enter Expense place",
+        },
+        bill_number : {
+            required : "Please Enter Bill Number",
+        },
+        total_pax : {
+            required : "Please Select Total Pax",
+        },
         expense_type : {
             required : "Please Select Expense Type",
         },
@@ -4527,6 +4595,9 @@ $('#add_tour_expenses').validate({ // initialize the plugin
         },
         expense_date : {
             required : "Please Enter Expense Date",
+        },
+        image_name : {
+            required : "Please Select Image Name",
         },
     }
 });
@@ -4542,6 +4613,21 @@ $('#edit_tour_expenses').validate({ // initialize the plugin
     $error.appendTo($element.closest("div"));
   },
   rules: {
+        tour_number: {
+            required: true,
+        },
+        tour_date: {
+            required: true,
+        },
+        expense_place: {
+            required: true,
+        },
+        bill_number: {
+            required: true,
+        },
+        total_pax: {
+            required: true,
+        },
         expense_type: {
             required: true,
         },
@@ -4553,11 +4639,25 @@ $('#edit_tour_expenses').validate({ // initialize the plugin
         },
         expense_date: {
             required: true,
-        },
-        
+        }
     },
 
     messages :{
+        tour_number : {
+            required : "Please Select Tour title",
+        },
+        tour_date : {
+            required : "Please Select tour date",
+        },
+        expense_place : {
+            required : "Please Enter Expense place",
+        },
+        bill_number : {
+            required : "Please Enter Bill Number",
+        },
+        total_pax : {
+            required : "Please Select Total Pax",
+        },
         expense_type : {
             required : "Please Select Expense Type",
         },
@@ -4569,7 +4669,7 @@ $('#edit_tour_expenses').validate({ // initialize the plugin
         },
         expense_date : {
             required : "Please Enter Expense Date",
-        },
+        }
     }
 });
 
@@ -4578,9 +4678,279 @@ $('#edit_tour_expenses').validate({ // initialize the plugin
 </script>
 <!-- tour manager module suugestion mosule validation -->
 
+<!-- suggestion in that package type wise package name display dependency start -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#package_type').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>tour_manager/suggestion_module/get_package',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#tour_number').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#tour_number').append('<option value="'+data['id']+'">'+data['tour_number']+' - '+data['tour_title']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+<!------ suggestion in that package type wise package name display dependency start ---->
 
+<!-- suggestion module city (other ) -->
+<script type="text/javascript">
+    function citycheck(val){
+    var element=document.getElementById('other_city_div');
+	var element2=document.getElementById('other_city');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	element2.value="";	
+    }
+</script>
+<!-- suggestion module city (other ) -->
 
+<!-- tour expenses in that tour no wise package date display dependency start -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#tour_number').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>tour_manager/tour_expenses/get_tour_date',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#tour_date').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#tour_date').append('<option value="'+data['id']+'">'+data['journey_date']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+<!------ tour expenses in that tour no wise package date display dependency start  ---->
 
+<!-- jquery validation on add Tour Photos start-->
+
+<script>
+$(document).ready(function () {
+$('#add_tour_photo').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        destinations: {
+            required: true,
+        },
+        image_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        destinations : {
+            required : "Please enter destinations",
+        },
+        image_name : {
+            required : "Please select image",
+        },
+        
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add Tour Photos start-->
+
+<!-- jquery validation on edit Tour Photos start-->
+
+<script>
+$(document).ready(function () {
+$('#edit_tour_photo').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        destinations: {
+            required: true,
+        }
+    },
+
+    messages :{
+        destinations : {
+            required : "Please enter destinations",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit Tour Photos start-->
+
+<!-- ============================tour manager bell icone todays birthday ================================== -->
+<script>  
+ $(document).ready(function(){  
+ var agent_id = $('#tour_manager_sess_id').val();  
+        //    var agent_id = '1'; 
+           //alert(email);
+           if(agent_id != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>tour_manager/dashboard/check_birthdate_count",  
+                     method:"POST",  
+                     data:{agent_id:agent_id},  
+                     success:function(responce){ 
+                         if(responce > 0)
+                         {
+                            $('#birthdate_count').append('<i class="fas fa-envelope mr-2"></i> '+responce+' Todays Birthdate');
+                             
+                         }else
+                         {
+                             $('#birthdate_count').html('No Enquiry');
+                         } 
+                     }  
+                });  
+           }  
+      });  
+ </script>
+
+<script>  
+ $(document).ready(function(){  
+ var agent_id = $('#tour_manager_sess_id').val();  
+        //    var agent_id = '1'; 
+           //alert(email);
+           if(agent_id != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>tour_manager/dashboard/check_total_birthdate_anniversary_count",  
+                     method:"POST",  
+                     data:{agent_id:agent_id},  
+                     success:function(responce){ 
+                         if(responce > 0)
+                         {
+                            $('#total_count').append(responce);
+                             
+                         }else
+                         {
+                             $('#total_count').html('No Enquiry');
+                         } 
+                     }  
+                });  
+           }  
+      });  
+ </script>
+
+<script>  
+ $(document).ready(function(){
+  $("#birthdate_count").click(function() {  
+ // var email = $('#agent_sess_id').val();  
+           var agent_id = '0'; 
+           //alert(email);
+           if(agent_id != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>tour_manager/dashboard/birthdate_enquiry_view",  
+                     method:"POST",  
+                     data:{agent_id:agent_id},  
+                     success:function(responce){ 
+                         if(responce = true)
+                         {
+                              // alert(responce);
+                          // redirect($this->module_url_path.'agent/booking_enquiry/index');
+                          window.location.href = "<?=base_url()?>tour_manager/todays_birthdate_anniversary/index";
+                         }
+                     }  
+                });  
+           } 
+          }); 
+      });  
+ </script>
+<!-- ============================tour manager bell icone todays birthday ================================== -->
+
+<!-- ============================tour manager bell icone todays Anniversary ================================== -->
+<script>  
+ $(document).ready(function(){  
+ var agent_id = $('#tour_manager_sess_id').val();  
+        //    var agent_id = '1'; 
+           //alert(email);
+           if(agent_id != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>tour_manager/dashboard/check_anniversary_count",  
+                     method:"POST",  
+                     data:{agent_id:agent_id},  
+                     success:function(responce){ 
+                         if(responce > 0)
+                         {
+                            $('#anniversary_count').append('<i class="fas fa-envelope mr-2"></i> '+responce+' Todays Anniversary');
+                         }else
+                         {
+                             $('#anniversary_count').html('No Enquiry');
+                         } 
+                     }  
+                });  
+           }  
+      });  
+ </script>
+
+<script>  
+ $(document).ready(function(){
+  $("#anniversary_count").click(function() {  
+ // var email = $('#agent_sess_id').val();  
+           var agent_id = '0'; 
+           //alert(email);
+           if(agent_id != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>tour_manager/dashboard/anniversary_enquiry_view",  
+                     method:"POST",  
+                     data:{agent_id:agent_id},  
+                     success:function(responce){ 
+                         if(responce = true)
+                         {
+                              // alert(responce);
+                          // redirect($this->module_url_path.'agent/booking_enquiry/index');
+                          window.location.href = "<?=base_url()?>tour_manager/todays_birthdate_anniversary/anniversary_index";
+                         }
+                     }  
+                });  
+           } 
+          }); 
+      });  
+ </script>
+<!-- ============================tour manager bell icone todays Anniversary ================================== -->
 
 
 

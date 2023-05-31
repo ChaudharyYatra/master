@@ -9,7 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">Back</button></a>
+              <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">List</button></a>
               
             </ol>
           </div>
@@ -35,29 +35,25 @@
                    foreach($arr_data as $info) 
                    { 
                      ?>
-              <form method="post" enctype="multipart/form-data" id="add_tour_photo">
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Destinations</label>
-                                <input type="text" class="form-control" name="destinations" id="destinations" placeholder="Enter Destinations" required="required">
-                                <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['id']; ?>" >
-                              </div>
+              <form method="post" enctype="multipart/form-data" id="edit_country">
+              <div class="card-body">
+                  <div class="container">
+                    <div class="row"> 
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Country Name</label>
+                            <input type="text" class="form-control" name="country_name" id="country_name" placeholder="Enter Country Name" required="required" value="<?php echo $info['country_name'] ?>">
+                          </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Upload Image</label><br>
-                                <input type="file" name="image_name" id="image_name" required="required">
-                                <br><span class="text-danger">Image height should be 530 & width should be 800.</span>
-                                <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span><br>
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
+                    <br>
+                  </div>
+
+                </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" value="submit" id="submit">Submit</button>
-					        <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger">Cancel</button></a>
+                  <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+					<a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>
               </form>
               <?php } ?>
@@ -76,7 +72,4 @@
     </section>
     <!-- /.content -->
   </div>
-  
-
-</body>
-</html>
+ 

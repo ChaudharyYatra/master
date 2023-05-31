@@ -57,32 +57,27 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Expense Type</label>
-                                <select class="select_css" name="expense_type" id="expense_type" required>
-                                    <option value="">Select Expense Type</option>
-                                    <?php foreach($expense_type_data as $expense_type_info){ ?> 
-                                        <!-- <option value="<?php //echo $expense_type_info['id'];?>"><?php //echo $expense_type_info['expense_type_name'];?></option> -->
-                                        <option value="<?php echo $expense_type_info['id']; ?>" <?php if($expense_type_info['id']==$tour_expenses_all_info['expense_type']) { echo "selected"; } ?>><?php echo $expense_type_info['expense_type_name']; ?></option>
+                            <label>Tour No / Name</label>
+                                <select class="form-control" name="tour_number" id="tour_number" onfocus='this.size=5;' onblur='this.size=1;' 
+                                    onchange='this.size=1; this.blur();'>
+                                <option value="">Select tour title</option>
+                                <?php foreach($packages_data as $packages_data_value){ ?> 
+                                    <!-- <option value="<?php //echo $packages_data_value['id'];?>"><?php //echo $packages_data_value['tour_number'];?> -  <?php //echo $packages_data_value['tour_title'];?></option> -->
+                                    <option value="<?php echo $packages_data_value['id']; ?>" <?php if($packages_data_value['id']==$tour_expenses_all_info['package_id']) { echo "selected"; } ?>><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
                                     <?php } ?>
                                 </select>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Select Category</label>
-                                <select class="select_css" name="expense_category" id="expense_category">
-                                        <option value="">Select Category</option>
-                                        <?php foreach($expense_category_data as $expense_category_info){ ?> 
-                                        <option value="<?php echo $expense_category_info['id'];?>" <?php if($expense_category_info['id']==$tour_expenses_all_info['expense_category_id']){echo "selected";} ?>><?php echo $expense_category_info['expense_category'];?></option>
+                                <label>Tour date</label>
+                                <select class="select_css" name="tour_date" id="tour_date" required>
+                                <option value="">Select Tour Date</option>
+                                        <?php foreach($package_date as $package_date_value){ ?> 
+                                        <option value="<?php echo $package_date_value['id'];?>" <?php if($package_date_value['id']==$tour_expenses_all_info['tour_date']){echo "selected";} ?>><?php echo $package_date_value['journey_date'];?></option>
                                         <?php } ?>
                                 </select>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Expenses Amount</label>
-                                <input type="text" class="form-control" name="expense_amt" id="expense_amt" placeholder="Enter Expense Amount" required value="<?php echo $tour_expenses_all_info['expense_amt'];?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
 
@@ -93,7 +88,104 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Expense Head</label>
+                                <select class="select_css" name="expense_type" id="expense_type" required>
+                                    <option value="">Select Expense Head</option>
+                                    <?php foreach($expense_type_data as $expense_type_info){ ?> 
+                                        <!-- <option value="<?php //echo $expense_type_info['id'];?>"><?php //echo $expense_type_info['expense_type_name'];?></option> -->
+                                        <option value="<?php echo $expense_type_info['id']; ?>" <?php if($expense_type_info['id']==$tour_expenses_all_info['expense_type']) { echo "selected"; } ?>><?php echo $expense_type_info['expense_type_name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sub-Expenses Head</label>
+                                <select class="select_css" name="expense_category" id="expense_category">
+                                        <option value="">Select Sub-Expenses Head</option>
+                                        <?php foreach($expense_category_data as $expense_category_info){ ?> 
+                                        <option value="<?php echo $expense_category_info['id'];?>" <?php if($expense_category_info['id']==$tour_expenses_all_info['expense_category_id']){echo "selected";} ?>><?php echo $expense_category_info['expense_category'];?></option>
+                                        <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Place</label>
+                                <input type="text" class="form-control" name="expense_place" id="expense_place" placeholder="Enter Place" required value="<?php echo $tour_expenses_all_info['expense_place'];?>">
+                            </div>
+                        </div>
+                               
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bill Number</label>
+                                <input type="text" class="form-control" name="bill_number" id="bill_number" placeholder="Enter bill Number" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $tour_expenses_all_info['bill_number'];?>">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total Pax</label>
+                                <input type="text" class="form-control" name="total_pax" id="total_pax" placeholder="Enter total pax" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $tour_expenses_all_info['total_pax'];?>">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bill Amount</label>
+                                <input type="text" class="form-control" name="expense_amt" id="expense_amt" placeholder="Enter Expense Amount" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $tour_expenses_all_info['expense_amt'];?>">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Upload Attachment</label>
+                                <input type="file" name="image_name" id="image_name">
+                                <br><span class="text-danger">Please select only PDF,JPG,PNG,JPEG,PDF format files.</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Uploaded Attachment</label><br>
+                                <?php if(!empty($tour_expenses_all_info['image_name'])){ ?>
+                                <img src="<?php echo base_url(); ?>uploads/tour_expenses/<?php echo $tour_expenses_all_info['image_name']; ?>" width="50%">
+                                <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $tour_expenses_all_info['image_name']; ?>">
+                                <?php } ?>
+
+                                <?php if(!empty($tour_expenses_all_info['image_name'])){ ?>
+                                    <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/tour_expenses/<?php echo $tour_expenses_all_info['image_name']; ?>">Download</a>
+                                    <input type="hidden" name="old_img_name" id="old_img_name" value="<?php if(!empty($tour_expenses_all_info['image_name'])){echo $tour_expenses_all_info['image_name'];}?>">
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload Image</label>
+                            <input type="file" name="image_name_2" id="image_name_2">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
+                          </div>
+                        </div>
+                      
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <label>Uploaded Attachment</label><br>
+                            <?php if(!empty($tour_expenses_all_info['image_name_2'])){ ?>
+                              <img src="<?php echo base_url(); ?>uploads/tour_expenses/<?php echo $tour_expenses_all_info['image_name_2']; ?>" width="50%">
+                              <input type="hidden" name="old_new_name" id="old_new_name" value="<?php echo $tour_expenses_all_info['image_name_2']; ?>">
+                            <?php } ?>
+
+                            <?php if(!empty($tour_expenses_all_info['image_name_2'])){ ?>
+                              <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/tour_expenses/<?php echo $tour_expenses_all_info['image_name_2']; ?>">Download</a>
+                              <input type="hidden" name="old_new_name" id="old_new_name" value="<?php if(!empty($tour_expenses_all_info['image_name_2'])){echo $tour_expenses_all_info['image_name_2'];}?>">
+                            <?php } ?>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Remark(optional)</label>
                                 <textarea class="form-control" name="tour_expenses_remark" id="tour_expenses_remark" placeholder="Enter Expense Remark"><?php echo $tour_expenses_all_info['tour_expenses_remark'];?></textarea>

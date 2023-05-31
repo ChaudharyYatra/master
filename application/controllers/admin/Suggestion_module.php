@@ -57,9 +57,10 @@ class Suggestion_module extends CI_Controller{
         }   
         
         $record = array();
-        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number";
+        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number,package_type.package_type";
         $this->db->where('suggestion_module.is_deleted','no');
         $this->db->where('suggestion_module.id',$id);
+        $this->db->join("package_type", 'suggestion_module.package_type=package_type.id','left');
         $this->db->join("packages", 'suggestion_module.tour_number=packages.id','left');
         $arr_data = $this->master_model->getRecords('suggestion_module',array('suggestion_module.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;

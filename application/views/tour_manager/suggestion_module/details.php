@@ -39,20 +39,31 @@
               <div class="card-body">
                 <table id="" class="table table-bordered table-hover">
                   <tr>
-					        <th>Title</th>
-                    <td><?php echo $info['title']; ?></td>
+                    <th>Package Type</th>
+                    <td><?php echo $info['package_type']; ?></td>
 
-					        <th>Tour Name</th>
+                    <th>Tour Name</th>
                     <td><?php echo $info['tour_number']; ?> - <?php echo $info['tour_title']; ?></td>
+
+                    <th>Date</th>
+                    <td><?php echo date("d-m-Y",strtotime($info['created_at'])); ?></td>
 
                    </tr>
                    <tr>
-                    <th>Date</th>
-                    <td><?php echo date("d-m-Y",strtotime($info['created_at'])); ?></td>
-                    
-                    <th>Priority</th>
-                    <td><?php echo $info['priority']; ?></td>
-                    </tr>
+                    <th>City</th>
+                    <td><?php echo $info['city']; ?></td>
+                  
+                    <?php if($info['city']=='Other'){?>
+                      <th>Other City Name</th>
+                      <td><?php echo $info['other_city']; ?></td>
+                    <?php }?>
+
+                    <th>Status</th>
+                    <td><?php echo $info['status']; ?></td>
+
+					          
+
+                   </tr>
 
                     <tr>
                     <th>Upload Attatchment</th>
@@ -68,11 +79,40 @@
                         <?php } ?>
                     </td>
 
-                    <th>Description</th>
-                    <td><?php echo $info['description']; ?></td>
+                    <th>Upload Attatchment</th>
+                    <td>
+                      <?php if(!empty($info['image_name_2'])){ ?>
+                          <img src="<?php echo base_url(); ?>uploads/suggestion_image/<?php echo $info['image_name_2']; ?>" width="20%">
+                          <input type="hidden" name="old_new_name" id="old_new_name" value="<?php echo $info['image_name_2']; ?>">
+                        <?php } ?>
+
+                        <?php if(!empty($info['image_name_2'])){ ?>
+                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/suggestion_image/<?php echo $info['image_name_2']; ?>">Download</a>
+                            <input type="hidden" name="old_new_name" id="old_new_name" value="<?php if(!empty($info['image_name_2'])){echo $info['image_name_2'];}?>">
+                        <?php } ?>
+                    </td>
+
+                    <th>Upload Attatchment</th>
+                    <td>
+                      <?php if(!empty($info['image_name_3'])){ ?>
+                          <img src="<?php echo base_url(); ?>uploads/suggestion_image/<?php echo $info['image_name_3']; ?>" width="20%">
+                          <input type="hidden" name="old_inclusion_name" id="old_inclusion_name" value="<?php echo $info['image_name_3']; ?>">
+                        <?php } ?>
+
+                        <?php if(!empty($info['image_name_3'])){ ?>
+                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/suggestion_image/<?php echo $info['image_name_3']; ?>">Download</a>
+                            <input type="hidden" name="old_inclusion_name" id="old_inclusion_name" value="<?php if(!empty($info['image_name_3'])){echo $info['image_name_3'];}?>">
+                        <?php } ?>
+                    </td>
 
                   </tr>
                   <tr>
+                  <th>Priority</th>
+                    <td><?php echo $info['priority']; ?></td>
+
+                    <th>What You Want To Suggest</th>
+                    <td><?php echo $info['description']; ?></td>
+
                     <th>Remark</th>
                     <td><?php echo $info['admin_remark']; ?></td>
                   </tr>
