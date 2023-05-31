@@ -26,9 +26,9 @@
             <!-- jquery validation -->
             
             <?php
-                   foreach($arr_data as $info) 
-                   { 
-                     ?>
+              foreach($arr_data as $info) 
+              { 
+            ?>
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title"><?php echo $page_title; ?></h3>

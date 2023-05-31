@@ -14,7 +14,10 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+<script>
+var js_array =<?php echo json_encode($bus_info);?>;
 
+</script>
 
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>assets/admin/plugins/jquery/jquery.min.js"></script>
@@ -96,9 +99,11 @@
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- <script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script> -->
-<!-- <script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script>
+<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script> 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+
+
 
 
 <script>
@@ -4357,8 +4362,55 @@ function calculate() {
   });
   </script>
 
+<!-- for bus seat selected -->
 
+<script>  
+ $(document).ready(function(){
+  $(".booknow_submit").click(function() {  
 
+        //   var selected_seat =$('.selected').attr('data_id');
+        var enq_id =  $("#domestic_enquiry_id").val();
+        var package_id =  $("#package_id").val();
+
+        var seat_type =  [];
+        var selected_seat = [];
+
+          $('.selected').each(function () 
+            {                
+                var seat_book = $(this).attr('data_id');
+                selected_seat.push($(this).attr('data_id')) 
+            });
+
+            $('.selected').each(function () 
+            {                
+                var seat_type_data = $(this).attr('seat_type');
+                seat_type.push($(this).attr('seat_type')) 
+            });
+
+        //    alert(seat_type);
+
+           
+           if(selected_seat != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>agent/seat_type_room_type/selected_bus_seat",  
+                     method:"post",  
+                     data:{selected_seat: selected_seat, enq_id: enq_id, package_id: package_id, seat_type:seat_type},  
+                     dataType: 'json',
+                     success:function(responce){ 
+                    //   alert('alert done');
+                         if(responce = 'true')
+                         {
+                          console.log('now done'); 
+                              // alert(responce);
+                          window.location.href = "<?=base_url()?>agent/booking_preview/index/"+enq_id;
+                         }
+                     }  
+                });  
+           } 
+          }); 
+      });  
+ </script>
 
 
 

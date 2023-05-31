@@ -28,7 +28,7 @@ class Dashboard extends CI_Controller{
 
         $today= date('Y-m-d');
 
-	    $agent_sess_name = $this->session->userdata('agent_name');
+	      $agent_sess_name = $this->session->userdata('agent_name');
         $id = $this->session->userdata('agent_sess_id');
 
         $this->db->where('agent_id',$id);  

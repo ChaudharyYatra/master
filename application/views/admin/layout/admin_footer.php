@@ -2893,9 +2893,6 @@ $('#add_package').validate({ // initialize the plugin
             maxlength: 5,
             minlength: 1,
         },
-        // cost: {
-        //     required: true,
-        // },
         tour_number_of_days: {
             required: true,
         },
@@ -6430,6 +6427,57 @@ $('#add_instraction').validate({ // initialize the plugin
 
 </script>
 
+<script>
+$(document).ready(function () {
+
+$('#add_role').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        role_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        role_name : {
+            required : "Please enter role name",
+        },
+    
+    }
+});
+
+});
+
+</script>
+
+<script>
+$(document).ready(function () {
+
+$('#edit_role').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        role_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        role_name : {
+            required : "Please enter role name",
+        },
+    
+    }
+});
+
+});
+
+</script>
 <!-- City master country wise state display dependency start -->
 <script type='text/javascript'>
   // baseURL variable

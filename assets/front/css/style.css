@@ -5239,6 +5239,13 @@ section.blog .grid {
     border-bottom: 1px solid #fff;
     display: inline-block; }
 
+.author_bg{
+  background-color: #fff;
+}
+.img_br_no{
+  border-radius: inherit;
+}
+
 .author-news {
   position: relative;
   overflow: hidden;
@@ -6418,4 +6425,24 @@ table.scrolldown tbody td {
   width: 48% !important;
   padding: 10px !important;
   margin-right: 2px !important;
+}
+
+/*  */
+@media (min-width: 992px){
+.nav.navbar-nav li.submenu .dropdown-menu.customer_dropdown{
+  min-width: 180px !important;
+  left:-18px !important;
+}
+}
+
+.instruction_bg{
+  background-color: #029E9D;
+  color: #fff;
+}
+.remove_ml{
+  margin-right: -5%;
+}
+.bg_img_customer{
+  background: linear-gradient(0deg, rgb(235 228 232 / 88%), rgb(241 237 239 / 68%)), url(http://localhost/choudhary-git-clone/master/uploads/about_us/aboutus_banner.jpg);
+  background-size: cover;
 }

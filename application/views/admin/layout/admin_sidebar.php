@@ -241,6 +241,12 @@
                 </a>
                </li>
                <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/role_type/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Role Type</p>
+                </a>
+               </li>
+               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>admin/country/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Country Master</p>

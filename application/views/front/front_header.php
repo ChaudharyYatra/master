@@ -126,11 +126,32 @@
                             </ul>
                             
                         </div><!-- /.navbar-collapse -->   
-                        <!-- <div class="register-login d-flex align-items-center">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="me-3">
-                                <i class="icon-user"></i> Login
-                            </a>
-                        </div>   -->
+                        <div class="register-login d-flex align-items-center">
+                            <?php
+                            if($this->session->userdata('cust_sess_id')=="") 
+                            { ?>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="me-3">
+                                    <i class="icon-user"></i> Login
+                                </a>
+                            <?php } else{?>
+                                <!-- name -->
+                                <?php  $cust_data = $this->session->userdata('cust_fname'); ?>
+
+                                <ul class="nav navbar-nav" id="responsive-menu">
+
+                                    <li class="submenu dropdown">
+                                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $cust_data; ?> <i class="icon-arrow-down" aria-hidden="true"></i></a> 
+                                        <ul class="dropdown-menu customer_dropdown">
+                                            <li><a href="<?php echo base_url(); ?>tour_instruction/index">Tour Instruction</a></li>
+                                            <li><a href="<?php echo base_url(); ?>user_profile/logout">Logout</a></li>
+                                        </ul> 
+                                    </li>
+                                </ul>
+                             
+
+                            <?php }?>
+
+                        </div>  
                         
 
                         <div id="slicknav-mobile"></div>

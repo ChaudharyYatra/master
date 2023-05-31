@@ -13,10 +13,10 @@
 	$.fn.seatCharts = function (setup) {
 		//if there's seatCharts object associated with the current element, return it
 		if (this.data('seatCharts')) {
-		    alert(this.data('seatCharts'));
+		    // alert(this.data('seatCharts'));
 			return this.data('seatCharts');
 		}
-		
+		var did='1';
 		var fn       = this,
 			seats    = {},
 			seatIds  = [],
@@ -27,9 +27,18 @@
 					top    : true,
 					left   : true,
 					getId  : function(character, row, column) {
+						if(character=='z')
+						{
+							return 'id_disz';
+						}else if(character=='x')
+						{
+							return 'id_disx';
+						}else{
 						return row + '_' + column;
+						}
 					},
 					getLabel : function (character, row, column) {
+						column=a['A'];
 						return column;
 					}
 					
@@ -65,6 +74,7 @@
 			},
 			//seat will be basically a seat object which we'll when generating the map
 			seat = (function(seatCharts, seatChartsSettings) {
+				// console.log('1');
 				return function (setup) {
 					var fn = this;
 					
@@ -75,6 +85,7 @@
 						data   : seatChartsSettings.seats[setup.character] || {}
 						//anything goes here?
 					}, setup);
+					
 
 					fn.settings.$node = $('<div></div>');
 					
@@ -84,7 +95,9 @@
 							role           : 'checkbox',
 							'aria-checked' : false,
 							focusable      : true,
-							tabIndex       : -1 //manual focus
+							tabIndex       : -1, //manual focus
+							data_id		   : did,
+							seat_type      : fn.settings.data.classes
 						})
 						.text(fn.settings.label)
 						.addClass(['seatCharts-seat', 'seatCharts-cell', 'available'].concat(
@@ -306,8 +319,9 @@
 								
 						})(fn, fn.node()));
 						//.appendTo(seatCharts.find('.' + row));
-
+						did++;
 				}
+				
 			})(fn, settings);
 			
 		fn.addClass('seatCharts-container');
@@ -316,15 +330,26 @@
 		$.extend(true, settings, setup);		
 		
 		//Generate default row ids unless user passed his own
+		// console.log(settings.map);
 		settings.naming.rows = settings.naming.rows || (function(length) {
 			var rows = [];
-			for (var i = 1; i <= length; i++) {
-				rows.push(i);
+			for (var i = 0; i < length; i++) {
+		var row_abc=settings.map[i].split('');
+		//   console.log(row_abc);
+
+				if(row_abc=='x' || row_abc=='z')
+				{
+				rows.push(0);
+				}else{
+					var oo=i+1;
+				rows.push(oo);
+				}
 			}
 			return rows;
 		})(settings.map.length);
 		
 		//Generate default column ids unless user passed his own
+
 		settings.naming.columns = settings.naming.columns || (function(length) {
 			var columns = [];
 			for (var i = 1; i <= length; i++) {
@@ -385,6 +410,8 @@
 			 */
 			 
 			$.each(characters.match(/[a-z_]{1}(\[[0-9a-z_]{0,}(,[0-9a-z_ ]+)?\])?/gi), function (column, characterParams) { 
+				
+
 				var matches         = characterParams.match(/([a-z_]{1})(\[([0-9a-z_ ,]+)\])?/i),
 					//no matter if user specifies [] params, the character should be in the second element
 					character       = matches[1],
@@ -394,15 +421,35 @@
 					overrideId      = params.length ? params[0] : null,
 					//label param should be second
 					overrideLabel   = params.length === 2 ? params[1] : null;
-								
+					// console.log(matches);		
 				$row.append(character != '_' ?
 					//if the character is not an underscore (empty space)
 					(function(naming) {
-	
+						// character='x';
 						//so users don't have to specify empty objects
 						settings.seats[character] = character in settings.seats ? settings.seats[character] : {};
 	
 						var id = overrideId ? overrideId : naming.getId(character, naming.rows[row], naming.columns[column]);
+					// console.log(naming.rows[row]);
+
+						if(character=='x'){
+							seats[id] = new seat({
+								id        : id,
+								label     : 'A',
+								row       : row,
+								column    : column,
+								character : character
+							});
+						}else if(character=='z')
+						{
+							seats[id] = new seat({
+								id        : id,
+								label     : 'B',
+								row       : row,
+								column    : column,
+								character : character
+							});
+						}else{
 						seats[id] = new seat({
 							id        : id,
 							label     : overrideLabel ?
@@ -411,7 +458,7 @@
 							column    : column,
 							character : character
 						});
-
+					}
 						seatIds.push(id);
 						return seats[id].node();
 						
