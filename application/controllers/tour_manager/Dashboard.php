@@ -83,6 +83,7 @@ class Dashboard extends CI_Controller{
 	}
 
   //  ============================tour manager bell icone todays birthday ==================================
+  
     function birthdate_enquiry_view()  
       {  
           $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
@@ -93,7 +94,6 @@ class Dashboard extends CI_Controller{
           $arr_where     = array("tour_manager_id" => $iid);
           $arr_update = array("is_view"=>'yes');
           $this->master_model->updateRecord('all_traveller_info',$arr_update,$arr_where);
-          
       return true;
       }
 
