@@ -6706,3 +6706,159 @@ $('#edit_role').validate({ // initialize the plugin
 
 </script>
  
+
+<!-- jquery validation on add Vehicle owner -->
+<script>
+$(document).ready(function () {
+
+$('#add_vehicle_owner').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_owner_name: {
+            required: true,
+        },
+        mobile_number1: {
+            required: true,
+        },
+        mobile_number2: {
+            required: true,
+        },
+        email: {
+            required: true,
+        },
+        aadhar_front_image: {
+            required: true,
+        },
+        aadhar_back_image: {
+            required: true,
+        },
+        image_name: {
+            required: true,
+        },
+        home_address: {
+            required: true,
+        },
+        office_address: {
+            required: true,
+        },
+        password: {
+            required: true,
+        },
+        confirm_pass: {
+            required: true,
+        }
+        
+    },
+
+    messages :{
+        vehicle_owner_name : {
+            required : "Please Enter vehicle owner name",
+        },
+        mobile_number1 : {
+            required : "Please Enter Mobile Number",
+        },
+        mobile_number2 : {
+            required : "Please Enter Another Mobile Number",
+        },
+        email : {
+            required : "Please Enter Email Address",
+        },
+        aadhar_front_image : {
+            required : "Please Enter Aadhar Front Photo",
+        },
+        aadhar_back_image : {
+            required : "Please Enter Aadhar Back Photo",
+        },
+        image_name : {
+            required : "Please Enter Profile Photo",
+        },
+        home_address : {
+            required : "Please Enter Home Address",
+        },
+        office_address : {
+            required : "Please Enter Office Address",
+        },
+        password : {
+            required : "Please Enter Password",
+        },
+        confirm_pass : {
+            required : "Please Enter Confirm Password",
+        }
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add Vehicle owner -->
+<!-- jquery validation on edit Vehicle owner -->
+<script>
+$(document).ready(function () {
+
+$('#edit_vehicle_owner').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_owner_name: {
+            required: true,
+        },
+        mobile_number1: {
+            required: true,
+        },
+        mobile_number2: {
+            required: true,
+        },
+        email: {
+            required: true,
+        },
+        home_address: {
+            required: true,
+        },
+        office_address: {
+            required: true,
+        },
+        password: {
+            required: true,
+        },
+        confirm_pass: {
+            required: true,
+        }
+        
+    },
+
+    messages :{
+        vehicle_owner_name : {
+            required : "Please Enter vehicle owner name",
+        },
+        mobile_number1 : {
+            required : "Please Enter Mobile Number",
+        },
+        mobile_number2 : {
+            required : "Please Enter Another Mobile Number",
+        },
+        email : {
+            required : "Please Enter Email Address",
+        },
+        home_address : {
+            required : "Please Enter Home Address",
+        },
+        office_address : {
+            required : "Please Enter Office Address",
+        },
+        password : {
+            required : "Please Enter Password",
+        },
+        confirm_pass : {
+            required : "Please Enter Confirm Password",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit Vehicle owner -->
