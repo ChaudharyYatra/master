@@ -36,7 +36,7 @@
             <a href="<?php echo base_url(); ?>vehicle_owner/vehicle_details/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-              Vehicle Owner
+              Vehicle Details
               </p>
             </a>
           </li>
@@ -45,7 +45,7 @@
             <a href="<?php echo base_url(); ?>vehicle_owner/vehicle_driver/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-              Vehicle driver
+              Vehicle Driver Details
               </p>
             </a>
           </li>
@@ -54,7 +54,7 @@
             <a href="<?php echo base_url(); ?>vehicle_owner/asign_driver/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-              Asign driver
+              Asign Driver
               </p>
             </a>
           </li>

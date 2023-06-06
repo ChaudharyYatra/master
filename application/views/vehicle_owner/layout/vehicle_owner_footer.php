@@ -5323,5 +5323,75 @@ $('#edit_vehicle_driver').validate({ // initialize the plugin
 </script>
 
 
+<!-----------------validations------asign driver ----------------------->
+<script>
+$(document).ready(function () {
+$('#add_asign_driver').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_rto_registration: {
+            required: true,
+        },
+        "asign_driver_name[]": {
+            required: true,
+        }
+		
+    },
+
+    messages :{
+        vehicle_rto_registration : {
+            required : "Please Select Vehicle RTO Registration No",
+        },
+        "asign_driver_name[]" : {
+            required : "Please Select Driver Name",
+        }
+    }
+});
+
+});
+
+</script>
+
+<!-----------------validations------asign driver ----------------------->
+
+<!-----------------validations------asign driver ----------------------->
+<script>
+$(document).ready(function () {
+$('#edit_asign_driver').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_rto_registration: {
+            required: true,
+        },
+        "asign_driver_name[]": {
+            required: true,
+        }
+		
+    },
+
+    messages :{
+        vehicle_rto_registration : {
+            required : "Please Select Vehicle RTO Registration No",
+        },
+        "asign_driver_name[]" : {
+            required : "Please Select Driver Name",
+        }
+    }
+});
+
+});
+
+</script>
+
+<!-----------------validations------asign driver ----------------------->
+
+
+
+
+
 
 

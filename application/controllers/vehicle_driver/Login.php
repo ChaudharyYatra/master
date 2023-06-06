@@ -37,13 +37,13 @@ class Login extends CI_Controller{
 
                 if(empty($arr_data))
                 {    
-                    $this->session->set_flashdata('error_message1',"Email Or Password Is Wrong.");
+                    $this->session->set_flashdata('error_message1',"Mobile Nummber Or Password Is Wrong.");
                 }
                 else
                 {
                     foreach($arr_data as $vehicle_driver_data)
                     {
-                        $this->session->set_userdata('vehicle_driver_email',$vehicle_driver_data['email']);
+                        // $this->session->set_userdata('vehicle_driver_email',$vehicle_driver_data['email']);
                         $this->session->set_userdata('vehicle_driver_mobile',$vehicle_driver_data['mobile_number1']);
                         $this->session->set_userdata('vehicle_driver_sess_id',$vehicle_driver_data['id']);
                         $this->session->set_userdata('vehicle_ssession_driver_name',$vehicle_driver_data['driver_name']);
@@ -76,7 +76,7 @@ class Login extends CI_Controller{
     {
         $this->session->unset_userdata('vehicle_driver_sess_id');
         $this->session->unset_userdata('vehicle_driver_mobile');
-        $this->session->unset_userdata('vehicle_driver_email');
+        // $this->session->unset_userdata('vehicle_driver_email');
         $this->session->unset_userdata('vehicle_ssession_driver_name');
         $this->session->sess_destroy();
         redirect($this->module_url_path.'/index');  
