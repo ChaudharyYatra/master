@@ -51,13 +51,13 @@ public function change_password()
                          $arr_where     = array("id" => $id);
                          $this->master_model->updateRecord('vehicle_driver',$arr_update,$arr_where);
 
-                        $this->db->where('is_deleted','no');
-                        $this->db->where('is_active','yes');
-                        $this->db->where('id',$id);
-                        $this->db->order_by('id','DESC');
-                        $agent_data_email = $this->master_model->getRecord('vehicle_driver');
-                        $agent_email=$agent_data_email['email'];
-                        $agent_name=$agent_data_email['agent_name'];
+                        // $this->db->where('is_deleted','no');
+                        // $this->db->where('is_active','yes');
+                        // $this->db->where('id',$id);
+                        // $this->db->order_by('id','DESC');
+                        // $agent_data_email = $this->master_model->getRecord('vehicle_driver');
+                        // $agent_email=$agent_data_email['email'];
+                        // $agent_name=$agent_data_email['agent_name'];
 
 
                          if($id > 0)

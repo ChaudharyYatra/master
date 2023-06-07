@@ -85,7 +85,7 @@
                                 <label>Hotel Type
                                   <?php ?>
                                 </label><br>
-                                            <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="light weight vehicle" <?php if(in_array('light weight vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;light weight vehicle
+                                            <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="Light Weight Vehicle" <?php if(in_array('Light Weight Vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;Light Weight Vehicle
                                 &nbsp;&nbsp;<input type="checkbox" name="licence_type[]" id="licence_type" value="Heavy Vehicle" <?php if(in_array('Heavy Vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; Heavy Vehicle
                               </div>
                       </div>

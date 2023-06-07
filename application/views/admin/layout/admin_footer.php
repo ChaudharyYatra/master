@@ -6721,9 +6721,12 @@ $('#add_vehicle_owner').validate({ // initialize the plugin
         },
         mobile_number1: {
             required: true,
+            maxlength:10,
+            minlength:10,
         },
         mobile_number2: {
-            required: true,
+            maxlength:10,
+            minlength:10,
         },
         email: {
             required: true,

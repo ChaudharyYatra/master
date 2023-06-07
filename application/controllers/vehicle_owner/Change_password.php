@@ -24,11 +24,12 @@ class Change_password extends CI_Controller {
 public function change_password()
      {
 
+        $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
+        $id = $this->session->userdata('vehicle_owner_sess_id');
+
         if($this->input->post('submit'))
              {
-                $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
-                $id = $this->session->userdata('vehicle_owner_sess_id');
-
+                
                  $this->form_validation->set_rules('old_pass', 'Old Password', 'required');
                  $this->form_validation->set_rules('new_password', 'New password', 'required');
                  $this->form_validation->set_rules('confirm_pass', 'Confirm Password', 'required');
@@ -52,13 +53,13 @@ public function change_password()
                          $arr_where     = array("id" => $id);
                          $this->master_model->updateRecord('vehicle_owner',$arr_update,$arr_where);
 
-                        $this->db->where('is_deleted','no');
-                        $this->db->where('is_active','yes');
-                        $this->db->where('id',$id);
-                        $this->db->order_by('id','DESC');
-                        $agent_data_email = $this->master_model->getRecord('vehicle_owner');
-                        $agent_email=$agent_data_email['email'];
-                        $agent_name=$agent_data_email['agent_name'];
+                        // $this->db->where('is_deleted','no');
+                        // $this->db->where('is_active','yes');
+                        // $this->db->where('id',$id);
+                        // $this->db->order_by('id','DESC');
+                        // $agent_data_email = $this->master_model->getRecord('vehicle_owner');
+                        // $agent_email=$agent_data_email['email'];
+                        // $agent_name=$agent_data_email['agent_name'];
 
 
                          if($id > 0)
