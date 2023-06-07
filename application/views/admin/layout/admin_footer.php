@@ -6748,6 +6748,8 @@ $('#add_vehicle_owner').validate({ // initialize the plugin
         },
         confirm_pass: {
             required: true,
+            equalTo: "#password", 
+            minlength: 6
         }
         
     },
@@ -6808,9 +6810,13 @@ $('#edit_vehicle_owner').validate({ // initialize the plugin
         },
         mobile_number1: {
             required: true,
+            maxlength:10,
+            minlength:10,
         },
         mobile_number2: {
             required: true,
+            maxlength:10,
+            minlength:10,
         },
         email: {
             required: true,
@@ -6826,6 +6832,8 @@ $('#edit_vehicle_owner').validate({ // initialize the plugin
         },
         confirm_pass: {
             required: true,
+            equalTo: "#password", 
+            minlength: 6
         }
         
     },

@@ -89,8 +89,12 @@ class Dashboard extends CI_Controller{
           $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
           $iid = $this->session->userdata('tour_manager_sess_id'); 
 
-          $today= date('Y-m-d');
-          $this->db->where('dob',$today);
+          $month = date('m');
+          $day = date('d');
+          // $today= date('Y-m-d');
+          // $this->db->where('dob',$today);
+          $this->db->where('MONTH(dob)', $month);
+          $this->db->where('DAY(dob)', $day);
           $arr_where     = array("tour_manager_id" => $iid);
           $arr_update = array("is_view"=>'yes');
           $this->master_model->updateRecord('all_traveller_info',$arr_update,$arr_where);
@@ -99,7 +103,9 @@ class Dashboard extends CI_Controller{
 
       function check_birthdate_count()  
       {  
-                $today= date('Y-m-d');
+                $month = date('m');
+                $day = date('d');
+                // $today= date('Y-m-d');
                 $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
                 $iid = $this->session->userdata('tour_manager_sess_id'); 
 
@@ -107,7 +113,9 @@ class Dashboard extends CI_Controller{
                 $fields = "all_traveller_info.*";
                 $this->db->where('tour_manager_id',$iid);
                 $this->db->where('is_view','no');
-                $this->db->where('dob',$today);
+                // $this->db->where('dob',$today);
+                $this->db->where('MONTH(dob)', $month);
+                $this->db->where('DAY(dob)', $day);
                 $arr_data = $this->master_model->getRecords('all_traveller_info'); 
                 $count=count($arr_data);
                 // print_r($count); die;
@@ -123,18 +131,21 @@ class Dashboard extends CI_Controller{
                 echo $count;
                 }
 
-// ============================tour manager bell icone todays birthday ==================================
+// ============================tour manager bell icone todays birthday ======================================
 
 //  ============================tour manager bell icone todays Anniversary ==================================
 function anniversary_enquiry_view()  
 {  
     $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-    $iid = $this->session->userdata('tour_manager_sess_id'); 
+    $iid = $this->session->userdata('tour_manager_sess_id');
 
-    $today= date('Y-m-d');
-    $this->db->where('anniversary_date',$today);
+    $month = date('m');
+    $day = date('d');
+    // $this->db->where('anniversary_date',$today);
+    $this->db->where('MONTH(anniversary_date)', $month);
+    $this->db->where('DAY(anniversary_date)', $day);
     $arr_where     = array("tour_manager_id" => $iid);
-    $arr_update = array("is_view"=>'yes');
+    $arr_update = array("is_view_anniversary"=>'yes');
     $this->master_model->updateRecord('all_traveller_info',$arr_update,$arr_where);
     
 return true;
@@ -142,15 +153,17 @@ return true;
 
 function check_anniversary_count()  
 {  
-          $today= date('Y-m-d');
+          $month = date('m');
+          $day = date('d');
           $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
           $iid = $this->session->userdata('tour_manager_sess_id'); 
 
           $record = array();
           $fields = "all_traveller_info.*";
           $this->db->where('tour_manager_id',$iid);
-          $this->db->where('is_view','no');
-          $this->db->where('anniversary_date',$today);
+          $this->db->where('is_view_anniversary','no');
+          $this->db->where('MONTH(anniversary_date)', $month);
+          $this->db->where('DAY(anniversary_date)', $day);
           $arr_data = $this->master_model->getRecords('all_traveller_info'); 
           $count=count($arr_data);
           // print_r($count); die;
@@ -170,7 +183,8 @@ function check_anniversary_count()
           function check_total_birthdate_anniversary_count()  
       {  
              
-        $today= date('Y-m-d');
+        $month = date('m');
+        $day = date('d');
         $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
         $iid = $this->session->userdata('tour_manager_sess_id'); 
 
@@ -178,7 +192,9 @@ function check_anniversary_count()
         $fields = "all_traveller_info.*";
         $this->db->where('tour_manager_id',$iid);
         $this->db->where('is_view','no');
-        $this->db->where('dob',$today);
+        // $this->db->where('dob',$today);
+        $this->db->where('MONTH(dob)', $month);
+        $this->db->where('DAY(dob)', $day);
         $arr_data_one = $this->master_model->getRecords('all_traveller_info'); 
         $birthdate_count=count($arr_data_one);
         // print_r($birthdate_count);
@@ -186,8 +202,10 @@ function check_anniversary_count()
         $record = array();
         $fields = "all_traveller_info.*";
         $this->db->where('tour_manager_id',$iid);
-        $this->db->where('is_view','no');
-        $this->db->where('anniversary_date',$today);
+        $this->db->where('is_view_anniversary','no');
+        // $this->db->where('anniversary_date',$today);
+        $this->db->where('MONTH(anniversary_date)', $month);
+        $this->db->where('DAY(anniversary_date)', $day);
         $arr_data_two = $this->master_model->getRecords('all_traveller_info'); 
         $anniversary_count=count($arr_data_two);
         // print_r($anniversary_count); die;

@@ -5188,6 +5188,12 @@ $('#add_vehicle_driver').validate({ // initialize the plugin
         },
         mobile_number1: {
             required: true,
+            maxlength:10,
+            minlength:10,
+        },
+        mobile_number2: {
+            maxlength:10,
+            minlength:10,
         },
         year_experience: {
             required: true,
@@ -5215,6 +5221,14 @@ $('#add_vehicle_driver').validate({ // initialize the plugin
         },
 		address: {
             required: true,
+        },
+        password: {
+            required: true,
+        },
+        confirm_pass: {
+            required: true,
+            equalTo: "#password", 
+            minlength: 6,
         }
     },
 
@@ -5250,8 +5264,14 @@ $('#add_vehicle_driver').validate({ // initialize the plugin
                 required: "Please Select Upload Profile Image",   
         },
         address: {       
-                required: "Please enter Address",   
-        }
+                required: "Please Enter Address",   
+        },
+        password: {       
+                required: "Please Enter Password",   
+        },
+        confirm_pass:{       
+                required: "Please Enter Confirm Password",   
+        },
     }
 });
 
@@ -5273,6 +5293,12 @@ $('#edit_vehicle_driver').validate({ // initialize the plugin
         },
         mobile_number1: {
             required: true,
+            maxlength:10,
+            minlength:10,
+        },
+        mobile_number2: {
+            maxlength:10,
+            minlength:10,
         },
         year_experience: {
             required: true,
@@ -5285,6 +5311,14 @@ $('#edit_vehicle_driver').validate({ // initialize the plugin
         },
 		address: {
             required: true,
+        },
+        password: {
+            required: true,
+        },
+        confirm_pass: {
+            required: true,
+            equalTo: "#password", 
+            minlength: 6,
         }
     },
 
@@ -5306,6 +5340,12 @@ $('#edit_vehicle_driver').validate({ // initialize the plugin
         },
         address: {       
                 required: "Please enter Address",   
+        },
+        password: {       
+                required: "Please Enter Password",   
+        },
+        confirm_pass:{       
+                required: "Please Enter Confirm Password",   
         }
     }
 });

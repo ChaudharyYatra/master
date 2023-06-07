@@ -38,7 +38,7 @@
               <form method="post" enctype="multipart/form-data" id="edit_vehicle_owner">
                 <div class="card-body">
                  <div class="row">
-                 <div class="col-md-6">
+                      <div class="col-md-6">
                             <div class="form-group">
                             <label>Full Name</label>
                             <input type="text" class="form-control" name="vehicle_owner_name" id="vehicle_owner_name" placeholder="Enter vehicle owner Name" value="<?php echo $info['vehicle_owner_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">

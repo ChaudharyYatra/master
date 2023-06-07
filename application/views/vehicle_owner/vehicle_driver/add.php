@@ -73,7 +73,7 @@
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Licence Type</label><br>
-                                            <input type="checkbox" class="" name=" licence_type[]" id="licence_type" value="light weight vehicle">&nbsp;&nbsp;Light Weight Vehicles
+                                            <input type="checkbox" class="" name=" licence_type[]" id="licence_type" value="light weight vehicle">&nbsp;&nbsp;Light Weight Vehicle
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="licence_type[]" id="licence_type" value="Heavy Vehicle">&nbsp;&nbsp; Heavy Vehicle
                               </div>
                         </div>
@@ -180,6 +180,7 @@
   confirm_password = document.getElementById("confirm_pass");
 
   function validatePassword(){
+    // alert('hiiiiiiiiii')
     if(password.value != confirm_pass.value) {
       confirm_pass.setCustomValidity("New password & confirm pasword Don't Match");
     } else {

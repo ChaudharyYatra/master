@@ -97,29 +97,29 @@
                               </div>
                         </div>
                         <div class="col-md-6">
-                        <label>Password</label>
-                            <div class="form-group input-group">
-                            
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="" required="required">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password"></span>
-                                </div>
-                            </div> 
-                            </div>
-                        </div>
-                         <div class="col-md-6">
+                            <label>Password</label>
+                              <div class="form-group input-group">
+                                
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="" required="required">
+                                <div class="input-group-append">
+                                  <div class="input-group-text">
+                                    <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password"></span>
+                                  </div>
+                                </div> 
+                              </div>
+                      </div>
+                      <div class="col-md-6">
                             <label>Confirm Password</label>
-                                <div class="form-group input-group">
+                              <div class="form-group input-group">
                                 
                                 <input type="password" class="form-control" name="confirm_pass" id="confirm_pass" placeholder="Enter Confirm Password" value="" required="required">
                                 <div class="input-group-append">
-                                    <div class="input-group-text">
+                                  <div class="input-group-text">
                                     <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password2"></span>
-                                    </div>
+                                  </div>
                                 </div>
-                                </div>
-                        </div>
+                              </div>
+                      </div>
               </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -144,7 +144,7 @@
   </div>
 
 
-<script>
+  <script>
   
   var password = document.getElementById("password"), 
   confirm_password = document.getElementById("confirm_pass");
@@ -190,6 +190,7 @@ $("body").on('click', '.toggle-password2', function() {
 
 });
 </script>
+  
   
 
 </body>

@@ -38,40 +38,49 @@
               
               <div class="card-body">
               <table id="" class="table table-bordered">
-                  <tr>
-                    <th>Tour Manager Name</th>
-                    <td><?php echo $info['name']; ?></td>
-                    <th>Email Address</th>
-                    <td><?php echo $info['email']; ?></td>
-                    <th>Contact Number</th>
-                    <td><?php echo $info['contact']; ?></td>
-                  </tr>
-                  <!-- <tr>
-                    <th>Email Address</th>
-                    <td><?php //echo $info['email']; ?></td>
+              <tr>
+                    <th>Driver Name</th>
+                    <td><?php echo $info['driver_name']; ?></td>
+
                     <th>Mobile Number 1</th>
-                    <td><?php //echo $info['mobile_number1']; ?></td>
+                    <td><?php echo $info['mobile_number1']; ?></td>
+                      
                     <th>Mobile Number 2</th>
-                    <td><?php //echo $info['mobile_number2']; ?></td>
+                    <td><?php echo $info['mobile_number2']; ?></td>
                   </tr>
 
                   <tr>
-                    <th>Company GST Number</th>
-                    <td><?php //echo $info['fld_GST_number']; ?></td>
-                    <th>PAN Card</th>
-                    <td><?php //echo $info['fld_pan_number']; ?></td>
-                    <th>Office Address</th>
-                    <td><?php //echo $info['fld_office_address']; ?></td>
-                  </tr> -->
+                    <th>Years Of Experience</th>
+                    <td><?php echo $info['year_experience']; ?></td>
 
-                  <!-- <tr>
-                    <th>Registration Date</th>
-                    <td><?php //echo $info['fld_registration_date']; ?></td>
-                    <th> </th>
-                    <td> </td>
-                    <th>Photo</th>
-                    <td><img src="<?php //echo base_url(); ?>uploads/agent_photo/<?php //echo $info['image_name']; ?>" width="20%;" height="20%;" alt="Agent Image"></td>
-                  </tr> -->
+                    <th>Marital status</th>
+                    <td><?php echo $info['marital_status']; ?></td>
+
+                    <th>Licence Type</th>
+                    <td><?php echo $info['licence_type']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <th>Upload licence Image(front)</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/driver_licence_image/<?php echo $info['licence_image_front']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                    
+                    <th>Upload licence Image(back)</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/driver_licence_image/<?php echo $info['licence_image_back']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                  
+                    <th>Upload Aadhaar Image(front)</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/driver_aadhaar_image/<?php echo $info['aadhaar_image_front']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                </tr>
+
+                  <tr>
+                    <th>Upload Aadhaar Image(back)</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/driver_aadhaar_image/<?php echo $info['aadhaar_image_back']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                    
+                    <th>Upload Profile Image</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/driver_profile_image/<?php echo $info['profile_image']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                 
+                    <th>Address</th>
+                    <td><?php echo $info['address']; ?></td>
+                </tr>
 
                 </table>
                 

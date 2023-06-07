@@ -779,6 +779,7 @@ class Vehicle_driver extends CI_Controller{
                 $marital_status = trim($this->input->post('marital_status'));
                 $licence_type=implode(',',$this->input->post('licence_type'));
                 $address = trim($this->input->post('address'));
+                $password = trim($this->input->post('password'));
 
                 $arr_update = array(
                     'driver_name'   =>   $driver_name,
@@ -792,7 +793,8 @@ class Vehicle_driver extends CI_Controller{
                     'licence_image_back'        => $licence_back_filename, 
                     'aadhaar_image_front'    => $aadhaar_front_filename,
                     'aadhaar_image_back'    => $aadhaar_back_filename,
-                    'profile_image'    => $driver_profile_filename
+                    'profile_image'    => $driver_profile_filename,
+                    'password'          => $password
                 );
                 
                     $arr_where     = array("id" => $id);

@@ -286,7 +286,7 @@ margin-top: -9px;
           </div> -->
 
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url(); ?>tour_manager/login/logout" role="button">
+            <a class="nav-link" href="<?php echo base_url(); ?>vehicle_owner/login/logout" role="button">
             <i class='fas fa-sign-out-alt' style='font-size:30px'></i>
             </a>
           </li>

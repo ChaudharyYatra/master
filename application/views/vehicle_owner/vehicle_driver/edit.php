@@ -232,3 +232,52 @@
     <!-- /.content -->
   </div>
   
+
+
+  <script>
+  
+  var password = document.getElementById("password"), 
+  confirm_password = document.getElementById("confirm_pass");
+
+  function validatePassword(){
+    // alert('hiiiiiiiiii')
+    if(password.value != confirm_pass.value) {
+      confirm_pass.setCustomValidity("New password & confirm pasword Don't Match");
+    } else {
+      confirm_pass.setCustomValidity('');
+    }
+  }
+
+  password.onchange = validatePassword;
+  confirm_pass.onkeyup = validatePassword;
+
+</script>
+
+<!-- Eye Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+$("body").on('click', '.toggle-password', function() {
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $("#password");
+  if (input.attr("type") === "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+
+});
+</script>
+
+<script>
+$("body").on('click', '.toggle-password2', function() {
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $("#confirm_pass");
+  if (input.attr("type") === "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+
+});
+</script>

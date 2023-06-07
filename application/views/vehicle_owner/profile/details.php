@@ -39,40 +39,30 @@
               <div class="card-body">
               <table id="" class="table table-bordered">
                   <tr>
-                    <th>Tour Manager Name</th>
-                    <td><?php echo $info['name']; ?></td>
+                    <th>Vehicle Owner Name</th>
+                    <td><?php echo $info['vehicle_owner_name']; ?></td>
+                    <th>Mobile Number</th>
+                    <td><?php echo $info['mobile_number1']; ?></td>
+                    <th>Additional Mobile Number</th>
+                    <td><?php echo $info['mobile_number2']; ?></td>
+                  </tr>
+                  <tr>
                     <th>Email Address</th>
                     <td><?php echo $info['email']; ?></td>
-                    <th>Contact Number</th>
-                    <td><?php echo $info['contact']; ?></td>
-                  </tr>
-                  <!-- <tr>
-                    <th>Email Address</th>
-                    <td><?php //echo $info['email']; ?></td>
-                    <th>Mobile Number 1</th>
-                    <td><?php //echo $info['mobile_number1']; ?></td>
-                    <th>Mobile Number 2</th>
-                    <td><?php //echo $info['mobile_number2']; ?></td>
+                    <th>Home Address</th>
+                    <td><?php echo $info['home_address']; ?></td>
+                    <th>Office Address</th>
+                    <td><?php echo $info['office_address']; ?></td>
                   </tr>
 
                   <tr>
-                    <th>Company GST Number</th>
-                    <td><?php //echo $info['fld_GST_number']; ?></td>
-                    <th>PAN Card</th>
-                    <td><?php //echo $info['fld_pan_number']; ?></td>
-                    <th>Office Address</th>
-                    <td><?php //echo $info['fld_office_address']; ?></td>
-                  </tr> -->
-
-                  <!-- <tr>
-                    <th>Registration Date</th>
-                    <td><?php //echo $info['fld_registration_date']; ?></td>
-                    <th> </th>
-                    <td> </td>
-                    <th>Photo</th>
-                    <td><img src="<?php //echo base_url(); ?>uploads/agent_photo/<?php //echo $info['image_name']; ?>" width="20%;" height="20%;" alt="Agent Image"></td>
-                  </tr> -->
-
+                    <th>Profile Image</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_owner_profile/<?php echo $info['profile_image']; ?>" width="40%;" height="40%;" alt="Profile Image"></td>
+                    <th>Aadhar Front Image</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_owner_aadhar_img/<?php echo $info['aadhar_front_image']; ?>" width="40%;" height="40%;" alt="Aadhar Front Image"></td>
+                    <th>Aadhar Front Image</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_owner_aadhar_img/<?php echo $info['aadhar_back_image']; ?>" width="30%;" height="30%;" alt="Aadhar Back Image"></td>
+                  </tr>
                 </table>
                 
               </div>

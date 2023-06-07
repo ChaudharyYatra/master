@@ -39,43 +39,174 @@
               <form method="post" enctype="multipart/form-data" id="edit_agentprofile">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tour Manager Name</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<?php echo $info['name']; ?>" required>
+                  <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Driver Name</label>
+                                <input type="text" class="form-control" name="driver_name" id="driver_name" placeholder="Enter Driver Name" required="required" value="<?php echo $info['driver_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                              </div>
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" value="<?php echo $info['email']; ?>" required>
-                        <span id="email_result"></span>
-                      </div>
-                    </div>
 
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Contact Number</label>
-                        <input type="text" class="form-control" name="contact" id="contact" placeholder="Enter Mobile Number" value="<?php echo $info['contact']; ?>" required>
-                        <span id="email_result"></span>
+                      <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Mobile Number 1</label>
+                                <input type="text" class="form-control" name="mobile_number1" id="mobile_number1" placeholder="Enter 10 Digits Mobile Number" value="<?php echo $info['mobile_number1']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                              </div>
+                        </div>
+
+                       <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Mobile Number 2</label>
+                                <input type="text" class="form-control" name="mobile_number2" id="mobile_number2" placeholder="Enter 10 Digits Mobile Number" value="<?php echo $info['mobile_number2']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                              </div>
+                        </div>
+
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Years Of Experience</label>
+                                <input type="text" class="form-control" name="year_experience" placeholder="Enter Year Experience" required="required" value="<?php echo $info['year_experience']; ?>">
+                              </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Marital status</label><br>
+                                &nbsp;&nbsp;<input type="radio" name="marital_status" id="marital_status" value="Married" <?php if(isset($info['marital_status'])){if($info['marital_status']=='Married') {echo'checked';}}?>>&nbsp;&nbsp;Married
+                                    &nbsp;&nbsp;<input type="radio" name="marital_status" id="marital_status" value="Unmarried" <?php if(isset($info['marital_status'])){if($info['marital_status']=='Unmarried') {echo'checked';}}?>>&nbsp;&nbsp;Unmarried <br>
+                              </div>
                       </div>
-                    </div>
-                    
-                    
-                    
-                    <!-- <div class="col-md-6">
-                      <label>Photo</label>
-                      <div class="form-group">
-                        <input type="file" name="image_name" id="image_name" placeholder="Enter Photo" value="<?php echo $info['image_name']; ?>">
-                        <span id="email_result"></span>
-                        <br><span class="text-danger">Image height should be 530 & width should be 800.</span>
-                        <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
-                        <br>
-                        <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span></br>
-                        <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span></br>
-                        <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
+
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                <?php 
+                                $quali1=array();
+                                  $p = $info['licence_type'];
+                                  $quali1 = explode(',',$p);
+                                  // print_r($quali1); die;
+                                ?>
+                                <label>Hotel Type
+                                  <?php ?>
+                                </label><br>
+                                            <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="light weight vehicle" <?php if(in_array('light weight vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;light weight vehicle
+                                &nbsp;&nbsp;<input type="checkbox" name="licence_type[]" id="licence_type" value="Heavy Vehicle" <?php if(in_array('Heavy Vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; Heavy Vehicle
+                              </div>
                       </div>
-                    </div> -->
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload licence Image(front)</label><br>
+                            <input type="file" name="licence_image_front" id="licence_image_front" >
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Uploaded Image</label><br>
+                              <?php if(!empty($info['licence_image_front'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/driver_licence_image/<?php echo $info['licence_image_front']; ?>" width="50%">
+                                        <input type="hidden" name="old_licence_front_img_name" id="old_licence_front_img_name" value="<?php echo $info['licence_image_front']; ?>">
+                                        <?php } ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload licence Image(back)</label><br>
+                            <input type="file" name="licence_image_back" id="licence_image_back">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Uploaded Image</label><br>
+                              <?php if(!empty($info['licence_image_back'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/driver_licence_image/<?php echo $info['licence_image_back']; ?>" width="50%">
+                                        <input type="hidden" name="old_licence_back_img_name" id="old_licence_back_img_name" value="<?php echo $info['licence_image_back']; ?>">
+                                        <?php } ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload Aadhaar Image(front)</label><br>
+                            <input type="file" name="aadhaar_image_front" id="aadhaar_image_front">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Uploaded Image</label><br>
+                              <?php if(!empty($info['aadhaar_image_front'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/driver_aadhaar_image/<?php echo $info['aadhaar_image_front']; ?>" width="50%">
+                                        <input type="hidden" name="old_aadhaar_front_img_name" id="old_aadhaar_front_img_name" value="<?php echo $info['aadhaar_image_front']; ?>">
+                                        <?php } ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload Aadhaar Image(back)</label><br>
+                            <input type="file" name="aadhaar_image_back" id="aadhaar_image_back">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Uploaded Image</label><br>
+                              <?php if(!empty($info['aadhaar_image_back'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/driver_aadhaar_image/<?php echo $info['aadhaar_image_back']; ?>" width="50%">
+                                        <input type="hidden" name="old_aadhaar_back_img_name" id="old_aadhaar_front_img_name" value="<?php echo $info['aadhaar_image_back']; ?>">
+                                        <?php } ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload Profile Image</label><br>
+                            <input type="file" name="profile_image" id="profile_image">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Uploaded Image</label><br>
+                              <?php if(!empty($info['profile_image'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/driver_profile_image/<?php echo $info['profile_image']; ?>" width="50%">
+                                        <input type="hidden" name="old_profile_img_name" id="old_profile_img_name" value="<?php echo $info['profile_image']; ?>">
+                                        <?php } ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label>Address</label>
+                            <textarea type="text" class="form-control" name="address" id="address" placeholder="Enter Address"><?php echo $info['address']; ?></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Password</label>
+                              <div class="form-group input-group">
+                                
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="<?php echo $info['password']; ?>" required>
+                                <div class="input-group-append">
+                                  <div class="input-group-text">
+                                    <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password"></span>
+                                  </div>
+                                </div> 
+                              </div>
+                      </div>
+                      <div class="col-md-6">
+                            <label>Confirm Password</label>
+                              <div class="form-group input-group">
+                                
+                                <input type="password" class="form-control" name="confirm_pass" id="confirm_pass" placeholder="Enter Confirm Password" value="<?php echo $info['password']; ?>" required>
+                                <div class="input-group-append">
+                                  <div class="input-group-text">
+                                    <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password2"></span>
+                                  </div>
+                                </div> 
+                              </div>
+                      </div>
                   </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -100,3 +231,51 @@
     </section>
     <!-- /.content -->
   </div>
+
+
+  <script>
+  
+  var password = document.getElementById("password"), 
+  confirm_password = document.getElementById("confirm_pass");
+
+  function validatePassword(){
+    if(password.value != confirm_pass.value) {
+      confirm_pass.setCustomValidity("New password & confirm pasword Don't Match");
+    } else {
+      confirm_pass.setCustomValidity('');
+    }
+  }
+
+  password.onchange = validatePassword;
+  confirm_pass.onkeyup = validatePassword;
+
+</script>
+
+<!-- Eye Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+$("body").on('click', '.toggle-password', function() {
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $("#password");
+  if (input.attr("type") === "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+
+});
+</script>
+
+<script>
+$("body").on('click', '.toggle-password2', function() {
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $("#confirm_pass");
+  if (input.attr("type") === "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+
+});
+</script>

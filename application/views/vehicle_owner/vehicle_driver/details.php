@@ -38,7 +38,7 @@
               
               <div class="card-body">
                 <table id="" class="table table-bordered table-hover">
-                <tr>
+                  <tr>
                     <th>Driver Name</th>
                     <td><?php echo $info['driver_name']; ?></td>
 
