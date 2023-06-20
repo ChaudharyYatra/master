@@ -23,6 +23,9 @@
         width:70px;
 
     }
+    .mealplan_css{
+            border: 1px solid red !important;
+        }
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -54,16 +57,16 @@
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data" id="add_tour_expenses">   
                     <div class="row">
-                        <div class="col-md-6">
+                        <!---======================== this tour title and tour date in select field and apply dependancy on tour title wise tour date ====================== -->
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                             <label>Tour No / Name</label>
                                 <select class="form-control" name="tour_number" id="tour_number" onfocus='this.size=5;' onblur='this.size=1;' 
                                     onchange='this.size=1; this.blur();'>
                                 <option value="">Select tour title</option>
-                                <!-- <option value="Other">Other</option> -->
-                                <?php foreach($packages_data as $packages_data_value){ ?> 
-                                    <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
-                                <?php } ?>
+                                <?php //foreach($packages_data as $packages_data_value){ ?> 
+                                    <option value="<?php //echo $packages_data_value['id'];?>"><?php //echo $packages_data_value['tour_number'];?> -  <?php //echo $packages_data_value['tour_title'];?></option>
+                                <?php //} ?>
                                 </select>
                             </div>
                         </div>
@@ -73,17 +76,43 @@
                                 <label>Tour date</label>
                                 <select class="select_css" name="tour_date" id="tour_date" required>
                                 <option value="">Select Tour Date</option>
-                                        <?php //foreach($district_data as $district_data_value){ ?> 
-                                        <option value="<?php //echo $district_data_value['id'];?>" <?php //if($district_data_value['id']==$all_traveller_info_value['district_name']){echo "selected";} ?>><?php //echo $district_data_value['district'];?></option>
-                                        <?php //} ?>
+                                        
                                 </select>
+                            </div>
+                        </div> -->
+                        <!---======================== this tour title and tour date in select field and apply dependancy on tour title wise tour date ====================== -->
+                        <?php foreach($packages_data as $packages_data_info){ ?> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tour No / Name</label>
+                                <input type="text" class="form-control" name="tour_number_1" id="tour_number_1" value="<?php if(!empty($packages_data_info)){ echo $packages_data_info['tour_number'];} ?> - <?php if(!empty($packages_data_info)){ echo $packages_data_info['tour_title'];} ?>">
+                                <input type="hidden" class="form-control" name="tour_number" id="tour_number" value="<?php echo $packages_data_info['id'];?>">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label>Tour date</label>
+                                <input type="text" class="form-control" name="tour_date_1" id="tour_date_1" value="<?php if(!empty($packages_data_info)){ echo $packages_data_info['journey_date'];} ?>">
+                                <input type="hidden" class="form-control" name="tour_date" id="tour_date" value="<?php echo $packages_data_info['pd_id'];?>">
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Expenses Date</label>
                                 <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" max="<?php echo date("Y-m-d"); ?>" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pax type</label>
+                                <select class="select_css" name="pax_type" id="pax_type" required>
+                                    <option value="">Select Pax Type</option>
+                                    <option value="Customer">Customer</option>
+                                    <option value="Staff">Staff</option>
+                                </select>
                             </div>
                         </div>
 
@@ -101,12 +130,20 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Sub-Expenses Head</label>
-                                <select class="select_css" name="expense_category" id="expense_category">
+                                <select class="form-control" name="expense_category" id="expense_category" onchange='Expenses_category(this.value); 
+                                  this.blur();' onfocus='this.size=4;' onblur='this.size=1;'>
                                         <option value="">Select Sub-Expenses Head</option>
                                         <?php //foreach($district_data as $district_data_value){ ?> 
                                         <option value="<?php //echo $district_data_value['id'];?>" <?php //if($district_data_value['id']==$all_traveller_info_value['district_name']){echo "selected";} ?>><?php //echo $district_data_value['district'];?></option>
                                         <?php //} ?>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" id="other_expense_category_div" style='display:none;'>
+                            <div class="form-group">
+                                <label>Other Sub-Expenses Head</label>
+                                <input type="text" class="form-control mealplan_css" name="other_expense_category" id="other_expense_category" placeholder="Enter other sub expense category" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
 
@@ -119,18 +156,18 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Bill Number</label>
-                                <input type="text" class="form-control" name="bill_number" id="bill_number" placeholder="Enter bill Number" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label>Total Pax</label>
                                 <input type="text" class="form-control" name="total_pax" id="total_pax" placeholder="Enter total pax" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bill Number</label>
+                                <input type="text" class="form-control" name="bill_number" id="bill_number" placeholder="Enter bill Number" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                            </div>
+                        </div>
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Bill Amount</label>

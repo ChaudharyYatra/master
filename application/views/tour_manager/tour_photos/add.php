@@ -47,13 +47,30 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Upload Image</label><br>
+                                <label>Upload Image (One Image)</label><br>
                                 <input type="file" name="image_name" id="image_name" required="required">
-                                <br><span class="text-danger">Image height should be 530 & width should be 800.</span>
                                 <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span><br>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Upload Image (Two Image)</label><br>
+                            <input type="file" name="image_name_two" id="image_name_two" required="required">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Upload Image (Three Image)</label><br>
+                            <input type="file" name="image_name_three" id="image_name_three" required="required">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                      </div>  
                     </div>
+
+                    <b><span class="text-danger">Please Add Only Three Photos Of Particular Tour.</span></b>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit" value="submit" id="submit">Submit</button>

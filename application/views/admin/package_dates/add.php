@@ -55,6 +55,7 @@
                                 <label>Available Seats</label>
                                 <input type="text" class="form-control" name="available_seats[]" id="available_seats" placeholder="Enter Available Seats" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
                                 <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['id']; ?>" >
+                                <input type="hidden" class="form-control" name="package_title" placeholder="Enter Available Seats" value="<?php echo $info['tour_title']; ?>" >
                               </div>
                       </div>
                         <!-- <div class="col-md-2">

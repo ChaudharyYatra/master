@@ -61,7 +61,7 @@ class Vehicle_driver extends CI_Controller{
             {
                 // =========================Upload licence Image(front)===================================================
                 $file_name     = $_FILES['licence_image_front']['name'];
-                $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg');
+                $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg','pdf','PDF');
 
                 if($file_name!="")
                 {               
@@ -77,7 +77,7 @@ class Vehicle_driver extends CI_Controller{
                 $file_name_to_dispaly =  $this->config->item('project_name').''.round(microtime(true)).str_replace(' ','_',$file_name);
 
                 $config['upload_path']   = './uploads/driver_licence_image/';
-                $config['allowed_types'] = 'png|jpg|jpeg|JPG|PNG|JPEG'; 
+                $config['allowed_types'] = 'png|jpg|jpeg|JPG|PNG|JPEG|pdf|PDF'; 
                 $config['max_size']      = '10000';
                 $config['file_name']     =  $file_name_to_dispaly;
                 $config['overwrite']     =  TRUE;
@@ -107,10 +107,10 @@ class Vehicle_driver extends CI_Controller{
                  // ====================Upload licence Image(back) ============================================
                  $file_name     = $_FILES['licence_image_back']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['licence_image_back'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -126,7 +126,7 @@ class Vehicle_driver extends CI_Controller{
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/driver_licence_image/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -156,10 +156,10 @@ class Vehicle_driver extends CI_Controller{
 
                 $file_name     = $_FILES['aadhaar_image_front']['name'];
 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['aadhaar_image_front'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -175,7 +175,7 @@ class Vehicle_driver extends CI_Controller{
                 $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/driver_aadhaar_image/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -205,10 +205,10 @@ class Vehicle_driver extends CI_Controller{
 
                  $file_name     = $_FILES['aadhaar_image_back']['name'];
 
-                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
  
                  $file_name = $_FILES['aadhaar_image_back'];
-                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
  
                  if($file_name['name']!="")
                  {
@@ -224,7 +224,7 @@ class Vehicle_driver extends CI_Controller{
                  $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
              
                  $config['upload_path']   = './uploads/driver_aadhaar_image/';
-                 $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                 $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                  $config['max_size']      = '10000';
                  $config['file_name']     = $file_name_to_dispaly_pdf;
                  $config['overwrite']     = TRUE;
@@ -253,10 +253,10 @@ class Vehicle_driver extends CI_Controller{
 
                 $file_name     = $_FILES['profile_image']['name'];
 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['profile_image'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -272,7 +272,7 @@ class Vehicle_driver extends CI_Controller{
                 $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/driver_profile_image/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -305,6 +305,9 @@ class Vehicle_driver extends CI_Controller{
                 $licence_type=implode(',',$this->input->post('licence_type'));
                 $address = trim($this->input->post('address'));
                 $password = trim($this->input->post('password'));
+                $pancard_no = trim($this->input->post('pancard_no'));
+                $gst_no = trim($this->input->post('gst_no'));
+                $licence_valid_date = trim($this->input->post('licence_valid_date'));
                 
                 $arr_insert = array(
                     'driver_name'   =>   $driver_name,
@@ -315,6 +318,9 @@ class Vehicle_driver extends CI_Controller{
                     'licence_type'          => $licence_type,
                     'address'          => $address,
                     'password'          => $password,
+                    'pan_card_no'          => $pancard_no,
+                    'gst_no'          => $gst_no,
+                    'licence_valid_date'          => $licence_valid_date,
                     'licence_image_front'        => $licence_front_filename,
                     'licence_image_back'        => $licence_back_filename, 
                     'aadhaar_image_front'    => $aadhaar_front_filename,
@@ -540,10 +546,10 @@ class Vehicle_driver extends CI_Controller{
                 {
                $file_name     = $_FILES['licence_image_back']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['licence_image_back'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -560,7 +566,7 @@ class Vehicle_driver extends CI_Controller{
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/driver_licence_image/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -600,10 +606,10 @@ class Vehicle_driver extends CI_Controller{
             {
             $file_name     = $_FILES['aadhaar_image_front']['name'];
 
-            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
             $file_name = $_FILES['aadhaar_image_front'];
-            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
             if($file_name['name']!="")
             {
@@ -620,7 +626,7 @@ class Vehicle_driver extends CI_Controller{
             $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
 
             $config['upload_path']   = './uploads/driver_aadhaar_image/';
-            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
             $config['max_size']      = '10000';
             $config['file_name']     = $file_name_to_dispaly_pdf;
             $config['overwrite']     = TRUE;
@@ -660,10 +666,10 @@ class Vehicle_driver extends CI_Controller{
             {
             $file_name     = $_FILES['aadhaar_image_back']['name'];
             
-            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
             $file_name = $_FILES['aadhaar_image_back'];
-            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
             if($file_name['name']!="")
             {
@@ -680,7 +686,7 @@ class Vehicle_driver extends CI_Controller{
             $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
 
             $config['upload_path']   = './uploads/driver_aadhaar_image/';
-            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
             $config['max_size']      = '10000';
             $config['file_name']     = $file_name_to_dispaly_pdf;
             $config['overwrite']     = TRUE;
@@ -720,10 +726,10 @@ class Vehicle_driver extends CI_Controller{
                 {
                $file_name     = $_FILES['profile_image']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['profile_image'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -740,7 +746,7 @@ class Vehicle_driver extends CI_Controller{
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/driver_profile_image/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -780,6 +786,9 @@ class Vehicle_driver extends CI_Controller{
                 $licence_type=implode(',',$this->input->post('licence_type'));
                 $address = trim($this->input->post('address'));
                 $password = trim($this->input->post('password'));
+                $pancard_no = trim($this->input->post('pancard_no'));
+                $gst_no = trim($this->input->post('gst_no'));
+                $licence_valid_date = trim($this->input->post('licence_valid_date'));
 
                 $arr_update = array(
                     'driver_name'   =>   $driver_name,
@@ -794,7 +803,9 @@ class Vehicle_driver extends CI_Controller{
                     'aadhaar_image_front'    => $aadhaar_front_filename,
                     'aadhaar_image_back'    => $aadhaar_back_filename,
                     'profile_image'    => $driver_profile_filename,
-                    'password'          => $password
+                    'pan_card_no'          => $pancard_no,
+                    'gst_no'          => $gst_no,
+                    'licence_valid_date'          => $licence_valid_date,
                 );
                 
                     $arr_where     = array("id" => $id);

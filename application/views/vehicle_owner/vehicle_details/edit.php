@@ -90,18 +90,29 @@
                               </div>
                       </div>
                       
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label>Insurance Number</label>
-                            <input type="text" class="form-control" name="insurance_number" placeholder="Enter Insurance Number" required="required" value="<?php echo $info['insurance_number'];?>">
+                      <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                              <label>Insurance Number</label>
+                              <input type="text" class="form-control" name="insurance_number" placeholder="Enter Insurance Number" required="required" value="<?php echo $info['insurance_number'];?>">
+                              </div>
                             </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                              <label>Insurance Validity Date</label>
+                              <input type="date" class="form-control" name="insurance_valid_date" placeholder="Enter Insurance Number" required="required" value="<?php echo $info['insurance_valid_date'];?>">
+                              </div>
+                            </div>
+                          </div>
                         </div>
+                        
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Upload Insurance Image</label><br>
                             <input type="file" name="insurance_image_name" id="insurance_image_name">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -111,21 +122,37 @@
                                         <img src="<?php echo base_url(); ?>uploads/insurance_photo/<?php echo $info['insurance_image_name']; ?>" width="50%">
                                         <input type="hidden" name="old_insurance_img_name" id="old_insurance_img_name" value="<?php echo $info['insurance_image_name']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['insurance_image_name'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/insurance_photo/<?php echo $info['insurance_image_name']; ?>">Download</a>
+                                            <input type="hidden" name="old_insurance_img_name" id="old_insurance_img_name" value="<?php if(!empty($info['insurance_image_name'])){echo $info['insurance_image_name'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-6">
                               <div class="form-group">
                                 <label>Permit Number</label>
                                 <input type="text" class="form-control" name="permit_number" placeholder="Enter Permit Number" required="required" value="<?php echo $info['permit_number'];?>">
                               </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                            <label>Permit Validity Date</label>
+                            <input type="date" class="form-control" name="permit_valid_date" placeholder="Enter Insurance Number" required="required" value="<?php echo $info['permit_valid_date'];?>">
+                            </div>
+                          </div>
                         </div>
+                      </div>
+
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Upload Permit Image</label><br>
                             <input type="file" name="permit_image_name" id="permit_image_name">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -134,6 +161,11 @@
                               <?php if(!empty($info['permit_image_name'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/permit_photo/<?php echo $info['permit_image_name']; ?>" width="50%">
                                         <input type="hidden" name="old_permit_img_name" id="old_permit_img_name" value="<?php echo $info['permit_image_name']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['permit_image_name'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/permit_photo/<?php echo $info['permit_image_name']; ?>">Download</a>
+                                            <input type="hidden" name="old_permit_img_name" id="old_permit_img_name" value="<?php if(!empty($info['permit_image_name'])){echo $info['permit_image_name'];}?>">
                                         <?php } ?>
                             </div>
                         </div>
@@ -174,7 +206,7 @@
                           <div class="form-group">
                             <label>Vehicle Image(Front)</label><br>
                             <input type="file" name="vehicle_front_image" id="vehicle_front_image" >
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
                       <div class="col-md-2">
@@ -184,6 +216,11 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_front_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_front_img_name" id="old_vehicle_front_img_name" value="<?php echo $info['vehicle_front_image']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_front_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_front_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_front_img_name" id="old_vehicle_front_img_name" value="<?php if(!empty($info['vehicle_front_image'])){echo $info['vehicle_front_image'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
@@ -191,7 +228,7 @@
                           <div class="form-group">
                             <label>Vehicle Image(Back)</label><br>
                             <input type="file" name="vehicle_back_image" id="vehicle_back_image">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
                       <div class="col-md-2">
@@ -201,6 +238,11 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_back_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_back_img_name" id="old_vehicle_back_img_name" value="<?php echo $info['vehicle_back_image']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_back_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_back_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_back_img_name" id="old_vehicle_back_img_name" value="<?php if(!empty($info['vehicle_back_image'])){echo $info['vehicle_back_image'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
                       
@@ -208,7 +250,7 @@
                           <div class="form-group">
                             <label>Vehicle Image(left)</label><br>
                             <input type="file" name="vehicle_left_image" id="vehicle_left_image">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
                       <div class="col-md-2">
@@ -218,6 +260,11 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_left_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_left_img_name" id="old_vehicle_left_img_name" value="<?php echo $info['vehicle_left_image']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_left_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_left_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_left_img_name" id="old_vehicle_left_img_name" value="<?php if(!empty($info['vehicle_left_image'])){echo $info['vehicle_left_image'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
@@ -225,7 +272,7 @@
                           <div class="form-group">
                             <label>Vehicle Image(right)</label><br>
                             <input type="file" name="vehicle_right_image" id="vehicle_right_image">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
                       <div class="col-md-2">
@@ -235,6 +282,11 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_right_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_right_img_name" id="old_vehicle_right_img_name" value="<?php echo $info['vehicle_right_image']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_right_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_right_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_right_img_name" id="old_vehicle_right_img_name" value="<?php if(!empty($info['vehicle_right_image'])){echo $info['vehicle_right_image'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
@@ -242,7 +294,7 @@
                           <div class="form-group">
                             <label>Vehicle Image(inside one)</label><br>
                             <input type="file" name="vehicle_insideone_image" id="vehicle_insideone_image">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
                       <div class="col-md-2">
@@ -252,6 +304,11 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_insideone_img_name" id="old_vehicle_insideone_img_name" value="<?php echo $info['vehicle_insideone_image']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_insideone_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_insideone_img_name" id="old_vehicle_insideone_img_name" value="<?php if(!empty($info['vehicle_insideone_image'])){echo $info['vehicle_insideone_image'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
@@ -259,7 +316,7 @@
                           <div class="form-group">
                             <label>Vehicle Image(inside two)</label><br>
                             <input type="file" name="vehicle_insidetwo_image" id="vehicle_insidetwo_image">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
                       <div class="col-md-2">
@@ -268,6 +325,11 @@
                               <?php if(!empty($info['vehicle_insidetwo_image'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insidetwo_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_insidetwo_img_name" id="old_vehicle_insidetwo_img_name" value="<?php echo $info['vehicle_insidetwo_image']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_insidetwo_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insidetwo_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_insidetwo_img_name" id="old_vehicle_insidetwo_img_name" value="<?php if(!empty($info['vehicle_insidetwo_image'])){echo $info['vehicle_insidetwo_image'];}?>">
                                         <?php } ?>
                             </div>
                         </div>

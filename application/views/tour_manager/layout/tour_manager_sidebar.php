@@ -62,7 +62,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 My Tour Operation
@@ -99,12 +99,12 @@
                 </a>
               </li>
 
-              <!-- <li class="nav-item">
-                <a href="<?php //echo base_url(); ?>tour_manager/daily_attendance/add" class="nav-link">
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/attendance/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daily Attendance</p>
                 </a>
-              </li> -->
+              </li>
 
             </ul>
           </li>

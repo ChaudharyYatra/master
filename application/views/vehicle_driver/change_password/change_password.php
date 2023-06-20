@@ -35,16 +35,23 @@
                 <div class="card-body">
                  <div class="row">
                       <div class="col-md-6">
-                            <label>Old Password</label>
-                              <div class="form-group input-group">
-                                <input type="password" name="old_pass" id="old_pass" class="form-control" placeholder="Old Password" required>
-                                <div class="input-group-append">
-                                  <div class="input-group-text">
-                                  <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password1"></span>
-                                  </div>
-                                </div>
-                              </div>
+                        <label>Old Password</label>
+                        <div class="form-group input-group">
+                          <input type="password" name="old_pass" id="old_pass" class="form-control" placeholder="Old Password" required><br>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                            <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password1"></span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                      <!-- <div class="col-md-6">
+                            <label>Old Password</label>
+                            <div class="form-group mb-2">
+                                <input type="password" name="old_pass" class="form-control" id="lpass" placeholder="Password">
+                                <i id="toggler"class="far fa-eye" style="position: absolute;right: 50px;top: 48%;transform: translateY(-50%);cursor: pointer;"></i></span>
+                            </div>
+                      </div> -->
 
                       <div class="col-md-6">
                             <label>New Password</label>
@@ -176,6 +183,22 @@ $("body").on('click', '.toggle-password1', function() {
 
 });
 </script>
+
+<script>
+    var password = document.getElementById('lpass');
+    var toggler = document.getElementById('toggler');
+        showHidePassword = () => {
+        if (password.type == 'password') {
+        password.setAttribute('type', 'text');
+        toggler.classList.add('fa-eye-slash');
+        } 
+        else {
+        toggler.classList.remove('fa-eye-slash');
+        password.setAttribute('type', 'password');
+        }
+    };
+    toggler.addEventListener('click', showHidePassword);
+  </script>
 
   
 

@@ -51,7 +51,7 @@
                    </tr>
                    <tr>
                     <th>City</th>
-                    <td><?php echo $info['city']; ?></td>
+                    <td><?php echo $info['city_name']; ?></td>
                   
                     <?php if($info['city']=='Other'){?>
                       <th>Other City Name</th>

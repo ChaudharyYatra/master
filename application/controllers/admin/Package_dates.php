@@ -55,6 +55,8 @@ class Package_dates extends CI_Controller{
         
             if($this->input->post('submit'))
             {
+                $package_title  = $this->input->post('package_title');
+                $package_length = substr($package_title, 0, 3);
                 $journey_date  = $this->input->post('journey_date'); 
                 $available_seats = $this->input->post('available_seats');
                 $package_id = $this->input->post('package_id');
@@ -75,7 +77,19 @@ class Package_dates extends CI_Controller{
                        
                     );
                     $inserted_id = $this->master_model->insertRecord('package_date',$arr_insert,true);
+                    // ------------------unique id created ---------------------------------------------------------
+                    $insertid = $this->db->insert_id(); 
+
+                    $package_unique_id = $package_id.'_'.$package_length.'_'.$journey_date[$i].'_'.$insertid;
+
+                    $arr_update = array(
+                        'package_unique_id'   =>   $package_unique_id
+                    );
+                    $arr_where = array("id" => $inserted_id);
+                    $package_unique_inserted= $this->master_model->updateRecord('package_date',$arr_update,$arr_where);
+                    // -------------------unique id created ------------------------------------------------------------------
                 }
+                
 
                     if($id > 0)
                     {

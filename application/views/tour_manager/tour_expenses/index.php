@@ -9,8 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
-              
+              <!-- <a href="<?php //echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a> -->
             </ol>
           </div>
         </div>
@@ -36,6 +35,7 @@
                     <th>SN</th>
                     <th>Expense Type</th>
                     <th>Expense Category</th>
+                    <th>Other Expense Category</th>
                     <th>Expense Amount</th>
                     <th>Expense Date</th>
                     <th>Expense Remark</th>
@@ -53,6 +53,11 @@
                     <td><?php echo $i; ?></td>
                     <td><?php echo $info['expense_type_name'] ?></td>
                     <td><?php echo $info['expense_category'] ?></td>
+                    <?php if($info['expense_category_id'] == 'Other'){?>
+                      <td><?php echo $info['other_expense_category'] ?></td>
+                    <?php } else {?>
+                      <td>---</td>
+                    <?php } ?>
                     <td><?php echo $info['expense_amt'] ?></td>
                     <td><?php echo date("d-m-Y",strtotime($info['expense_date'])) ?></td>
                     <td><?php echo $info['tour_expenses_remark'] ?></td>

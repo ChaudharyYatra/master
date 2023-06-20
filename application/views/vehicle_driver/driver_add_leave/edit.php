@@ -58,6 +58,13 @@
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Reason</label>
+                            <textarea type="text" class="form-control" name="reason" id="reason" placeholder="Enter Reason" required><?php echo $info['reason'];?></textarea>
+                        </div>
+                    </div>
+
                 </div>
 
                     </div>

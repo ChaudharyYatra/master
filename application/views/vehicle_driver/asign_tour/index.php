@@ -39,6 +39,8 @@
                     <th>Tour Days </th>
                     <th>Vehicle RTO Registration No</th>
                     <th>Boarding Office</th>
+                    <th>Tour Status</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -52,10 +54,43 @@
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $info['tour_number'] ?> - <?php echo $info['tour_title'] ?></td>
+                    <?php if($info['journey_date']!= ''){?>
                     <td><?php echo date("d-m-Y",strtotime($info['journey_date'])) ?></td>
+                    <?php } else { ?>
+                      <td> --- </td>
+                    <?php } ?>
                     <td><?php echo $info['tour_number_of_days'] ?></td>
                     <td><?php echo $info['registration_number'] ?></td>
                     <td><?php echo $info['booking_center'] ?></td>
+
+                    <?php 
+                    $today= date('Y-m-d');
+                    if($info['journey_date'] > $today) {?>
+                      <td> upcoming Tour </td>
+                    <?php } else if($info['journey_date'] == $today){
+                      ?>
+                    <td> Running Tour </td>
+                    <?php 
+                     } else{
+                    ?>
+                    <td> Completed Tour </td>
+                     <?php } ?>
+
+                     <td>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default">Action</button>
+                        <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                          <a href="<?php echo $module_url_path;?>/iternary_details/<?php $aid=base64_encode($info['id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
+					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Itinerary Details</button></a>
+                          <!-- <a href="<?php //echo $module_url_tour_photos;?>/add/<?php //$aid=base64_encode($info['package_id']); 
+					                  //echo rtrim($aid, '='); ?>" class="itinerary_css"><button class="dropdown-item">Add Tour Photos</button></a> -->
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   
                   <?php $i++; } ?>

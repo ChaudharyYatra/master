@@ -36,6 +36,7 @@
                     <th>SN</th>
                     <th>Expense Type</th>
                     <th>Expense Category</th>
+                    <th>Approved / Disapproved</th>
                     <th>Is Active?</th>
                     <th>Action</th>
                   </tr>
@@ -52,6 +53,41 @@
                     <td><?php echo $info['expense_type_name'] ?></td>
                     <td><?php echo $info['expense_category'] ?></td>
                    
+                    <td>
+                        <?php 
+                        if($info['status']=='approved' || $info['status']=='rejected')
+                        {
+                        	
+                        if($info['is_active']=='no' && $info['is_active']!='')
+                          {
+                        ?>
+                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+							            echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><i class="fa fa-thumbs-up"></i></a>
+                        <?php } 
+                        else if($info['is_active']=='yes' && $info['is_active']!=''){?> 
+                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+							            echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><i class="fa fa-thumbs-down"></i> </a>
+                        <?php } 
+                        else if($info['is_active']=''){?>
+                          <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+                            echo rtrim($aid, '=') ?>"><i class="fa fa-thumbs-up"></i> </a>
+                          <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+                            echo rtrim($aid, '=') ?>"><i class="fa fa-thumbs-down"></i> </a>
+                          <?php } 
+                        }else if($info['status']=='pending'){
+                          
+                        ?>
+                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+							echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><i class="fa fa-thumbs-down"></i></a> / 
+                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+							echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><i class="fa fa-thumbs-up"></i> </a>
+                        <?php } ?>
+
+
+
+
+                    </td>
+                    
                     <td>
                         <?php 
                         if($info['is_active']=='yes')

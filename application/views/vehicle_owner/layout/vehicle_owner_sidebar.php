@@ -59,6 +59,24 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>vehicle_owner/show_driver_leave/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+              Show Driver Leave
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>vehicle_owner/my_asign_tour/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+              My Asign Tour
+              </p>
+            </a>
+          </li>
+
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>vehicle_owner/profile/index" class="nav-link">

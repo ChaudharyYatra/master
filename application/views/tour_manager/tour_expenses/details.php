@@ -43,7 +43,11 @@
                     <td><?php echo $tour_expenses_all_info['tour_number']; ?> - <?php echo $tour_expenses_all_info['tour_title']; ?></td>
 
                     <th>Tour Date</th>
+                    <?php if($tour_expenses_all_info['journey_date']!=''){?>
                     <td><?php echo date("d-m-Y",strtotime($tour_expenses_all_info['journey_date'])); ?></td>
+                    <?php } else{ ?>
+                      <td> --- </td>
+                      <?php } ?>
                    </tr>
                 
                     <tr>

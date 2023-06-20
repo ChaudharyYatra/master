@@ -1,3 +1,9 @@
+<style>
+  .btn_color{
+    text-decoration:none;
+    color:white;
+  }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -69,9 +75,12 @@
                         ?>
                         <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
 							echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-success btn-sm">YES</button></a>
-                        <?php } else { ?>
-                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
-							echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</button> </a>
+                        <?php } else if($info['status']= 'pending' && $info['status']= 'rejected'){ ?>
+                          <button class="btn btn-danger btn-sm" disabled><a class="btn_color" href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+							echo rtrim($aid, '=').'/'.$info['is_active']; ?>">NO </a></button>
+                        <?php } else if($info['status']= 'approved'){ ?>
+                          <a class="btn_color" href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+							echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</a></button> 
                         <?php } ?>
                     </td>
                     <td>

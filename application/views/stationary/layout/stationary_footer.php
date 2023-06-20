@@ -379,7 +379,6 @@ $(".send_qty").each(function () {
     for(var i=0; i<count; i++){
             
         var structure = $(` 
-
                <tr>
                   <td>
                     <select class="form-control" style="width: 100%;" name="academic_year[]" id="academic_year" required="required">

@@ -38,7 +38,7 @@
               <form method="post" enctype="multipart/form-data" id="edit_tour_photo">
                 <div class="card-body">
                     <div class="row">
-                    <div class="col-md-6">
+                      <div class="col-md-6">
                               <div class="form-group">
                                 <label>Destinations</label>
                                 <input type="text" class="form-control" name="destinations" id="destinations" placeholder="Enter Destinations" required="required" value="<?php echo $info['destination']; ?>">
@@ -47,15 +47,9 @@
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
-                            <label>Upload Image</label><br>
-                            <input type="file" name="image_name" id="image_name_package">
-                            <br><span class="text-danger">Image height should be 530 & width should be 800.</span>
+                            <label>Upload Image(One)</label><br>
+                            <input type="file" name="image_name" id="image_name">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
-                             <br>
-                             
-                            <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span>
-                            <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span>
-                            <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
                           </div>
                       </div>
                       
@@ -63,8 +57,44 @@
                           <div class="form-group">
                             <label>Uploaded Image</label><br>
                             <?php if(!empty($info['image_name'])){ ?>
-                                      <img src="<?php echo base_url(); ?>uploads/tour_photos/<?php echo $info['image_name']; ?>" width="100%">
+                                      <img src="<?php echo base_url(); ?>uploads/tour_photos/<?php echo $info['image_name']; ?>" width="70%">
                                       <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['image_name']; ?>">
+                                      <?php } ?>
+                          </div>
+                      </div>
+
+                      <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload Image(Two)</label><br>
+                            <input type="file" name="image_name_two" id="image_name_two">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                      </div>
+                      
+                      <div class="col-md-2">
+                          <div class="form-group">
+                            <label>Uploaded Image</label><br>
+                            <?php if(!empty($info['image_name_two'])){ ?>
+                                      <img src="<?php echo base_url(); ?>uploads/tour_photos/<?php echo $info['image_name_two']; ?>" width="70%">
+                                      <input type="hidden" name="old_img_name_two" id="old_img_name_two" value="<?php echo $info['image_name_two']; ?>">
+                                      <?php } ?>
+                          </div>
+                      </div>
+
+                      <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload Image(Three)</label><br>
+                            <input type="file" name="image_name_three" id="image_name_three">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                      </div>
+                      
+                      <div class="col-md-2">
+                          <div class="form-group">
+                            <label>Uploaded Image</label><br>
+                            <?php if(!empty($info['image_name_three'])){ ?>
+                                      <img src="<?php echo base_url(); ?>uploads/tour_photos/<?php echo $info['image_name_three']; ?>" width="70%">
+                                      <input type="hidden" name="old_img_name_three" id="old_img_name_three" value="<?php echo $info['image_name_three']; ?>">
                                       <?php } ?>
                           </div>
                       </div>

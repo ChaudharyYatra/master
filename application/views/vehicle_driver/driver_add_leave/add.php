@@ -44,6 +44,12 @@
                         <div class="form-group">
                             <label>From Date</label>
                             <input type="date" class="form-control" name="from_date" id="from_date" placeholder="Enter From date" min="<?php echo date("Y-m-d"); ?>" required>
+                            <?php  
+                            foreach($arr_data as $info) 
+                            { 
+                              ?>
+                            <input type="hidden" class="form-control" name="driver_id" id="driver_id" placeholder="Enter From date" value="<?php echo $info["id"]; ?>" required>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -51,6 +57,13 @@
                         <div class="form-group">
                             <label>To Date</label>
                             <input type="date" class="form-control" name="to_date" id="to_date" placeholder="Enter To Date" min="<?php echo date("Y-m-d"); ?>" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Reason</label>
+                            <textarea type="text" class="form-control" name="reason" id="reason" placeholder="Enter Reason" required></textarea>
                         </div>
                     </div>
                 </div>

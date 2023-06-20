@@ -61,10 +61,8 @@
                                   foreach($package_type as $package_type_info) 
                                   { 
                                 ?>
-                                <!-- <option value="<?php //echo $package_type_info['package_type'];?>"><?php //echo $package_type_info['package_type'];?></option> -->
                                 <option value="<?php echo $package_type_info['id'];?>" <?php if(isset($info['package_type'])){if($package_type_info['id'] == $info['package_type']) {echo 'selected';}}?>><?php echo $package_type_info['package_type'];?></option>
                                 <?php } ?>
-                                <!-- <option value="Special Limited Offer" <?php //if(isset($info['package_type'])){if("Special Limited Offer" == $info['package_type']) {echo 'selected';}}?>>Special Limited Offer</option> -->
                           </select>
                         </div>
                       </div>

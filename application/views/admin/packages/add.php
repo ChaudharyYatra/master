@@ -155,21 +155,21 @@
                         </div>
                         
                       <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Upload Image</label><br>
-                            <input type="file" name="image_name" id="image_nam" required="required">
-                            <br><span class="text-danger">Image height should be 530 & width should be 800.</span>
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
-                            <br>
-                    <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span>
-                    <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span>
-                    <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
-                          </div>
+                        <div class="form-group">
+                          <label>Upload Image</label><br>
+                          <input type="file" name="image_name" id="image_nam" required="required">
+                          <br><span class="text-danger">Image height should be 530 & width should be 800.</span>
+                          <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          <br>
+                          <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span>
+                          <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span>
+                          <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
+                        </div>
                       </div>
 
                       <div class="col-md-6">
                           <div class="form-group">
-                            <label>Upload Itinerary PDF</label><br>"
+                            <label>Upload Itinerary PDF</label><br>
                             <input type="file" name="pdf_name" id="pdf_name_package" accept="application/pdf" required="required">
                             <br><span class="text-danger">PDF size should be less than 2MB.</span>
                             <br><span class="text-danger">Please upload only PDF files.</span>

@@ -65,6 +65,20 @@
                                 <input type="text" class="form-control" name="year_experience" placeholder="Enter Year Experience" required="required" value="<?php echo $info['year_experience']; ?>">
                               </div>
                         </div>
+
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Pan Card No.</label>
+                                <input type="text" class="form-control" name="pancard_no" placeholder="Enter Pan Card No" required="required" value="<?php echo $info['pan_card_no']; ?>">
+                              </div>
+                        </div>
+
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                <label>GST No. (Optional)</label>
+                                <input type="text" class="form-control" name="gst_no" placeholder="Enter GST No" required="required" value="<?php echo $info['gst_no']; ?>">
+                              </div>
+                        </div>
                         
                         <div class="col-md-6">
                               <div class="form-group">
@@ -82,19 +96,26 @@
                                   $quali1 = explode(',',$p);
                                   // print_r($quali1); die;
                                 ?>
-                                <label>Hotel Type
+                                <label>Licence Type
                                   <?php ?>
                                 </label><br>
-                                            <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="Light Weight Vehicle" <?php if(in_array('Light Weight Vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;Light Weight Vehicle
-                                &nbsp;&nbsp;<input type="checkbox" name="licence_type[]" id="licence_type" value="Heavy Vehicle" <?php if(in_array('Heavy Vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; Heavy Vehicle
+                                            <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="Permanent Driving License" <?php if(in_array('Permanent Driving License',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;Permanent Driving License
+                                &nbsp;&nbsp;<input type="checkbox" name="licence_type[]" id="licence_type" value="Commercial Driving License" <?php if(in_array('Commercial Driving License',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; Commercial Driving License
                               </div>
                       </div>
+
+                      <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Licence Valid Date</label>
+                                <input type="date" class="form-control" name="licence_valid_date" placeholder="Enter License valid Date" required="required" value="<?php echo $info['licence_valid_date']; ?>">
+                              </div>
+                        </div>
 
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Upload licence Image(front)</label><br>
                             <input type="file" name="licence_image_front" id="licence_image_front" >
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -104,6 +125,11 @@
                                         <img src="<?php echo base_url(); ?>uploads/driver_licence_image/<?php echo $info['licence_image_front']; ?>" width="50%">
                                         <input type="hidden" name="old_licence_front_img_name" id="old_licence_front_img_name" value="<?php echo $info['licence_image_front']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['licence_image_front'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/driver_licence_image/<?php echo $info['licence_image_front']; ?>">Download</a>
+                                            <input type="hidden" name="old_licence_front_img_name" id="old_licence_front_img_name" value="<?php if(!empty($info['licence_image_front'])){echo $info['licence_image_front'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
@@ -111,7 +137,7 @@
                           <div class="form-group">
                             <label>Upload licence Image(back)</label><br>
                             <input type="file" name="licence_image_back" id="licence_image_back">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -121,6 +147,11 @@
                                         <img src="<?php echo base_url(); ?>uploads/driver_licence_image/<?php echo $info['licence_image_back']; ?>" width="50%">
                                         <input type="hidden" name="old_licence_back_img_name" id="old_licence_back_img_name" value="<?php echo $info['licence_image_back']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['licence_image_back'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/driver_licence_image/<?php echo $info['licence_image_back']; ?>">Download</a>
+                                            <input type="hidden" name="old_licence_back_img_name" id="old_licence_back_img_name" value="<?php if(!empty($info['licence_image_back'])){echo $info['licence_image_back'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
@@ -128,7 +159,7 @@
                           <div class="form-group">
                             <label>Upload Aadhaar Image(front)</label><br>
                             <input type="file" name="aadhaar_image_front" id="aadhaar_image_front">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -138,6 +169,12 @@
                                         <img src="<?php echo base_url(); ?>uploads/driver_aadhaar_image/<?php echo $info['aadhaar_image_front']; ?>" width="50%">
                                         <input type="hidden" name="old_aadhaar_front_img_name" id="old_aadhaar_front_img_name" value="<?php echo $info['aadhaar_image_front']; ?>">
                                         <?php } ?>
+
+
+                                        <?php if(!empty($info['aadhaar_image_front'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/driver_aadhaar_image/<?php echo $info['aadhaar_image_front']; ?>">Download</a>
+                                            <input type="hidden" name="old_aadhaar_front_img_name" id="old_aadhaar_front_img_name" value="<?php if(!empty($info['aadhaar_image_front'])){echo $info['aadhaar_image_front'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
@@ -145,7 +182,7 @@
                           <div class="form-group">
                             <label>Upload Aadhaar Image(back)</label><br>
                             <input type="file" name="aadhaar_image_back" id="aadhaar_image_back">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -155,6 +192,11 @@
                                         <img src="<?php echo base_url(); ?>uploads/driver_aadhaar_image/<?php echo $info['aadhaar_image_back']; ?>" width="50%">
                                         <input type="hidden" name="old_aadhaar_back_img_name" id="old_aadhaar_front_img_name" value="<?php echo $info['aadhaar_image_back']; ?>">
                                         <?php } ?>
+
+                                        <?php if(!empty($info['aadhaar_image_back'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/driver_aadhaar_image/<?php echo $info['aadhaar_image_back']; ?>">Download</a>
+                                            <input type="hidden" name="old_aadhaar_back_img_name" id="old_aadhaar_back_img_name" value="<?php if(!empty($info['aadhaar_image_back'])){echo $info['aadhaar_image_back'];}?>">
+                                        <?php } ?>
                             </div>
                         </div>
 
@@ -162,7 +204,7 @@
                           <div class="form-group">
                             <label>Upload Profile Image</label><br>
                             <input type="file" name="profile_image" id="profile_image">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -171,6 +213,11 @@
                               <?php if(!empty($info['profile_image'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/driver_profile_image/<?php echo $info['profile_image']; ?>" width="50%">
                                         <input type="hidden" name="old_profile_img_name" id="old_profile_img_name" value="<?php echo $info['profile_image']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['profile_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/driver_profile_image/<?php echo $info['profile_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_profile_img_name" id="old_profile_img_name" value="<?php if(!empty($info['profile_image'])){echo $info['profile_image'];}?>">
                                         <?php } ?>
                             </div>
                         </div>

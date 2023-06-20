@@ -50,14 +50,32 @@
             </a>
           </li>
 
-          <!-- <li class="nav-item">
-            <a href="<?php //echo base_url(); ?>vehicle_owner/asign_driver/index" class="nav-link">
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>vehicle_driver/driver_add_leave/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-              Asign driver
+              Add Leave
               </p>
             </a>
-          </li> -->
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>vehicle_driver/kilometer_update/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+              Kilometer Update
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>vehicle_driver/disel_tour_expenses/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+              Disel_expenses
+              </p>
+            </a>
+          </li>
 
           
           <li class="nav-item">
