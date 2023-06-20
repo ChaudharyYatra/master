@@ -41,13 +41,13 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Select role <span class="req_field">*</label>
-                        <select class="select_css row_set1 role_name" attr_name="role" name="role_name[]" id="role_name" required="required">
-                        <option value="">select role</option>
+                        <label>Package Type </label>
+                        <select class="select_css" name="package_type" id="package_type" required="required">
+                        <option value="">Select package type</option>
                           <?php
-                            foreach($role_type as $role_type_info){ 
+                            foreach($package_type as $package_type_info){ 
                           ?>
-                          <option value="<?php echo $role_type_info['id']; ?>" <?php if($role_type_info['id']==$info['role_name']) { echo "selected"; } ?>><?php echo $role_type_info['role_name']; ?></option>
+                          <option value="<?php echo $package_type_info['id']; ?>" <?php if($package_type_info['id']==$info['package_type']) { echo "selected"; } ?>><?php echo $package_type_info['package_type']; ?></option>
                           <?php } ?>
                           
                         </select>
@@ -56,16 +56,41 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Name <span class="req_field">*</label>
-                        <select class="select_css row_set1 name" name="name[]" id="name" required="required">
-                          <option value="">select name</option>
+                        <label>Tour No / Name </label>
+                        <select class="form-control" name="tour_number" id="tour_number" onfocus='this.size=5;' onblur='this.size=1;' 
+                                onchange='this.size=1; this.blur();' required="required">
+                          <option value="">Select tour title</option>
                           <?php
-                              foreach($supervision as $supervision_info) 
+                              foreach($packages_data as $packages_data_info) 
                               { 
                           ?>
-                              <option value="<?php echo $supervision_info['id']; ?>" <?php if($supervision_info['id']==$info['name']) { echo "selected"; } ?>><?php echo $supervision_info['supervision_name']; ?></option>
+                              <option value="<?php echo $packages_data_info['id']; ?>" <?php if($packages_data_info['id']==$info['tour_number']) { echo "selected"; } ?>><?php echo $packages_data_info['tour_number']; ?> - <?php echo $packages_data_info['tour_title']; ?></option>
                           <?php } ?>
                         </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Hotel Name</label>
+                          <select class="form-control" name="hotel_name" id="hotel_name" onfocus='this.size=5;' onblur='this.size=1;' 
+                                onchange='this.size=1; this.blur();' required="required">
+                            <option value="">Select hotel</option>
+                            <?php
+                              foreach($hotel_data as $hotel_data_info) 
+                                { 
+                            ?>
+                              <option value="<?php echo $hotel_data_info['id']; ?>" <?php if($hotel_data_info['id']==$info['hotel_name']) { echo "selected"; } ?>><?php echo $hotel_data_info['hotel_name']; ?></option>
+                            <?php } ?>
+                            
+                          </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Advance Payment Amount</label><br>
+                        <input type="text" class="form-control" name="advance_amt" id="advance_amt" value="<?php echo $info['advance_amt']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required">
                       </div>
                     </div>
 

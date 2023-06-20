@@ -177,13 +177,13 @@
                         </div>
                       
                       <div class="col-md-2">
-                          <div class="form-group">
-                            <label>Uploaded Image</label><br>
-                            <?php if(!empty($info['image_name'])){ ?>
-                                      <img src="<?php echo base_url(); ?>uploads/packages/<?php echo $info['image_name']; ?>" width="50%">
-                                      <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['image_name']; ?>">
-                                      <?php } ?>
-                          </div>
+                        <div class="form-group">
+                          <label>Uploaded Image</label><br>
+                          <?php if(!empty($info['image_name'])){ ?>
+                                    <img src="<?php echo base_url(); ?>uploads/packages/<?php echo $info['image_name']; ?>" width="50%">
+                                    <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['image_name']; ?>">
+                                    <?php } ?>
+                        </div>
                       </div>
 
 

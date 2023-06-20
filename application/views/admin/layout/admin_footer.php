@@ -347,9 +347,8 @@ $(function () {
 
 <!--// Package date add - Mahesh-->
 <script>
-    
 
-        var i=1;
+    var i=1;
     $('#add_more').click(function() {
        // alert('hhhh');
             i++;
@@ -369,27 +368,6 @@ var structure = $('<div class="row" style="width:100% !important" id="new_row'+i
                                 '<input type="number" class="form-control" name="available_seats[]" id="tour_seat" placeholder="Enter Available Seats" required>'+
                               '</div>'+
                       '</div>'+
-
-                    
-                      
-                    //    '<div class="col-md-2">'+
-                    //          '<div class="form-group">'+
-                    //             '<label>Single Seat Cost</label>'+
-                    //             '<input type="number" class="form-control" name="single_seat_cost[]" id="tour_cost1" placeholder="Enter Single Seat Cost">'+
-                    //           '</div>'+
-                    //   '</div>'+
-                    //    '<div class="col-md-2">'+
-                    //          '<div class="form-group">'+
-                    //             '<label>Twin Sharing Cost</label>'+
-                    //             '<input type="number" class="form-control" name="twin_seat_cost[]" id="tour_cost" placeholder="Enter Twin Sharing Cost">'+
-                    //           '</div>'+
-                    //   '</div>'+
-                    //    '<div class="col-md-2">'+
-                    //          '<div class="form-group">'+
-                    //             '<label>3/4 Sharing Cost</label>'+
-                    //             '<input type="number" class="form-control" name="three_four_sharing_cost[]" id="tour_cost" placeholder="Enter 3/4 Sharing Cos">'+
-                    //           '</div>'+
-                    //   '</div>'+
                     '<div class="col-md-2 pt-4 d-flex justify-content-center align-self-center">'+
                         '<div class="form-group">'+
                         '<label></label>'+
@@ -3760,6 +3738,9 @@ $('#add_supervision').validate({ // initialize the plugin
     $error.appendTo($element.closest("div"));
   },
     rules: {
+        role_type:{
+            required: true,
+        },
         supervision_name: {
             required: true,
         },
@@ -3791,6 +3772,9 @@ $('#add_supervision').validate({ // initialize the plugin
     },
 
     messages :{
+        role_type : {
+            required : "Please select role name",
+        },
         supervision_name : {
             required : "Please enter supervisor name",
         },
@@ -3975,6 +3959,9 @@ $('#edit_supervision').validate({ // initialize the plugin
     $error.appendTo($element.closest("div"));
   },
     rules: {
+        role_type:{
+            required: true,
+        },
         supervision_name: {
             required: true,
         },
@@ -3985,10 +3972,6 @@ $('#edit_supervision').validate({ // initialize the plugin
             
         },
         mobile_number2: {
-            maxlength:10,
-            minlength:10
-        },
-        mobile_number3: {
             maxlength:10,
             minlength:10
         },
@@ -4010,6 +3993,9 @@ $('#edit_supervision').validate({ // initialize the plugin
     },
 
     messages :{
+        role_type : {
+            required : "Please select role type",
+        },
         supervision_name : {
             required : "Please enter supervisor name",
         },
@@ -6479,6 +6465,100 @@ $('#edit_role').validate({ // initialize the plugin
 
 </script>
 <!-- City master country wise state display dependency start -->
+
+<!-- jquery validation on add hotel -->
+<script>
+$(document).ready(function () {
+
+$('#add_hotel').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        hotel_name: {
+            required: true,
+        },
+        mobile_number1: {
+            required: true,
+            maxlength:10,
+            minlength:10,
+            
+        },
+        mobile_number2: {
+            maxlength:10,
+            minlength:10,
+        },
+        landline: {
+            maxlength:8,
+            minlength:8,
+        },
+        email: {
+            required: true,
+            email:true,
+        },
+        image_name: {
+            required: true,
+        },
+        hotel_address: {
+            required: true,
+        },
+        password: {
+            required: true,
+            minlength: 5
+        },
+        confirm_pass: {
+            required: true,
+            equalTo: "#password", 
+            minlength: 5
+
+        }  
+    },
+
+    messages :{
+        hotel_name : {
+            required : "Please enter hotel name",
+        },
+        mobile_number1 : {
+            required : "Please enter mobile number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        mobile_number2 : {
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        landline: {
+            maxlength: "Please enter maximum 8 digit number",
+            minlength: "Please enter minimum 8 digit number"
+        },
+        email : {
+            required : "Please enter email address",
+            email: "Please enter a valid email address"
+        },
+        image_name: {
+            required : "Please upload image",
+        },
+        hotel_address : {
+            required : "Please enter address",
+        },
+        password : {
+            required : "Please enter password",
+            minlength : "Please enter 5 digit or character length",
+        },
+        confirm_pass : {
+            required : "Please enter confirm password",
+            equalTo : "New password and Confirm Password can't match",
+            minlength : "Please enter 5 digit or character length"
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add hotel -->
+
+
 <script type='text/javascript'>
   // baseURL variable
   var baseURL= "<?php echo base_url();?>";
@@ -6706,3 +6786,35 @@ $('#edit_role').validate({ // initialize the plugin
 
 </script>
  
+
+<!--  -->
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    $('#state').on('change', function () {
+      var did = $(this).val();
+    //   alert('ppppppppppppppppppppppppppp');
+     
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/hotel/getcity', 
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#city').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){             
+             $('#city').append('<option value="'+data['id']+'">'+data['city_name']+'</option>');
+          });
+        }
+     });
+   });
+ });
+ </script>

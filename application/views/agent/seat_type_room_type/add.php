@@ -361,7 +361,7 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" name="total_allocated_rooms_1" id="total_allocated_rooms_1" placeholder="0" readonly oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_allocated_rooms'];} ?>">
+                                                    <input type="number" class="form-control" name="total_allocated_rooms_1" id="total_allocated_rooms_1" placeholder="0" readonly oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_allocated_rooms_1'];} ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -409,7 +409,7 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" name="total_allocated_rooms_2" id="total_allocated_rooms_2" placeholder="0" readonly oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_allocated_rooms'];} ?>">
+                                                    <input type="number" class="form-control" name="total_allocated_rooms_2" id="total_allocated_rooms_2" placeholder="0" readonly oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_allocated_rooms_2'];} ?>">
                                                 </div>
                                             </div>
                                             <span id="room2_error_msg"></span>
@@ -459,7 +459,7 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" name="total_allocated_rooms_3" id="total_allocated_rooms_3" placeholder="0" readonly oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_allocated_rooms'];} ?>">
+                                                    <input type="number" class="form-control" name="total_allocated_rooms_3" id="total_allocated_rooms_3" placeholder="0" readonly oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_allocated_rooms_3'];} ?>">
                                                 </div>
                                             </div>
                                             <span id="room3_error_msg"></span>
@@ -509,7 +509,7 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" name="total_allocated_rooms_4" id="total_allocated_rooms_4" placeholder="0" readonly oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_allocated_rooms'];} ?>">
+                                                    <input type="number" class="form-control" name="total_allocated_rooms_4" id="total_allocated_rooms_4" placeholder="0" readonly oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_allocated_rooms_4'];} ?>">
                                                 </div>
                                             </div>
                                             <span id="room4_error_msg"></span>
@@ -528,27 +528,27 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                    <input type="number" class="form-control" name="total_agewise_cal_adult" id="total_agewise_cal_adult" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                                    <input type="number" class="form-control" name="total_agewise_cal_adult" id="total_agewise_cal_adult" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_adult'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                    <input type="number" class="form-control" name="total_agewise_cal_90" id="total_agewise_cal_90" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                                    <input type="number" class="form-control" name="total_agewise_cal_90" id="total_agewise_cal_90" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_90'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                <input type="number" class="form-control" name="total_agewise_cal_60" id="total_agewise_cal_60" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                                <input type="number" class="form-control" name="total_agewise_cal_60" id="total_agewise_cal_60" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_60'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                <input type="number" class="form-control" name="total_agewise_cal_40" id="total_agewise_cal_40" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                                <input type="number" class="form-control" name="total_agewise_cal_40" id="total_agewise_cal_40" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_40'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                <input type="number" class="form-control" name="total_agewise_cal_0" id="total_agewise_cal_0" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                                <input type="number" class="form-control" name="total_agewise_cal_0" id="total_agewise_cal_0" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_0'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
@@ -571,7 +571,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group" id="traveller_count_error">
-                                                <input type="number" class="form-control" name="total_adult_90" id="total_adult_90" placeholder="total_adult_90" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                                <input type="number" class="form-control" name="total_adult_90" id="total_adult_90" placeholder="total_adult_90" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_adult_90'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
@@ -690,5 +690,4 @@
   </div>
   
 
-</body>
-</html>
+

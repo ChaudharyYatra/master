@@ -269,6 +269,14 @@ class Seat_type_room_type extends CI_Controller {
                 $total_allocated_rooms_3  = $this->input->post('total_allocated_rooms_3'); 
                 $total_allocated_rooms_4  = $this->input->post('total_allocated_rooms_4'); 
 
+                $total_agewise_cal_adult  = $this->input->post('total_agewise_cal_adult'); 
+                $total_agewise_cal_90  = $this->input->post('total_agewise_cal_90'); 
+                $total_agewise_cal_60  = $this->input->post('total_agewise_cal_60'); 
+                $total_agewise_cal_40  = $this->input->post('total_agewise_cal_40'); 
+                $total_agewise_cal_0  = $this->input->post('total_agewise_cal_0'); 
+
+                $total_adult_90  = $this->input->post('total_adult_90'); 
+
                 //  $today=date("Y-m-d");
                 //  $packages  = $this->input->post('packages'); 
 
@@ -345,10 +353,20 @@ class Seat_type_room_type extends CI_Controller {
                      'total_allocated_rooms_1' => $total_allocated_rooms_1,
                      'total_allocated_rooms_2' => $total_allocated_rooms_2,
                      'total_allocated_rooms_3' => $total_allocated_rooms_3,
-                     'total_allocated_rooms_4' => $total_allocated_rooms_4
+                     'total_allocated_rooms_4' => $total_allocated_rooms_4,
+
+                     'total_agewise_cal_adult' => $total_agewise_cal_adult,
+                     'total_agewise_cal_90' => $total_agewise_cal_90,
+                     'total_agewise_cal_60' => $total_agewise_cal_60,
+                     'total_agewise_cal_40' => $total_agewise_cal_40,
+                     'total_agewise_cal_0' => $total_agewise_cal_0,
+
+                     'total_adult_90' => $total_adult_90
 
                  );
                 //  print_r($arr_insert); die;
+
+
                  $inserted_id = $this->master_model->insertRecord('seat_type_room_type',$arr_insert,true);
                                
                  if($inserted_id > 0)
@@ -506,6 +524,14 @@ class Seat_type_room_type extends CI_Controller {
                 $total_allocated_rooms_3  = $this->input->post('total_allocated_rooms_3'); 
                 $total_allocated_rooms_4  = $this->input->post('total_allocated_rooms_4'); 
 
+                $total_agewise_cal_adult  = $this->input->post('total_agewise_cal_adult'); 
+                $total_agewise_cal_90  = $this->input->post('total_agewise_cal_90'); 
+                $total_agewise_cal_60  = $this->input->post('total_agewise_cal_60'); 
+                $total_agewise_cal_40  = $this->input->post('total_agewise_cal_40'); 
+                $total_agewise_cal_0  = $this->input->post('total_agewise_cal_0'); 
+
+                $total_adult_90  = $this->input->post('total_adult_90');
+
                 //  $today=date("Y-m-d");
                 //  $packages  = $this->input->post('packages'); 
 
@@ -583,6 +609,14 @@ class Seat_type_room_type extends CI_Controller {
                      'total_allocated_rooms_2' => $total_allocated_rooms_2,
                      'total_allocated_rooms_3' => $total_allocated_rooms_3,
                      'total_allocated_rooms_4' => $total_allocated_rooms_4,
+
+                     'total_agewise_cal_adult' => $total_agewise_cal_adult,
+                     'total_agewise_cal_90' => $total_agewise_cal_90,
+                     'total_agewise_cal_60' => $total_agewise_cal_60,
+                     'total_agewise_cal_40' => $total_agewise_cal_40,
+                     'total_agewise_cal_0' => $total_agewise_cal_0,
+
+                     'total_adult_90' => $total_adult_90
 
                  );
                  if(!empty($seat_type_room_type)){
@@ -1056,6 +1090,14 @@ class Seat_type_room_type extends CI_Controller {
                 $total_allocated_rooms_3  = $this->input->post('total_allocated_rooms_3'); 
                 $total_allocated_rooms_4  = $this->input->post('total_allocated_rooms_4'); 
 
+                $total_agewise_cal_adult  = $this->input->post('total_agewise_cal_adult'); 
+                $total_agewise_cal_90  = $this->input->post('total_agewise_cal_90'); 
+                $total_agewise_cal_60  = $this->input->post('total_agewise_cal_60'); 
+                $total_agewise_cal_40  = $this->input->post('total_agewise_cal_40'); 
+                $total_agewise_cal_0  = $this->input->post('total_agewise_cal_0'); 
+
+                $total_adult_90  = $this->input->post('total_adult_90');
+
 
                 //  $today=date("Y-m-d");
                 //  $packages  = $this->input->post('packages'); 
@@ -1132,6 +1174,14 @@ class Seat_type_room_type extends CI_Controller {
                      'total_allocated_rooms_2' => $total_allocated_rooms_2,
                      'total_allocated_rooms_3' => $total_allocated_rooms_3,
                      'total_allocated_rooms_4' => $total_allocated_rooms_4,
+
+                     'total_agewise_cal_adult' => $total_agewise_cal_adult,
+                     'total_agewise_cal_90' => $total_agewise_cal_90,
+                     'total_agewise_cal_60' => $total_agewise_cal_60,
+                     'total_agewise_cal_40' => $total_agewise_cal_40,
+                     'total_agewise_cal_0' => $total_agewise_cal_0,
+
+                     'total_adult_90' => $total_adult_90
                  );
 
                  if(!empty($seattype_roomtype)){

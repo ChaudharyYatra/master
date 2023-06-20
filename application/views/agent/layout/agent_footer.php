@@ -3827,6 +3827,25 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
     }
 </script>
 
+<script>
+$(document).ready(function () {
+
+    var total_adult_90 = $("#total_adult_90").val();
+    // alert(total_adult_90);
+
+    if(total_adult_90!=''){
+        $("#booknow_submit").prop('disabled', false)
+        $('#traveller_count_error').empty().text('');
+    }
+    else{
+        $("#booknow_submit").prop('disabled', true)
+        $('#traveller_count_error').empty().text('Traveller count and staying traveller count must be same');
+    }
+
+
+});
+</script>
+
 
 <!-- validation for custom booking enquiry -->
 <script>

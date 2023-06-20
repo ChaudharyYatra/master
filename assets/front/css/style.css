@@ -6443,6 +6443,30 @@ table.scrolldown tbody td {
   margin-right: -5%;
 }
 .bg_img_customer{
-  background: linear-gradient(0deg, rgb(235 228 232 / 88%), rgb(241 237 239 / 68%)), url(http://localhost/choudhary-git-clone/master/uploads/about_us/aboutus_banner.jpg);
+  background: linear-gradient(0deg, rgb(235 228 232 / 88%), rgb(241 237 239 / 68%)), url(http://localhost/master/uploads/do_not_delete/origin_main.png);
   background-size: cover;
+}
+/*  */
+.modal-open .modal .modal-dialog .login_modal_height {
+  border: none;
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 3px solid rgba(255, 255, 255, 0.3);  
+
+}
+
+@media (max-width: 991px) {
+
+  .modal-content .blog-image{
+    display: none;
+
+  }
+}
+
+.login_modal_height{
+  height:auto !important;
 }

@@ -91,12 +91,63 @@
     
 
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>tour_operation_manager/assign_staff/index" class="nav-link">
+            <a href="<?php echo base_url(); ?>tour_operation_manager/assign_staff/main_index" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
                 Assign Staff
               </p>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Tours
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_operation_manager/completed_tours/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Completed Tours</p>
+                </a>
+               </li>
+               
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Hotel Advance Payment
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>tour_operation_manager/hotel_advance_payment/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>
+                Hotel Advance Payment Req to Accountent
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>tour_operation_manager/hotel_advance_payment/advance_pay_detail" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>
+                Hotel Advance Payment Request Completed
+                </p>
+              </a>
+            </li>
+               
+            </ul>
           </li>
           
           <li class="nav-item">
@@ -142,6 +193,37 @@
                 Tour Expences
               </p>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Hotel Advance Payment
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>account/hotel_advance_payment_req/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                  Hotel Advance Payment Request
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>account/hotel_advance_payment_req/advance_pay_detail" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                  Hotel Advance Payment Request Completed
+                  </p>
+                </a>
+              </li>
+               
+            </ul>
           </li>
           
           <li class="nav-item">

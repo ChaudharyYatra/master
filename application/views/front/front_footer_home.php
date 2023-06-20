@@ -1,3 +1,4 @@
+
 <style>
   .img_bot{
     margin-bottom: 1px;
@@ -165,66 +166,51 @@
     </div>
 
         <!-- login registration modal -->
-        <div class="modal fade log-reg" id="exampleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade  log-reg" id="exampleModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content login_modal_height">
                 <div class="modal-body">
                     <div class="post-tabs">
-                        <!-- tab navs -->
-                      
-                        <!-- tab contents -->
+                  
                         <div class="tab-content blog-full" id="postsTabContent">
-                            <!-- popular posts -->
+                       
                             <div aria-labelledby="login-tab" class="tab-pane fade active show" id="login"
                                 role="tabpanel">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="blog-image rounded">
                                             <a href="#"
-                                                style="background-image: url(<?php echo base_url(); ?>uploads/log.jpg);"></a>
+                                                style="background-image: url(<?php echo base_url(); ?>uploads/log.jpg);">
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <h4 class="text-center border-b pb-2">Login</h4>
-                                        <!-- <div class="log-reg-button d-flex align-items-center justify-content-between">
-                                            <button type="submit" class="btn btn-fb">
-                                                <i class="fab fa-facebook"></i> Login with Facebook
-                                            </button>
-                                            <button type="submit" class="btn btn-google">
-                                                <i class="fab fa-google"></i> Login with Google
-                                            </button>
-                                        </div> -->
-                                        <!-- <hr class="log-reg-hr position-relative my-4 overflow-visible"> -->
+                                        <h4 class="text-center border-b pb-2 " style="color:white;">Login</h4>
+                                        
+                                        
                                         <form method="post" action="<?php echo base_url(); ?>user_profile/index" onsubmit="return validateloginForms()">
                                             <div class="form-group mb-2">
-                                                <input type="text" class="form-control" name="mobile" id="mobile_login" placeholder="Mobile Number" value="">
+                                                <input type="text" class="form-control" name="mobile" id="mobile_login" placeholder="Mobile Number">
                                                 <span class="text-danger float-left" id="mobilelogin_error" style="display:none"></span>
                                             </div>
                                             <div class="form-group mb-2">
-                                                <input type="password" class="form-control" name="password" id="pass_login" placeholder="Password" value="">
+                                                <input type="password" class="form-control" name="password" id="pass_login" placeholder="Password">
+                                                     <i id="toggler"class="far fa-eye" style="position: absolute;right: 50px;top: 48%;transform: translateY(-50%);cursor: pointer;"></i>
                                                 <span class="text-danger float-left" id="passlogin_error" style="display:none"></span>
+                                                  
                                             </div>
                                             <div class="form-group mb-2">
-                                                <!--<input type="checkbox" class="custom-control-input" id="exampleCheck3">-->
-                                                <!--<label class="custom-control-label mb-0" for="exampleCheck3">Remember me</label>-->
-                                                <a class="float-end" href="#">Lost your password?</a>
+                                                
+                                                <a class="float-end" href="#" style="color:rgb(246, 242, 242);">Lost your password?</a>
                                             </div>
                                             <div class="comment-btn mb-2 pb-2 text-center border-b">
-                                                <input type="submit" class="nir-btn w-100" id="submit_l" value="Login" name="submit">
+                                              <input type="submit" class="nir-btn w-100" id="submit_l" value="Login" name="submit">
                                             </div>
                                             
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Recent posts -->
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -1271,6 +1257,22 @@ function validateFeedbackForms()
   
 }
     
+</script>
+
+<script>
+    var password = document.getElementById('pass_login');
+    var toggler = document.getElementById('toggler');
+        showHidePassword = () => {
+        if (password.type == 'password') {
+        password.setAttribute('type', 'text');
+        toggler.classList.add('fa-eye-slash');
+        } 
+        else {
+        toggler.classList.remove('fa-eye-slash');
+        password.setAttribute('type', 'password');
+        }
+    };
+    toggler.addEventListener('click', showHidePassword);
 </script>
 
 

@@ -144,7 +144,7 @@
     //   alert(did); 
       // AJAX request
       $.ajax({
-        url:'<?=base_url()?>tour_operation_manager/assign_staff/get_package',
+        url:'<?=base_url()?>tour_operation_manager/hotel_advance_payment/get_package',
         method: 'post',
         data: {did: did},
         dataType: 'json',
@@ -155,6 +155,37 @@
        
           $.each(response,function(index,data){       
              $('#tour_number').append('<option value="'+data['id']+'">'+data['tour_number']+' - '+data['tour_title']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#tour_number').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>tour_operation_manager/hotel_advance_payment/get_hotel',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#hotel_name').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#hotel_name').append('<option value="'+data['id']+'">'+data['hotel_name']+'</option>');
           });
          
         }
@@ -289,3 +320,164 @@ $('#edit_assign_staff').validate({ // initialize the plugin
 
 </script>
 <!-- end jquery validation on add tour_operation_manager assign staff -->
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    $(document).on("change","select", function () {
+
+        var did = $(this).val();
+        var select_type = $(this).attr('attr_name');
+        var currentRow = $(this).closest(".row");
+        // console.log(currentRow.find(".name"));
+        // var col3=currentRow.find("td:eq(2)").text(); 
+if(select_type=='role'){
+
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>tour_operation_manager/assign_staff/getrolename', 
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        // console.log(response);
+        
+        //   $('.name').find('option').not(':first').remove();
+        currentRow.find(".name").find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){             
+            currentRow.find(".row_set1").append('<option value="'+data['id']+'">'+data['supervision_name']+'</option>');
+            //  $('.name').append('<option value="'+data['id']+'">'+data['supervision_name']+'</option>');
+          });
+        }
+     });
+    }
+   });
+ });
+ </script>
+
+<script>
+
+var i=1;
+$('#add_more_staff').click(function() {
+   // alert('hhhh');
+        i++;
+var structure = $(` <div class="row" id="new_row`+i+`">
+                        <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Select role </label>
+                            <select class="select_css role_name" attr_name="role" name="role_name[]" id="role_name" required="required">
+                            <option value="">select role</option>
+                            <?php
+                                foreach($role_type as $role_type_info){ 
+                            ?>
+                            <option value="<?php echo $role_type_info['id']; ?>"><?php echo $role_type_info['role_name']; ?></option>
+                            <?php } ?>
+                            
+                            </select>
+                        </div>
+                        </div>
+
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Name </label>
+                            <select class="select_css row_set1 name" attr_name="staff_name" name="name[]" id="name" required="required">
+                            <option value="">select name</option>
+                            
+                            </select>
+                        </div>
+                        </div>
+
+                        <div class="col-md-1 pt-4 d-flex justify-content-center align-self-center">
+                            <div class="form-group">
+                            <label></label>
+                                <button type="button" name="remove" id="`+i+`" class="btn btn-danger btn_remove">X</button>
+                            </div>
+                        </div>
+                    </div>
+              `);
+$('#main_row').append(structure); 
+
+});
+
+
+$(document).on('click', '.btn_remove', function(){  
+       var button_id = $(this).attr("id");   
+       $('#new_row'+button_id+'').remove();  
+  });
+
+</script>
+
+
+<!-- approve expenses -->
+
+<script>  
+ $(document).ready(function(){
+  $(".approve").click(function() {   
+    // alert('hii');
+    var did = $('#expense_id').val();
+    // alert(did);
+          var attr_approve =$(this).attr('attr_approve');
+        //    alert(attr_approve);
+
+           
+           if(attr_approve != '' && did != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>tour_operation_manager/completed_tours/get_approve",  
+                     method:"post",  
+                     data:{attr_approve:attr_approve , did:did},  
+                     dataType: 'json',
+                     success:function(responce){ 
+                      // alert('alert done');
+                         if(responce = 'true')
+                         {
+                          console.log('now done'); 
+                              // alert(responce);
+                          // redirect($this->module_url_path.'agent/booking_enquiry/index');
+                          window.location.href = "<?=base_url()?>tour_operation_manager/completed_tours/expenses/"+did;
+                         }
+                     }  
+                });  
+           } 
+          }); 
+      });  
+ </script>
+
+ <!-- reject expenses -->
+
+<script>  
+ $(document).ready(function(){
+  $(".reject").click(function() {   
+    // alert('hii');
+    var did = $('#expense_id').val();
+    // alert(did);
+          var attr_reject =$(this).attr('attr_reject');
+        //    alert(attr_reject);
+
+           
+           if(attr_reject != '' && did != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>tour_operation_manager/completed_tours/get_reject",  
+                     method:"post",  
+                     data:{attr_reject:attr_reject , did:did},  
+                     dataType: 'json',
+                     success:function(responce){ 
+                      // alert('alert done');
+                         if(responce = 'true')
+                         {
+                          console.log('now done'); 
+                              // alert(responce);
+                          // redirect($this->module_url_path.'agent/booking_enquiry/index');
+                          window.location.href = "<?=base_url()?>tour_operation_manager/completed_tours/expenses/"+did;
+                         }
+                     }  
+                });  
+           } 
+          }); 
+      });  
+ </script>

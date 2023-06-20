@@ -324,6 +324,15 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>admin/hotel/index" class="nav-link">
+              <i class="nav-icon fas fa fa-hotel"></i>
+              <p>
+                Hotel
+              </p>
+            </a>
+          </li>
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>admin/profile_edit_req/index" class="nav-link">

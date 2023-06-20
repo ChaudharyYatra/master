@@ -15,6 +15,8 @@ class Booking_preview extends CI_Controller {
                 redirect(base_url().'agent/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/booking_preview";
+        $this->module_url_booking_process    =  base_url().$this->config->item('agent_panel_slug')."/domestic_booking_process";
+        $this->module_url_path_back    =  base_url().$this->config->item('agent_panel_slug')."/seat_type_room_type";
         $this->module_title       = "Booking Preview";
         $this->module_view_folder = "booking_preview/";
         $this->arr_view_data = [];
@@ -51,7 +53,8 @@ class Booking_preview extends CI_Controller {
         $this->db->where('bus_seat_book.is_deleted','no');
         $this->db->where('bus_seat_book.enquiry_id',$iid);
         $bus_seat_book_data = $this->master_model->getRecords('bus_seat_book',array('bus_seat_book.is_deleted'=>'no'),$fields);
-         
+        // print_r($bus_seat_book_data); die; 
+
         $this->arr_view_data['agent_sess_name']        = $agent_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['traveller_booking_info']        = $traveller_booking_info;
@@ -61,6 +64,8 @@ class Booking_preview extends CI_Controller {
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['module_url_path_back'] = $this->module_url_path_back;
+        $this->arr_view_data['module_url_booking_process'] = $this->module_url_booking_process;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."booking_preview";
         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
 

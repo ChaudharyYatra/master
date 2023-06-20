@@ -162,6 +162,11 @@
                                 </tr>
                                 <?php } ?>
 
+                                <tr>
+                                    <th>Total Seats</th>
+                                    <td><?php echo $info['total_seat']; ?></td>
+                                </tr>
+
                             </table>
                             <?php } ?>
 
@@ -191,6 +196,7 @@
                         $i=1; 
                         foreach($bus_seat_book_data as $info) 
                         { 
+                            $enquiry_id = $info['enquiry_id']; 
                         ?>
                         <tr>
                         <td><?php echo $i; ?></td>
@@ -212,18 +218,26 @@
                     ?>
                     <table id="example2" class="table table-bordered table-hover table-striped">
                         <tr>
-                            <th>total_allocated_rooms_1</th>
+                            <?php if($info['total_allocated_rooms_1']!='') { ?>
+                            <th>One bed room</th>
                             <td><?php echo $info['total_allocated_rooms_1']; ?></td>
+                            <?php } ?>
 
-                            <th>total_allocated_rooms_2</th>
+                            <?php if($info['total_allocated_rooms_2']!='') { ?>
+                            <th>Two bed room</th>
                             <td><?php echo $info['total_allocated_rooms_2']; ?></td>
+                            <?php } ?>
                         </tr>
                         <tr>
-                            <th>total_allocated_rooms_3</th>
+                            <?php if($info['total_allocated_rooms_3']!='') { ?>
+                            <th>Two bed & one mattress room</th>
                             <td><?php echo $info['total_allocated_rooms_3']; ?></td>
+                            <?php } ?>
 
-                            <th>total_allocated_rooms_4</th>
+                            <?php if($info['total_allocated_rooms_4']!='') { ?>
+                            <th>Three bed & two mattress room</th>
                             <td><?php echo $info['total_allocated_rooms_4']; ?></td>
+                            <?php } ?>
                         </tr>
 
                     </table>
@@ -235,6 +249,15 @@
                 
             </div>
             <!-- /.card -->
+
+                                            
+
+                <div class="card-footer">
+                    <!-- <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button> -->
+                    <button type="button" class="btn btn-success booknow_submit" name="booknow_submit" value="Book Now" id="booknow_submit">Submit & Proceed</button> 
+                    <a href="<?php echo $module_url_path_back; ?>/add_bus/<?php echo $enquiry_id; ?>/1"><button type="button" class="btn btn-warning" name="back_btn">Back</button></a>
+                    <a href="<?php echo $module_url_booking_process; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
+                </div>
             </div>
           <!--/.col (left) -->
           <!-- right column -->

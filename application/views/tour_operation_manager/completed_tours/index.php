@@ -9,7 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
+              <!-- <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a> -->
               
             </ol>
           </div>
@@ -33,10 +33,10 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>SN</th>
-                    <th>Role name</th>
-                    <th>Name</th>
-                    <th>Is Active?</th>
+                  <th>SN</th>
+                    <th>Package Type</th>
+					          <th>Tour Number</th>
+                    <th>Tour Title</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -50,27 +50,29 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['role_name'] ?></td>
-                    <td><?php echo $info['supervision_name'] ?></td>
+                    <?php if($info['package_type']!="Special Limited Offer"){
+                      ?>
+                    <td><?php echo $info['package_type'] ?></td>
+                    <?php }else{
+                      ?>
+                      <td>Special Limited Offer</td>
+                    <?php } ?>
+					          <td><?php echo $info['tour_number'] ?></td>
+                    <td><?php echo $info['tour_title'] ?></td>
+                   
+                    <td>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default">Action</button>
+                        <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
 
-                    <td>
-                        <?php 
-                        if($info['is_active']=='yes')
-                          {
-                        ?>
-                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-success btn-sm">YES</button></a>
-                        <?php } else { ?>
-                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</button> </a>
-                        <?php } ?>
+                          <a href="<?php echo $module_url_path;?>/expenses/<?php echo $info['id']; ?>" ><button class="dropdown-item">Show Expenses</button></a>
+
+                        </div>
+                      </div>
                     </td>
-                    <td>
-                          <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id']; ?>" title="Update"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
-                          <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" 
-                          title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
-                          
-                    </td>
-                    
-                    
                   </tr>
                   
                   <?php $i++; } ?>
