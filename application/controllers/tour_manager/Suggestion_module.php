@@ -227,7 +227,7 @@ $file_name     = $_FILES['image_name_3']['name'];
                                
                 if($inserted_id > 0)
                 {    
-                    $this->session->set_flashdata('success_message',"Suggestion Image Added Successfully.");
+                    $this->session->set_flashdata('success_message',"Suggestion Record Added Successfully.");
                     redirect($this->module_url_path.'/index');
                 }
                 else
@@ -250,6 +250,7 @@ $file_name     = $_FILES['image_name_3']['name'];
 
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
         $city = $this->master_model->getRecords('city');
         // print_r($package_type); die;
 
@@ -594,6 +595,7 @@ $file_name     = $_FILES['image_name_3']['name'];
 
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
         $city = $this->master_model->getRecords('city');
         // print_r($package_type); die;
 

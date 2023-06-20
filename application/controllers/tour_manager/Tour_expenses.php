@@ -493,6 +493,7 @@ class Tour_expenses extends CI_Controller {
         $iid = $this->session->userdata('tour_manager_sess_id'); 
 
 		$tid=base64_decode($id);
+        
         if ($id=='') 
         {
             $this->session->set_flashdata('error_message','Invalid Selection Of Record');
@@ -507,10 +508,11 @@ class Tour_expenses extends CI_Controller {
         $this->db->join("expense_type", 'tour_expenses.expense_type=expense_type.id','left');
         $this->db->join("expense_category", 'tour_expenses.expense_category_id=expense_category.id','left');
         $this->db->join("packages", 'tour_expenses.package_id=packages.id','left');
-        $this->db->join("package_date", 'tour_expenses.package_id=package_date.id','left');
+        $this->db->join("package_date", 'tour_expenses.tour_date=package_date.id','left');
+        $this->db->group_by('package_date.package_id');
         $tour_expenses_all = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
         // print_r($tour_expenses_all); die;
-        
+
         $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
         $this->arr_view_data['tour_expenses_all']        = $tour_expenses_all;
         $this->arr_view_data['page_title']      = $this->module_title." Details ";

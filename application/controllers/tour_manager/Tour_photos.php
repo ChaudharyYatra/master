@@ -361,31 +361,5 @@ public function active_inactive($id,$type)
     redirect($this->module_url_path.'/index');   
 }
 
-
-
-// =======================================================================================================
-    // Get Details of Package
-    // public function details($id)
-    // {
-	// 	$id=base64_decode($id);
-    //     if ($id=='') 
-    //     {
-    //         $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-    //         redirect($this->module_url_path.'/index');
-    //     }   
-        
-    //     $fields = "packages.*,academic_years.year";
-    //     $this->db->where('packages.id',$id);
-    //     $this->db->join("academic_years", 'packages.academic_year=academic_years.id','left');
-    //     $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
-        
-    //     $this->arr_view_data['arr_data']        = $arr_data;
-    //     $this->arr_view_data['page_title']      = $this->module_title." Details ";
-    //     $this->arr_view_data['module_title']    = $this->module_title;
-    //     $this->arr_view_data['module_url_path'] = $this->module_url_path;
-    //     $this->arr_view_data['middle_content']  = $this->module_view_folder."details";
-    //     $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
-    // }
-   
    
 }

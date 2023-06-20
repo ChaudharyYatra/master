@@ -119,7 +119,7 @@
                           </div>
                         </div>
                         
-                  <div class="col-md-6">
+                        <div class="col-md-6">
                           <div class="form-group">
                             <label>Bording  Office/ Location</label>
                             <select class="select2" multiple="multiple" data-placeholder="Select Bording  Office/ Location" style="width: 100%;" name="boarding_office[]" id="boarding_office" required="required">

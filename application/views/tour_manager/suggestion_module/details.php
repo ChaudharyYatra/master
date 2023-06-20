@@ -60,23 +60,20 @@
 
                     <th>Status</th>
                     <td><?php echo $info['status']; ?></td>
-
-					          
-
                    </tr>
 
                     <tr>
                     <th>Upload Attatchment</th>
                     <td>
                       <?php if(!empty($info['image_name'])){ ?>
-                          <img src="<?php echo base_url(); ?>uploads/suggestion_image/<?php echo $info['image_name']; ?>" width="20%">
-                          <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['image_name']; ?>">
-                        <?php } ?>
+                        <img src="<?php echo base_url(); ?>uploads/suggestion_image/<?php echo $info['image_name']; ?>" width="20%">
+                        <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['image_name']; ?>">
+                      <?php } ?>
 
-                        <?php if(!empty($info['image_name'])){ ?>
-                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/suggestion_image/<?php echo $info['image_name']; ?>">Download</a>
-                            <input type="hidden" name="old_img_name" id="old_img_name" value="<?php if(!empty($info['image_name'])){echo $info['image_name'];}?>">
-                        <?php } ?>
+                      <?php if(!empty($info['image_name'])){ ?>
+                          <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/suggestion_image/<?php echo $info['image_name']; ?>">Download</a>
+                          <input type="hidden" name="old_img_name" id="old_img_name" value="<?php if(!empty($info['image_name'])){echo $info['image_name'];}?>">
+                      <?php } ?>
                     </td>
 
                     <th>Upload Attatchment</th>

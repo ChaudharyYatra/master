@@ -34,10 +34,10 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <form>
                     <tr>
-                    <th>Tour Title</th>
+                    <th>Tour Details</th>
                     <td><select class="form-control" name="tour_number" id="tour_number" onfocus='this.size=5;' onblur='this.size=1;' 
                                     onchange='this.size=1; this.blur();'>
-                                <option value="">Select tour title</option>
+                                <option value="">Select tour Details</option>
                                 <!-- <option value="Other">Other</option> -->
                                 <?php foreach($packages_data as $packages_data_value){ ?> 
                                     <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
@@ -47,14 +47,14 @@
 
                     <th>Tour Date</th>
                     <td><select class="select_css" name="tour_date" id="tour_date" required>
-                            <option value="">Select Expense Head Type</option>
+                            <option value="">Select Tour Date</option>
                             <?php foreach($expense_type_data as $expense_type_info){ ?> 
                                 <option value="<?php echo $expense_type_info['id'];?>"><?php echo $expense_type_info['expense_type_name'];?></option>
                             <?php } ?>
                         </select>
                     </td>
                     <td>
-                    <button type="button" class="btn btn-primary" name="submit" value="submit" id="expenses_submit">Submit</button>
+                    <button type="button" class="btn btn-primary" name="submit" value="submit" id="expenses_submit">search</button>
                     </td>
                     </tr>
                     </form>

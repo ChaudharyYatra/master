@@ -317,6 +317,33 @@
           </li>
 
           <li class="nav-item">
+            <a href="<?php echo base_url(); ?>admin/vehicle_owner/index" class="nav-link">
+              <i class="nav-icon fas fa fa-user-secret"></i>
+              <p>
+                Vehicle Owner
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>admin/vehicle_details/index" class="nav-link">
+              <i class="nav-icon fas fa fa-user-secret"></i>
+              <p>
+                Vehicle Details
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>admin/vehicle_driver/index" class="nav-link">
+              <i class="nav-icon fas fa fa-user-secret"></i>
+              <p>
+                Vehicle Driver
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="<?php echo base_url(); ?>admin/supervision/index" class="nav-link">
               <i class="nav-icon fas fa fa-user-secret"></i>
               <p>

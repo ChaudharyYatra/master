@@ -82,8 +82,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Expenses date</label>
-                                <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" max="<?php echo date("Y-m-d"); ?>" required>s
+                                <label>Expenses Date</label>
+                                <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" max="<?php echo date("Y-m-d"); ?>" required>
                             </div>
                         </div>
 

@@ -83,23 +83,29 @@ class Dashboard extends CI_Controller{
 	}
 
   //  ============================tour manager bell icone todays birthday ==================================
+  
     function birthdate_enquiry_view()  
       {  
           $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
           $iid = $this->session->userdata('tour_manager_sess_id'); 
 
-          $today= date('Y-m-d');
-          $this->db->where('dob',$today);
+          $month = date('m');
+          $day = date('d');
+          // $today= date('Y-m-d');
+          // $this->db->where('dob',$today);
+          $this->db->where('MONTH(dob)', $month);
+          $this->db->where('DAY(dob)', $day);
           $arr_where     = array("tour_manager_id" => $iid);
           $arr_update = array("is_view"=>'yes');
           $this->master_model->updateRecord('all_traveller_info',$arr_update,$arr_where);
-          
       return true;
       }
 
       function check_birthdate_count()  
       {  
-                $today= date('Y-m-d');
+                $month = date('m');
+                $day = date('d');
+                // $today= date('Y-m-d');
                 $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
                 $iid = $this->session->userdata('tour_manager_sess_id'); 
 
@@ -107,7 +113,9 @@ class Dashboard extends CI_Controller{
                 $fields = "all_traveller_info.*";
                 $this->db->where('tour_manager_id',$iid);
                 $this->db->where('is_view','no');
-                $this->db->where('dob',$today);
+                // $this->db->where('dob',$today);
+                $this->db->where('MONTH(dob)', $month);
+                $this->db->where('DAY(dob)', $day);
                 $arr_data = $this->master_model->getRecords('all_traveller_info'); 
                 $count=count($arr_data);
                 // print_r($count); die;
@@ -123,18 +131,21 @@ class Dashboard extends CI_Controller{
                 echo $count;
                 }
 
-// ============================tour manager bell icone todays birthday ==================================
+// ============================tour manager bell icone todays birthday ======================================
 
 //  ============================tour manager bell icone todays Anniversary ==================================
 function anniversary_enquiry_view()  
 {  
     $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-    $iid = $this->session->userdata('tour_manager_sess_id'); 
+    $iid = $this->session->userdata('tour_manager_sess_id');
 
-    $today= date('Y-m-d');
-    $this->db->where('anniversary_date',$today);
+    $month = date('m');
+    $day = date('d');
+    // $this->db->where('anniversary_date',$today);
+    $this->db->where('MONTH(anniversary_date)', $month);
+    $this->db->where('DAY(anniversary_date)', $day);
     $arr_where     = array("tour_manager_id" => $iid);
-    $arr_update = array("is_view"=>'yes');
+    $arr_update = array("is_view_anniversary"=>'yes');
     $this->master_model->updateRecord('all_traveller_info',$arr_update,$arr_where);
     
 return true;
@@ -142,15 +153,17 @@ return true;
 
 function check_anniversary_count()  
 {  
-          $today= date('Y-m-d');
+          $month = date('m');
+          $day = date('d');
           $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
           $iid = $this->session->userdata('tour_manager_sess_id'); 
 
           $record = array();
           $fields = "all_traveller_info.*";
           $this->db->where('tour_manager_id',$iid);
-          $this->db->where('is_view','no');
-          $this->db->where('anniversary_date',$today);
+          $this->db->where('is_view_anniversary','no');
+          $this->db->where('MONTH(anniversary_date)', $month);
+          $this->db->where('DAY(anniversary_date)', $day);
           $arr_data = $this->master_model->getRecords('all_traveller_info'); 
           $count=count($arr_data);
           // print_r($count); die;
@@ -170,7 +183,8 @@ function check_anniversary_count()
           function check_total_birthdate_anniversary_count()  
       {  
              
-        $today= date('Y-m-d');
+        $month = date('m');
+        $day = date('d');
         $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
         $iid = $this->session->userdata('tour_manager_sess_id'); 
 
@@ -178,7 +192,9 @@ function check_anniversary_count()
         $fields = "all_traveller_info.*";
         $this->db->where('tour_manager_id',$iid);
         $this->db->where('is_view','no');
-        $this->db->where('dob',$today);
+        // $this->db->where('dob',$today);
+        $this->db->where('MONTH(dob)', $month);
+        $this->db->where('DAY(dob)', $day);
         $arr_data_one = $this->master_model->getRecords('all_traveller_info'); 
         $birthdate_count=count($arr_data_one);
         // print_r($birthdate_count);
@@ -186,8 +202,10 @@ function check_anniversary_count()
         $record = array();
         $fields = "all_traveller_info.*";
         $this->db->where('tour_manager_id',$iid);
-        $this->db->where('is_view','no');
-        $this->db->where('anniversary_date',$today);
+        $this->db->where('is_view_anniversary','no');
+        // $this->db->where('anniversary_date',$today);
+        $this->db->where('MONTH(anniversary_date)', $month);
+        $this->db->where('DAY(anniversary_date)', $day);
         $arr_data_two = $this->master_model->getRecords('all_traveller_info'); 
         $anniversary_count=count($arr_data_two);
         // print_r($anniversary_count); die;
@@ -207,254 +225,7 @@ function check_anniversary_count()
                 echo $total_count;
                 }
 
-
-
-
-
 // ============================tour manager bell icone todays Anniversary ==================================
 
-// =================================================================================
-//                 function international_view()  
-//                 {  
-//                   $agent_id=$this->session->userdata('agent_sess_id');
-//                   $arr_where     = array("agent_id" => $agent_id);
-//                   $arr_update = array("is_view"=>'yes');
-//                   $this->master_model->updateRecord('international_booking_enquiry',$arr_update,$arr_where);
-                  
-//                   return true;
-//                 }
 
-//                 function check_international_count()  
-//                 {  
-             
-//                 $agent_id=$this->session->userdata('agent_sess_id');
-//                 $this->db->where('agent_id',$agent_id);
-//                 $this->db->where('is_view','no');
-//                 $arr_data = $this->master_model->getRecords('international_booking_enquiry'); 
-//                 $count=count($arr_data);
-//                 // if($count > 0)  
-//                 // {                     
-//                 //     return $count;//return count
-//                 // }  
-
-//                 // else if($count == 0)
-//                 // {                     
-//                 //      echo false;
-//                 // }  
-//             echo $count;
-//       }
-
-      
-
-
-//     // ===Domestic current date followup========================
-
-    
-//     function todays_enquiry_view()  
-//     {  
-              
-//               $agent_id=$this->session->userdata('agent_sess_id'); 
-//               $record = array();
-//               $fields = "domestic_followup.*,booking_enquiry.agent_id";
-//               $this->db->where('booking_enquiry.is_deleted','no');
-//               $this->db->where('booking_enquiry.agent_id',$agent_id);
-//               $this->db->join("booking_enquiry", ' booking_enquiry.id=domestic_followup.booking_enquiry_id','left');
-//               $arr_data = $this->master_model->getRecords('domestic_followup',array('domestic_followup.is_last'=>'yes'),$fields);
-
-//                 $count = count($arr_data);
-//                 for($i=0;$i<$count;$i++)
-//                 {
-//                  $aid=$arr_data[$i]['id'];
-                  
-//                     $arr_update = array(
-//                         'is_view'   => 'yes'   
-//                     );
-//                     $arr_where     = array("id" => $aid);
-//                     $inserted_id = $this->master_model->updateRecord('domestic_followup',$arr_update,$arr_where);
-                
-//                 } 
-//                 redirect($this->module_url_path_followup_list.'/index');
-              
-           
-//     }
-
-//                 function todays_domestic_notification_count()  
-//                 {  
-
-//                 $today= date('Y-m-d');
-//                 $agent_id=$this->session->userdata('agent_sess_id');
-//                 $record = array();
-//                 $fields = "domestic_followup.*,booking_enquiry.agent_id,booking_enquiry.is_view";
-//                 $this->db->where('agent_id',$agent_id);
-//                 $this->db->where('domestic_followup.is_view','no');
-//                 $this->db->where('next_followup_date',$today);
-//                 $this->db->join("booking_enquiry", 'domestic_followup.booking_enquiry_id= booking_enquiry.id','left');
-//                 $arr_data = $this->master_model->getRecords('domestic_followup'); 
-//                 // print_r($arr_data); die;
-//                 $count=count($arr_data);
-//                 // if($count > 0)  
-//                 // {                     
-//                 //     return $count;//return count
-//                 // }  
-
-//                 // else if($count == 0)
-//                 // {                     
-//                 //      echo false;
-//                 // }
-//                 echo $count;
-//                 }
-
-//     // ==========================================================
-
-//     // ===International current date followup=================================
-
-//     function todays_international_view()  
-//     {  
-              
-//               $agent_id=$this->session->userdata('agent_sess_id'); 
-//               $record = array();
-//               $fields = "international_followup.*,international_booking_enquiry.agent_id";
-//               $arr_where     = array("id" => $agent_id);
-//               $arr_update = array("is_view"=>'yes');
-//               $this->db->join("international_booking_enquiry", ' international_booking_enquiry.id=international_followup.international_booking_enquiry_id','left');
-//               $arr_data = $this->master_model->getRecords('international_followup',array('international_followup.is_last'=>'yes'),$fields);
-
-//                 $count = count($arr_data);
-//                 for($i=0;$i<$count;$i++)
-//                 {
-//                  $aid=$arr_data[$i]['id'];
-                  
-//                     $arr_update = array(
-//                         'is_view'   => 'yes'   
-//                     );
-//                     $arr_where     = array("id" => $aid);
-//                     $inserted_id = $this->master_model->updateRecord('international_followup',$arr_update,$arr_where);
-                
-//                 } 
-//                 redirect($this->module_url_path_inter_followup_list.'/index');
-              
-           
-//     }
-//     // function todays_international_view()  
-//     // {  
-              
-//     //           $agent_id=$this->session->userdata('agent_sess_id');
-//     //           $record = array();
-//     //           $fields = "international_followup.*,international_booking_enquiry.agent_id";
-//     //           $arr_where     = array("id" => $agent_id);
-//     //           $arr_update = array("is_view"=>'yes');
-//     //           $this->db->join("international_booking_enquiry", 'international_followup.international_booking_enquiry_id= international_booking_enquiry.id','left');
-//     //           $this->master_model->updateRecord('international_followup',$arr_update,$arr_where);
-              
-//     //           redirect($this->module_url_path_inter_followup_list.'/index');
-//     // }
-
-//                 function todays_international_notification_count()  
-//                 {  
-
-//                 $today= date('Y-m-d');
-//                 $agent_id=$this->session->userdata('agent_sess_id');
-//                 $record = array();
-//                 $fields = "international_followup.*,international_booking_enquiry.agent_id,international_booking_enquiry.is_view";
-//                 $this->db->where('agent_id',$agent_id);
-//                 $this->db->where('international_followup.is_view','no');
-//                 $this->db->where('next_followup_date',$today);
-//                 $this->db->join("international_booking_enquiry", 'international_followup.international_booking_enquiry_id= international_booking_enquiry.id','left');
-//                 $arr_data = $this->master_model->getRecords('international_followup'); 
-//                 // print_r($arr_data); die;
-//                 $count_arr=count($arr_data);
-//                 // if($count > 0)  
-//                 // {                     
-//                 //     return $count;//return count
-//                 // }  
-
-//                 // else if($count == 0)
-//                 // {                     
-//                 //      echo false;
-//                 // }
-//                 echo $count_arr;
-//                 }
-
-//     // ============================================================
-
-//     // todays total notification count
-
-// function todays_check_total_count()  
-// {  
-//           $today= date('Y-m-d');
-//           $agent_id=$this->session->userdata('agent_sess_id');
-//           $record = array();
-//           $fields = "domestic_followup.*,booking_enquiry.agent_id,booking_enquiry.is_view";
-//           $this->db->where('agent_id',$agent_id);
-//           $this->db->where('domestic_followup.is_view','no');
-//           $this->db->where('next_followup_date',$today);
-//           $this->db->join("booking_enquiry", 'domestic_followup.booking_enquiry_id= booking_enquiry.id','left');
-//           $domestic_followup_count = $this->master_model->getRecords('domestic_followup'); 
-//           // print_r($arr_data); die;
-//           $todays_domestic_followup_count=count($domestic_followup_count);
-          
-//           // $today= date('Y-m-d');
-//           // $agent_id=$this->session->userdata('agent_sess_id');
-//           // $record = array();
-//           // $fields = "international_followup.*,international_booking_enquiry.agent_id,international_booking_enquiry.is_view";
-//           // $this->db->where('agent_id',$agent_id);
-//           // $this->db->where('international_followup.is_view','no');
-//           // $this->db->where('next_followup_date',$today);
-//           // $this->db->join("international_booking_enquiry", 'international_followup.international_booking_enquiry_id= international_booking_enquiry.id','left');
-//           // $inter_followup_count = $this->master_model->getRecords('international_followup'); 
-//           // // print_r($arr_data); die;
-//           // $todays_inter_followup_count=count($inter_followup_count);
-          
-//           // $todays_count= $todays_domestic_followup_count + $todays_inter_followup_count;
-
-//           // if($count > 0)  
-//           // {                     
-//           //     return $count;//return count
-//           // }  
-
-//           // else if($count == 0)
-//           // {                     
-//           //      echo false;
-//           // }
-//           echo $todays_domestic_followup_count;
-//           }
-
-// // todays total notification count
-
-
-// // total notification count
-// function check_total_notification_count()  
-//       {  
-             
-//                 $agent_id=$this->session->userdata('agent_sess_id');
-//                 $this->db->where('agent_id',$agent_id);
-//                 $this->db->where('is_view','no');
-//                 $booking_enquiry_count = $this->master_model->getRecords('booking_enquiry'); 
-//                 $total_booking_enquiry_count=count($booking_enquiry_count);
-//                 // print_r($total_booking_enquiry_count); die;
-
-//                 $agent_id=$this->session->userdata('agent_sess_id');
-//                 $this->db->where('agent_id',$agent_id);
-//                 $this->db->where('is_view','no');
-//                 $inter_booking_enquiry_count = $this->master_model->getRecords('international_booking_enquiry'); 
-//                 $total_inter_booking_enquiry_count=count($inter_booking_enquiry_count);
-
-//                 $count= $total_booking_enquiry_count + $total_inter_booking_enquiry_count;
-
-                
-
-//                 // if($count > 0)  
-//                 // {                     
-//                 //     return $count;//return count
-//                 // }  
-
-//                 // else if($count == 0)
-//                 // {                     
-//                 //      echo false;
-//                 // }
-//                 echo $count;
-//                 }
-
-// // total notification count
-   
 }
