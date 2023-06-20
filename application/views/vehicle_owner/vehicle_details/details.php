@@ -56,58 +56,144 @@
                     <th>Insurance Number</th>
                     <td><?php echo $info['insurance_number']; ?></td>
 
-                    <th>Upload Insurance Image</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/insurance_photo/<?php echo $info['insurance_image_name']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                    <th>Insurance Validity Date</th>
+                    <td><?php echo $info['insurance_valid_date']; ?></td>
+
                     
                   </tr>
 
                   <tr>
+                  <th>Upload Insurance Image</th>
+                    <td>
+                      <?php if(!empty($info['insurance_image_name'])){ ?>
+                      <img src="<?php echo base_url(); ?>uploads/insurance_photo/<?php echo $info['insurance_image_name']; ?>" width="50%">
+                      <input type="hidden" name="old_insurance_img_name" id="old_insurance_img_name" value="<?php echo $info['insurance_image_name']; ?>">
+                      <?php } ?>
+
+                      <?php if(!empty($info['insurance_image_name'])){ ?>
+                          <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/insurance_photo/<?php echo $info['insurance_image_name']; ?>">Download</a>
+                          <input type="hidden" name="old_insurance_img_name" id="old_insurance_img_name" value="<?php if(!empty($info['insurance_image_name'])){echo $info['insurance_image_name'];}?>">
+                      <?php } ?>
+                      </td>
+                    
+
                     <th>Permit Number</th>
                     <td><?php echo $info['permit_number']; ?></td>
 
-                    <th>Upload Permit Image</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/permit_photo/<?php echo $info['permit_image_name']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                    <th>Permit Number</th>
+                    <td><?php echo $info['permit_valid_date']; ?></td>
+
                     
-                    <th>Air Conditioners</th>
-                    <td><?php echo $info['air_conditionar']; ?></td>
                   </tr>
 
                   <tr>
+                  <th>Upload Permit Image</th>
+                    <td><?php if(!empty($info['permit_image_name'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/permit_photo/<?php echo $info['permit_image_name']; ?>" width="30%">
+                                        <input type="hidden" name="old_permit_img_name" id="old_permit_img_name" value="<?php echo $info['permit_image_name']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['permit_image_name'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/permit_photo/<?php echo $info['permit_image_name']; ?>">Download</a>
+                                            <input type="hidden" name="old_permit_img_name" id="old_permit_img_name" value="<?php if(!empty($info['permit_image_name'])){echo $info['permit_image_name'];}?>">
+                                        <?php } ?>
+                                      </td>
+                    
+                    <th>Air Conditioners</th>
+                    <td><?php echo $info['air_conditionar']; ?></td>
+                    
                     <th>vehicle Model</th>
                     <td><?php echo $info['vehicle_model']; ?></td>
 
-                    <th>RTO Registration Number</th>
+                  </tr>
+
+                  <tr>
+                  <th>RTO Registration Number</th>
                     <td><?php echo $info['registration_number']; ?></td>
                     
                     <th>Luggage Carring Capacity(Kg)</th>
                     <td><?php echo $info['luggage_capacity']; ?></td>
-                  </tr>
 
-                  <tr>
                     <th>Total kilometer(reading)</th>
                     <td><?php echo $info['total_kilometer']; ?></td>
 
-                    <th>Vehicle Image(Front)</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_front_image']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
-                    
-                    <th>Vehicle Image(Back)</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_back_image']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
-                  </tr>
+                     </tr>
 
                   <tr>
-                    <th>Vehicle Image(left)</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_left_image']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                  <th>Vehicle Image(Front)</th>
+                    <td><?php if(!empty($info['vehicle_front_image'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_front_image']; ?>" width="50%">
+                                        <input type="hidden" name="old_vehicle_front_img_name" id="old_vehicle_front_img_name" value="<?php echo $info['vehicle_front_image']; ?>">
+                                        <?php } ?>
 
-                    <th>Vehicle Image(right)</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_right_image']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                                        <?php if(!empty($info['vehicle_front_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_front_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_front_img_name" id="old_vehicle_front_img_name" value="<?php if(!empty($info['vehicle_front_image'])){echo $info['vehicle_front_image'];}?>">
+                                        <?php } ?>
+                                      </td>
                     
-                    <th>Vehicle Image(inside one)</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
-                  </tr>
+                    <th>Vehicle Image(Back)</th>
+                    <td><?php if(!empty($info['vehicle_back_image'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_back_image']; ?>" width="50%">
+                                        <input type="hidden" name="old_vehicle_back_img_name" id="old_vehicle_back_img_name" value="<?php echo $info['vehicle_back_image']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_back_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_back_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_back_img_name" id="old_vehicle_back_img_name" value="<?php if(!empty($info['vehicle_back_image'])){echo $info['vehicle_back_image'];}?>">
+                                        <?php } ?>
+                                      </td>
+                 
+
+                    <th>Vehicle Image(left)</th>
+                    <td><?php if(!empty($info['vehicle_left_image'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_left_image']; ?>" width="50%">
+                                        <input type="hidden" name="old_vehicle_left_img_name" id="old_vehicle_left_img_name" value="<?php echo $info['vehicle_left_image']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_left_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_left_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_left_img_name" id="old_vehicle_left_img_name" value="<?php if(!empty($info['vehicle_left_image'])){echo $info['vehicle_left_image'];}?>">
+                                        <?php } ?>
+                                      </td>
+
+                    </tr>
 
                   <tr>
                     <th>Vehicle Image(inside two)</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insidetwo_image']; ?>" width="70px;" height="30px;" alt="Slider Image"></td>
+                    <td><?php if(!empty($info['vehicle_insidetwo_image'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insidetwo_image']; ?>" width="50%">
+                                        <input type="hidden" name="old_vehicle_insidetwo_img_name" id="old_vehicle_insidetwo_img_name" value="<?php echo $info['vehicle_insidetwo_image']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_insidetwo_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insidetwo_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_insidetwo_img_name" id="old_vehicle_insidetwo_img_name" value="<?php if(!empty($info['vehicle_insidetwo_image'])){echo $info['vehicle_insidetwo_image'];}?>">
+                                        <?php } ?>
+                                      </td>
+                  
+                    <th>Vehicle Image(right)</th>
+                    <td><?php if(!empty($info['vehicle_right_image'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_right_image']; ?>" width="50%">
+                                        <input type="hidden" name="old_vehicle_right_img_name" id="old_vehicle_right_img_name" value="<?php echo $info['vehicle_right_image']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_right_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_right_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_right_img_name" id="old_vehicle_right_img_name" value="<?php if(!empty($info['vehicle_right_image'])){echo $info['vehicle_right_image'];}?>">
+                                        <?php } ?></td>
+                    
+                    <th>Vehicle Image(inside one)</th>
+                    <td><?php if(!empty($info['vehicle_insideone_image'])){ ?>
+                                        <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>" width="50%">
+                                        <input type="hidden" name="old_vehicle_insideone_img_name" id="old_vehicle_insideone_img_name" value="<?php echo $info['vehicle_insideone_image']; ?>">
+                                        <?php } ?>
+
+                                        <?php if(!empty($info['vehicle_insideone_image'])){ ?>
+                                            <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>">Download</a>
+                                            <input type="hidden" name="old_vehicle_insideone_img_name" id="old_vehicle_insideone_img_name" value="<?php if(!empty($info['vehicle_insideone_image'])){echo $info['vehicle_insideone_image'];}?>">
+                                        <?php } ?></td>
+                  
                   </tr>
 
 

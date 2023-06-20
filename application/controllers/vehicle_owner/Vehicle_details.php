@@ -64,7 +64,7 @@ class Vehicle_details extends CI_Controller{
             {
                 // =========================Upload insurance image===================================================
                 $file_name     = $_FILES['insurance_image_name']['name'];
-                $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg');
+                $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg','pdf','PDF');
 
                 if($file_name!="")
                 {               
@@ -80,7 +80,7 @@ class Vehicle_details extends CI_Controller{
                 $file_name_to_dispaly =  $this->config->item('project_name').''.round(microtime(true)).str_replace(' ','_',$file_name);
 
                 $config['upload_path']   = './uploads/insurance_photo/';
-                $config['allowed_types'] = 'png|jpg|jpeg|JPG|PNG|JPEG'; 
+                $config['allowed_types'] = 'png|jpg|jpeg|JPG|PNG|JPEG|pdf|PDF'; 
                 $config['max_size']      = '10000';
                 $config['file_name']     =  $file_name_to_dispaly;
                 $config['overwrite']     =  TRUE;
@@ -110,10 +110,10 @@ class Vehicle_details extends CI_Controller{
                  // ====================Upload Permit  image ============================================
                  $file_name     = $_FILES['permit_image_name']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['permit_image_name'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -122,14 +122,14 @@ class Vehicle_details extends CI_Controller{
 
                     if(!in_array($ext[1],$arr_extension))
                     {
-                        $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                        $this->session->set_flashdata('error_message','Please Upload png/jpg/pdf Files.');
                     }
                 }   
 
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/permit_photo/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -159,10 +159,10 @@ class Vehicle_details extends CI_Controller{
 
                 $file_name     = $_FILES['vehicle_front_image']['name'];
 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['vehicle_front_image'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -178,7 +178,7 @@ class Vehicle_details extends CI_Controller{
                 $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/vehicle_photo/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -208,10 +208,10 @@ class Vehicle_details extends CI_Controller{
 
                  $file_name     = $_FILES['vehicle_back_image']['name'];
 
-                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
  
                  $file_name = $_FILES['vehicle_back_image'];
-                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
  
                  if($file_name['name']!="")
                  {
@@ -227,7 +227,7 @@ class Vehicle_details extends CI_Controller{
                  $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
              
                  $config['upload_path']   = './uploads/vehicle_photo/';
-                 $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                 $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                  $config['max_size']      = '10000';
                  $config['file_name']     = $file_name_to_dispaly_pdf;
                  $config['overwrite']     = TRUE;
@@ -256,10 +256,10 @@ class Vehicle_details extends CI_Controller{
 
                 $file_name     = $_FILES['vehicle_left_image']['name'];
 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['vehicle_left_image'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -275,7 +275,7 @@ class Vehicle_details extends CI_Controller{
                 $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/vehicle_photo/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -304,10 +304,10 @@ class Vehicle_details extends CI_Controller{
 
                $file_name     = $_FILES['vehicle_right_image']['name'];
 
-               $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+               $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                $file_name = $_FILES['vehicle_right_image'];
-               $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+               $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                if($file_name['name']!="")
                {
@@ -323,7 +323,7 @@ class Vehicle_details extends CI_Controller{
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
            
                $config['upload_path']   = './uploads/vehicle_photo/';
-               $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+               $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                $config['max_size']      = '10000';
                $config['file_name']     = $file_name_to_dispaly_pdf;
                $config['overwrite']     = TRUE;
@@ -352,10 +352,10 @@ class Vehicle_details extends CI_Controller{
 
               $file_name     = $_FILES['vehicle_insideone_image']['name'];
 
-              $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+              $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
               $file_name = $_FILES['vehicle_insideone_image'];
-              $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+              $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
               if($file_name['name']!="")
               {
@@ -371,7 +371,7 @@ class Vehicle_details extends CI_Controller{
               $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
           
               $config['upload_path']   = './uploads/vehicle_photo/';
-              $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+              $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
               $config['max_size']      = '10000';
               $config['file_name']     = $file_name_to_dispaly_pdf;
               $config['overwrite']     = TRUE;
@@ -400,10 +400,10 @@ class Vehicle_details extends CI_Controller{
 
              $file_name     = $_FILES['vehicle_insidetwo_image']['name'];
 
-             $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+             $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
              $file_name = $_FILES['vehicle_insidetwo_image'];
-             $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+             $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
              if($file_name['name']!="")
              {
@@ -419,7 +419,7 @@ class Vehicle_details extends CI_Controller{
              $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
          
              $config['upload_path']   = './uploads/vehicle_photo/';
-             $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+             $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
              $config['max_size']      = '10000';
              $config['file_name']     = $file_name_to_dispaly_pdf;
              $config['overwrite']     = TRUE;
@@ -449,7 +449,9 @@ class Vehicle_details extends CI_Controller{
                 $vehicle_brand        = trim($this->input->post('vehicle_brand'));
                 $seat_capacity = trim($this->input->post('seat_capacity'));
                 $insurance_number = trim($this->input->post('insurance_number'));
+                $insurance_valid_date = trim($this->input->post('insurance_valid_date'));
                 $permit_number = trim($this->input->post('permit_number'));
+                $permit_valid_date = trim($this->input->post('permit_valid_date'));
                 $air_conditionar = trim($this->input->post('air_conditionar'));
                 $vehicle_model = trim($this->input->post('vehicle_model'));
                 $registration_number = trim($this->input->post('registration_number'));
@@ -462,7 +464,9 @@ class Vehicle_details extends CI_Controller{
                     'vehicle_brand'          => $vehicle_brand,
                     'seat_capacity'          => $seat_capacity,
                     'insurance_number'          => $insurance_number,
+                    'insurance_valid_date'          => $insurance_valid_date,
                     'permit_number'          => $permit_number,
+                    'permit_valid_date'          => $permit_valid_date,
                     'air_conditionar'          => $air_conditionar,
                     'vehicle_model'        => $vehicle_model,
                     'registration_number'        => $registration_number, 
@@ -700,10 +704,10 @@ class Vehicle_details extends CI_Controller{
                 {
                $file_name     = $_FILES['permit_image_name']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
 
                 $file_name = $_FILES['permit_image_name'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
 
                 if($file_name['name']!="")
                 {
@@ -720,7 +724,7 @@ class Vehicle_details extends CI_Controller{
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/permit_photo/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -760,10 +764,10 @@ class Vehicle_details extends CI_Controller{
             {
             $file_name     = $_FILES['vehicle_front_image']['name'];
 
-            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
             $file_name = $_FILES['vehicle_front_image'];
-            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
             if($file_name['name']!="")
             {
@@ -780,7 +784,7 @@ class Vehicle_details extends CI_Controller{
             $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
 
             $config['upload_path']   = './uploads/vehicle_photo/';
-            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
             $config['max_size']      = '10000';
             $config['file_name']     = $file_name_to_dispaly_pdf;
             $config['overwrite']     = TRUE;
@@ -820,10 +824,10 @@ class Vehicle_details extends CI_Controller{
             {
             $file_name     = $_FILES['vehicle_back_image']['name'];
             
-            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
             $file_name = $_FILES['vehicle_back_image'];
-            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+            $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
             if($file_name['name']!="")
             {
@@ -840,7 +844,7 @@ class Vehicle_details extends CI_Controller{
             $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
 
             $config['upload_path']   = './uploads/vehicle_photo/';
-            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+            $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
             $config['max_size']      = '10000';
             $config['file_name']     = $file_name_to_dispaly_pdf;
             $config['overwrite']     = TRUE;
@@ -880,10 +884,10 @@ class Vehicle_details extends CI_Controller{
                 {
                $file_name     = $_FILES['vehicle_left_image']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['vehicle_left_image'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -900,7 +904,7 @@ class Vehicle_details extends CI_Controller{
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/vehicle_photo/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -940,10 +944,10 @@ $old_vehicle_right_img_name = $this->input->post('old_vehicle_right_img_name');
                 {
                $file_name     = $_FILES['vehicle_right_image']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['vehicle_right_image'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -960,7 +964,7 @@ $old_vehicle_right_img_name = $this->input->post('old_vehicle_right_img_name');
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/vehicle_photo/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -1000,10 +1004,10 @@ $old_vehicle_insideone_img_name = $this->input->post('old_vehicle_insideone_img_
                 {
                $file_name     = $_FILES['vehicle_insideone_image']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['vehicle_insideone_image'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -1020,7 +1024,7 @@ $old_vehicle_insideone_img_name = $this->input->post('old_vehicle_insideone_img_
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/vehicle_photo/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -1060,10 +1064,10 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
                 {
                $file_name     = $_FILES['vehicle_insidetwo_image']['name'];
                 
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 $file_name = $_FILES['vehicle_insidetwo_image'];
-                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','pdf','PDF');
 
                 if($file_name['name']!="")
                 {
@@ -1080,7 +1084,7 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
                $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
             
                 $config['upload_path']   = './uploads/vehicle_photo/';
-                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|pdf|PDF';  
                 $config['max_size']      = '10000';
                 $config['file_name']     = $file_name_to_dispaly_pdf;
                 $config['overwrite']     = TRUE;
@@ -1118,7 +1122,9 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
                 $vehicle_brand        = trim($this->input->post('vehicle_brand'));
                 $seat_capacity = trim($this->input->post('seat_capacity'));
                 $insurance_number = trim($this->input->post('insurance_number'));
+                $insurance_valid_date = trim($this->input->post('insurance_valid_date'));
                 $permit_number = trim($this->input->post('permit_number'));
+                $permit_valid_date = trim($this->input->post('permit_valid_date'));
                 $air_conditionar = trim($this->input->post('air_conditionar'));
                 $vehicle_model = trim($this->input->post('vehicle_model'));
                 $registration_number = trim($this->input->post('registration_number'));
@@ -1131,7 +1137,9 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
                     'vehicle_brand'          => $vehicle_brand,
                     'seat_capacity'          => $seat_capacity,
                     'insurance_number'          => $insurance_number,
+                    'insurance_valid_date'          => $insurance_valid_date,
                     'permit_number'          => $permit_number,
+                    'permit_valid_date'          => $permit_valid_date,
                     'air_conditionar'          => $air_conditionar,
                     'vehicle_model'        => $vehicle_model,
                     'registration_number'        => $registration_number, 

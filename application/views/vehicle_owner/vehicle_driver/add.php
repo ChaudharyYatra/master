@@ -61,6 +61,20 @@
                                 <input type="text" class="form-control" name="year_experience" placeholder="Enter Year Experience" required="required">
                               </div>
                         </div>
+
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Pan Card No.</label>
+                                <input type="text" class="form-control" name="pancard_no" placeholder="Enter Pan Card No" required="required">
+                              </div>
+                        </div>
+
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                <label>GST No. (Optional)</label>
+                                <input type="text" class="form-control" name="gst_no" placeholder="Enter GST No" required="required">
+                              </div>
+                        </div>
                       
                       <div class="col-md-6">
                               <div class="form-group">
@@ -70,11 +84,27 @@
                               </div>
                       </div>
 
-                      <div class="col-md-6">
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Licence Type</label><br>
-                                            <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="Light Weight Vehicle">&nbsp;&nbsp;Light Weight Vehicle
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="licence_type[]" id="licence_type" value="Heavy Vehicle">&nbsp;&nbsp; Heavy Vehicle
+                                  <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="Permanent Driving License">&nbsp;&nbsp;Permanent Driving License
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Licence Type</label><br>
+                                    <input type="checkbox" name="licence_type[]" id="licence_type" value="Commercial Driving License">&nbsp;&nbsp; Commercial Driving License
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Licence Valid Date</label>
+                                <input type="date" class="form-control" name="licence_valid_date" placeholder="Enter License valid Date" required="required">
                               </div>
                         </div>
                         
@@ -82,7 +112,7 @@
                           <div class="form-group">
                             <label>Upload licence Image(front)</label><br>
                             <input type="file" name="licence_image_front" id="licence_image_front" required="required">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
 
@@ -90,7 +120,7 @@
                           <div class="form-group">
                             <label>Upload licence Image(back)</label><br>
                             <input type="file" name="licence_image_back" id="licence_image_back" required="required">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
 
@@ -98,7 +128,7 @@
                           <div class="form-group">
                             <label>Upload Aadhaar Image(front)</label><br>
                             <input type="file" name="aadhaar_image_front" id="aadhaar_image_front" required="required">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
 
@@ -106,7 +136,7 @@
                           <div class="form-group">
                             <label>Upload Aadhaar Image(back)</label><br>
                             <input type="file" name="aadhaar_image_back" id="aadhaar_image_back" required="required">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
 
@@ -114,7 +144,7 @@
                           <div class="form-group">
                             <label>Upload Profile Image</label><br>
                             <input type="file" name="profile_image" id="profile_image" required="required">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
 

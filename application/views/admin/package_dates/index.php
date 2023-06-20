@@ -34,6 +34,7 @@
                   <thead>
                   <tr>
                     <th>SN</th>
+                    <th>Package Date Unique Id</th>
                     <th>Tour Title</th>
                     <th>Tour Date</th>
                     <th>Available Seats</th>
@@ -53,6 +54,7 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
+                    <td><?php echo $info['package_unique_id'] ?></td>
                     <td><?php echo $info['tour_title'] ?></td>
                     <td><?php echo date('d F Y', strtotime($info['journey_date'])); ?></td>
                     <td><?php echo $info['available_seats'] ?></td>
@@ -72,7 +74,6 @@
                     <td>
                           <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id']; ?>" title="Update"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
-                        
                     </td>
                   </tr>
                   

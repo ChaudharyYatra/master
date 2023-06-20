@@ -45,7 +45,7 @@
                     <th>Mobile Number 1</th>
                     <td><?php echo $info['mobile_number1']; ?></td>
                       
-                    <th>Mobile Number 1</th>
+                    <th>Mobile Number 2</th>
                     <td><?php echo $info['mobile_number2']; ?></td>
                   </tr>
 

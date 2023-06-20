@@ -23,6 +23,9 @@
         width:70px;
 
     }
+    .mealplan_css{
+            border: 1px solid red !important;
+        }
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -55,16 +58,17 @@
                 <?php foreach($tour_expenses_all as $tour_expenses_all_info){ ?> 
                     <form method="post" enctype="multipart/form-data" id="edit_tour_expenses">   
                     <div class="row">
-                        <div class="col-md-6">
+                        <!---======================== this tour title and tour date in select field and apply dependancy on tour title wise tour date ====================== -->
+
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                             <label>Tour No / Name</label>
                                 <select class="form-control" name="tour_number" id="tour_number" onfocus='this.size=5;' onblur='this.size=1;' 
                                     onchange='this.size=1; this.blur();'>
                                 <option value="">Select tour title</option>
-                                <?php foreach($packages_data as $packages_data_value){ ?> 
-                                    <!-- <option value="<?php //echo $packages_data_value['id'];?>"><?php //echo $packages_data_value['tour_number'];?> -  <?php //echo $packages_data_value['tour_title'];?></option> -->
-                                    <option value="<?php echo $packages_data_value['id']; ?>" <?php if($packages_data_value['id']==$tour_expenses_all_info['package_id']) { echo "selected"; } ?>><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
-                                    <?php } ?>
+                                <?php //foreach($packages_data as $packages_data_value){ ?> 
+                                    <option value="<?php //echo $packages_data_value['id']; ?>" <?php //if($packages_data_value['id']==$tour_expenses_all_info['package_id']) { echo "selected"; } ?>><?php //echo $packages_data_value['tour_number'];?> -  <?php //echo $packages_data_value['tour_title'];?></option>
+                                    <?php //} ?>
                                 </select>
                             </div>
                         </div>
@@ -74,17 +78,44 @@
                                 <label>Tour date</label>
                                 <select class="select_css" name="tour_date" id="tour_date" required>
                                 <option value="">Select Tour Date</option>
-                                        <?php foreach($package_date as $package_date_value){ ?> 
-                                        <option value="<?php echo $package_date_value['id'];?>" <?php if($package_date_value['id']==$tour_expenses_all_info['tour_date']){echo "selected";} ?>><?php echo $package_date_value['journey_date'];?></option>
-                                        <?php } ?>
+                                        <?php //foreach($package_date as $package_date_value){ ?> 
+                                        <option value="<?php //echo $package_date_value['id'];?>" <?php //if($package_date_value['id']==$tour_expenses_all_info['package_date_id']){echo "selected";} ?>><?php //echo $package_date_value['journey_date'];?></option>
+                                        <?php //} ?>
                                 </select>
+                            </div>
+                        </div> -->
+                        <!---======================== this tour title and tour date in select field and apply dependancy on tour title wise tour date ====================== -->
+                        <?php foreach($tour_expenses_all as $tour_expenses_all_info){ ?> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tour No / Name</label>
+                                <input type="text" class="form-control" name="tour_number" id="tour_number" value="<?php echo $tour_expenses_all_info['tour_number'];?> - <?php echo $tour_expenses_all_info['tour_title'];?>" readonly>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label>Tour date</label>
+                                <input type="text" class="form-control" name="tour_date" id="tour_date" value="<?php echo $tour_expenses_all_info['journey_date'];?>" readonly>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Expenses date</label>
                                 <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" required value="<?php echo $tour_expenses_all_info['expense_date'];?>">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pax type</label>
+                                <select class="select_css" name="pax_type" id="pax_type" required>
+                                    <option value="">Select Pax Type</option>
+                                    <option value="Customer" <?php if(isset($tour_expenses_all_info['pax_type'])){if("Customer" == $tour_expenses_all_info['pax_type']) {echo 'selected';}}?>>Customer</option>
+                                    <option value="Staff" <?php if(isset($tour_expenses_all_info['pax_type'])){if("Staff" == $tour_expenses_all_info['pax_type']) {echo 'selected';}}?>>Staff</option>
+                                </select>
                             </div>
                         </div>
 
@@ -103,12 +134,21 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Sub-Expenses Head</label>
-                                <select class="select_css" name="expense_category" id="expense_category">
+                                <select class="form-control" name="expense_category" id="expense_category" onchange='Expenses_category(this.value); 
+                                  this.blur();' onfocus='this.size=4;' onblur='this.size=1;'>
                                         <option value="">Select Sub-Expenses Head</option>
+                                        <option value="Other" <?php if(isset($tour_expenses_all_info['expense_category_id'])){if("Other" == $tour_expenses_all_info['expense_category_id']) {echo 'selected';}}?>>Other</option>
                                         <?php foreach($expense_category_data as $expense_category_info){ ?> 
                                         <option value="<?php echo $expense_category_info['id'];?>" <?php if($expense_category_info['id']==$tour_expenses_all_info['expense_category_id']){echo "selected";} ?>><?php echo $expense_category_info['expense_category'];?></option>
                                         <?php } ?>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" id="other_expense_category_div" style='display:none;'>
+                            <div class="form-group">
+                                <label>Other Sub-Expenses Head</label>
+                                <input type="text" class="form-control mealplan_css" name="other_expense_category" id="other_expense_category" placeholder="Enter other sub expense category" value="<?php echo $tour_expenses_all_info['other_expense_category'];?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
                         

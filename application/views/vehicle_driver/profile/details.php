@@ -82,6 +82,17 @@
                     <td><?php echo $info['address']; ?></td>
                 </tr>
 
+                <tr>
+                    <th>Password</th>
+                    <td><?php echo $info['password']; ?></td>
+                    
+                    <th>Confirm Password</th>
+                    <td><?php echo $info['password']; ?></td>
+                 
+                    <th></th>
+                    <td></td>
+                </tr>
+
                 </table>
                 
               </div>

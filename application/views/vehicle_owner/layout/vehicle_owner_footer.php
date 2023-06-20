@@ -4975,10 +4975,16 @@ $('#add_vehicle_details').validate({ // initialize the plugin
         insurance_number: {
             required: true,
         },
+        insurance_valid_date: {
+            required: true,
+        },
         insurance_image_name: {
             required: true,
         },
 		permit_number: {
+            required: true,
+        },
+        permit_valid_date: {
             required: true,
         },
         permit_image_name: {
@@ -5037,11 +5043,17 @@ $('#add_vehicle_details').validate({ // initialize the plugin
         insurance_number : {
             required : "Please enter Insurance Number",
         },
+        insurance_valid_date : {
+            required : "Please enter Insurance valid date",
+        },
         insurance_image_name : {
             required : "Please Select Upload Insurance Image",
         },
         permit_number : {
             required : "Please enter Permit Number",
+        },
+        permit_valid_date : {
+            required : "Please enter Permit valid date",
         },
         permit_image_name : {
             required : "Please Select Upload Permit Image",
@@ -5112,7 +5124,13 @@ $('#edit_vehicle_details').validate({ // initialize the plugin
         insurance_number: {
             required: true,
         },
+        insurance_valid_date: {
+            required: true,
+        },
 		permit_number: {
+            required: true,
+        },
+        permit_valid_date: {
             required: true,
         },
         air_conditionar: {
@@ -5148,8 +5166,14 @@ $('#edit_vehicle_details').validate({ // initialize the plugin
         insurance_number : {
             required : "Please enter Insurance Number",
         },
+        insurance_valid_date : {
+            required : "Please enter Insurance valid date",
+        },
         permit_number : {
             required : "Please enter Permit Number",
+        },
+        permit_valid_date : {
+            required : "Please enter Permit valid date",
         },
 		air_conditionar : {
             required : "Please Select Air Conditioners",

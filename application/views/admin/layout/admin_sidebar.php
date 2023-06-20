@@ -97,8 +97,6 @@
                 </a>
                </li>
                
-               
-               
                <li class="nav-item">
                 <a href="<?php echo base_url(); ?>admin/client_reviews/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -262,6 +260,12 @@
                 <a href="<?php echo base_url(); ?>admin/city_master/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>City Master</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/user_operation/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User Operation</p>
                 </a>
                </li>
             </ul>
@@ -438,6 +442,15 @@
             </ul>
           </li>
           
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>admin/sub_expenses_head/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Other Sub Expenses Head
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>admin/tour_expenses/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>

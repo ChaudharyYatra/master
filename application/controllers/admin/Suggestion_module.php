@@ -12,7 +12,7 @@ class Suggestion_module extends CI_Controller{
         }
 		
         $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/suggestion_module";
-        $this->module_title       = "Suggestion Module";
+        $this->module_title       = "Suggestion Module From Tour Manager";
         $this->module_url_slug    = "suggestion_module";
         $this->module_view_folder = "suggestion_module/";    
         // $this->load->library('upload');
@@ -25,10 +25,11 @@ class Suggestion_module extends CI_Controller{
         // $chy_admin_id = $this->session->userdata('chy_admin_id');
 
         $record = array();
-        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number";
+        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number,city.city_name";
         $this->db->order_by('suggestion_module.id','desc');
         $this->db->where('suggestion_module.is_deleted','no');
         $this->db->join("packages", 'suggestion_module.tour_number=packages.id','left');
+        $this->db->join("city", 'suggestion_module.city=city.id','left');
         $suggestion_data = $this->master_model->getRecords('suggestion_module',array('suggestion_module.is_deleted'=>'no'),$fields);
         // print_r($suggestion_data); die;
 
@@ -57,10 +58,11 @@ class Suggestion_module extends CI_Controller{
         }   
         
         $record = array();
-        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number,package_type.package_type";
+        $fields = "suggestion_module.*,packages.tour_title,packages.tour_number,package_type.package_type,city.city_name";
         $this->db->where('suggestion_module.is_deleted','no');
         $this->db->where('suggestion_module.id',$id);
         $this->db->join("package_type", 'suggestion_module.package_type=package_type.id','left');
+        $this->db->join("city", 'suggestion_module.city=city.id','left');
         $this->db->join("packages", 'suggestion_module.tour_number=packages.id','left');
         $arr_data = $this->master_model->getRecords('suggestion_module',array('suggestion_module.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;

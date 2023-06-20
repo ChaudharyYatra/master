@@ -4516,10 +4516,11 @@ $('#suugestion_edit').validate({ // initialize the plugin
         
           $('#expense_category').find('option').not(':first').remove();
        
-          $.each(response,function(index,data){       
+          $.each(response,function(index,data){   
+
              $('#expense_category').append('<option value="'+data['id']+'">'+data['expense_category']+'</option>');
           });
-         
+          $('#expense_category').append('<option value="Other">Other</option>');
         }
      });
    });
@@ -4565,6 +4566,20 @@ $('#add_tour_expenses').validate({ // initialize the plugin
         image_name: {
             required: true,
         },
+        pax_type: {
+            required: true,
+        },
+        other_expense_category: {
+            required : function(element) {
+                var action = $("#expense_category").val();
+                if(action == "Other") { 
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        }
+
         
     },
 
@@ -4599,6 +4614,12 @@ $('#add_tour_expenses').validate({ // initialize the plugin
         image_name : {
             required : "Please Select Image Name",
         },
+        pax_type : {
+            required : "Please Select Pax Type",
+        },
+        other_expense_category : {
+            required : "Please Enter Other Sub-Expenses Head",
+        }
     }
 });
 
@@ -4639,6 +4660,9 @@ $('#edit_tour_expenses').validate({ // initialize the plugin
         },
         expense_date: {
             required: true,
+        },
+        pax_type: {
+            required: true,
         }
     },
 
@@ -4669,6 +4693,9 @@ $('#edit_tour_expenses').validate({ // initialize the plugin
         },
         expense_date : {
             required : "Please Enter Expense Date",
+        },
+        pax_type : {
+            required : "Select Enter Pax Type",
         }
     }
 });
@@ -4953,5 +4980,71 @@ $('#edit_tour_photo').validate({ // initialize the plugin
 <!-- ============================tour manager bell icone todays Anniversary ================================== -->
 
 
+<!-- inter all traveller info  add code 16-03-2023======================================== -->
+<script>
+
+    $(document).ready(function(){
+        var count = $('#tour_no_of_days').val();
+    
+            for(var i=1; i<=count; i++){
+                var img_count=parseInt(i)+1;
+            
+                // alert(i);
+        var structure = $(`<tr>
+                    <?php foreach($arr_data as $info) 
+                    { ?>
+                                    <td>`+i+`</td>
+                                    <td> Day `+i+`</td>
+                                    <td>
+                                    <button class="btn btn-primary">
+                                        <a href="<?php echo $module_url_customer_attendance;?>/add/<?php $aid=base64_encode($info['package_id']); 
+                                                echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['package_date_id']); 
+                                                echo rtrim($did, '='); ?>/`+i+`" class="itinerary_css">Take Attendance</button></a>
+                                    </button>
+                                    </td>
+
+                                </tr>
+                                <?php  } ?>`);
+                    
+         
+            //alert(i);                       
+            $('#daily_attendance_table_add').append(structure); 
+        }
+       
+    });
+
+</script>
+
+
+<!-- expenses category  -->
+<script type="text/javascript">
+    function Expenses_category(val){
+    var element=document.getElementById('other_expense_category_div');
+	var element2=document.getElementById('other_expense_category');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	element2.value="";	
+    }
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var element=document.getElementById('other_expense_category_div');
+		//var element2=document.getElementById('other_tour_name');
+        var tno = $("#expense_category").val();
+        if(tno=='Other')
+        {
+        element.style.display='block';
+        }
+        else{
+        element.style.display='none';
+		//element2.value="";
+        }
+        });
+</script>
+<!-- expenses category  -->
 
 

@@ -25,9 +25,11 @@ class Driver_add_leave extends CI_Controller{
         $vehicle_ssession_driver_name = $this->session->userdata('vehicle_ssession_driver_name');
         $id = $this->session->userdata('vehicle_driver_sess_id');
 
-        $this->db->order_by('id','ASC');
+        // $this->db->order_by('id','ASC');
         $this->db->where('is_deleted','no');
+        $this->db->where('driver_leave.driver_id',$id);
         $arr_data = $this->master_model->getRecords('driver_leave');
+        // print_r($arr_data); die;
         
         $this->arr_view_data['vehicle_ssession_driver_name']= $vehicle_ssession_driver_name;
         $this->arr_view_data['listing_page']    = 'yes';
@@ -49,6 +51,12 @@ class Driver_add_leave extends CI_Controller{
         $vehicle_ssession_driver_name = $this->session->userdata('vehicle_ssession_driver_name');
         $id = $this->session->userdata('vehicle_driver_sess_id');
 
+        $this->db->order_by('id','ASC');
+        $this->db->where('is_deleted','no');
+        $this->db->where('vehicle_driver.id',$id);
+        $arr_data = $this->master_model->getRecords('vehicle_driver');
+        // print_r($arr_data); die;
+
         if($this->input->post('submit'))
         {
             $this->form_validation->set_rules('from_date', 'from_date', 'required');
@@ -58,10 +66,14 @@ class Driver_add_leave extends CI_Controller{
             {
                 $from_date  = $this->input->post('from_date'); 
                 $to_date  = $this->input->post('to_date'); 
+                $reason  = $this->input->post('reason'); 
+                $driver_id  = $this->input->post('driver_id'); 
                 
                 $arr_insert = array(
                     'from_date'   =>   $from_date,
-                    'to_date'  => $to_date
+                    'to_date'  => $to_date,
+                    'reason'  => $reason,
+                    'driver_id'  => $driver_id
                     
                 );
                 $inserted_id = $this->master_model->insertRecord('driver_leave',$arr_insert,true);
@@ -81,6 +93,7 @@ class Driver_add_leave extends CI_Controller{
         
         
         $this->arr_view_data['vehicle_ssession_driver_name'] = $vehicle_ssession_driver_name;
+        $this->arr_view_data['arr_data'] = $arr_data;
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -189,10 +202,12 @@ class Driver_add_leave extends CI_Controller{
                 {
                 $from_date  = $this->input->post('from_date'); 
                 $to_date  = $this->input->post('to_date'); 
+                $reason  = $this->input->post('reason'); 
 
                 $arr_update = array(
                     'from_date'   =>   $from_date,
-                    'to_date'  => $to_date
+                    'to_date'  => $to_date,
+                    'reason'  => $reason
                 );
                 
                     $arr_where     = array("id" => $id);
@@ -212,6 +227,7 @@ class Driver_add_leave extends CI_Controller{
 
         $this->db->order_by('id','ASC');
         $this->db->where('is_deleted','no');
+        $this->db->where('id',$id);
         $arr_data = $this->master_model->getRecords('driver_leave');
         // print_r($arr_data); die;
         

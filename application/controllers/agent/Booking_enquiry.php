@@ -644,7 +644,7 @@ class Booking_enquiry extends CI_Controller {
         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
     }
 	
-	   public function send_mail($to_email,$from_email,$msg,$subject,$cc=null) {
+	   public function send_mail($to_email,$from_email,$msg,$subject,$cc=null){
          
         $this->load->library('email');
         $mail_config = array();

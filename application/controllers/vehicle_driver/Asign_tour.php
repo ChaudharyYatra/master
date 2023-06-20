@@ -25,7 +25,7 @@ class Asign_tour extends CI_Controller{
         $vehicle_ssession_driver_name = $this->session->userdata('vehicle_ssession_driver_name');
         $id = $this->session->userdata('vehicle_driver_sess_id');
 
-        $fields = "packages.*,package_date.journey_date,agent.booking_center,vehicle_details.registration_number";
+        $fields = "packages.*,package_date.journey_date,agent.booking_center,vehicle_details.registration_number,package_date.id as did";
         // $this->db->order_by('id','ASC');
         $this->db->where('packages.is_deleted','no');
         $this->db->where('asign_tour_manager.driver_id',$id);
@@ -52,82 +52,49 @@ class Asign_tour extends CI_Controller{
        
 	}
 	
-	
-   
-  // Active/Inactive
-  public function active_inactive($id,$type)
+	// Get Details of Package
+    public function iternary_details($id,$did)
     {
-	  	$id=base64_decode($id);
-        if($id!="" && ($type == "yes" || $type == "no") )
-        {   
-            $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('asigned_driver');  
-            if(empty($arr_data))
-            {
-               $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-               redirect($this->module_url_path.'/index');
-            }   
-
-            $arr_update =  array();
-
-            if($type == 'yes')
-            {
-                $arr_update['is_active'] = "no";
-            }
-            else
-            {
-                $arr_update['is_active'] = "yes";
-            }
-            
-            if($this->master_model->updateRecord('asigned_driver',$arr_update,array('id' => $id)))
-            {
-                $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
-            }
-            else
-            {
-             $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
-            }
-        }
-        else
-        {
-           $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-        }
-        redirect($this->module_url_path.'/index');   
-    }
-  
-    // Delete
+        $vehicle_ssession_driver_name = $this->session->userdata('vehicle_ssession_driver_name');
+        $session_id = $this->session->userdata('vehicle_driver_sess_id');
     
-    public function delete($id)
-    {
-        $id=base64_decode($id);
-        if($id!='')
-        {   
-            $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('asigned_driver');
-
-            if(empty($arr_data))
-            {
-                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-                redirect($this->module_url_path);
-            }
-            $arr_update = array('is_deleted' => 'yes');
-            $arr_where = array("id" => $id);
-                 
-            if($this->master_model->updateRecord('asigned_driver',$arr_update,$arr_where))
-            {
-                $this->session->set_flashdata('success_message',$this->module_title.' Deleted Successfully.');
-            }
-            else
-            {
-                $this->session->set_flashdata('error_message','Oops,Something Went Wrong While Deleting Record.');
-            }
-        }
-        else
+		$id=base64_decode($id); 
+        $did=base64_decode($did); 
+        if ($id=='') 
         {
-           
-               $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-        }
-        redirect($this->module_url_path.'/index');  
+            $this->session->set_flashdata('error_message','Invalid Selection Of Record');
+            redirect($this->module_url_path.'/index');
+        }   
+        
+        $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_title,package_date.journey_date,package_date.id";
+        $this->db->where('asign_tour_manager.is_deleted','no');
+        // $this->db->where('asign_tour_manager.is_active','yes');
+        $this->db->where('asign_tour_manager.package_id',$id);
+        $this->db->where('package_date.id',$did);
+        $this->db->join("packages", 'asign_tour_manager.package_id=packages.id','left');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+        $package_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
+        // print_r($package_data); die;
+
+        $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_title,package_iternary.day_number,package_iternary.iternary_desc,package_iternary.image_name";
+        $this->db->where('asign_tour_manager.is_deleted','no');
+        // $this->db->where('asign_tour_manager.is_active','yes');
+        $this->db->where('asign_tour_manager.package_id',$id);
+        $this->db->join("packages", 'asign_tour_manager.package_id=packages.id','left');
+        $this->db->join("package_iternary", 'packages.id=package_iternary.package_id','left');
+        $arr_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
+
+        $this->arr_view_data['vehicle_ssession_driver_name']        = $vehicle_ssession_driver_name;
+        $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['package_data']        = $package_data;
+        $this->arr_view_data['page_title']      = $this->module_title." Iternary Details ";
+        $this->arr_view_data['module_title']    = $this->module_title;
+        $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['middle_content']  = $this->module_view_folder."iternary_details";
+        $this->load->view('vehicle_driver/layout/vehicle_driver_combo',$this->arr_view_data);
+
+
     }
    
 }

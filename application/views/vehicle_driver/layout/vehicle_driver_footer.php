@@ -1268,7 +1268,7 @@ $('#add_changepassword').validate({ // initialize the plugin
     $error.appendTo($element.closest("div"));
   },
     rules: {
-     old_pass: {
+        old_pass: {
             required: true,
         },
         new_password: {

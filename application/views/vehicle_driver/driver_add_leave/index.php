@@ -10,7 +10,6 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
-              
             </ol>
           </div>
         </div>
@@ -36,6 +35,7 @@
                     <th>SN</th>
                     <th>From Date</th>
                     <th>To Date</th>
+                    <th>Reason</th>
                     <th>Is Active?</th>
                     <th>Action</th>
                   </tr>
@@ -52,6 +52,7 @@
                     <td><?php echo $i; ?></td>
                     <td><?php echo date("d-m-Y",strtotime($info['from_date'])) ?></td>
                     <td><?php echo date("d-m-Y",strtotime($info['to_date'])) ?></td>
+                    <td><?php echo $info['reason'] ?></td>
                     <td>
                         <?php 
                         if($info['is_active']=='yes')

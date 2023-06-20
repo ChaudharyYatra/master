@@ -12,7 +12,7 @@ class Supervision extends CI_Controller{
         }
 		
         $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/supervision";
-        $this->module_title       = "Supervisor";
+        $this->module_title       = "Supervision";
         $this->module_url_slug    = "supervision";
         $this->module_view_folder = "supervision/";    
         $this->load->library('upload');
@@ -23,6 +23,7 @@ class Supervision extends CI_Controller{
         $fields = "supervision.*";
         // $this->db->order_by('agent.arrange_id','asc');        
         $this->db->where('supervision.is_deleted','no');        
+        $this->db->where('supervision.role_type','3');        
         // $this->db->join("department", 'agent.department=department.id','left');
         $arr_data = $this->master_model->getRecords('supervision',array('supervision.is_deleted'=>'no'),$fields);
 

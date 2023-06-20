@@ -56,8 +56,7 @@
 <script src="<?php echo base_url(); ?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap color picker -->
 <script src="<?php echo base_url(); ?>assets/admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?php echo base_url(); ?>assets/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
 <!-- Bootstrap Switch -->
 <script src="<?php echo base_url(); ?>assets/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- BS-Stepper -->
@@ -88,7 +87,8 @@
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="<?php echo base_url(); ?>assets/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
 <script>
   $(function () {
@@ -636,7 +636,16 @@ $("#image_name_guide").change(function (e) {
                                 '<input type="number" class="form-control" name="day_number[]" id="day_number" placeholder="Enter Day Number" required>'+
                               '</div>'+
                     '</div>'+
-                        '<div class="col-md-10">'+
+
+                    '<div class="col-md-5">'+
+                        '<div class="form-group">'+
+                          '<label>Upload Image '+day+'</label><br>'+
+                          '<input type="file" name="image_name[]" id="image_name" required="required">'+
+                          '<br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>'+
+                        '</div>'+
+                    '</div>'+
+
+                        '<div class="col-md-5">'+
                              '<div class="form-group">'+
                             '<label>Itinerary For Day '+day+' <span class="text-danger">*</span></label>'+
                             '<textarea class="form-control iternary_desc" name="iternary_desc[]" id="" placeholder="Enter Itinerary Description" required="required"></textarea>'+
@@ -665,6 +674,8 @@ $("#image_name_guide").change(function (e) {
 // });
 
  </script>
+
+
 
 <script>
  $(document).ready(function(){
@@ -6873,3 +6884,317 @@ $('#edit_vehicle_owner').validate({ // initialize the plugin
 
 </script>
 <!-- jquery validation on edit Vehicle owner -->
+<!-- package add action add hotel add more  -->
+
+<script>
+    $('.state_id').change(function(){
+        // alert('hiiiiiiiiiii');
+    });
+</script>
+
+
+
+
+<script>  
+
+$(document).ready(function(){ 
+ // var i = '0';
+  
+   var newFields = $('');
+
+   $("#total_days_hotel").keyup(function(e){
+       e.preventDefault();
+       var n = this.value || 0;
+       //alert(n);
+        $('#myInput').val(n);
+       if (n+1) {
+           if (n > newFields.length) {
+               addFields(n);
+               
+           } else {
+               removeFields(n);
+           }
+       }
+   });
+   
+   function addFields(n) {
+       for (i = newFields.length; i < n; i++) {
+            var day=i+1;
+            var input = $(`<tr>
+                            <td>
+                               <input type="number" class="form-control" name="day_number[]" id="day_number" placeholder="Enter Day Number" readonly value="`+day+`">
+                            </td>
+                            <td>
+                                <select class="form-control state_id" style="width: 100%;" attr-type="state" name="state_id[]" required="required">
+                                    <option value="">Select State Name</option>
+                                    <?php
+                                    foreach($state_name_data as $state_name_info) 
+                                    {  
+                                    ?>
+                                    <option value="<?php echo $state_name_info['id']; ?>"><?php echo $state_name_info['state_name']; ?></option>
+                                <?php } ?>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="form-control city_id" style="width: 100%;" attr-type="city" name="city_id[]" required="required">
+                                    <option value="">Select City Name</option>
+                                    <?php
+                                    //foreach($state_name_data as $state_name_info) 
+                                    //{  
+                                    ?>
+                                    <option value="<?php //echo $state_name_info['id']; ?>"><?php //echo $state_name_info['state_name']; ?></option>
+                                <?php //} ?>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control hotel_name_id" style="width: 100%;" name="hotel_name_id[]" required="required">
+                                    <option value="">Select Hotel Name</option>
+                                    <?php
+                                    //foreach($state_name_data as $state_name_info) 
+                                    //{  
+                                    ?>
+                                    <option value="<?php //echo $state_name_info['id']; ?>"><?php //echo $state_name_info['state_name']; ?></option>
+                                <?php //} ?>
+                              </select>
+                            </td>
+                            <td>
+                                <textarea class="form-control short_description" name="short_description[]" placeholder="Enter Short Description" required="required"></textarea>
+                            </td>
+                      
+                            <td>
+                                <input type="checkbox" class="form-control in_travel" name="in_travel[]" id="in_travel" value="Travel">&nbsp;&nbsp; Travel
+                                <input type="hidden" class="form-control travel_yes" name="travel_yes[]" value="">
+                            </td>
+                      </tr>`);
+           var newInput = input.clone();
+           
+           newFields = newFields.add(newInput);
+           newInput.appendTo('#main_row_hotel');
+        }
+   }
+   
+   function removeFields(n) {
+       var removeField = newFields.slice(n).remove();
+       newFields = newFields.not(removeField);
+   }
+   
+       //  for (i = 0; i <= n; i++) {
+       //     var newInput = input.clone();
+           
+       //     newFields = newFields.add(newInput);
+       //     newInput.appendTo('#newFields');
+       // }
+       
+   });
+
+// });
+
+// -------------------------------------------------------
+
+
+
+// ------------------------------------------------------- -->
+</script>
+<!-- package add action add hotel add more  -->
+
+<!-- package -> hotel add  state wise city display dependency start -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+    // alert('hiiiiii');
+ 
+    // district change
+    $(document).on("change","select",function(){
+        // alert('hiiiiii');
+     
+      var attr_val = $(this).attr('attr-type');
+      var currentRow=$(this).closest("tr"); 
+        // alert(attr_val);
+
+      if(attr_val == 'state'){
+        // alert('if');
+        var did = $(this).val();
+      $.ajax({
+        url:'<?=base_url()?>admin/package_hotel/get_city',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+        //   $('.city_id').find('option').not(':first').remove();
+          currentRow.find(".city_id").find('option').not(':first').remove();
+       
+            var col3=currentRow.text(); 
+
+          $.each(response,function(index,data){       
+            currentRow.find(".city_id").append('<option value="'+data['id']+'">'+data['city_name']+'</option>');
+          });
+         
+        }
+     });
+    }
+// ------------------------------------------------------------------------------------
+
+       else if(attr_val == 'city'){
+        // alert('else');
+        var did = $(this).val();
+            $.ajax({
+                url:'<?=base_url()?>admin/package_hotel/get_hotel_name',
+                method: 'post',
+                data: {did: did},
+                dataType: 'json',
+                success: function(response){
+                console.log(response);
+                
+                // $('.hotel_name_id').find('option').not(':first').remove();
+                currentRow.find(".hotel_name_id").find('option').not(':first').remove();
+            
+                $.each(response,function(index,data){       
+                    currentRow.find(".hotel_name_id").append('<option value="'+data['id']+'">'+data['hotel_name']+'</option>');
+                });
+                
+                }
+            });
+        }
+
+
+   });
+ });
+</script>
+
+<!------ package -> hotel add  state wise city display dependency start ---->
+
+<script>
+$(document).ready(function(){
+    $(document).on("change","input",function(){
+  var chx = $(this).is(':checked');
+//   alert(chx) ;
+  if(chx == true){
+// alert(chx);
+  var currentRow=$(this).closest("tr"); 
+  currentRow.find('.city_id').attr('readOnly',true); 
+  currentRow.find('.state_id').attr('readOnly',true); 
+  currentRow.find('.hotel_name_id').attr('readOnly',true); 
+  currentRow.find('.short_description').attr('readOnly',true);
+  }
+  else if(chx == false){
+  var currentRow=$(this).closest("tr"); 
+  currentRow.find('.city_id').attr('readOnly',false); 
+  currentRow.find('.state_id').attr('readOnly',false); 
+  currentRow.find('.hotel_name_id').attr('readOnly',false); 
+  currentRow.find('.short_description').attr('readOnly',false); 
+  }
+//   $(this).closest('tr').find('input:text, select,textarea').prop("readOnly", chx);
+});
+});
+</script>
+
+<!-- admin-> package_hotel-> add -> check box select ->then input box fetch value -->
+<script language=javascript>
+$(document).on("click",'.in_travel',function(){
+    var currentRow=$(this).closest("tr"); 
+    var hotel_check = $(this).is(':checked');
+    if (hotel_check == true){
+        currentRow.find(".travel_yes").val('Travel');
+    }
+    else if(hotel_check == false){
+        currentRow.find(".travel_yes").val('');
+
+    }
+});
+</script>
+<!-- admin-> package_hotel-> add -> check box select ->then input box fetch value -->
+
+<!-- dependency code for package_hotel for edit -->
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#state_id').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/package_hotel/get_city',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#city_id').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#city_id').append('<option value="'+data['id']+'">'+data['city_name']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#city_id').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/package_hotel/get_hotel_name',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#hotel_name_id').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#hotel_name_id').append('<option value="'+data['id']+'">'+data['hotel_name']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+
+<script>
+$(document).ready(function(){
+   
+        // alert('hiiii');
+  var chx = $(this).is(':checked');
+//   alert(chx) ;
+  if(chx == true){
+// alert(chx);
+  var currentRow=$(this).closest("tr"); 
+  currentRow.find('.city_id').attr('readOnly',true); 
+  currentRow.find('.state_id').attr('readOnly',true); 
+  currentRow.find('.hotel_name_id').attr('readOnly',true); 
+  currentRow.find('.short_description').attr('readOnly',true);
+  }
+  else if(chx == false){
+  var currentRow=$(this).closest("tr"); 
+  currentRow.find('.city_id').attr('readOnly',false); 
+  currentRow.find('.state_id').attr('readOnly',false); 
+  currentRow.find('.hotel_name_id').attr('readOnly',false); 
+  currentRow.find('.short_description').attr('readOnly',false); 
+  }
+//   $(this).closest('tr').find('input:text, select,textarea').prop("readOnly", chx);
+});
+</script>
+<!-- dependency code for package_hotel for edit -->

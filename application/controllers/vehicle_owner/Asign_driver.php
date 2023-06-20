@@ -88,13 +88,15 @@ class Asign_driver extends CI_Controller{
         }
         }
         $this->db->order_by('id','ASC');
-        $this->db->where('is_deleted','no');
+        $this->db->where('is_deleted','no'); 
+        $this->db->where('is_active','yes');
         $this->db->where('status','approved');
         $vehicle_details = $this->master_model->getRecords('vehicle_details');
         // print_r($vehicle_details); die;
 
         $this->db->order_by('id','ASC');
         $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
         $this->db->where('status','approved');
         $vehicle_driver = $this->master_model->getRecords('vehicle_driver');
         // print_r($vehicle_driver); die;
