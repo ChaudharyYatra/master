@@ -32,6 +32,13 @@
                   <p>Hotel</p>
                 </a>
           </li>
+
+          <li class="nav-item">
+                <a href="<?php echo base_url(); ?>hotel/final_booking_details/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Final Booking</p>
+                </a>
+          </li>
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>hotel/profile/index" class="nav-link">

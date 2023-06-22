@@ -61,15 +61,18 @@
                       </div>
                     </div>
 
+                    <input type="hidden" class="form-control" name="package_id[]" id="package_id" value="<?php echo $pid ?>">
+                    <input type="hidden" class="form-control" name="package_date_id[]" id="package_date_id" value="<?php echo $id ?>">
+
                   </div>  
                   
        
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="button" class="btn btn-success" name="add_more" value="add_more_staff" id="add_more_staff">Add More Room</button>
+                  <button type="button" class="btn btn-success" name="add_more" value="add_more_staff" id="add_more_staff">Add More Staff</button>
                   <button type="submit" class="btn btn-primary" name="submit" value="submit" id="submit">Submit</button>
-					        <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger">Cancel</button></a>
+					        <a href="<?php echo $module_url_path; ?>/index/<?php echo $id; ?>/<?php echo $pid; ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
                 </div>
               </form>
             </div>

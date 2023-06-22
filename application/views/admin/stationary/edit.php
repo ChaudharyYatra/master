@@ -72,9 +72,9 @@
                       <div class="form-group">
                         
                           <input type="radio" id="Yes" name="series_yes_no" value="Yes" <?php if(isset($info['series_yes_no'])){if("Yes"==$info['series_yes_no']){echo "checked";}} ?>> &nbsp;
-                          <label for="html">Yes</label>  &nbsp; &nbsp; 
+                          <label>Yes</label>  &nbsp; &nbsp; 
                           <input type="radio" id="No" name="series_yes_no" value="No" <?php if(isset($info['series_yes_no'])){if("No"==$info['series_yes_no']){echo "checked";}} ?>> &nbsp;
-                          <label for="html">No</label><br>
+                          <label>No</label><br>
                       </div>
                     </div>
                     <?php if($info['series_yes_no'] == 'Yes') { ?>

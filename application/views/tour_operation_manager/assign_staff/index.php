@@ -9,7 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
+              <a href="<?php echo $module_url_path; ?>/add/<?php echo $id; ?>/<?php echo $pid; ?>"><button class="btn btn-primary">Add</button></a>
               
             </ol>
           </div>
@@ -36,7 +36,6 @@
                     <th>SN</th>
                     <th>Role name</th>
                     <th>Name</th>
-                    <th>Is Active?</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -52,20 +51,10 @@
                     <td><?php echo $i; ?></td>
                     <td><?php echo $info['role_name'] ?></td>
                     <td><?php echo $info['supervision_name'] ?></td>
-
-                    <td>
-                        <?php 
-                        if($info['is_active']=='yes')
-                          {
-                        ?>
-                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-success btn-sm">YES</button></a>
-                        <?php } else { ?>
-                        <a href="<?php echo $module_url_path ?>/active_inactive/<?php echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</button> </a>
-                        <?php } ?>
-                    </td>
+                    
                     <td>
                           <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id']; ?>" title="Update"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
-                          <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" 
+                          <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>/<?php echo $id; ?>/<?php echo $pid; ?>" 
                           title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
                           
                     </td>

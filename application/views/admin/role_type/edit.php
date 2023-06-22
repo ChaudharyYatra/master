@@ -39,12 +39,21 @@
               <div class="card-body">
                   <div class="container">
                     <div class="row"> 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                           <div class="form-group">
                             <label>Role Name</label>
                             <input type="text" class="form-control" name="role_name" id="role_name" placeholder="Enter role name" required="required" value="<?php echo $info['role_name'] ?>">
                           </div>
                         </div>
+                        <div class="col-md-6">
+                          <label>Is It Series Item <span class="req_field">*</span></label>
+                          <div class="form-group">
+                          <input type="radio" id="yes" name="for_booking_yes_no" value="yes" <?php if(isset($info['for_booking_yes_no'])){if("yes"==$info['for_booking_yes_no']){echo "checked";}} ?>> &nbsp;
+                          <label>Yes</label>  &nbsp; &nbsp; 
+                          <input type="radio" id="no" name="for_booking_yes_no" value="no" <?php if(isset($info['for_booking_yes_no'])){if("no"==$info['for_booking_yes_no']){echo "checked";}} ?>> &nbsp;
+                          <label>No</label><br>
+                      </div>
+                    </div>
                     </div> 
                     <br>
                   </div>

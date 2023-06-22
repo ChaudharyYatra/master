@@ -10,7 +10,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <!-- <a href="<?php //echo $module_url_path; ?>/index"><button class="btn btn-primary">List</button></a> -->
+              <a href="<?php echo $module_url_path; ?>/sub_index/<?php echo $p_date;?>"><button class="btn btn-primary">Back</button></a>
             </ol>
           </div>
         </div>
@@ -24,9 +24,9 @@
           <!-- left column -->
             <div class="col-md-12">
             <!-- jquery validation -->
-            <?php $this->load->view('agent/layout/agent_alert'); ?>
+            <?php $this->load->view('admin/layout/admin_alert'); ?>
 
-            <form method="post" action="<?php echo base_url(); ?>agent/booking_preview/add" enctype="multipart/form-data" id="">
+           
 
             <div class="card card-primary">
               <div class="card-header">
@@ -65,11 +65,13 @@
                         <div class="col-md-1">
                             <div><?php echo $traveller_booking_info_value['seat_count']; ?></div>
                         </div>
+
                         <input type="hidden" class="form-control" name="hotel_name_id" id="hotel_name_id" value="<?php echo $traveller_booking_info_value['hotel_name_id']; ?>">
                         <input type="hidden" class="form-control" name="package_date_id" id="package_date_id" value="<?php echo $traveller_booking_info_value['tour_date']; ?>">
                         <input type="hidden" class="form-control" name="enquiry_id" id="enquiry_id" value="<?php echo $traveller_booking_info_value['domestic_enquiry_id']; ?>">
                         <input type="hidden" class="form-control" name="package_id" id="package_id" value="<?php echo $traveller_booking_info_value['pid']; ?>">
                         <input type="hidden" class="form-control" name="journey_date" id="journey_date" value="<?php echo $traveller_booking_info_value['journey_date']; ?>">
+                        
                     
                     </div>
                 <?php } ?>
@@ -260,15 +262,8 @@
             <!-- /.card -->
 
                                             
-
-                <div class="card-footer">
-                    <!-- <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button> -->
-                    <a onclick="return confirm('Are You Sure You Want To Book This Tour ?')" href="<?php echo $module_url_path;?>/booking_enquiry/add"><button type="submit" class="btn btn-success" name="submit" value="submit">Final Booking</button> 
-                    <a href="<?php echo $module_url_path_back; ?>/add_bus/<?php echo $enquiry_id; ?>/1"><button type="button" class="btn btn-warning" name="back_btn">Back</button></a>
-                    <a href="<?php echo $module_url_booking_process; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                </div>
             </div>
-            </form>
+            
           <!--/.col (left) -->
           <!-- right column -->
           
@@ -284,5 +279,3 @@
   </div>
   
 
-</body>
-</html>
