@@ -64,9 +64,9 @@
                       <label>Is It Series Item <span class="req_field">*</span></label>
                       <div class="form-group">
                           <input type="radio" id="Yes" name="series_yes_no" value="Yes" > &nbsp;
-                          <label for="html">Yes</label>  &nbsp; &nbsp; 
+                          <label>Yes</label>  &nbsp; &nbsp; 
                           <input type="radio" id="No" name="series_yes_no" value="No"> &nbsp;
-                          <label for="html">No</label><br>
+                          <label>No</label><br>
                       </div>
                     </div>
                     <div class="col-md-3 if_series_yes_div">

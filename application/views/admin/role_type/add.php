@@ -35,14 +35,23 @@
               <form method="post" enctype="multipart/form-data" id="add_role">
                 <div class="card-body">
                   
-                    <div class="row"> 
-                        <div class="col-md-6">
-                          <div class="form-group">
-                              <label>Role Name</label>
-                              <input type="text" class="form-control" name="role_name" id="role_name" placeholder="Enter Role Name" required="required">
-                          </div>
-                        </div>
-                        
+                  <div class="row"> 
+                    <div class="col-md-6">
+                      <div class="form-group">
+                          <label>Role Name :</label>
+                          <input type="text" class="form-control" name="role_name" id="role_name" placeholder="Enter Role Name" required="required">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Consider for Booking :</span></label>
+                      <div class="form-group">
+                          <input type="radio" id="yes" name="for_booking_yes_no" value="yes"> &nbsp;
+                          <label>Yes</label>  &nbsp; &nbsp; 
+                          <input type="radio" id="no" name="for_booking_yes_no" value="no"> &nbsp;
+                          <label>No</label><br>
+                      </div>
+                    </div>
+                  </div>  
                  
 
                 </div>

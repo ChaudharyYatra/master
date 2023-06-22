@@ -59,13 +59,13 @@
 
 
                     <td>
-                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="Form"><button type="button" class="btn btn-primary btn-sm" class="dropdown-item">Send Details</button> </a>
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $i; ?>" data-bs-whatever="Form"><button type="button" class="btn btn-primary btn-sm" class="dropdown-item">Send Details</button> </a>
                     </td>
                     
                     
                   </tr>
 
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="exampleModal<?php echo $i; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">

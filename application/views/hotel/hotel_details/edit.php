@@ -92,7 +92,7 @@
                       </div>
                     </div>
 
-                    <input class="form-control" type="hidden" name="assign[]" value="<?php echo $info['assign']; ?>">
+                    <input class="form-control" type="hidden" name="assign[]" value="1">
 
                     <div class="col-md-6">
                       <div class="form-group">

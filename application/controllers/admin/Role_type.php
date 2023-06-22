@@ -42,8 +42,11 @@ class Role_type extends CI_Controller{
             if($this->form_validation->run() == TRUE)
             {
                 $role_name = $this->input->post('role_name');
+                $for_booking_yes_no        = $this->input->post('for_booking_yes_no'); 
+
                 $arr_insert = array(
-                    'role_name'   =>   $role_name
+                    'role_name'   =>   $role_name,
+                    'for_booking_yes_no'   =>   $for_booking_yes_no
                     
                 );
 
@@ -176,10 +179,11 @@ class Role_type extends CI_Controller{
                 if($this->form_validation->run() == TRUE)
                 {
                    $role_name = trim($this->input->post('role_name'));
-                   
+                   $for_booking_yes_no        = $this->input->post('for_booking_yes_no'); 
 
                    $arr_update = array(
                         'role_name' => $role_name,
+                        'for_booking_yes_no'   =>   $for_booking_yes_no
                     );
 
                     $arr_where     = array("id" => $id);

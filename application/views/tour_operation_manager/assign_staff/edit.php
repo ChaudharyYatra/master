@@ -9,7 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">Back</button></a>
+              <a href="<?php echo $module_url_path; ?>/index/<?php echo $p_date_id ?>/<?php echo $p_id ?>"><button class="btn btn-primary">Back</button></a>
             </ol>
           </div>
         </div>
@@ -69,6 +69,9 @@
                       </div>
                     </div>
 
+                    <input type="hidden" class="form-control" name="package_id[]" id="package_id" value="<?php echo $info['package_id'] ?>">
+                    <input type="hidden" class="form-control" name="package_date_id[]" id="package_date_id" value="<?php echo $info['package_date_id'] ?>">
+
 
                   </div>  
                   
@@ -76,7 +79,7 @@
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary" name="submit" value="submit" id="submit_slider">Submit</button>
                     
-                    <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger">Cancel</button></a>
+                    <a href="<?php echo $module_url_path; ?>/index/<?php echo $info['package_date_id'] ?>/<?php echo $info['package_id'] ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
                   </div>
                 </div>
               </form>

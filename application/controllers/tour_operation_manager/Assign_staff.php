@@ -26,13 +26,15 @@ class Assign_staff extends CI_Controller{
         // $arr_data = $this->master_model->getRecords('assign_staff');
         // print_r($arr_data); die;
 
-        $fields = "packages.*,package_type.package_type,package_type.id as pid";
+        $record = array();
+        $fields = "packages.*,final_booking.package_id,final_booking.package_date_id,package_date.id,package_date.journey_date,package_type.package_type,package_type.id,package_date.id as p_date_id,packages.id as pid";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
-		$this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        $this->db->join("final_booking", 'final_booking.package_id=packages.id','right');
+        $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','right');
         $this->db->join("package_type", 'packages.package_type=package_type.id','left');
         $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
-        // print_r($arr_data); die;
+    //    print_r($arr_data); die;
 
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
@@ -47,10 +49,10 @@ class Assign_staff extends CI_Controller{
 	}
 	
 
-	public function index()
+	public function index($id,$pid)
 	{
         $supervision_sess_name = $this->session->userdata('supervision_name');
-        $id = $this->session->userdata('supervision_sess_id');
+        $iid = $this->session->userdata('supervision_sess_id');
 
         // $this->db->where('is_deleted','no');
         // $arr_data = $this->master_model->getRecords('assign_staff');
@@ -58,6 +60,8 @@ class Assign_staff extends CI_Controller{
 
         $fields = "assign_staff.*,role_type.role_name,supervision.supervision_name";
         $this->db->where('assign_staff.is_deleted','no');
+        $this->db->where('package_date_id',$id);
+        $this->db->where('package_id',$pid);
         $this->db->join("role_type", 'assign_staff.role_name=role_type.id','left');
         $this->db->join("supervision", 'assign_staff.name=supervision.id','left');
         $arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
@@ -66,6 +70,8 @@ class Assign_staff extends CI_Controller{
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['id']        = $id;
+        $this->arr_view_data['pid']        = $pid;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -75,10 +81,10 @@ class Assign_staff extends CI_Controller{
 	}
 	
 	
-    public function add()
+    public function add($id,$pid)
     {   
         $supervision_sess_name = $this->session->userdata('supervision_name');
-        $id = $this->session->userdata('supervision_sess_id');   
+        $iid = $this->session->userdata('supervision_sess_id');   
 
 
         
@@ -95,13 +101,18 @@ class Assign_staff extends CI_Controller{
                 $role_name	  = $this->input->post('role_name'); 
                 $name	  = $this->input->post('name');
 
+                $package_id	  = $this->input->post('package_id');
+                $package_date_id   = $this->input->post('package_date_id');
+
                 $count = count($name);
                 for($i=0;$i<$count;$i++)
                 {
 
                     $arr_insert = array(
                         'role_name'   =>   $role_name[$i],
-                        'name'   =>   $name[$i]
+                        'name'   =>   $name[$i],
+                        'package_id'   =>   $package_id[$i],
+                        'package_date_id'   =>   $package_date_id[$i]
                     );
 
                     $inserted_id = $this->master_model->insertRecord('assign_staff',$arr_insert,true);
@@ -111,14 +122,14 @@ class Assign_staff extends CI_Controller{
                 if($inserted_id > 0)
                 {
                     $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
-                    redirect($this->module_url_path.'/index');
+                    redirect($this->module_url_path.'/index/'.$id.'/'.$pid);
                 }
 
                 else
                 {
                     $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
                 }
-                redirect($this->module_url_path.'/index');
+                redirect($this->module_url_path.'/index/'.$id.'/'.$pid);
             
             }
        
@@ -127,10 +138,13 @@ class Assign_staff extends CI_Controller{
 
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');  
+        $this->db->where('for_booking_yes_no','yes'); 
         $role_type = $this->master_model->getRecords('role_type');
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['role_type']        = $role_type;
+        $this->arr_view_data['id']        = $id;
+        $this->arr_view_data['pid']        = $pid;
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Assign Staff";
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -160,6 +174,14 @@ class Assign_staff extends CI_Controller{
             $this->db->where('is_active','yes');
             $this->db->where('is_deleted','no');
             $arr_data = $this->master_model->getRecords('assign_staff');
+            // print_r($arr_data); die;
+
+            foreach($arr_data  as $arr_data_info){
+                $role_id = $arr_data_info['role_name'];
+                
+                $p_id = $arr_data_info['package_id'];
+                $p_date_id = $arr_data_info['package_date_id'];
+            }
   
         
             if($this->input->post('submit'))
@@ -195,7 +217,7 @@ class Assign_staff extends CI_Controller{
                     {
                         $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
                     }
-                    redirect($this->module_url_path.'/index');
+                    redirect($this->module_url_path.'/index/'.$p_date_id.'/'.$p_id);
                 
             }
           }
@@ -203,17 +225,21 @@ class Assign_staff extends CI_Controller{
         
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');  
+        $this->db->where('for_booking_yes_no','yes'); 
         $role_type = $this->master_model->getRecords('role_type');
         //  print_r($packages_data); die;
 
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
+        $this->db->where('role_type',$role_id);
         $supervision = $this->master_model->getRecords('supervision');
         // print_r($package_type); die;
 
         
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['p_id']        = $p_id;
+        $this->arr_view_data['p_date_id']        = $p_date_id;
         $this->arr_view_data['supervision']        = $supervision;
         $this->arr_view_data['role_type']        = $role_type;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
@@ -225,7 +251,7 @@ class Assign_staff extends CI_Controller{
 
     // Delete
     
-    public function delete($id)
+    public function delete($id,$iid,$pid)
     {
 
         if($id!='')
@@ -255,52 +281,11 @@ class Assign_staff extends CI_Controller{
            
                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
         }
-        redirect($this->module_url_path.'/index');  
+        redirect($this->module_url_path.'/index/'.$iid.'/'.$pid);  
     }
 
 
 
-      // Active/Inactive
-  
-  public function active_inactive($id,$type)
-  {
-
-      if($id!='' && ($type == "yes" || $type == "no") )
-      {   
-          $this->db->where('id',$id);
-          $arr_data = $this->master_model->getRecords('assign_staff');
-          if(empty($arr_data))
-          {
-             $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-             redirect($this->module_url_path.'/index');
-          }   
-
-          $arr_update =  array();
-
-          if($type == 'yes')
-          {
-              $arr_update['is_active'] = "no";
-          }
-          else
-          {
-              $arr_update['is_active'] = "yes";
-          }
-          
-          if($this->master_model->updateRecord('assign_staff',$arr_update,array('id' => $id)))
-          {
-              $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
-          }
-          else
-          {
-           $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
-          }
-      }
-      else
-      {
-         $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-      }
-      redirect($this->module_url_path.'/index');   
-  }
 
 
 //   public function get_package(){ 

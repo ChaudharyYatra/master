@@ -349,7 +349,7 @@ if(select_type=='role'){
         currentRow.find(".name").find('option').not(':first').remove();
        
           $.each(response,function(index,data){             
-            currentRow.find(".row_set1").append('<option value="'+data['id']+'">'+data['supervision_name']+'</option>');
+            currentRow.find(".name").append('<option value="'+data['id']+'">'+data['supervision_name']+'</option>');
             //  $('.name').append('<option value="'+data['id']+'">'+data['supervision_name']+'</option>');
           });
         }
@@ -397,6 +397,10 @@ var structure = $(` <div class="row" id="new_row`+i+`">
                                 <button type="button" name="remove" id="`+i+`" class="btn btn-danger btn_remove">X</button>
                             </div>
                         </div>
+
+                        <input type="hidden" class="form-control" name="package_id[]" id="package_id" value="<?php echo $pid ?>">
+                        <input type="hidden" class="form-control" name="package_date_id[]" id="package_date_id" value="<?php echo $id ?>">
+
                     </div>
               `);
 $('#main_row').append(structure); 

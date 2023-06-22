@@ -6424,12 +6424,18 @@ $('#add_role').validate({ // initialize the plugin
         role_name: {
             required: true,
         },
+        for_booking_yes_no: {
+            required: true,
+        },
         
     },
 
     messages :{
         role_name : {
             required : "Please enter role name",
+        },
+        for_booking_yes_no : {
+            required : "Please select yes or no",
         },
     
     }
@@ -6450,12 +6456,18 @@ $('#edit_role').validate({ // initialize the plugin
         role_name: {
             required: true,
         },
+        for_booking_yes_no: {
+            required: true,
+        },
         
     },
 
     messages :{
         role_name : {
             required : "Please enter role name",
+        },
+        for_booking_yes_no : {
+            required : "Please select yes or no",
         },
     
     }
