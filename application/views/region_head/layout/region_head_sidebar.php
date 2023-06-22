@@ -66,6 +66,13 @@
                   <p>Not Interested Customers</p>
                 </a>
                </li>
+
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>region_head/booking_enquiry/general_enquiry" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>General Enquiry</p>
+                </a>
+               </li>
                
             </ul>
           </li>

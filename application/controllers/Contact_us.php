@@ -55,12 +55,13 @@ class Contact_us extends CI_Controller {
                         // 'package_id'    =>$id,
                         'media_source_name'    =>$media_source_name,
 						'wp_mobile_number'=>$wp_mobile_number,
-                        'tour_number'=>$tour_number,
+                        'package_id'=>$tour_number,
                         'other_tour_name'=>$other_tour_name,
-                        'message'=>$message
+                        'message'=>$message,
+                        'enquiry_from'=>'contact us'
                     );
                     
-                    $inserted_id = $this->master_model->insertRecord('enquiries',$arr_insert,true);
+                    $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
                 
                 if($inserted_id > 0)
                 {    

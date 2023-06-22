@@ -72,7 +72,7 @@
                         <div class="col-md-6">
                               <div class="form-group">
                                 <label>GST No. (Optional)</label>
-                                <input type="text" class="form-control" name="gst_no" placeholder="Enter GST No" required="required">
+                                <input type="text" class="form-control" name="gst_no" placeholder="Enter GST No">
                               </div>
                         </div>
                       

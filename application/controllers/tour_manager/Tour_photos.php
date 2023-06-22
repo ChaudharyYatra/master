@@ -490,6 +490,7 @@ $img_name_three_filename = $old_img_name_three;
         
         // $this->db->where('package_id',$id);
         $this->db->where('package_date_id',$did);
+        // $this->db->where('package_id',$id);
         $this->db->where('is_active','yes');
         $this->db->where('is_deleted','no');
         $arr_data = $this->master_model->getRecords('tour_photos');

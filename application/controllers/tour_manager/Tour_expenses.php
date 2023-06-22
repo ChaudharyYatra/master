@@ -15,7 +15,7 @@ class Tour_expenses extends CI_Controller {
                 redirect(base_url().'tour_manager/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tour_expenses";
-        $this->module_title       = "Tour Expenses";
+        $this->module_title       = "Daily Tour Expenses";
         $this->module_url_slug    = "tour_expenses";
         $this->module_view_folder = "tour_expenses/";
         $this->arr_view_data = [];

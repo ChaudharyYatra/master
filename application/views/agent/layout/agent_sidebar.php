@@ -101,6 +101,13 @@
                   <p>Not Interested Customers</p>
                 </a>
                </li>
+
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>agent/all_general_enquiry/general_enquiry" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>General Enquiry Open to All Agent</p>
+                </a>
+               </li>
             </ul>
           </li>
 
@@ -168,14 +175,14 @@
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="<?php echo base_url(); ?>agent/contact_general_enquiry/index" class="nav-link">
+          <!-- <li class="nav-item">
+            <a href="<?php //echo base_url(); ?>agent/contact_general_enquiry/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                General Enquiries
               </p>
             </a>
-          </li>
+          </li> -->
 
          <li class="nav-item">
             <a href="#" class="nav-link">

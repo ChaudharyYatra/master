@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Hotel_advance_payment_req extends CI_Controller{
+class More_fund_request extends CI_Controller{
 
 	public function __construct()
 	{
@@ -10,11 +10,11 @@ class Hotel_advance_payment_req extends CI_Controller{
         { 
                 redirect(base_url().'supervision/login'); 
         }
-        $this->module_url_path    =  base_url().$this->config->item('account')."account/hotel_advance_payment_req";
-        $this->module_title       = "Hotel Advance Payment Request  ";
-        $this->module_title2       = "Hotel Advance Payment Details  ";
-        $this->module_url_slug    = "hotel_advance_payment_req";
-        $this->module_view_folder = "hotel_advance_payment_req/";    
+        $this->module_url_path    =  base_url().$this->config->item('tour_operation_manager_panel_slug')."tour_operation_manager/more_fund_request";
+        $this->module_title       = "Request More Fund to Tour Manager";
+        // $this->module_title2       = "Hotel Advance Payment Details  ";
+        $this->module_url_slug    = "more_fund_request";
+        $this->module_view_folder = "more_fund_request/";    
         $this->load->library('upload');
 	}
 	
@@ -24,20 +24,14 @@ class Hotel_advance_payment_req extends CI_Controller{
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $id = $this->session->userdata('supervision_sess_id');
 
-        // $this->db->where('is_deleted','no');
-        // $arr_data = $this->master_model->getRecords('hotel_advance_payment');
+        $record = array();
+        $fields = "tm_request_more_fund.*,packages.tour_title,packages.tour_number,package_type.package_type";
+        $this->db->where('tm_request_more_fund.is_deleted','no');
+        // $this->db->order_by('tm_request_more_fund.id','desc');
+        $this->db->join("packages", 'tm_request_more_fund.tour_number=packages.id','left');
+        $this->db->join("package_type", 'tm_request_more_fund.package_type=package_type.id','left');
+        $arr_data = $this->master_model->getRecords('tm_request_more_fund',array('tm_request_more_fund.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
-
-        $fields = "hotel_advance_payment.*,package_type.package_type,packages.tour_title,hotel.hotel_name";
-        $this->db->where('hotel_advance_payment.is_deleted','no');
-        // $this->db->where('hotel_advance_pay_details.is_deleted','no');
-        $this->db->where('hotel_advance_payment.send','no');
-        $this->db->join("package_type", 'hotel_advance_payment.package_type=package_type.id','left');
-        $this->db->join("packages", 'hotel_advance_payment.tour_number=packages.id','left');
-        $this->db->join("hotel", 'hotel_advance_payment.hotel_name=hotel.id','left');
-        // $this->db->join("hotel_advance_pay_details", 'hotel_advance_payment.id=hotel_advance_pay_details.advance_pay_req_id','left');
-        $arr_data = $this->master_model->getRecords('hotel_advance_payment',array('hotel_advance_payment.is_deleted'=>'no'),$fields);
-
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
@@ -46,155 +40,76 @@ class Hotel_advance_payment_req extends CI_Controller{
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
-        $this->load->view('account/layout/account_combo',$this->arr_view_data);
+        $this->load->view('tour_operation_manager/layout/tour_operation_manager_combo',$this->arr_view_data);
        
 	}
-
-    public function advance_pay_detail()
-	{
+	
+	
+    public function add()
+    {   
         $supervision_sess_name = $this->session->userdata('supervision_name');
-        $id = $this->session->userdata('supervision_sess_id');
-
-        // $this->db->where('is_deleted','no');
-        // $arr_data = $this->master_model->getRecords('hotel_advance_payment');
-        // print_r($arr_data); die;
-
-        $fields = "hotel_advance_pay_details.*,hotel_advance_payment.*,package_type.package_type,packages.tour_title,hotel.hotel_name";
-        $this->db->where('hotel_advance_payment.is_deleted','no');
-        $this->db->where('hotel_advance_pay_details.is_deleted','no');
-        $this->db->where('hotel_advance_pay_details.send','yes');
-        $this->db->join("package_type", 'hotel_advance_payment.package_type=package_type.id','left');
-        $this->db->join("packages", 'hotel_advance_payment.tour_number=packages.id','left');
-        $this->db->join("hotel", 'hotel_advance_payment.hotel_name=hotel.id','left');
-        $this->db->join("hotel_advance_pay_details", 'hotel_advance_payment.id=hotel_advance_pay_details.advance_pay_req_id','left');
-        $arr_data = $this->master_model->getRecords('hotel_advance_payment',array('hotel_advance_payment.is_deleted'=>'no'),$fields);
+        $id = $this->session->userdata('supervision_sess_id');   
 
 
-        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
-        $this->arr_view_data['listing_page']    = 'yes';
-        $this->arr_view_data['arr_data']        = $arr_data;
-        $this->arr_view_data['page_title']      = $this->module_title2." List";
-        $this->arr_view_data['module_title2']    = $this->module_title2;
-        $this->arr_view_data['module_url_path'] = $this->module_url_path;
-        $this->arr_view_data['middle_content']  = $this->module_view_folder."advance_pay_detail";
-        $this->load->view('account/layout/account_combo',$this->arr_view_data);
-       
-	}
-	
-	
-        public function advance_pay_send()
-        {   
-            $supervision_sess_name = $this->session->userdata('supervision_name');
-            $id = $this->session->userdata('supervision_sess_id');   
+        
+        if($this->input->post('submit'))
+        {
 
+            $this->form_validation->set_rules('package_type', 'package_type', 'required');
+            $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
+            $this->form_validation->set_rules('hotel_name', 'hotel_name', 'required');
+            $this->form_validation->set_rules('advance_amt', 'advance_amt', 'required');
 
             
-            if($this->input->post('submit'))
-            {  
+            if($this->form_validation->run() == TRUE)
+            {
 
-                $this->form_validation->set_rules('payment_date', 'payment_date', 'required');
-                $this->form_validation->set_rules('payment_mode', 'payment_mode', 'required');
-                $this->form_validation->set_rules('transaction_id', 'transaction_id', 'required');
+                $package_type	  = $this->input->post('package_type'); 
+                $tour_number	  = $this->input->post('tour_number');
+                $hotel_name	  = $this->input->post('hotel_name');
+                $advance_amt	  = $this->input->post('advance_amt');
+
+
+                    $arr_insert = array(
+                        'package_type'   =>   $package_type,
+                        'tour_number'   =>   $tour_number,
+                        'hotel_name'   =>   $hotel_name,
+                        'advance_amt'   =>   $advance_amt
+                    );
+
+                    $inserted_id = $this->master_model->insertRecord('hotel_advance_payment',$arr_insert,true);
                 
-                if($this->form_validation->run() == TRUE)
+                               
+                if($inserted_id > 0)
                 {
-
-                    $file_name     = $_FILES['image_name']['name'];
-                    $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg','pdf','PDF');
-
-                    if($file_name!="")
-                    {               
-                        $ext = explode('.',$_FILES['image_name']['name']); 
-                        $config['file_name']   = $this->input->post('txtEmp_id').'.'.$ext[1];
-
-                        if(!in_array($ext[1],$arr_extension))
-                        {
-                            $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
-                            redirect($this->module_url_path.'/index');  
-                        }
-                    }
-                    $file_name_to_dispaly =  $this->config->item('project_name').''.round(microtime(true)).str_replace(' ','_',$file_name);
-
-                    $config['upload_path']   = './uploads/advance_amt/';
-                    $config['allowed_types'] = 'png|jpg|jpeg|JPG|PNG|JPEG|pdf|PDF'; 
-                    $config['max_size']      = '10000';
-                    $config['file_name']     =  $file_name_to_dispaly;
-                    $config['overwrite']     =  TRUE;
-
-                    $this->load->library('upload',$config);
-                    $this->upload->initialize($config); // Important
-
-                    if(!$this->upload->do_upload('image_name'))
-                    {  
-                        $data['error'] = $this->upload->display_errors();
-                        $this->session->set_flashdata('error_message',$this->upload->display_errors());
-                        redirect($this->module_url_path);  
-                    }
-
-                    if($file_name!="")
-                    {
-                        $file_name = $this->upload->data();
-                        $filename = $file_name_to_dispaly;
-                    }
-
-                    else
-                    {
-                        $filename = $this->input->post('image_name',TRUE);
-                    }
-
-                    $payment_date	  = $this->input->post('payment_date'); 
-                    $payment_mode	  = $this->input->post('payment_mode');
-                    $transaction_id	  = $this->input->post('transaction_id');
-                    
-                    $advance_pay_req_id	  = $this->input->post('advance_pay_req_id');
-
-
-                        $arr_insert = array(
-                            'payment_date'   =>   $payment_date,
-                            'payment_mode'   =>   $payment_mode,
-                            'transaction_id'   =>   $transaction_id,
-                            'image_name'   =>   $filename,
-                            'send'          => 'yes',
-                            'advance_pay_req_id' => $advance_pay_req_id
-                        );
-
-                        $inserted_id = $this->master_model->insertRecord('hotel_advance_pay_details',$arr_insert,true);
-
-                        $arr_update = array(
-                            'send'   =>   'yes'
-                        );
-
-                    
-                        $arr_where     = array("id" => $advance_pay_req_id);
-                        $this->master_model->updateRecord('hotel_advance_payment',$arr_update,$arr_where);
-                    
-                                
-                    if($inserted_id > 0)
-                    {
-                        $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
-                        redirect($this->module_url_path.'/index');
-                    }
-
-                    else
-                    {
-                        $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
-                    }
+                    $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
                     redirect($this->module_url_path.'/index');
-                
                 }
-        
+
+                else
+                {
+                    $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
+                }
+                redirect($this->module_url_path.'/index');
+            
             }
-
-
-
-            $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
-            $this->arr_view_data['action']          = 'add';
-            $this->arr_view_data['page_title']      = " Hotel Adavance Payment";
-            $this->arr_view_data['module_title']    = $this->module_title;
-            $this->arr_view_data['module_url_path'] = $this->module_url_path;
-            $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
-            $this->load->view('account/layout/account_combo',$this->arr_view_data);
+       
         }
+
+
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');  
+        $package_type = $this->master_model->getRecords('package_type');
+
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
+        $this->arr_view_data['package_type']        = $package_type;
+        $this->arr_view_data['action']          = 'add';
+        $this->arr_view_data['page_title']      = " Assign Staff";
+        $this->arr_view_data['module_title']    = $this->module_title;
+        $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['middle_content']  = $this->module_view_folder."add";
+        $this->load->view('tour_operation_manager/layout/tour_operation_manager_combo',$this->arr_view_data);
+    }
 
 
    
@@ -337,50 +252,51 @@ class Hotel_advance_payment_req extends CI_Controller{
         redirect($this->module_url_path.'/index');  
     }
 
+// =============================================
 
+  //   Active/Inactive
+public function active_inactive($id,$type)
+{
+  $id=base64_decode($id);
+    if($id!='' && ($type == "yes" || $type == "no") )
+    {   
+        $this->db->where('id',$id);
+        $arr_data = $this->master_model->getRecords('tm_request_more_fund');
+        if(empty($arr_data))
+        {
+           $this->session->set_flashdata('error_message','Invalid Selection Of Record');
+           redirect($this->module_url_path.'/index');
+        }   
 
-      // Active/Inactive
-  
-  public function active_inactive($id,$type)
-  {
+        $arr_update =  array();
 
-      if($id!='' && ($type == "yes" || $type == "no") )
-      {   
-          $this->db->where('id',$id);
-          $arr_data = $this->master_model->getRecords('hotel_advance_payment');
-          if(empty($arr_data))
-          {
-             $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-             redirect($this->module_url_path.'/index');
-          }   
-
-          $arr_update =  array();
-
-          if($type == 'yes')
-          {
-              $arr_update['is_active'] = "no";
-          }
-          else
-          {
-              $arr_update['is_active'] = "yes";
-          }
-          
-          if($this->master_model->updateRecord('hotel_advance_payment',$arr_update,array('id' => $id)))
-          {
-              $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
-          }
-          else
-          {
-           $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
-          }
-      }
-      else
-      {
-         $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-      }
-      redirect($this->module_url_path.'/index');   
-  }
-
+        if($type == 'yes')
+        {
+            $arr_update['is_active'] = "no";
+            $arr_update['status'] = "rejected";
+        }
+        else
+        {
+            $arr_update['is_active'] = "yes"; 
+            $arr_update['status'] = "approved";
+        }
+        
+        if($this->master_model->updateRecord('tm_request_more_fund',$arr_update,array('id' => $id)))
+        {
+            $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
+        }
+        else
+        {
+         $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
+        }
+    }
+    else
+    {
+       $this->session->set_flashdata('error_message','Invalid Selection Of Record');
+    }
+    redirect($this->module_url_path.'/index');   
+}
+// ===============================================
 
   public function get_package(){ 
     // POST data 
@@ -420,6 +336,40 @@ class Hotel_advance_payment_req extends CI_Controller{
                         $data = $this->master_model->getRecords('supervision');
         echo json_encode($data);
     }
+
+
+    public function advance_pay_detail()
+	{
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
+
+        // $this->db->where('is_deleted','no');
+        // $arr_data = $this->master_model->getRecords('hotel_advance_payment');
+        // print_r($arr_data); die;
+
+        $fields = "hotel_advance_pay_details.*,hotel_advance_payment.*,package_type.package_type,packages.tour_title,hotel.hotel_name";
+        $this->db->where('hotel_advance_payment.is_deleted','no');
+        $this->db->where('hotel_advance_pay_details.is_deleted','no');
+        $this->db->where('hotel_advance_pay_details.send','yes');
+        $this->db->join("package_type", 'hotel_advance_payment.package_type=package_type.id','left');
+        $this->db->join("packages", 'hotel_advance_payment.tour_number=packages.id','left');
+        $this->db->join("hotel", 'hotel_advance_payment.hotel_name=hotel.id','left');
+        $this->db->join("hotel_advance_pay_details", 'hotel_advance_payment.id=hotel_advance_pay_details.advance_pay_req_id','left');
+        $arr_data = $this->master_model->getRecords('hotel_advance_payment',array('hotel_advance_payment.is_deleted'=>'no'),$fields);
+
+
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
+        $this->arr_view_data['listing_page']    = 'yes';
+        $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['page_title']      = $this->module_title2." List";
+        $this->arr_view_data['module_title2']    = $this->module_title2;
+        $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['middle_content']  = $this->module_view_folder."advance_pay_detail";
+        $this->load->view('tour_operation_manager/layout/tour_operation_manager_combo',$this->arr_view_data);
+       
+	}
+
+
 
 
 

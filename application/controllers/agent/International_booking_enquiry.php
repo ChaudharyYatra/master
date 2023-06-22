@@ -1,6 +1,6 @@
 <?php 
 //   Controller for: home page
-// Author: Mahesh Mhaske
+// Author: Rupali Patil
 // Start Date: 16-08-2022
 // last updated: 16-08-2022
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -38,6 +38,7 @@ class International_booking_enquiry extends CI_Controller {
         $this->db->join("agent", 'international_booking_enquiry.agent_id=agent.id','left');
         $this->db->order_by("id", "desc");
         $arr_data = $this->master_model->getRecords('international_booking_enquiry',array('international_booking_enquiry.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
 
         $this->db->where('is_deleted','no');
         $this->db->where('status','approved');

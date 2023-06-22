@@ -29,12 +29,16 @@ class Booking_enquiry extends CI_Controller {
          $agent_sess_name = $this->session->userdata('agent_name');
          $id=$this->session->userdata('agent_sess_id');
 
+         date_default_timezone_set('Asia/Kolkata');
+         $twentyFourHoursAgo = date('Y-m-d H:i:s', strtotime('-24 hours'));
+
         $record = array();
         $fields = "booking_enquiry.*,packages.tour_title,agent.agent_name,packages.tour_number as tno,booking_enquiry.package_id as pid";
         $this->db->order_by('booking_enquiry.created_at','desc');
         $this->db->where('booking_enquiry.is_deleted','no');
         $this->db->where('booking_enquiry.booking_process','no');
         $this->db->where('booking_enquiry.agent_id',$id);
+        $this->db->where('booking_enquiry.created_at >', $twentyFourHoursAgo);
         $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
         $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');
         $this->db->order_by("booking_enquiry.id", "desc");
@@ -128,7 +132,7 @@ class Booking_enquiry extends CI_Controller {
                      'seat_count'    =>$enq_seat_count,
                      'created_at'=>$today,
                      'wp_mobile_number'    =>$wp_mobile_number,
-
+                     'enquiry_from'    =>'Agent'
                  );
                  
                 $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
@@ -247,7 +251,8 @@ class Booking_enquiry extends CI_Controller {
                      'package_id'   =>   $tour_number,   
                      'media_source_name'    =>$media_source_name,
                      'seat_count'    =>$enq_seat_count,
-                     'created_at'=>$today
+                     'created_at'=>$today,
+                     'enquiry_from'    =>'Agent'
                  );
                  
                  $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);

@@ -149,6 +149,34 @@
                
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Request More Fund
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_operation_manager/more_fund_request/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Request Fund From Tour Manager</p>
+                </a>
+               </li>
+
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_operation_manager/account_pay_amt/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Requested Amount Pay From Account</p>
+                </a>
+               </li>
+               
+            </ul>
+          </li>
+
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_operation_manager/profile/index" class="nav-link">
@@ -225,6 +253,36 @@
                
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Request More Fund
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>account/more_fund_request_acc/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Request Fund From Tour Manager</p>
+                </a>
+               </li>
+
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>account/account_pay_amt_details/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Request Fund From My side</p>
+                </a>
+               </li>
+               
+            </ul>
+          </li>
+
+
+
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>account/profile/index" class="nav-link">

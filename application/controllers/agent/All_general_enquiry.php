@@ -1,34 +1,34 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Booking_enquiry extends CI_Controller{
+class All_general_enquiry extends CI_Controller{
 
         public function __construct()
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('region_head_sess_id')=="") 
+        if($this->session->userdata('agent_sess_id')=="") 
         { 
-                redirect(base_url().'region_head/login'); 
+                redirect(base_url().'agent/login'); 
         }
 		
-        $this->module_url_path    =  base_url().$this->config->item('region_head_panel_slug')."/booking_enquiry";
-        $this->module_url_path_domestic_followup    =  base_url().$this->config->item('region_head_panel_slug')."region_head/domestic_booking_enquiry_followup";
-	    $this->module_url_path_booking_basic_info    =  base_url().$this->config->item('region_head_panel_slug')."region_head/booking_basic_info";
+        $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/all_general_enquiry";
+        $this->module_url_path_domestic_followup    =  base_url().$this->config->item('agent_panel_slug')."/domestic_booking_enquiry_followup";
+	    $this->module_url_path_booking_basic_info    =  base_url().$this->config->item('agent_panel_slug')."/booking_basic_info";
 
 
         $this->module_title       = "Booking Enquiry";
         $this->general_module_title       = "General Enquiry";
-        $this->module_url_slug    = "booking_enquiry";
-        $this->module_view_folder = "booking_enquiry/";    
+        $this->module_url_slug    = "all_general_enquiry";
+        $this->module_view_folder = "all_general_enquiry/";    
         $this->load->library('upload');
         $this->load->model('member');
 	}
 
 	public function index()
 	{
-        $region_head_sess_name = $this->session->userdata('region_head_name');
-        $id = $this->session->userdata('region_head_sess_id');
-        $region_id = $this->session->userdata('region_head_region');
+        $agent_sess_name = $this->session->userdata('agent_name');
+         $id=$this->session->userdata('agent_sess_id');
+        // $region_id = $this->session->userdata('region_head_region');
         // region means department
         
 
@@ -38,7 +38,7 @@ class Booking_enquiry extends CI_Controller{
         $this->db->where('booking_enquiry.is_deleted','no');
         $this->db->where('followup_status','no');
         $this->db->where('booking_process','no');
-        $this->db->where('agent.department',$region_id);
+        // $this->db->where('agent.department',$region_id);
         $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
         $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');
         // $this->db->join("domestic_followup", 'booking_enquiry.id=domestic_followup.booking_enquiry_id','left');
@@ -49,52 +49,22 @@ class Booking_enquiry extends CI_Controller{
         $followup_reason_data = $this->master_model->getRecords('followup_reason');
         
 
-        $this->arr_view_data['region_head_sess_name']        = $region_head_sess_name;
+        $this->arr_view_data['agent_sess_name']        = $agent_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
-        $this->load->view('region_head/layout/region_head_combo',$this->arr_view_data);
+        $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
 	}
 
-        // public function general_enquiry()
-	// {
-        // $region_head_sess_name = $this->session->userdata('region_head_name');
-        // $id = $this->session->userdata('region_head_sess_id');
-        // $region_id = $this->session->userdata('region_head_region');
-        // // region means department
-        // echo $twentyFourHoursAgo = date('Y-m-d H:i:s', strtotime('-24 hours'));
-
-        // $record = array();
-        // $fields = "booking_enquiry.*,packages.tour_title,agent.agent_name,packages.tour_number,agent.department";
-        // $this->db->where('booking_enquiry.is_deleted','no');
-        // $this->db->where('followup_status','no');
-        // $this->db->where('booking_process','no');
-        // $this->db->where('agent.department',$region_id);
-        // // $this->db->where("DATE(`cdate`) + INTERVAL 1 DAY < NOW() ");
-        // // $this->db->where('booking_enquiry.created_at <', $twentyFourHoursAgo);
-        // $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
-        // $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');
-        // $arr_data = $this->master_model->getRecords('booking_enquiry',array('booking_enquiry.is_deleted'=>'no'),$fields);
-        
-
-        // $this->arr_view_data['region_head_sess_name']        = $region_head_sess_name;
-        // $this->arr_view_data['listing_page']    = 'yes';
-        // $this->arr_view_data['arr_data']        = $arr_data;
-        // $this->arr_view_data['page_title']      = $this->module_title." List";
-        // $this->arr_view_data['module_title']    = $this->module_title;
-        // $this->arr_view_data['module_url_path'] = $this->module_url_path;
-        // $this->arr_view_data['middle_content']  = $this->module_view_folder."general_enquiry";
-        // $this->load->view('region_head/layout/region_head_combo',$this->arr_view_data);
-	// }
 
 
         public function general_enquiry()
         {
-            $id = $this->session->userdata('region_head_sess_id');
-        $region_head_sess_name = $this->session->userdata('region_head_name');
+            $agent_sess_name = $this->session->userdata('agent_name');
+            $id=$this->session->userdata('agent_sess_id');
                 // $region_id = $this->session->userdata('region_head_region');
             date_default_timezone_set('Asia/Kolkata');
              $twentyFourHoursAgo = date('Y-m-d H:i:s', strtotime('-24 hours'));
@@ -117,7 +87,7 @@ class Booking_enquiry extends CI_Controller{
            $this->db->where('status','approved');
            $followup_reason_data = $this->master_model->getRecords('followup_reason');
 
-           $this->arr_view_data['region_head_sess_name']        = $region_head_sess_name;
+           $this->arr_view_data['agent_sess_name']        = $agent_sess_name;
            $this->arr_view_data['module_url_path_domestic_followup']        = $this->module_url_path_domestic_followup;
            $this->arr_view_data['module_url_path_booking_basic_info']        = $this->module_url_path_booking_basic_info;
            $this->arr_view_data['listing_page']    = 'yes';
@@ -127,7 +97,7 @@ class Booking_enquiry extends CI_Controller{
            $this->arr_view_data['module_title']    = $this->module_title;
            $this->arr_view_data['module_url_path'] = $this->module_url_path;
            $this->arr_view_data['middle_content']  = $this->module_view_folder."general_enquiry";
-           $this->load->view('region_head/layout/region_head_combo',$this->arr_view_data);
+           $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
            
         }
 

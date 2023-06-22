@@ -162,6 +162,15 @@ class Booking_enquiry extends CI_Controller{
                                 $successMsg = 'Members imported successfully. Total Rows ('.$rowCount.') | Inserted ('.$insertCount.') | Updated ('.$updateCount.') | Not Inserted ('.$notAddCount.')';
                                 $this->session->set_userdata('success_msg', $successMsg);
                             }
+
+                            // ================================================
+                            $arr_insert = array(
+                                'enquiry_from'    =>'Bulk'
+                            );
+                            
+                           $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
+
+                            // ================================================
                             if($successMsg > 0)
                             {    
                                 $this->session->set_flashdata('success_message',"csv file Added Successfully.");

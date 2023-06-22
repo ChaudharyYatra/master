@@ -13,7 +13,7 @@ class Asign_tour_to_manager extends CI_Controller{
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/asign_tour_to_manager";
         $this->module_url_tour_photos    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tour_photos";
 		$this->module_url_path_tour_expenses    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tour_expenses";
-		// $this->module_url_path_review    =  base_url().$this->config->item('tour_manager_panel_slug')."/domestic_package_review";
+		$this->module_url_path_request_more_fund   =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tm_request_more_fund";
         $this->module_title       = "Asign Tour";
         $this->module_url_slug    = "asign_tour_to_manager";
         $this->module_view_folder = "asign_tour_to_manager/";    
@@ -58,6 +58,7 @@ class Asign_tour_to_manager extends CI_Controller{
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['module_url_path_tour_expenses'] = $this->module_url_path_tour_expenses;
+        $this->arr_view_data['module_url_path_request_more_fund'] = $this->module_url_path_request_more_fund;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
         $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
        
