@@ -50,7 +50,7 @@
                     <th>Contact Number</th>
                     <th>Enquiry Date</th>
                     <th>Followup form</th>
-                    <!-- <th>Followup List</th> -->
+                    <th>Followup List</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -90,9 +90,9 @@
                     </td>
                      <?php } ?>
                      
-                    <!-- <td>
-                    <a href="<?php //echo $module_url_path_domestic_followup;?>/index/<?php //echo $info['id']; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow" class="dropdown-item">View</button></a>
-                    </td> -->
+                    <td>
+                    <a href="<?php echo $module_url_path_domestic_followup;?>/index/<?php echo $info['id']; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow" class="dropdown-item">View</button></a>
+                    </td>
                     
                     <td>
                       <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id'];  ?>" ><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;

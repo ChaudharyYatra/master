@@ -266,12 +266,12 @@ class Tour_photos extends CI_Controller{
 
     // Edit - Get data for edit
     
-    public function edit($id,$did)
+    public function edit($aid,$did)
     {
         $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
         $iid = $this->session->userdata('tour_manager_sess_id'); 
 
-        $id=base64_decode($id);
+        $aid=base64_decode($aid);
         $did=base64_decode($did);
         // $did=base64_decode($did);
 		if ($id=='') 

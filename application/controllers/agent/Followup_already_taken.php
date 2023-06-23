@@ -5,7 +5,7 @@
 // last updated: 16-08-2022
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Booking_enquiry extends CI_Controller {
+class Followup_already_taken extends CI_Controller {
 	 
 	function __construct() {
 
@@ -14,13 +14,13 @@ class Booking_enquiry extends CI_Controller {
         { 
                 redirect(base_url().'agent/login'); 
         }
-        $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/booking_enquiry";
+        $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/followup_already_taken";
         $this->module_url_path_domestic_followup    =  base_url().$this->config->item('agent_panel_slug')."/domestic_booking_enquiry_followup";
 		$this->module_url_path_booking_basic_info    =  base_url().$this->config->item('agent_panel_slug')."/booking_basic_info";
         $this->module_title       = "Booking Enquiry";
         $this->module_title_followup       = "Domestic Booking Enquiry Followup";
-        $this->module_url_slug    = "booking_enquiry";
-        $this->module_view_folder = "booking_enquiry/";
+        $this->module_url_slug    = "followup_already_taken";
+        $this->module_view_folder = "followup_already_taken/";
         $this->arr_view_data = [];
 	 }
 
@@ -29,17 +29,17 @@ class Booking_enquiry extends CI_Controller {
          $agent_sess_name = $this->session->userdata('agent_name');
          $id=$this->session->userdata('agent_sess_id');
 
-         date_default_timezone_set('Asia/Kolkata');
-         $twentyFourHoursAgo = date('Y-m-d H:i:s', strtotime('-24 hours'));
+        //  date_default_timezone_set('Asia/Kolkata');
+        //  $twentyFourHoursAgo = date('Y-m-d H:i:s', strtotime('-24 hours'));
 
         $record = array();
         $fields = "booking_enquiry.*,packages.tour_title,agent.agent_name,packages.tour_number as tno,booking_enquiry.package_id as pid";
         $this->db->order_by('booking_enquiry.created_at','desc');
         $this->db->where('booking_enquiry.is_deleted','no');
         $this->db->where('booking_enquiry.booking_process','no');
-        $this->db->where('booking_enquiry.followup_status','no');
+        $this->db->where('booking_enquiry.followup_status','yes');
         $this->db->where('booking_enquiry.agent_id',$id);
-        $this->db->where('booking_enquiry.created_at >', $twentyFourHoursAgo);
+        // $this->db->where('booking_enquiry.created_at >', $twentyFourHoursAgo);
         $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
         $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');
         $this->db->order_by("booking_enquiry.id", "desc");
@@ -409,24 +409,6 @@ class Booking_enquiry extends CI_Controller {
                 
                $inserted_id = $this->master_model->insertRecord('domestic_followup',$arr_insert,true);
 
-                $arr_update = array(
-                    'followup_status'   =>   'yes'
-                    );
-                $arr_where     = array("id" => $enquiry_id);
-                $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
-
-                if($inserted_id > 0)
-                 {
-                     $this->session->set_flashdata('success_message',"Followup Added Successfully Please Check Followup on Followup List.");
-                     redirect($this->module_url_path.'/index');
-                 }
- 
-                 else
-                 {
-                     $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
-                 }
-                 redirect($this->module_url_path.'/index');
-
                 $this->db->where('is_deleted','no');
                 $this->db->where('is_active','yes');
                 $this->db->where('id',$id);
@@ -445,7 +427,12 @@ class Booking_enquiry extends CI_Controller {
                 $first_name=$booking_enquiry_data['first_name'];
                 $last_name=$booking_enquiry_data['last_name'];
 
-               
+               $arr_update = array(
+                   'followup_status'   =>   'yes'
+               );
+               $arr_where     = array("id" => $enquiry_id);
+              $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
+                          
 				$from_email='chaudharyyatra8@gmail.com';
                 if($user_email !='')
                 {
