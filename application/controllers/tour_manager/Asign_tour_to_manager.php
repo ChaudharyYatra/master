@@ -170,7 +170,7 @@ class Asign_tour_to_manager extends CI_Controller{
 
         $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_title,package_iternary.day_number,package_iternary.iternary_desc,package_iternary.image_name";
         $this->db->where('asign_tour_manager.is_deleted','no');
-        // $this->db->where('asign_tour_manager.is_active','yes');
+        $this->db->where('package_iternary.is_active','yes');
         $this->db->where('asign_tour_manager.id',$id);
         $this->db->join("packages", 'asign_tour_manager.package_id=packages.id','left');
         $this->db->join("package_iternary", 'packages.id=package_iternary.package_id','left');

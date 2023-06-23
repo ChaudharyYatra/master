@@ -74,6 +74,7 @@ class All_general_enquiry extends CI_Controller{
            $fields = "booking_enquiry.*,packages.tour_title,agent.agent_name,packages.tour_number as tno,booking_enquiry.package_id as pid";
            $this->db->order_by('booking_enquiry.created_at','desc');
            $this->db->where('booking_enquiry.is_deleted','no');
+           $this->db->where('booking_enquiry.followup_status','no');
            $this->db->where('booking_enquiry.booking_process','no');
            $this->db->where('booking_enquiry.created_at <', $twentyFourHoursAgo);
            $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');

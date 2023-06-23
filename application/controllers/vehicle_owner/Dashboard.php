@@ -31,6 +31,11 @@ class Dashboard extends CI_Controller{
 	      $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
         $id = $this->session->userdata('vehicle_owner_sess_id');
 
+        // $this->db->where('agent_id',$id);  
+        // $this->db->where('is_deleted','no'); 
+        // $international_enquiry_data = $this->master_model->getRecords('international_booking_enquiry');
+        // $arr_data['international_enquiry_data_total'] = count($international_enquiry_data);
+
         $this->arr_view_data['vehicle_ssession_owner_name']        = $vehicle_ssession_owner_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['page_title']      = $this->module_title." List";
