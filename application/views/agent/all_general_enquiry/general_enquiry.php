@@ -107,7 +107,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form method="post" action="<?php echo $module_url_path_domestic_followup;?>/domestic_followup">
+                        <form method="post" action="<?php echo $module_url_path;?>/domestic_followup">
                           <div class="col-md-12">
                             <div class="row">
                               <div class="col-md-6 mb-2">

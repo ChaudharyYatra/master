@@ -12,7 +12,7 @@ class All_general_enquiry extends CI_Controller{
         }
 		
         $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/all_general_enquiry";
-        $this->module_url_path_domestic_followup    =  base_url().$this->config->item('agent_panel_slug')."/domestic_booking_enquiry_followup";
+        $this->module_url_path_domestic_followup    =  base_url().$this->config->item('agent_panel_slug')."/all_general_enquiry_followup";
 	    $this->module_url_path_booking_basic_info    =  base_url().$this->config->item('agent_panel_slug')."/booking_basic_info";
 
 
@@ -109,6 +109,7 @@ class All_general_enquiry extends CI_Controller{
         {
             $agent_sess_name = $this->session->userdata('agent_name');
             $id=$this->session->userdata('agent_sess_id');
+            // echo '<br>';
              
              if($this->input->post('submit'))
              {
@@ -133,7 +134,7 @@ class All_general_enquiry extends CI_Controller{
                          'booking_enquiry_id'   =>   $enquiry_id,
                          'follow_up_date' => $current_date,
                          'followup_reason' => $followup_reason,
-                         'ftaken_by'=> 'region_head',
+                         'ftaken_by'=> $id
                      );
                      
                     $inserted_id = $this->master_model->insertRecord('domestic_followup',$arr_insert,true);
@@ -157,7 +158,8 @@ class All_general_enquiry extends CI_Controller{
                      $last_name=$booking_enquiry_data['last_name'];
      
                     $arr_update = array(
-                        'followup_status'   =>   'yes'
+                        'followup_status'   =>   'yes',
+                        'ftaken_by'=> $id
                     );
                     $arr_where     = array("id" => $enquiry_id);
                    $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);

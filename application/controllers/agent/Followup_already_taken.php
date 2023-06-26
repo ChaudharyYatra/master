@@ -38,7 +38,7 @@ class Followup_already_taken extends CI_Controller {
         $this->db->where('booking_enquiry.is_deleted','no');
         $this->db->where('booking_enquiry.booking_process','no');
         $this->db->where('booking_enquiry.followup_status','yes');
-        $this->db->where('booking_enquiry.agent_id',$id);
+        $this->db->where('booking_enquiry.ftaken_by',$id);
         // $this->db->where('booking_enquiry.created_at >', $twentyFourHoursAgo);
         $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
         $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');

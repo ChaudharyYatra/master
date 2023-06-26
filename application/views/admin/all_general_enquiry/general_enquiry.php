@@ -17,10 +17,10 @@
             <h1><?php echo $page_title; ?></h1>
           </div>
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
+            <!-- <ol class="breadcrumb float-sm-right">
+              <a href="<?php //echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
               
-            </ol>
+            </ol> -->
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -43,16 +43,14 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Current Status</th>
-                    <th>Enquiry From</th>
+                    <th>Tour No.</th>
                     <th>Customer Name</th>
-                    <th>Package details</th>
+                    <th>Package</th>
                     <th>Email</th>
                     <th>Contact Number</th>
                     <th>Enquiry Date</th>
-                    <th>Followup form</th>
-                    <!-- <th>Followup List</th> -->
-                    <th>Action</th>
+                    <!-- <th>Followup form</th>
+                    <th>Followup List</th> -->
                   </tr>
                   </thead>
                   <tbody>
@@ -69,43 +67,38 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['agent_name']; ?></td>
-                    <td><?php echo $info['enquiry_from']; ?></td>
+                    <td><?php echo $info['tno']; ?></td>
                     <td><?php echo $info['first_name']; ?> <?php echo $info['last_name']; ?></td>
-                    <td><?php echo $info['tno']; ?> - <?php echo $info['tour_title']; ?></td>
+                    <td><?php echo $info['tour_title']; ?></td>
                     <td><?php echo $info['email']; ?></td>
                     <td><?php echo $info['mobile_number']; ?></td>
                     <td><?php echo date("d-m-Y",strtotime($info['created_at'])); ?></td>
 
-                  <td>
+                  <!-- <td>
                       <?php
-                          if($count > 0)
-                          {
+                          //if($count > 0)
+                          //{
                       ?>
                       <h6>Follow Already Taken</h6>
                       <?php        
-                          }else{
+                          //}else{
                       ?>
-                      <!--<a data-bs-toggle="modal" data-bs-target="#exampleModal" class="enq_id" data-bs-whatever="Form" data-enq-id="<?php //echo $enq_id;?>"><img src=<?php //echo base_url(); ?>uploads\do_not_delete\follow.png height="30%" width="30%" alt></img></a>-->
-                      <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="enq_id" data-bs-whatever="Form" data-enq-id="<?php echo $enq_id;?>"><button type="button" class="btn btn-primary btn-sm btn_follow take_followup_btn" class="dropdown-item">Take Followup</button> </a>
-                      <a href="<?php echo $module_url_path_booking_basic_info;?>/add/<?php echo $enq_id; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow mt-1" class="dropdown-item">Booking</button></a>                     
+                      <a data-bs-toggle="modal" data-bs-target="#exampleModal<?php //echo $i; ?>" class="enq_id" data-bs-whatever="Form" data-enq-id="<?php echo $enq_id;?>"><button type="button" class="btn btn-primary btn-sm btn_follow take_followup_btn" class="dropdown-item">Take Followup</button> </a>
+                      <a href="<?php //echo $module_url_path_booking_basic_info;?>/add/<?php //echo $enq_id; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow mt-1" class="dropdown-item">Booking</button></a>                     
                     </td>
-                     <?php } ?>
+                     <?php //} ?>
                      
-                    <!-- <td>
+                    <td>
                     <a href="<?php //echo $module_url_path_domestic_followup;?>/index/<?php //echo $info['id']; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow" class="dropdown-item">View</button></a>
                     </td> -->
                     
-                    <td>
-                      <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id'];  ?>" ><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
-                      <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
-                    </td>
+                
 
               
 
                   </tr>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal<?php echo $i; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -113,7 +106,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form method="post" action="<?php echo $module_url_path;?>/domestic_followup">
+                        <form method="post" action="<?php echo $module_url_path_domestic_followup;?>/domestic_followup">
                           <div class="col-md-12">
                             <div class="row">
                               <div class="col-md-6 mb-2">

@@ -404,6 +404,13 @@
                   <p>Not Interested Customers</p>
                 </a>
                </li>
+
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/all_general_enquiry/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All General Enquiry</p>
+                </a>
+               </li>
                
             </ul>
           </li>

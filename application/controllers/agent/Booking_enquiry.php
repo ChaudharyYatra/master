@@ -404,13 +404,16 @@ class Booking_enquiry extends CI_Controller {
                     'follow_up_comment'   =>   $follow_up_comment,
                     'booking_enquiry_id'   =>   $enquiry_id,
                     'follow_up_date' => $current_date,
-                    'followup_reason' => $followup_reason
+                    'followup_reason' => $followup_reason,
+                    'ftaken_by' => $id
+
                 );
                 
                $inserted_id = $this->master_model->insertRecord('domestic_followup',$arr_insert,true);
 
                 $arr_update = array(
-                    'followup_status'   =>   'yes'
+                    'followup_status'   =>   'yes',
+                    'ftaken_by' => $id
                     );
                 $arr_where     = array("id" => $enquiry_id);
                 $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
