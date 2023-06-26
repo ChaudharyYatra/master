@@ -46,6 +46,7 @@ class Login extends CI_Controller{
                         $this->session->set_userdata('agent_mobile',$agent_data['mobile_number1']);
                         $this->session->set_userdata('agent_sess_id',$agent_data['id']);
                         $this->session->set_userdata('agent_name',$agent_data['agent_name']);
+                        $this->session->set_userdata('region_head',$agent_data['department']);
                         $this->session->set_userdata('agent_login_count',$agent_data['login_count']);
 
                         $agent = $agent_data['id'];
@@ -77,6 +78,7 @@ class Login extends CI_Controller{
         $this->session->unset_userdata('mobile_number1');
         $this->session->unset_userdata('agent_email');
         $this->session->unset_userdata('agent_name');
+        $this->session->unset_userdata('region_head');
         $this->session->sess_destroy();
         redirect($this->module_url_path.'/index');  
     }

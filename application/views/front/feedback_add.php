@@ -74,7 +74,7 @@
                             <div class="col-lg-12 col-md-12">
                                 <h4>Add Tour Feedback</h4>
                                 
-                                <form class="mb-2" method="post" onsubmit="return validateFeedbackForms()">
+                                <form class="mb-2" method="post" onsubmit="return validateFeedbackForms()" action="<?php echo base_url(); ?>feedback_add/index" enctype="multipart/form-data">
                                     <!-- <h5>Fill your information</h5> -->
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
@@ -83,6 +83,7 @@
                                                 <div class="input-box">
                                                     <select class="niceSelect" name="categories" id="categories">
                                                         <option value="">Select Categories</option>
+                                                        <option value="Other">Other</option>
                                                         <option value="food">Food</option>
                                                         <option value="traveler">Travel</option>
                                                         <option value="vehicle">Vehicle</option>

@@ -94,7 +94,7 @@ class Booking_enquiry extends CI_Controller{
         public function general_enquiry()
         {
             $id = $this->session->userdata('region_head_sess_id');
-        $region_head_sess_name = $this->session->userdata('region_head_name');
+            $region_head_sess_name = $this->session->userdata('region_head_name');
                 // $region_id = $this->session->userdata('region_head_region');
             date_default_timezone_set('Asia/Kolkata');
              $twentyFourHoursAgo = date('Y-m-d H:i:s', strtotime('-24 hours'));

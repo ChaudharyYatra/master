@@ -263,7 +263,7 @@ class Home extends CI_Controller {
 	
 	public function website_visitor_data()
     {
-        $ip = $this->input->ip_address();   
+            $ip = $this->input->ip_address();   
             $this->db->order_by('packages.id','desc');
          	$where['packages.is_deleted'] = 'no';
          	$where['packages.is_active'] = 'yes';

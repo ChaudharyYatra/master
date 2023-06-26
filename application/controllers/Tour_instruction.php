@@ -66,15 +66,15 @@ class Tour_instruction extends CI_Controller {
                         'arr_data2'               => $arr_data2,
                         'cust_sess_name'        => $cust_sess_name,
                         'cust_sess_lname'        => $cust_sess_lname,
-						// 'packages_data'       => $packages_data,
-						'page_title'    => 'Tour Instruction'
-						);
+			'page_title'    => 'Tour Instruction');
+
         $this->arr_view_data['page_title']     =  "Tour Instruction";
         $this->arr_view_data['middle_content'] =  "tour_instruction";
         $this->load->view('front/common_view',$data);
      }
 
 
-	
+
+
 
 }

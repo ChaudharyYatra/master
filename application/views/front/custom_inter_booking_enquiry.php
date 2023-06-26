@@ -47,7 +47,7 @@
                     <div class="payment-book">
                         <div class="booking-box">
                             <div class="customer-information mb-4">
-                                <form class="mb-2" method="post" onsubmit="return custom_inter_enquiry_form()">
+                                <form class="mb-2" method="post" onsubmit="return custom_enquiry_form()">
                                     <h5>Fill your information</h5>
                                     <div class="row">
                                         <div class="col-md-12">

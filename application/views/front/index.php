@@ -973,6 +973,7 @@ table.scrolldown tbody{
         </div>
     </section>
     <!--custom International packages top Destination ends -->
+    
     <!-- custom international packages popup modal -->
     <?php foreach($custom_international_packages_all as $key => $international_packages_all_value) { ?>
         <div class="modal fade" id="InclusionModal_<?php echo $international_packages_all_value['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

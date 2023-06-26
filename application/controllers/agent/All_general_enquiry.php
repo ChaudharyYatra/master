@@ -65,6 +65,8 @@ class All_general_enquiry extends CI_Controller{
         {
             $agent_sess_name = $this->session->userdata('agent_name');
             $id=$this->session->userdata('agent_sess_id');
+            $region_head_id=$this->session->userdata('region_head');
+
                 // $region_id = $this->session->userdata('region_head_region');
             date_default_timezone_set('Asia/Kolkata');
              $twentyFourHoursAgo = date('Y-m-d H:i:s', strtotime('-24 hours'));
@@ -74,6 +76,7 @@ class All_general_enquiry extends CI_Controller{
            $fields = "booking_enquiry.*,packages.tour_title,agent.agent_name,packages.tour_number as tno,booking_enquiry.package_id as pid";
            $this->db->order_by('booking_enquiry.created_at','desc');
            $this->db->where('booking_enquiry.is_deleted','no');
+           $this->db->where('agent.department',$region_head_id);
            $this->db->where('booking_enquiry.followup_status','no');
            $this->db->where('booking_enquiry.booking_process','no');
            $this->db->where('booking_enquiry.created_at <', $twentyFourHoursAgo);
