@@ -23,7 +23,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-              <?php $this->load->view('hotel/layout/hotel_alert'); ?>
+              <?php $this->load->view('admin/layout/admin_alert'); ?>
             <div class="card">
              
               <!-- /.card-header -->
@@ -51,7 +51,7 @@
                     <td><?php echo $info['tour_title'] ?></td>
                     <td><?php echo $info['journey_date'] ?></td>
                     <td>
-                    <a href="<?php echo $module_url_path;?>/sub_index/<?php echo $info['id']; ?>" ><button type="button" class="btn btn-primary">View</button></a>
+                    <a href="<?php echo $module_url_path;?>/sub_index/<?php echo $info['p_date_id']; ?>" ><button type="button" class="btn btn-primary">View</button></a>
                      
                     </td>
                     

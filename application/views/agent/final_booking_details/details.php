@@ -24,7 +24,7 @@
           <!-- left column -->
             <div class="col-md-12">
             <!-- jquery validation -->
-            <?php $this->load->view('hotel/layout/hotel_alert'); ?>
+            <?php $this->load->view('admin/layout/admin_alert'); ?>
 
            
 

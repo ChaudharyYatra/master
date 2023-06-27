@@ -24,7 +24,7 @@
           <!-- left column -->
           <div class="col-md-12">
             <!-- jquery validation -->
-            <?php $this->load->view('tour_operation_manager/layout/tour_operation_manager_alert'); ?>
+            <?php $this->load->view('hotel/layout/hotel_alert'); ?>
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title"><?php echo $page_title; ?></h3>
@@ -55,9 +55,8 @@
                         <label>Room Type</label>
                         <select class="select_css row_set1" name="room_type[]" id="room_type" required="required">
                           <option value="">select room type</option>
-                          <option value="standard">Standard</option>
-                          <option value="deluxe">Deluxe</option>
-                          <option value="suite">Suite</option>
+                          <option value="AC">AC</option>
+                          <option value="Non-AC">Non-AC</option>
                         </select>
                       </div>
                     </div>
@@ -74,10 +73,10 @@
                         <label>Bed Type</label>
                         <select class="select_css row_set1" name="bed_type[]" id="bed_type" required="required">
                           <option value="">select bed type</option>
-                          <option value="single">Single</option>
-                          <option value="double">Double</option>
-                          <option value="king">King</option>
-                          <option value="queen">Queen</option>
+                          <option value="One Bed">One Bed</option>
+                          <option value="Two Bed">Two Bed</option>
+                          <option value="Three Bed">Three Bed</option>
+                          <option value="Four Bed">Four Bed</option>
                         </select>
                       </div>
                     </div>
@@ -93,7 +92,7 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Hotel Type</label><br>
+                        <label>Amenities</label><br>
                         
                           <input type="checkbox" name="amenities1[]" value="TV"> TV
                           &nbsp;&nbsp;<input type="checkbox" name="amenities1[]" value="WIFI">&nbsp;&nbsp; WIFI

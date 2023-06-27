@@ -370,10 +370,14 @@ class All_traveller_info extends CI_Controller {
             // print_r($arr_all_traveller); die;
 
             $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $this->db->order_by('id','ASC');
             $district_data = $this->master_model->getRecords('district_table');
             // print_r($district_data); die;
 
             $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $this->db->order_by('id','ASC');
             $taluka_data = $this->master_model->getRecords('taluka_table');
             // print_r($taluka_data); die;
 

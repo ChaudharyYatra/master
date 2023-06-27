@@ -24,6 +24,7 @@ class Hotel_details extends CI_Controller{
 
         $fields = "hotel_room.*";
         $this->db->where('hotel_room.is_deleted','no');
+        $this->db->where('hotel_id',$id);
         // $this->db->join("package_type", 'assign_staff.package_type=package_type.id','left');
         $arr_data = $this->master_model->getRecords('hotel_room',array('hotel_room.is_deleted'=>'no'),$fields);
 
@@ -43,7 +44,7 @@ class Hotel_details extends CI_Controller{
     public function add()
     {   
         $hotel_sess_name = $this->session->userdata('hotel_name');
-        $id=$this->session->userdata('hotel_sess_id');  
+        $iid=$this->session->userdata('hotel_sess_id');  
 
         
         if($this->input->post('submit'))
@@ -70,6 +71,8 @@ class Hotel_details extends CI_Controller{
                 $price	        = $this->input->post('price');
                 // $amenities=$this->input->post('amenities');
                 $description	        = $this->input->post('description');
+
+                $assign = $this->input->post('assign');
           
                 $count_assign = count($this->input->post('assign'));
 
@@ -93,7 +96,9 @@ class Hotel_details extends CI_Controller{
                         'bed_type'   =>   $bed_type[$i],
                         'price'   =>   $price[$i],
                         'amenities'   =>   $amenities,
-                        'description'   =>   $description[$i]
+                        'description'   =>   $description[$i],
+                        'assign'   =>   $assign[$i],
+                        'hotel_id'   =>   $iid[$i]
                     );
                 
                 
@@ -113,7 +118,7 @@ class Hotel_details extends CI_Controller{
                     $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
                 }
                 redirect($this->module_url_path.'/index');
-            
+                
             }
        
         }
