@@ -12,12 +12,12 @@ class Final_booking_details extends CI_Controller {
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('hotel_sess_id')=="") 
+        if($this->session->userdata('agent_sess_id')=="") 
         { 
-                redirect(base_url().'hotel/login'); 
+                redirect(base_url().'agent/login'); 
         }
 
-        $this->module_url_path    =  base_url().$this->config->item('hotel_panel_slug')."hotel/final_booking_details";
+        $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/final_booking_details";
         $this->module_title       = "Final Booking Details ";
         $this->module_url_slug    = "final_booking_details";
         $this->module_view_folder = "final_booking_details/";
@@ -27,27 +27,28 @@ class Final_booking_details extends CI_Controller {
 
     public function index()
     {
-       $hotel_sess_name = $this->session->userdata('hotel_name');
-       $id = $this->session->userdata('hotel_sess_id');
+       $agent_sess_name = $this->session->userdata('agent_name');
+       $id = $this->session->userdata('agent_sess_id');
 
         $record = array();
-        $fields = "packages.*,final_booking.package_id,final_booking.package_date_id,package_date.id,package_date.journey_date";
+        $fields = "packages.*,final_booking.package_id,final_booking.package_date_id,package_date.id as p_date_id,package_date.journey_date,booking_enquiry.id";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
-        $this->db->where('final_booking.hotel_name_id',$id);
         $this->db->join("final_booking", 'final_booking.package_id=packages.id','right');
         $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','right');
+        $this->db->join("booking_enquiry", 'final_booking.enquiry_id=booking_enquiry.id','right');
+        $this->db->where('booking_enquiry.agent_id',$id);
         $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
     //    print_r($arr_data); die;
 
-        $this->arr_view_data['hotel_sess_name'] = $hotel_sess_name;
+        $this->arr_view_data['agent_sess_name'] = $agent_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
-        $this->load->view('hotel/layout/hotel_combo',$this->arr_view_data);
+        $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
        
     }
 
@@ -55,8 +56,8 @@ class Final_booking_details extends CI_Controller {
 
      public function sub_index($id)
      {
-        $hotel_sess_name = $this->session->userdata('hotel_name');
-        $iid = $this->session->userdata('hotel_sess_id');
+        $agent_sess_name = $this->session->userdata('agent_name');
+        $iid = $this->session->userdata('agent_sess_id');
 
          $record = array();
          $fields = "final_booking.*,packages.id,packages.tour_title,package_date.id,package_date.journey_date,hotel.id,hotel.hotel_name";
@@ -68,22 +69,22 @@ class Final_booking_details extends CI_Controller {
          $arr_data = $this->master_model->getRecords('final_booking',array('final_booking.is_deleted'=>'no'),$fields);
         
 
-         $this->arr_view_data['hotel_sess_name'] = $hotel_sess_name;
+         $this->arr_view_data['agent_sess_name'] = $agent_sess_name;
          $this->arr_view_data['listing_page']    = 'yes';
          $this->arr_view_data['arr_data']        = $arr_data;
          $this->arr_view_data['page_title']      = $this->module_title." List";
          $this->arr_view_data['module_title']    = $this->module_title;
          $this->arr_view_data['module_url_path'] = $this->module_url_path;
          $this->arr_view_data['middle_content']  = $this->module_view_folder."sub_index";
-         $this->load->view('hotel/layout/hotel_combo',$this->arr_view_data);
+         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
         
      }
 
     // Get Details 
     public function details($id)
     {
-        $hotel_sess_name = $this->session->userdata('hotel_name');
-        $iid = $this->session->userdata('hotel_sess_id');   
+        $agent_sess_name = $this->session->userdata('agent_name');
+        $iid = $this->session->userdata('agent_sess_id');   
 
 		//  $id=base64_decode($id);
         if ($id=='') 
@@ -126,7 +127,7 @@ class Final_booking_details extends CI_Controller {
         // print_r($bus_seat_book_data); die; 
 
 
-        $this->arr_view_data['hotel_sess_name'] = $hotel_sess_name;
+        $this->arr_view_data['agent_sess_name'] = $agent_sess_name;
         $this->arr_view_data['p_date']        = $p_date;
         $this->arr_view_data['traveller_booking_info']        = $traveller_booking_info;
         $this->arr_view_data['arr_data']        = $arr_data;
@@ -136,7 +137,7 @@ class Final_booking_details extends CI_Controller {
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."details";
-        $this->load->view('hotel/layout/hotel_combo',$this->arr_view_data);
+        $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
     }
 
 

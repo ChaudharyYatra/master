@@ -336,21 +336,21 @@
                             <label>Building / House Name</label>
                             <!-- <input type="text" class="form-control" name="building_house_nm" id="building_house_nm" placeholder=""> -->
                             <input type="text" class="form-control" name="building_house_nm" id="building_house_nm" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['building_house_nm'];} ?>">
-                        </div>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                             <label>Street Name</label>
                             <!-- <input type="text" class="form-control" name="street_name" id="street_name" placeholder=""> -->
                             <input type="text" class="form-control" name="street_name" id="street_name" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['street_name'];} ?>">
-                        </div>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                             <label>Landmark</label>
                             <!-- <input type="text" class="form-control" name="landmark" id="landmark" placeholder=""> -->
                             <input type="text" class="form-control" name="landmark" id="landmark" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['landmark'];} ?>">
-                        </div>
+                            </div>
                         </div>
                     </div>
 

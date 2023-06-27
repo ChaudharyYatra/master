@@ -23,7 +23,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-              <?php $this->load->view('admin/layout/admin_alert'); ?>
+              <?php $this->load->view('hotel/layout/hotel_alert'); ?>
             <div class="card">
              
               <!-- /.card-header -->

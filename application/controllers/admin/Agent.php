@@ -112,10 +112,19 @@ class Agent extends CI_Controller{
                 $agency_name = trim($this->input->post('agency_name'));
                 $mobile_number3 = trim($this->input->post('mobile_number3'));
                 $landline_number = trim($this->input->post('landline_number'));
-                $office_address = trim($this->input->post('office_address'));
                 $registration_date = trim($this->input->post('registration_date'));
                 $GST_number = trim($this->input->post('GST_number'));
                 $pan_number = trim($this->input->post('pan_number'));
+
+                $flat_no  = $this->input->post('flat_no');
+                $building_house_nm  = $this->input->post('building_house_nm');
+                $street_name  = $this->input->post('street_name');
+                $landmark  = $this->input->post('landmark'); 
+
+                $agent_state  = $this->input->post('agent_state'); 
+                $agent_district  = $this->input->post('agent_district');
+                $agent_taluka  = $this->input->post('agent_taluka');
+                $agent_city  = $this->input->post('agent_city');
 
                 $arr_insert = array(
                     'department'   =>   $department,
@@ -131,11 +140,20 @@ class Agent extends CI_Controller{
                     'fld_agency_name'          => $agency_name,
                     'fld_mobile_number3'          => $mobile_number3,
                     'fld_landline_number'          => $landline_number,
-                    'fld_office_address'          => $office_address,
                     'fld_registration_date'          => $registration_date,
                     'fld_GST_number'          => $GST_number,
                     'fld_pan_number'          => $pan_number,
-                    'image_name'    => $filename
+                    'image_name'    => $filename,
+
+                    'flat_no' =>   $flat_no,
+                    'building_house_nm'   =>   $building_house_nm,
+                    'street_name'   =>   $street_name,   
+                    'landmark'    =>$landmark,
+
+                    'state_name'    =>$agent_state,
+                    'district_name' =>   $agent_district,
+                    'taluka_name'   =>   $agent_taluka,
+                    'city_name'     =>   $agent_city
                 );
                 
                 $inserted_id = $this->master_model->insertRecord('agent',$arr_insert,true);
@@ -210,12 +228,21 @@ class Agent extends CI_Controller{
             }   
         }
 
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('id','ASC');
+        $state_data = $this->master_model->getRecords('state_table');
+        // print_r($state_data); die;   
+
+
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $department_data = $this->master_model->getRecords('department');
+
         $this->arr_view_data['action']          = 'add';       
         $this->arr_view_data['department_data'] = $department_data;
+        $this->arr_view_data['state_data']        = $state_data;
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -353,6 +380,12 @@ class Agent extends CI_Controller{
            
             $this->db->where('id',$id);
             $arr_data = $this->master_model->getRecords('agent');
+
+            foreach($arr_data  as $arr_data_info){
+                $state_id = $arr_data_info['state_name'];
+                $district_id = $arr_data_info['taluka_name'];
+            }
+
             if($this->input->post('submit'))
             {
 				$this->form_validation->set_rules('department', 'Department', 'required');
@@ -383,10 +416,19 @@ class Agent extends CI_Controller{
                  $agency_name = trim($this->input->post('agency_name'));
                 $mobile_number3 = trim($this->input->post('mobile_number3'));
                 $landline_number = trim($this->input->post('landline_number'));
-                $office_address = trim($this->input->post('office_address'));
                 $registration_date = trim($this->input->post('registration_date'));
                 $GST_number = trim($this->input->post('GST_number'));
                 $pan_number = trim($this->input->post('pan_number'));
+
+                $flat_no  = $this->input->post('flat_no');
+                $building_house_nm  = $this->input->post('building_house_nm');
+                $street_name  = $this->input->post('street_name');
+                $landmark  = $this->input->post('landmark'); 
+
+                $agent_state  = $this->input->post('agent_state'); 
+                $agent_district  = $this->input->post('agent_district');
+                $agent_taluka  = $this->input->post('agent_taluka');
+                $agent_city  = $this->input->post('agent_city');
                 
                 $arr_update = array(
                     'department'   =>    $department,
@@ -402,10 +444,19 @@ class Agent extends CI_Controller{
                     'fld_agency_name'          => $agency_name,
                     'fld_mobile_number3'          => $mobile_number3,
                     'fld_landline_number'          => $landline_number,
-                    'fld_office_address'          => $office_address,
                     'fld_registration_date'          => $registration_date,
                     'fld_GST_number'          => $GST_number,
-                    'fld_pan_number'          => $pan_number
+                    'fld_pan_number'          => $pan_number,
+
+                    'flat_no' =>   $flat_no,
+                    'building_house_nm'   =>   $building_house_nm,
+                    'street_name'   =>   $street_name,   
+                    'landmark'    =>$landmark,
+
+                    'state_name'    =>$agent_state,
+                    'district_name' =>   $agent_district,
+                    'taluka_name'   =>   $agent_taluka,
+                    'city_name'     =>   $agent_city
                 );
                 
                     $arr_where     = array("id" => $id);
@@ -426,7 +477,25 @@ class Agent extends CI_Controller{
                 }   
             }
         }
-        
+
+
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('id','ASC');
+        $state_data = $this->master_model->getRecords('state_table');
+
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->where('id',$state_id);
+        $this->db->order_by('id','ASC');
+        $district_data = $this->master_model->getRecords('district_table');
+        // print_r($district_data); die;
+
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->where('id',$district_id);
+        $this->db->order_by('id','ASC');
+        $taluka_data = $this->master_model->getRecords('taluka_table');
         
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
@@ -435,6 +504,9 @@ class Agent extends CI_Controller{
         
         $this->arr_view_data['department_data']        = $department_data;
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['state_data']        = $state_data;
+        $this->arr_view_data['district_data']        = $district_data;
+        $this->arr_view_data['taluka_data']        = $taluka_data;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -518,5 +590,32 @@ class Agent extends CI_Controller{
                 }  
            }  
       }
+
+      public function get_district(){ 
+                // POST data 
+                // $all_b=array();
+            $district_data = $this->input->post('did');
+                // print_r($boarding_office_location); die;
+                                $this->db->where('is_deleted','no');
+                                $this->db->where('is_active','yes');
+                                $this->db->where('state_id',$district_data);   
+                                $data = $this->master_model->getRecords('district_table');
+                echo json_encode($data);
+        }
+
+        public function get_taluka(){ 
+            // POST data 
+            // $all_b=array();
+        $taluka_data = $this->input->post('did');
+            // print_r($taluka_data); die;
+                            $this->db->where('is_deleted','no');
+                            $this->db->where('is_active','yes');
+                            $this->db->where('district_id',$taluka_data);   
+                            $data = $this->master_model->getRecords('taluka_table');
+                            // print_r($data); die;
+            echo json_encode($data); 
+        }
+
+
    
 }

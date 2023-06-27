@@ -177,6 +177,7 @@
             </ul>
           </li>
 
+          <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_operation_manager/final_booking_details/index" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>

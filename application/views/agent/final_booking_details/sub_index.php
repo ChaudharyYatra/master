@@ -7,12 +7,12 @@
           <div class="col-sm-6">
             <h1><?php echo $page_title; ?></h1>
           </div>
-          <!-- <div class="col-sm-6">
+          <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php //echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
+              <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">Back</button></a>
               
             </ol>
-          </div> -->
+          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -23,7 +23,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-              <?php $this->load->view('hotel/layout/hotel_alert'); ?>
+              <?php $this->load->view('admin/layout/admin_alert'); ?>
             <div class="card">
              
               <!-- /.card-header -->
@@ -36,6 +36,10 @@
                     <th>SN</th>
                     <th>Package Name</th>
                     <th>Package Date</th>
+                    <th>Booking Date</th>
+                    <th>Hotel Name</th>
+                    <th>Booking Reference No</th>
+                    <th>Booking Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -50,8 +54,12 @@
                     <td><?php echo $i; ?></td>
                     <td><?php echo $info['tour_title'] ?></td>
                     <td><?php echo $info['journey_date'] ?></td>
+                    <td><?php echo $info['booking_date'] ?></td>
+                    <td><?php echo $info['hotel_name'] ?></td>
+                    <td><?php echo $info['booking_reference_no'] ?></td>
+                    <td><?php echo $info['booking_status'] ?></td>
                     <td>
-                    <a href="<?php echo $module_url_path;?>/sub_index/<?php echo $info['id']; ?>" ><button type="button" class="btn btn-primary">View</button></a>
+                    <a href="<?php echo $module_url_path;?>/details/<?php echo $info['enquiry_id']; ?>" ><button type="button" class="btn btn-primary">View</button></a>
                      
                     </td>
                     

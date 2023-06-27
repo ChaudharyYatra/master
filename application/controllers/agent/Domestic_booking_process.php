@@ -26,7 +26,7 @@ class Domestic_booking_process extends CI_Controller {
 
      public function index()
      {
-         $agent_sess_name = $this->session->userdata('agent_name');
+        $agent_sess_name = $this->session->userdata('agent_name');
         $id=$this->session->userdata('agent_sess_id');
 
         //  $record = array();
@@ -44,6 +44,7 @@ class Domestic_booking_process extends CI_Controller {
         $this->db->order_by('booking_enquiry.created_at','desc');
         $this->db->where('booking_enquiry.is_deleted','no');
         $this->db->where('booking_enquiry.booking_process','yes');
+        $this->db->where('booking_enquiry.booking_done','no');
         $this->db->where('booking_enquiry.agent_id',$id);
         $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
         $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');

@@ -9,7 +9,7 @@
           </div>
           <div class="col-sm-6">
              <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/change_password"><button class="btn btn-primary">Change Password</button></a>
+              
             </ol>
           </div>
         </div>
@@ -22,12 +22,13 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12 col-sm-12">
+          <?php $this->load->view('agent/layout/agent_alert'); ?>
             <!-- jquery validation -->
             
             <?php
-                   foreach($arr_data as $info) 
-                   { 
-                     ?>
+              foreach($arr_data as $info) 
+              { 
+            ?>
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title"><?php echo $page_title; ?></h3>
@@ -36,27 +37,45 @@
               <!-- form start -->
               
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                  <tr>
+              <table id="" class="table table-bordered">
+              <tr>
                     <th>Hotel Name</th>
                     <td><?php echo $info['hotel_name']; ?></td>
-                    <th>Location</th>
-                    <td><?php echo $info['hotel_location']; ?></td>
-                    
-                 </tr>
-                 <tr>
-                     <th>Mobile Number</th>
-                    <td><?php echo $info['hotel_mobile_number']; ?></td>
-                    <th>Email Address</th>
-                    <td><?php echo $info['hotel_email_address']; ?></td>
+                    <th>Email</th>
+                    <td><?php echo $info['email']; ?></td>
+                    <th>Mobile Number 1</th>
+                    <td><?php echo $info['mobile_number1']; ?></td>
                   </tr>
-                  </table>
+                  <tr>
+                    <th>Mobile Number 2</th>
+                    <td><?php echo $info['mobile_number2']; ?></td>
+                    <th>Mobile Number 1</th>
+                    <td><?php echo $info['mobile_number1']; ?></td>
+                    <th>Landline</th>
+                    <td><?php echo $info['landline']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <th>Hotel Address</th>
+                    <td><?php echo $info['hotel_address']; ?></td>
+                    <th></th>
+                    <td></td>
+                    <th></th>
+                    <td></td>
+                  </tr>
+
+                </table>
+                
               </div>
               
         <br>
         <div class="row">
-
-
+          <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+              <a href="<?php echo $module_url_path; ?>/edit/<?php echo $info['id']; ?>"><button class="btn btn-primary">Edit Profile</button></a>
+              </ol>
+          </div>
+        
             </div>
             <?php } ?>
           <!--/.col (left) -->

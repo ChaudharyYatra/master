@@ -23,7 +23,7 @@
           <!-- left column -->
           <div class="col-md-12">
             <!-- jquery validation -->
-            <?php $this->load->view('tour_operation_manager/layout/tour_operation_manager_alert'); ?>
+            <?php $this->load->view('hotel/layout/hotel_alert'); ?>
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title"><?php echo $page_title; ?></h3>
@@ -58,9 +58,9 @@
                         <label>Room Type</label>
                         <select class="select_css row_set1" name="room_type[]" id="room_type" required="required">
                           <option value="">select room type</option>
-                          <option value="standard" <?php if(isset($info['room_type'])){if("standard" == $info['room_type']) {echo 'selected';}}?>>Standard</option>
-                          <option value="deluxe" <?php if(isset($info['room_type'])){if("deluxe" == $info['room_type']) {echo 'selected';}}?>>Deluxe</option>
-                          <option value="suite" <?php if(isset($info['room_type'])){if("suite" == $info['room_type']) {echo 'selected';}}?>>Suite</option>
+                          <option value="AC" <?php if(isset($info['room_type'])){if("AC" == $info['room_type']) {echo 'selected';}}?>>AC</option>
+                          <option value="Non-AC" <?php if(isset($info['room_type'])){if("Non-AC" == $info['room_type']) {echo 'selected';}}?>>Non-AC</option>
+                          
                         </select>
                       </div>
                     </div>
@@ -77,10 +77,11 @@
                         <label>Bed Type</label>
                         <select class="select_css row_set1" name="bed_type[]" id="bed_type" required="required">
                           <option value="">select bed type</option>
-                          <option value="single" <?php if(isset($info['bed_type'])){if("single" == $info['bed_type']) {echo 'selected';}}?>>Single</option>
-                          <option value="double" <?php if(isset($info['bed_type'])){if("double" == $info['bed_type']) {echo 'selected';}}?>>Double</option>
-                          <option value="king" <?php if(isset($info['bed_type'])){if("king" == $info['bed_type']) {echo 'selected';}}?>>King</option>
-                          <option value="queen" <?php if(isset($info['bed_type'])){if("queen" == $info['bed_type']) {echo 'selected';}}?>>Queen</option>
+                          <option value="One Bed" <?php if(isset($info['bed_type'])){if("One Bed" == $info['bed_type']) {echo 'selected';}}?>>One Bed</option>
+                          <option value="Two Bed" <?php if(isset($info['bed_type'])){if("Two Bed" == $info['bed_type']) {echo 'selected';}}?>>Two Bed</option>
+                          <option value="Three Bed" <?php if(isset($info['bed_type'])){if("Three Bed" == $info['bed_type']) {echo 'selected';}}?>>Three Bed</option>
+                          <option value="Four Bed" <?php if(isset($info['bed_type'])){if("Four Bed" == $info['bed_type']) {echo 'selected';}}?>>Four Bed</option>
+                        
                         </select>
                       </div>
                     </div>
@@ -102,11 +103,11 @@
                           $quali1 = explode(',',$p);
                           // print_r($quali1); die;
                         ?>
-                        <label>Hotel Type</label><br>
+                        <label>Amenities</label><br>
                         
                           <input type="checkbox" name="amenities1[]" value="TV" <?php if(in_array('TV',$quali1)) {echo 'checked';}?>> TV
                           &nbsp;&nbsp;<input type="checkbox" name="amenities1[]" value="WIFI" <?php if(in_array('WIFI',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; WIFI
-                          &nbsp;&nbsp;<input type="checkbox" name="amenities1[]" value="Mini-Fridge">&nbsp;&nbsp; Mini-Fridge
+                          &nbsp;&nbsp;<input type="checkbox" name="amenities1[]" value="Mini-Fridge" <?php if(in_array('Mini-Fridge',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; Mini-Fridge
                         
                       </div>
                       </div>

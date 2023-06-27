@@ -148,9 +148,8 @@ var structure = $(` <style> .hotel_add_room_under{width:97%; border-top: 1px sol
                         <label>Room Type</label>
                         <select class="select_css row_set1" name="room_type[]" required="required">
                           <option value="">select room type</option>
-                          <option value="standard">Standard</option>
-                          <option value="deluxe">Deluxe</option>
-                          <option value="suite">Suite</option>
+                          <option value="AC">AC</option>
+                          <option value="Non-AC">Non-AC</option>
                         </select>
                       </div>
                     </div>
@@ -167,10 +166,10 @@ var structure = $(` <style> .hotel_add_room_under{width:97%; border-top: 1px sol
                         <label>Bed Type</label>
                         <select class="select_css row_set1" name="bed_type[]" required="required">
                           <option value="">select bed type</option>
-                          <option value="single">Single</option>
-                          <option value="double">Double</option>
-                          <option value="king">King</option>
-                          <option value="queen">Queen</option>
+                          <option value="One Bed">One Bed</option>
+                          <option value="Two Bed">Two Bed</option>
+                          <option value="Three Bed">Three Bed</option>
+                          <option value="Four Bed">Four Bed</option>
                         </select>
                       </div>
                     </div>

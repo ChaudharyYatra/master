@@ -106,6 +106,12 @@ class Booking_preview extends CI_Controller {
                 );
                 
                 $inserted_id = $this->master_model->insertRecord('final_booking',$arr_insert,true);
+
+                $arr_update = array(
+                    'booking_done'   =>   'yes'
+                );
+                $arr_where     = array("id" => $enquiry_id);
+                $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
                                
                 if($inserted_id > 0)
                 {    

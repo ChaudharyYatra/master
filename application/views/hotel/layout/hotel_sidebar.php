@@ -34,6 +34,13 @@
           </li>
 
           <li class="nav-item">
+                <a href="<?php echo base_url(); ?>hotel/allocate_tour/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Allocated Tours</p>
+                </a>
+          </li>
+
+          <li class="nav-item">
                 <a href="<?php echo base_url(); ?>hotel/final_booking_details/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Final Booking</p>
@@ -45,6 +52,15 @@
               <i class="far fa-circle nav-icon"></i>
               <p>
                Profile
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>hotel/change_password/change_password" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Change Password
               </p>
             </a>
           </li>

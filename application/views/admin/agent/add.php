@@ -103,12 +103,73 @@
                                 <input type="text" class="form-control" name="landline_number" id="landline_number" placeholder="Enter 11 Digits Landline Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                               </div>
                         </div>
-                        <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Office Address</label>
-                                <textarea class="form-control" name="office_address" id="office_address" placeholder="Enter Office Address"></textarea>
-                              </div>
-                      </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>Flat No.</label>
+                            <input type="text" class="form-control" name="flat_no" id="flat_no" placeholder="Enter Flat No." required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>Building / House Name</label>
+                            <input type="text" class="form-control" name="building_house_nm" id="building_house_nm" placeholder="Enter Building / House Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>Street Name</label>
+                            <input type="text" class="form-control" name="street_name" id="street_name" placeholder="Enter Street Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>Landmark</label>
+                            <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Enter Landmark" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>select State</label>
+                                <select class="select_css" name="agent_state" id="agent_state">
+
+                                  <option value="">Select State</option>
+                                    <?php foreach($state_data as $state_data_value){ ?> 
+                                      <option value="<?php echo $state_data_value['id'];?>"><?php echo $state_data_value['state'];?></option>
+                                    <?php } ?>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Select District</label>
+                                <select class="select_css" name="agent_district" id="agent_district">
+
+                                  <option value="">Select District</option>
+                                       
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Select Taluka</label>
+                                <select class="select_css" name="agent_taluka" id="agent_taluka">
+
+                                  <option value="">Select Taluka</option> 
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>City/Village Name</label>
+                            <input type="text" class="form-control" name="agent_city" id="agent_city" placeholder="Enter City Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                          </div>
+                        </div>
+                        
                         <div class="col-md-6">
                             <label>Logo photo</label>
                               <div class="form-group">
