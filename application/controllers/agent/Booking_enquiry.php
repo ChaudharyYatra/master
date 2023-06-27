@@ -21,7 +21,7 @@ class Booking_enquiry extends CI_Controller {
         $this->module_title_followup       = "Domestic Booking Enquiry Followup";
         $this->module_url_slug    = "booking_enquiry";
         $this->module_view_folder = "booking_enquiry/";
-        $this->arr_view_data = [];
+        $this->arr_view_data = []; 
 	 }
 
      public function index()
@@ -145,7 +145,7 @@ class Booking_enquiry extends CI_Controller {
                  $agent_data_email = $this->master_model->getRecord('agent');
                  $agent_email=$agent_data_email['email'];
                  $agent_name=$agent_data_email['agent_name'];     
-				  $from_email='chaudharyyatra8@gmail.com';
+				 $from_email='chaudharyyatra8@gmail.com';
                  if($email_address !='')
                  {
                     
