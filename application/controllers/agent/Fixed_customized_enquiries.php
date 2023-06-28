@@ -14,7 +14,7 @@ class Fixed_customized_enquiries extends CI_Controller {
         { 
                 redirect(base_url().'agent/login'); 
         }
-        $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/Fixed_customized_enquiries";
+        $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/fixed_customized_enquiries";
         $this->module_url_path_followup    =  base_url().$this->config->item('agent_panel_slug')."/custom_followup_booking_enquiry";
         $this->module_title       = "Custom Booking Enquiry";
         $this->module_title_followup = "Domestic Booking Enquiry Followup";
