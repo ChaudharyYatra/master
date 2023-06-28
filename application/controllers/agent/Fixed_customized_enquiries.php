@@ -1,6 +1,6 @@
 <?php 
 //   Controller for: home page
-// Author: Mahesh Mhaske
+// Author: Vivek
 // Start Date: 16-08-2022
 // last updated: 16-08-2022
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -17,9 +17,9 @@ class Fixed_customized_enquiries extends CI_Controller {
         $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/Fixed_customized_enquiries";
         $this->module_url_path_followup    =  base_url().$this->config->item('agent_panel_slug')."/custom_followup_booking_enquiry";
         $this->module_title       = "Custom Booking Enquiry";
-        $this->module_title_followup       = "Domestic Booking Enquiry Followup";
-        $this->module_url_slug    = "Fixed_customized_enquiries";
-        $this->module_view_folder = "Fixed_customized_enquiries/";
+        $this->module_title_followup = "Domestic Booking Enquiry Followup";
+        $this->module_url_slug    = "fixed_customized_enquiries";
+        $this->module_view_folder = "fixed_customized_enquiries/";
         $this->arr_view_data = [];
 	 }
 

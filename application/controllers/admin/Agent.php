@@ -524,9 +524,12 @@ class Agent extends CI_Controller{
             redirect($this->module_url_path.'/index');
         }   
         
-        $fields = "agent.*,department.department";
+        $fields = "agent.*,department.department,taluka_table.taluka,district_table.district,state_table.state";
         $this->db->where('agent.id',$id);
         $this->db->join("department", 'agent.department=department.id','left');
+        $this->db->join("taluka_table", 'agent.taluka_name=taluka_table.id','left');
+        $this->db->join("district_table", 'agent.district_name=district_table.id','left');
+        $this->db->join("state_table", 'agent.state_name=state_table.id','left');
         $arr_data = $this->master_model->getRecords('agent',array('agent.is_deleted'=>'no'),$fields);
         
         $this->arr_view_data['arr_data']        = $arr_data;

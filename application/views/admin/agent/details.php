@@ -39,9 +39,9 @@
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <tr>
-					  <th>Arrange Id</th>
+					          <th>Arrange Id</th>
                     <td><?php echo $info['arrange_id']; ?></td>
-					  <th>City Name</th>
+					          <th>City Name</th>
                     <td><?php echo $info['city']; ?></td>
                     <th>Department</th>
                     <td><?php echo $info['department']; ?></td>
@@ -63,14 +63,53 @@
 
                   <tr>
 					  
-                    <th>Password</th>
-                    <td><?php echo $info['password']; ?></td>
+                    <th>Flat No.</th>
+                    <td><?php echo $info['flat_no']; ?></td>
+                      
+                    <th>Building / House Name</th>
+                    <td><?php echo $info['building_house_nm']; ?></td>
 					  
-                  <th>Mobile Number 1</th>
+                    <th>Street Name</th>
+                    <td><?php echo $info['street_name']; ?></td>
+
+                  </tr>
+
+                  <tr>
+					  
+                    <th>Landmark</th>
+                    <td><?php echo $info['landmark']; ?></td>
+                      
+                    <th>State</th>
+                    <td><?php echo $info['state']; ?></td>
+            
+                    <th>District Name</th>
+                    <td><?php echo $info['district']; ?></td>
+
+                  </tr>
+
+                  <tr>
+					  
+                    <th>Taluka</th>
+                    <td><?php echo $info['taluka']; ?></td>
+
+                    <th>City</th>
+                    <td><?php echo $info['city_name']; ?></td>
+            
+                    <th>Mobile Number 1</th>
                     <td><?php echo $info['mobile_number1']; ?></td>
+
+                  </tr>
+
+                  <tr>
 
                     <th>Mobile_number 2</th>
                     <td><?php echo $info['mobile_number2']; ?></td>
+					  
+                    <th>Password</th>
+                    <td><?php echo $info['password']; ?></td>
+
+                    <th></th>
+                    <td></td>
                   </tr>
 
                   </table>

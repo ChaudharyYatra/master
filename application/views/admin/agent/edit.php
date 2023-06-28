@@ -132,10 +132,10 @@
                           </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                                 <div class="form-group">
                                     <label>select State</label>
-                                    <select class="select_css" name="agent_state" id="agent_state">
+                                    <select class="select_css" name="agent_state" id="agent_state" required>
                                             <option value="">Select State</option>
                                             <?php foreach($state_data as $state_data_value){ ?> 
                                                 <option value="<?php echo $state_data_value['id'];?>" <?php if(isset($info['state_name'])){if($state_data_value['id'] == $info['state_name']) {echo 'selected';}}?>><?php echo $state_data_value['state'];?></option>
@@ -143,10 +143,10 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Select District</label>
-                                    <select class="select_css" name="agent_district" id="agent_district">
+                                    <select class="select_css" name="agent_district" id="agent_district" required>
                                         <option value="">Select District</option>
                                         <?php foreach($district_data as $district_data_value){ ?> 
                                             <option value="<?php echo $district_data_value['id'];?>" <?php if(isset($info['district_name'])){if($district_data_value['id'] == $info['district_name']) {echo 'selected';}}?>><?php echo $district_data_value['district'];?></option>
@@ -154,16 +154,23 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Select Taluka</label>
-                                    <select class="select_css" name="agent_taluka" id="agent_taluka">
+                                    <select class="select_css" name="agent_taluka" id="agent_taluka" required>
                                         <option value="">Select Taluka</option>
                                            <?php foreach($taluka_data as $taluka_data_value){ ?> 
                                             <option value="<?php echo $taluka_data_value['id'];?>" <?php if(isset($info['taluka_name'])){if($taluka_data_value['id'] == $info['taluka_name']) {echo 'selected';}}?>><?php echo $taluka_data_value['Taluka'];?></option>
                                         <?php } ?> 
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                <label>City/Village Name</label>
+                                <input type="text" class="form-control" name="agent_city" id="agent_city" placeholder="Enter City Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $info['city_name']; ?>" required>
+                              </div>
                             </div>
                         
                         <!-- <div class="col-md-6">

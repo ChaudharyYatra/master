@@ -132,7 +132,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>select State</label>
-                                <select class="select_css" name="agent_state" id="agent_state">
+                                <select class="select_css" name="agent_state" id="agent_state" required>
 
                                   <option value="">Select State</option>
                                     <?php foreach($state_data as $state_data_value){ ?> 
@@ -145,7 +145,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Select District</label>
-                                <select class="select_css" name="agent_district" id="agent_district">
+                                <select class="select_css" name="agent_district" id="agent_district" required>
 
                                   <option value="">Select District</option>
                                        
@@ -155,7 +155,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Select Taluka</label>
-                                <select class="select_css" name="agent_taluka" id="agent_taluka">
+                                <select class="select_css" name="agent_taluka" id="agent_taluka" required>
 
                                   <option value="">Select Taluka</option> 
 
@@ -166,7 +166,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                             <label>City/Village Name</label>
-                            <input type="text" class="form-control" name="agent_city" id="agent_city" placeholder="Enter City Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                            <input type="text" class="form-control" name="agent_city" id="agent_city" placeholder="Enter City Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required>
                           </div>
                         </div>
                         
