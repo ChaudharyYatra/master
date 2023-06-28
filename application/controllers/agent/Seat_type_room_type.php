@@ -1237,6 +1237,7 @@ class Seat_type_room_type extends CI_Controller {
          $agent_sess_name = $this->session->userdata('agent_name');
          $id=$this->session->userdata('agent_sess_id');
          
+         
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $this->db->where('domestic_enquiry_id',$iid);
