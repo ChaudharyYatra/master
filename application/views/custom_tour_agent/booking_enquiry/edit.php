@@ -1,3 +1,9 @@
+<style>
+  .mealplan_css{
+            border: 1px solid red !important;
+        }
+  </style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -144,12 +150,21 @@
                                   </select>
                               </div>
                             </div>
+                            <?php if($info['meal_plan']!='Other'){?>
                             <div class="col-md-6" id="other_meal_plan_div" style='display:none;'>
                                 <div class="form-group">
                                     <label>Other Meal Plan Name</label>
-                                    <input type="text" class="form-control mealplan_css" name="meal_plan_name" id="meal_plan_name" value="<?php echo $info['meal_plan_name']; ?>" placeholder="Enter meal plan name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control mealplan_css" name="meal_plan_name" id="meal_plan_name" value="<?php echo $info['other_meal_plan']; ?>" placeholder="Enter meal plan name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                             </div>
+                            <?php } else { ?>
+                              <div class="col-md-6" id="other_meal_plan_div" style='display:block;'>
+                                <div class="form-group">
+                                    <label>Other Meal Plan Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="meal_plan_name" id="meal_plan_name" value="<?php echo $info['other_meal_plan']; ?>" placeholder="Enter meal plan name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                            </div>
+                            <?php } ?>
 
                             <div class="col-md-6">
                               <div class="form-group">
@@ -172,6 +187,7 @@
                               </div>
                             </div>
 
+                            
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Select Vehicle Type</label>
@@ -186,12 +202,23 @@
                                 </select>
                               </div>
                             </div>
+
+                            <?php if($info['vehicle_type']!='Other'){?>
                             <div class="col-md-6" id="other_vehicle_type_div" style='display:none;'>
                                 <div class="form-group">
                                     <label>Other Vehicle Name</label>
-                                    <input type="text" class="form-control mealplan_css" name="other_vehicle_name" id="other_vehicle_name" placeholder="Enter vehicle name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control mealplan_css" name="other_vehicle_name" id="other_vehicle_name" value="<?php echo $info['other_vehicle_name']; ?>" placeholder="Enter vehicle name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                             </div>
+                            <?php } else { ?>
+                              <div class="col-md-6" id="other_vehicle_type_div" style='display:block;'>
+                                <div class="form-group">
+                                    <label>Other Vehicle Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="other_vehicle_name" id="other_vehicle_name" value="<?php echo $info['other_vehicle_name']; ?>" placeholder="Enter vehicle name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                              </div>
+                              <?php } ?>
+
 
                             <div class="col-md-6">
                               <div class="form-group">
@@ -207,12 +234,22 @@
                                 </select>
                               </div>
                             </div>
+
+                            <?php if($info['pick_up_from']!='Other'){?>
                             <div class="col-md-6" id="other_pickup_from_div" style='display:none;'>
                                 <div class="form-group">
                                     <label>Other Pick Up From Name</label>
-                                    <input type="text" class="form-control mealplan_css" name="other_pickup_from_name" id="other_pickup_from_name" placeholder="Enter Pick Up name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control mealplan_css" name="other_pickup_from_name" id="other_pickup_from_name" value="<?php echo $info['other_pickup_from_name']; ?>" placeholder="Enter Pick Up name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                             </div>
+                            <?php } else { ?>
+                              <div class="col-md-6" id="other_pickup_from_div" style='display:block;'>
+                                <div class="form-group">
+                                    <label>Other Pick Up From Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="other_pickup_from_name" id="other_pickup_from_name" value="<?php echo $info['other_pickup_from_name']; ?>" placeholder="Enter Pick Up name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                            </div>
+                            <?php } ?>
 
                             <div class="col-md-6">
                               <div class="form-group">
@@ -231,8 +268,8 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Drop to</label>
-                                <select class="form-control niceSelect" name="drop_to" id="drop_to" onfocus='this.size=3;' onblur='this.size=1;' 
-                                        onchange='this.size=1; this.blur();'>
+                                <select class="form-control niceSelect" name="drop_to" id="drop_to" onchange='dropto(this.value); 
+                                                            this.blur();' onfocus='this.size=3;' onblur='this.size=1;' >
                                     <option value="">Select Drop To</option>
                                     <option value="Other" <?php if(isset($info['drop_to'])){if("Other" == $info['drop_to']) {echo 'selected';}}?>>Other</option>
                                     <?php foreach($drop_to as $drop_to_info){ ?> 
@@ -241,6 +278,22 @@
                                 </select>
                               </div>
                             </div>
+
+                            <?php if($info['drop_to']!='Other'){?>
+                              <div class="col-md-6" id="other_dropto_div" style='display:none;'>
+                                <div class="form-group">
+                                    <label>Other Drop To Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="other_drop_to_name" id="other_drop_to_name" value="<?php echo $info['other_drop_to_name']; ?>" placeholder="Enter Drop To Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                            </div>
+                            <?php } else { ?>
+                              <div class="col-md-6" id="other_dropto_div" style='display:block;'>
+                                <div class="form-group">
+                                    <label>Other Drop To Name</label>
+                                    <input type="text" class="form-control mealplan_css" name="other_drop_to_name" id="other_drop_to_name" value="<?php echo $info['other_drop_to_name']; ?>" placeholder="Enter Drop To Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                              </div>
+                            <?php } ?>
 
                             <div class="col-md-6">
                               <div class="form-group">

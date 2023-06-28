@@ -1,3 +1,13 @@
+<style>
+    .nir-btn{
+        padding: 7px 8px !important;
+        border-radius: 5px !important;
+    }
+    table > tbody tr td, table > tbody tr th, table > tfoot tr td, table > tfoot tr th, table > thead tr td, table > thead tr th {
+        vertical-align: inherit !important;
+    }
+</style>
+
 <!-- BreadCrumb Starts -->  
 <section class="breadcrumb-main pb-20 pt-14" style="background-image: url(<?php echo base_url(); ?>uploads/do_not_delete/Packages.png);">
     <div class="section-shape section-shape1 top-inherit bottom-0" style="background-image: url(images/shape8.png);"></div>
@@ -73,15 +83,65 @@
                             <div class="col-lg-6 col-md-6">
                                 
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <a href="<?php echo base_url(); ?>feedback_add/index" class="nir-btn float-lg-end">Add Feedback</a>
-                            </div>
+                            <!-- <div class="col-lg-6 col-md-6">
+                                <a href="<?php //echo base_url(); ?>feedback_add/index" class="nir-btn float-lg-end">Add Feedback</a>
+                            </div> -->
 
                             <div class="col-lg-12 col-md-12">
                                 <h4>Tour Feedback</h4>
 
-                                <?php  if(count($arr_data) > 0 ) 
+                                <?php  if(count($arr_data_tour_details) > 0 ) 
                                 { ?>
+
+                                <table class="table table-bordered author_bg">
+                                    <thead>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Tour Name</th>
+                                            <th>Tour Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php  
+                                            $i=1; 
+                                            foreach($arr_data_tour_details as $info) 
+                                            { 
+                                            // print_r($info); die;
+                                        ?>
+                                        
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo $info['tour_title'] ?></td>
+                                            <td><?php echo $info['journey_date'] ?></td>
+                                            <td><div class="col-lg-8 col-md-8">
+                                                <a href="<?php echo base_url(); ?>feedback_add/index/<?php $aid=base64_encode($info['package_id']); 
+                                                echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['package_date_id']); 
+                                                echo rtrim($did, '='); ?>" class="nir-btn">Feedback</a>
+
+                                                <a href="<?php echo base_url(); ?>feedback_details/index/<?php $aid=base64_encode($info['package_id']); 
+                                                echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['package_date_id']); 
+                                                echo rtrim($did, '='); ?>" class="nir-btn">view</a>
+                                            </div></td>
+
+                                        </tr>
+
+                                        <?php $i++; } ?>
+                  
+                                    </tbody>
+                                    
+                                </table>
+                                
+                                <?php } ?>
+                            </div>
+
+                            <!-- =================view details=============================== -->
+                            <!-- <div class="col-lg-12 col-md-12">
+                                <h4>Tour Feedback</h4>
+
+                                <?php  //if(count($arr_data) > 0 ) 
+                                //{ ?>
 
                                 <table class="table table-bordered author_bg">
                                     <thead>
@@ -94,34 +154,27 @@
                                     <tbody>
 
                                         <?php  
-                                            $i=1; 
-                                            foreach($arr_data as $info) 
-                                            { 
+                                            //$i=1; 
+                                            //foreach($arr_data as $info) 
+                                            //{ 
                                             // print_r($info); die;
                                         ?>
                                         
                                         <tr>
-                                            <td><?php echo $i; ?></td>
-                                            <td><?php echo $info['tour_title'] ?></td>
-                                            <td><?php echo $info['journey_date'] ?></td>
+                                            <td><?php //echo $i; ?></td>
+                                            <td><?php //echo $info['tour_title'] ?></td>
+                                            <td><?php //echo $info['journey_date'] ?></td>
                                         </tr>
 
-                                        <?php $i++; } ?>
+                                        <?php //$i++; } ?>
                   
                                     </tbody>
                                     
                                 </table>
                                 
-                                <?php } ?>
-                                
-                                        
-                                        
-                                        
-                                    
-
-                                
-                            </div>
-                            
+                                <?php //} ?>
+                            </div> -->
+                            <!-- =================view details=============================== -->
                         </div>
 
                         <!-- <div class="pagination-main text-center">

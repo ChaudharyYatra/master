@@ -1,3 +1,13 @@
+<style>
+    .nir-btn{
+        padding: 7px 8px !important;
+        border-radius: 5px !important;
+    }
+    table > tbody tr td, table > tbody tr th, table > tfoot tr td, table > tfoot tr th, table > thead tr td, table > thead tr th {
+        vertical-align: inherit !important;
+    }
+</style>
+
 <!-- BreadCrumb Starts -->  
 <section class="breadcrumb-main pb-20 pt-14" style="background-image: url(<?php echo base_url(); ?>uploads/do_not_delete/Packages.png);">
     <div class="section-shape section-shape1 top-inherit bottom-0" style="background-image: url(images/shape8.png);"></div>
@@ -70,81 +80,96 @@
                                     </div>
                                 </div>
                             </div> -->
+                            <div class="col-lg-6 col-md-6">
+                                
+                            </div>
+                            <!-- <div class="col-lg-6 col-md-6">
+                                <a href="<?php //echo base_url(); ?>feedback_add/index" class="nir-btn float-lg-end">Add Feedback</a>
+                            </div> -->
 
                             <div class="col-lg-12 col-md-12">
-                                <h4>Add Tour Feedback</h4>
-                                <?php  
-                                    foreach($arr_data_tour_details as $info) 
-                                    { 
-                                ?>
-                                <form class="mb-2" method="post" onsubmit="return validateFeedbackForms()" action="<?php echo base_url(); ?>feedback_add/index/<?php $aid=base64_encode($info['package_id']); 
-                                                echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['package_date_id']); 
-                                                echo rtrim($did, '='); ?>" enctype="multipart/form-data">
-                                    <!-- <h5>Fill your information</h5> -->
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group mb-2">
-                                                
-                                                <div class="input-box">
-                                                    <select class="niceSelect" name="categories" id="categories">
-                                                        <option value="">Select Categories</option>
-                                                        <option value="Other">Other</option>
-                                                        <option value="food">Food</option>
-                                                        <option value="traveler">Travel</option>
-                                                        <option value="vehicle">Vehicle</option>
-                                                        <option value="staff">Staff</option>
-                                                        <option value="room">Room</option>
-                                                    </select>
-                                                </div>
-                                                <span class="text-danger float-left" id="categories_error" style="display:none"></span>
+                                <h4>Tour Feedback</h4>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group mb-2">
-                                                
-                                                <div class="input-box">
-                                                    <select class="niceSelect" name="rating" id="rating">
-                                                        <option value="">Select Rating</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                </div>
-                                                <span class="text-danger float-left" id="rating_error" style="display:none"></span>
+                                <?php  if(count($arr_data_tour_details) > 0 ) 
+                                { ?>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group mb-2">
-                                                <textarea type="text" name="message" class="form-control form_css" id="message" placeholder="Message"></textarea>
-                                                <span class="text-danger float-left" id="msg_error" style="display:none"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group mb-2">
-                                                <input type="file" placeholder="upload photo" name="image_name" id="image_name">
-                                                <span class="text-danger float-left" id="image_name_error" style="display:none"></span>
-                                            </div>
-                                        </div>
-                                          
-                                    </div>
+                                <table id="example1" class="table table-bordered author_bg table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Category</th>
+                                            <th>Rating</th>
+                                            <th>Feedback</th>
+                                            <th>Uploaded Image</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php  
+                                            $i=1; 
+                                            foreach($arr_data_tour_details as $info) 
+                                            { 
+                                            // print_r($info); die;
+                                        ?>
+                                        
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo $info['category'] ?></td>
+                                            <td><div class="rating">
+                                        <?php if($info['rating']=='1') { ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($info['rating']=='2') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($info['rating']=='3') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($info['rating']=='4') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <?php }
+                                        if($info['rating']=='5') {
+                                        ?>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <?php } ?>
+                                    </div></td>
+                                            <td><?php echo $info['feedback'] ?></td>
+                                            <td>
+                                                <img src="<?php echo base_url(); ?>uploads/feedback_photo/<?php echo $info['image_name']; ?>" width="140px;" height="80px;" alt="Slider Image">
+                                            </td> 
+                                        </tr>
+
+                                        <?php $i++; } ?>
+                  
+                                    </tbody>
+                                    
+                                </table>
                                 
-                           
-                                    <div class="booking-terms border-t pt-3 mt-3">
-                                    <!-- <form class="d-lg-flex align-items-center"> -->
-                                        <div class="form-group mb-2 w-75">
-                                            <!--<input type="checkbox"> By continuing, you agree to the <a href="#">Terms and Conditions.</a>-->
-                                        </div>
-                                        <!-- <a href="#" class="nir-btn float-lg-end w-25" name="submit">CONFIRM BOOKING</a> -->
-                                        <input type="submit" class="nir-btn float-lg-end w-25" id="submit" value="submit" name="submit">
-                                    </div>
-                                </form>
                                 <?php } ?>
                             </div>
-                            
                         </div>
 
                         <!-- <div class="pagination-main text-center">
@@ -355,6 +380,28 @@
         </div>
     </section>
     <!-- blog Ends -->  
+
+    <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 
 
 

@@ -3994,6 +3994,7 @@ $('#custom_edit_bookingenquiry').validate({ // initialize the plugin
     element.style.display='none';
 	element2.value="";	
     }
+    
 
 </script>
 <script type="text/javascript">

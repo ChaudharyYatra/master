@@ -252,6 +252,7 @@ table.scrolldown tbody{
                             </div>
 
                                 <h3 class="mb-1 card_title"><?php echo mb_substr($main_packages_value['tour_title'], 0, 18); ?></h3>
+                                
                                 <div class="rating-main d-flex align-items-center pb-2">
                                     <div class="rating">
                                         <?php if($main_packages_value['rating']=='1') { ?>

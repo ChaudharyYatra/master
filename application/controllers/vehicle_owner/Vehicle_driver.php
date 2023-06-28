@@ -806,6 +806,7 @@ class Vehicle_driver extends CI_Controller{
                     'pan_card_no'          => $pancard_no,
                     'gst_no'          => $gst_no,
                     'licence_valid_date'          => $licence_valid_date,
+                    'password'          => $password,
                 );
                 
                     $arr_where     = array("id" => $id);

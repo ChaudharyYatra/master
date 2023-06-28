@@ -518,7 +518,7 @@ class Booking_enquiry extends CI_Controller {
          if(is_numeric($id))
          {   
              $this->db->where('id',$id);
-             $arr_data = $this->master_model->getRecords('booking_enquiry');
+             $arr_data = $this->master_model->getRecords('custom_domestic_booking_enquiry');
  
              if(empty($arr_data))
              {
@@ -528,7 +528,7 @@ class Booking_enquiry extends CI_Controller {
              $arr_update = array('is_deleted' => 'yes');
              $arr_where = array("id" => $id);
                   
-             if($this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where))
+             if($this->master_model->updateRecord('custom_domestic_booking_enquiry',$arr_update,$arr_where))
              {
                  $this->session->set_flashdata('success_message',$this->module_title.' Deleted Successfully.');
              }

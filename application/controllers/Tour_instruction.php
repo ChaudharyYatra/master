@@ -36,37 +36,36 @@ class Tour_instruction extends CI_Controller {
         $this->db->order_by('id','ASC');
         $social_media_link = $this->master_model->getRecords('social_media_link');
 
-        $fields = "confirm_booking.*,packages.tour_title,package_date.journey_date,cust_instraction.instraction";
-        $this->db->where('confirm_booking.is_deleted','no');
-        $this->db->where('confirm_booking.is_active','yes');
-        $this->db->where('confirm_booking.traveler_id',$id); //check session id & traverl id match
-        $this->db->join("packages", 'confirm_booking.package_id=packages.id','left');
-        $this->db->join("package_date", 'confirm_booking.package_date_id=package_date.id','left');
-        $this->db->join("cust_instraction", 'confirm_booking.package_id=cust_instraction.tour_no','left');
+        $fields = "final_booking.*,packages.tour_title,package_date.journey_date,cust_instraction.instraction";
+        $this->db->where('final_booking.is_deleted','no');
+        $this->db->where('final_booking.is_active','yes');
+        $this->db->where('final_booking.traveler_id',$id); //check session id & traverl id match
+        $this->db->join("packages", 'final_booking.package_id=packages.id','left');
+        $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','left');
+        $this->db->join("cust_instraction", 'final_booking.package_id=cust_instraction.tour_no','left');
         $this->db->where('cust_instraction.is_deleted','no');
         $this->db->where('cust_instraction.is_active','yes');
-        $arr_data = $this->master_model->getRecords('confirm_booking',array('confirm_booking.is_deleted'=>'no'),$fields);
-                
-        $fields = "confirm_booking.*,packages.tour_title";
-        $this->db->where('confirm_booking.is_deleted','no');
-        $this->db->where('confirm_booking.is_active','yes');
-        $this->db->where('confirm_booking.tour_status','1');
-        $this->db->OR_where('confirm_booking.tour_status','2');
-        $this->db->where('confirm_booking.traveler_id',$id); //check session id & traverl id match
-        $this->db->join("packages", 'confirm_booking.package_id=packages.id','left');
-        $arr_data2 = $this->master_model->getRecords('confirm_booking',array('confirm_booking.is_deleted'=>'no'),$fields);    
+        $arr_data = $this->master_model->getRecords('final_booking',array('final_booking.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;      
         
-        
+        $fields = "final_booking.*,packages.tour_title";
+        $this->db->where('final_booking.is_deleted','no');
+        $this->db->where('final_booking.is_active','yes');
+        // $this->db->where('final_booking.tour_status','1');
+        // $this->db->OR_where('final_booking.tour_status','2');
+        $this->db->where('final_booking.traveler_id',$id); //check session id & traverl id match
+        $this->db->join("packages", 'final_booking.package_id=packages.id','left');
+        $arr_data2 = $this->master_model->getRecords('final_booking',array('final_booking.is_deleted'=>'no'),$fields);    
 
          
-         $data = array('middle_content' => 'tour_instruction',
-						'website_basic_structure'       => $website_basic_structure,
-						'social_media_link'       => $social_media_link,
+        $data = array('middle_content' => 'tour_instruction',
+                        'website_basic_structure'       => $website_basic_structure,
+                        'social_media_link'       => $social_media_link,
                         'arr_data'               => $arr_data,
                         'arr_data2'               => $arr_data2,
                         'cust_sess_name'        => $cust_sess_name,
                         'cust_sess_lname'        => $cust_sess_lname,
-			'page_title'    => 'Tour Instruction');
+                        'page_title'    => 'Tour Instruction');
 
         $this->arr_view_data['page_title']     =  "Tour Instruction";
         $this->arr_view_data['middle_content'] =  "tour_instruction";

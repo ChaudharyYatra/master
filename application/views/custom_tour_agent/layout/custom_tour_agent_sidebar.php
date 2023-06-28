@@ -184,22 +184,15 @@
           </li> -->
 
           
-          <!-- <li class="nav-item">
-            <a href="<?php //echo base_url(); ?>custom_tour_agent/profile/index" class="nav-link">
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>custom_tour_agent/profile/index" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
                Profile
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="<?php //echo base_url(); ?>custom_tour_agent/change_password/change_password" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>
-              Change Password
-              </p>
-            </a>
-          </li> -->
+          
                
            <li class="nav-item">
             <a href="<?php echo base_url(); ?>custom_tour_agent/login/logout" class="nav-link">

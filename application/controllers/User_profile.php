@@ -30,7 +30,6 @@ class User_profile extends CI_Controller {
 
                 if($this->form_validation->run() == TRUE)
                 {              
-                
                    $mobile_login = trim($this->input->post('mobile'));
                    $pass_login = trim($this->input->post('password'));
                   
