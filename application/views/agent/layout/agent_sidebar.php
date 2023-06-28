@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>agent/fixed_Customized_enquiries/index" class="nav-link">
+            <a href="<?php echo base_url(); ?>agent/fixed_customized_enquiries/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                Fixed & Customized Enquiries
