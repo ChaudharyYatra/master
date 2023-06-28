@@ -3566,6 +3566,10 @@ $('#custom_add_bookingenquiry').validate({ // initialize the plugin
             maxlength:10,
             minlength:10
         },
+        mobile_number2: {
+            maxlength:10,
+            minlength:10
+        },
         tour_number: {
             required: true,
         },
@@ -3683,6 +3687,10 @@ $('#custom_add_bookingenquiry').validate({ // initialize the plugin
         },
         mobile_number1 : {
             required : "Please enter mobile number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
+        },
+        mobile_number2 : {
             maxlength: "Please enter maximum 10 digit number",
             minlength: "Please enter minimum 10 digit number"
         },

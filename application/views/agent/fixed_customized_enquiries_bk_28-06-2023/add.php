@@ -42,7 +42,8 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Full Name</label><br>
-                          <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Enter full name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                          <input type="text" class="form-control" name="full_name" id="full_name" value="" placeholder="Enter full name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                          <input type="hidden" class="form-control" name="agent_id" id="agent_id" value="<?php echo $agent_data['id']; ?>">
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -264,7 +265,7 @@
                     </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button>
                   <!-- <button type="submit" class="btn btn-success" name="booknow_submit" value="Book Now">Submit & Proceed</button>  -->
                   <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>

@@ -86,13 +86,13 @@
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Checkin Date</label>
-                                <input type="text" class="form-control checkin_date" placeholder="" name="checkin_date" id="checkin_date">
+                                <input type="text" class="form-control checkin_date" placeholder="" autocomplete="off" name="checkin_date" id="checkin_date">
                               </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Checkout Date</label>
-                                <input type="text" class="form-control checkout_date" placeholder="" name="checkout_date" id="checkout_date">
+                                <input type="text" class="form-control checkout_date" placeholder="" autocomplete="off" name="checkout_date" id="checkout_date">
                               </div>
                       </div>
                       <div class="col-md-6">
@@ -265,7 +265,7 @@
                     </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button>
+                  <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
                   <!-- <button type="submit" class="btn btn-success" name="booknow_submit" value="Book Now">Submit & Proceed</button>  -->
                   <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>

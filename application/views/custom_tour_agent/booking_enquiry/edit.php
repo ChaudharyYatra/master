@@ -72,28 +72,38 @@
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Tour number</label>
-                                  <select class="form-control" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
-                                  this.blur();' onfocus='this.size=6;' onblur='this.size=1;'>
+                                  <select class="form-control niceSelect" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
+                                  this.blur();' onfocus='this.size=3;' onblur='this.size=1;'>
                                     <option value="">Select tour title</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Other" <?php if(isset($info['package_id'])){if("Other" == $info['package_id']) {echo 'selected';}}?>>Other</option>
                                     <?php foreach($packages_data as $packages_data_value){ ?> 
-                                        <option value="<?php echo $packages_data_value['id'];?>" <?php if(isset($info['package_id'])){if($packages_data_value['id'] == $info['package_id']) {echo 'selected';}}?>><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
+                                        <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
                                     <?php } ?>
                                   </select>
                               </div>
                       </div>
+                      <?php if($info['package_id']!='Other'){?>
                       <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
                               <div class="form-group">
                                 <label>Enquiry destination name</label>
                                 <input type="text" class="form-control" name="other_tour_name" id="other_tour_name" value="<?php echo $info['other_tour_name']; ?>" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
+                      <?php } else { ?>
+                        <div class="col-md-6" id="other_tour_name_div" style='display:block;'>
+                              <div class="form-group">
+                                <label>Enquiry destination name</label>
+                                <input type="text" class="form-control" name="other_tour_name" id="other_tour_name" value="<?php echo $info['other_tour_name']; ?>" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                              </div>
+                      </div>
+                      <?php } ?>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Checkin Date</label>
                                 <input type="text" class="form-control checkin_date" placeholder="" name="checkin_date" id="checkin_date" value="<?php echo $info['checkin_date']; ?>">
                               </div>
                       </div>
+                        
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Checkout Date</label>
