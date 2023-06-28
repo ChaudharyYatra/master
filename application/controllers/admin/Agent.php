@@ -604,6 +604,7 @@ class Agent extends CI_Controller{
         }
 
         public function get_taluka(){ 
+            
             // POST data 
             // $all_b=array();
         $taluka_data = $this->input->post('did');
