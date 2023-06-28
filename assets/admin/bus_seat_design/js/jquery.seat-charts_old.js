@@ -59,12 +59,11 @@
 					
 				},
 				focus  : function() {
-					// console.log(this.status());
+
 					if (this.status() == 'available') {
 						return 'focused';
 					} else  {
 						return this.style();
-						
 					}
 				},
 				blur   : function() {
@@ -86,8 +85,7 @@
 						data   : seatChartsSettings.seats[setup.character] || {}
 						//anything goes here?
 					}, setup);
-				// console.log(fn.settings);
-				// console.log(this.style());
+					
 
 					fn.settings.$node = $('<div></div>');
 					
@@ -99,7 +97,7 @@
 							focusable      : true,
 							tabIndex       : -1, //manual focus
 							data_id		   : did,
-							seat_type      :fn.settings.data.classes
+							seat_type      : fn.settings.data.classes
 						})
 						.text(fn.settings.label)
 						.addClass(['seatCharts-seat', 'seatCharts-cell', 'available'].concat(
@@ -529,7 +527,7 @@
 			//set for one, set for many, get for one
 			status: function() {
 				var fn = this;
-			// console.log(arguments);
+			
 				return arguments.length == 1 ? fn.seats[arguments[0]].status() : (function(seatsIds, newStatus) {
 				
 					return typeof seatsIds == 'string' ? fn.seats[seatsIds].status(newStatus) : (function() {

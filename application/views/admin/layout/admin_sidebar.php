@@ -263,6 +263,12 @@
                 </a>
                </li>
                <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/district/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>District Master</p>
+                </a>
+               </li>
+               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>admin/user_operation/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User Operation</p>

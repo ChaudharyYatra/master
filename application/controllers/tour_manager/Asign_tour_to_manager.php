@@ -193,20 +193,91 @@ class Asign_tour_to_manager extends CI_Controller{
         $iid = $this->session->userdata('tour_manager_sess_id'); 
 
 
+        $arr_data = $this->master_model->getRecords('hotel_room');
+       //   print_r($arr_data); die;
+
+       $hotel_allocated_room_data = $this->master_model->getRecords('hotel_allocated_room');
+
+
         if(isset($_POST['submit']))
         {
-            $this->form_validation->set_rules('vehicle_owner_name', 'vehicle_owner_name', 'required');
+            // $this->form_validation->set_rules('one_bed_AC[]', 'one_bed_AC', 'required');
 
-            if($this->form_validation->run() == TRUE)
-            {
             
-                $vehicle_owner_name  = $this->input->post('vehicle_owner_name'); 
+                if(!empty($this->input->post('one_bed_AC'))){
+                $one_bed_AC  = implode(',',$this->input->post('one_bed_AC')); 
+                }else {
+                    $one_bed_AC  ='';
+                }
+                
+                if(!empty($this->input->post('two_bed_AC'))){
+                $two_bed_AC  = implode(',',$this->input->post('two_bed_AC'));
+                }else {
+                    $two_bed_AC  ='';
+                }
+
+                if(!empty($this->input->post('three_bed_AC'))){
+                $three_bed_AC  = implode(',',$this->input->post('three_bed_AC')); 
+                }else {
+                    $three_bed_AC  ='';
+                }
+
+                if(!empty($this->input->post('four_bed_AC'))){
+                $four_bed_AC  = implode(',',$this->input->post('four_bed_AC')); 
+                }else {
+                    $four_bed_AC  ='';
+                }
+
+                if(!empty($this->input->post('one_bed_Non_AC'))){
+                $one_bed_Non_AC  = implode(',',$this->input->post('one_bed_Non_AC')); 
+                }else {
+                    $one_bed_Non_AC  ='';
+                }
+
+                if(!empty($this->input->post('two_bed_Non_AC'))){
+                $two_bed_Non_AC  = implode(',',$this->input->post('two_bed_Non_AC')); 
+                }else {
+                    $two_bed_Non_AC  ='';
+                }
+
+                if(!empty($this->input->post('three_bed_Non_AC'))){
+                $three_bed_Non_AC  = implode(',',$this->input->post('three_bed_Non_AC')); 
+                }else {
+                    $three_bed_Non_AC  ='';
+                }
+
+                if(!empty($this->input->post('four_bed_Non_AC'))){
+                $four_bed_Non_AC  = implode(',',$this->input->post('four_bed_Non_AC')); 
+                }else {
+                    $four_bed_Non_AC  ='';
+                }
+
 
                 $arr_insert = array(
-                    'vehicle_owner_name'   =>   $vehicle_owner_name
+                    'hotel_name_id' => $iid,
+                    'package_date_id' => $did,
+                    'package_id' => $id,
+                    'one_bed_AC'   =>   $one_bed_AC,
+                    'two_bed_AC'   =>   $two_bed_AC,
+                    'three_bed_AC'   =>   $three_bed_AC,
+                    'four_bed_AC'   =>   $four_bed_AC,
+
+                    'one_bed_Non_AC'   =>   $one_bed_Non_AC,
+                    'two_bed_Non_AC'   =>   $two_bed_Non_AC,
+                    'three_bed_Non_AC'   =>   $three_bed_Non_AC,
+                    'four_bed_Non_AC'   =>   $four_bed_Non_AC
                 );
                 
-                $inserted_id = $this->master_model->insertRecord('vehicle_owner',$arr_insert,true);
+                // $inserted_id = $this->master_model->insertRecord('hotel_allocated_room',$arr_insert,true);
+
+                if(!empty($hotel_allocated_room_data)){
+                    $arr_where     = array("package_date_id" => $did);
+                    $arr_where_pid     = array("package_id" => $id);
+                    $inserted_id = $this->master_model->updateRecord('hotel_allocated_room',$arr_insert,$arr_where,$arr_where_pid);  
+                    
+                }else{
+                        $inserted_id = $this->master_model->insertRecord('hotel_allocated_room',$arr_insert,true);
+                    }
                     
                 if($inserted_id > 0)
                 {
@@ -219,10 +290,16 @@ class Asign_tour_to_manager extends CI_Controller{
                     $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
                 }
                 redirect($this->module_url_path.'/index');
-            }   
+ 
+               
         }
 
+
+        $hotel_allocated_room_data = $this->master_model->getRecords('hotel_allocated_room');
+
         $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['hotel_allocated_room_data'] = $hotel_allocated_room_data;
         $this->arr_view_data['action']          = 'add';       
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;

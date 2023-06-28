@@ -22,7 +22,7 @@ class Change_password extends CI_Controller {
         $this->arr_view_data = [];
 	 }
 
-public function change_password()
+    public function change_password()
      {
         $hotel_sess_name = $this->session->userdata('hotel_name');
         $iid=$this->session->userdata('hotel_sess_id'); 

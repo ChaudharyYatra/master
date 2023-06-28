@@ -3,14 +3,15 @@
     position: relative;
     display: inline-flex;
     width: 100%;
-    margin-top: 5%;
-    padding-bottom: 20px;
+    margin-top: 2%;
+    padding-bottom: 10px;
 }
 
 .new_seat_design_ul {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 1rem;
 }
 
 .new_seat_design_ul li {
@@ -22,7 +23,7 @@
 .label {
     display: inline-block;
     position: relative;
-    width: 20px;
+    width: 100px;
     color: #fff;
     background: #FBCF61;
     text-align: center;
@@ -97,6 +98,9 @@ input:disabled+label {
 .note a:hover {
     text-decoration: underline;
 }
+hr{
+    width: 98% !important;
+}
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -130,10 +134,10 @@ input:disabled+label {
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <!-- <?php
-                  // foreach($arr_data as $info) 
-                   //{ 
-                     ?> -->
+                        <?php
+                   foreach($hotel_allocated_room_data as $hotel_r_info) 
+                   { 
+                     ?>
                         <form method="post" enctype="multipart/form-data">
 
                             <div class="card-body">
@@ -149,262 +153,30 @@ input:disabled+label {
 
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Room Number</label>
 
-                                            <input type="text" class="form-control" name="first_class" id="first_class"
-                                                placeholder="First Class" Value="First Class" required="required"
-                                                readonly>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <!-- <label>Seat Numbers</label> -->
+                                            <label>AC Rooms :</label>
                                             <div class="book-tbl">
                                                 <ul class="new_seat_design_ul">
-
+                                                <?php 
+                                                $i=1; 
+                                                    foreach($arr_data as $info) 
+                                                    { 
+                                                        if($info['bed_type']=='One Bed' && $info['room_type']=='AC'){
+                                                    ?>
                                                     <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
+                                                        <?php 
+                                                            $quali1=array();
+                                                            $p = $hotel_r_info['one_bed_AC'];
+                                                            $quali1 = explode(',',$p);
+                                                            // print_r($quali1); die;
+                                                        ?>
+                                                        <input name="one_bed_AC[]" id="i<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
+                                                        <label class="label" for="i<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
                                                     </li>
 
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
+                                                <?php $i++;} }?>
                                                 </ul>
                                             </div>
 
@@ -412,16 +184,36 @@ input:disabled+label {
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <label>Add On Price</label>
-                                            <input type="text" class="form-control" name="first_class_price"
-                                                id="first_class_price" placeholder="Enter Price"
-                                                oninput="this.value = this.value.replace(/[^0-9a-zA-Z]/g, '').replace(/(\..*)\./g, '$1');"
-                                                required="required">
-                                            <span class="error"><?php echo form_error('price'); ?></span>
+                                            <label>Non-AC Rooms :</label>
+                                            <div class="book-tbl">
+                                                <ul class="new_seat_design_ul">
+                                                <?php 
+                                                $i=1; 
+                                                    foreach($arr_data as $info) 
+                                                    { 
+                                                        if($info['bed_type']=='One Bed' && $info['room_type']=='Non-AC'){
+                                                    ?>
+                                                    <li>
+                                                        <?php 
+                                                            $quali1=array();
+                                                            $p = $hotel_r_info['one_bed_Non_AC'];
+                                                            $quali1 = explode(',',$p);
+                                                            // print_r($quali1); die;
+                                                        ?>
+                                                        <input name="one_bed_Non_AC[]" id="ii<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
+                                                        <label class="label" for="ii<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                    </li>
+
+                                                <?php $i++;} }?>
+                                                </ul>
+                                            </div>
+
+
                                         </div>
                                     </div>
+
                                     <hr>
                                 </div>
 
@@ -436,262 +228,30 @@ input:disabled+label {
 
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Room Number</label>
 
-                                            <input type="text" class="form-control" name="first_class" id="first_class"
-                                                placeholder="First Class" Value="First Class" required="required"
-                                                readonly>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <!-- <label>Seat Numbers</label> -->
+                                            <label>AC Rooms :</label>
                                             <div class="book-tbl">
                                                 <ul class="new_seat_design_ul">
-
+                                                <?php 
+                                                $i=1; 
+                                                    foreach($arr_data as $info) 
+                                                    { 
+                                                        if($info['bed_type']=='Two Bed' && $info['room_type']=='AC'){
+                                                    ?>
                                                     <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
+                                                        <?php 
+                                                            $quali1=array();
+                                                            $p = $hotel_r_info['two_bed_AC'];
+                                                            $quali1 = explode(',',$p);
+                                                            // print_r($quali1); die;
+                                                        ?>
+                                                        <input name="two_bed_AC[]" id="j<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
+                                                        <label class="label" for="j<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
                                                     </li>
 
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
+                                                <?php $i++;} }?>
                                                 </ul>
                                             </div>
 
@@ -699,14 +259,36 @@ input:disabled+label {
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <label>Add On Price</label>
-                                            <input type="text" class="form-control" name="second_class_price"
-                                                id="second_class_price" placeholder="Enter Price" required="required">
-                                            <span class="error"><?php echo form_error('price'); ?></span>
+                                            <label>Non-AC Rooms :</label>
+                                            <div class="book-tbl">
+                                                <ul class="new_seat_design_ul">
+                                                <?php 
+                                                $i=1; 
+                                                    foreach($arr_data as $info) 
+                                                    { 
+                                                        if($info['bed_type']=='Two Bed' && $info['room_type']=='Non-AC'){
+                                                    ?>
+                                                    <li>
+                                                        <?php 
+                                                            $quali1=array();
+                                                            $p = $hotel_r_info['two_bed_Non_AC'];
+                                                            $quali1 = explode(',',$p);
+                                                            // print_r($quali1); die;
+                                                        ?>
+                                                        <input name="two_bed_Non_AC[]" id="jj<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
+                                                        <label class="label" for="jj<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                    </li>
+
+                                                <?php $i++;} }?>
+                                                </ul>
+                                            </div>
+
+
                                         </div>
                                     </div>
+
                                     <hr>
                                 </div>
 
@@ -721,262 +303,30 @@ input:disabled+label {
 
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Room Number</label>
 
-                                            <input type="text" class="form-control" name="first_class" id="first_class"
-                                                placeholder="First Class" Value="First Class" required="required"
-                                                readonly>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <!-- <label>Seat Numbers</label> -->
+                                            <label>AC Rooms :</label>
                                             <div class="book-tbl">
                                                 <ul class="new_seat_design_ul">
-
+                                                <?php 
+                                                $i=1; 
+                                                    foreach($arr_data as $info) 
+                                                    { 
+                                                        if($info['bed_type']=='Three Bed' && $info['room_type']=='AC'){
+                                                    ?>
                                                     <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
+                                                        <?php 
+                                                            $quali1=array();
+                                                            $p = $hotel_r_info['three_bed_AC'];
+                                                            $quali1 = explode(',',$p);
+                                                            // print_r($quali1); die;
+                                                        ?>
+                                                        <input name="three_bed_AC[]" id="l<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
+                                                        <label class="label" for="l<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
                                                     </li>
 
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
+                                                <?php $i++;} }?>
                                                 </ul>
                                             </div>
 
@@ -984,16 +334,36 @@ input:disabled+label {
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <label>Add On Price</label>
-                                            <input type="text" class="form-control" name="third_class_price"
-                                                id="third_class_price" placeholder="Enter Price"
-                                                oninput="this.value = this.value.replace(/[^0-9a-zA-Z]/g, '').replace(/(\..*)\./g, '$1');"
-                                                required="required">
-                                            <span class="error"><?php echo form_error('price'); ?></span>
+                                            <label>Non-AC Rooms :</label>
+                                            <div class="book-tbl">
+                                                <ul class="new_seat_design_ul">
+                                                <?php 
+                                                $i=1; 
+                                                    foreach($arr_data as $info) 
+                                                    { 
+                                                        if($info['bed_type']=='Three Bed' && $info['room_type']=='Non-AC'){
+                                                    ?>
+                                                    <li>
+                                                        <?php 
+                                                            $quali1=array();
+                                                            $p = $hotel_r_info['three_bed_Non_AC'];
+                                                            $quali1 = explode(',',$p);
+                                                            // print_r($quali1); die;
+                                                        ?>
+                                                        <input name="three_bed_Non_AC[]" id="ll<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
+                                                        <label class="label" for="ll<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                    </li>
+
+                                                <?php $i++;} }?>
+                                                </ul>
+                                            </div>
+
+
                                         </div>
                                     </div>
+
                                     <hr>
                                 </div>
 
@@ -1008,262 +378,30 @@ input:disabled+label {
 
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Room Number</label>
 
-                                            <input type="text" class="form-control" name="first_class" id="first_class"
-                                                placeholder="First Class" Value="First Class" required="required"
-                                                readonly>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <!-- <label>Seat Numbers</label> -->
+                                            <label>AC Rooms :</label>
                                             <div class="book-tbl">
                                                 <ul class="new_seat_design_ul">
-
+                                                <?php 
+                                                $i=1; 
+                                                    foreach($arr_data as $info) 
+                                                    { 
+                                                        if($info['bed_type']=='Four Bed' && $info['room_type']=='AC'){
+                                                    ?>
                                                     <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
+                                                        <?php 
+                                                            $quali1=array();
+                                                            $p = $hotel_r_info['four_bed_AC'];
+                                                            $quali1 = explode(',',$p);
+                                                            // print_r($quali1); die;
+                                                        ?>
+                                                        <input name="four_bed_AC[]" id="k<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
+                                                        <label class="label" for="k<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
                                                     </li>
 
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i1" type="checkbox" />
-                                                        <label class="label" for="i1">1</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i2" type="checkbox" />
-                                                        <label class="label" for="i2">2</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i3" type="checkbox" />
-                                                        <label class="label" for="i3">3</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i4" type="checkbox" />
-                                                        <label class="label" for="i4">4</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i5" type="checkbox" />
-                                                        <label class="label" for="i5">5</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i6" type="checkbox" />
-                                                        <label class="label" for="i6">6</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i7" type="checkbox" />
-                                                        <label class="label" for="i7">7</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i8" type="checkbox" />
-                                                        <label class="label" for="i8">8</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i9" type="checkbox" />
-                                                        <label class="label" for="i9">9</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i10" type="checkbox" />
-                                                        <label class="label" for="i10">10</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i11" type="checkbox" />
-                                                        <label class="label" for="i11">11</label>
-                                                    </li>
-
-                                                    <li>
-                                                        <input id="i12" type="checkbox" />
-                                                        <label class="label" for="i12">12</label>
-                                                    </li>
-
+                                                <?php $i++;} }?>
                                                 </ul>
                                             </div>
 
@@ -1271,16 +409,36 @@ input:disabled+label {
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-5">
                                         <div class="form-group">
-                                            <label>Add On Price</label>
-                                            <input type="text" class="form-control" name="third_class_price"
-                                                id="third_class_price" placeholder="Enter Price"
-                                                oninput="this.value = this.value.replace(/[^0-9a-zA-Z]/g, '').replace(/(\..*)\./g, '$1');"
-                                                required="required">
-                                            <span class="error"><?php echo form_error('price'); ?></span>
+                                            <label>Non-AC Rooms :</label>
+                                            <div class="book-tbl">
+                                                <ul class="new_seat_design_ul">
+                                                <?php 
+                                                $i=1; 
+                                                    foreach($arr_data as $info) 
+                                                    { 
+                                                        if($info['bed_type']=='Four Bed' && $info['room_type']=='Non-AC'){
+                                                    ?>
+                                                    <li>
+                                                        <?php 
+                                                            $quali1=array();
+                                                            $p = $hotel_r_info['four_bed_Non_AC'];
+                                                            $quali1 = explode(',',$p);
+                                                            // print_r($quali1); die;
+                                                        ?>
+                                                        <input name="four_bed_Non_AC[]" id="kk<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
+                                                        <label class="label" for="kk<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                    </li>
+
+                                                <?php $i++;} }?>
+                                                </ul>
+                                            </div>
+
+
                                         </div>
                                     </div>
+
                                     <hr>
                                 </div>
 
@@ -1295,7 +453,7 @@ input:disabled+label {
                         </form>
 
                     </div>
-                    <!-- <?php //} ?>   -->
+                    <?php } ?>  
                 </div>
                 <!-- /.card -->
             </div>
