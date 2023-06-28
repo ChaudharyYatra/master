@@ -233,71 +233,7 @@ class Booking_enquiry extends CI_Controller {
                     'status'            => 'pending'
                 );
                 $inserted_id = $this->master_model->insertRecord('drop_to',$arr_insert,true);
-                //  $id = $this->db->inserted_id();
-                //  $this->db->where('is_deleted','no');
-                //  $this->db->where('is_active','yes');
-                //  $this->db->where('id',$id);
-                //  $this->db->order_by('id','DESC');
-                //  $agent_data_email = $this->master_model->getRecord('agent');
-                //  $agent_email=$agent_data_email['email'];
-                //  $agent_name=$agent_data_email['agent_name'];     
-				//   $from_email='chaudharyyatra8@gmail.com';
-                //  if($email_address !='')
-                //  {
-                    
-                   
-				// 		$msg="<html>
-				// 					<head>
-				// 						<style type='text/css'>
-				// 							body {font-family: Verdana, Geneva, sans-serif}
-				// 						</style>
-				// 					</head>
-				// 					<body background=".base_url()."uploads/email/email1.jpg>
-				// 						<h3>Dear&nbsp;".$first_name."&nbsp;".$last_name."</h3>
-				// 						<p>I hope this message finds you well. I am writing to let you know that a new inquiry has been 											    
-				// 						encountered in your account from a customer. We would appreciate it if you could assist them with their travel-related needs.
-				// 						</p>
-				// 						<p>Please review the inquiry details and take the necessary action to resolve the inquiry. If you have any questions or need any additional information, 
-				// 						please do not hesitate to contact Head Office. 
-				// 						</p>
-				// 						<p>Thank you for your prompt attention to this matter.</p>
-				// 						<p>Sincerely,</p>
-				// 						<h5>ChoudharyYatra Company</h5>
-				// 					</body>
-				// 					</html>";
-				// 		// echo $msg;
-				// 		$subject='Thank You For Enquiry';
-				// 		//$this->send_mail($email_address,$from_email,$msg,$subject,$cc=null);
-				// 		// die;
-				//  }
-				// 	if($agent_name !='')
-                //  {	
-				// 		$msg_email="<html>
-				// 					<head>
-				// 						<style type='text/css'>
-				// 							body {font-family: Verdana, Geneva, sans-serif}
-				// 						</style>
-				// 					</head>
-				// 					<body background=".base_url()."uploads/email/email1.jpg>
-				// 						<h3>Dear&nbsp;".$agent_name."</h3>
-				// 						<p>I hope this message finds you well. I am writing to let you know that a new inquiry has been encountered in your account from a customer. We would 
-                //                             appreciate it if you could assist them with their travel-related needs.
-				// 						</p>
-				// 						<p>Please review the inquiry details and take the necessary action to resolve the inquiry. If you have any questions or need any additional information, please do 
-                //                             not hesitate to contact Head Office. 
-				// 						</p>
-				// 						<p>Thank you for your prompt attention to this matter.</p>
-				// 						<p>Sincerely,</p>
-				// 						<h5>ChoudharyYatra Company</h5>
-				// 						<a href=".base_url()."admin/login>Click Here</a>
-				// 					</body>
-				// 					</html>";
-				// 					$subject_email=' New Enquiry from customer';
-				// 		//$this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
-
-				// 	 	//die;
-				// 	}
-				 
+                
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
                      redirect($this->module_url_path.'/index');
                  }

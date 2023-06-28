@@ -3868,10 +3868,6 @@ $('#custom_add_bookingenquiry').validate({ // initialize the plugin
             maxlength:10,
             minlength:10
         },
-        mobile_number2: {
-            maxlength:10,
-            minlength:10
-        },
         tour_number: {
             required: true,
         },
@@ -3992,10 +3988,6 @@ $('#custom_add_bookingenquiry').validate({ // initialize the plugin
             maxlength: "Please enter maximum 10 digit number",
             minlength: "Please enter minimum 10 digit number"
         },
-        mobile_number2 : {
-            maxlength: "Please enter maximum 10 digit number",
-            minlength: "Please enter minimum 10 digit number"
-        },
         tour_number : {
             required : "Please enter tour number",
         },
@@ -4064,6 +4056,7 @@ $('#custom_add_bookingenquiry').validate({ // initialize the plugin
         drop_time: {       
                 required: "Please enter drop time",   
         }
+        
     
     }
 });
@@ -4341,7 +4334,7 @@ function Vehicle(val){
   <!-- other feilds -->
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $('.checkin_date').datepicker({
@@ -4381,13 +4374,13 @@ function calculate() {
     $('.no_of_nights').val(diff);
   }
   </script>
-
-<script>
+  <script>
   $(".selectall").click(function(){
           $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
 
   });
   </script>
+
 
 <!-- for bus seat selected -->
 
