@@ -1,7 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Feedback extends CI_Controller {
+class Feedback_details extends CI_Controller {
 	 
 	function __construct() {
 
@@ -18,11 +18,14 @@ class Feedback extends CI_Controller {
 	 }
 
 	 
-     public function index()
+     public function index($id,$did)
      {
         $cust_sess_name = $this->session->userdata('cust_fname');
         $cust_sess_lname = $this->session->userdata('cust_lname');
-        $id=$this->session->userdata('cust_sess_id');
+        $iid=$this->session->userdata('cust_sess_id');
+
+        $id=base64_decode($id);
+        $did=base64_decode($did);
         
         $where_in_packages_ids = array();
          
@@ -42,17 +45,19 @@ class Feedback extends CI_Controller {
         $arr_data = $this->master_model->getRecords('customer_feedback');
         // print_r($arr_data); die;
 
-        $fields = "final_booking.*,packages.tour_title,package_date.journey_date";
-        $this->db->where('final_booking.is_deleted','no');
-        $this->db->where('final_booking.is_active','yes');
-        $this->db->where('final_booking.traveler_id',$id); //check session id & traverl id match
-        $this->db->join("packages", 'final_booking.package_id=packages.id','left');
-        $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','left');
-        $arr_data_tour_details = $this->master_model->getRecords('final_booking',array('final_booking.is_deleted'=>'no'),$fields);
+        $fields = "customer_feedback.*,packages.tour_title,package_date.journey_date";
+        $this->db->where('customer_feedback.is_deleted','no');
+        $this->db->where('customer_feedback.is_active','yes');
+        $this->db->where('customer_feedback.traveler_id',$iid); //check session id & traverl id match
+        $this->db->where('customer_feedback.package_id',$id);
+        $this->db->where('customer_feedback.package_date_id',$did);
+        $this->db->join("packages", 'customer_feedback.package_id=packages.id','left');
+        $this->db->join("package_date", 'customer_feedback.package_date_id=package_date.id','left');
+        $arr_data_tour_details = $this->master_model->getRecords('customer_feedback',array('customer_feedback.is_deleted'=>'no'),$fields);
         // print_r($arr_data_tour_details); die;      
                 
          
-         $data = array('middle_content' => 'feedback',
+         $data = array('middle_content' => 'feedback_details',
 						'website_basic_structure'       => $website_basic_structure,
 						'social_media_link'       => $social_media_link,
                                                 'arr_data'               => $arr_data,
@@ -60,10 +65,10 @@ class Feedback extends CI_Controller {
                                                 'cust_sess_name'        => $cust_sess_name,
                                                 'cust_sess_lname'        => $cust_sess_lname,
 						// 'packages_data'       => $packages_data,
-						'page_title'    => 'Feedback'
+						'page_title'    => 'Feedback Details'
 						);
-        $this->arr_view_data['page_title']     =  "Feedback";
-        $this->arr_view_data['middle_content'] =  "feedback";
+        $this->arr_view_data['page_title']     =  "Feedback Details";
+        $this->arr_view_data['middle_content'] =  "feedback_details";
         $this->load->view('front/common_view',$data);
      }
 

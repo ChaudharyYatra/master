@@ -1253,6 +1253,7 @@ function custom_enquiry_form()
   $("#full_name_error").hide();
   $("#email_error").hide();
   $("#mobile_number_error").hide();
+  $("#mobile_number2_error").hide();
   $("#chechin_date_error").hide();
   $("#checkout_error").hide();
   $("#no_of_nights_error").hide();
@@ -1319,16 +1320,6 @@ function custom_enquiry_form()
         // }
   }
   
-  var mobile_number_error = $('#mobile_number1').val();
-  if (mobile_number_error == '' || mobile_number_error ==null) 
-  {
-    $('#mobile_number_error').text('Please enter last name.');
-    $('#mobile_number_error').show();
-    submiform=false;
-  }
-  
-
-  
   
 var mobile_number = $('#mobile_number1').val();
   if (mobile_number == '' || mobile_number ==null) 
@@ -1353,6 +1344,29 @@ var mobile_number = $('#mobile_number1').val();
             if(mobNum.length > 10){
                   $('#mobile_number_error').text('Please enter 10 digits mobile number');
               $('#mobile_number_error').show();
+              submiform=false;
+             } 
+            }
+  }
+
+  var mobile_number = $('#mobile_number2').val();
+ 
+  if (mobile_number!= '') 
+  {
+      var mobNum = $('#mobile_number2').val();
+      var filter = /^\d*(?:\.\d{1,2})?$/;
+        if(filter.test(mobNum)) {
+            if(mobNum.length < 10){
+                  $('#mobile_number2_error').text('Please enter 10 digits mobile number');
+              $('#mobile_number2_error').show();
+              submiform=false;
+             } 
+            }
+            
+         if(filter.test(mobNum)) {
+            if(mobNum.length > 10){
+                  $('#mobile_number2_error').text('Please enter 10 digits mobile number');
+              $('#mobile_number2_error').show();
               submiform=false;
              } 
             }

@@ -18,8 +18,15 @@ class Feedback_add extends CI_Controller {
 	 }
 
 	 
-     public function index()
+     public function index($id,$did)
      {
+        $cust_sess_name = $this->session->userdata('cust_fname');
+        $cust_sess_lname = $this->session->userdata('cust_lname');
+        $iid=$this->session->userdata('cust_sess_id');
+
+        $id=base64_decode($id);
+        $did=base64_decode($did);
+        
         if(isset($_POST['submit']))
         {
              $this->form_validation->set_rules('categories', 'categories', 'required');
@@ -27,6 +34,7 @@ class Feedback_add extends CI_Controller {
              
              if($this->form_validation->run() == TRUE)
              {
+                
                 // ==============================upload image one================================================
                 $file_name     = $_FILES['image_name']['name'];
                 $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg','pdf','PDF');
@@ -81,10 +89,14 @@ class Feedback_add extends CI_Controller {
                      'category'    =>   $categories,
                      'rating'     => $rating,
                      'feedback'         => $message,
-                     'image_name'         => $filename
+                     'image_name'         => $filename,
+                     'package_id'         => $id,
+                     'package_date_id'    => $did,
+                     'traveler_id'    => $iid
+
                  );
-                 
-                 $inserted_id = $this->master_model->insertRecord('customer_feedback',$arr_insert,true);
+                //  print_r($arr_insert); die;
+                $inserted_id = $this->master_model->insertRecord('customer_feedback',$arr_insert,true);
              
                 if($inserted_id > 0)
                 {    
@@ -121,11 +133,21 @@ class Feedback_add extends CI_Controller {
         $this->db->where('traveler_id',$id);
         $arr_data = $this->master_model->getRecords('customer_feedback');
         // print_r($arr_data); die;
+
+        $fields = "final_booking.*,packages.tour_title,package_date.journey_date";
+        $this->db->where('final_booking.is_deleted','no');
+        $this->db->where('final_booking.is_active','yes');
+        $this->db->where('final_booking.traveler_id',$id); //check session id & traverl id match
+        $this->db->join("packages", 'final_booking.package_id=packages.id','left');
+        $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','left');
+        $arr_data_tour_details = $this->master_model->getRecords('final_booking',array('final_booking.is_deleted'=>'no'),$fields);
+        // print_r($arr_data_tour_details); die; 
                 
          $data = array('middle_content' => 'feedback_add',
 						'website_basic_structure'       => $website_basic_structure,
 						'social_media_link'       => $social_media_link,
                         'arr_data'               => $arr_data,
+                        'arr_data_tour_details'               => $arr_data_tour_details,
                         'cust_sess_name'        => $cust_sess_name,
                         'cust_sess_lname'        => $cust_sess_lname,
 						// 'packages_data'       => $packages_data,
