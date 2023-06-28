@@ -3626,9 +3626,6 @@ $('#add_agent').validate({ // initialize the plugin
         agent_name: {
             required: true,
         },
-        agency_name: {
-            required: true,
-        },
         mobile_number1: {
             required: true,
             maxlength:10,
@@ -3679,19 +3676,16 @@ $('#add_agent').validate({ // initialize the plugin
             required : "Please enter arrange id",
         },
         city : {
-            required : "Please enter city name",
+            required : "Please enter office name",
         },
         department : {
-            required : "Please enter department",
+            required : "Please enter region",
         },
         booking_center : {
             required : "Please enter booking center",
         },
         agent_name : {
             required : "Please enter agent name",
-        },
-        agency_name : {
-            required : "Please enter agency name",
         },
         mobile_number1 : {
             required : "Please enter mobile number",
@@ -3847,9 +3841,6 @@ $('#edit_agent').validate({ // initialize the plugin
         agent_name: {
             required: true,
         },
-        agency_name: {
-            required: true,
-        },
         mobile_number1: {
             required: true,
             maxlength:10,
@@ -3900,19 +3891,16 @@ $('#edit_agent').validate({ // initialize the plugin
             required : "Please enter arrange id",
         },
         city : {
-            required : "Please enter city name",
+            required : "Please enter office name",
         },
         department : {
-            required : "Please enter department name",
+            required : "Please enter region name",
         },
         booking_center : {
             required : "Please enter booking center",
         },
         agent_name : {
             required : "Please enter agent name",
-        },
-        agency_name : {
-            required : "Please enter agency name",
         },
         mobile_number1 : {
             required : "Please enter mobile number",
@@ -6612,6 +6600,102 @@ $('#add_hotel').validate({ // initialize the plugin
    });
  });
 </script>
+
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#country_id').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/district/get_state',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#state_id').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#state_id').append('<option value="'+data['id']+'">'+data['state_name']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#country_id').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/taluka/get_state',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#state_id').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#state_id').append('<option value="'+data['id']+'">'+data['state_name']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#state_id').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/taluka/get_district',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#district_id').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#district_id').append('<option value="'+data['id']+'">'+data['district']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+
+
 <!------ City master country wise state display dependency start ---->
 
 <!-- tour expenses tour no wise date display dependency start -->

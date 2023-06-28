@@ -107,7 +107,7 @@ class Agent extends CI_Controller{
                 $mobile_number1 = trim($this->input->post('mobile_number1'));
                 $mobile_number2 = trim($this->input->post('mobile_number2'));
                 $email = trim($this->input->post('email'));
-                //$password = password_hash(trim($this->input->post('password')),PASSWORD_DEFAULT);
+               
 				$password = trim($this->input->post('password'));
                 $agency_name = trim($this->input->post('agency_name'));
                 $mobile_number3 = trim($this->input->post('mobile_number3'));
@@ -121,7 +121,6 @@ class Agent extends CI_Controller{
                 $street_name  = $this->input->post('street_name');
                 $landmark  = $this->input->post('landmark'); 
 
-                $agent_state  = $this->input->post('agent_state'); 
                 $agent_district  = $this->input->post('agent_district');
                 $agent_taluka  = $this->input->post('agent_taluka');
                 $agent_city  = $this->input->post('agent_city');
@@ -137,7 +136,6 @@ class Agent extends CI_Controller{
                     'email'          => $email,
                     'password'          => $password,
 
-                    'fld_agency_name'          => $agency_name,
                     'fld_mobile_number3'          => $mobile_number3,
                     'fld_landline_number'          => $landline_number,
                     'fld_registration_date'          => $registration_date,
@@ -160,7 +158,7 @@ class Agent extends CI_Controller{
 					
 					$this->db->where('is_deleted','no');
                  $this->db->where('is_active','yes');
-                //  $this->db->where('id',$id);
+                
                  $admin_data_email = $this->master_model->getRecord('admin');
                  $admin_email=$admin_data_email['email'];
                  $admin_name=$admin_data_email['name'];
@@ -413,7 +411,7 @@ class Agent extends CI_Controller{
                  $email = trim($this->input->post('email'));
                  //$password = password_hash(trim($this->input->post('password')),PASSWORD_DEFAULT);
 				$password = trim($this->input->post('password'));
-                 $agency_name = trim($this->input->post('agency_name'));
+
                 $mobile_number3 = trim($this->input->post('mobile_number3'));
                 $landline_number = trim($this->input->post('landline_number'));
                 $registration_date = trim($this->input->post('registration_date'));
@@ -441,7 +439,6 @@ class Agent extends CI_Controller{
                     'email'          => $email,
                     'password'          => $password,
 
-                    'fld_agency_name'          => $agency_name,
                     'fld_mobile_number3'          => $mobile_number3,
                     'fld_landline_number'          => $landline_number,
                     'fld_registration_date'          => $registration_date,

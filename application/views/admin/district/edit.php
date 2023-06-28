@@ -70,7 +70,7 @@
 
                         <div class="col-md-4">
                         <div class="form-group">
-                            <label>City Name</label>
+                            <label>District Name</label>
                             <input type="text" class="form-control" name="district" id="district" placeholder="Enter District Name" value="<?php echo $info['district']; ?>" required>
                         </div>
                         </div>

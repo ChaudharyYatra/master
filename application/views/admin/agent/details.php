@@ -41,9 +41,9 @@
                   <tr>
 					          <th>Arrange Id</th>
                     <td><?php echo $info['arrange_id']; ?></td>
-					          <th>City Name</th>
+					          <th>Office Name</th>
                     <td><?php echo $info['city']; ?></td>
-                    <th>Department</th>
+                    <th>Region Name</th>
                     <td><?php echo $info['department']; ?></td>
 
                   </tr>
@@ -52,9 +52,9 @@
 					  
                     <th>Booking Centre</th>
                     <td><?php echo $info['booking_center']; ?></td>
-                      
-                    <th>Agent Name</th>
-                    <td><?php echo $info['agent_name']; ?></td>
+
+                    <th>Mobile Number 1</th>
+                    <td><?php echo $info['mobile_number1']; ?></td>
 					  
                     <th>Email Address</th>
                     <td><?php echo $info['email']; ?></td>
@@ -95,15 +95,15 @@
                     <th>City</th>
                     <td><?php echo $info['city_name']; ?></td>
             
-                    <th>Mobile Number 1</th>
-                    <td><?php echo $info['mobile_number1']; ?></td>
+                    <th>Mobile Number 2</th>
+                    <td><?php echo $info['mobile_number2']; ?></td>
 
                   </tr>
 
                   <tr>
 
-                    <th>Mobile_number 2</th>
-                    <td><?php echo $info['mobile_number2']; ?></td>
+                    <th>Mobile_number 3</th>
+                    <td><?php echo $info['fld_mobile_number3']; ?></td>
 					  
                     <th>Password</th>
                     <td><?php echo $info['password']; ?></td>

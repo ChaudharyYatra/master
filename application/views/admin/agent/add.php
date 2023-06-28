@@ -43,15 +43,15 @@
                       </div>
 					              <div class="col-md-6">
                               <div class="form-group">
-                                <label>City Name</label>
-                                <input type="text" class="form-control" name="city" id="city" placeholder="Enter City Name" required="required">
+                                <label>Office Name</label>
+                                <input type="text" class="form-control" name="city" id="city" placeholder="Enter Office Name" required="required">
                               </div>
                       </div>
                       <div class="col-md-6">
                           <div class="form-group">
-                            <label>Department</label>
+                            <label>Region Name</label>
                             <select class="form-control" style="width: 100%;" name="department" id="department" required="required">
-                                <option value="">Select Department</option>
+                                <option value="">Select Region</option>
                                 <?php
                                    foreach($department_data as $department_info) 
                                    { 
@@ -73,12 +73,7 @@
                                 <input type="text" class="form-control" name="agent_name" id="agent_name" placeholder="Enter Agent Name"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">
                               </div>
                       </div>
-                      <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Agency Name</label>
-                                <input type="text" class="form-control" name="agency_name" id="agency_name" placeholder="Enter Agent Name"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" >
-                              </div>
-                      </div>
+
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Agent Mobile Number 1</label>
@@ -102,6 +97,13 @@
                                 <label>Agent Landline Number</label>
                                 <input type="text" class="form-control" name="landline_number" id="landline_number" placeholder="Enter 11 Digits Landline Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                               </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" value="" required="required">
+                            <span id="email_result"></span>
+                          </div>
                         </div>
 
                         <div class="col-md-3">
@@ -182,13 +184,7 @@
                           <span class="text-danger" id="logo_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
                               </div>
                         </div>
-                        <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" value="" required="required">
-								  <span id="email_result"></span>
-                              </div>
-                      </div>
+
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Registration Date</label>

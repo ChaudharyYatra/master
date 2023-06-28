@@ -32,7 +32,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               <?php
-                   foreach($city_arr_data as $info) 
+                   foreach($arr_data as $info) 
                    { 
                      ?>
               <form method="post" enctype="multipart/form-data" id="edit_state">
@@ -69,9 +69,24 @@
                         </div>
 
                         <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Select District</label>
+                            <select class="form-control" style="width: 100%;" name="district_id" id="district_id" required="required">
+                                <option value="">Select District Name</option>
+                                <?php
+                                   foreach($district_name_data as $district_name_info) 
+                                   { 
+                                ?>
+                                    <option value="<?php echo $district_name_info['id']; ?>" <?php if($district_name_info['id']==$info['district_id']) { echo "selected"; } ?>><?php echo $district_name_info['district']; ?></option>
+                               <?php } ?>
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
-                            <label>City Name</label>
-                            <input type="text" class="form-control" name="district" id="district" placeholder="Enter District Name" value="<?php echo $info['district']; ?>" required>
+                            <label>Taluka Name</label>
+                            <input type="text" class="form-control" name="taluka" id="taluka" placeholder="Enter Taluka Name" value="<?php echo $info['taluka']; ?>" required>
                         </div>
                         </div>
                 </div>

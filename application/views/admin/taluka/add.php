@@ -65,9 +65,24 @@
                         </div>
 
                         <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Select District</label>
+                            <select class="form-control" style="width: 100%;" name="district_id" id="district_id" required="required">
+                                <option value="">Select District Name</option>
+                                <!-- <?php
+                                   //foreach($state_name_data as $state_name_info) 
+                                   //{ 
+                                ?>
+                                   <option value="<?php //echo $state_name_info['id']; ?>"><?php //echo $state_name_info['state_name']; ?></option>
+                               <?php //} ?> -->
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
-                            <label>City Name</label>
-                            <input type="text" class="form-control" name="district" id="district" placeholder="Enter District Name" required>
+                            <label>Taluka Name</label>
+                            <input type="text" class="form-control" name="taluka" id="taluka" placeholder="Enter Taluka Name" required>
                         </div>
                         </div>
                     </div>

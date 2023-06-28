@@ -37,6 +37,7 @@
                     <th>Country Name</th>
                     <th>State Name</th>
                     <th>District Name</th>
+                    <th>Taluka Name</th>
                     <th>Is Active?</th>
                     <th>Action</th>
                   </tr>
@@ -53,6 +54,7 @@
                     <td><?php echo $info['country_name'] ?></td>
                     <td><?php echo $info['state_name'] ?></td>
                     <td><?php echo $info['district'] ?></td>
+                    <td><?php echo $info['taluka'] ?></td>
                     <td>
                         <?php 
                         if($info['is_active']=='yes')

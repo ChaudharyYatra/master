@@ -23,12 +23,13 @@ class Taluka extends CI_Controller{
         // $this->db->where('is_deleted','no');
         // $arr_data = $this->master_model->getRecords('state');
 
-        $fields = "district_table.*,country.country_name,.state.state_name";
-        $this->db->order_by('district_table.id','asc');        
-        $this->db->where('district_table.is_deleted','no');        
-        $this->db->join("country", 'district_table.country_id=country.id','left');
-        $this->db->join("state", 'district_table.state_id=state.id','left');
-        $arr_data = $this->master_model->getRecords('district_table',array('district_table.is_deleted'=>'no'),$fields);
+        $fields = "taluka_table.*,country.country_name,.state.state_name,district_table.district";
+        $this->db->order_by('taluka_table.id','asc');        
+        $this->db->where('taluka_table.is_deleted','no');        
+        $this->db->join("country", 'taluka_table.country_id=country.id','left');
+        $this->db->join("state", 'taluka_table.state_id=state.id','left');
+        $this->db->join("district_table", 'taluka_table.district_id=district_table.id','left');
+        $arr_data = $this->master_model->getRecords('taluka_table',array('taluka_table.is_deleted'=>'no'),$fields);
 
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
@@ -46,32 +47,36 @@ class Taluka extends CI_Controller{
         {
             $this->form_validation->set_rules('country_id', 'country id', 'required');
             $this->form_validation->set_rules('state_id', 'state id', 'required');
-            $this->form_validation->set_rules('district', 'district', 'required');
+            $this->form_validation->set_rules('district_id', 'district id', 'required');
+            $this->form_validation->set_rules('taluka', 'taluka', 'required');
 
             if($this->form_validation->run() == TRUE)
             {
                 $country_id = $this->input->post('country_id');
                 $state_id = $this->input->post('state_id');
-                $district = $this->input->post('district');
+                $district_id = $this->input->post('district_id');
+                $taluka = $this->input->post('taluka');
+
                 $arr_insert = array(
                     'country_id'   =>   $country_id,
                     'state_id'   =>   $state_id,
-                    'district'   =>   $district
+                    'district_id'   =>   $district_id,
+                    'taluka'   =>   $taluka
                     
                 );
                 
 
-                $this->db->where('district',$district);
+                $this->db->where('taluka',$taluka);
                 $this->db->where('is_deleted','no');
                 $this->db->where('is_active','yes');
-                $city_exist_data = $this->master_model->getRecords('district_table');
+                $city_exist_data = $this->master_model->getRecords('taluka_table');
                 if(count($city_exist_data) > 0)
                 {
-                    $this->session->set_flashdata('error_message',"district".$city_name." Already Exist.");
+                    $this->session->set_flashdata('error_message',"Taluka ".$taluka." Already Exist.");
                     redirect($this->module_url_path.'/add');
                 }
                 
-                $inserted_id = $this->master_model->insertRecord('district_table',$arr_insert,true);
+                $inserted_id = $this->master_model->insertRecord('taluka_table',$arr_insert,true);
                                
                 if($inserted_id > 0)
                 {    
@@ -85,19 +90,17 @@ class Taluka extends CI_Controller{
                 redirect($this->module_url_path.'/index');
             }   
         }
+
+
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $country_name_data = $this->master_model->getRecords('country');
 
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
-        $state_name_data = $this->master_model->getRecords('state');
 
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['country_name_data']    = $country_name_data;
-        $this->arr_view_data['state_name_data']    = $state_name_data;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."add";
         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
@@ -112,7 +115,7 @@ class Taluka extends CI_Controller{
         if(is_numeric($id) && ($type == "yes" || $type == "no") )
         {   
             $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('district_table');
+            $arr_data = $this->master_model->getRecords('taluka_table');
             if(empty($arr_data))
             {
                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
@@ -130,7 +133,7 @@ class Taluka extends CI_Controller{
                 $arr_update['is_active'] = "yes";
             }
             
-            if($this->master_model->updateRecord('district_table',$arr_update,array('id' => $id)))
+            if($this->master_model->updateRecord('taluka_table',$arr_update,array('id' => $id)))
             {
                 $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
             }
@@ -155,7 +158,7 @@ class Taluka extends CI_Controller{
         if(is_numeric($id))
         {   
             $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('district_table');
+            $arr_data = $this->master_model->getRecords('taluka_table');
 
             if(empty($arr_data))
             {
@@ -166,7 +169,7 @@ class Taluka extends CI_Controller{
             $arr_update = array('is_deleted' => 'yes');
             $arr_where = array("id" => $id);
                  
-            if($this->master_model->updateRecord('district_table',$arr_update,$arr_where))
+            if($this->master_model->updateRecord('taluka_table',$arr_update,$arr_where))
             {
                 $this->session->set_flashdata('success_message',$this->module_title.' Deleted Successfully.');
             }
@@ -196,37 +199,48 @@ class Taluka extends CI_Controller{
         if(is_numeric($id))
         {   
             $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('district_table');
+            $arr_data = $this->master_model->getRecords('taluka_table');
+
+            foreach($arr_data  as $arr_data_info){
+                $district_id = $arr_data_info['district_id'];
+            }
+
             if($this->input->post('submit'))
             {
                 $this->form_validation->set_rules('country_id', 'country id', 'required');
                 $this->form_validation->set_rules('state_id', 'state id', 'required');
-                $this->form_validation->set_rules('district', 'district name', 'required');
+                $this->form_validation->set_rules('district_id', 'district id', 'required');
+                $this->form_validation->set_rules('taluka', 'taluka', 'required');
 
                 if($this->form_validation->run() == TRUE)
                 {
                     $country_id = $this->input->post('country_id');
                     $state_id = $this->input->post('state_id');
-                    $district = $this->input->post('district');
+                    $district_id = $this->input->post('district_id');
+                    $taluka = $this->input->post('taluka');
 
-                   $this->db->where('district',$district);
+                    $this->db->where('taluka',$taluka);
                     $this->db->where('id!='.$id);
                     $this->db->where('is_deleted','no');
-                    $city_exist_data = $this->master_model->getRecords('district_table');
+                    $city_exist_data = $this->master_model->getRecords('taluka_table');
+
                     if(count($city_exist_data) > 0)
                     {
-                        $this->session->set_flashdata('error_message',"district".$district." Already Exist.");
+                        $this->session->set_flashdata('error_message',"Taluka ".$taluka." Already Exist.");
                         redirect($this->module_url_path.'/add');
                     }
 
                    $arr_update = array(
                     'country_id'   =>   $country_id,
                     'state_id'   =>   $state_id,
-                    'district'   =>   $district
+                    'district_id'   =>   $district_id,
+                    'taluka'   =>   $taluka
                     
                     );
+
                     $arr_where     = array("id" => $id);
-                   $this->master_model->updateRecord('district_table',$arr_update,$arr_where);
+                    $this->master_model->updateRecord('taluka_table',$arr_update,$arr_where);
+
                     if($id > 0)
                     {
                         $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");
@@ -244,26 +258,26 @@ class Taluka extends CI_Controller{
             $this->session->set_flashdata('error_message','Invalid Selection Of Record');
             redirect($this->module_url_path.'/index');
         }
+
+
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $country_data = $this->master_model->getRecords('country');
         // print_r($country_data); die;
 
-        $this->db->order_by('id','desc');
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
-        $this->db->where('id',$id);
-        $city_arr_data = $this->master_model->getRecords('district_table');
-        // print_r($city_arr_data); die;
-
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $state_name_data = $this->master_model->getRecords('state');
 
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->where('state_id',$district_id);
+        $district_name_data = $this->master_model->getRecords('district_table');
+
         $this->arr_view_data['arr_data']        = $arr_data;
-        $this->arr_view_data['city_arr_data']        = $city_arr_data;
         $this->arr_view_data['state_name_data']        = $state_name_data;
+        $this->arr_view_data['district_name_data']        = $district_name_data;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['country_data']    = $country_data;
@@ -281,6 +295,18 @@ class Taluka extends CI_Controller{
                         $this->db->where('is_active','yes');
                         $this->db->where('country_id',$state_data);   
                         $data = $this->master_model->getRecords('state');
+        echo json_encode($data);
+    }
+
+    public function get_district(){ 
+        // POST data 
+        // $all_b=array();
+       $district_data = $this->input->post('did');
+        // print_r($boarding_office_location); die;
+                        $this->db->where('is_deleted','no');
+                        $this->db->where('is_active','yes');
+                        $this->db->where('state_id',$district_data);   
+                        $data = $this->master_model->getRecords('district_table');
         echo json_encode($data);
     }
    
