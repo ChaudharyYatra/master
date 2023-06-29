@@ -71,7 +71,7 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label>Tour number</label>
+                          <label>Tour number</label>  
                             <select class="form-control niceSelect" name="tour_number" id="tour_number" onchange='tour_title(this.value); 
                                   this.blur();' onfocus='this.size=3;' onblur='this.size=1;'>
                               <option value="">Select tour title</option>

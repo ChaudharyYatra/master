@@ -3,6 +3,7 @@
 // Author: Mahesh Mhaske
 // Start Date: 16-08-2022
 // last updated: 16-08-2022
+// dffsdfsf
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Booking_enquiry extends CI_Controller {
@@ -581,6 +582,7 @@ class Booking_enquiry extends CI_Controller {
                 $tour_number            = $this->input->post('tour_number');
                 $other_tour         = $this->input->post('other_tour');
                     
+
                     $arr_update = array(
                         'full_name'    =>   $full_name,
                         'email'     => $email,
@@ -695,6 +697,7 @@ class Booking_enquiry extends CI_Controller {
 	
 	   public function send_mail($to_email,$from_email,$msg,$subject,$cc=null) {
          
+
         $this->load->library('email');
         $mail_config = array();
         $mail_config['smtp_host'] = 'smtp.gmail.com';
