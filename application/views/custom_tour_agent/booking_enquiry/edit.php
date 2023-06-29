@@ -87,14 +87,14 @@
                       <div class="col-md-6" id="other_tour_div" style='display:none;'>
                               <div class="form-group">
                                 <label>Enquiry destination name</label>
-                                <input type="text" class="form-control mealplan_css" name="other_tour" id="other_tour_name" value="<?php echo $info['other_tour_name'];?>" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control mealplan_css" name="other_tour" id="other_tour" value="<?php echo $info['other_tour_name'];?>" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
                       <?php } else {?>
                         <div class="col-md-6" id="other_tour_div" style='display:block;'>
                               <div class="form-group">
                                 <label>Enquiry destination name</label>
-                                <input type="text" class="form-control mealplan_css" name="other_tour" id="other_tour_name" value="<?php echo $info['other_tour_name'];?>" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control mealplan_css" name="other_tour" id="other_tour" value="<?php echo $info['other_tour_name'];?>" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                       </div>
                       <?php } ?>

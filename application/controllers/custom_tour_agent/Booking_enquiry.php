@@ -169,7 +169,7 @@ class Booking_enquiry extends CI_Controller {
                 $drop_time            = $this->input->post('drop_time');
                 $special_note            = $this->input->post('special_note');
                 $tour_number            = $this->input->post('tour_number');
-                $other_tour_name         = $this->input->post('other_tour_name');
+                $other_tour_name         = $this->input->post('other_tour');
 
                  $arr_insert = array(
                         'full_name'    =>   $full_name,
@@ -213,25 +213,25 @@ class Booking_enquiry extends CI_Controller {
 
                 $arr_insert = array(
                     'meal_plan_name'    =>$meal_plan_name,
-                    'status'            => 'pending'
+                    'status'            => 'approved'
                 );
                 $inserted_id = $this->master_model->insertRecord('meal_plan',$arr_insert,true);
 
                 $arr_insert = array(
                     'vehicle_type_name'    =>$other_vehicle_name,
-                    'status'            => 'pending'
+                    'status'            => 'approved'
                 );
                 $inserted_id = $this->master_model->insertRecord('vehicle_type',$arr_insert,true);
 
                 $arr_insert = array(
                     'pick_up_name'    =>$other_pickup_from_name,
-                    'status'            => 'pending'
+                    'status'            => 'approved'
                 );
                 $inserted_id = $this->master_model->insertRecord('pick_up_from',$arr_insert,true);
 
                 $arr_insert = array(
                     'drop_to_name'    =>$other_drop_to_name,
-                    'status'            => 'pending'
+                    'status'            => 'approved'
                 );
                 $inserted_id = $this->master_model->insertRecord('drop_to',$arr_insert,true);
                 
@@ -540,12 +540,12 @@ class Booking_enquiry extends CI_Controller {
             $this->form_validation->set_rules('drop_time', 'drop_time', 'required');
             // $this->form_validation->set_rules('special_note', 'special_note', 'required');
             if($this->input->post('tour_number')=='Other'){
-            $this->form_validation->set_rules('other_tour_name', 'enter destination name', 'required');
+            $this->form_validation->set_rules('other_tour', 'enter destination name', 'required');
             }
                 
                 if($this->form_validation->run() == TRUE)
                 {
-                    $full_name        = $this->input->post('full_name'); 
+                $full_name        = $this->input->post('full_name'); 
                 $email         = $this->input->post('email'); 
                 $mobile_number1             = trim($this->input->post('mobile_number1'));
 
@@ -620,6 +620,31 @@ class Booking_enquiry extends CI_Controller {
                     );
                     $arr_where     = array("id" => $id);
                     $this->master_model->updateRecord('custom_domestic_booking_enquiry',$arr_update,$arr_where);
+
+                    $arr_insert = array(
+                        'meal_plan_name'    =>$meal_plan_name,
+                        'status'            => 'approved'
+                    );
+                    $inserted_id = $this->master_model->insertRecord('meal_plan',$arr_insert,true);
+    
+                    $arr_insert = array(
+                        'vehicle_type_name'    =>$other_vehicle_name,
+                        'status'            => 'approved'
+                    );
+                    $inserted_id = $this->master_model->insertRecord('vehicle_type',$arr_insert,true);
+    
+                    $arr_insert = array(
+                        'pick_up_name'    =>$other_pickup_from_name,
+                        'status'            => 'approved'
+                    );
+                    $inserted_id = $this->master_model->insertRecord('pick_up_from',$arr_insert,true);
+    
+                    $arr_insert = array(
+                        'drop_to_name'    =>$other_drop_to_name,
+                        'status'            => 'approved'
+                    );
+                    $inserted_id = $this->master_model->insertRecord('drop_to',$arr_insert,true);
+                    
                     if($id > 0)
                     {
                         $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");
@@ -655,24 +680,28 @@ class Booking_enquiry extends CI_Controller {
         $media_source_data = $this->master_model->getRecords('media_source');
 
         $this->db->where('is_deleted','no');
+         $this->db->where('status','approved');
          $this->db->where('is_active','yes');
          $this->db->order_by('id','ASC');
          $meal_plan = $this->master_model->getRecords('meal_plan');
          // print_r($meal_plan); die;
 
          $this->db->where('is_deleted','no');
+         $this->db->where('status','approved');
          $this->db->where('is_active','yes');
          $this->db->order_by('id','ASC');
          $vehicle_type = $this->master_model->getRecords('vehicle_type');
          // print_r($vehicle_type); die;
 
          $this->db->where('is_deleted','no');
+         $this->db->where('status','approved');
          $this->db->where('is_active','yes');
          $this->db->order_by('id','ASC');
          $pick_up_from = $this->master_model->getRecords('pick_up_from');
          // print_r($pick_up_from); die;
 
          $this->db->where('is_deleted','no');
+         $this->db->where('status','approved');
          $this->db->where('is_active','yes');
          $this->db->order_by('id','ASC');
          $drop_to = $this->master_model->getRecords('drop_to');
