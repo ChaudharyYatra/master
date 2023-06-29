@@ -112,25 +112,25 @@
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Flat No.</label>
-                            <input type="text" class="form-control" name="flat_no" id="flat_no" placeholder="Enter Flat No." value="<?php if($info){ echo $info['flat_no'];} ?>" required>
+                            <input type="text" class="form-control" name="flat_no" id="flat_no" placeholder="Enter Flat No." value="<?php if($info){ echo $info['flat_no'];} ?>">
                           </div>
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Building / House Name</label>
-                            <input type="text" class="form-control" name="building_house_nm" id="building_house_nm" placeholder="Enter Building / House Name" value="<?php if($info){echo $info['building_house_nm'];} ?>" required>
+                            <input type="text" class="form-control" name="building_house_nm" id="building_house_nm" placeholder="Enter Building / House Name" value="<?php if($info){echo $info['building_house_nm'];} ?>">
                           </div>
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Street Name</label>
-                            <input type="text" class="form-control" name="street_name" id="street_name" placeholder="Enter Street Name" value="<?php if($info){echo $info['street_name'];} ?>" required>
+                            <input type="text" class="form-control" name="street_name" id="street_name" placeholder="Enter Street Name" value="<?php if($info){echo $info['street_name'];} ?>">
                           </div>
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Landmark</label>
-                            <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Enter Landmark" value="<?php if($info){echo $info['landmark'];} ?>" required>
+                            <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Enter Landmark" value="<?php if($info){echo $info['landmark'];} ?>">
                           </div>
                         </div>
 
@@ -162,7 +162,7 @@
                                     <select class="select_css" name="agent_taluka" id="agent_taluka" required>
                                         <option value="">Select Taluka</option>
                                            <?php foreach($taluka_data as $taluka_data_value){ ?> 
-                                            <option value="<?php echo $taluka_data_value['id'];?>" <?php if(isset($info['taluka_name'])){if($taluka_data_value['id'] == $info['taluka_name']) {echo 'selected';}}?>><?php echo $taluka_data_value['Taluka'];?></option>
+                                            <option value="<?php echo $taluka_data_value['id'];?>" <?php if(isset($info['taluka_name'])){if($taluka_data_value['id'] == $info['taluka_name']) {echo 'selected';}}?>><?php echo $taluka_data_value['taluka'];?></option>
                                         <?php } ?> 
                                     </select>
                                 </div>

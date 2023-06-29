@@ -125,10 +125,6 @@
 
 <script>  
  $(document).ready(function(){  
-	 
-
-	 
-	 
  // var email = $('#agent_sess_id').val();  
            var agent_id = '1'; 
            if(agent_id != '')  
@@ -143,12 +139,12 @@
                          if(responce > 0)
                          {
                             $('#notification_count').append('<i class="fas fa-envelope mr-2"></i> '+responce+' Domestic Packages');
-                          
+                            // $('#btn_agent').prop('disabled', true)
                              
                          }else
                          {
                              $('#notification_count').html('');
-                           
+                            //  $('#btn_agent').prop('disabled', false)
                          } 
                      }  
                 });  
@@ -196,12 +192,12 @@
                          if(responce > 0)
                          { 
                             $('#international_count').append('<i class="fas fa-users mr-2"></i> '+responce+' International Packages');
-                          
+                            // $('#btn_agent').prop('disabled', true)
                              
                          }else
                          {
                              $('#international_count').html('');
-                           
+                            //  $('#btn_agent').prop('disabled', false)
                          } 
                      }  
                 });  
@@ -234,7 +230,30 @@
       });  
  </script>
 
+<!-- <script>
+ $('.send_qty').keyup(function(){ 
+     var p=$('.send_qty').val(); 
+     (p.length); 
+     var currentRow=$(this).closest("tr"); 
+     var col3=currentRow.find("td:eq(2)").text(); 
+     ////(col3);
+     
+$(".send_qty").each(function () {                
+    var send_qty = $(this).val(); 
+     
+     if(send_qty!='')
+     {
+          $('.cancel_status').hide();
+          $('#submit').attr("disabled", true);
+     }
+     else{
+          $('.cancel_status').show();
+          $('#submit').attr("disabled", false);
+     }
 
+ });
+ });
+</script> -->
 
 
 <script>
@@ -247,51 +266,24 @@
 
 <!-- without enter sending qu -->
 <script>
-	
-	 $(document).ready(function(){ 
-		 var ostatus = $('#stationary_order_status').val(); 
-            $('.sendButton').attr("disabled", true);
-		 if(ostatus=='yes'){
-			
-			$('.send').attr("disabled", true);
-		 }
-		 
+$('.sendButton').attr("disabled", true);
+
 $('.send_qty').on('keyup', function() {
 
      var p=$(this).val(); 
-     // console.log(p); 
+     console.log(p); 
      var currentRow=$(this).closest("tr"); 
      var col3=currentRow.find("td:eq(2)").text(); 
      console.log(parseInt(col3));
-     if(parseInt(p) <= parseInt(col3) || parseInt(p) >= parseInt(col3) && p >0)
+     if(parseInt(p) <= parseInt(col3) && p >0)
      {
-$(".send_qty").each(function () {  
-     
-     var currentRow1=$(this).closest("tr"); 
-     var col31=currentRow1.find("td:eq(2)").text(); 
-     // var colid31=currentRow1.find("td:eq(4)").attr('id'); 
-     console.log(parseInt(col3));
-
+$(".send_qty").each(function () {                
     var s_send = $(this).val(); 
-
-    var s_send_disabled = $(this).attr('disabled'); 
-     if((s_send!='' && s_send>0))
+     if(s_send!='')
      {
           $('.sendButton').attr("disabled", false);
      }
-     else if(s_send='' && s_send_disabled!='' && s_send_disabled=='disabled'){
-
-          $('.sendButton').attr("disabled", false);
-     }
-     else if(s_send!='' && s_send==0){
-          $('.sendButton').attr("disabled", true);
-          return false;
-     }
-     else if(s_send==''){
-          $('.sendButton').attr("disabled", true);
-          return false;
-     }else if((s_send!='' && s_send>0))
-     {
+     else{
           $('.sendButton').attr("disabled", true);
      }
      });
@@ -300,59 +292,21 @@ $(".send_qty").each(function () {
      alert('Please insert less quantity or equal quantity');
 }
 });
-	 });	 
 </script>
-
-
-<script>
-     $(document).on("change","select",function(){
-         var selectedOption=$(this).val();
-           var select_name=$(this).attr('name');
-           var select_id=$(this).attr('id');
-
-          $('.from_series').find('option[value="' + selectedOption + '"]').prop('disabled', true);
-
-          $('#'+select_id).find('option[value="' + selectedOption + '"]').prop('disabled', false);
-
-          $(".from_series").each(function () {
-               var from_series_id=$(this).val();
-               if(from_series_id!="")
-               {
-                   
-          $('.save_series').attr("disabled", false);
-               }else{
-          $('.save_series').attr("disabled", true);
-                   
-               }
-          });
-
-     });
-</script>
-
 
 <!-- using ajax submit send qty then open modal -->
 <script>
 
 
-  $("#submit").click(function(event) { 
+  $("#submit").click(function() { 
      var new_array_qty = [];
      var new_array_sod = [];
-     var status_array = [];
      var o_id =  $(".order_id").val();
-     var send_status='';
 
      $(".send_qty").each(function () 
      {                
           var s_send = $(this).val();
-          var send_status = $(this).attr('status');
-          
-          if(s_send==0)
-          {
-               $('.sendButton').attr("disabled", true);
-               // event.preventDefault();
-          }
-          new_array_qty.push($(this).val()); 
-          status_array.push($(this).attr('status')); 
+          new_array_qty.push($(this).val()) 
      });
 
      $(".stationary_order_id").each(function () 
@@ -365,27 +319,20 @@ $(".send_qty").each(function () {
      $("#od_id").val(new_array_sod);
      if(new_array_qty!='')
      {
-
-          // console.log($.isEmptyObject(new_array_qty));
-
           $.ajax({
                           type: "POST",
                           url:'<?=base_url()?>stationary/stationary_request/send',
                           data: {s_send: new_array_qty,
                               so_id: new_array_sod,
-                              o_id: o_id,
-                              send_status:status_array
+                              o_id: o_id
                            },
                          //  dataType: 'json',
                          //  cache: false,
                           success: function(response) {
-                           
                               console.log(response);
-                               if (response== 'true') {
+                               if (response= true) {
                                   $('#exampleModal_send').modal('show'); 
-                              } else if (response== 'rejected') {
-                                   window.location.href = "<?=base_url()?>stationary/stationary_request/index";
-                              }else{
+                              } else {
                                   alert('error');
 
                               }
@@ -393,7 +340,9 @@ $(".send_qty").each(function () {
                           
                       });
      }
-    
+     // else{
+     //      $('.sendButton').attr("disabled", true);
+     // }
 }); 
 
 </script>
@@ -402,15 +351,11 @@ $(".send_qty").each(function () {
 
 <script>
 
-
-	
-	
     $('.send_qty').keyup(function(){
-        var count = $(this).val();
+        var count = $(this).val() ;
         var attrval =$(this).attr('attr-series_yes_no');
         var attrval_stid =$(this).attr('attr_stid');
-		var modal_id =$(this).attr('attr-modal-id');
-		var append_id='series_yes'+modal_id;
+
         
 
       if(attrval =="Yes"){ 
@@ -423,19 +368,20 @@ $(".send_qty").each(function () {
         success: function(response){
         console.log(response);
         
-			var remove_tr_id='detail_tr'+modal_id;
-          $('.'+remove_tr_id).remove(); 
-	// var id_for_update_series = '0'+modal_id;
-	var id_for_update_series = modal_id;
-            for(var i=0; i<count; i++){
-            var add_id=i+modal_id;
-             var add_id_name=modal_id;
-				// var add_id=parseInt(i)+parseInt(1);
-        var structure = $(` 
+          // $('#agent_center').find('option').not(':first').remove();
+       
+          // $.each(response,function(index,data){             
+          //    $('#agent_center').append('<option value="'+data['id']+'">'+data['booking_center']+'</option>');
+          // });
+        
 
-               <tr class="`+remove_tr_id+`"+>
+
+    for(var i=0; i<count; i++){
+            
+        var structure = $(` 
+               <tr>
                   <td>
-                    <select class="form-control ayear" style="width: 100%;" name="academic_year`+add_id_name+`[]" id="academic_year`+id_for_update_series+`" required="required">
+                    <select class="form-control" style="width: 100%;" name="academic_year[]" id="academic_year" required="required">
                       <option value="">Select year</option>
                       <?php
                           foreach($academic_years_data as $academic_years_info) 
@@ -446,14 +392,14 @@ $(".send_qty").each(function () {
                     </select>
                   </td>
                   <td>
-                    <select class="form-control from_series" style="width: 100%;" name="from_series`+add_id_name+`[]" id="series_data`+add_id+`" required="required"
-                    attr_row_count="`+add_id+`">
+                    <select class="form-control" style="width: 100%;" name="from_series[]" id="series_data`+i+`" required="required"
+                    attr_row_count="`+count+`">
                         <option value="">Select series</option>
                        
                     </select>
                   </td>
                   <td>
-            <input type="text" class="form-control remark" name="remark`+add_id_name+`[]" value="" id="remark`+add_id+`" placeholder="Remark"/>
+            <input type="text" class="form-control remark" name="remark[]" value="" id="remark" placeholder="Remark"/>
 
                   </td>
                </tr>
@@ -462,22 +408,51 @@ $(".send_qty").each(function () {
                `);
         
          
-            $('#'+append_id).append(structure); 
-            $('.save_series').attr("disabled", true);
-
-            var sid='series_data'+add_id;                
+            $('#series_yes').append(structure); 
+            var sid='series_data'+i;                
             $('#'+sid).find('option').not(':first').remove();
        
           $.each(response,function(index,data){             
              $('#'+sid).append('<option value="'+data['id']+'">'+data['from_series']+'-'+data['to_series']+'</option>');
           });
-          
         }
 
       }
      }); 
      }
-     
+     else{
+          for(var i=0; i<count; i++){
+
+        var structure = $(` 
+
+               <tr>
+                  <td>
+                    <select class="form-control" style="width: 100%;" name="academic_year" id="academic_year" required="required">
+                      <option value="">Select Year</option>
+                      <?php
+                          foreach($academic_years_data as $academic_years_info) 
+                          { 
+                      ?>
+                          <option value="<?php echo $academic_years_info['id']; ?>"><?php echo $academic_years_info['year']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </td>
+                  
+                  
+                  <td>
+                  <input type="text" class="form-control" name="remark" id="remark" placeholder="Remark"/>
+
+                  </td>
+               </tr>
+                                   
+
+                    `);
+        
+         
+            // $('#series_no').append(structure); 
+        }
+          
+     }
        
     });
 
@@ -505,126 +480,93 @@ $(".send_qty").each(function () {
 
 
 <script>
-     $(document).ready(function(){
+      $(document).ready(function(){
+    $('#save_series').on('click', function () {
+        
+      // var remark=new Array();
+        var order_id = $('#order_id').val();
+        var order_d_id = $('#order_d_id').val();
+        var form_type = $('#form_type').val();
+        var save_series='save_series';
 
-          $(document).on("click","button",function(){
-               var main_id=$(this).attr('attr-modal-id');
-               var main_name=$(this).attr('name');
-               var id=$(this).attr('id');
-               if(main_name=='save_series'){
+        var from_series = $('select[name="from_series[]"]').map(function () {
+            return this.value; // $(this).val()
+        }).get();
 
-			var order_id = $('#order_id').val();
-        	     var order_d_id = main_id;
-        	     var form_type = $('#form_type').val();
-               var save_series='save_series';
-			  
-			var from_series='from_series'+main_id+'[]';
-			var from_series = $('select[name="'+from_series+'"]').map(function () {
-                    return this.value;
-               }).get();
+        var academic_year = $('select[name="academic_year[]"]').map(function () {
+            return this.value; // $(this).val()
+        }).get();
 
-               //var from_count=from_series.length;
-               
-               // 
-             
-		    
-
-			var academic_year='academic_year'+main_id+'[]';
-               var academic_year = $('select[name="'+academic_year+'"]').map(function () {
-                    return this.value; // $(this).val()
-               }).get();
-
-			var remark='remark'+main_id+'[]';
-               var remark = $('input[name="'+remark+'"]').map(function () {
-                    return this.value; // $(this).val()
-               }).get();
-
-               $.ajax({
-                         method: 'post',
-                         url:'<?=base_url()?>stationary/stationary_request/save_details',
-                         data: {order_id: order_id,
+        var remark = $('input[name="remark[]"]').map(function () {
+            return this.value; // $(this).val()
+        }).get();
+// alert(from_series);
+        $.ajax({
+                          method: 'post',
+                          url:'<?=base_url()?>stationary/stationary_request/save_details',
+                          data: {order_id: order_id,
                             order_d_id: order_d_id,
                             form_type: form_type,
                             academic_year: academic_year,
                             remark: remark,
                             save_series:save_series,
                             from_series:from_series
-                         },
-                         dataType: 'json',
-                         cache: false,
-                         success: function(response) {
+                        },
+                          dataType: 'json',
+                          cache: false,
+                          success: function(response) {
                               if (response=true) {
                                    alert('success');
-                                
+                                // window.location.href = "<?=base_url()?>admin/day_wise_tour_itinerary/add";
                               } else {
                                   alert('error');
 
                               }
-                         },
+                          },
                           
-                    });
+                      });
+
+    }); 
+    
+    
+
+    $('#save_no_series').on('click', function () {
+        
+        // var remark=new Array();
+          var order_id = $('#order_id_no_series').val();
+          var order_d_id = $('#order_d_id_no_series').val();
+          var no_series='no_series';
+          var academic_year = $('#a_year_no_series').val();
+          var remark = $('#remark_no_series').val();
+
+          $.ajax({
+                            method: 'post',
+                            url:'<?=base_url()?>stationary/stationary_request/save_details',
+                            data: {order_id: order_id,
+                              order_d_id: order_d_id,
+                              academic_year: academic_year,
+                              remark: remark,
+                              no_series:no_series
+                          },
+                            dataType: 'json',
+                            cache: false,
+                            success: function(response) {
+                                if (response=true) {
+                                     alert('success');
+                                  // window.location.href = "<?=base_url()?>admin/day_wise_tour_itinerary/add";
+                                } else {
+                                    alert('error');
+  
+                                }
+                            },
+                            
+                        });
+  
+      });
+
+});
 
 
+ </script>
 
-               }else if(main_name=='reject_send'){
-                    var main_reject_id=$(this).attr('attr-modal-reject-id');
-                    var fill_id_for_hide=$(this).attr('fill_id');
 
-                    var o_id = $('#o_id').val();
-               
-        	     var o_d_id = main_reject_id;
-			  
-			var reject_comment='reject_comment'+main_reject_id;
-			var reject_comment = $('input[name="'+reject_comment+'"]').map(function () {
-                    return this.value; // $(this).val()
-               }).get();
-
-              
-		    var single_reject_comment= reject_comment[0];
-
-               $.ajax({
-                         method: 'post',
-                         url:'<?=base_url()?>stationary/stationary_request/reject',
-                         data: {o_id: o_id,
-                                o_d_id: o_d_id,
-                                reject_comment: single_reject_comment
-                         },
-                         dataType: 'json',
-                         cache: false,
-                         success: function(response) {
-                              if (response=true) {
-                                   alert('Rejected Successfully');
-
-                            $('#'+fill_id_for_hide).prop('disabled', true);
-                            $('[attr-modal-id="'+main_reject_id+'"]').attr('disabled','disabled');
-                            $('[attr-modal-id="'+main_reject_id+'"]').attr('status','rejected');
-
-                            $(".send_qty").each(function () {                
-    var s_send = $(this).val(); 
-    var s_send_disabled = $(this).attr('disabled'); 
-    if((s_send!=''))
-     {
-          $('.sendButton').attr("disabled", false);
-     }
-     else if(s_send=='' && s_send_disabled!='' && s_send_disabled=='disabled'){
-
-          $('.sendButton').attr("disabled", false);
-     }
-     else if(s_send==''){
-
-          $('.sendButton').attr("disabled", true);
-     }
-     });
-
-                              } else {
-                                  alert('error');
-
-                              }
-                         },
-                          
-                    });
-               }
-
-          });
-	});
-</script>
