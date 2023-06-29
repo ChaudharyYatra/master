@@ -16,8 +16,7 @@ class Stationary_request extends CI_Controller {
                 redirect(base_url().'stationary/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('stationary_panel_slug')."stationary/stationary_request";
-        $this->module_title       = "Stationary Requests";
-        $this->inprocess_module_title       = "Stationary Inprocess Requests";
+        $this->module_title       = "Stationary Request ";
         $this->module_url_slug    = "stationary_request";
         $this->module_view_folder = "stationary_request/";
         $this->arr_view_data = [];
@@ -29,11 +28,10 @@ class Stationary_request extends CI_Controller {
         $id = $this->session->userdata('stationary_sess_id');
 
          $record = array();
-         $fields = "stationary_order.*,agent.agent_name,agent.booking_center,department.department,agent.fld_agency_name,agent.fld_office_address";
+         $fields = "stationary_order.*,agent.agent_name,agent.booking_center,department.department";
          $this->db->order_by('stationary_order.created_at','desc');
-         $this->db->where('stationary_order.order_status','requested');
+         $this->db->where('stationary_order_details.order_status','requested');
          $this->db->where('stationary_order.received_status','no');
-         $this->db->where('stationary_order.reject_status','no');
          $this->db->join("agent", 'stationary_order.agent_id=agent.id','left');
          $this->db->join("department", 'agent.department=department.id','left');
          $this->db->join("stationary_order_details", 'stationary_order_details.order_id=stationary_order.id','left');
@@ -52,35 +50,6 @@ class Stationary_request extends CI_Controller {
         
      }
 
-     public function inprocess()
-     {
-        $stationary_sess_name = $this->session->userdata('stationary_name');
-        $id = $this->session->userdata('stationary_sess_id');
-
-         $record = array();
-         $fields = "stationary_order.*,agent.agent_name,agent.booking_center,department.department,agent.fld_agency_name,agent.fld_office_address";
-         $this->db->order_by('stationary_order.created_at','desc');
-         $this->db->where('stationary_order.order_status','inprocess');
-         $this->db->where('stationary_order.received_status','no');
-        //  $this->db->where('stationary_order.reject_status','no');
-         $this->db->join("agent", 'stationary_order.agent_id=agent.id','left');
-         $this->db->join("department", 'agent.department=department.id','left');
-         $this->db->join("stationary_order_details", 'stationary_order_details.order_id=stationary_order.id','left');
-         $this->db->group_by('stationary_order_details.order_id');
-         $arr_data = $this->master_model->getRecords('stationary_order',array('stationary_order.is_deleted'=>'no'),$fields);
-        
-
-         $this->arr_view_data['stationary_sess_name'] = $stationary_sess_name;
-         $this->arr_view_data['listing_page']    = 'yes';
-         $this->arr_view_data['arr_data']        = $arr_data;
-         $this->arr_view_data['page_title']      = $this->inprocess_module_title." List";
-         $this->arr_view_data['module_title']    = $this->module_title;
-         $this->arr_view_data['module_url_path'] = $this->module_url_path;
-         $this->arr_view_data['middle_content']  = $this->module_view_folder."inprocess";
-         $this->load->view('stationary/layout/stationary_combo',$this->arr_view_data);
-        
-     }
-
     // Get Details 
     public function details($id)
     {
@@ -95,10 +64,9 @@ class Stationary_request extends CI_Controller {
 
          $record = array();
          $fields = "stationary_order_details.*,stationary_order_details.stationary_name as sta_id,stationary.stationary_name,
-         stationary.series_yes_no,agent.agent_name,agent.booking_center,department.department,stationary.id as stid, ";
+         stationary.series_yes_no,agent.agent_name,agent.booking_center,department.department,stationary.id as stid";
          $this->db->order_by('stationary_order_details.created_at','desc');
          $this->db->where('stationary_order_details.is_deleted','no');
-        //  $this->db->where('stationary_order_details.reject_status','no');
          $this->db->where('stationary_order_details.order_id',$id);
          $this->db->join("stationary", 'stationary_order_details.stationary_name=stationary.id','left');
          $this->db->join("agent", 'stationary_order_details.agent_id=agent.id','left');
@@ -143,58 +111,6 @@ class Stationary_request extends CI_Controller {
         $this->load->view('stationary/layout/stationary_combo',$this->arr_view_data);
     }
 
-    public function reject()
-    {
-        $stationary_sess_name = $this->session->userdata('stationary_name');
-        // $id = $this->session->userdata('stationary_sess_id');
-                 
-                if($this->input->post('reject_comment') !="")
-                {
-                    
-                    // $this->form_validation->set_rules('reject_comment', 'reject comment', 'required');
-                
-                    // if($this->form_validation->run() == TRUE)
-                    // {
-                    $reject_comment  = $this->input->post('reject_comment'); 
-                    $o_d_id  = $this->input->post('o_d_id'); 
-                    $o_id  = $this->input->post('o_id'); 
-
-                    $arr_update = array(
-                    'reject_comment'    => $reject_comment,
-                    'reject_status'     => 'yes'
-                        
-                    );
-                    
-                        $arr_where     = array("id" => $o_d_id);
-                        $udata= $this->master_model->updateRecord('stationary_order_details',$arr_update,$arr_where);
-
-                        $arr_update_order = array(
-                            'reject_status'     => 'yes'
-                                
-                            );
-                            
-                                $arr_where_order     = array("id" => $o_id);
-                                $udata = $this->master_model->updateRecord('stationary_order',$arr_update_order,$arr_where_order);
-                        
-                        if($udata)
-                        {
-                            echo 'true';
-                        }
-                        else
-                        {
-                            echo 'false';
-
-                        }
-                        die;
-                    //}   
-                }
-        
-            
-               
-        
-    }
-
-
     public function send()
     {  
         $stationary_sess_name = $this->session->userdata('stationary_name');
@@ -205,33 +121,18 @@ class Stationary_request extends CI_Controller {
                 $send_qty  = $this->input->post('s_send'); 
                 $s_id  = $this->input->post('so_id'); 
                 $o_id  = $this->input->post('o_id'); 
-                $send_status  = $this->input->post('send_status'); 
+            
                $count = count($send_qty);
-               $status_count = count($send_status);
-
-               for($p=0; $p<$status_count; $p++)
-               {
-                if($send_status[$p] == 'accepted')
-                {
-                    $abcd='send';
-                    break;
-                }else if($send_status[$p] == 'rejected'){
-                    $abcd='nosend';
-                }
-               
-               }
-
-    if($abcd=='send')
-    {
+              
                 for($i=0;$i<$count;$i++)
                 {
-                    if($send_qty[$i]!=''){
                     $arr_update = array(
                         'send_qty'   =>    $send_qty[$i] 
                     );
                     $arr_where     = array("id" => $s_id[$i]);
                     $result = $this->master_model->updateRecord('stationary_order_details',$arr_update,$arr_where);
 
+                    //echo $s_id[$i];
                     $this->db->where('id',$s_id[$i]);
                     $stationary_data = $this->master_model->getRecord('stationary_order_details');
                    $stationay_id=$stationary_data['stationary_name'];
@@ -246,39 +147,17 @@ class Stationary_request extends CI_Controller {
                 );
                 $arr_where1     = array("id" => $stationay_id);
                    $result = $this->master_model->updateRecord('stationary',$arr_update1,$arr_where1);
-            }
                 }    
 
+                // echo "jjj";
+                // die;
                 if($result=='true')
                 {   
-                   echo 'true';                  
+                   return true;                  
                 }
                 else{
-                    echo 'false';                  
+                    return false;                  
                 } 
-                // echo 'abc';
-                // die;
-    }else if($abcd=='nosend')
-    {
-              
-                    $arr_insert = array(
-                        'order_status'        => 'Rejected'
-                    );
-                    $arr_where     = array("id" => $o_id);
-                    // print_r($arr_where);
-                    // die;
-                    $result = $this->master_model->updateRecord('stationary_order',$arr_insert,$arr_where);
-
-        if($result=='true')
-        {   
-           echo 'rejected';                  
-        }
-        else{
-            echo 'false';                  
-        } 
-        // echo 'xyz';
-        //          die;
-    }
         }
 
   
@@ -291,7 +170,6 @@ class Stationary_request extends CI_Controller {
         
         // print_r($_REQUEST);
         // die;
-       
         if($this->input->post('save_series'))
         {
                 $academic_year  = $this->input->post('academic_year');
@@ -313,12 +191,13 @@ class Stationary_request extends CI_Controller {
                     );
 
                     $inserted_id = $this->master_model->insertRecord('stationary_series_details',$arr_insert,true);
-					
-					 $arr_update = array(
+
+                    $arr_insert_details = array(
                         'is_sended'   =>   '1'
                     );
-                    $arr_where     = array("id" => $from_series[$i]);
-                    $result = $this->master_model->updateRecord('stationary_details',$arr_update,$arr_where);
+                    $arr_where_details = array("id" => $from_series[$i]);
+                    $result = $this->master_model->updateRecord('stationary_details',$arr_insert_details,$arr_where_details);
+
                 //}   
                
                 $arr_insert = null;
@@ -391,8 +270,7 @@ class Stationary_request extends CI_Controller {
         // die;
         if($this->input->post('submit_doc'))
         {
-            
-          
+      
                 $file_name     = $_FILES['courier_receipt']['name'];
                 
                 $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
@@ -474,7 +352,7 @@ class Stationary_request extends CI_Controller {
                     $this->db->where('id',$agent_id);
                     $this->db->order_by('id','DESC');
                     $agent_data_email = $this->master_model->getRecord('agent');
-                    $agent_email=$agent_data_email['email'];
+                  $agent_email=$agent_data_email['email'];
 		 			$agent_name=$agent_data_email['agent_name'];
 
                      $this->db->where('is_deleted','no');
@@ -543,8 +421,7 @@ class Stationary_request extends CI_Controller {
                     //  echo $msg;                
 					//  $this->send_mail($stationary_email,$from_email,$msg_stationary,$subject_stationary,$img_url);
                     // die;
-                    // print_r($_REQUEST);
-                  
+
                     $this->session->set_flashdata('success_message'," Stationary Receipt Send Successfully.");
                     redirect($this->module_url_path.'/index');
                 }
@@ -553,8 +430,6 @@ class Stationary_request extends CI_Controller {
                 {
                     $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
                 }
-             
-
                 redirect($this->module_url_path.'/index');
            // }   
         }
@@ -647,7 +522,7 @@ class Stationary_request extends CI_Controller {
         $stationary_id = $this->input->post('stationary_id');
         
                 // $this->db->where('is_deleted','no');
-                 $this->db->where('is_sended','0');
+                $this->db->where('is_sended','0');
                 $this->db->where('stationary_id',$stationary_id);
                 $data = $this->master_model->getRecords('stationary_details');
         // print_r($data);

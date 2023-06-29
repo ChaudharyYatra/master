@@ -35,7 +35,7 @@
                   <tr>
                     <th>SN</th>
                     <th>Agent Name</th>
-                    <th>Office Name - Address</th>
+                    <th>Agent Region</th>
                     <th>Order Number</th>
                     <th>Request Date</th>
                     <th>Dispatch Date</th>
@@ -53,7 +53,7 @@
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $info['agent_name'] ?></td>
-                    <td><?php echo $info['fld_agency_name'] ?> - <?php echo $info['fld_office_address'] ?></td>
+                    <td><?php echo $info['department'] ?></td>
                     <td><?php echo $info['order_no'] ?></td>
                     <td><?php echo date('d-m-Y', strtotime($info['created_at'])); ?></td>
                     <td>

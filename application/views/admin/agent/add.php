@@ -109,25 +109,25 @@
                         <div class="col-md-3">
                             <div class="form-group">
                             <label>Flat No.</label>
-                            <input type="text" class="form-control" name="flat_no" id="flat_no" placeholder="Enter Flat No." required>
+                            <input type="text" class="form-control" name="flat_no" id="flat_no" placeholder="Enter Flat No.">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                             <label>Building / House Name</label>
-                            <input type="text" class="form-control" name="building_house_nm" id="building_house_nm" placeholder="Enter Building / House Name" required>
+                            <input type="text" class="form-control" name="building_house_nm" id="building_house_nm" placeholder="Enter Building / House Name">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                             <label>Street Name</label>
-                            <input type="text" class="form-control" name="street_name" id="street_name" placeholder="Enter Street Name" required>
+                            <input type="text" class="form-control" name="street_name" id="street_name" placeholder="Enter Street Name">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                             <label>Landmark</label>
-                            <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Enter Landmark" required>
+                            <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Enter Landmark">
                             </div>
                         </div>
 

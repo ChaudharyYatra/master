@@ -40,10 +40,8 @@
                 <?php  
                   foreach($arr_data_s_order as $info) 
                       { 
-					 // $order_stat=$info['order_status'];
-					  
-					  //print_r($info);
-						//die;
+					 // print_r($info);
+					  //die;
                         ?>
                 <table id="example2" class="table table-bordered table-hover table-color-agent">
                   <tr>
@@ -76,8 +74,7 @@
                       <th>Stationary Name</th>
                       <th>Quantity</th>
                       <th>Sending Quantity</th>
-                      <th>Order Summery</th>
-                      <th>Reject</th>
+                      <th>Select</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -86,39 +83,31 @@
                       
                       $i=1; 
                       $s_send = []; 
-	$main_count= count($arr_data);
-  // print_r($arr_data); die;
                       foreach($arr_data as $info)
                       { 
-                        // print_r($info); die;
-						  
                         array_push($s_send,$info['id']);
                         ?>
                       <tr>
                         <td><?php echo $i; ?>
                           <input type="hidden" class="form-control stationary_order_id" name="stationary_order_id[]" id="s_id" value="<?php echo $info['id'] ?>" />
-							<input type="hidden" class="form-control" name="main_count" id="main_count" value="<?php echo $main_count ?>" />
-							<input type="hidden" class="form-control" name="stationary_order_status" id="stationary_order_status" value="<?php echo $info['is_sended'] ?>" />
                           <input type="hidden" class="form-control order_id" name="order_id" id="o_id" value="<?php echo $info['order_id'] ?>" />
-							
-			<!-- <input type="hidden" class="form-control order_id" name="order_id" id="o_id" value="<?php //echo $info['sta_id'] ?>" /> -->
                         </td>
                         <td><?php echo $info['stationary_name'] ?></td>
                         <td><?php echo $info['stationary_qty'] ?></td>
                         <td>
                         <?php 
-                          if($info['send_qty']==0)
+                          if($info['send_qty']=='0')
                             {
                           ?>
-                            <input type="text" name="send_qty[]"  class="send_qty" attr-modal-id="<?php echo $info['id'] ?>" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" attr_stid="<?php echo $info['stid'];?>" id="send_qty_<?php echo $info['id'] ?>" onkeyup="send_qty()" status="accepted" required/>
+                            <input type="text" name="send_qty[]" class="send_qty" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" attr_stid="<?php echo $info['stid'];?>" id="send_qty_<?php echo $info['id'] ?>" onkeyup="send_qty()" required/>
                           <?php } 
-                           else if(($info['send_qty']>0 && $info['is_sended']=='yes') || $info['reject_status']=='yes')
+                            if($info['send_qty']>'0' && $info['is_sended']=='yes')
                             {
                           ?>
-                            <input type="text" name="send_qty[]" class="send_qty" attr-modal-id="<?php echo $info['id'] ?>" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" attr_stid="<?php echo $info['stid'];?>" id="send_qty" value="<?php echo $info['send_qty'] ?>"  disabled/>
+                            <input type="text" name="send_qty[]" class="send_qty" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" attr_stid="<?php echo $info['stid'];?>" id="send_qty" value="<?php echo $info['send_qty'] ?>" disabled/>
                           <?php } 
                           else { ?>
-                            <input type="text" name="send_qty[]" class="send_qty" attr-modal-id="<?php echo $info['id'] ?>" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" attr_stid="<?php echo $info['stid'];?>" id="send_qty" status="accepted" required/>
+                            <input type="text" name="send_qty[]" class="send_qty" attr-series_yes_no="<?php echo $info['series_yes_no'] ?>" attr_stid="<?php echo $info['stid'];?>" id="send_qty" required/>
                           <?php } ?>
                         </td>
                         <td>
@@ -126,28 +115,23 @@
                           Send
                         </button> -->
                         
-                        <button type="button" class="btn btn-primary send" name="send" id="send<?php echo $i; ?>" attr-save-details-id="<?php echo $i; ?>" data-toggle="modal" data-target="#exampleModal_<?php echo $i; ?>">
-                          Fill details
+                        <button type="button" class="btn btn-primary send details" name="send" id="send" data-toggle="modal" data-target="#exampleModal_<?php echo $i; ?>">
+                          Details
                         </button>
-                        
-                        </td>
-                        <td>
-                        <?php 
-                          if($info['is_sended']=='yes')
-                            {
-                          ?>
-                          <button type="button" disabled class="btn btn-primary" name="reject" id="reject" data-toggle="modal" data-target="#exampleModal2_<?php echo $i; ?>">
-                            Reject
-                          </button>
-                        <?php }  else { ?>
-                          <button type="button" class="btn btn-primary" name="reject" id="reject" data-toggle="modal" data-target="#exampleModal2_<?php echo $i; ?>">
-                          Reject
-                          </button>
-                        <?php } ?>
                         
                         </td>
                        
                       </tr>
+
+
+
+
+
+
+
+
+
+
 
                    
                       <?php $i++; } ?>
@@ -200,9 +184,7 @@
 <?php  
                       
 $i=1; 
-$id_for_update_series=$i-1;
 $s_send = []; 
- 
 foreach($arr_data as $info)
 { 
   // print_r($arr_data);  die;
@@ -222,13 +204,13 @@ foreach($arr_data as $info)
       <?php 
             if($info['series_yes_no']=='Yes'){
             ?>
-         <form id="series_form<?php echo $i; ?>" action=""> 
+         <form> 
         <div class="modal-body">
 
           <input type="hidden" class="form-control order_id" name="order_id" id="order_id" value="<?php echo $info['order_id'] ?>" />
             <input type="hidden" class="form-control order_d_id" name="order_d_id" id="order_d_id" value="<?php echo $info['id'] ?>" />
             <input type="hidden" class="form-control order_d_id" name="form_type" id="form_type" value="searies" />
-            <table class="table table-bordered">
+            <table class="table table-bordered mytable">
               <thead>
                 <tr>
                   <th scope="col">Financial Year</th>
@@ -236,7 +218,7 @@ foreach($arr_data as $info)
                   <th scope="col">Remark</th>
                 </tr>
               </thead>
-              <tbody id="series_yes<?php echo $info['id'] ?>">
+              <tbody id="series_yes">
                 
                 
               </tbody>
@@ -246,7 +228,7 @@ foreach($arr_data as $info)
           </div>
             <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary save_series" attr-modal-id="<?php echo $info['id'] ?>" attr_bt_id="<?php echo $i;?>" id="save_series<?php echo $i; ?>" name="save_series" data-dismiss="modal" value="save">Save</button>
+        <button type="button" class="btn btn-primary" id="save_series" name="save_series" data-dismiss="modal" value="save">Save</button>
         <!-- <button type="submit" class="btn btn-primary d-flex justify-content-center" id="submit" name="submit" value="send">Send</button> -->
       </div>
       </form>
@@ -264,7 +246,7 @@ foreach($arr_data as $info)
                 </tr>
               </thead>
               <tbody id="series_no">
-              <tr class="detail_tr">
+              <tr>
                   <td>
                     <select class="form-control" style="width: 100%;" name="academic_year" id="a_year_no_series" required="required">
                       <option value="">Select Year</option>
@@ -304,6 +286,9 @@ foreach($arr_data as $info)
     </div>
   </div>
 </div>
+
+
+
 
 
 
@@ -368,40 +353,6 @@ foreach($arr_data as $info)
     </div>
 
     </form>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal2_<?php echo $i; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-          <div class="col-md-12">
-            <form>
-            <input type="hidden" class="form-control" name="o_id" id="o_id" value="<?php echo $info['order_id'] ?>" />
-            <input type="hidden" class="form-control" name="o_d_id" id="o_d_id" value="<?php echo $info['id'] ?>" />
-			      <input type="hidden" class="form-control" name="agent_id" id="agent_id" value="<?php echo $info['agent_id'] ?>" />
-              <label class="col-form-label">Reject Comment:</label>
-              <!-- <textarea class="form-control" name="reject_comment<?php //echo $info['id'] ?>" id="reject_comment" required="required"></textarea> -->
-              <input type="text" class="form-control" name="reject_comment<?php echo $info['id'] ?>" id="reject_comment" value="" />
-
-            
-          </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="submit" class="btn btn-primary" name="reject_send" value="send" id="send">Send</button> -->
-        <button type="button" class="btn btn-primary reject_send" attr-modal-reject-id="<?php echo $info['id'] ?>" fill_id="send<?php echo $i; ?>" attr_reject_id="<?php echo $i;?>" id="reject_send<?php echo $i; ?>" name="reject_send" data-dismiss="modal" value="save">Save</button>
-
-      </div>
-      </form>
-    </div>
   </div>
 </div>
 

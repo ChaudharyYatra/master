@@ -29,15 +29,31 @@ class Stationary_order_completed extends CI_Controller {
         $stationary_sess_name = $this->session->userdata('stationary_name');
         $id = $this->session->userdata('stationary_sess_id');
 
+    //     $record = array();
+    //     $fields = "stationary_order.*";
+    //     $this->db->order_by('stationary_order.created_at','desc');
+    //     $this->db->where('stationary_order.is_deleted','no');
+    //     $this->db->where('stationary_order.received_status','yes');
+    //     $this->db->where('stationary_order.order_status','completed');
+    //     $this->db->where('stationary_order.agent_id',$id);
+    //    //  $this->db->join("stationary", 'stationary_order_details.stationary_name=stationary.id','left');
+    //     $arr_data = $this->master_model->getRecords('stationary_order',array('stationary_order.is_deleted'=>'no'),$fields);
+
         $record = array();
-         $fields = "stationary_order.*,agent.agent_name,agent.booking_center,department.department,agent.fld_agency_name,agent.fld_office_address";
+         $fields = "stationary_order.*,agent.agent_name,agent.booking_center,department.department";
          $this->db->order_by('stationary_order.created_at','desc');
-        $this->db->where('stationary_order_details.reject_status','no');
+        $this->db->where('stationary_order.is_deleted','no');
+        $this->db->where('stationary_order.received_status','yes');
+        $this->db->where('stationary_order.order_status','completed');
+        $this->db->where('stationary_order.agent_id',$id);
          $this->db->join("agent", 'stationary_order.agent_id=agent.id','left');
          $this->db->join("department", 'agent.department=department.id','left');
          $this->db->join("stationary_order_details", 'stationary_order_details.order_id=stationary_order.id','left');
          $this->db->group_by('stationary_order_details.order_id');
-         $arr_data = $this->master_model->getRecords('stationary_order',array('stationary_order.received_status'=>'yes'),$fields);
+         $arr_data = $this->master_model->getRecords('stationary_order',array('stationary_order.is_deleted'=>'no'),$fields);
+         
+       //  $this->db->where('is_deleted','no');
+       //  $arr_data = $this->master_model->getRecords('stationary_order');
        
 
         $this->arr_view_data['stationary_sess_name'] = $stationary_sess_name;
@@ -67,7 +83,6 @@ class Stationary_order_completed extends CI_Controller {
          $fields = "stationary_order_details.*,stationary.stationary_name,agent.agent_name,agent.booking_center,department.department";
          $this->db->order_by('stationary_order_details.created_at','desc');
          $this->db->where('stationary_order_details.is_deleted','no');
-         $this->db->where('stationary_order_details.reject_status','no');
          $this->db->where('stationary_order_details.order_id',$id);
          $this->db->join("stationary", 'stationary_order_details.stationary_name=stationary.id','left');
          $this->db->join("agent", 'stationary_order_details.agent_id=agent.id','left');

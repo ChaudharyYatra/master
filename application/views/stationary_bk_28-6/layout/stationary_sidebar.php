@@ -51,25 +51,9 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>stationary/stationary_request/inprocess" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>
-              Inprocess Requests
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
                 <a href="<?php echo base_url(); ?>stationary/stationary_order_completed/completed" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Completed Stationary Order</p>
-                </a>
-          </li>
-
-          <li class="nav-item">
-                <a href="<?php echo base_url(); ?>stationary/stationary_request_reject/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Rejected Stationary Order</p>
                 </a>
           </li>
 

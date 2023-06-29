@@ -33,14 +33,15 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>SN</th>
+                  <th>SN</th>
                     <th>Agent Name</th>
-                    <th>Office Name - Address</th>
+                    <th>Agent Region</th>
                     <th>Order Number</th>
                     <th>Request Date</th>
                     <th>Dispatch Date</th>
+					  <th>View Receipt </th>
                     <th>Action</th>
-                    <th>View Receipt </th>
+					  
                   </tr>
                   </thead>
                   <tbody>
@@ -51,26 +52,37 @@
                    { 
                      ?>
                   <tr>
-                    <td><?php echo $i; ?></td>
+                  <td><?php echo $i; ?></td>
                     <td><?php echo $info['agent_name'] ?></td>
-                    <td><?php echo $info['fld_agency_name'] ?> - <?php echo $info['fld_office_address'] ?></td>
+                    <td><?php echo $info['department'] ?></td>
                     <td><?php echo $info['order_no'] ?></td>
                     <td><?php echo date('d-m-Y', strtotime($info['created_at'])); ?></td>
-                    <td>
-                    <?php 
-                        if($info['dispatch_date']!="")
-                          {
+                    <td><?php echo date('d-m-Y', strtotime($info['dispatch_date'])); ?></td>
+					  <td><button type="button" class="btn btn-primary" name="courier_receipt" id="courier_receipt" data-bs-toggle="modal" data-bs-target="#exampleModal_<?php echo $info['id'] ?>">View Receipt</button></td>
+                    <!-- <td>
+                        <?php 
+                        //if($info['is_active']=='yes')
+                          //{
                         ?>
-                      <?php echo date('d-m-Y', strtotime($info['dispatch_date'])); ?>
-                    <?php } else { ?>
-                      <P>Not Dispatch</p>
-                      <?php } ?>
-                    </td>
+                        <a href="<?php //echo $module_url_path ?>/active_inactive/<?php //echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-success btn-sm">YES</button></a>
+                        <?php //} else { ?>
+                        <a href="<?php //echo $module_url_path ?>/active_inactive/<?php //echo $info['id'].'/'.$info['is_active']; ?>"><button class="btn btn-danger btn-sm">NO</button> </a>
+                        <?php //} ?>
+                    </td> -->
                     <td>
-                      <a href="<?php echo $module_url_path;?>/details/<?php echo $info['id'];?>" ><button type="button" class="btn btn-primary">View</button></a>
+                    <a href="<?php echo $module_url_path;?>/details/<?php echo $info['id'];?>" ><button type="button" class="btn btn-primary">View</button></a>
+                      <!-- <div class="btn-group">
+                        <button type="button" class="btn btn-default">Action</button>
+                        <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                          <a href="<?php //echo $module_url_path;?>/details/<?php //echo $info['id'];?>" ><button class="dropdown-item">View</button></a>
+                          <a href="<?php //echo $module_url_path;?>/edit/<?php //echo $info['id']; ?>" ><button class="dropdown-item">Edit</button></a>
+                          <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php //echo $module_url_path;?>/delete/<?php //echo $info['id']; ?>" title="Delete"><button class="dropdown-item">Delete</button></a>
+                        </div>
+                      </div> -->
                     </td>
-                    <td><button type="button" class="btn btn-primary" name="courier_receipt" id="courier_receipt" data-bs-toggle="modal" data-bs-target="#exampleModal_<?php echo $info['id'] ?>">View Receipt</button></td>
-
                   </tr>
                   
                   <?php $i++; } ?>
@@ -99,7 +111,7 @@
     <!-- /.content -->
   </div>
 
-      <!-- Modal -->
+ <!-- Modal -->
 <?php  
                   
 $i=1; 

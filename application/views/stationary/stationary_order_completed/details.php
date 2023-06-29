@@ -90,7 +90,14 @@
                     <td><?php echo $info['stationary_qty'] ?></td>
                     <td><?php echo $info['send_qty'] ?></td>
                     <td>
-                            <input type="text" name="received_qty[]" class="received_qty" id="received_qty" value="<?php echo $info['received_qty'] ?>" disabled />
+                    <?php 
+                          if($info['received_qty']=='0')
+                            {
+                          ?>
+                            Rejected
+                          <?php } else { ?>
+                            <?php echo $info['received_qty'] ?>
+                          <?php } ?>
                     </td>
                     <!-- <td>
                         <?php 
