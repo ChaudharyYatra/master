@@ -498,14 +498,11 @@ class Booking_enquiry extends CI_Controller {
 
         if(is_numeric($id))
         {   
-            $this->db->where('custom_domestic_booking_enquiry.id',$id);
             $record = array();
             $fields = "custom_domestic_booking_enquiry.*,meal_plan.meal_plan_name";
             $this->db->where('custom_domestic_booking_enquiry.is_deleted','no');
             $this->db->where('custom_domestic_booking_enquiry.id',$id);
             $this->db->join("meal_plan", 'custom_domestic_booking_enquiry.meal_plan=meal_plan.id','left');
-            // $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');
-            // $this->db->join("domestic_followup", 'booking_enquiry.id=domestic_followup.booking_enquiry_id','left');
             $arr_data = $this->master_model->getRecords('custom_domestic_booking_enquiry',array('custom_domestic_booking_enquiry.is_deleted'=>'no'),$fields);
             // print_r($arr_data); die;
 
@@ -582,7 +579,7 @@ class Booking_enquiry extends CI_Controller {
                 $drop_time            = $this->input->post('drop_time');
                 $special_note            = $this->input->post('special_note');
                 $tour_number            = $this->input->post('tour_number');
-                $other_tour_name         = $this->input->post('other_tour_name');
+                $other_tour         = $this->input->post('other_tour');
                     
                     $arr_update = array(
                         'full_name'    =>   $full_name,
@@ -617,7 +614,7 @@ class Booking_enquiry extends CI_Controller {
                         'drop_time'    =>$drop_time,
 						'special_note'=>$special_note,
                         'package_id'=>$tour_number,
-                        'other_tour_name'    =>$other_tour_name	
+                        'other_tour_name'    =>$other_tour	
                     );
                     $arr_where     = array("id" => $id);
                     $this->master_model->updateRecord('custom_domestic_booking_enquiry',$arr_update,$arr_where);
@@ -646,6 +643,7 @@ class Booking_enquiry extends CI_Controller {
          $this->db->or_where('package_type','4');
          $this->db->or_where('package_type','7');
         $packages_data = $this->master_model->getRecords('packages');
+        // print_r($packages_data); die;
 
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');

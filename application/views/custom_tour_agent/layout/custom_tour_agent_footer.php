@@ -1312,16 +1312,15 @@ $(".received_qty").each(function () {
 </script>
 
 <script type="text/javascript">
-    function CheckColors(val){
-    var element=document.getElementById('other_tour_name_div');
-	var element2=document.getElementById('other_tour_name');
+    function tour_title(val){
+    var element=document.getElementById('other_tour_div');
+	var element2=document.getElementById('other_tour');
     if(val=='Other')
     element.style.display='block';
     else  
     element.style.display='none';
 	element2.value="";	
     }
-
 </script>
 
 <!-- jquery validation on add booking basic info-->
