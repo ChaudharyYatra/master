@@ -6,9 +6,9 @@ class Attendance extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/attendance";
         $this->module_url_take_attendance    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/Daily_attendance";
@@ -22,8 +22,8 @@ class Attendance extends CI_Controller{
 
 	public function index()
 	{
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_title,packages.package_type,
         package_type.package_type,tour_manager.name,package_date.journey_date,package_date.id as did";
@@ -36,8 +36,8 @@ class Attendance extends CI_Controller{
         $arr_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
-        // $this->arr_view_data['module_url_tour_photos'] = $this->module_url_tour_photos;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
+
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";

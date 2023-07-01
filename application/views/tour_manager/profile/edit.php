@@ -42,7 +42,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Tour Manager Name</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<?php echo $info['name']; ?>" required>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<?php echo $info['supervision_name']; ?>" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -56,7 +56,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Contact Number</label>
-                        <input type="text" class="form-control" name="contact" id="contact" placeholder="Enter Mobile Number" value="<?php echo $info['contact']; ?>" required>
+                        <input type="text" class="form-control" name="contact" id="contact" placeholder="Enter Mobile Number" value="<?php echo $info['mobile_number1']; ?>" required>
                         <span id="email_result"></span>
                       </div>
                     </div>

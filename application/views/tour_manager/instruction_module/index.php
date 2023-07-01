@@ -78,7 +78,9 @@
                       <?php if($info['instraction_status']== 'no') { ?>
                         No any instruction
                       <?php } else{ ?>
-                        <a href="<?php echo $module_url_path;?>/details/<?php echo $info['id']; ?>" title="View"><button class="btn btn-primary">View</button></a>
+                        <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($info['id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
+					                  echo rtrim($did, '='); ?>" title="View"><button class="btn btn-primary">View</button></a>
                       <?php } ?>
                     </td>
                     

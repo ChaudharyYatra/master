@@ -6,9 +6,9 @@ class Dashboard extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
 		// hasemployeepanelaccess();
 		// Check User Permission
@@ -28,8 +28,8 @@ class Dashboard extends CI_Controller{
 
         // $today= date('Y-m-d');
 
-	      $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id');
+	      $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         // $this->db->where('agent_id',$id);  
         // $this->db->where('is_deleted','no'); 
@@ -66,7 +66,7 @@ class Dashboard extends CI_Controller{
         // print_r($total_enquiry_count); die;
         // $arr_data['enquiry_count'] = count($enquiry_data);
         
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         // $this->arr_view_data['arr_data']        = $arr_data;
       //  $this->arr_view_data['total_enquiry_count']  = $total_enquiry_count;
@@ -86,8 +86,8 @@ class Dashboard extends CI_Controller{
   
     function birthdate_enquiry_view()  
       {  
-          $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-          $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
           $month = date('m');
           $day = date('d');
@@ -136,8 +136,8 @@ class Dashboard extends CI_Controller{
 //  ============================tour manager bell icone todays Anniversary ==================================
 function anniversary_enquiry_view()  
 {  
-    $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-    $iid = $this->session->userdata('tour_manager_sess_id');
+    $supervision_sess_name = $this->session->userdata('supervision_name');
+    $iid = $this->session->userdata('supervision_sess_id');
 
     $month = date('m');
     $day = date('d');
@@ -155,8 +155,8 @@ function check_anniversary_count()
 {  
           $month = date('m');
           $day = date('d');
-          $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-          $iid = $this->session->userdata('tour_manager_sess_id'); 
+          $supervision_sess_name = $this->session->userdata('supervision_name');
+          $iid = $this->session->userdata('supervision_sess_id'); 
 
           $record = array();
           $fields = "all_traveller_info.*";
@@ -185,8 +185,8 @@ function check_anniversary_count()
              
         $month = date('m');
         $day = date('d');
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
         $record = array();
         $fields = "all_traveller_info.*";

@@ -97,6 +97,10 @@
 					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
 					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Itinerary Details</button></a>
                           
+                          <a href="<?php echo $module_url_path_instruction;?>/index/<?php $aid=base64_encode($info['package_id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
+					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Show Instruction</button></a>
+
                           <a href="<?php echo $module_url_path;?>/allocate_room/<?php $aid=base64_encode($info['package_id']); 
                           echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
                           echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Allocate Room</button></a>

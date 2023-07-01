@@ -33,7 +33,6 @@ $config['base_url'] ='https://sumagotest.in/choudhary/';
 
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Index File

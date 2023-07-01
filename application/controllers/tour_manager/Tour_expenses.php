@@ -10,32 +10,33 @@ class Tour_expenses extends CI_Controller {
 	function __construct() {
 
         parent::__construct();
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tour_expenses";
         $this->module_title       = "Daily Tour Expenses";
         $this->module_url_slug    = "tour_expenses";
         $this->module_view_folder = "tour_expenses/";
         $this->arr_view_data = [];
-	 }
+	}
 
         public function index()
         {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+            $supervision_sess_name = $this->session->userdata('supervision_name');
+            $id = $this->session->userdata('supervision_sess_id');
 
         $record = array();
         $fields = "tour_expenses.*,expense_type.expense_type_name,expense_category.expense_category";
         $this->db->where('tour_expenses.is_deleted','no');
+        $this->db->where('tour_expenses.tour_manager_id',$id);
         $this->db->order_by('tour_expenses.id','desc');
         $this->db->join("expense_type", 'tour_expenses.expense_type=expense_type.id','left');
         $this->db->join("expense_category", 'tour_expenses.expense_category_id=expense_category.id','left');
         $arr_data = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
@@ -51,8 +52,8 @@ class Tour_expenses extends CI_Controller {
             $id=base64_decode($id);
             $did=base64_decode($did);
 
-            $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-            $iid = $this->session->userdata('tour_manager_sess_id'); 
+            $supervision_sess_name = $this->session->userdata('supervision_name');
+            $iid = $this->session->userdata('supervision_sess_id');
 
             $this->db->where('is_deleted','no');
             $this->db->where('is_active','yes');
@@ -193,7 +194,7 @@ class Tour_expenses extends CI_Controller {
                 'tour_expenses_remark' =>   $tour_expenses_remark,
                 'image_name' =>   $filename,
                 'image_name_2' =>   $new_img_filename,
-                'tour_manager_id' =>   $id,
+                'tour_manager_id' =>   $iid,
                 'package_id' =>   $tour_number,
                 'pax_type' =>   $pax_type,
                 'package_date_id' =>   $tour_date
@@ -238,7 +239,7 @@ class Tour_expenses extends CI_Controller {
         $packages_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
         // print_r($packages_data); die;
  
-         $this->arr_view_data['tour_manager_sess_name'] = $tour_manager_sess_name;
+         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
          $this->arr_view_data['action']          = 'add';
          $this->arr_view_data['expense_type_data']        = $expense_type_data;
          $this->arr_view_data['packages_data']        = $packages_data;
@@ -253,8 +254,8 @@ class Tour_expenses extends CI_Controller {
     public function edit($id="")
         {  
             // echo $id; die;
-            $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-            $iid = $this->session->userdata('tour_manager_sess_id'); 
+            $supervision_sess_name = $this->session->userdata('supervision_name');
+            $iid = $this->session->userdata('supervision_sess_id');
 
             $tid=base64_decode($id);
             if ($tid=='') 
@@ -468,7 +469,7 @@ class Tour_expenses extends CI_Controller {
         //  print_r($package_date); die;
 
 
-         $this->arr_view_data['tour_manager_sess_name'] = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
          $this->arr_view_data['packages_data'] = $packages_data;
          $this->arr_view_data['package_date'] = $package_date;
          $this->arr_view_data['tour_expenses_all'] = $tour_expenses_all;
@@ -485,8 +486,8 @@ class Tour_expenses extends CI_Controller {
     
     public function delete($id)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
         
        $id=base64_decode($id);
         if(is_numeric($id))
@@ -522,8 +523,8 @@ class Tour_expenses extends CI_Controller {
 
     public function details($id)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
 		$tid=base64_decode($id);
         
@@ -547,7 +548,7 @@ class Tour_expenses extends CI_Controller {
         $tour_expenses_all = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
         // print_r($tour_expenses_all); die;
 
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['tour_expenses_all']        = $tour_expenses_all;
         $this->arr_view_data['page_title']      = $this->module_title." Details ";
         $this->arr_view_data['module_title']    = $this->module_title;

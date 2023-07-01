@@ -76,7 +76,7 @@
                         <div class="dropdown-menu" role="menu">
                           <!-- <a href="<?php //echo $module_url_path;?>/details/<?php //$aid=base64_encode($info['id']); 
 					                  //echo rtrim($aid, '='); ?>" class="itinerary_css"><button class="dropdown-item">View</button></a> -->
-                          <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
+                          <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['package_id']); 
 					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
 					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Edit</button></a>
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php $aid=base64_encode($info['id']); 

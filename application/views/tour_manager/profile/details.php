@@ -40,11 +40,11 @@
               <table id="" class="table table-bordered">
                   <tr>
                     <th>Tour Manager Name</th>
-                    <td><?php echo $info['name']; ?></td>
+                    <td><?php echo $info['supervision_name']; ?></td>
                     <th>Email Address</th>
                     <td><?php echo $info['email']; ?></td>
                     <th>Contact Number</th>
-                    <td><?php echo $info['contact']; ?></td>
+                    <td><?php echo $info['mobile_number1']; ?></td>
                   </tr>
                   <!-- <tr>
                     <th>Email Address</th>

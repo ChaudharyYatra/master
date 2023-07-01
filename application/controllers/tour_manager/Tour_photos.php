@@ -6,9 +6,9 @@ class Tour_photos extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tour_photos";
         $this->module_title       = "Tour Photos";
@@ -19,8 +19,8 @@ class Tour_photos extends CI_Controller{
 
 	public function index()
 	{
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         $fields = "tour_photos.*,packages.tour_title,packages.tour_number,package_date.journey_date,
         package_date.id as did";
@@ -40,7 +40,7 @@ class Tour_photos extends CI_Controller{
         // $arr_data = $this->master_model->getRecords('tour_photos',array('tour_photos.is_deleted'=>'no'),$fields);
         // // print_r($arr_data); die;
 
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
@@ -54,30 +54,34 @@ class Tour_photos extends CI_Controller{
 	
     public function add($id,$did)
     {   
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id'); 
 
         $id=base64_decode($id);
         $did=base64_decode($did);
         if ($id=='') 
         {
+            
             $this->session->set_flashdata('error_message','Invalid Selection Of Record');
             redirect($this->module_url_path.'/index');
         }   
 
         if($id!='')
         {   
+            // echo 'hiiiiiiiiiii' ; die;
             $this->db->where('id',$id);
             $arr_data = $this->master_model->getRecords('packages');
             // print_r($arr_data); die;
 
         if($this->input->post('submit'))
         {
+            // print_r($_REQUEST); die;
             $this->form_validation->set_rules('destinations', 'destinations', 'required');
             // $this->form_validation->set_rules('image_name', 'image_name', 'required');
             
             if($this->form_validation->run() == TRUE)
             {
+                
                 // ==============================upload image one================================================
                 $file_name     = $_FILES['image_name']['name'];
                 $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg','pdf','PDF');
@@ -241,8 +245,9 @@ class Tour_photos extends CI_Controller{
                 else
                 {
                     $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
+                    redirect($this->module_url_path.'/index');
                 }
-                redirect($this->module_url_path.'/index');
+                
             
             }
        
@@ -254,7 +259,7 @@ class Tour_photos extends CI_Controller{
             redirect($this->module_url_path.'/index');
         }
         $this->arr_view_data['action']          = 'add';
-        $this->arr_view_data['tour_manager_sess_name'] = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = " Add Instruction For Tour Manager";
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -268,8 +273,8 @@ class Tour_photos extends CI_Controller{
     
     public function edit($id,$did)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
         $id=base64_decode($id);
         $did=base64_decode($did);
@@ -496,7 +501,7 @@ $img_name_three_filename = $old_img_name_three;
         $arr_data = $this->master_model->getRecords('tour_photos');
         // print_r($arr_data); die;
     
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         // $this->arr_view_data['arr_data_main']        = $arr_data_main;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;

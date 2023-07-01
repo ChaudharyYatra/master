@@ -6,9 +6,9 @@ class Instruction_module extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
 		
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/instruction_module";
@@ -18,23 +18,29 @@ class Instruction_module extends CI_Controller{
         $this->load->library('upload');
 	}
 
-	public function index()
+	public function index($id,$did)
 	{ 
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
-        $fields = "packages.*,package_type.package_type,package_type.id as pid, packages.id as pack_id";
+        $id=base64_decode($id);
+        $did=base64_decode($did);
+
+        $fields = "packages.*,package_type.package_type,package_type.id as pid, packages.id as pack_id,package_date.id as did";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
+        $this->db->where('packages.id',$id);
+        $this->db->where('package_date.id',$did);
         $this->db->where('packages.instraction_status','yes');
         // $this->db->OR_where('packages.cust_instraction_status','yes');
 		$this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
         $this->db->join("package_type", 'packages.package_type=package_type.id','left');
         $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
         $this->arr_view_data['listing_page']    = 'yes';
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -44,62 +50,16 @@ class Instruction_module extends CI_Controller{
        
 	}
         
- 
-   
-  // Active/Inactive
-  
-//   public function active_inactive($id,$type)
-//     {
-//         $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-//         $iid = $this->session->userdata('tour_manager_sess_id'); 
-
-// 	  	$id=base64_decode($id);
-//         if($id!="" && ($type == "yes" || $type == "no") )
-//         {   
-//             $this->db->where('id',$id);
-//             $arr_data = $this->master_model->getRecords('suggestion_module');
-//             if(empty($arr_data))
-//             {
-//                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-//                redirect($this->module_url_path.'/index');
-//             }   
-
-//             $arr_update =  array();
-
-//             if($type == 'yes')
-//             {
-//                 $arr_update['is_active'] = "no";
-//             }
-//             else
-//             {
-//                 $arr_update['is_active'] = "yes";
-//             }
-            
-//             if($this->master_model->updateRecord('suggestion_module',$arr_update,array('id' => $id)))
-//             {
-//                 $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
-//             }
-//             else
-//             {
-//              $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
-//             }
-//         }
-//         else
-//         {
-//            $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-//         }
-//         redirect($this->module_url_path.'/index');   
-//     }
-
-
-
     //============
 
-    public function details($id)
+    public function details($id,$did)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        // $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id'); 
 
+        $id=base64_decode($id);
+        $did=base64_decode($did);
+        
 		// $id=base64_decode($id);
         if ($id=='') 
         {
@@ -125,7 +85,7 @@ class Instruction_module extends CI_Controller{
         // print_r($arr_data); die;
         
         
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['arr_data_top']        = $arr_data_top;
         $this->arr_view_data['page_title']      = $this->module_title." Details ";

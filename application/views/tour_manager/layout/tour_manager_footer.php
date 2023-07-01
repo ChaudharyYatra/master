@@ -228,22 +228,20 @@
  </script>
 
 
-    <script type="text/javascript">  
+    <!-- <script type="text/javascript">  
      $(document).ready(function(){
 
     <?php
-    $this->db->where('id',$this->session->userdata('agent_sess_id'));         
-    $check_login_data = $this->master_model->getRecord('agent','','password_change');
-    if($check_login_data['password_change']=='no' && $this->router->fetch_method()=='change_password'){
+    //$this->db->where('id',$this->session->userdata('supervision_sess_id'));         
+    //$check_login_data = $this->master_model->getRecord('supervision','','password_change');
+    //if($check_login_data['password_change']=='no' && $this->router->fetch_method()=='change_password'){
         ?>
         $("#agent_change_password").modal("show"); 
         <?php
-    }
+    //}
     ?>  
      });
-
-     
-</script>
+</script> -->
 <script type="text/javascript">  
 //      $(document).ready(function(){
 //           var login_count = $('#enquiry_login_count').val();
@@ -1409,7 +1407,7 @@ $('.received_qty').on('keyup', function() {
 
 <script>
   $("#submit").click(function() { 
-   
+//    alert('hiiiiiiiii');
      var temp_tbl_id =  $("#submit").val();
 // alert(temp_tbl_id);
 

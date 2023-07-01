@@ -212,13 +212,13 @@ margin-top: -9px;
 
 </style>
 
-<?php
-$this->db->where('id',$this->session->userdata('tour_manager_sess_id'));         
-$check_login_data = $this->master_model->getRecord('tour_manager','','password_change');
-if($check_login_data['password_change']=='no' && $this->router->fetch_method()!='change_password'){
-  redirect(base_url().'/tour_manager/change_password/change_password');
-}
-?>
+<!-- <?php
+//$this->db->where('id',$this->session->userdata('supervision_sess_id'));         
+//$check_login_data = $this->master_model->getRecord('tour_manager','','password_change');
+//if($check_login_data['password_change']=='no' && $this->router->fetch_method()!='change_password'){
+  //redirect(base_url().'/tour_manager/change_password/change_password');
+//}
+?> -->
 </head>
 <body class="hold-transition sidebar-mini scroll">
 <div class="wrapper">
@@ -286,7 +286,7 @@ if($check_login_data['password_change']=='no' && $this->router->fetch_method()!=
           </div> -->
 
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url(); ?>tour_manager/login/logout" role="button">
+            <a class="nav-link" href="<?php echo base_url(); ?>supervision/login/logout" role="button">
             <i class='fas fa-sign-out-alt' style='font-size:30px'></i>
             </a>
           </li>

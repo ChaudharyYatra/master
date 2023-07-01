@@ -9,6 +9,7 @@ class Login extends CI_Controller{
         
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/login";
 		$this->module_url_path_dashboard    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/dashboard";
+        $this->module_url_path_supervision    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/login";
         $this->module_title       = "Login";
         $this->module_url_slug    = "login";
         $this->module_view_folder = "login/";

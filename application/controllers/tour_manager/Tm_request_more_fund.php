@@ -6,9 +6,9 @@ class Tm_request_more_fund extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
 		
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tm_request_more_fund";
@@ -20,8 +20,8 @@ class Tm_request_more_fund extends CI_Controller{
 
 	public function index()
 	{ 
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         $record = array();
         $fields = "tm_request_more_fund.*,packages.tour_title,packages.tour_number,package_type.package_type";
@@ -33,7 +33,7 @@ class Tm_request_more_fund extends CI_Controller{
         // print_r($arr_data); die;
 
         $this->arr_view_data['listing_page']    = 'yes';
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -46,8 +46,8 @@ class Tm_request_more_fund extends CI_Controller{
     
     public function add($id,$did)
     {   
-		$tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+		$supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
         $id=base64_decode($id);
         $did=base64_decode($did);
@@ -62,7 +62,7 @@ class Tm_request_more_fund extends CI_Controller{
         $this->db->join("package_date", 'packages.id=package_date.package_id','left');
         $this->db->join("package_type", 'packages.package_type=package_type.id','left');
         $packages_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
-        // print_r($packages_data); die;
+        // print_r($packages_data); die;    
 
 
         if($this->input->post('submit'))
@@ -96,7 +96,7 @@ class Tm_request_more_fund extends CI_Controller{
        
         // print_r($package_type); die;
 
-        $this->arr_view_data['tour_manager_sess_name']          = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['packages_data']          = $packages_data;
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
@@ -111,9 +111,9 @@ class Tm_request_more_fund extends CI_Controller{
     
     public function delete($id)
      {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
-         
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
+
         $id=base64_decode($id);
          if(is_numeric($id))
          {   
@@ -198,8 +198,8 @@ public function active_inactive($id,$type)
     
     public function edit($id)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
         
 		$id=base64_decode($id);
         if ($id=='') 
@@ -248,7 +248,7 @@ public function active_inactive($id,$type)
         // print_r($arr_data); die;
         
         $this->arr_view_data['arr_data']        = $arr_data;
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
