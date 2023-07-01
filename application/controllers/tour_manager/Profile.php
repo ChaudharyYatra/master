@@ -10,9 +10,9 @@ class Profile extends CI_Controller {
 	function __construct() {
 
         parent::__construct();
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/profile";
         $this->module_title       = "Profile";
@@ -24,7 +24,8 @@ class Profile extends CI_Controller {
 
      public function index()
      {
-         $id = $this->session->userdata('tour_manager_sess_id');
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
          
          if ($id=='') 
          {
@@ -34,12 +35,12 @@ class Profile extends CI_Controller {
          
          
          $this->db->where('id',$id);         
-         $arr_data = $this->master_model->getRecords('tour_manager');
+         $arr_data = $this->master_model->getRecords('supervision');
 
 
          $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
          
-         $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
          $this->arr_view_data['arr_data']        = $arr_data;
          $this->arr_view_data['page_title']      = "Tour Manager Profile Details";
          $this->arr_view_data['module_title']    = $this->module_title;
@@ -54,8 +55,8 @@ class Profile extends CI_Controller {
      public function edit($id)
      {
 
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id');
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
          if ($id=='') 
          {
@@ -66,7 +67,7 @@ class Profile extends CI_Controller {
          if(is_numeric($id))
          {   
              $this->db->where('id',$id);
-             $arr_data = $this->master_model->getRecords('tour_manager');
+             $arr_data = $this->master_model->getRecords('supervision');
             //   print_r($arr_data); die;
              
             // $profile_update_count=$arr_data[0]['profile_update_count'];
@@ -164,9 +165,9 @@ class Profile extends CI_Controller {
                     // {
                     //     $profile_count = $profile_update_count+1;
                         $arr_update = array(
-                            'name'   =>    $name,
+                            'supervision_name'   =>    $name,
                             'email'          => $email,
-                            'contact'          => $contact
+                            'mobile_number1'          => $contact
                             // 'mobile_number1'          =>  $mobile_number1,
                             // 'mobile_number2'          => $mobile_number2,
                             // 'email'          => $email,
@@ -179,7 +180,7 @@ class Profile extends CI_Controller {
                         );
 
                      $arr_where     = array("id" => $id);
-                     $inserted_id = $this->master_model->updateRecord('tour_manager',$arr_update,$arr_where);
+                     $inserted_id = $this->master_model->updateRecord('supervision',$arr_update,$arr_where);
                     // }
                     // else
                     // {
@@ -232,7 +233,7 @@ class Profile extends CI_Controller {
          
          $this->arr_view_data['arr_data']        = $arr_data;
         //  $this->arr_view_data['profile_update_count']  = $profile_update_count;
-         $this->arr_view_data['tour_manager_sess_name'] = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
          $this->arr_view_data['page_title']      = "Edit Profile ".$this->module_title;
          $this->arr_view_data['module_title']    = $this->module_title;
          $this->arr_view_data['module_url_path'] = $this->module_url_path;

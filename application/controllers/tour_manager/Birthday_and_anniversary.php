@@ -6,9 +6,9 @@ class Birthday_and_anniversary extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
 		
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/birthday_and_anniversary";
@@ -20,8 +20,8 @@ class Birthday_and_anniversary extends CI_Controller{
 
 	public function index()
 	{ 
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         $record = array();
         $fields = "asign_tour_manager.*,all_traveller_info.dob,all_traveller_info.anniversary_date,all_traveller_info.mobile_number,all_traveller_info.first_name,all_traveller_info.middle_name,all_traveller_info.last_name,all_traveller_info.age";
@@ -31,7 +31,7 @@ class Birthday_and_anniversary extends CI_Controller{
         // print_r($arr_data); die;
 
         $this->arr_view_data['listing_page']    = 'yes';
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;

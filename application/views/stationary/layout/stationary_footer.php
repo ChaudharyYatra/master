@@ -523,6 +523,7 @@ $(".send_qty").each(function () {
                     return this.value;
                }).get();
 
+<<<<<<< HEAD
                //var from_count=from_series.length;
                
                // 
@@ -543,6 +544,15 @@ $(".send_qty").each(function () {
                          method: 'post',
                          url:'<?=base_url()?>stationary/stationary_request/save_details',
                          data: {order_id: order_id,
+=======
+        var remark = $('input[name="remark[]"]').map(function () {
+            return this.value; // $(this).val()
+        }).get();
+        $.ajax({
+                          method: 'post',
+                          url:'<?=base_url()?>stationary/stationary_request/save_details',
+                          data: {order_id: order_id,
+>>>>>>> rupali
                             order_d_id: order_d_id,
                             form_type: form_type,
                             academic_year: academic_year,
@@ -627,4 +637,65 @@ $(".send_qty").each(function () {
 
           });
 	});
+<script>
+  
+  function zoomin(){
+        var myImg = document.getElementById("img");
+        var currWidth = myImg.clientWidth;
+        if(currWidth == 2500) return false;
+         else{
+            myImg.style.width = (currWidth + 100) + "px";
+        } 
+    }
+    function zoomout(){
+        var myImg = document.getElementById("img");
+        var currWidth = myImg.clientWidth;
+        if(currWidth == 100) return false;
+		 else{
+            myImg.style.width = (currWidth - 100) + "px";
+        }
+    }
+
+    $(function(){
+  var zoomStep = 50;
+  var rotateStep = 90;
+  function zoom(step){
+    var image = $('.img-fluid');
+    image.width(image.width() + step);
+    setImageContainerDimensions();
+  }
+  function rotate(step){
+    var container = $('#imageModalBody');
+    var rotation = parseInt(container.attr('data-rotation'));
+    var newRotation = rotation + step;
+
+    newRotation = newRotation < 0 ? (newRotation + 360) % 360 : newRotation % 360;
+    $('#imageModalBody').removeClass('rotate' + rotation);
+    $('#imageModalBody').addClass('rotate' + newRotation);
+    container.attr('data-rotation', newRotation);
+    setImageContainerDimensions();
+  }
+  function setImageContainerDimensions(){
+    var container = $('#imageModalBody');
+    var image = container.find('.img-fluid');
+    
+    rotation = parseInt(container.attr('data-rotation'));
+    if (rotation % 180 == 90) {
+      container.width(image.height() + 17).height(image.width());
+    }
+    else {
+      container.width(image.width() + 17).height(image.height());
+    }
+  }
+  
+  $('.rotate-left').on('click', function(){
+        rotate(-rotateStep);
+  });
+  $('.rotate-right').on('click', function(){
+        rotate(rotateStep);
+  });
+  
+})
+
+
 </script>

@@ -10,9 +10,9 @@ class Change_password extends CI_Controller {
 	function __construct() {
 
         parent::__construct();
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/change_password";
         $this->module_title       = "Password Change";
@@ -23,11 +23,11 @@ class Change_password extends CI_Controller {
 
 public function change_password()
      {
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         if($this->input->post('submit'))
              {
-                $id = $this->session->userdata('tour_manager_sess_id');
-                
                  $this->form_validation->set_rules('old_pass', 'Old Password', 'required');
                  $this->form_validation->set_rules('new_password', 'New password', 'required');
                  $this->form_validation->set_rules('confirm_pass', 'Confirm Password', 'required');
@@ -38,7 +38,7 @@ public function change_password()
                     $confirm_pass = trim($this->input->post('confirm_pass'));
  
                     $this->db->where('id',$id);
-                    $arr_data = $this->master_model->getRecords('tour_manager');
+                    $arr_data = $this->master_model->getRecords('supervision');
                     
                     $existed_password = $arr_data[0]['password'];
                     
@@ -49,13 +49,13 @@ public function change_password()
                              'password_change' => 'yes',
                          );
                          $arr_where     = array("id" => $id);
-                         $this->master_model->updateRecord('tour_manager',$arr_update,$arr_where);
+                         $this->master_model->updateRecord('supervision',$arr_update,$arr_where);
 
                         $this->db->where('is_deleted','no');
                         $this->db->where('is_active','yes');
                         $this->db->where('id',$id);
                         $this->db->order_by('id','DESC');
-                        $agent_data_email = $this->master_model->getRecord('tour_manager');
+                        $agent_data_email = $this->master_model->getRecord('supervision');
                         $agent_email=$agent_data_email['email'];
                         $agent_name=$agent_data_email['agent_name'];
 
@@ -115,7 +115,7 @@ public function change_password()
 						// $this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
 
                              $this->session->set_flashdata('success_message',$this->module_title." Successfully.");
-                             redirect(base_url('tour_manager/login/logout'));
+                             redirect(base_url('supervision/login/logout'));
                          }
                          else
                          {
@@ -129,8 +129,7 @@ public function change_password()
                      redirect($this->module_url_path.'/change_password');
                  }   
              }
-             $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-         $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+             $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
          $this->arr_view_data['listing_page']    = 'yes';        
          $this->arr_view_data['page_title']      = $this->module_title." ";
          $this->arr_view_data['module_title']    = $this->module_title;
@@ -179,7 +178,8 @@ public function change_password()
 
      public function index()
      {
-        $id = $this->session->userdata('tour_manager_sess_id');
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
          if ($id=='') 
          {
              $this->session->set_flashdata('error_message','Invalid Selection Of Record');
@@ -188,9 +188,9 @@ public function change_password()
          
          
          $this->db->where('id',$id);         
-         $arr_data = $this->master_model->getRecords('tour_manager');
-         $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-         $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+         $arr_data = $this->master_model->getRecords('supervision');
+
+         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
          $this->arr_view_data['arr_data']        = $arr_data;
          $this->arr_view_data['page_title']      = "Details";
          $this->arr_view_data['module_title']    = $this->module_title;

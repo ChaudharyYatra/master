@@ -73,7 +73,7 @@
                     <b><span class="text-danger">Please Add Only Three Photos Of Particular Tour.</span></b>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" value="submit" id="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit" value="submit" id="tour_photos_submit">Submit</button>
 					        <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger">Cancel</button></a>
                 </div>
               </form>

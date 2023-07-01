@@ -6,9 +6,9 @@ class Suggestion_module extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
 		
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/suggestion_module";
@@ -20,12 +20,13 @@ class Suggestion_module extends CI_Controller{
 
 	public function index()
 	{ 
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         $record = array();
         $fields = "suggestion_module.*,packages.tour_title,packages.tour_number,package_type.package_type";
         $this->db->where('suggestion_module.is_deleted','no');
+        $this->db->where('suggestion_module.tm_id',$id);
         $this->db->order_by('suggestion_module.id','desc');
         $this->db->join("packages", 'suggestion_module.tour_number=packages.id','left');
         $this->db->join("package_type", 'suggestion_module.package_type=package_type.id','left');
@@ -33,7 +34,7 @@ class Suggestion_module extends CI_Controller{
         // print_r($arr_data); die;
 
         $this->arr_view_data['listing_page']    = 'yes';
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -46,8 +47,8 @@ class Suggestion_module extends CI_Controller{
     
     public function add()
     {   
-		$tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+		$supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         if($this->input->post('submit'))
         {
@@ -220,6 +221,7 @@ $file_name     = $_FILES['image_name_3']['name'];
                     'image_name'    => $filename,
                     'image_name_2'    => $new_img_filename,
                     'image_name_3'    => $inclusion_img_filename,
+                    'tm_id'    => $id,
                     'status'            => 'pending'
                 );
                 
@@ -254,7 +256,7 @@ $file_name     = $_FILES['image_name_3']['name'];
         $city = $this->master_model->getRecords('city');
         // print_r($package_type); die;
 
-        $this->arr_view_data['tour_manager_sess_name']          = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['packages_data']          = $packages_data;
         $this->arr_view_data['city']          = $city;
         $this->arr_view_data['package_type']          = $package_type;
@@ -271,8 +273,8 @@ $file_name     = $_FILES['image_name_3']['name'];
   
   public function active_inactive($id,$type)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
 	  	$id=base64_decode($id);
         if($id!="" && ($type == "yes" || $type == "no") )
@@ -317,8 +319,8 @@ $file_name     = $_FILES['image_name_3']['name'];
     
     public function delete($id)
      {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
          
         $id=base64_decode($id);
          if(is_numeric($id))
@@ -357,8 +359,8 @@ $file_name     = $_FILES['image_name_3']['name'];
     
     public function edit($id)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
         
 		$id=base64_decode($id);
         if ($id=='') 
@@ -604,12 +606,12 @@ $file_name     = $_FILES['image_name_3']['name'];
         $package_type = $this->master_model->getRecords('package_type');
         // print_r($package_type); die;
         
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['package_type']        = $package_type;
         $this->arr_view_data['city']        = $city;
         $this->arr_view_data['suggestion_data']        = $suggestion_data;
         $this->arr_view_data['packages_data']        = $packages_data;
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -621,8 +623,8 @@ $file_name     = $_FILES['image_name_3']['name'];
 
     public function details($id)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
 		$id=base64_decode($id);
         if ($id=='') 
@@ -641,7 +643,7 @@ $file_name     = $_FILES['image_name_3']['name'];
         $arr_data = $this->master_model->getRecords('suggestion_module',array('suggestion_module.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
         
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." Details ";
         $this->arr_view_data['module_title']    = $this->module_title;

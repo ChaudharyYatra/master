@@ -11,7 +11,7 @@ class Assign_staff extends CI_Controller{
                 redirect(base_url().'supervision/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('tour_operation_manager_panel_slug')."tour_operation_manager/assign_staff";
-        $this->module_title       = "Assign Staff  ";
+        $this->module_title       = "Assign Staff";
         $this->module_url_slug    = "assign_staff";
         $this->module_view_folder = "assign_staff/";    
         $this->load->library('upload');

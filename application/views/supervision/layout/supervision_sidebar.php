@@ -316,7 +316,125 @@
             </a>
            </li>
         </ul>
-        <?php }?>
+
+        <?php } elseif($this->session->userdata['supervision_role']=='6'){?>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/dashboard/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+          </li>
+
+          
+          
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_manager/suggestion_module/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               Suggestion Module
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_manager/instruction_module/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               Instruction Module
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_manager/tour_expenses/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               Tour Expenses
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                My Tour Operation
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/asign_tour_to_manager/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>My Asigned Tour</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/birthday_and_anniversary/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Birthday & Anniversary Module</p>
+                </a>
+              </li>
+
+              <!-- <li class="nav-item">
+                <a href="<?php //echo base_url(); ?>tour_manager/anniversary_module/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Anniversary Module</p>
+                </a>
+              </li> -->
+
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/tour_photos/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tour Photos</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/attendance/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daily Attendance</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/account_pay_amt/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Requested amount pay from account</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_manager/profile/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Profile
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_manager/change_password/change_password" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+              Change Password
+              </p>
+            </a>
+          </li>
+               
+           <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_manager/login/logout" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+           </li>
+        </ul>
+        <?php } ?>
 
       </nav>
       <!-- /.sidebar-menu -->
