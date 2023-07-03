@@ -37,6 +37,7 @@ class Asign_tour_to_manager extends CI_Controller{
         $this->db->join("supervision", 'assign_staff.role_name=supervision.id','left');
         $arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
+        
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['module_url_tour_photos'] = $this->module_url_tour_photos;
