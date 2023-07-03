@@ -56,7 +56,6 @@
                         <label>Name </label>
                         <select class="select_css row_set1 name" name="name[]" id="name" required="required">
                           <option value="">select name</option>
-                          
                         </select>
                       </div>
                     </div>

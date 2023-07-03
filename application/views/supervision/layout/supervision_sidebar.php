@@ -211,7 +211,7 @@
            </li>
         </ul>
         
-
+        
         <?php } elseif($this->session->userdata['supervision_role']=='5'){?>
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
@@ -324,9 +324,8 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
-          </li>
+            </li>
 
-          
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_manager/suggestion_module/index" class="nav-link">
@@ -337,14 +336,14 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="<?php echo base_url(); ?>tour_manager/instruction_module/index" class="nav-link">
+          <!-- <li class="nav-item">
+            <a href="<?php //echo base_url(); ?>tour_manager/instruction_module/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                Instruction Module
               </p>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_manager/tour_expenses/index" class="nav-link">
@@ -364,7 +363,6 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-               
               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>tour_manager/asign_tour_to_manager/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

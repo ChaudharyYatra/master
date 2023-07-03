@@ -43,14 +43,14 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="<?php echo base_url(); ?>tour_manager/instruction_module/index" class="nav-link">
+          <!-- <li class="nav-item">
+            <a href="<?php //echo base_url(); ?>tour_manager/instruction_module/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                Instruction Module
               </p>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_manager/tour_expenses/index" class="nav-link">
@@ -60,6 +60,15 @@
               </p>
             </a>
           </li>
+
+          <!-- <li class="nav-item">
+            <a href="<?php //echo base_url(); ?>tour_manager/customer_feedback/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               Feedback From Customer 
+              </p>
+            </a>
+          </li> -->
 
           <li class="nav-item">
             <a href="" class="nav-link">
@@ -116,6 +125,7 @@
             </ul>
           </li>
           
+
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_manager/profile/index" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
