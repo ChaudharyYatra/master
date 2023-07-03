@@ -87,6 +87,8 @@ class Instruction_module extends CI_Controller{
         
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['id']        = $id;
+        $this->arr_view_data['did']        = $did;
         $this->arr_view_data['arr_data_top']        = $arr_data_top;
         $this->arr_view_data['page_title']      = $this->module_title." Details ";
         $this->arr_view_data['module_title']    = $this->module_title;

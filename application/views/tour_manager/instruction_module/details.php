@@ -26,7 +26,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">Back</button></a>
+              <a href="<?php echo $module_url_path; ?>/index/<?php $aid=base64_encode($id); echo rtrim($aid, '=');?>/<?php $did=base64_encode($did); echo rtrim($did, '=');?>"><button class="btn btn-primary">Back</button></a>
               
             </ol>
           </div>

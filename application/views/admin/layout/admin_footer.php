@@ -611,7 +611,7 @@ $("#image_name_guide").change(function (e) {
              var input = $('<div class="col-md-2">'+
                               '<div class="form-group">'+
                                 '<label>Day Number</label>'+
-                                '<input type="number" class="form-control" name="day_number[]" id="day_number" placeholder="Enter Day Number" required>'+
+                                '<input type="number" class="form-control" name="day_number[]" id="day_number" placeholder="Enter Day Number" required value="'+day+'">'+
                               '</div>'+
                     '</div>'+
 
