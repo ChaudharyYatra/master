@@ -20,11 +20,12 @@ class User_operation extends CI_Controller{
 
 	public function index()
 	{	    
-        $fields = "supervision.*";
+        $fields = "supervision.*,role_type.role_name";
         // $this->db->order_by('agent.arrange_id','asc');        
         $this->db->where('supervision.is_deleted','no');        
-        // $this->db->join("department", 'agent.department=department.id','left');
+        $this->db->join("role_type", 'supervision.role_type=role_type.id','left');
         $arr_data = $this->master_model->getRecords('supervision',array('supervision.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
 
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
