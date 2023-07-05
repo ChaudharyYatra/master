@@ -4960,6 +4960,9 @@ $('#add_vehicle_details').validate({ // initialize the plugin
     $error.appendTo($element.closest("div"));
   },
     rules: {
+        vehicle_bus_type: {
+            required: true,
+        },
         vehicle_type: {
             required: true,
         },
@@ -5028,6 +5031,9 @@ $('#add_vehicle_details').validate({ // initialize the plugin
     },
 
     messages :{
+        vehicle_bus_type : {
+            required : "Please Select Vehicle Bus Type",
+        },
         vehicle_type : {
             required : "Please Select Vehicle Type",
         },
@@ -5109,6 +5115,9 @@ $('#edit_vehicle_details').validate({ // initialize the plugin
     $error.appendTo($element.closest("div"));
   },
     rules: {
+        vehicle_bus_type: {
+            required: true,
+        },
         vehicle_type: {
             required: true,
         },
@@ -5151,6 +5160,9 @@ $('#edit_vehicle_details').validate({ // initialize the plugin
     },
 
     messages :{
+        vehicle_bus_type : {
+            required : "Please Select Vehicle Bus Type",
+        },
         vehicle_type : {
             required : "Please Select Vehicle Type",
         },

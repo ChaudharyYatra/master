@@ -35,6 +35,18 @@
                 <div class="card-body">
                  <div class="row">
                       <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Bus Type</label><br>
+                          <select class="select_css" name="vehicle_bus_type" id="vehicle_bus_type">
+                            <option value="">Select Bus Type</option>
+                            <option value="1/2">1/2</option>
+                            <option value="1/3">1/3</option>
+                            <option value="2/2">2/2</option>
+                            <option value="2/3">2/3</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
                           <div class="form-group">
                             <label>Vehicle Type</label>
                             <select class="select_css" name="vehicle_type" id="vehicle_type" required="required">

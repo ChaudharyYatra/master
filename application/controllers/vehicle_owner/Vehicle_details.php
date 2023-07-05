@@ -27,6 +27,7 @@ class Vehicle_details extends CI_Controller{
 
         $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name";
         $this->db->where('vehicle_details.is_deleted','no');
+        $this->db->order_by('id','DESC');
         $this->db->join("vehicle_type", 'vehicle_details.vehicle_type=vehicle_type.id','left');
         $this->db->join("vehicle_fuel", 'vehicle_details.fuel_type=vehicle_fuel.id','left');
         $this->db->join("vehicle_brand", 'vehicle_details.vehicle_brand=vehicle_brand.id','left');
@@ -55,6 +56,7 @@ class Vehicle_details extends CI_Controller{
 
         if($this->input->post('submit'))
         {
+            $this->form_validation->set_rules('vehicle_bus_type', 'vehicle_bus_type', 'required');
             $this->form_validation->set_rules('vehicle_type', 'vehicle_type', 'required');
             $this->form_validation->set_rules('fuel_type', 'fuel_type', 'required');
             $this->form_validation->set_rules('vehicle_brand', 'vehicle_brand', 'required');
@@ -443,7 +445,8 @@ class Vehicle_details extends CI_Controller{
                  
              }
             // ====================Upload Vehicle Image(inside two)============================================
-              
+
+                $vehicle_bus_type  = $this->input->post('vehicle_bus_type'); 
                 $vehicle_type  = $this->input->post('vehicle_type'); 
                 $fuel_type        = trim($this->input->post('fuel_type'));
                 $vehicle_brand        = trim($this->input->post('vehicle_brand'));
@@ -459,6 +462,7 @@ class Vehicle_details extends CI_Controller{
                 $total_kilometer = trim($this->input->post('total_kilometer'));
                 
                 $arr_insert = array(
+                    'vehicle_bus_type'   =>   $vehicle_bus_type,
                     'vehicle_type'   =>   $vehicle_type,
                     'fuel_type'          => $fuel_type,
                     'vehicle_brand'          => $vehicle_brand,
@@ -634,6 +638,7 @@ class Vehicle_details extends CI_Controller{
         {   
             if($this->input->post('submit'))
             {
+                $this->form_validation->set_rules('vehicle_bus_type', 'vehicle_bus_type', 'required');
                 $this->form_validation->set_rules('vehicle_type', 'vehicle_type', 'required');
                 $this->form_validation->set_rules('fuel_type', 'fuel_type', 'required');
                 $this->form_validation->set_rules('vehicle_brand', 'vehicle_brand', 'required');
@@ -1117,6 +1122,7 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
 //============================upload  vehicle_insidetwo_image ========================================================
 
 
+                $vehicle_bus_type  = $this->input->post('vehicle_bus_type'); 
                 $vehicle_type  = $this->input->post('vehicle_type'); 
                 $fuel_type        = trim($this->input->post('fuel_type'));
                 $vehicle_brand        = trim($this->input->post('vehicle_brand'));
@@ -1132,6 +1138,7 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
                 $total_kilometer = trim($this->input->post('total_kilometer'));
 
                 $arr_update = array(
+                    'vehicle_bus_type'   =>   $vehicle_bus_type,
                     'vehicle_type'   =>   $vehicle_type,
                     'fuel_type'          => $fuel_type,
                     'vehicle_brand'          => $vehicle_brand,

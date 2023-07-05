@@ -271,11 +271,12 @@ class Tour_photos extends CI_Controller{
 
     // Edit - Get data for edit
     
-    public function edit($id,$did)
+    public function edit($tid,$id,$did)
     {
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');
 
+        $tid=base64_decode($tid);
         $id=base64_decode($id);
         $did=base64_decode($did);
         // $did=base64_decode($did);
@@ -465,10 +466,9 @@ $img_name_three_filename = $old_img_name_three;
 
                 $arr_update = array(
                     'destination'   =>   $destinations,
-                    'image_name	'   =>   $filename,
-                    'image_name_two	'   =>   $img_name_two_filename,
-                    'image_name_three	'   =>   $img_name_three_filename
-
+                    'image_name'   =>   $filename,
+                    'image_name_two'   =>   $img_name_two_filename,
+                    'image_name_three'   =>   $img_name_three_filename
                 );
 
                 $arr_where     = array("id" => $id);
@@ -493,9 +493,11 @@ $img_name_three_filename = $old_img_name_three;
             redirect($this->module_url_path.'/index');
         }
         
+        
         // $this->db->where('package_id',$id);
         $this->db->where('package_date_id',$did);
-        // $this->db->where('package_id',$id);
+        $this->db->where('package_id',$id);
+        $this->db->where('id',$tid);
         $this->db->where('is_active','yes');
         $this->db->where('is_deleted','no');
         $arr_data = $this->master_model->getRecords('tour_photos');

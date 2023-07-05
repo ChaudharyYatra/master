@@ -35,12 +35,13 @@
                   <tr>
                     <th>SN</th>
                     <th>Vehicle Name</th>
-				    <th>Vehicle Fuel</th>
+				            <th>Vehicle Fuel</th>
                     <th>Vehicle Brand</th>
                     <th>Seat Capacity</th>
                     <th>Vehicle Model</th>
                     <th>Status</th>
                     <!-- <th>Is Active?</th> -->
+                    <th>Action</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -94,12 +95,12 @@
                         <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
 							echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><i class="fa fa-thumbs-up"></i> </a>
                         <?php } ?>
-
-
-
-
                     </td>
 
+                    <td>
+                      <a href="<?php echo $module_url_path;?>/add_seat_preference/<?php $aid=base64_encode($info['id']); echo rtrim($aid, '='); ?>
+                      " ><button type="button" class="btn btn-primary">View</button></a>
+                    </td>
                   </tr>
                   
                   <?php $i++; } ?>

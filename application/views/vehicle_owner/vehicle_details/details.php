@@ -39,30 +39,36 @@
               <div class="card-body">
                 <table id="" class="table table-bordered table-hover">
                 <tr>
+                    <th>Vehicle Bus Type</th>
+                    <td><?php echo $info['vehicle_bus_type']; ?></td>
+
                     <th>Vehicle Type</th>
                     <td><?php echo $info['vehicle_type_name']; ?></td>
 
                     <th>Fuel Type</th>
                     <td><?php echo $info['vehicle_fuel_name']; ?></td>
                       
-                    <th>Vehicle Brand</th>
-                    <td><?php echo $info['vehicle_brand_name']; ?></td>
+                    
                   </tr>
 
                   <tr>
+                  <th>Vehicle Brand</th>
+                    <td><?php echo $info['vehicle_brand_name']; ?></td>
+
                   <th>Seat Capacity</th>
                     <td><?php echo $info['seat_capacity']; ?></td>
 
                     <th>Insurance Number</th>
                     <td><?php echo $info['insurance_number']; ?></td>
 
-                    <th>Insurance Validity Date</th>
-                    <td><?php echo $info['insurance_valid_date']; ?></td>
-
                     
                   </tr>
 
                   <tr>
+                  <th>Insurance Validity Date</th>
+                    <td><?php echo $info['insurance_valid_date']; ?></td>
+
+                    
                   <th>Upload Insurance Image</th>
                     <td>
                       <?php if(!empty($info['insurance_image_name'])){ ?>
@@ -80,13 +86,12 @@
                     <th>Permit Number</th>
                     <td><?php echo $info['permit_number']; ?></td>
 
-                    <th>Permit Number</th>
-                    <td><?php echo $info['permit_valid_date']; ?></td>
-
-                    
                   </tr>
 
                   <tr>
+                  <th>Permit Number</th>
+                    <td><?php echo $info['permit_valid_date']; ?></td>
+
                   <th>Upload Permit Image</th>
                     <td><?php if(!empty($info['permit_image_name'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/permit_photo/<?php echo $info['permit_image_name']; ?>" width="30%">
@@ -102,24 +107,25 @@
                     <th>Air Conditioners</th>
                     <td><?php echo $info['air_conditionar']; ?></td>
                     
-                    <th>vehicle Model</th>
-                    <td><?php echo $info['vehicle_model']; ?></td>
-
                   </tr>
 
                   <tr>
+                  <th>vehicle Model</th>
+                    <td><?php echo $info['vehicle_model']; ?></td>
+                    
                   <th>RTO Registration Number</th>
                     <td><?php echo $info['registration_number']; ?></td>
                     
                     <th>Luggage Carring Capacity(Kg)</th>
                     <td><?php echo $info['luggage_capacity']; ?></td>
 
-                    <th>Total kilometer(reading)</th>
-                    <td><?php echo $info['total_kilometer']; ?></td>
-
+                  
                      </tr>
 
                   <tr>
+                  <th>Total kilometer(reading)</th>
+                    <td><?php echo $info['total_kilometer']; ?></td>
+
                   <th>Vehicle Image(Front)</th>
                     <td><?php if(!empty($info['vehicle_front_image'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_front_image']; ?>" width="50%">
@@ -144,8 +150,10 @@
                                         <?php } ?>
                                       </td>
                  
+                    </tr>
 
-                    <th>Vehicle Image(left)</th>
+                  <tr>
+                  <th>Vehicle Image(left)</th>
                     <td><?php if(!empty($info['vehicle_left_image'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_left_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_left_img_name" id="old_vehicle_left_img_name" value="<?php echo $info['vehicle_left_image']; ?>">
@@ -157,9 +165,6 @@
                                         <?php } ?>
                                       </td>
 
-                    </tr>
-
-                  <tr>
                     <th>Vehicle Image(inside two)</th>
                     <td><?php if(!empty($info['vehicle_insidetwo_image'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insidetwo_image']; ?>" width="50%">
@@ -183,7 +188,10 @@
                                             <input type="hidden" name="old_vehicle_right_img_name" id="old_vehicle_right_img_name" value="<?php if(!empty($info['vehicle_right_image'])){echo $info['vehicle_right_image'];}?>">
                                         <?php } ?></td>
                     
-                    <th>Vehicle Image(inside one)</th>
+                  
+                  </tr>
+                  <tr>
+                  <th>Vehicle Image(inside one)</th>
                     <td><?php if(!empty($info['vehicle_insideone_image'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_insideone_img_name" id="old_vehicle_insideone_img_name" value="<?php echo $info['vehicle_insideone_image']; ?>">
@@ -193,7 +201,6 @@
                                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>">Download</a>
                                             <input type="hidden" name="old_vehicle_insideone_img_name" id="old_vehicle_insideone_img_name" value="<?php if(!empty($info['vehicle_insideone_image'])){echo $info['vehicle_insideone_image'];}?>">
                                         <?php } ?></td>
-                  
                   </tr>
 
 

@@ -85,7 +85,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Tour No / Name</label>
-                                <input type="text" class="form-control" name="tour_number_1" id="tour_number_1" value="<?php if(!empty($packages_data_info)){ echo $packages_data_info['tour_number'];} ?> - <?php if(!empty($packages_data_info)){ echo $packages_data_info['tour_title'];} ?>">
+                                <input readonly type="text" class="form-control" name="tour_number_1" id="tour_number_1" value="<?php if(!empty($packages_data_info)){ echo $packages_data_info['tour_number'];} ?> - <?php if(!empty($packages_data_info)){ echo $packages_data_info['tour_title'];} ?>">
                                 <input type="hidden" class="form-control" name="tour_number" id="tour_number" value="<?php echo $packages_data_info['id'];?>">
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Tour date</label>
-                                <input type="text" class="form-control" name="tour_date_1" id="tour_date_1" value="<?php if(!empty($packages_data_info)){ echo $packages_data_info['journey_date'];} ?>">
+                                <input readonly type="text" class="form-control" name="tour_date_1" id="tour_date_1" value="<?php if(!empty($packages_data_info)){ echo $packages_data_info['journey_date'];} ?>">
                                 <input type="hidden" class="form-control" name="tour_date" id="tour_date" value="<?php echo $packages_data_info['pd_id'];?>">
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                                 <label>Sub-Expenses Head</label>
                                 <select class="form-control" name="expense_category" id="expense_category" onchange='Expenses_category(this.value); 
                                   this.blur();' onfocus='this.size=4;' onblur='this.size=1;'>
-                                        <option value="">Select Sub-Expenses Head</option>
+                                        <option value="">Select Sub-Expenses Head </option>
                                         <?php //foreach($district_data as $district_data_value){ ?> 
                                         <option value="<?php //echo $district_data_value['id'];?>" <?php //if($district_data_value['id']==$all_traveller_info_value['district_name']){echo "selected";} ?>><?php //echo $district_data_value['district'];?></option>
                                         <?php //} ?>
