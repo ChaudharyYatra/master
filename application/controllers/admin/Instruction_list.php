@@ -14,7 +14,7 @@ class Instruction_list extends CI_Controller{
         $this->module_url_path_dates    =  base_url().$this->config->item('admin_panel_slug')."/package_dates";
 		$this->module_url_path_iternary    =  base_url().$this->config->item('admin_panel_slug')."/package_iternary";
 		$this->module_url_path_review    =  base_url().$this->config->item('admin_panel_slug')."/domestic_package_review";
-        $this->module_title       = "Instruction  ";
+        $this->module_title       = "Instruction";
         $this->module_url_slug    = "instruction_list";
         $this->module_view_folder = "instruction_list/";    
         $this->load->library('upload');

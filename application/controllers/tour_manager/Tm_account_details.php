@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Tm_request_more_fund extends CI_Controller{
+class Tm_account_details extends CI_Controller{
 
 	public function __construct()
 	{
@@ -11,10 +11,10 @@ class Tm_request_more_fund extends CI_Controller{
                 redirect(base_url().'supervision/login'); 
         }
 		
-        $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tm_request_more_fund";
-        $this->module_title       = "Request to Tour Operation Manager and Account for More Fund";
-        $this->module_url_slug    = "tm_request_more_fund";
-        $this->module_view_folder = "tm_request_more_fund/";    
+        $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tm_account_details";
+        $this->module_title       = "Tour Manager Account Details";
+        $this->module_url_slug    = "tm_account_details";
+        $this->module_view_folder = "tm_account_details/";    
         $this->load->library('upload');
 	}
 
@@ -24,18 +24,11 @@ class Tm_request_more_fund extends CI_Controller{
         $id = $this->session->userdata('supervision_sess_id');
 
         $record = array();
-        $fields = "tm_request_more_fund.*,packages.tour_title,packages.tour_number,package_type.package_type,
-        account_pay_details.payment_date,account_pay_details.payment_mode,account_pay_details.transaction_id,account_pay_details.transaction_amt,
-        account_pay_details.image_name,tm_account_details.bank_name,tm_account_details.account_no,
-        tm_account_details.acc_holder_nm,tm_account_details.branch_name,tm_account_details.branch_code,
-        tm_account_details.ifsc_code,tm_account_details.cif_no,tm_account_details.pan_no,tm_account_details.aadhaar_no,
-        account_pay_details.id as acc_id";
+        $fields = "tm_request_more_fund.*,packages.tour_title,packages.tour_number,package_type.package_type";
         $this->db->where('tm_request_more_fund.is_deleted','no');
         // $this->db->order_by('tm_request_more_fund.id','desc');
         $this->db->join("packages", 'tm_request_more_fund.tour_number=packages.id','left');
         $this->db->join("package_type", 'tm_request_more_fund.package_type=package_type.id','left');
-        $this->db->join("account_pay_details", 'tm_request_more_fund.id=account_pay_details.tm_request_more_fund_id','left');
-        $this->db->join("tm_account_details", 'tm_request_more_fund.Select_bank=tm_account_details.id','left');
         $arr_data = $this->master_model->getRecords('tm_request_more_fund',array('tm_request_more_fund.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
@@ -51,75 +44,69 @@ class Tm_request_more_fund extends CI_Controller{
 	}
         
     
-    public function add($id,$did)
+    public function add()
     {   
 		$supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');
 
-        $id=base64_decode($id);
-        $did=base64_decode($did);
-
-        $record = array();
-        $fields = "packages.*,package_date.journey_date,package_date.id as pd_id,package_type.package_type,
-        packages.package_type as pack_id,packages.id as pid";
-        $this->db->where('packages.is_deleted','no');
-        // $this->db->order_by('packages.id','desc');
-        $this->db->where('packages.id',$id);
-        $this->db->where('package_date.id',$did);
-        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
-        $this->db->join("package_type", 'packages.package_type=package_type.id','left');
-        $packages_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
-        // print_r($packages_data); die;    
-
-
         if($this->input->post('submit'))
         {
-                $package_type            = $this->input->post('package_type'); 
-                $tour_number      = trim($this->input->post('tour_number'));
-                $request_more_fund        = trim($this->input->post('request_more_fund'));
-                $select_transaction        = trim($this->input->post('select_transaction'));
-                $Select        = trim($this->input->post('Select'));
-                $upi_no        = trim($this->input->post('upi_no'));
-                $mob_no        = trim($this->input->post('mob_no'));
+            $this->form_validation->set_rules('bank_name', 'bank_name', 'required');
+            $this->form_validation->set_rules('acc_no', 'acc_no', 'required');
+            $this->form_validation->set_rules('acc_holder_nm', 'acc_holder_nm', 'required');
+            $this->form_validation->set_rules('branch_name', 'branch_name', 'required');
+            $this->form_validation->set_rules('branch_code', 'branch_code', 'required');
+            $this->form_validation->set_rules('ifsc_code', 'ifsc_code', 'required');
+            $this->form_validation->set_rules('cif_no', 'cif_no', 'required');
+            $this->form_validation->set_rules('pan_no', 'pan_no', 'required');
+            $this->form_validation->set_rules('aadhaar_no', 'aadhaar_no', 'required');
+
+                $bank_name          = $this->input->post('bank_name'); 
+                $acc_no             = $this->input->post('acc_no'); 
+                $acc_holder_nm             = $this->input->post('acc_holder_nm');
+                $branch_name             = $this->input->post('branch_name'); 
+                $branch_code             = $this->input->post('branch_code'); 
+                $ifsc_code             = $this->input->post('ifsc_code'); 
+                $cif_no             = $this->input->post('cif_no'); 
+                $pan_no             = $this->input->post('pan_no'); 
+                $aadhaar_no             = $this->input->post('aadhaar_no');  
                 $arr_insert = array(
-                    'package_type'   =>   $package_type,
-                    'tour_number'        => $tour_number,
-                    'more_fund_amt'          => $request_more_fund,
-                    'select_transaction'          => $select_transaction,
-                    'Select_bank'          => $Select,
-                    'upi_no'          => $upi_no,
-                    'mob_no'          => $mob_no,
-                    'tour_manager_id'          => $iid,
-                    'status'            => 'pending'
+                    'bank_name'   =>   $bank_name,
+                    'account_no'        => $acc_no,
+                    'acc_holder_nm'          => $acc_holder_nm,
+                    'branch_name'          => $branch_name,
+                    'branch_code'   =>   $branch_code,
+                    'ifsc_code'        => $ifsc_code,
+                    'cif_no'          => $cif_no,
+                    'pan_no'          => $pan_no,
+                    'aadhaar_no'          => $aadhaar_no,
+                    'tour_manager_id'          => $iid
+
                 );
                 
-                $inserted_id = $this->master_model->insertRecord('tm_request_more_fund',$arr_insert,true);
+                $inserted_id = $this->master_model->insertRecord('tm_account_details',$arr_insert,true);
                                
                 if($inserted_id > 0)
                 {    
-                    $this->session->set_flashdata('success_message',"Suggestion Record Added Successfully.");
-                    redirect($this->module_url_path.'/index');
+                    $this->session->set_flashdata('success_message',"Tour Manager Account Details Added Successfully.");
+                    redirect($this->module_url_path.'/add/.#bank_detail_alert.');
                 }
                 else
                 {
                     $this->session->set_flashdata('error_message'," Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
                 }
-                redirect($this->module_url_path.'/index');
+                redirect($this->module_url_path.'/add/.#bank_detail_alert.');
             
         }
-
-       
         // print_r($package_type); die;
 
-        
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $tm_account_details = $this->master_model->getRecords('tm_account_details');
         // print_r($tm_account_details); die;  
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
-        $this->arr_view_data['packages_data']          = $packages_data;
-        $this->arr_view_data['tm_account_details']          = $tm_account_details;
+        $this->arr_view_data['tm_account_details'] = $tm_account_details;
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -140,7 +127,7 @@ class Tm_request_more_fund extends CI_Controller{
          if(is_numeric($id))
          {   
              $this->db->where('id',$id);
-             $arr_data = $this->master_model->getRecords('tm_request_more_fund');
+             $arr_data = $this->master_model->getRecords('tm_account_details');
  
              if(empty($arr_data))
              {
@@ -150,7 +137,7 @@ class Tm_request_more_fund extends CI_Controller{
              $arr_update = array('is_deleted' => 'yes');
              $arr_where = array("id" => $id);
                   
-             if($this->master_model->updateRecord('tm_request_more_fund',$arr_update,$arr_where))
+             if($this->master_model->updateRecord('tm_account_details',$arr_update,$arr_where))
              {
                  $this->session->set_flashdata('success_message',$this->module_title.' Deleted Successfully.');
              }
@@ -170,18 +157,19 @@ class Tm_request_more_fund extends CI_Controller{
 
     //  ===========================================
 
-//   Active/Inactive
+// Active/Inactive
+  
 public function active_inactive($id,$type)
 {
-  $id=base64_decode($id);
-    if($id!='' && ($type == "yes" || $type == "no") )
+    $id=base64_decode($id);
+    if($id!='' && ($type == "yes" || $type == "no"))
     {   
         $this->db->where('id',$id);
-        $arr_data = $this->master_model->getRecords('tm_request_more_fund');
+        $arr_data = $this->master_model->getRecords('tm_account_details');
         if(empty($arr_data))
         {
            $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-           redirect($this->module_url_path.'/index');
+           redirect($this->module_url_path.'/add');
         }   
 
         $arr_update =  array();
@@ -189,15 +177,13 @@ public function active_inactive($id,$type)
         if($type == 'yes')
         {
             $arr_update['is_active'] = "no";
-            $arr_update['status'] = "rejected";
         }
         else
         {
-            $arr_update['is_active'] = "yes"; 
-            $arr_update['status'] = "approved";
+            $arr_update['is_active'] = "yes";
         }
         
-        if($this->master_model->updateRecord('tm_request_more_fund',$arr_update,array('id' => $id)))
+        if($this->master_model->updateRecord('tm_account_details',$arr_update,array('id' => $id)))
         {
             $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
         }
@@ -210,7 +196,7 @@ public function active_inactive($id,$type)
     {
        $this->session->set_flashdata('error_message','Invalid Selection Of Record');
     }
-    redirect($this->module_url_path.'/index');   
+    redirect($this->module_url_path.'/add');   
 }
 
 
@@ -235,46 +221,48 @@ public function active_inactive($id,$type)
             // $arr_data = $this->master_model->getRecords('suggestion_module');
             if($this->input->post('submit'))
             {
-                $package_type            = $this->input->post('package_type'); 
-                $tour_number      = trim($this->input->post('tour_number'));
-                $request_more_fund        = trim($this->input->post('request_more_fund'));
+                $bank_name          = $this->input->post('bank_name'); 
+                $acc_no             = $this->input->post('acc_no'); 
+                $acc_holder_nm             = $this->input->post('acc_holder_nm');
+                $branch_name             = $this->input->post('branch_name'); 
+                $branch_code             = $this->input->post('branch_code'); 
+                $ifsc_code             = $this->input->post('ifsc_code'); 
+                $cif_no             = $this->input->post('cif_no'); 
+                $pan_no             = $this->input->post('pan_no'); 
+                $aadhaar_no             = $this->input->post('aadhaar_no');  
                 $arr_update = array(
-                    'package_type'   =>   $package_type,
-                    'tour_number'        => $tour_number,
-                    'more_fund_amt'          => $request_more_fund
+                    'bank_name'   =>   $bank_name,
+                    'account_no'        => $acc_no,
+                    'acc_holder_nm'          => $acc_holder_nm,
+                    'branch_name'          => $branch_name,
+                    'branch_code'   =>   $branch_code,
+                    'ifsc_code'        => $ifsc_code,
+                    'cif_no'          => $cif_no,
+                    'pan_no'          => $pan_no,
+                    'aadhaar_no'          => $aadhaar_no
                 );
                     $arr_where     = array("id" => $id);
-                   $this->master_model->updateRecord('tm_request_more_fund',$arr_update,$arr_where);
+                   $this->master_model->updateRecord('tm_account_details',$arr_update,$arr_where);
                     if($id > 0)
                     {
-                        $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");
+                        $this->session->set_flashdata('success_message'," Bank Account Information Updated Successfully.");
                     }
                     else
                     {
                         $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
                     }
-                    redirect($this->module_url_path.'/index');
+                    redirect($this->module_url_path.'/add/.#acc_details.');
                 
             }
         }
         
 
-        $record = array();
-        $fields = "tm_request_more_fund.*,packages.tour_title,packages.tour_number,package_type.package_type,
-        packages.package_type as pack_id,packages.id as pid";
-        $this->db->where('tm_request_more_fund.is_deleted','no');
-        $this->db->where('tm_request_more_fund.id',$id);
-        $this->db->join("packages", 'tm_request_more_fund.tour_number=packages.id','left');
-        $this->db->join("package_type", 'tm_request_more_fund.package_type=package_type.id','left');
-        $arr_data = $this->master_model->getRecords('tm_request_more_fund',array('tm_request_more_fund.is_deleted'=>'no'),$fields);
-        // print_r($arr_data); die;
-
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
+        $this->db->where('tm_account_details.id',$id);
         $tm_account_details = $this->master_model->getRecords('tm_account_details');
         // print_r($tm_account_details); die;  
-        
-        $this->arr_view_data['arr_data']        = $arr_data;
+
         $this->arr_view_data['tm_account_details']        = $tm_account_details;
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
@@ -284,16 +272,31 @@ public function active_inactive($id,$type)
         $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
     }
 
-    // public function get_package(){ 
-    //     // POST data 
-    //     // $all_b=array();
-    //    $district_data = $this->input->post('did');
-    //     // print_r($boarding_office_location); die;
-    //                     $this->db->where('is_deleted','no');
-    //                     $this->db->where('is_active','yes');
-    //                     $this->db->where('package_type',$district_data);   
-    //                     $data = $this->master_model->getRecords('packages');
-    //     echo json_encode($data);
-    // }
+    public function details($id)
+    {
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
+
+		$tid=base64_decode($id);
+        
+        if ($id=='') 
+        {
+            $this->session->set_flashdata('error_message','Invalid Selection Of Record');
+            redirect($this->module_url_path.'/index');
+        }   
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->where('tm_account_details.id',$tid);
+        $tm_account_details = $this->master_model->getRecords('tm_account_details');
+        // print_r($tm_account_details); die;  
+
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
+        $this->arr_view_data['tm_account_details']        = $tm_account_details;
+        $this->arr_view_data['page_title']      = $this->module_title." Details ";
+        $this->arr_view_data['module_title']    = $this->module_title;
+        $this->arr_view_data['module_url_path'] = $this->module_url_path;
+        $this->arr_view_data['middle_content']  = $this->module_view_folder."details";
+        $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
+    }
 
 }

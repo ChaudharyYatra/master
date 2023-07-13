@@ -25,18 +25,55 @@ class Asign_driver extends CI_Controller{
         $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
         $id = $this->session->userdata('vehicle_owner_sess_id');
 
-        $fields = "asigned_driver.*,vehicle_driver.driver_name,vehicle_details.registration_number";
-        // $this->db->order_by('id','ASC');
-        $this->db->where('asigned_driver.is_deleted','no');
-        $this->db->join("vehicle_driver", 'asigned_driver.asign_driver_name=vehicle_driver.id','left');
-        $this->db->join("vehicle_details", 'asigned_driver.RTO_registration=vehicle_details.id','left');
-        $asigned_driver = $this->master_model->getRecords('asigned_driver',array('asigned_driver.is_deleted'=>'no'),$fields);
-        // print_r($asigned_driver); die;
+        // $record = array();
+        // $fields = "bus_open.*,vehicle_driver.driver_name";
+        // $this->db->order_by('bus_open.id','ASC');
+        // $this->db->where('bus_open.is_deleted','no');
+        // $this->db->where('bus_open.is_active','yes');
+        // $this->db->join("vehicle_driver", 'bus_open.asign_driver_name=vehicle_driver.id','left');
+        // $vehicle_driver_name = $this->master_model->getRecords('bus_open');
+        // // print_r($vehicle_driver_name); die;
 
+        // $quali1=array();
+        // $p = $vehicle_driver_name['asign_driver_name'];
+        // $quali1 = explode(',',$p);
+        // // print_r($quali1); die;
+
+        $record = array();
+        $fields = "bus_open.*,packages.tour_number,packages.tour_title,package_date.journey_date,
+        vehicle_details.registration_number,vehicle_owner.vehicle_owner_name,vehicle_driver.driver_name";
+        $this->db->order_by('bus_open.id','desc');
+        $this->db->where('bus_open.is_deleted','no');
+        $this->db->where('bus_open.is_active','yes');
+        $this->db->join("packages", 'bus_open.package_id=packages.id','left');
+        $this->db->join("package_date", 'bus_open.package_date_id=package_date.id','left');
+        $this->db->join("vehicle_details", 'bus_open.vehicle_rto_registration=vehicle_details.id','left');
+        $this->db->join("vehicle_owner", 'vehicle_details.vehicle_owner_id=vehicle_owner.id','left');
+        $this->db->join("vehicle_driver", 'bus_open.asign_driver_name=vehicle_driver.id','left');
+        $arr_data = $this->master_model->getRecords('bus_open',array('bus_open.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die; 
+
+
+        // $fields = "asigned_driver.*,vehicle_driver.driver_name,vehicle_details.registration_number";
+        // // $this->db->order_by('id','ASC');
+        // $this->db->where('asigned_driver.is_deleted','no');
+        // $this->db->join("vehicle_driver", 'asigned_driver.asign_driver_name=vehicle_driver.id','left');
+        // $this->db->join("vehicle_details", 'asigned_driver.RTO_registration=vehicle_details.id','left');
+        // $asigned_driver = $this->master_model->getRecords('asigned_driver',array('asigned_driver.is_deleted'=>'no'),$fields);
+        // // print_r($asigned_driver); die;
+
+        $this->db->order_by('id','ASC');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->where('status','approved');
+        $vehicle_driver = $this->master_model->getRecords('vehicle_driver');
+        // print_r($vehicle_driver); die;
         
         $this->arr_view_data['vehicle_ssession_owner_name']= $vehicle_ssession_owner_name;
         $this->arr_view_data['listing_page']    = 'yes';
-        $this->arr_view_data['asigned_driver']        = $asigned_driver;
+        $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['vehicle_driver']        = $vehicle_driver;
+        $this->arr_view_data['vehicle_driver_name']        = $vehicle_driver_name;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -49,31 +86,34 @@ class Asign_driver extends CI_Controller{
 	}
 	
 	
-    public function add()
+    public function add($aid)
     {   
+        $aid=base64_decode($aid);
+
         $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
         $id = $this->session->userdata('vehicle_owner_sess_id');
 
         if($this->input->post('submit'))
         {
-            $this->form_validation->set_rules('vehicle_rto_registration', 'vehicle_rto_registration', 'required');
+            // $this->form_validation->set_rules('vehicle_rto_registration', 'vehicle_rto_registration', 'required');
             $this->form_validation->set_rules('asign_driver_name[]', 'asign_driver_name', 'required');
             
             if($this->form_validation->run() == TRUE)
             {
-                $RTO_registration  = $this->input->post('vehicle_rto_registration'); 
-                $asign_driver_name = $this->input->post('asign_driver_name'); 
-                $asign_driver = count($asign_driver_name);
+                // $RTO_registration  = $this->input->post('vehicle_rto_registration'); 
+                $asign_driver_name = implode(",", $this->input->post('asign_driver_name')); 
+                // $asign_driver = count($asign_driver_name);
                 // print_r($asign_driver); die;
-                $i=0;
-                for($i=0; $i<$asign_driver; $i++){
-                $arr_insert = array(
-                    'RTO_registration'   =>   $RTO_registration,
-                    'asign_driver_name'  => $asign_driver_name[$i]
+                // $i=0;
+                // for($i=0; $i<$asign_driver; $i++){
+                $arr_update = array(
+                    // 'RTO_registration'   =>   $RTO_registration,
+                    'asign_driver_name'  => $asign_driver_name
                     
                 );
-                $inserted_id = $this->master_model->insertRecord('asigned_driver',$arr_insert,true);
-                } 
+                $arr_where     = array("id" => $aid);
+                $inserted_id = $this->master_model->updateRecord('bus_open',$arr_update,$arr_where);
+                // } 
                 // die;             
                 if($inserted_id > 0)
                 {
@@ -192,11 +232,12 @@ class Asign_driver extends CI_Controller{
     
     public function edit($id)
     {
+        $id=base64_decode($id);
+
         $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
         $iid = $this->session->userdata('vehicle_owner_sess_id');
 
-		$id=base64_decode($id);
-        if ($id=='') 
+        if ($iid=='') 
         {
             $this->session->set_flashdata('error_message','Invalid Selection Of Record');
             redirect($this->module_url_path.'/index');
@@ -205,21 +246,21 @@ class Asign_driver extends CI_Controller{
         {   
             if($this->input->post('submit'))
             {
-                $this->form_validation->set_rules('vehicle_rto_registration', 'vehicle_rto_registration', 'required');
+                // $this->form_validation->set_rules('vehicle_rto_registration', 'vehicle_rto_registration', 'required');
                 $this->form_validation->set_rules('asign_driver_name[]', 'driver_name', 'required');
                 
                 if($this->form_validation->run() == TRUE)
                 {
-                $RTO_registration  = $this->input->post('vehicle_rto_registration'); 
+                // $RTO_registration  = $this->input->post('vehicle_rto_registration'); 
                 $asign_driver_name = implode(",", $this->input->post('asign_driver_name')); 
 
                 $arr_update = array(
-                    'RTO_registration'   =>   $RTO_registration,
+                    // 'RTO_registration'   =>   $RTO_registration,
                     'asign_driver_name'  => $asign_driver_name
                 );
                 
                     $arr_where     = array("id" => $id);
-                    $this->master_model->updateRecord('asigned_driver',$arr_update,$arr_where);
+                    $this->master_model->updateRecord('bus_open',$arr_update,$arr_where);
                     if($id > 0)
                     {
                         $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");

@@ -131,6 +131,6 @@ public function add_seat_preference()
     $this->arr_view_data['middle_content']  = $this->module_view_folder."add_seat_preference";
     $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
 }
-   
+
    
 }

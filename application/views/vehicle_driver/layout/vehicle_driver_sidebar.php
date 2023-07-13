@@ -33,15 +33,6 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>vehicle_driver/asign_driver/index" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-              My Asign Vehicle
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
             <a href="<?php echo base_url(); ?>vehicle_driver/asign_tour/index" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>

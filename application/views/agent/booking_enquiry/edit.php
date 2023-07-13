@@ -34,11 +34,12 @@
               <?php
                    foreach($arr_data as $info) 
                    { 
+                    // print_r($arr_data); die;
                      ?>
               <form method="post" enctype="multipart/form-data" id="edit_bookingenquiry">
                 <div class="card-body">
                 <div class="row">
-					          <div class="col-md-4">
+					          <div class="col-md-6">
                           <div class="form-group">
                             <label>Mr / Mrs</label><br>
                             <select class="select_css" name="mrandmrs" id="mrandmrs">
@@ -66,7 +67,7 @@
                                     <input type="text" class="form-control" name="mobile_number" id="mobile_number" placeholder="Enter Mobile Number" value="<?php echo $info['mobile_number']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                         </div>
-					<div class="col-md-6">
+					              <div class="col-md-6">
                               <div class="form-group">
                                 <label>Whatsapp Mobile number</label>
                                 <input type="text" class="form-control" name="wp_mobile_number" id="wp_mobile_number" placeholder="Enter Whatsapp Mobile Number" value="<?php echo $info['wp_mobile_number']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">

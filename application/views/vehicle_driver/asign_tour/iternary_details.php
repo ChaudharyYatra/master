@@ -107,7 +107,7 @@
                   </table>
                     <br>
                     
-                  <?php if($arr_data[0]['iternary_desc']!= '') {?>
+                  <?php if(isset($arr_data[0]['iternary_desc'])!= '') {?>
                     <div class="scrollbar" id="style-3">
                     <div class="force-overflow">
                   <?php

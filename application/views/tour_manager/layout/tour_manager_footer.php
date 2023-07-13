@@ -5045,4 +5045,38 @@ $('#edit_tour_photo').validate({ // initialize the plugin
 </script>
 <!-- expenses category  -->
 
+<!-- Bank transaction ---------------------------------------- -->
+<script type="text/javascript">
+    function account_details(val){
+    var element=document.getElementById('bank_details_div');
+	var element2=document.getElementById('bank_details');
+
+    var upi_no_div=document.getElementById('upi_no_div');
+	var upi_no=document.getElementById('upi_no');
+
+    var mob_no_div=document.getElementById('mob_no_div');
+	var mob_no=document.getElementById('mob_no');
+
+    if(val=='Bank Transfer'){
+    upi_no_div.style.display='none';
+    mob_no_div.style.display='none';
+    element.style.display='block';
+    
+    }else if(val=='UPI') {
+    element.style.display='none';
+    mob_no_div.style.display='none';
+    upi_no_div.style.display='block';
+	// element2.value="";
+    }else if(val=='Mobile Number'){
+        element.style.display='none';
+        upi_no_div.style.display='none';
+        mob_no_div.style.display='block';
+    }
+    }
+</script>
+<!-- Bank transaction ---------------------------------------- -->
+
+
+
+
 

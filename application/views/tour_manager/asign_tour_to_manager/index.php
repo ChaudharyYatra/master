@@ -73,7 +73,7 @@
                       <?php }?>
 
                     <?php 
-                    $today= date('Y-m-d');
+                    $today= date('d-m-Y');
                     if($info['journey_date'] > $today) {?>
                       <td> upcoming Tour </td>
                     <?php } else if($info['journey_date'] == $today){

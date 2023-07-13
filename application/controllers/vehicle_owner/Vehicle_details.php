@@ -27,6 +27,7 @@ class Vehicle_details extends CI_Controller{
 
         $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name";
         $this->db->where('vehicle_details.is_deleted','no');
+        $this->db->where('vehicle_owner_id',$id);
         $this->db->order_by('id','DESC');
         $this->db->join("vehicle_type", 'vehicle_details.vehicle_type=vehicle_type.id','left');
         $this->db->join("vehicle_fuel", 'vehicle_details.fuel_type=vehicle_fuel.id','left');
@@ -484,6 +485,7 @@ class Vehicle_details extends CI_Controller{
                     'vehicle_right_image'    => $vehicle_right_filename,
                     'vehicle_insideone_image'    => $vehicle_insideone_filename,
                     'vehicle_insidetwo_image'    => $vehicle_insidetwo_filename,
+                    'vehicle_owner_id'    => $id,
                     'status'                  => 'pending'
                 );
                 

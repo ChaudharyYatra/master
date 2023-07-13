@@ -25,13 +25,13 @@ class Asign_driver extends CI_Controller{
         $vehicle_ssession_driver_name = $this->session->userdata('vehicle_ssession_driver_name');
         $id = $this->session->userdata('vehicle_driver_sess_id');
 
-        $fields = "asigned_driver.*,vehicle_driver.driver_name,vehicle_details.registration_number";
+        $fields = "bus_open.*,vehicle_driver.driver_name,vehicle_details.registration_number";
         // $this->db->order_by('id','ASC');
-        $this->db->where('asigned_driver.is_deleted','no');
+        $this->db->where('bus_open.is_deleted','no');
         // $this->db->where('vehicle_driver.id',$id);
-        $this->db->join("vehicle_driver", 'asigned_driver.asign_driver_name=vehicle_driver.id','left');
-        $this->db->join("vehicle_details", 'asigned_driver.RTO_registration=vehicle_details.id','left');
-        $asigned_driver = $this->master_model->getRecords('asigned_driver',array('asigned_driver.is_deleted'=>'no'),$fields);
+        $this->db->join("vehicle_driver", 'bus_open.asign_driver_name=vehicle_driver.id','left');
+        $this->db->join("vehicle_details", 'bus_open.vehicle_rto_registration=vehicle_details.id','left');
+        $asigned_driver = $this->master_model->getRecords('bus_open',array('bus_open.is_deleted'=>'no'),$fields);
         // print_r($asigned_driver); die;
 
         
@@ -58,7 +58,7 @@ class Asign_driver extends CI_Controller{
         if($id!="" && ($type == "yes" || $type == "no") )
         {   
             $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('asigned_driver');  
+            $arr_data = $this->master_model->getRecords('bus_open');  
             if(empty($arr_data))
             {
                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
@@ -76,7 +76,7 @@ class Asign_driver extends CI_Controller{
                 $arr_update['is_active'] = "yes";
             }
             
-            if($this->master_model->updateRecord('asigned_driver',$arr_update,array('id' => $id)))
+            if($this->master_model->updateRecord('bus_open',$arr_update,array('id' => $id)))
             {
                 $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
             }
@@ -100,7 +100,7 @@ class Asign_driver extends CI_Controller{
         if($id!='')
         {   
             $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('asigned_driver');
+            $arr_data = $this->master_model->getRecords('bus_open');
 
             if(empty($arr_data))
             {
@@ -110,7 +110,7 @@ class Asign_driver extends CI_Controller{
             $arr_update = array('is_deleted' => 'yes');
             $arr_where = array("id" => $id);
                  
-            if($this->master_model->updateRecord('asigned_driver',$arr_update,$arr_where))
+            if($this->master_model->updateRecord('bus_open',$arr_update,$arr_where))
             {
                 $this->session->set_flashdata('success_message',$this->module_title.' Deleted Successfully.');
             }

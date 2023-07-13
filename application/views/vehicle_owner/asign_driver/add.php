@@ -41,25 +41,10 @@
                 <div class="card-body">
                  <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                        <label>Vehicle RTO Registration No</label>
-                        <select class="select_css" name="vehicle_rto_registration" id="vehicle_rto_registration" required="required">
-                            <option value="">Select RTO Registration No</option>
-                            <?php
-                                foreach($vehicle_details as $vehicle_details_info) 
-                                { 
-                            ?>
-                                <option value="<?php echo $vehicle_details_info['id']; ?>"><?php echo $vehicle_details_info['registration_number']; ?></option>
-                            <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
+                      <div class="form-group">
                         <label>Driver Name</label>
                         <select class="select2" multiple="multiple" name="asign_driver_name[]" id="asign_driver_name" required="required">
-                            <option value="">Select Driver Name</option>
+                            <option>Select Driver Name</option>  
                             <?php
                                 foreach($vehicle_driver as $vehicle_driver_info) 
                                 { 
@@ -68,8 +53,8 @@
                             <?php } ?>
                             </select>
                         </div>
+                      </div>
                     </div>
-                </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit" value="submit" id="submit_slider">Submit</button>

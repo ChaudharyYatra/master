@@ -26,12 +26,17 @@ class Account_pay_amt_details extends CI_Controller{
         $record = array();
         $fields = "tm_request_more_fund.*,packages.tour_title,packages.tour_number,package_type.package_type,
         account_pay_details.payment_date,account_pay_details.payment_mode,account_pay_details.transaction_id,account_pay_details.transaction_amt,
-        account_pay_details.image_name";
+        account_pay_details.image_name,tm_account_details.bank_name,tm_account_details.account_no,
+        tm_account_details.acc_holder_nm,tm_account_details.branch_name,tm_account_details.branch_code,
+        tm_account_details.ifsc_code,tm_account_details.cif_no,tm_account_details.pan_no,tm_account_details.aadhaar_no,
+        account_pay_details.id as acc_id";
         $this->db->where('tm_request_more_fund.is_deleted','no');
+        $this->db->where('account_pay_details.Received_amt_status','yes');
         // $this->db->order_by('tm_request_more_fund.id','desc');
         $this->db->join("packages", 'tm_request_more_fund.tour_number=packages.id','left');
         $this->db->join("package_type", 'tm_request_more_fund.package_type=package_type.id','left');
         $this->db->join("account_pay_details", 'tm_request_more_fund.id=account_pay_details.tm_request_more_fund_id','left');
+        $this->db->join("tm_account_details", 'tm_request_more_fund.Select_bank=tm_account_details.id','left');
         $arr_data = $this->master_model->getRecords('tm_request_more_fund',array('tm_request_more_fund.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 

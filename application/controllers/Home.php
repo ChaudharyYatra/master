@@ -78,6 +78,10 @@ class Home extends CI_Controller {
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
         $this->db->where('package_type','1');
+        // $this->db->where('MONTH(package_date.journey_date)', date('m'));
+	    // $this->db->where('YEAR(package_date.journey_date)', date('Y'));
+	    // $this->db->order_by('id', 'RANDOM');
+	    // $this->db->limit(7);
         $this->db->join("package_date", 'packages.id=package_date.package_id','right');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $this->db->group_by('package_date.package_id');

@@ -49,8 +49,8 @@ class Booking_basic_info extends CI_Controller {
 
     public function add($iid="")
     {  
-         $agent_sess_name = $this->session->userdata('agent_name');
-         $id=$this->session->userdata('agent_sess_id');
+        $agent_sess_name = $this->session->userdata('agent_name');
+        $id=$this->session->userdata('agent_sess_id');
          
         $this->db->where('is_deleted','no');
         $this->db->where('id',$id);
@@ -157,6 +157,17 @@ class Booking_basic_info extends CI_Controller {
         // $this->db->where('domestic_enquiry_id',$iid);
         // $this->db->join("packages", 'packages.id=booking_basic_info.tour_no','left');
         // $booking_data = $this->master_model->getRecord('booking_basic_info');
+        // print_r($booking_data); die;
+
+        $record = array();
+        $fields = "booking_basic_info.*,packages.tour_number,packages.tour_title,package_date.journey_date,agent.booking_center";
+        $this->db->where('booking_basic_info.is_deleted','no');
+        $this->db->where('booking_basic_info.domestic_enquiry_id',$iid);
+        $this->db->join("package_date", 'booking_basic_info.tour_date=package_date.id','left');
+        $this->db->join("packages", 'booking_basic_info.tour_no=packages.id','left');
+        $this->db->join("agent", 'booking_basic_info.boarding_office_location=agent.id','left');
+        $booking_data = $this->master_model->getRecord('booking_basic_info',
+        array('booking_basic_info.is_deleted'=>'no'),$fields);
         // print_r($booking_data); die;
 
         $record = array();

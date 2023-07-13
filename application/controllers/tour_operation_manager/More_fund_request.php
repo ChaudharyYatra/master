@@ -48,41 +48,29 @@ class More_fund_request extends CI_Controller{
     public function add()
     {   
         $supervision_sess_name = $this->session->userdata('supervision_name');
-        $id = $this->session->userdata('supervision_sess_id');   
+        $iid = $this->session->userdata('supervision_sess_id');   
 
-
-        
         if($this->input->post('submit'))
         {
+            $this->form_validation->set_rules('approval_amt', 'approval_amt', 'required');
 
-            $this->form_validation->set_rules('package_type', 'package_type', 'required');
-            $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
-            $this->form_validation->set_rules('hotel_name', 'hotel_name', 'required');
-            $this->form_validation->set_rules('advance_amt', 'advance_amt', 'required');
-
-            
             if($this->form_validation->run() == TRUE)
             {
+                $approval_amt	  = $this->input->post('approval_amt');
+                $tm_request_fund_id	  = $this->input->post('tm_request_fund_id');
+               
+                $today= date('Y-m-d');
+                    $arr_update = array(
+                        'tom_approval_amt'   =>   $approval_amt,
+                        'tom_approval_date'   =>   $today
 
-                $package_type	  = $this->input->post('package_type'); 
-                $tour_number	  = $this->input->post('tour_number');
-                $hotel_name	  = $this->input->post('hotel_name');
-                $advance_amt	  = $this->input->post('advance_amt');
-
-
-                    $arr_insert = array(
-                        'package_type'   =>   $package_type,
-                        'tour_number'   =>   $tour_number,
-                        'hotel_name'   =>   $hotel_name,
-                        'advance_amt'   =>   $advance_amt
                     );
-
-                    $inserted_id = $this->master_model->insertRecord('hotel_advance_payment',$arr_insert,true);
-                
-                               
+                    $arr_where     = array("id" => $tm_request_fund_id);
+                    $inserted_id = $this->master_model->updateRecord('tm_request_more_fund',$arr_update,$arr_where);
+                   
                 if($inserted_id > 0)
                 {
-                    $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
+                    $this->session->set_flashdata('success_message'," Approval Amount Added Successfully.");
                     redirect($this->module_url_path.'/index');
                 }
 

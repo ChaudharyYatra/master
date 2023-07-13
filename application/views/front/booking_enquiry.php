@@ -1,3 +1,45 @@
+    
+    <style>
+        /* .btn-process{
+  font-size: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #256EFF;
+  box-shadow:0px 15px 27px 2px rgba(37,110,255,0.28);
+  border:none;
+  outline:none;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 3rem;
+  border-radius:1rem;
+  color:#fff;
+  cursor:pointer;
+} */
+.btn-ring{
+  display: none;
+}
+.btn-ring:after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: ring 1.2s linear infinite;
+}
+@keyframes ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+    </style>
+    
     <!-- BreadCrumb Starts -->  
     <section class="breadcrumb-main pb-20 pt-14" style="background-image: url(<?php echo base_url(); ?>uploads/do_not_delete/Booking.png);">
         <div class="section-shape section-shape1 top-inherit bottom-0" style="background-image: url(images/shape8.png);"></div>
@@ -128,7 +170,10 @@
                                             <!--<input type="checkbox"> By continuing, you agree to the <a href="#">Terms and Conditions.</a>-->
                                         </div>
                                         <!-- <a href="#" class="nir-btn float-lg-end w-25" name="submit">CONFIRM BOOKING</a> -->
-                                        <input type="submit" class="nir-btn float-lg-end w-25" id="submit" value="submit" name="submit">
+                                        <!-- <input type="submit" class="nir-btn float-lg-end w-25" id="submit" value="submit" name="submit"> -->
+                                      
+                                            <button type="submit" class="btn-process btn nir-btn float-lg-end w-25" name="submit" value="submit" id="btn_agent">Submit  <span class="btn-ring"></span></button>
+                                        
                                     </div>
                                 </form>
                                 </div>
@@ -140,4 +185,19 @@
             </div>
         </div>
     </section>
+
+
+    <script>
+          $('.btn-process').on('click', function() {
+                $(".btn-ring").show();
+                $(".btn-process").prop('disabled',true); 
+                $(".btn-process").val('disabled');
+                setTimeout(function() {
+                $(".btn-ring").hide();
+                $(".btn-process").prop('disabled',false);
+            }, 3000);
+            });
+    </script>
+
+
     <!-- top Destination ends -->

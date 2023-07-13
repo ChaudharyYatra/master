@@ -116,6 +116,13 @@
               </li>
 
               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/tm_request_more_fund/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Requested amt details</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="<?php echo base_url(); ?>tour_manager/account_pay_amt/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Requested amount pay from account</p>
@@ -125,6 +132,14 @@
             </ul>
           </li>
           
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_manager/tm_account_details/add" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Account Details
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_manager/profile/index" class="nav-link">

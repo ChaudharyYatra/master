@@ -327,6 +327,7 @@ class Packages extends CI_Controller {
                         'media_source_name'    =>$media_source_name,
 						'wp_mobile_number'=>$wp_mobile_number,
 						'enquiry_from'=> 'front'
+                        
                     );
                     $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
                     
