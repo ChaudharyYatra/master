@@ -134,6 +134,7 @@
                         <!--<button type="button" class="btn btn-primary btn-sm btn_follow" attr-test="no" disabled>Booking</button>-->
                         <!-- <button type="button" class="btn btn-primary btn-sm btn_follow" class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#booking">Booking</button> -->
                         <a href="<?php echo $module_url_booking_basic_info;?>/add/<?php echo $info['booking_enquiry_id']; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow" class="dropdown-item">Booking</button></a>
+                     
                         <?php } ?>
                     </td>
                     <!-- <td>
@@ -199,6 +200,9 @@
                     </div>
                   </div>
                 </div>
+
+
+
                   <?php $i++; } ?>
                   
                   </tbody>

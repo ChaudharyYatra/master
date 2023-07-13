@@ -51,6 +51,14 @@ class Booking_preview extends CI_Controller {
         $seat_type_room_type_data = $this->master_model->getRecords('seat_type_room_type',array('seat_type_room_type.is_deleted'=>'no'),$fields);
 
         $record = array();
+        $fields = "all_traveller_info.*, package_date.cost";
+        // $this->db->order_by('id','desc');
+        $this->db->where('all_traveller_info.is_deleted','no');
+        $this->db->where('all_traveller_info.domestic_enquiry_id',$iid);
+        $this->db->join("package_date", 'all_traveller_info.package_id= package_date.package_id','left');
+        $arr_package_info = $this->master_model->getRecord('all_traveller_info');
+
+        $record = array();
         $fields = "bus_seat_book.*";
         $this->db->where('bus_seat_book.is_deleted','no');
         $this->db->where('bus_seat_book.enquiry_id',$iid);
@@ -63,6 +71,7 @@ class Booking_preview extends CI_Controller {
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['seat_type_room_type_data']        = $seat_type_room_type_data;
         $this->arr_view_data['bus_seat_book_data']        = $bus_seat_book_data;
+        $this->arr_view_data['arr_package_info']        = $arr_package_info;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;

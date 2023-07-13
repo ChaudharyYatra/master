@@ -1,4 +1,8 @@
-
+<style>
+    a {
+    text-decoration: none !important;
+    }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -226,32 +230,253 @@
                     { 
                     ?>
                     <table id="example2" class="table table-bordered table-hover table-striped">
-                        <tr>
-                            <?php if($info['total_allocated_rooms_1']!='') { ?>
-                            <th>One bed room</th>
-                            <td><?php echo $info['total_allocated_rooms_1']; ?></td>
-                            <?php } ?>
+                        <tr style="border-bottom: 2px solid;">
+                            <th>Room Type</th>
+                            <th>Booked Room</th>
 
-                            <?php if($info['total_allocated_rooms_2']!='') { ?>
-                            <th>Two bed room</th>
-                            <td><?php echo $info['total_allocated_rooms_2']; ?></td>
-                            <?php } ?>
                         </tr>
                         <tr>
-                            <?php if($info['total_allocated_rooms_3']!='') { ?>
-                            <th>Two bed & one mattress room</th>
+
+                            <?php if($info['total_allocated_rooms_1']!= '') { ?>
+                            <td>1 Bed - One Room</td>
+                            <td><?php echo $info['total_allocated_rooms_1']; ?></td>
+                            <?php }  ?>
+                            
+                        </tr>
+
+                        <tr>
+
+                            <?php if($info['total_allocated_rooms_2']!= '') { ?>
+                            <td>2 Bed - One Room</td>
+                            <td><?php echo $info['total_allocated_rooms_2']; ?></td>
+                            <?php } ?>
+
+                        </tr>
+
+                        <tr>
+
+                            <?php if($info['total_allocated_rooms_3']!= '') { ?>
+                            <td>3 Bed - One Room</td>
                             <td><?php echo $info['total_allocated_rooms_3']; ?></td>
                             <?php } ?>
 
-                            <?php if($info['total_allocated_rooms_4']!='') { ?>
-                            <th>Three bed & two mattress room</th>
+                        </tr>
+
+                        <tr>
+                            
+                            <?php if($info['total_allocated_rooms_4']!= '') { ?>
+                            <td>4 Bed - One Room</td>
                             <td><?php echo $info['total_allocated_rooms_4']; ?></td>
                             <?php } ?>
+
                         </tr>
 
                     </table>
                     <?php } ?>
                 </div>
+
+                <div class="card-body">
+                    <h5> Details :</h5>
+                    <?php
+                    foreach($seat_type_room_type_data as $info) 
+                    { 
+                    ?>
+                    <table id="example2" class="table table-bordered table-hover table-striped">
+                        <tr style="border-bottom: 2px solid;">
+                            <th>SN</th>
+                            <th>Room Type</th>
+                            <th>Adult</th>
+                            <th>90%</th>
+                            <th>60%</th>
+                            <th>40%</th>
+                            <th>0%</th>
+                            <th>Total</th>
+
+                        </tr>
+                        
+                        <tr>
+                            <th>1</th>
+
+                            <td>1 Bed - One Room</td>
+                            <?php if($info['onebed_oneroom_cost_adult']!= '') { ?>
+                            <td><?php echo $info['onebed_oneroom_cost_adult']; ?>*<?php echo $info['onebed_oneroom_cost']; ?>=<?php echo $multiplication_1 = $info['onebed_oneroom_cost_adult']*$info['onebed_oneroom_cost']; ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php echo $info['onebed_oneroom_cost']; ?>=0</td>
+                            <?php } ?>
+
+                            <td Readonly></td>
+
+                            <td Readonly></td>
+
+                            <?php if($info['onebed_oneroom_40']!= '') { ?>
+                            <td><?php $h=100; $fourty=40; $ans=$info['onebed_oneroom_cost']/$h*$fourty; echo $info['onebed_oneroom_40']; ?>*<?php echo $ans; ?>=<?php echo $multiplication_40 = $info['onebed_oneroom_40']*$ans; ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $fourty=40; $ans=$info['onebed_oneroom_cost']/$h*$fourty; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['onebed_oneroom_0']!= '') { ?>
+                            <td><?php echo $info['onebed_oneroom_0']; ?></td>
+                            <?php } else{ ?>
+                            <td>0</td>
+                            <?php } ?>
+
+                            <td>
+                                <?php if($info['total_onebed_oneroom']!= '') { ?>
+                                <?php echo $info['total_onebed_oneroom']; ?>
+                                <?php } else{ ?>
+                                    0
+                                <?php } ?>
+                            </td>
+                            
+                        </tr>
+
+                        <tr>
+                            <th>2</th>
+
+                            <td>2 Bed - One Room</td>
+                            <?php if($info['twobed_oneroom_cost_adult']!= '') { ?>
+                            <td><?php echo $info['twobed_oneroom_cost_adult']; ?>*<?php echo $info['twobed_oneroom_cost']; ?>=<?php echo $multiplication_2 = $info['twobed_oneroom_cost_adult']*$info['twobed_oneroom_cost'] ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php echo $info['twobed_oneroom_cost']; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['twobed_oneroom_count_90']!= '') { ?>
+                            <td><?php $h=100; $ninety=90; $ans=$info['twobed_oneroom_cost']/$h*$ninety; echo $info['twobed_oneroom_count_90']; ?>*<?php echo $ans; ?>=<?php echo $multiplication_2 = $info['twobed_oneroom_count_90']*$ans; ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $ninety=90; $ans=$info['twobed_oneroom_cost']/$h*$ninety; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['twobed_oneroom_count_60']!= '') { ?>
+                            <td><?php $h=100; $sixty=60; $ans=$info['twobed_oneroom_cost']/$h*$sixty; echo $info['twobed_oneroom_count_60']; ?>*<?php echo $ans; ?>=<?php echo $multiplication_2 = $info['twobed_oneroom_count_60']*$ans; ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $sixty=60; $ans=$info['twobed_oneroom_cost']/$h*$sixty; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['twobed_oneroom_count_40']!= '') { ?>
+                            <td><?php $h=100; $fourty=40; $ans=$info['twobed_oneroom_cost']/$h*$fourty; echo $info['twobed_oneroom_count_40']; ?>*<?php echo $ans; ?>=<?php echo $multiplication_2 = $info['twobed_oneroom_count_40']*$ans; ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $fourty=40; $ans=$info['twobed_oneroom_cost']/$h*$fourty; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['twobed_oneroom_count_0']!= '') { ?>
+                            <td><?php echo $info['twobed_oneroom_count_0']; ?></td>
+                            <?php } else{ ?>
+                            <td>0</td>
+                            <?php } ?>
+
+                            <td>
+                                <?php if($info['total_twobed_oneroom']!= '') { ?>
+                                <?php echo $info['total_twobed_oneroom']; ?>
+                                <?php } else{ ?>
+                                0
+                                <?php } ?>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <th>3</th>
+
+                            <td>3 Bed - One Room</td>
+                            <?php if($info['threebed_oneroom_cost_adult']!= '') { ?>
+                            <td><?php echo $info['threebed_oneroom_cost_adult']; ?>*<?php echo $info['threebed_oneroom_cost']; ?>=<?php echo $multiplication_2 = $info['threebed_oneroom_cost_adult']*$info['threebed_oneroom_cost'] ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php echo $info['threebed_oneroom_cost']; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['threebed_oneroom_count_90']!= '') { ?>
+                            <td><?php $h=100; $ninety=90; $ans=$info['threebed_oneroom_cost']/$h*$ninety; echo $info['threebed_oneroom_count_90']; ?>*<?php echo $ans ?>=<?php echo $multiplication_2 = $info['threebed_oneroom_count_90']*$ans; ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $ninety=90; $ans=$info['threebed_oneroom_cost']/$h*$ninety; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['threebed_oneroom_count_60']!= '') { ?>
+                            <td><?php $h=100; $sixty=60; $ans=$info['threebed_oneroom_cost']/$h*$sixty; echo $info['threebed_oneroom_count_60']; ?>*<?php echo $ans ?>=<?php echo $multiplication_2 = $info['threebed_oneroom_count_60']*$ans; ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $sixty=60; $ans=$info['threebed_oneroom_cost']/$h*$sixty; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['threebed_oneroom_count_40']!= '') { ?>
+                            <td><?php $h=100; $fourty=40; $ans=$info['threebed_oneroom_cost']/$h*$fourty; echo $info['threebed_oneroom_count_40']; ?>*<?php echo $ans ?>=<?php echo $multiplication_2 = $info['threebed_oneroom_count_40']*$ans; ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $fourty=40; $ans=$info['threebed_oneroom_cost']/$h*$fourty; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['threebed_oneroom_count_0']!= '') { ?>
+                            <td><?php echo $info['threebed_oneroom_count_0']; ?></td>
+                            <?php } else{ ?>
+                            <td>0</td>
+                            <?php } ?>
+
+                            <td>
+                                <?php if($info['total_threebed_oneroom']!= '') { ?>
+                                <?php echo $info['total_threebed_oneroom']; ?>
+                                <?php } else{ ?>
+                                0
+                                <?php } ?>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <th>4</th>
+
+                            <td>4 Bed - One Room</td>
+                            <?php if($info['fourbed_oneroom_cost_adult']!= '') { ?>
+                            <td><?php echo $info['fourbed_oneroom_cost_adult']; ?>*<?php echo $info['fourbed_oneroom_cost']; ?>=<?php echo $multiplication_2 = $info['fourbed_oneroom_cost_adult']*$info['fourbed_oneroom_cost'] ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php echo $info['fourbed_oneroom_cost']; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['fourbed_oneroom_count_90']!= '') { ?>
+                            <td><?php $h=100; $ninety=90; $ans=$info['fourbed_oneroom_cost']/$h*$ninety; echo $info['fourbed_oneroom_count_90']; ?>*<?php echo $ans ?>=<?php echo $multiplication_2 = $info['fourbed_oneroom_count_90']*$ans ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $ninety=90; $ans=$info['fourbed_oneroom_cost']/$h*$ninety; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['fourbed_oneroom_count_60']!= '') { ?>
+                            <td><?php $h=100; $sixty=60; $ans=$info['fourbed_oneroom_cost']/$h*$sixty; echo $info['fourbed_oneroom_count_60']; ?>*<?php echo $ans ?>=<?php echo $multiplication_2 = $info['fourbed_oneroom_count_60']*$ans ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $sixty=60; $ans=$info['fourbed_oneroom_cost']/$h*$sixty; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['fourbed_oneroom_count_40']!= '') { ?>
+                            <td><?php $h=100; $fourty=40; $ans=$info['fourbed_oneroom_cost']/$h*$fourty; echo $info['fourbed_oneroom_count_40']; ?>*<?php echo $ans ?>=<?php echo $multiplication_2 = $info['fourbed_oneroom_count_40']*$ans ?></td>
+                            <?php } else{ ?>
+                            <td>0*<?php $h=100; $fourty=40; $ans=$info['fourbed_oneroom_cost']/$h*$fourty; echo $ans; ?>=0</td>
+                            <?php } ?>
+
+                            <?php if($info['fourbed_oneroom_count_0']!= '') { ?>
+                            <td><?php echo $info['fourbed_oneroom_count_0']; ?></td>
+                            <?php } else{ ?>
+                            <td>0</td>
+                            <?php } ?>
+
+                            <td>
+                                <?php if($info['total_fourbed_oneroom']!= '') { ?>
+                                <?php echo $info['total_fourbed_oneroom']; ?>
+                                <?php } else{ ?>
+                                0
+                                <?php } ?>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <th>Total</th>
+                            <th><?php echo $info['total_hotel_amount']; ?></th>
+                        </tr>
+
+                    </table>
+                    <?php } ?>
+                </div>
+
 
               <!-- /.card-header -->
               <!-- form start -->

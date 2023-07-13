@@ -49,10 +49,8 @@
                     <th>Package details</th>
                     <th>Email</th>
                     <th>Contact Number</th>
-                    <th>Enquiry Date</th>
-                    <th>Followup form</th>
-                    <!-- <th>Followup List</th> -->
-                    <th>Action</th>
+                    <th>SRA No.</th>
+                    <th>SRA Date</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -75,32 +73,8 @@
                     <td><?php echo $info['tno']; ?> - <?php echo $info['tour_title']; ?></td>
                     <td><?php echo $info['email']; ?></td>
                     <td><?php echo $info['mobile_number']; ?></td>
-                    <td><?php echo date("d-m-Y",strtotime($info['created_at'])); ?></td>
-
-                    <td>
-                      <?php
-                          if($count > 0)
-                          {
-                      ?>
-                      <h6>Follow Already Taken</h6>
-                      <?php        
-                          }else{
-                      ?>
-                      <!--<a data-bs-toggle="modal" data-bs-target="#exampleModal" class="enq_id" data-bs-whatever="Form" data-enq-id="<?php //echo $enq_id;?>"><img src=<?php //echo base_url(); ?>uploads\do_not_delete\follow.png height="30%" width="30%" alt></img></a>-->
-                      <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="enq_id" data-bs-whatever="Form" data-enq-id="<?php echo $enq_id;?>"><button type="button" class="btn btn-primary btn-sm btn_follow take_followup_btn" class="dropdown-item">Take Followup</button> </a>
-                      <a href="<?php echo $module_url_path_booking_basic_info;?>/add/<?php echo $enq_id; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow mt-1" class="dropdown-item">Booking</button></a>                 
-                    </td>
-                     <?php } ?>
-                     
-                    <!-- <td>
-                    <a href="<?php //echo $module_url_path_domestic_followup;?>/index/<?php //echo $info['id']; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow" class="dropdown-item">View</button></a>
-                    </td> -->
-                    
-                    <td>
-                      <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id'];  ?>" ><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
-                      <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
-                    </td>
-
+                    <td><?php echo $info['sra_number']; ?></td>
+                    <td><?php echo date("d-m-Y",strtotime($info['sra_date'])); ?></td>
               
 
                   </tr>
@@ -157,6 +131,42 @@
                   </div>
                 </div>
 
+                <!-- ---------------------- -->
+
+                <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel">SRA Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="post" action="<?php echo $module_url_path;?>/sra_booking">
+                          <div class="col-md-12">
+                            <div class="row">
+                              <div class="col-md-6 mb-2">
+                                <label class="col-form-label">SRA Date:</label> 
+                                <input type="date" class="form-control" name="sra_date" id="sra_date" value="<?php if(isset($domestic_followup_info['next_followup_date'])){ echo $domestic_followup_info['next_followup_date'];}?>" required>
+                                
+                                <input type="hidden" name="enquiry_id" id="enquiry_id" value="<?php if(isset($info['id'])){ echo $info['id'];}?>">
+                              </div>
+                            
+                              <div class="col-md-6 mb-2">
+                                <label class="col-form-label">SRA Number:</label>
+                                <input class="form-control" name="sra_number" id="sra_number" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                            <!-- <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button> -->
+                            <a onclick="return confirm('Are You Sure You Want To Confirm Booking?')" href="<?php echo $module_url_path;?>/booking_enquiry/<?php echo $info['id']; ?>"><button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button></a>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                   
                   <?php $i++; } ?>

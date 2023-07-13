@@ -1632,12 +1632,6 @@ $('#all_traveller_info').validate({ // initialize the plugin
         "last_name[]": {
             required: true,
             noSpace: true,
-        }, 
-        "dob[]": {
-            required: true,
-        },
-        "age[]": {
-            required: true,
         },
         "relation[]": {
             required: true,
@@ -1645,16 +1639,7 @@ $('#all_traveller_info').validate({ // initialize the plugin
         "document_file_traveller_img[]": {
             required: true,
         },
-        flat_no: {
-            required: true,
-        },
-        building_house_nm: {
-            required: true,
-        },
-        street_name: {
-            required: true,
-        },
-        landmark: {
+        area: {
             required: true,
         },
         all_traveller_state: {
@@ -1671,19 +1656,6 @@ $('#all_traveller_info').validate({ // initialize the plugin
         },
         pincode: {
             required: true,
-        },
-        std_code: {
-            required: true,
-        },
-        mobile_no: {
-            required: true,
-            maxlength:10,
-            minlength:10
-        },
-        phone_no: {
-            required: true,
-            maxlength:8,
-            minlength:8
         },
         email_id: {
             required: true,
@@ -1703,29 +1675,14 @@ $('#all_traveller_info').validate({ // initialize the plugin
         "last_name[]" : {
             required : "Please enter last name",
         },
-        "dob[]" : {
-            required : "Please select date of birth",
-        },
-        "age[]" : {
-            required : "Please enter age",
-        },
         "relation[]" : {
             required : "Please select relation",
         },
         "document_file_traveller_img[]" : {
             required : "Please upload photo",
         },
-        flat_no : {
-            required : "Please enter flat no",
-        },
-        building_house_nm : {
-            required : "Please enter Building / House Name",
-        },
-        street_name : {
-            required : "Please enter street name",
-        },
-        landmark : {
-            required : "Please enter landmark",
+        area : {
+            required : "Please enter area",
         },
         all_traveller_state : {
             required : "Please select state",
@@ -1741,19 +1698,6 @@ $('#all_traveller_info').validate({ // initialize the plugin
         },
         pincode : {
             required : "Please enter pincode",
-        },
-        std_code : {
-            required : "Please enter std code",
-        },
-        mobile_no : {
-            required : "Please enter mobile number",
-            maxlength: "Please enter maximum 10 digit number",
-            minlength: "Please enter minimum 10 digit number"
-        },
-        phone_no : {
-            required : "Please enter mobile number",
-            maxlength: "Please enter maximum 8 digit number",
-            minlength: "Please enter minimum 8 digit number"
         },
         email_id : {
             required : "Please enter email id",
@@ -1907,7 +1851,7 @@ $('#all_traveller_info').validate({ // initialize the plugin
           $('#all_traveller_taluka').find('option').not(':first').remove();
        
           $.each(response,function(index,data){       
-             $('#all_traveller_taluka').append('<option value="'+data['id']+'">'+data['Taluka']+'</option>');
+             $('#all_traveller_taluka').append('<option value="'+data['id']+'">'+data['taluka']+'</option>');
           });
          
         }
@@ -2937,15 +2881,19 @@ function child_no_seat_count() {
              total_adult_40 = $("#child_no_seat_needed").val();
              total_adult_0 = $("#child_noo_seat_needed").val();
             // alert(total_adult_0);
+            // alert(travaller_room_count);
+            // alert(final_total);
 
-            if(final_total == inputString_one && g_count % 2 == 0 && travaller_room_count == final_total && total_adult_90==total_adult_90_bus_seat && total_agewise_cal_60==total_adult_60 && total_agewise_cal_40==total_adult_40 && total_agewise_cal_0==total_adult_0){
+            if(final_total == inputString_one && g_count % 2 == 0 && total_agewise_cal_adult==total_adult_bus && total_agewise_cal_90==total_90_bus && total_agewise_cal_60==total_adult_60 && total_agewise_cal_40==total_adult_40 && total_agewise_cal_0==total_adult_0){
+            // if(final_total == inputString_one && g_count % 2 == 0){
                 $("#booknow_submit").prop('disabled', false)
                 $('#traveller_count_error').empty().text('');
 
             }
             else{
                 $("#booknow_submit").prop('disabled', true)
-                $('#traveller_count_error').empty().text('Traveller count and staying traveller count must be same');
+                alert('Traveller count & Total traveller count can not match');
+                // $('#traveller_count_error').empty().text('Traveller count and staying traveller count must be same');
 
             }
 
@@ -3219,13 +3167,13 @@ function child_no_seat_count() {
         if(attrval=="yes"){
             var new_div_val = did/2;
             newvar_1 += Number(new_div_val);
-                if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
+                if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0 && newvar_1 > 0){
                     // alert('doneeeeeeee');
                     $("#booknow_submit").prop('disabled', false);
                     $('#room2_error_msg').empty().text('');
                 }else{
                     $("#booknow_submit").prop('disabled', true);
-                    // alert('This room must contain total two(2) or multiple of two members compulsory');
+                    alert('This room must contains two(2) or multiple of two members compulsory, you can select three(3) person room if you need to add 1 extra member or you can select a single room to accommodate the person specially');
                     $('#room2_error_msg').empty().text('This room must contain total two(2) or multiple of two members compulsory');
                 }
         }
@@ -3306,7 +3254,7 @@ if(attrval=="yes"){
             $('#room2_error_msg').empty().text('');
         }else{
             $("#booknow_submit").prop('disabled', true);
-            // alert('This room must contain total two(2) or multiple of two members compulsory');
+            // alert('This room must contains two(2) or multiple of two members compulsory, you can select three person room if you need to add 1 extra member or you can select a single room to accommodate the person specially');
             $('#room2_error_msg').empty().text('This room must contain total two(2) or multiple of two members compulsory');
         }
 }
@@ -3384,7 +3332,7 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
                     $('#room3_error_msg').empty().text('');
                 }else{
                     $("#booknow_submit").prop('disabled', true);
-                    // alert('This room must contain total two(2) or multiple of two members compulsory');
+                    alert('This room must contains three(3) or multiple of three members compulsory, you can select four person room if you need to add 1 extra member or you can select a single room to accommodate the person specially');
                     $('#room3_error_msg').empty().text('This room must contain total three(3) or multiple of three members compulsory');
                 }
         }
@@ -3443,7 +3391,7 @@ if(attrval=="yes"){
             $('#room3_error_msg').empty().text('');
         }else{
             $("#booknow_submit").prop('disabled', true);
-            // alert('This room must contain total two(2) or multiple of two members compulsory');
+            // alert('This room must contains three(3) or multiple of three members compulsory, you can select four person room if you need to add 1 extra member or you can select a single room to accommodate the person specially');
             $('#room3_error_msg').empty().text('This room must contain total three(3) or multiple of three members compulsory');
         }
 }
@@ -3526,7 +3474,7 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
                 $('#room4_error_msg').empty().text('');
             }else{
                 $("#booknow_submit").prop('disabled', true);
-                // alert('This room must contain total two(2) or multiple of two members compulsory');
+                alert('This room must contains four(4) or multiple of four members compulsory, you can select three person room if you need to add 1 extra member or you can select a single room to accommodate the person specially');
                 $('#room4_error_msg').empty().text('This room must contain total four(4) or multiple of four members compulsory');
             }
     }
@@ -3583,7 +3531,7 @@ if(attrval=="yes"){
             $('#room4_error_msg').empty().text('');
         }else{
             $("#booknow_submit").prop('disabled', true);
-            // alert('This room must contain total two(2) or multiple of two members compulsory');
+            alert('This room must contains four(4) or multiple of four members compulsory, you can select three person room if you need to add 1 extra member or you can select a single room to accommodate the person specially');
             $('#room4_error_msg').empty().text('This room must contain total four(4) or multiple of four members compulsory');
         }
 }
@@ -3723,7 +3671,7 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
             $("#total_travaller_count").val(final_total);
             
 //  +++++++++++++===================================================================================================================================           
-                  var r1_count = '';
+            var r1_count = '';
             var r2_count = '';
             var r3_count = '';
             var r4_count = '';
@@ -3781,6 +3729,8 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
             // ---fetch from bus seat calculation
              var total_adult_90_bus_seat = $("#total_adult_90_bus").val();
 
+             var total_adult_bus = $("#seperate_seat").val();
+             var total_90_bus = $("#child_seperate_seat").val();
              var total_adult_60 = $("#two_child_share_one_seat").val();
              var total_adult_40 = $("#child_no_seat_needed").val();
              var total_adult_0 = $("#child_noo_seat_needed").val();
@@ -3798,8 +3748,10 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
                 total_agewise_cal_90 = 0;
             }
 
-            total_adult_90 = parseInt(total_agewise_cal_adult) + parseInt(total_agewise_cal_90);
-             $("#total_adult_90").val(total_adult_90);
+            // total_adult_90 = parseInt(total_agewise_cal_adult) + parseInt(total_agewise_cal_90);
+            //  $("#total_adult_90").val(total_adult_90);
+
+            // above addition adult and 90comment after 10july2023 client meeting as per client req.
 
 // ===------------- Above Code for matching adult and 90 per. bus seat and room bed calculation END-----------
 // ==========================================================================================================================================================
@@ -3811,7 +3763,8 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
             var g_even_no_count = $("#two_child_share_one_seat").val();
             var room_travaller_count = $("#total_travaller_count").val();
 
-            if(total_adult_90==total_adult_90_bus_seat && total_agewise_cal_60==total_adult_60 && total_agewise_cal_40==total_adult_40 && total_agewise_cal_0==total_adult_0 && room_travaller_count==inputString_one && g_even_no_count % 2==0 && inputString_one==room_travaller_c && Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
+            
+            if(total_agewise_cal_adult==total_adult_bus && total_agewise_cal_90==total_90_bus && total_agewise_cal_60==total_adult_60 && total_agewise_cal_40==total_adult_40 && total_agewise_cal_0==total_adult_0 && room_travaller_count==inputString_one && g_even_no_count % 2==0 && inputString_one==room_travaller_c && Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
                 $("#booknow_submit").prop('disabled', false)
                 $('#traveller_count_error').empty().text('');
             }
@@ -3830,10 +3783,11 @@ if(Number(newvar_1) === newvar_1 && newvar_1 % 1 === 0){
 <script>
 $(document).ready(function () {
 
-    var total_adult_90 = $("#total_adult_90").val();
-    // alert(total_adult_90);
+    var total_travaller_count = $("#total_travaller_count").val();
+    var total_busseattype = $("#total_busseattype").val();
+    // alert(total_travaller_count);
 
-    if(total_adult_90!=''){
+    if(total_busseattype!=''){
         $("#booknow_submit").prop('disabled', false)
         $('#traveller_count_error').empty().text('');
     }
