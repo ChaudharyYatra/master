@@ -14,6 +14,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
         { 
                 redirect(base_url().'agent/login'); 
         }
+        
         $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/domestic_booking_enquiry_followup";
         $this->module_url_booking_basic_info    =  base_url().$this->config->item('agent_panel_slug')."/booking_basic_info";
         $this->module_url_path_booking_enq    =  base_url().$this->config->item('agent_panel_slug')."/booking_enquiry";
@@ -397,6 +398,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
           echo "Eroor";
        }
    }
+
  
 
 }

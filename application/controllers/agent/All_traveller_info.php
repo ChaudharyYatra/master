@@ -154,6 +154,7 @@ class All_traveller_info extends CI_Controller {
                 $building_house_nm  = $this->input->post('building_house_nm');
                 $street_name  = $this->input->post('street_name');
                 $landmark  = $this->input->post('landmark'); 
+                $area  = $this->input->post('area'); 
                 $all_traveller_state  = $this->input->post('all_traveller_state'); 
                 $all_traveller_district  = $this->input->post('all_traveller_district');
                 $all_traveller_taluka  = $this->input->post('all_traveller_taluka');
@@ -255,6 +256,7 @@ class All_traveller_info extends CI_Controller {
                         'building_house_nm'   =>   $building_house_nm,
                         'street_name'   =>   $street_name,   
                         'landmark'    =>$landmark,
+                        'area'    =>$area,
                         'state_name'=>$all_traveller_state,
                         'district_name' =>   $all_traveller_district,
                         'taluka_name'   =>   $all_traveller_taluka,
@@ -628,6 +630,7 @@ class All_traveller_info extends CI_Controller {
                     'building_house_nm'   =>   $building_house_nm,
                     'street_name'   =>   $street_name,   
                     'landmark'    =>$landmark,
+                    'area'    =>$area,
                     'state_name'=>$all_traveller_state,
                     'district_name' =>   $all_traveller_district,
                     'taluka_name'   =>   $all_traveller_taluka,

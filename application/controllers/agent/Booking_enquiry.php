@@ -38,6 +38,9 @@ class Booking_enquiry extends CI_Controller {
         $this->db->where('booking_enquiry.is_deleted','no');
         $this->db->where('booking_enquiry.booking_process','no');
         $this->db->where('booking_enquiry.followup_status','no');
+        
+        $this->db->where('booking_enquiry.booking_status','no');
+
         $this->db->where('booking_enquiry.agent_id',$id);
         $this->db->where('booking_enquiry.created_at >', $twentyFourHoursAgo);
         $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
@@ -666,7 +669,8 @@ class Booking_enquiry extends CI_Controller {
         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
     }
 	
-	   public function send_mail($to_email,$from_email,$msg,$subject,$cc=null){
+	public function send_mail($to_email,$from_email,$msg,$subject,$cc=null)
+    {
          
         $this->load->library('email');
         $mail_config = array();
@@ -701,7 +705,8 @@ class Booking_enquiry extends CI_Controller {
            echo $this->email->print_debugger(array('headers'));  
           echo "Eroor";
        }
-   }
+    }
+
 
 
 }

@@ -326,7 +326,7 @@
                     <div class="row mt-5">
                         <div class="col-md-3">
                             <div class="form-group">
-                            <label>Flat No.</label>
+                            <label>Flat No. / Bunglow No.</label>
                             <!-- <input type="text" class="form-control" name="flat_no" id="flat_no" placeholder=""> -->
                             <input type="text" class="form-control" name="flat_no" id="flat_no" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['flat_no'];} ?>">
                             </div>
@@ -352,12 +352,16 @@
                             <input type="text" class="form-control" name="landmark" id="landmark" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['landmark'];} ?>">
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>select State</label>
+                            <label>Area</label>
+                            <input type="text" class="form-control" name="area" id="area" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['area'];} ?>" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Select State</label>
                                 <select class="select_css" name="all_traveller_state" id="all_traveller_state">
                                     <?php 
                                     if(!empty($all_traveller_info)){
@@ -411,7 +415,7 @@
                                     ?>
                                     <option value="">Select Taluka</option>
                                     <?php foreach($taluka_data as $taluka_data_value){ ?> 
-                                        <option value="<?php echo $taluka_data_value['id'];?>" <?php if($taluka_data_value['id']==$all_traveller_info_value['taluka_name']){echo "selected";} ?>><?php echo $taluka_data_value['Taluka'];?></option>
+                                        <option value="<?php echo $taluka_data_value['id'];?>" <?php if($taluka_data_value['id']==$all_traveller_info_value['taluka_name']){echo "selected";} ?>><?php echo $taluka_data_value['taluka'];?></option>
                                     <?php } ?>
 
                                     <?php }
@@ -419,56 +423,51 @@
                                         ?>
 
                                     <option value="">Select Taluka</option>
-                                    <!-- <?php //foreach($taluka_data as $taluka_data_value){ ?> 
-                                        <option value="<?php //echo $taluka_data_value['id'];?>"><?php //echo $taluka_data_value['Taluka'];?></option>
-                                    <?php //} ?>  -->
+                                   
                                     <?php 
                                     }?>
                                 </select>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>City Name</label>
                             <!-- <input type="text" class="form-control" name="all_traveller_city" id="all_traveller_city" placeholder="" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');"> -->
                             <input type="text" class="form-control" name="all_traveller_city" id="all_traveller_city" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['city_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
-                        </div>
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>Pincode</label>
                             <!-- <input type="text" class="form-control" name="pincode" id="pincode" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"> -->
                             <input type="text" class="form-control" name="pincode" id="pincode" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['pincode'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                        </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                            <label>STD code </label>
-                            <!-- <input type="text" class="form-control" name="std_code" id="std_code" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"> -->
-                            <input type="text" class="form-control" name="std_code" id="std_code" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['std_code'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                        </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                             <label>Alternate Mobile Number</label>
                             <!-- <input type="text" class="form-control" name="mobile_no" id="mobile_no" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"> -->
                             <input type="text" class="form-control" name="mobile_no" id="mobile_no" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['mobile_no'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>STD code </label>
+                            <!-- <input type="text" class="form-control" name="std_code" id="std_code" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"> -->
+                            <input type="text" class="form-control" name="std_code" id="std_code" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['std_code'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        </div>
+                         </div>
+                        <div class="col-md-3">
                             <div class="form-group">
                             <label>Landline Number</label>
                             <!-- <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"> -->
                             <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['phone_no'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                             <label>Email ID</label>
                             <!-- <input type="text" class="form-control" name="email_id" id="email_id" placeholder=""> -->
