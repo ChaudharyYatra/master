@@ -243,7 +243,7 @@ public function add_seat_preference($id) {
 
                   if(empty($seat_preference_data)){
 
-                $inserted_id = $this->master_model->insertRecord("vehicle_seat_preference", $arr_insert, true,);
+                $inserted_id = $this->master_model->insertRecord("vehicle_seat_preference", $arr_insert, true);
 
                   }else{
 
