@@ -245,6 +245,7 @@ public function add_seat_preference($id) {
 
                 $inserted_id = $this->master_model->insertRecord("vehicle_seat_preference", $arr_insert, true);
 
+                
                   }else{
 
                     $arr_where     = array("id" => $vpreference_id);
