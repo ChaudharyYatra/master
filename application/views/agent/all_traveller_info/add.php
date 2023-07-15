@@ -164,6 +164,7 @@
                                     <input type="hidden" class="form-control" name="d_hidden" id="d_hidden" value="<?php echo $all_traveller_count; ?>">
 
                                     <?php 
+                                    $img_count=1;
                                     foreach($all_traveller_info as $all_traveller_info_value) 
                                     {
                                         // print_r($all_traveller_info_value); die;
@@ -216,18 +217,18 @@
                                 </select>
                                 </td>
                                 <td>
-                                    <input type="file" name="image_name[]" id="image_name1" onchange="encodeImgtoBase64traveller_img(this)" attr_id='1'>
-                                    <input type="hidden" id="document_file_traveller_img1" name="document_file_traveller_img[]" 
+                                    <input type="file" name="image_name[]" id="image_name<?php echo $img_count;?>" onchange="encodeImgtoBase64traveller_img(this)" attr_id="<?php echo $img_count;?>">
+                                    <input type="hidden" id="document_file_traveller_img<?php echo $img_count;?>" name="document_file_traveller_img[]" 
                                     value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['img_encoded'];} ?>">
-                                    <div id="imagePreview_traveller_img1" class="mt-2 img_size_cast">
+                                    <div id="imagePreview_traveller_img<?php echo $img_count;?>" class="mt-2 img_size_cast">
                                         <img src="<?php echo base_url(); ?>uploads/traveller/<?php echo $all_traveller_info_value['image_name'];?>" width="100%" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['image_name'];} ?>"/>
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="file" name="aadhar_image_name[]" id="aadhar_image_name1" onchange="encodeImgtoBase64aadhar_img(this)" attr_id='1'>
-                                    <input type="hidden" id="document_file_aadhar_img1" name="document_file_aadhar_img[]" 
+                                    <input type="file" name="aadhar_image_name[]" id="aadhar_image_name<?php echo $img_count;?>" onchange="encodeImgtoBase64aadhar_img(this)" attr_id="<?php echo $img_count;?>">
+                                    <input type="hidden" id="document_file_aadhar_img<?php echo $img_count;?>" name="document_file_aadhar_img[]" 
                                     value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['aadhar_img_encoded'];} ?>">
-                                    <div id="imagePreview_aadhar_img1" class="mt-2 img_size_cast">
+                                    <div id="imagePreview_aadhar_img<?php echo $img_count;?>" class="mt-2 img_size_cast">
                                         <img src="<?php echo base_url(); ?>uploads/traveller_aadhar/<?php  echo $all_traveller_info_value['aadhar_image_name'];?>" width="100%" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['aadhar_image_name'];} ?>"/>
                                     </div>
                                 </td>
@@ -237,6 +238,7 @@
                                 
                             </tr>
                         <?php 
+                        $img_count++;
                                     }
                         }
                         else{
@@ -285,13 +287,7 @@
                                     <?php } ?>
                                 </select>
                                 </td>
-                                <!-- <td>
-                                    <input type="file" name="image_name[]" id="image_name1" onchange="encodeImgtoBase64traveller_img(this)" attr_id='1'>
-                                    <input type="hidden" id="document_file_traveller_img1" name="document_file_traveller_img[]" value="">
-                                    <div id="imagePreview_traveller_img1" class="mt-2 img_size_cast">
-                                        <img src="<?php //echo base_url(); ?>assets/uploads/traveller/" width="100%"/>
-                                     </div>
-                                </td> -->
+                               
                                 <td>
                                     <input type="file" name="image_name[]" id="image_name<?php echo $img_count;?>" onchange="encodeImgtoBase64traveller_img(this)" attr_id="<?php echo $img_count;?>">
                                     <input type="hidden" id="document_file_traveller_img<?php echo $img_count;?>" name="document_file_traveller_img[]"
@@ -300,6 +296,7 @@
                                             <img src="<?php echo base_url(); ?>uploads/traveller/" width="100%" />
                                         </div>
                                 </td>
+                              
                                 <td>
                                     <input type="file" name="aadhar_image_name[]" id="aadhar_image_name<?php echo $img_count;?>" onchange="encodeImgtoBase64aadhar_img(this)" attr_id='<?php echo $img_count;?>'>
                                     <input type="hidden" id="document_file_aadhar_img<?php echo $img_count;?>" name="document_file_aadhar_img[]" 

@@ -14,10 +14,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<script>
-var js_array =<?php echo json_encode($bus_info);?>;
 
-</script>
 
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>assets/admin/plugins/jquery/jquery.min.js"></script>
@@ -99,8 +96,7 @@ var js_array =<?php echo json_encode($bus_info);?>;
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script> 
+
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 
 

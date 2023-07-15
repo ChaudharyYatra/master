@@ -79,19 +79,19 @@ class All_traveller_info extends CI_Controller {
             $taluka_data = $this->master_model->getRecords('taluka_table');
             // print_r($taluka_data); die;  
 
-            $this->db->order_by('id','desc');
+            // $this->db->order_by('id','desc');
             $this->db->where('is_deleted','no');
             $this->db->where('domestic_enquiry_id',$iid);
             $package_id = $this->master_model->getRecord('booking_basic_info');
             //  print_r($package_id); die;
 
-            $this->db->order_by('id','desc');
+            // $this->db->order_by('id','desc');
             $this->db->where('is_deleted','no');
             $this->db->where('booking_enquiry.id',$iid);
             $agent_booking_enquiry_data = $this->master_model->getRecords('booking_enquiry');
             // print_r($agent_booking_enquiry_data); die;
 
-            $this->db->order_by('id','desc');
+            // $this->db->order_by('id','desc');
             $this->db->where('is_deleted','no');
             $this->db->where('domestic_enquiry_id',$iid);
             $booking_basic_info_data = $this->master_model->getRecords('booking_basic_info');
@@ -106,7 +106,7 @@ class All_traveller_info extends CI_Controller {
             $traveller_booking_info = $this->master_model->getRecords('booking_basic_info',array('booking_basic_info.is_deleted'=>'no'),$fields);
             // print_r($traveller_booking_info); die;
 
-            $this->db->order_by('id','desc');
+            // $this->db->order_by('id','desc');
             $this->db->where('is_deleted','no');
             $this->db->where('domestic_enquiry_id',$iid);
             $all_traveller_info = $this->master_model->getRecords('all_traveller_info');
@@ -164,7 +164,7 @@ class All_traveller_info extends CI_Controller {
                 $mobile_no  = $this->input->post('mobile_no');
                 $phone_no  = $this->input->post('phone_no'); 
                 $email_id  = $this->input->post('email_id');
-                $document_file_traveller_img = $this->input->post('document_file_traveller_img');
+                $document_file_traveller_img = $this->input->post('document_file_traveller_img[]');
                 $travaller_info_id = $this->input->post('travaller_info_id'); 
                 $all_traveller_count = $this->input->post('all_traveller_count'); 
                 $d_hidden = $this->input->post('d_hidden');
@@ -182,12 +182,20 @@ class All_traveller_info extends CI_Controller {
                 }
                 
                 $c=count($first_name);
+
               
+
                    for($i=0; $i<$c; $i++){
-                        if($document_file_traveller_img != '')
+
+                    $img_encoded= '';
+                    $fname_traveller_img='';
+                            
+                        if($document_file_traveller_img[$i]!='')
                         {   
+                            
                             if(isset($document_file_traveller_img[$i]) && !empty($document_file_traveller_img[$i]))
                             {
+                                
                                 $img_encoded = $document_file_traveller_img[$i];
                                 $image_parts_traveller_img = explode(";base64,", $document_file_traveller_img[$i]);
                             } else {
@@ -196,9 +204,11 @@ class All_traveller_info extends CI_Controller {
                             $image_base64_traveller_img = base64_decode($image_parts_traveller_img[1]);
                             
                             $image_type_aux_travellerimg = explode("image/", $image_parts_traveller_img[0]);
+
                             if(count($image_type_aux_travellerimg)>1) {
                                 $image_type_traveller_img = $image_type_aux_travellerimg[1];
                                 $file_name_traveller_img = "traveller_img_".time().date("Ymd").$i;
+                                
                             } else {
                                 $image_type_aux_travellerimg = explode("data:application/", $image_parts_traveller_img[0]);
                                 $image_type_traveller_img = $image_type_aux_travellerimg[1];
@@ -208,9 +218,14 @@ class All_traveller_info extends CI_Controller {
                             $file_traveller_img = 'uploads/traveller/'.$file_name_traveller_img.".".$image_type_traveller_img;
                             file_put_contents($file_traveller_img, $image_base64_traveller_img);
                         }
-                        
+                      
+
+                        // print_r($_REQUEST);
+                      
                         // ---------------------------
-                        if($document_file_aadhar_img != '')
+                        $aadhar_img_encoded= '';
+                        $fname_aadhar_img='';
+                        if($document_file_aadhar_img[$i]!='')
                         {   
                             if(isset($document_file_aadhar_img[$i]) && !empty($document_file_aadhar_img[$i]))
                             {
