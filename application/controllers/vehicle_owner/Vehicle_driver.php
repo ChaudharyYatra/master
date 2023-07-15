@@ -27,6 +27,7 @@ class Vehicle_driver extends CI_Controller{
 
         $this->db->order_by('id','ASC');
         $this->db->where('is_deleted','no');
+        $this->db->where('vehicle_driver.vehicle_owner_id',$id);
         $vehicle_driver = $this->master_model->getRecords('vehicle_driver');
         // print_r($vehicle_driver); die;
 
@@ -326,6 +327,7 @@ class Vehicle_driver extends CI_Controller{
                     'aadhaar_image_front'    => $aadhaar_front_filename,
                     'aadhaar_image_back'    => $aadhaar_back_filename,
                     'profile_image'    => $driver_profile_filename,
+                    'vehicle_owner_id'    => $id,
                     'status'                  => 'pending'
                     
                 );

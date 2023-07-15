@@ -107,6 +107,7 @@
                   
                   </tbody>
                   
+                  
                 </table>
                 <?php } else
                 { echo '<div class="alert alert-danger alert-dismissable">

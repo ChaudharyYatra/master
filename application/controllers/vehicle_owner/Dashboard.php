@@ -25,18 +25,27 @@ class Dashboard extends CI_Controller{
 
 	public function index()
 	{
-
         // $today= date('Y-m-d');
 
 	      $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
         $id = $this->session->userdata('vehicle_owner_sess_id');
 
-        // $this->db->where('agent_id',$id);  
-        // $this->db->where('is_deleted','no'); 
-        // $international_enquiry_data = $this->master_model->getRecords('international_booking_enquiry');
-        // $arr_data['international_enquiry_data_total'] = count($international_enquiry_data);
+        $this->db->where('is_deleted','no'); 
+        $this->db->where('vehicle_details.vehicle_owner_id',$id);
+        $this->db->where('vehicle_details.status','approved');
+        $vehicle_details = $this->master_model->getRecords('vehicle_details');
+        $arr_data['vehicle_details_count'] = count($vehicle_details);
+        // print_r($arr_data['vehicle_details_count']); die;
+
+        $this->db->where('is_deleted','no'); 
+        $this->db->where('vehicle_driver.vehicle_owner_id',$id);
+        $this->db->where('vehicle_driver.status','approved');
+        $vehicle_driver = $this->master_model->getRecords('vehicle_driver');
+        $arr_data['vehicle_driver_count'] = count($vehicle_driver);
+        // print_r($arr_data['vehicle_driver_count']); die;
 
         $this->arr_view_data['vehicle_ssession_owner_name']        = $vehicle_ssession_owner_name;
+        $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
