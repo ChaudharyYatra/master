@@ -213,6 +213,7 @@ class All_traveller_info extends CI_Controller {
                                 $image_type_aux_travellerimg = explode("data:application/", $image_parts_traveller_img[0]);
                                 $image_type_traveller_img = $image_type_aux_travellerimg[1];
                                 $file_name_traveller_img = "traveller_img_".time().date("Ymd").$i;
+                                
                             }
                             $fname_traveller_img=$file_name_traveller_img.".".$image_type_traveller_img;
                             $file_traveller_img = 'uploads/traveller/'.$file_name_traveller_img.".".$image_type_traveller_img;
