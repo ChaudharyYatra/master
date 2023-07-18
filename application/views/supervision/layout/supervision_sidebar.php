@@ -5,6 +5,9 @@
   a{
     text-decoration:none;
   }
+  .desig_css{
+    color:white;
+  }
 
 </style>
 <!-- Main Sidebar Container -->
@@ -22,7 +25,10 @@
         <div class="image">
         </div>
         <div class="info">
-          <center><a href="#" class="d-block"><?php echo $supervision_sess_name; ?></a></center>
+        <!-- $supervision_role = $this->session->userdata('supervision_role'); -->
+                
+          <center><a href="#" class="d-block"><?php echo $supervision_sess_name; ?></a></center>  
+          <center><h6 class="desig_css"><?php echo $supervision_role_name = $this->session->userdata('supervision_role_name'); ?></h6></center>
         </div>
       </div>
 

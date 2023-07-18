@@ -29,7 +29,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo $arr_data['vehicle_details_count']; ?></h3>
-                <p><b>Vehicle Add Count<br>(Approved By Admin)</b></p>
+                <p>Vehicle Add Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -43,11 +43,11 @@
             if($arr_data['vehicle_driver_count'] >0 ){
           ?> 
           <div class="col-lg-3 col-6">
-            <a class="underline" href="<?php echo base_url(); ?>agent/international_booking_enquiry/index">
+            <a class="underline" href="<?php echo base_url(); ?>vehicle_owner/vehicle_driver/index">
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3><?php echo $arr_data['vehicle_driver_count']; ?></h3>
-                <p><b>Vehicle Driver Count</b></p>
+                <p>Vehicle Driver Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -57,17 +57,17 @@
           </div>
           <?php } ?>
 
-          <!-- <?php 
-            //if($arr_data['todays_enquiry_count'] >0 ){
+          <?php 
+            if($arr_data['driver_leave_count'] >0 ){
 
           ?> 
           <div class="col-lg-3 col-6">
-            <a class="underline" href="<?php //echo base_url(); ?>agent/booking_enquiry/index">
+            <a class="underline" href="<?php echo base_url(); ?>agent/booking_enquiry/index">
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3 style="color:white;"><?php //echo $arr_data['todays_enquiry_count']; ?></h3>
+                <h3 style="color:white;"><?php echo $arr_data['driver_leave_count']; ?></h3>
 
-                <p style="color:white;">Todays Domestic Enquiries</p>
+                <p style="color:white;">Driver Leave Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -75,7 +75,7 @@
             </div> 
             </a> 
           </div>
-          <?php //} ?> -->
+          <?php } ?>
           
           <!-- <?php 
             //if($arr_data['internatinal_enquiry_count'] >0 ){

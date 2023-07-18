@@ -33,6 +33,8 @@ class Kilometer_update extends CI_Controller{
         $driver_kilometer = $this->master_model->getRecords('driver_kilometer_update',array('driver_kilometer_update.is_deleted'=>'no'),$fields);
         // print_r($asigned_tour); die;
 
+        
+
         $this->arr_view_data['vehicle_ssession_driver_name']= $vehicle_ssession_driver_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['driver_kilometer']        = $driver_kilometer;

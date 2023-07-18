@@ -183,7 +183,7 @@ class Booking_basic_info extends CI_Controller {
         
          if($this->input->post('submit'))
         {
-             //print_r($_REQUEST);
+            //  print_r($_REQUEST);
             $this->form_validation->set_rules('domestic_enquiry_id', 'domestic_enquiry_id', 'required');
             $this->form_validation->set_rules('booking_office', 'Booking office', 'required');
             $this->form_validation->set_rules('regional_office', 'Regional office', 'required');
@@ -275,7 +275,7 @@ class Booking_basic_info extends CI_Controller {
         //booking basic info  book now btn functinality 
         if($this->input->post('booknow_submit'))
         {
-             //print_r($_REQUEST);
+            // print_r($_REQUEST);
             $this->form_validation->set_rules('domestic_enquiry_id', 'domestic_enquiry_id', 'required');
             $this->form_validation->set_rules('booking_office', 'Booking office', 'required');
             $this->form_validation->set_rules('regional_office', 'Regional office', 'required');

@@ -44,6 +44,11 @@ class Dashboard extends CI_Controller{
         $arr_data['vehicle_driver_count'] = count($vehicle_driver);
         // print_r($arr_data['vehicle_driver_count']); die;
 
+        $this->db->where('is_deleted','no');
+        $driver_leave = $this->master_model->getRecords('driver_leave');
+        $arr_data['driver_leave_count'] = count($driver_leave);
+        // print_r($driver_leave); die;
+
         $this->arr_view_data['vehicle_ssession_owner_name']        = $vehicle_ssession_owner_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['listing_page']    = 'yes';

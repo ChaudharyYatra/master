@@ -30,8 +30,21 @@ class Dashboard extends CI_Controller{
 	      $vehicle_ssession_driver_name = $this->session->userdata('vehicle_ssession_driver_name');
         $id = $this->session->userdata('vehicle_driver_sess_id');
 
+        $this->db->where('driver_kilometer_update.driver_id',$id);
+        $this->db->where('is_deleted','no');
+        $driver_kilometer_update = $this->master_model->getRecords('driver_kilometer_update');
+        $arr_data['driver_kilometer_update_count'] = count($driver_kilometer_update);
+        // print_r($driver_kilometer_update); die;
+
+        $this->db->where('disel_tour_expenses.driver_id',$id);
+        $this->db->where('is_deleted','no');
+        $disel_tour_expenses = $this->master_model->getRecords('disel_tour_expenses');
+        $arr_data['disel_tour_expenses_count'] = count($disel_tour_expenses);
+        // print_r($driver_kilometer_update); die;
+
         $this->arr_view_data['vehicle_ssession_driver_name']        = $vehicle_ssession_driver_name;
         $this->arr_view_data['listing_page']    = 'yes';
+        $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;

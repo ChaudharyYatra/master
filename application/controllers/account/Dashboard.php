@@ -25,6 +25,8 @@ class Dashboard extends CI_Controller{
 	{
                 $supervision_sess_name = $this->session->userdata('supervision_name');
                 $id = $this->session->userdata('supervision_sess_id');
+                $supervision_role = $this->session->userdata('supervision_role');
+                $supervision_role_name = $this->session->userdata('supervision_role_name');
 
                 $record = array();
                 $fields = "request_code_number.*,stationary.stationary_name,agent.agent_name,agent.booking_center,supervision.supervision_name";
@@ -48,7 +50,9 @@ class Dashboard extends CI_Controller{
 
                 
         
+        $this->arr_view_data['supervision_role_name']        = $supervision_role_name;
         $this->arr_view_data['supervision_sess_name']        = $supervision_sess_name;
+        $this->arr_view_data['supervision_role']        = $supervision_role;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";

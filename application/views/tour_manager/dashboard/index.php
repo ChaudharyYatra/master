@@ -21,17 +21,17 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-          <!-- <?php 
-            //if($arr_data['enquiry_count_total'] >0 ){
+          <?php 
+            if($arr_data['tour_expenses_count'] >0 ){
 
           ?> 
           <div class="col-lg-3 col-6">
-            <a class="underline" href="<?php //echo base_url(); ?>agent/booking_enquiry/index">
+            <a class="underline" href="<?php echo base_url(); ?>tour_manager/tour_expenses/index">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?php //echo $arr_data['enquiry_count_total']; ?></h3>
+                <h3><?php echo $arr_data['tour_expenses_count']; ?></h3>
 
-                <p>Total Domestic Enquiries</p>
+                <p>Tour Expenses Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -39,19 +39,19 @@
             </div>
             </a>
           </div>
-          <?php //} ?> -->
+          <?php } ?>
 
-          <!-- <?php 
-            //if($arr_data['international_enquiry_data_total'] >0 ){
+          <?php 
+            if($arr_data['suggestion_data_count'] >0 ){
 
           ?> 
           <div class="col-lg-3 col-6">
-            <a class="underline" href="<?php //echo base_url(); ?>agent/international_booking_enquiry/index">
+            <a class="underline" href="<?php echo base_url(); ?>tour_manager/suggestion_module/index">
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?php //echo $arr_data['international_enquiry_data_total']; ?></h3>
+                <h3><?php echo $arr_data['suggestion_data_count']; ?></h3>
 
-                <p>Total International Enquiries</p>
+                <p>Suggestion Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -59,7 +59,7 @@
             </div> 
             </a> 
           </div>
-          <?php //} ?> -->
+          <?php } ?>
 
           <!-- <?php 
             //if($arr_data['todays_enquiry_count'] >0 ){

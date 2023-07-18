@@ -24,7 +24,6 @@ class User_profile extends CI_Controller {
 
         if($this->input->post('submit'))
         {  
-
                 $this->form_validation->set_rules('mobile', 'Mobile', 'required');
                 $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -33,7 +32,7 @@ class User_profile extends CI_Controller {
                    $mobile_login = trim($this->input->post('mobile'));
                    $pass_login = trim($this->input->post('password'));
                   
-                   $this->db->where('mobile_no',$mobile_login);
+                   $this->db->where('mobile_number',$mobile_login);
                    $this->db->where('password',$pass_login);
                    $arr_data = $this->master_model->getRecords('all_traveller_info');        
                 //    print_r($arr_data);  die;

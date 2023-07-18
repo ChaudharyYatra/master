@@ -90,12 +90,6 @@
               </div>
     </div>
 
-    <script>
-var js_array ="<?php echo json_encode($bus_info);?>";
-
-</script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script> 
 
 
 

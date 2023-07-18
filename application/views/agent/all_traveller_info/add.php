@@ -412,7 +412,7 @@
                                     ?>
                                     <option value="">Select Taluka</option>
                                     <?php foreach($taluka_data as $taluka_data_value){ ?> 
-                                        <option value="<?php echo $taluka_data_value['id'];?>" <?php if($taluka_data_value['id']==$all_traveller_info_value['taluka_name']){echo "selected";} ?>><?php echo $taluka_data_value['taluka'];?></option>
+                                        <option value="<?php echo $taluka_data_value['id'];?>" <?php if($taluka_data_value['id']==$all_traveller_info_value['taluka_name']){echo "selected";} ?>><?php echo $taluka_data_value['Taluka'];?></option>
                                     <?php } ?>
 
                                     <?php }

@@ -7473,3 +7473,106 @@ $(document).ready(function(){
 <!-- Agent add info (state,district,taluka) start -->
 
 
+<script>
+
+$('.first_class').click(function() {
+
+    if(this.checked){
+
+var selected_seat_id = $(this).val();
+
+var second_selecter_id='#second_class_i'+selected_seat_id;
+
+var third_selecter_id='#third_class_i'+selected_seat_id;
+
+$(second_selecter_id).prop('disabled', true);
+
+$(third_selecter_id).prop('disabled', true);
+
+    }else{
+
+        var selected_seat_id = $(this).val();
+
+var second_selecter_id='#second_class_i'+selected_seat_id;
+
+var third_selecter_id='#third_class_i'+selected_seat_id;
+
+$(second_selecter_id).prop('disabled', false);
+
+$(third_selecter_id).prop('disabled', false);
+
+    }
+
+});
+
+
+
+$('.second_class').click(function() {
+
+    if(this.checked){
+
+var selected_seat_id = $(this).val();
+
+var first_selecter_id='#first_class_i'+selected_seat_id;
+
+var third_selecter_id='#third_class_i'+selected_seat_id;
+
+$(first_selecter_id).prop('disabled', true);
+
+$(third_selecter_id).prop('disabled', true);
+
+    }else{
+
+        var selected_seat_id = $(this).val();
+
+var first_selecter_id='#first_class_i'+selected_seat_id;
+
+var third_selecter_id='#third_class_i'+selected_seat_id;
+
+$(first_selecter_id).prop('disabled', false);
+
+$(third_selecter_id).prop('disabled', false);
+
+    }
+
+});
+
+
+
+$('.third_class').click(function() {
+
+    if(this.checked){
+
+
+
+var selected_seat_id = $(this).val();
+
+var first_selecter_id='#first_class_i'+selected_seat_id;
+
+var second_selecter_id='#second_class_i'+selected_seat_id;
+
+$(first_selecter_id).prop('disabled', true);
+
+$(second_selecter_id).prop('disabled', true);
+
+    }else{
+
+        var selected_seat_id = $(this).val();
+
+var first_selecter_id='#first_class_i'+selected_seat_id;
+
+var second_selecter_id='#second_class_i'+selected_seat_id;
+
+$(first_selecter_id).prop('disabled', false);
+
+$(second_selecter_id).prop('disabled', false);
+
+    }
+
+});
+
+
+
+</script>
+
+

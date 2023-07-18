@@ -66,6 +66,7 @@
                           <?php
                           foreach($agent_booking_enquiry_data as $agent_booking_enquiry_data_info) 
                           { 
+                            // print_r($agent_booking_enquiry_data); die;
                             ?>
                           <div class="col-md-3">
                             <div class="form-group">

@@ -25,7 +25,6 @@ class Dashboard extends CI_Controller{
 
 	public function index()
 	{
-
         $today= date('Y-m-d');
 
 	      $agent_sess_name = $this->session->userdata('agent_name');

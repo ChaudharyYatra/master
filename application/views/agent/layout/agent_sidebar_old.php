@@ -14,6 +14,7 @@
         </div>
         <div class="info">
           <center><a href="#" class="d-block"><?php echo $agent_sess_name; ?></a></center>
+          
         </div>
       </div>
 

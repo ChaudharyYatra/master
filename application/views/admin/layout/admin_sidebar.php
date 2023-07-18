@@ -1,3 +1,8 @@
+<style>
+  .desig_css{
+    color:white;
+  }
+</style>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -13,7 +18,8 @@
           <!--<img src="<?php //echo base_url(); ?>assets/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
         </div>
         <div class="info">
-          <center><a href="#" class="d-block">Admin</a></center>
+          <center><a href="#" class="d-block"><?php echo  $admin_name = $this->session->userdata('name');?></a></center>
+          <h6 class="desig_css">[ Admin ]</h6>
         </div>
       </div>
 

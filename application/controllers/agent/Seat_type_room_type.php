@@ -1384,7 +1384,7 @@ class Seat_type_room_type extends CI_Controller {
         $this->db->join("vehicle_details", 'vehicle_details.id=bus_open.vehicle_rto_registration','left');
         $this->db->join("vehicle_seat_preference", 'vehicle_seat_preference.vehicle_id=bus_open.vehicle_rto_registration','left');
         $bus_info= $this->master_model->getRecord('bus_open');
-
+        // print_r($bus_info); die;
 
         $record = array();
         $fields = "booking_basic_info.*,packages.id,packages.tour_title,packages.tour_number,packages.tour_number,package_date.journey_date";

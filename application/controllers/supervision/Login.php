@@ -33,11 +33,15 @@ class Login extends CI_Controller{
                 $password = $this->input->post('password');   
                 
             //   $this->db->where('email',$Email_login);
-              $this->db->where('mobile_number1',$mobile_number1);
-              $this->db->where('password',$password);
-              $this->db->where('is_active','yes');
-              $this->db->where('is_deleted','no');
-              $arr_data = $this->master_model->getRecords('supervision');  
+
+              $record = array();
+              $fields = "supervision.*,role_type.role_name";
+              $this->db->where('supervision.mobile_number1',$mobile_number1);
+              $this->db->where('supervision.password',$password);
+              $this->db->where('supervision.is_active','yes');
+              $this->db->where('supervision.is_deleted','no');
+              $this->db->join("role_type", ' supervision.role_type=role_type.id','left');
+              $arr_data = $this->master_model->getRecords('supervision',array('supervision.is_deleted'=>'no'),$fields); 
             //   print_r($arr_data); die;     
                      
                 if(empty($arr_data))
@@ -48,7 +52,9 @@ class Login extends CI_Controller{
                 {
                     foreach($arr_data as $supervision_data)
                     {
+                        // print_r($supervision_data); die;
                         $this->session->set_userdata('supervision_role',$supervision_data['role_type']);
+                        $this->session->set_userdata('supervision_role_name',$supervision_data['role_name']);
                         $this->session->set_userdata('supervision_mobile',$supervision_data['mobile_number1']);
                         $this->session->set_userdata('supervision_sess_id',$supervision_data['id']);
                         $this->session->set_userdata('supervision_name',$supervision_data['supervision_name']);
@@ -85,6 +91,7 @@ class Login extends CI_Controller{
     {
         $this->session->unset_userdata('supervision_sess_id');
         $this->session->unset_userdata('supervision_role');
+        $this->session->unset_userdata('supervision_role_name');
         $this->session->unset_userdata('supervision_mobile');
         $this->session->unset_userdata('supervision_email');
         $this->session->unset_userdata('supervision_name');

@@ -5,7 +5,9 @@
   a{
     text-decoration:none;
   }
-
+  .desig_css{
+    color:white;
+  }
 </style>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -22,7 +24,8 @@
         <div class="image">
         </div>
         <div class="info">
-          <center><a href="#" class="d-block"><?php echo $supervision_sess_name; ?></a> <span class="designation">(Document Code Request)</span></center>
+          <center><a href="#" class="d-block"><?php echo $supervision_sess_name; ?></a></center>
+          <center><h6 class="desig_css"><?php echo $supervision_role_name; ?></h6></center>
         </div>
       </div>
 

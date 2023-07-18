@@ -2,6 +2,9 @@
   .tourmanager{
     text-decoration:none;
   }
+  .desig_css{
+    color:white;
+  }
 </style>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -19,6 +22,7 @@
         </div>
         <div class="info">
           <center><a href="#" class="d-block tourmanager"><?php echo $vehicle_ssession_driver_name; ?></a></center>
+          <center><h6 class="desig_css">[ Vehicle Driver ]</h6></center>
         </div>
       </div>
 

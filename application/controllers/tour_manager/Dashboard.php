@@ -30,50 +30,27 @@ class Dashboard extends CI_Controller{
 
 	      $supervision_sess_name = $this->session->userdata('supervision_name');
         $id = $this->session->userdata('supervision_sess_id');
+        $supervision_role = $this->session->userdata('supervision_role');
+        $supervision_role_name = $this->session->userdata('supervision_role_name');
 
-        // $this->db->where('agent_id',$id);  
-        // $this->db->where('is_deleted','no'); 
-        // // $this->db->where('created_at',$today);  
-        // $enquiry_data = $this->master_model->getRecords('booking_enquiry');
-        // $arr_data['enquiry_count_total'] = count($enquiry_data);
-        // // print_r($enquiry_data); die;
+        $this->db->where('tour_expenses.tour_manager_id',$id);  
+        $this->db->where('is_deleted','no'); 
+        $tour_expenses = $this->master_model->getRecords('tour_expenses');
+        $arr_data['tour_expenses_count'] = count($tour_expenses);
+        // print_r($tour_expenses); die;
 
-        // $this->db->where('agent_id',$id);  
-        // $this->db->where('is_deleted','no'); 
-        // $international_enquiry_data = $this->master_model->getRecords('international_booking_enquiry');
-        // $arr_data['international_enquiry_data_total'] = count($international_enquiry_data);
-        // // echo $today;
-        // // die;
-        
-        // $this->db->where('agent_id',$id);  
-        // $this->db->where('created_at',$today);  
-        // $enquiry_data_today = $this->master_model->getRecords('booking_enquiry');
-        // $arr_data['todays_enquiry_count'] = count($enquiry_data_today);
-
-        // $this->db->where('agent_id',$id);  
-        // $this->db->where('created_at',$today);
-        // $international_enquiry_data_today = $this->master_model->getRecords('international_booking_enquiry');
-        // $arr_data['internatinal_enquiry_count'] = count($international_enquiry_data_today);
-
-        // $this->db->where('agent_id',$id);  
-        // $this->db->where('not_interested','no');  
-        // $Domestic_not_interested_cust = $this->master_model->getRecords('booking_enquiry');
-        // $arr_data['Domestic_not_interested_cust_count'] = count($Domestic_not_interested_cust);
-        // print_r($arr_data['Domestic_not_interested_cust_count']); die;
+        $this->db->where('suggestion_module.tour_manager_id',$id);  
+        $this->db->where('is_deleted','no'); 
+        $suggestion_data = $this->master_model->getRecords('suggestion_module');
+        $arr_data['suggestion_data_count'] = count($suggestion_data);
+        // print_r($suggestion_data); die;
         
         
-        // $arr_data['total_enquiry_count'] = $enquiry_count + $internatinal_enquiry_count;
-        // print_r($total_enquiry_count); die;
-        // $arr_data['enquiry_count'] = count($enquiry_data);
-        
-        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
+        $this->arr_view_data['supervision_role_name']        = $supervision_role_name;
+        $this->arr_view_data['supervision_sess_name']        = $supervision_sess_name;
+        $this->arr_view_data['supervision_role']        = $supervision_role;
         $this->arr_view_data['listing_page']    = 'yes';
-        // $this->arr_view_data['arr_data']        = $arr_data;
-      //  $this->arr_view_data['total_enquiry_count']  = $total_enquiry_count;
-        //$this->arr_view_data['enquiry_count']  = $enquiry_count;
-       // $this->arr_view_data['enquiry_count_total']  = $enquiry_count_total;
-        //$this->arr_view_data['internatinal_enquiry_count']  = $internatinal_enquiry_count;
-        //$this->arr_view_data['international_enquiry_data_total']  = $international_enquiry_data_total;
+        $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
