@@ -208,7 +208,7 @@ class Asign_tour_to_manager extends CI_Controller{
         $this->db->where('hotel_allocated_room.package_id',$id);
         $this->db->group_by('hotel_allocated_room.hotel_name_id'); 
         $this->db->join("hotel_room", 'hotel_allocated_room.hotel_name_id=hotel_room.hotel_id','left');
-        $hotel_allocated_room_data = $this->master_model->getRecord('hotel_allocated_room',array('hotel_allocated_room.is_deleted'=>'no'),$fields);
+        $hotel_allocated_room_data = $this->master_model->getRecords('hotel_allocated_room',array('hotel_allocated_room.is_deleted'=>'no'),$fields);
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data'] = $arr_data;
