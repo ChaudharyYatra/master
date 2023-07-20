@@ -4,11 +4,13 @@
 
     did = $('#bdata').val();
     var array_data = js_array;
-    // console.log(array_data);
+    var booked_seats_data=booked_data;
+    // console.log(booked_seats_data);
     var total_seat_count = array_data.total_seat_count;
-    var new_first_string = array_data.first_cls_seats
+    var new_first_string = array_data.first_cls_seats;
+    // console.log(array_data.total_seat_count);
+
     var new_first_array = new_first_string.split(',');
-    // console.log(new_first_array);
 
     var new_second_string = array_data.second_cls_seats
     var new_second_array = new_second_string.split(',');
@@ -37,7 +39,9 @@
     for (var i = 0; i < total_seat_count; i++) {
         var new_i = parseInt(i)+1;
         var i_string = new_i.toString();
-        if (($.inArray(i_string, new_first_array) != '-1')) {
+        if (($.inArray(i_string, new_first_array) != '-1' && $.inArray(i_string, booked_seats_data) != '-1')) {
+            abc.splice(new_i, new_i, 'u');
+        } else if (($.inArray(i_string, new_first_array) != '-1')) {
             abc.splice(new_i, new_i, 'f');
         } else {
             abc.splice(new_i, new_i, '');
@@ -50,13 +54,11 @@
         var j_string = j.toString();
 
         if (($.inArray(j_string, new_second_array) != '-1')) {
-            // var ghj=parseInt(j)-1;
             xyz.splice(j, j, 's');
         } else {
             xyz.splice(j, j, '');
         }
     }
-    // console.log('xyz.length', xyz);
 
     var pqr = [];
     for (var k = 1; k <= total_seat_count; k++) {
@@ -68,16 +70,12 @@
             pqr.splice(k, k, '');
         }
     }
-    // console.log('pqr.length',pqr);
 
-
-    // console.log('abc.length',abc);
 
     var final=[];
     for(var p=0;p<total_seat_count;p++) {
         add_p=parseInt(p)+parseInt(1);
         var p_string = add_p.toString();
-        // console.log(p_string);
 
       if($.inArray(p_string, new_first_array)!= '-1') {
         final.push(abc[p]);
@@ -90,7 +88,6 @@
     }
     }
     var final_filtered_a = final.filter(elm => elm);
-        console.log(final_filtered_a);
 
 
 
@@ -99,7 +96,7 @@
     myString += 'a';
     for (var i = 0; i < final_filtered_a.length; i++) {
 
-        if(final_filtered_a[i]=='f')
+        if(final_filtered_a[i]=='f' || final_filtered_a[i]=='u')
         {
         // var add_i=parseInt(i)+parseInt(1);
         var i_string = i.toString();
@@ -122,7 +119,7 @@
         }
     } 
     }
-    console.log(myString);
+    // console.log(myString);
 
     // =============================================================================================================================================================
 
@@ -131,7 +128,7 @@
     var myString_second = "b";
 
     for (var i = 0; i < final_filtered_a.length; i++) {
-        if(final_filtered_a[i]=='s')
+        if(final_filtered_a[i]=='s' || final_filtered_a[i]=='u')
         {
         // var add_i=parseInt(i)+parseInt(1);
         var i_string = i.toString();
@@ -156,15 +153,15 @@
         }
     }
     }
-    console.log(myString_second);
+    // console.log(myString_second);
 
     // =============================================================================================================================================================
 
-    console.log(final_filtered_a.length);
+    // console.log(final_filtered_a.length);
 
     var myString_economy = "c";
     for (var i = 0; i < final_filtered_a.length; i++) {
-        if(final_filtered_a[i]=='e')
+        if(final_filtered_a[i]=='e' || final_filtered_a[i]=='u')
         {
             var i_string = i.toString();
             if ($.inArray(i_string, new_third_array) != '-1') {
@@ -190,7 +187,7 @@
             }
         }
     }
-    console.log(myString_economy);
+    // console.log(myString_economy);
 
     // =============================================================================================================================================================
 
@@ -256,16 +253,16 @@
                         classes: 'economy-class', //your custom CSS class
                         category: 'Economy Class'
                     },
-                    z: {
-                        price: 100,
-                        classes: 'free-class', //your custom CSS class
-                        category: 'Free Class'
-                    },
-                    x: {
-                        price: 0,
-                        classes: 'free-class', //your custom CSS class
-                        category: 'Free Class'
-                    },
+                    // z: {
+                    //     price: 100,
+                    //     classes: 'free-class', //your custom CSS class
+                    //     category: 'Free Class'
+                    // },
+                    // x: {
+                    //     price: 0,
+                    //     classes: 'free-class', //your custom CSS class
+                    //     category: 'Free Class'
+                    // },
                     a: {
                         price: first_cls_window_amt,
                         classes: 'window-first-class', //your custom CSS class
@@ -280,6 +277,11 @@
                         price: economy_cls_window_amt,
                         classes: 'window-economy-class', //your custom CSS class
                         category: 'Window Class'
+                    },
+                    u: {
+                        price: '0',
+                        classes: 'booked', //your custom CSS class
+                        category: 'Booked Class'
                     }
                 },
                 naming: {
@@ -303,10 +305,10 @@
                     items: [
                         ['f', 'available', 'First Class'],
                         ['e', 'available', 'Economy Class'],
-                        ['f', 'unavailable', 'Already Booked'],
+                        ['u', 'unavailable', 'Already Booked'],
                         ['a', 'freeze', 'Already'],
-                        ['z', 'available window', 'Available Window'],
-                        ['x', 'not for select', 'Not For Select'],
+                        // ['z', 'available window', 'Available Window'],
+                        // ['x', 'not for select', 'Not For Select'],
                     ]
                 },
                 click: function() {
@@ -327,7 +329,7 @@
 
                     var middle_btn_id = $("[data_id=" + middle_id + "]").attr('id');
                     var last_row_first_idid = $("[data_id=" + last_row_first_id + "]").attr('id');
-
+                    // alert(this.status());
                     //ooookkkkkkkkkkkkkkk
                     if (click_id == middle_seat_pre) {
 
@@ -390,7 +392,6 @@
                                 var last_seat_array = last_seat_string.split(" ");
 
                                 $("[data_id=" + last_row_first_id + "]").attr('class', "seatCharts-seat seatCharts-cell economy-class available");
-                                // console.log(sc);
                                 $("[data_id=" + middle_next_seat + "]").attr('aria-checked', "true");
                                 $("[data_id=" + middle_next_seat + "]").attr('class', "seatCharts-seat seatCharts-cell economy-class selected");
                                 sc.status(middle_next_id, 'selected');
@@ -461,7 +462,7 @@
 
                             }
                         } else if (this.status() == 'selected') {
-                            console.log(selection_array);
+                            // console.log(selection_array);
                             //update the counter
                             $counter.text(sc.find('selected').length - 1);
 
@@ -471,7 +472,7 @@
                             //remove the item from our cart
                             $('#cart-item-' + this.settings.id).remove();
                             selection_array.splice($.inArray(this.settings.id, selection_array), 1);
-                            console.log('after' + selection_array);
+                            // console.log('after' + selection_array);
 
                             if (total_final_seat_count == $('#selected-seats li').length) {
                                 $('#booknow_submit').attr("disabled", false);
@@ -967,7 +968,7 @@
 
                         }
                     } else if (this.status() == 'available') {
-                        alert('available');
+                        
                         $('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
                             .attr('id', 'cart-item-' + this.settings.id)
                             .data('seatId', this.settings.id)
@@ -1129,7 +1130,7 @@
 
     $(function() {
         $('#checkout-button').click(function() {
-            var items = $('#selected-seats li')
+            var items = $('#selected-seats li');
             if (items.length <= 0) {
                 alert("Please select atleast 1 seat first.")
                 return false;
@@ -1146,9 +1147,12 @@
                 })
             }
             localStorage.setItem('booked', JSON.stringify(selected))
+            // localStorage.clear();
             alert("Seats has been Reserved successfully.")
             location.reload()
         })
+
+        
         $('#reset-btn').click(function() {
             if (confirm("are you sure to reset the reservation of the bus?") === true) {
                 localStorage.removeItem('booked')

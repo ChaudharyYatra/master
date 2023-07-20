@@ -58,6 +58,14 @@
                       <input type="hidden" id="bdata" value='<?php print_r(
                           $bus_info
                       ); ?>'>
+
+                  <input type="hidden" id="booked_data" value='<?php print_r($final_booked_data); ?>'>
+
+                  <script>
+
+                  var booked_data=<?php echo json_encode($final_booked_data);?>;
+
+                  </script>
                           <h2>Booking Details</h2>
 
                           <h3> Selected Seats (<span id="counter">0</span>):</h3>
@@ -89,13 +97,6 @@
                 <a href="<?php echo $module_url_booking_process; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
               </div>
     </div>
-
-    <script>
-var js_array ="<?php echo json_encode($bus_info);?>";
-
-</script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script> 
 
 
 

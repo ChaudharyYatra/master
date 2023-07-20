@@ -62,22 +62,34 @@
 					// console.log(this.status());
 					if (this.status() == 'available') {
 						return 'focused';
-					} else  {
+					} else if (this.status() == 'unavailable') {
+						return 'unavailable';
+					} {
 						return this.style();
 						
 					}
 				},
+				// blur   : function() {
+				// 	return this.status();
+				// },
 				blur   : function() {
-					return this.status();
+					// alert(this.status());
+					if (this.status() == 'unavailable') {
+						return 'unavailable';	
+					} else{
+						return this.status();	
+					}
 				},
 				seats   : {}
 			
 			},
 			//seat will be basically a seat object which we'll when generating the map
 			seat = (function(seatCharts, seatChartsSettings) {
-				// console.log('1');
+
 				return function (setup) {
 					var fn = this;
+					
+
 					
 					fn.settings = $.extend({
 						status : 'available', //available, unavailable, selected
@@ -89,8 +101,32 @@
 				// console.log(fn.settings);
 				// console.log(this.style());
 
+
 					fn.settings.$node = $('<div></div>');
-					
+					if($.inArray(fn.settings.id, booked_seats_data) != '-1')
+					{
+						// fn.settings.status(fn.settings.id,'unvailable');
+						// console.log('lllllllllllllllll',fn.settings.id);
+						// fn.settings.status('2_15','unvailable');
+						fn.settings = $.extend({
+							status : '', //available, unavailable, selected
+							style  : '',
+							//make sure there's an empty hash if user doesn't pass anything
+							data   : seatChartsSettings.seats[setup.character] || {}
+							//anything goes here?
+						}, setup);
+
+						fn.settings = $.extend({
+							status : 'unvailable', //available, unavailable, selected
+							style  : 'unvailable',
+							//make sure there's an empty hash if user doesn't pass anything
+							data   : seatChartsSettings.seats[setup.character] || {}
+							//anything goes here?
+						}, setup);
+						fn.settings.$node = $('<div></div>');
+				console.log('hhhhhhhhhhhhh',fn.settings.status);
+
+					}
 					fn.settings.$node
 						.attr({
 							id             : fn.settings.id,
@@ -99,7 +135,8 @@
 							focusable      : true,
 							tabIndex       : -1, //manual focus
 							data_id		   : did,
-							seat_type      :fn.settings.data.classes
+							seat_type      :fn.settings.data.classes,
+							seat_price     :fn.settings.data.price,
 						})
 						.text(fn.settings.label)
 						.addClass(['seatCharts-seat', 'seatCharts-cell', 'available'].concat(
@@ -108,6 +145,8 @@
 							typeof seatChartsSettings.seats[fn.settings.character] == "undefined" ? 
 								[] : seatChartsSettings.seats[fn.settings.character].classes
 							).join(' '));
+
+
 					
 					//basically a wrapper function
 					fn.data = function() {

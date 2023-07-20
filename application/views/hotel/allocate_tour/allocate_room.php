@@ -23,7 +23,7 @@
 .label {
     display: inline-block;
     position: relative;
-    width: 100px;
+    width: 50px;
     color: #fff;
     background: #FBCF61;
     text-align: center;
@@ -134,7 +134,9 @@ hr{
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
+        
                         <?php
+            if(!empty($hotel_allocated_room_data)){
                    foreach($hotel_allocated_room_data as $hotel_r_info) 
                    { 
                      ?>
@@ -163,6 +165,7 @@ hr{
                                                 $i=1; 
                                                     foreach($arr_data as $info) 
                                                     { 
+                                                        // print_r($info); die;
                                                         if($info['bed_type']=='One Bed' && $info['room_type']=='AC'){
                                                     ?>
                                                     <li>
@@ -173,7 +176,7 @@ hr{
                                                             // print_r($quali1); die;
                                                         ?>
                                                         <input name="one_bed_AC[]" id="i<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
-                                                        <label class="label" for="i<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                        <label class="label" for="i<?php echo $i?>"><?php echo $info['room_number'] ?></label>
                                                     </li>
 
                                                 <?php $i++;} }?>
@@ -203,7 +206,7 @@ hr{
                                                             // print_r($quali1); die;
                                                         ?>
                                                         <input name="one_bed_Non_AC[]" id="ii<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
-                                                        <label class="label" for="ii<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                        <label class="label" for="ii<?php echo $i?>"><?php echo $info['room_number'] ?></label>
                                                     </li>
 
                                                 <?php $i++;} }?>
@@ -248,7 +251,7 @@ hr{
                                                             // print_r($quali1); die;
                                                         ?>
                                                         <input name="two_bed_AC[]" id="j<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
-                                                        <label class="label" for="j<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                        <label class="label" for="j<?php echo $i?>"><?php echo $info['room_number'] ?></label>
                                                     </li>
 
                                                 <?php $i++;} }?>
@@ -278,7 +281,7 @@ hr{
                                                             // print_r($quali1); die;
                                                         ?>
                                                         <input name="two_bed_Non_AC[]" id="jj<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
-                                                        <label class="label" for="jj<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                        <label class="label" for="jj<?php echo $i?>"><?php echo $info['room_number'] ?></label>
                                                     </li>
 
                                                 <?php $i++;} }?>
@@ -323,7 +326,7 @@ hr{
                                                             // print_r($quali1); die;
                                                         ?>
                                                         <input name="three_bed_AC[]" id="l<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
-                                                        <label class="label" for="l<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                        <label class="label" for="l<?php echo $i?>"><?php echo $info['room_number'] ?></label>
                                                     </li>
 
                                                 <?php $i++;} }?>
@@ -353,7 +356,7 @@ hr{
                                                             // print_r($quali1); die;
                                                         ?>
                                                         <input name="three_bed_Non_AC[]" id="ll<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
-                                                        <label class="label" for="ll<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                        <label class="label" for="ll<?php echo $i?>"><?php echo $info['room_number'] ?></label>
                                                     </li>
 
                                                 <?php $i++;} }?>
@@ -398,7 +401,7 @@ hr{
                                                             // print_r($quali1); die;
                                                         ?>
                                                         <input name="four_bed_AC[]" id="k<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
-                                                        <label class="label" for="k<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                        <label class="label" for="k<?php echo $i?>"><?php echo $info['room_number'] ?></label>
                                                     </li>
 
                                                 <?php $i++;} }?>
@@ -428,7 +431,7 @@ hr{
                                                             // print_r($quali1); die;
                                                         ?>
                                                         <input name="four_bed_Non_AC[]" id="kk<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" <?php if(in_array($info['room_number'],$quali1)) {echo 'checked';}?> />
-                                                        <label class="label" for="kk<?php echo $i?>"><?php echo $info['room_number'] ?>-<?php echo $info['room_type'] ?></label>
+                                                        <label class="label" for="kk<?php echo $i?>"><?php echo $info['room_number'] ?></label>
                                                     </li>
 
                                                 <?php $i++;} }?>
@@ -453,9 +456,285 @@ hr{
                         </form>
 
                     </div>
-                    <?php } ?>  
+                    <?php } } else {?>  
+
+                    <form method="post" enctype="multipart/form-data">
+
+                        <div class="card-body">
+                            <div class="row" id="main_row">
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Room Type</label>
+
+                                        <input type="text" class="form-control" name="first_class" id="first_class"
+                                            placeholder="One Bed" Value="One Bed" required="required"
+                                            readonly>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>AC Rooms :</label>
+                                        <div class="book-tbl">
+                                            <ul class="new_seat_design_ul">
+                                            <?php 
+                                            $i=1; 
+                                                foreach($arr_data as $info) 
+                                                { 
+                                                    
+                                                    if($info['bed_type']=='One Bed' && $info['room_type']=='AC'){
+                                                ?>
+                                                <li>
+                                                    
+                                                    <input name="one_bed_AC[]" id="i<?php echo $i?>" type="checkbox" value="<?php echo $info['id'] ?>" >
+                                                    <label class="label" for="i<?php echo $i?>"><?php echo $info['room_number'] ?></label>
+                                                </li>
+
+                                            <?php $i++;} }?>
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Non-AC Rooms :</label>
+                                        <div class="book-tbl">
+                                            <ul class="new_seat_design_ul">
+                                            <?php 
+                                            $i=1; 
+                                                foreach($arr_data as $info) 
+                                                { 
+                                                    if($info['bed_type']=='One Bed' && $info['room_type']=='Non-AC'){
+                                                ?>
+                                                <li>
+                                                    
+                                                    <input name="one_bed_Non_AC[]" id="ii<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" />
+                                                    <label class="label" for="ii<?php echo $i?>"><?php echo $info['room_number'] ?></label>
+                                                </li>
+
+                                            <?php $i++;} }?>
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </div>
+
+                            <div class="row" id="main_row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Room Type</label>
+
+                                        <input type="text" class="form-control" name="first_class" id="first_class"
+                                            placeholder="Two Bed" Value="Two Bed" required="required"
+                                            readonly>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>AC Rooms :</label>
+                                        <div class="book-tbl">
+                                            <ul class="new_seat_design_ul">
+                                            <?php 
+                                            $i=1; 
+                                                foreach($arr_data as $info) 
+                                                { 
+                                                    if($info['bed_type']=='Two Bed' && $info['room_type']=='AC'){
+                                                ?>
+                                                <li>
+                                                    
+                                                    <input name="two_bed_AC[]" id="j<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" />
+                                                    <label class="label" for="j<?php echo $i?>"><?php echo $info['room_number'] ?></label>
+                                                </li>
+
+                                            <?php $i++;} }?>
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Non-AC Rooms :</label>
+                                        <div class="book-tbl">
+                                            <ul class="new_seat_design_ul">
+                                            <?php 
+                                            $i=1; 
+                                                foreach($arr_data as $info) 
+                                                { 
+                                                    if($info['bed_type']=='Two Bed' && $info['room_type']=='Non-AC'){
+                                                ?>
+                                                <li>
+                                                    
+                                                    <input name="two_bed_Non_AC[]" id="jj<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" />
+                                                    <label class="label" for="jj<?php echo $i?>"><?php echo $info['room_number'] ?></label>
+                                                </li>
+
+                                            <?php $i++;} }?>
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </div>
+
+                            <div class="row" id="main_row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Room Type</label>
+
+                                        <input type="text" class="form-control" name="first_class" id="first_class"
+                                            placeholder="Three Bed" Value="Three Bed" required="required"
+                                            readonly>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>AC Rooms :</label>
+                                        <div class="book-tbl">
+                                            <ul class="new_seat_design_ul">
+                                            <?php 
+                                            $i=1; 
+                                                foreach($arr_data as $info) 
+                                                { 
+                                                    if($info['bed_type']=='Three Bed' && $info['room_type']=='AC'){
+                                                ?>
+                                                <li>
+                                                    
+                                                    <input name="three_bed_AC[]" id="l<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" />
+                                                    <label class="label" for="l<?php echo $i?>"><?php echo $info['room_number'] ?></label>
+                                                </li>
+
+                                            <?php $i++;} }?>
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Non-AC Rooms :</label>
+                                        <div class="book-tbl">
+                                            <ul class="new_seat_design_ul">
+                                            <?php 
+                                            $i=1; 
+                                                foreach($arr_data as $info) 
+                                                { 
+                                                    if($info['bed_type']=='Three Bed' && $info['room_type']=='Non-AC'){
+                                                ?>
+                                                <li>
+                                                    
+                                                    <input name="three_bed_Non_AC[]" id="ll<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>"  />
+                                                    <label class="label" for="ll<?php echo $i?>"><?php echo $info['room_number'] ?></label>
+                                                </li>
+
+                                            <?php $i++;} }?>
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </div>
+
+                            <div class="row" id="main_row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Room Type</label>
+
+                                        <input type="text" class="form-control" name="first_class" id="first_class"
+                                            placeholder="Four Bed" Value="Four Bed" required="required"
+                                            readonly>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>AC Rooms :</label>
+                                        <div class="book-tbl">
+                                            <ul class="new_seat_design_ul">
+                                            <?php 
+                                            $i=1; 
+                                                foreach($arr_data as $info) 
+                                                { 
+                                                    if($info['bed_type']=='Four Bed' && $info['room_type']=='AC'){
+                                                ?>
+                                                <li>
+                                                    
+                                                    <input name="four_bed_AC[]" id="k<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" />
+                                                    <label class="label" for="k<?php echo $i?>"><?php echo $info['room_number'] ?></label>
+                                                </li>
+
+                                            <?php $i++;} }?>
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Non-AC Rooms :</label>
+                                        <div class="book-tbl">
+                                            <ul class="new_seat_design_ul">
+                                            <?php 
+                                            $i=1; 
+                                                foreach($arr_data as $info) 
+                                                { 
+                                                    if($info['bed_type']=='Four Bed' && $info['room_type']=='Non-AC'){
+                                                ?>
+                                                <li>
+                                                   
+                                                    <input name="four_bed_Non_AC[]" id="kk<?php echo $i?>" type="checkbox" value="<?php echo $info['room_number'] ?>" />
+                                                    <label class="label" for="kk<?php echo $i?>"><?php echo $info['room_number'] ?></label>
+                                                </li>
+
+                                            <?php $i++;} }?>
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary form-control" name="submit" value="submit"
+                                style="width:10%;">Submit</button>
+                            <a href="<?php echo $module_url_path; ?>/index/"><button type="button"
+                                    class="btn btn-danger">Cancel</button></a>
+                        </div>
+                    </form>     
                 </div>
                 <!-- /.card -->
+                <?php } ?>
             </div>
             <!--/.col (left) -->
             <!-- right column -->

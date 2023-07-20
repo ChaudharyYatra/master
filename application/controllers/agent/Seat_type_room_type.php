@@ -1369,52 +1369,183 @@ class Seat_type_room_type extends CI_Controller {
      {  
 
          $agent_sess_name = $this->session->userdata('agent_name');
+
          $id=$this->session->userdata('agent_sess_id');
 
+        //  echo $iid;
 
         $this->db->order_by('id','desc');
+
         $this->db->where('is_deleted','no');
+
         $this->db->where('domestic_enquiry_id',$iid);
+
         $agent_all_travaller_info = $this->master_model->getRecord('all_traveller_info');
+
+
+
         $pack_main_id=$agent_all_travaller_info['package_id'];
 
 
-        $this->db->where('bus_open.is_deleted','no');
-        $this->db->where('package_id',$pack_main_id);
-        $this->db->join("vehicle_details", 'vehicle_details.id=bus_open.vehicle_rto_registration','left');
-        $this->db->join("vehicle_seat_preference", 'vehicle_seat_preference.vehicle_id=bus_open.vehicle_rto_registration','left');
-        $bus_info= $this->master_model->getRecord('bus_open');
 
+        $fields = "bus_open.*,vehicle_seat_preference.total_seat_count,first_cls_seats,second_cls_seats,third_cls_seats,first_class_price,second_class_price,
+
+                   third_class_price,window_class_price,vehicle_details.id,vehicle_seat_preference.vehicle_id,booking_basic_info.tour_no,booking_basic_info.domestic_enquiry_id,
+
+                   bus_seat_book.tour_dates";
+
+        $this->db->where('booking_basic_info.domestic_enquiry_id',$iid);
+
+        $this->db->join("vehicle_details", 'vehicle_details.id=bus_open.vehicle_rto_registration','left');
+
+        $this->db->join("vehicle_seat_preference", 'vehicle_seat_preference.vehicle_id=bus_open.vehicle_rto_registration','left');
+
+        $this->db->join("bus_seat_book", 'vehicle_seat_preference.vehicle_id=bus_open.vehicle_rto_registration','left');
+
+        $this->db->join("booking_basic_info", 'booking_basic_info.tour_no=bus_open.package_id AND booking_basic_info.tour_date=bus_open.package_date_id','left');
+
+        $this->db->group_by('booking_basic_info.domestic_enquiry_id');
+
+        $bus_info = $this->master_model->getRecord('bus_open',array('bus_open.is_deleted'=>'no'),$fields);
+
+
+
+        $pack_id=$bus_info['package_id'];
+
+        $pack_date_id=$bus_info['tour_dates'];
+
+
+
+        $fields = "bus_seat_book.seat_orignal_id";
+
+        $this->db->where('bus_seat_book.package_id',$pack_id);
+
+        $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
+
+        $booked_seats_data = $this->master_model->getRecords('bus_seat_book','',$fields);
+
+        $final_booked_data=array();
+
+        foreach($booked_seats_data as $booked_data){
+
+            array_push($final_booked_data, $booked_data['seat_orignal_id']);
+
+        }
+
+     
+
+            //    print_r($final_booked_data); die;
 
         $record = array();
+
         $fields = "booking_basic_info.*,packages.id,packages.tour_title,packages.tour_number,packages.tour_number,package_date.journey_date";
+
         $this->db->where('booking_basic_info.is_deleted','no');
+
         $this->db->where('domestic_enquiry_id',$iid);
+
         $this->db->join("packages", 'packages.id=booking_basic_info.tour_no','left');
+
         $this->db->join("package_date", 'package_date.id=booking_basic_info.tour_date','left');
+
         $traveller_booking_info = $this->master_model->getRecords('booking_basic_info',array('booking_basic_info.is_deleted'=>'no'),$fields);
+
+
+
+        // $this->db->order_by('id','desc');
+
+       
+
+        // print_r($bus_info); die;
+
+       
+
+        // $this->db->where('is_deleted','no');
+
+        // $this->db->where('id',$id);
+
+        // $agent_data = $this->master_model->getRecords('agent');
+
+       
+
+        // $this->db->order_by('id','desc');
+
+        // $this->db->where('is_deleted','no');
+
+        // $this->db->where('booking_enquiry.id',$iid);
+
+        // $agent_booking_enquiry_data = $this->master_model->getRecords('booking_enquiry');
+
+
+
+        // $record = array();
+
+        // $fields = "agent.*,department.department,booking_enquiry.seat_count,booking_enquiry.id as enq_id";
+
+        // $this->db->where('agent.is_deleted','no');
+
+        // $this->db->where('agent.id',$id);
+
+        // $this->db->where('booking_enquiry.id',$iid);
+
+        // $this->db->join("department", 'agent.department=department.id','left');
+
+        // $this->db->join("booking_enquiry", 'agent.id=booking_enquiry.agent_id','left');
+
+        // $agent_department = $this->master_model->getRecords('agent',array('agent.is_deleted'=>'no'),$fields);
+
+        // // print_r($agent_department); die;
+
+
+
+        // $this->db->where('is_deleted','no');
+
+        // $this->db->where('is_active','yes');
+
+        // $this->db->order_by('tour_number','ASC');
+
+        // $packages_data_booking = $this->master_model->getRecords('packages');
 
 
 
         if($this->input->post('booknow_submit'))
 
         {
+
+             
+
             //print_r($_REQUEST);
+
             //die;
+
         }
+
        
 
          $this->arr_view_data['agent_sess_name'] = $agent_sess_name;
+
          $this->arr_view_data['bus_info'] = $bus_info;
+
          $this->arr_view_data['traveller_booking_info'] = $traveller_booking_info;
+
+         $this->arr_view_data['final_booked_data'] = $final_booked_data;
+
          $this->arr_view_data['action']          = 'add';
+
          $this->arr_view_data['page_title']      = " Add ".$this->module_title;
+
          $this->arr_view_data['agent_all_travaller_info']        = $agent_all_travaller_info;
+
          $this->arr_view_data['module_title']    = $this->module_title;
+
          $this->arr_view_data['module_url_path'] = $this->module_url_path;
+
          $this->arr_view_data['module_url_booking_process'] = $this->module_url_booking_process;
+
          $this->arr_view_data['middle_content']  = $this->module_view_folder."bus_add";
+
          $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
+
      }
 
 
