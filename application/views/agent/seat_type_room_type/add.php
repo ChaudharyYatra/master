@@ -345,12 +345,12 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate1 agewise_cal_40" attr-per="<?php $p_40_cost = $arr_package_info['single_seat_cost']; $final_40_cost=$p_40_cost*40/100; echo round($final_40_cost); ?>"  name="onebed_oneroom_40" id="onebed_oneroom_40" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['onebed_oneroom_40'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate1 agewise_cal_40" attr-per="<?php $p_40_cost = $arr_package_info['single_seat_cost']; $final_40_cost=$p_40_cost*40/100; echo round($final_40_cost); ?>"  name="onebed_oneroom_40" id="onebed_oneroom_40" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['onebed_oneroom_40'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate1 agewise_cal_0" attr-per="<?php $p_40_cost = $arr_package_info['single_seat_cost']; $final_40_cost=$p_40_cost*0/100; echo round($final_40_cost); ?>" name="onebed_oneroom_0" id="onebed_oneroom_0" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['onebed_oneroom_0'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate1 agewise_cal_0" attr-per="<?php $p_40_cost = $arr_package_info['single_seat_cost']; $final_40_cost=$p_40_cost*0/100; echo round($final_40_cost); ?>" name="onebed_oneroom_0" id="onebed_oneroom_0" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['onebed_oneroom_0'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -378,27 +378,27 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate2 agewise_cal_adult" attr-per="<?php echo $arr_package_info['twin_seat_cost']; ?>" name="twobed_oneroom_cost_adult" id="twobed_oneroom_cost_adult" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_cost_adult'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" attr-add="yes" class="form-control hotel_rate2 agewise_cal_adult" attr-per="<?php echo $arr_package_info['twin_seat_cost']; ?>" name="twobed_oneroom_cost_adult" id="twobed_oneroom_cost_adult" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_cost_adult'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate2 agewise_cal_90" attr-per="<?php $pcost = $arr_package_info['twin_seat_cost']; $final_cost=$pcost*90/100; echo round($final_cost); ?>" name="twobed_oneroom_count_90" id="twobed_oneroom_count_90" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_count_90'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" attr-add="yes" class="form-control hotel_rate2 agewise_cal_90" attr-per="<?php $pcost = $arr_package_info['twin_seat_cost']; $final_cost=$pcost*90/100; echo round($final_cost); ?>" name="twobed_oneroom_count_90" id="twobed_oneroom_count_90" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_count_90'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate2 agewise_cal_60" attr-per="<?php $p_60_cost = $arr_package_info['twin_seat_cost']; $final_60_cost=$p_60_cost*60/100; echo round($final_60_cost); ?>" name="twobed_oneroom_count_60" id="twobed_oneroom_count_60" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_count_60'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate2 agewise_cal_60" attr-per="<?php $p_60_cost = $arr_package_info['twin_seat_cost']; $final_60_cost=$p_60_cost*60/100; echo round($final_60_cost); ?>" name="twobed_oneroom_count_60" id="twobed_oneroom_count_60" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_count_60'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate2 agewise_cal_40" attr-per="<?php $p_40_cost = $arr_package_info['twin_seat_cost']; $final_40_cost=$p_40_cost*40/100; echo round($final_40_cost); ?>" name="twobed_oneroom_count_40" id="twobed_oneroom_count_40" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_count_40'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate2 agewise_cal_40" attr-per="<?php $p_40_cost = $arr_package_info['twin_seat_cost']; $final_40_cost=$p_40_cost*40/100; echo round($final_40_cost); ?>" name="twobed_oneroom_count_40" id="twobed_oneroom_count_40" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_count_40'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate2 agewise_cal_0" attr-per="<?php $p_40_cost = $arr_package_info['twin_seat_cost']; $final_40_cost=$p_40_cost*0/100; echo round($final_40_cost); ?>" name="twobed_oneroom_count_0" id="twobed_oneroom_count_0" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_count_0'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate2 agewise_cal_0" attr-per="<?php $p_40_cost = $arr_package_info['twin_seat_cost']; $final_40_cost=$p_40_cost*0/100; echo round($final_40_cost); ?>" name="twobed_oneroom_count_0" id="twobed_oneroom_count_0" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['twobed_oneroom_count_0'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -438,17 +438,17 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate3 agewise_cal_60" attr-per="<?php $p_60_cost = $arr_package_info['three_four_sharing_cost']; $final_60_cost=$p_60_cost*60/100; echo round($final_60_cost); ?>" name="threebed_oneroom_count_60" id="threebed_oneroom_count_60" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['threebed_oneroom_count_60'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate3 agewise_cal_60" attr-per="<?php $p_60_cost = $arr_package_info['three_four_sharing_cost']; $final_60_cost=$p_60_cost*60/100; echo round($final_60_cost); ?>" name="threebed_oneroom_count_60" id="threebed_oneroom_count_60" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['threebed_oneroom_count_60'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate3 agewise_cal_40" attr-per="<?php $p_40_cost = $arr_package_info['three_four_sharing_cost']; $final_40_cost=$p_40_cost*40/100; echo round($final_40_cost); ?>" name="threebed_oneroom_count_40" id="threebed_oneroom_count_40" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['threebed_oneroom_count_40'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate3 agewise_cal_40" attr-per="<?php $p_40_cost = $arr_package_info['three_four_sharing_cost']; $final_40_cost=$p_40_cost*40/100; echo round($final_40_cost); ?>" name="threebed_oneroom_count_40" id="threebed_oneroom_count_40" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['threebed_oneroom_count_40'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate3 agewise_cal_0" attr-per="<?php $p_40_cost = $arr_package_info['three_four_sharing_cost']; $final_40_cost=$p_40_cost*0/100; echo round($final_40_cost); ?>" name="threebed_oneroom_count_0" id="threebed_oneroom_count_0" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['threebed_oneroom_count_0'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate3 agewise_cal_0" attr-per="<?php $p_40_cost = $arr_package_info['three_four_sharing_cost']; $final_40_cost=$p_40_cost*0/100; echo round($final_40_cost); ?>" name="threebed_oneroom_count_0" id="threebed_oneroom_count_0" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['threebed_oneroom_count_0'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -488,17 +488,17 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate4 agewise_cal_60" attr-per="<?php $p_60_cost = $arr_package_info['three_four_sharing_cost']; $final_60_cost=$p_60_cost*60/100; echo round($final_60_cost); ?>" name="fourbed_oneroom_count_60" id="fourbed_oneroom_count_60" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['fourbed_oneroom_count_60'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate4 agewise_cal_60" attr-per="<?php $p_60_cost = $arr_package_info['three_four_sharing_cost']; $final_60_cost=$p_60_cost*60/100; echo round($final_60_cost); ?>" name="fourbed_oneroom_count_60" id="fourbed_oneroom_count_60" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['fourbed_oneroom_count_60'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate4 agewise_cal_40" attr-per="<?php $p_40_cost = $arr_package_info['three_four_sharing_cost']; $final_40_cost=$p_40_cost*40/100; echo round($final_40_cost); ?>" name="fourbed_oneroom_count_40" id="fourbed_oneroom_count_40" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['fourbed_oneroom_count_40'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate4 agewise_cal_40" attr-per="<?php $p_40_cost = $arr_package_info['three_four_sharing_cost']; $final_40_cost=$p_40_cost*40/100; echo round($final_40_cost); ?>" name="fourbed_oneroom_count_40" id="fourbed_oneroom_count_40" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['fourbed_oneroom_count_40'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" attr-add="no" class="form-control hotel_rate4 agewise_cal_0" attr-per="<?php $p_40_cost = $arr_package_info['three_four_sharing_cost']; $final_40_cost=$p_40_cost*0/100; echo round($final_40_cost); ?>" name="fourbed_oneroom_count_0" id="fourbed_oneroom_count_0" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['fourbed_oneroom_count_0'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                                    <input type="text" disabled attr-add="no" class="form-control hotel_rate4 agewise_cal_0" attr-per="<?php $p_40_cost = $arr_package_info['three_four_sharing_cost']; $final_40_cost=$p_40_cost*0/100; echo round($final_40_cost); ?>" name="fourbed_oneroom_count_0" id="fourbed_oneroom_count_0" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['fourbed_oneroom_count_0'];} ?>" placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                                 </div>
                                             </div>
                                             <div class="col-md-2">

@@ -98,11 +98,12 @@ class Hotel_details extends CI_Controller{
                         'amenities'   =>   $amenities,
                         'description'   =>   $description[$i],
                         'assign'   =>   $assign[$i],
-                        'hotel_id'   =>   $iid[$i]
+                        'hotel_id'   =>   $iid
                     );
-                
+                   
                 
                     $inserted_id = $this->master_model->insertRecord('hotel_room',$arr_insert,true);
+                   
                 
                 }
                 

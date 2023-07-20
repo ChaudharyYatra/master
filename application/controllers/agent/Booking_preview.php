@@ -121,6 +121,18 @@ class Booking_preview extends CI_Controller {
                 );
                 $arr_where     = array("id" => $enquiry_id);
                 $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
+
+                $arr_update = array(
+                    'booking_reference_no'   =>   $booking_reference_no
+                );
+                $arr_where     = array("domestic_enquiry_id" => $enquiry_id);
+                $this->master_model->updateRecord('all_traveller_info',$arr_update,$arr_where);
+
+                $arr_update = array(
+                    'booking_reference_no'   =>   $booking_reference_no
+                );
+                $arr_where     = array("domestic_enquiry_id" => $enquiry_id);
+                $this->master_model->updateRecord('seat_type_room_type',$arr_update,$arr_where);
                                
                 if($inserted_id > 0)
                 {    

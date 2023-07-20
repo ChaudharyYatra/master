@@ -138,6 +138,7 @@
                         </colgroup>
                             <thead>
                                 <tr style="background:#a19f9f; color:white;">
+                                    <th style="width:10%;">For credentials</th>
                                     <th style="width:17%;">Mr / Mrs</th>
                                     <th style="width:15%;">First name</th>
                                     <th style="width:15%;">Middle name</th>
@@ -172,7 +173,11 @@
                             <tr>
 
                             <input type="hidden" class="form-control" name="travaller_info_id[]" id="travaller_info_id" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['id'];} ?>">
-                                    
+                                 
+                                <td>
+                                <input type="radio" id="yes" name="for_credentials[]" value="<?php echo $all_traveller_info_value['id']; ?>" <?php if(isset($all_traveller_info_value['for_credentials'])){if($all_traveller_info_value['for_credentials']=='yes'){echo "checked";}} ?>>
+                          
+                                </td>
                                 <td>
                                     <select class="select_css row_set1" name="mrandmrs[]" id="mrandmrs">
                                         <option value="">select Mr / Mrs</option>
@@ -244,8 +249,16 @@
                         else{
                             for($i=1; $i<=$tcount; $i++){
                                 $img_count=$i+1;
+                                $traveller_id = $all_traveller_info_tble_id+$i;
                             ?>
                             <tr>
+
+                            <input type="text" name="traveller_id[]" value="<?php echo $traveller_id; ?>" >
+
+                                <td>
+                                <input type="radio" id="yes" name="for_credentials[]" value="<?php echo $traveller_id; ?>" >
+                          
+                                </td>
                                     
                                 <td><select class="select_css row_set1" name="mrandmrs[]" id="mrandmrs">
                                         <option value="">select Mr / Mrs</option>

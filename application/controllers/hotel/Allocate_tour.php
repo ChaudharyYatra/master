@@ -58,7 +58,7 @@ class Allocate_tour extends CI_Controller {
 
 
         $arr_data = $this->master_model->getRecords('hotel_room');
-       //   print_r($arr_data); die;
+        //  print_r($arr_data); die;
 
        $hotel_allocated_room_data = $this->master_model->getRecords('hotel_allocated_room');
 
@@ -165,8 +165,8 @@ class Allocate_tour extends CI_Controller {
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['hotel_allocated_room_data'] = $hotel_allocated_room_data;
         $this->arr_view_data['action']          = 'add';       
-        $this->arr_view_data['page_title']      = " Add ".$this->module_title;
-        $this->arr_view_data['module_title']    = $this->module_title;
+        $this->arr_view_data['page_title']      = " Allocated room ";
+        $this->arr_view_data['module_title']    = " Allocated room ";
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."allocate_room";
         $this->load->view('hotel/layout/hotel_combo',$this->arr_view_data);
