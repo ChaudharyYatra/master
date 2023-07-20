@@ -50,8 +50,11 @@
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $info['role_name'] ?></td>
+                    <!-- <?php //if($info['staff_role'] !='9'){?> -->
                     <td><?php echo $info['supervision_name'] ?></td>
-                    
+                    <!-- <?php //}else{ ?>
+                      <td><?php //echo $info['supervision_name'] ?></td>
+                    <?php //} ?> -->
                     <td>
                           <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id']; ?>" title="Update"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>/<?php echo $id; ?>/<?php echo $pid; ?>" 

@@ -134,6 +134,12 @@ class Feedback_add extends CI_Controller {
         $arr_data = $this->master_model->getRecords('customer_feedback');
         // print_r($arr_data); die;
 
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->where('for_booking_yes_no','yes');
+        $role_type = $this->master_model->getRecords('role_type');
+        // print_r($role_type); die;
+
         $fields = "final_booking.*,packages.tour_title,package_date.journey_date";
         $this->db->where('final_booking.is_deleted','no');
         $this->db->where('final_booking.is_active','yes');
@@ -150,7 +156,7 @@ class Feedback_add extends CI_Controller {
                         'arr_data_tour_details'               => $arr_data_tour_details,
                         'cust_sess_name'        => $cust_sess_name,
                         'cust_sess_lname'        => $cust_sess_lname,
-						// 'packages_data'       => $packages_data,
+						'role_type'       => $role_type,
 						'page_title'    => 'Feedback'
 						);
         $this->arr_view_data['page_title']     =  "Feedback";

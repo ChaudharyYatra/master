@@ -88,13 +88,14 @@
                                                 <div class="input-box">
                                                     <select class="niceSelect" name="categories" id="categories">
                                                         <option value="">Select Categories</option>
-                                                        <option value="Other">Other</option>
-                                                        <option value="food">Food</option>
-                                                        <option value="traveler">Travel</option>
-                                                        <option value="vehicle">Vehicle</option>
-                                                        <option value="staff">Staff</option>
-                                                        <option value="room">Room</option>
+                                                        <?php
+                                                        foreach($role_type as $role_type_info) 
+                                                        { 
+                                                        ?>
+                                                            <option value="<?php echo $role_type_info['id'];?>"><?php echo $role_type_info['role_name'];?></option>
+                                                        <?php } ?>
                                                     </select>
+                                                    
                                                 </div>
                                                 <span class="text-danger float-left" id="categories_error" style="display:none"></span>
 

@@ -23,16 +23,20 @@ class Tour_expenses extends CI_Controller {
 
         public function index()
         {
-            $supervision_sess_name = $this->session->userdata('supervision_name');
-            $id = $this->session->userdata('supervision_sess_id');
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id');
 
         $record = array();
-        $fields = "tour_expenses.*,expense_type.expense_type_name,expense_category.expense_category";
+        $fields = "tour_expenses.*,expense_type.expense_type_name,expense_category.expense_category,
+        packages.tour_title,packages.tour_number,package_date.journey_date,hotel_advance_payment.advance_amt";
         $this->db->where('tour_expenses.is_deleted','no');
         $this->db->where('tour_expenses.tour_manager_id',$id);
         $this->db->order_by('tour_expenses.id','desc');
         $this->db->join("expense_type", 'tour_expenses.expense_type=expense_type.id','left');
         $this->db->join("expense_category", 'tour_expenses.expense_category_id=expense_category.id','left');
+        $this->db->join("packages", 'tour_expenses.package_id=packages.id','left');
+        $this->db->join("package_date", 'tour_expenses.package_date_id=package_date.id','left');
+        $this->db->join("hotel_advance_payment", 'tour_expenses.package_id=hotel_advance_payment.tour_number','left');
         $arr_data = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
@@ -536,7 +540,7 @@ class Tour_expenses extends CI_Controller {
         
         $record = array();
         $fields = "tour_expenses.*,expense_type.expense_type_name,expense_category.expense_category,
-        packages.tour_number,packages.tour_title,package_date.journey_date";
+        packages.tour_number,packages.tour_title,package_date.journey_date,hotel_advance_payment.advance_amt";
         $this->db->where('tour_expenses.is_deleted','no');
         $this->db->order_by('tour_expenses.id','desc');
         $this->db->where('tour_expenses.id',$tid);
@@ -544,6 +548,7 @@ class Tour_expenses extends CI_Controller {
         $this->db->join("expense_category", 'tour_expenses.expense_category_id=expense_category.id','left');
         $this->db->join("packages", 'tour_expenses.package_id=packages.id','left');
         $this->db->join("package_date", 'tour_expenses.package_date_id=package_date.id','left');
+        $this->db->join("hotel_advance_payment", 'tour_expenses.package_id=hotel_advance_payment.tour_number','left');
         $this->db->group_by('package_date.package_id');
         $tour_expenses_all = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
         // print_r($tour_expenses_all); die;

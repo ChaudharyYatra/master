@@ -348,11 +348,19 @@ if(select_type=='role'){
         //   $('.name').find('option').not(':first').remove();
         currentRow.find(".name").find('option').not(':first').remove();
        
+        if(did!= '9'){
           $.each(response,function(index,data){             
             currentRow.find(".name").append('<option value="'+data['id']+'">'+data['supervision_name']+'</option>');
             //  $('.name').append('<option value="'+data['id']+'">'+data['supervision_name']+'</option>');
           });
         }
+        else{
+          $.each(response,function(index,data){             
+            currentRow.find(".name").append('<option value="'+data['id']+'">'+data['vehicle_owner_name']+'</option>');
+            //  $('.name').append('<option value="'+data['id']+'">'+data['supervision_name']+'</option>');
+        });
+        }
+      }
      });
     }
    });

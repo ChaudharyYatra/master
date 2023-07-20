@@ -58,13 +58,15 @@ class Assign_staff extends CI_Controller{
         // $arr_data = $this->master_model->getRecords('assign_staff');
         // print_r($arr_data); die;
 
-        $fields = "assign_staff.*,role_type.role_name,supervision.supervision_name";
+        $fields = "assign_staff.*,role_type.role_name,assign_staff.role_name as staff_role,supervision.supervision_name,vehicle_owner.vehicle_owner_name";
         $this->db->where('assign_staff.is_deleted','no');
         $this->db->where('package_date_id',$id);
         $this->db->where('package_id',$pid);
         $this->db->join("role_type", 'assign_staff.role_name=role_type.id','left');
         $this->db->join("supervision", 'assign_staff.name=supervision.id','left');
+        $this->db->join("vehicle_owner", 'assign_staff.name=vehicle_owner.id','left');
         $arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
 
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
@@ -86,8 +88,6 @@ class Assign_staff extends CI_Controller{
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');   
 
-
-        
         if($this->input->post('submit'))
         {
 
@@ -116,8 +116,49 @@ class Assign_staff extends CI_Controller{
                     );
 
                     $inserted_id = $this->master_model->insertRecord('assign_staff',$arr_insert,true);
-                }
+
                 
+                    $record = array();
+                    $fields = "assign_staff.*,role_type.role_name,supervision.supervision_name,supervision.mobile_number1,packages.tour_number,packages.tour_title,package_date.journey_date";
+                    $this->db->where('assign_staff.is_deleted','no');
+                    // $this->db->where('assign_staff.name',$iid);
+                    $this->db->order_by('assign_staff.id','DESC');
+                    $this->db->join("supervision", 'assign_staff.name=supervision.id','left');
+                    $this->db->join("packages", 'assign_staff.package_id=packages.id','left');
+                    $this->db->join("package_date", 'assign_staff.package_date_id=package_date.id','left');
+                    $this->db->join("role_type", 'assign_staff.role_name=role_type.id','left');
+                    $agent_data_email = $this->master_model->getRecord('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
+                    // print_r($agent_data_email); die;
+                    //  $agent_email=$agent_data_email['email'];{
+                    if($agent_data_email['role_name']=='Tour Manager'){
+                    $agent_name=$agent_data_email['supervision_name'];   
+                    $mobileNumber=$agent_data_email['mobile_number1'];  
+                    $tour_number= $agent_data_email['tour_number'];  
+                    $tour_title= $agent_data_email['tour_title'];  
+                    $tour_date= $agent_data_email['journey_date'];  
+                    $from_email='test@choudharyyatra.co.in';
+				  
+				  	$authKey = "1207168241267288907";
+				  	
+                      
+				    $message="Hi $agent_name, You have been allocated as the tour manager for the upcoming tour $tour_number - $tour_title on $tour_date. Please confirm your availability. Thank you, CYCPL Team.";
+                    $senderId  = "CYCPLN";
+                
+                    $apiurl = "http://sms.sumagoinfotech.com/api/sendhttp.php?authkey=394685AG84OZGHLV0z6438e5e3P1&mobiles=$mobileNumber&message=$message&sender=CYCPLN&route=4&country=91&DLT_TE_ID=1207168251635131542";
+                       
+                    $apiurl = str_replace(" ", '%20', $apiurl);
+                    
+                   
+                   $ch = curl_init($apiurl);
+                			$get_url = $apiurl;
+                			curl_setopt($ch, CURLOPT_POST,0);
+                			curl_setopt($ch, CURLOPT_URL, $get_url);
+                			curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1);
+                			curl_setopt($ch, CURLOPT_HEADER,0);
+                			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+                	$return_val = curl_exec($ch); 
+                }
+                }
                                
                 if($inserted_id > 0)
                 {
@@ -306,10 +347,17 @@ class Assign_staff extends CI_Controller{
         // $all_b=array();
         $getname = $this->input->post('did');
         // print_r($getname); die;
+        if($getname!= '9'){
                         $this->db->where('is_deleted','no');
                         $this->db->where('is_active','yes');
                         $this->db->where('role_type',$getname);   
                         $data = $this->master_model->getRecords('supervision');
+        }
+        else{
+            $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $data = $this->master_model->getRecords('vehicle_owner');
+        }
         echo json_encode($data);
     }
 

@@ -113,6 +113,44 @@ class Asign_driver extends CI_Controller{
                 );
                 $arr_where     = array("id" => $aid);
                 $inserted_id = $this->master_model->updateRecord('bus_open',$arr_update,$arr_where);
+
+                $record = array();
+                $fields = "bus_open.*,packages.tour_number,packages.tour_title,package_date.journey_date,vehicle_driver.mobile_number1,vehicle_driver.driver_name";
+                $this->db->where('bus_open.is_deleted','no');
+                // $this->db->where('assign_staff.name',$iid);
+                $this->db->order_by('bus_open.id','DESC');
+                $this->db->join("packages", 'bus_open.package_id=packages.id','left');
+                $this->db->join("package_date", 'bus_open.package_date_id=package_date.id','left');
+                $this->db->join("vehicle_driver", 'bus_open.asign_driver_name=vehicle_driver.id','left');
+                $agent_data_email = $this->master_model->getRecord('bus_open',array('bus_open.is_deleted'=>'no'),$fields);
+                //  print_r($agent_data_email); die;
+                //  $agent_email=$agent_data_email['email'];
+                 $agent_name=$agent_data_email['driver_name'];   
+                 $mobileNumber=$agent_data_email['mobile_number1'];  
+                 $tour_number= $agent_data_email['tour_number'];  
+                 $tour_title= $agent_data_email['tour_title'];  
+                 $tour_date= $agent_data_email['journey_date'];  
+				  $from_email='test@choudharyyatra.co.in';
+				  
+				  	$authKey = "1207168241267288907";
+				  	
+				$message="Hi $agent_name, You have been allocated as the driver for the upcoming tour $tour_number - $tour_title on $tour_date. Please confirm your availability. Thank you, CYCPL Team.";
+                $senderId  = "CYCPLN";
+                
+                $apiurl = "http://sms.sumagoinfotech.com/api/sendhttp.php?authkey=394685AG84OZGHLV0z6438e5e3P1&mobiles=$mobileNumber&message=$message&sender=CYCPLN&route=4&country=91&DLT_TE_ID=1207168251652497037";
+               
+                    $apiurl = str_replace(" ", '%20', $apiurl);
+                    
+                   
+                   $ch = curl_init($apiurl);
+                			$get_url = $apiurl;
+                			curl_setopt($ch, CURLOPT_POST,0);
+                			curl_setopt($ch, CURLOPT_URL, $get_url);
+                			curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1);
+                			curl_setopt($ch, CURLOPT_HEADER,0);
+                			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+                	$return_val = curl_exec($ch); 
+                    
                 // } 
                 // die;             
                 if($inserted_id > 0)

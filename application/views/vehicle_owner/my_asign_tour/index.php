@@ -1,3 +1,8 @@
+<style>
+  .iter_css{
+    text-decoration:none;
+  }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -84,11 +89,11 @@
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu" role="menu">
-                          <a href="<?php echo $module_url_path;?>/iternary_details/<?php $aid=base64_encode($info['id']); 
+                          <a class="iter_css" href="<?php echo $module_url_path;?>/iternary_details/<?php $aid=base64_encode($info['package_id']); 
 					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
 					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Itinerary Details</button></a>
-                          <!-- <a href="<?php //echo $module_url_tour_photos;?>/add/<?php //$aid=base64_encode($info['package_id']); 
-					                  //echo rtrim($aid, '='); ?>" class="itinerary_css"><button class="dropdown-item">Add Tour Photos</button></a> -->
+                          <a class="iter_css" href="<?php echo $module_url_path_customer_feedback;?>/index/<?php $aid=base64_encode($info['package_id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); echo rtrim($did, '='); ?> " class="itinerary_css"><button class="dropdown-item">Feedback From Customer</button></a>
                         </div>
                       </div>
                     </td>

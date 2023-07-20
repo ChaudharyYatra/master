@@ -1,3 +1,8 @@
+<style>
+  .blink{
+    color:red;
+  }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -33,6 +38,9 @@
               <div class="card-header">
                 <h3 class="card-title"><?php echo $page_title; ?></h3>
               </div>
+              <!-- <div class="mt-2">
+                <marquee><h3 class="card-title blink">Advance Payment Done From Accountant -  </h3>  <h5 class="blink"><?php //echo $tour_expenses_all_info['advance_amt']; ?></h5></marquee>
+              </div> -->
               <!-- /.card-header -->
               <!-- form start -->
               

@@ -53,15 +53,15 @@ class Feedback extends CI_Controller {
                 
          
          $data = array('middle_content' => 'feedback',
-						'website_basic_structure'       => $website_basic_structure,
-						'social_media_link'       => $social_media_link,
-                                                'arr_data'               => $arr_data,
-                                                'arr_data_tour_details'               => $arr_data_tour_details,
-                                                'cust_sess_name'        => $cust_sess_name,
-                                                'cust_sess_lname'        => $cust_sess_lname,
-						// 'packages_data'       => $packages_data,
-						'page_title'    => 'Feedback'
-						);
+                        'website_basic_structure'       => $website_basic_structure,
+                        'social_media_link'       => $social_media_link,
+                        'arr_data'               => $arr_data,
+                        'arr_data_tour_details'               => $arr_data_tour_details,
+                        'cust_sess_name'        => $cust_sess_name,
+                        'cust_sess_lname'        => $cust_sess_lname,
+                        // 'packages_data'       => $packages_data,
+                        'page_title'    => 'Feedback'
+                        );
         $this->arr_view_data['page_title']     =  "Feedback";
         $this->arr_view_data['middle_content'] =  "feedback";
         $this->load->view('front/common_view',$data);
