@@ -175,7 +175,7 @@
                             <input type="hidden" class="form-control" name="travaller_info_id[]" id="travaller_info_id" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['id'];} ?>">
                                  
                                 <td>
-                                <input type="radio" id="yes" name="for_credentials[]" value="<?php echo $all_traveller_info_value['id']; ?>" <?php if(isset($all_traveller_info_value['for_credentials'])){if($all_traveller_info_value['for_credentials']=='yes'){echo "checked";}} ?>>
+                                <input type="radio" id="yes" name="for_credentials[]" value="<?php echo $all_traveller_info_value['id']; ?>" <?php if(isset($all_traveller_info_value['for_credentials'])){if($all_traveller_info_value['for_credentials']=='yes'){echo "checked";}} ?> required>
                           
                                 </td>
                                 <td>
@@ -253,7 +253,7 @@
                             ?>
                             <tr>
 
-                            <input type="text" name="traveller_id[]" value="<?php echo $traveller_id; ?>" >
+                            <input type="text" name="traveller_id[]" value="<?php echo $traveller_id; ?>" required>
 
                                 <td>
                                 <input type="radio" id="yes" name="for_credentials[]" value="<?php echo $traveller_id; ?>" >

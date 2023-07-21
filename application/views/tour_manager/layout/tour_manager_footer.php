@@ -5083,7 +5083,17 @@ $('#edit_tour_photo').validate({ // initialize the plugin
 </script>
 <!-- Bank transaction ---------------------------------------- -->
 
+<!--  -->
 
+<script>
+    $(document).on("change","select",function(){
+        var selectedOption=$(this).val();
+        var select_name=$(this).attr('name');
+        var select_id=$(this).attr('id');
 
+        $('.allocate_rooms').find('option[value="' + selectedOption + '"]').prop('disabled', true);
 
+        $('#'+select_id).find('option[value="' + selectedOption + '"]').prop('disabled', false);
+    });
 
+</script>

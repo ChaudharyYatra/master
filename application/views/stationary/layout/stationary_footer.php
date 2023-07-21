@@ -425,8 +425,8 @@ $(".send_qty").each(function () {
         
 			var remove_tr_id='detail_tr'+modal_id;
           $('.'+remove_tr_id).remove(); 
-	// var id_for_update_series = '0'+modal_id;
-	var id_for_update_series = modal_id;
+          // var id_for_update_series = '0'+modal_id;
+          var id_for_update_series = modal_id;
             for(var i=0; i<count; i++){
             var add_id=i+modal_id;
              var add_id_name=modal_id;
@@ -523,7 +523,6 @@ $(".send_qty").each(function () {
                     return this.value;
                }).get();
 
-<<<<<<< HEAD
                //var from_count=from_series.length;
                
                // 
@@ -544,15 +543,6 @@ $(".send_qty").each(function () {
                          method: 'post',
                          url:'<?=base_url()?>stationary/stationary_request/save_details',
                          data: {order_id: order_id,
-=======
-        var remark = $('input[name="remark[]"]').map(function () {
-            return this.value; // $(this).val()
-        }).get();
-        $.ajax({
-                          method: 'post',
-                          url:'<?=base_url()?>stationary/stationary_request/save_details',
-                          data: {order_id: order_id,
->>>>>>> rupali
                             order_d_id: order_d_id,
                             form_type: form_type,
                             academic_year: academic_year,

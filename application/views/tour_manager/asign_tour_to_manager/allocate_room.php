@@ -25,7 +25,7 @@
           <div class="col-12">
               <?php $this->load->view('tour_manager/layout/agent_alert'); ?>
             <div class="card">
-             
+              <form method="post" enctype="multipart/form-data" id="all_traveller_info">
               <!-- /.card-header -->
               <div class="card-body">
                 <?php  if(count($arr_data) > 0 ) 
@@ -45,13 +45,15 @@
                   <tbody>
                   <?php  
                   
-                   $i=1; 
+                   $j=1; 
                    foreach($arr_data as $info) 
                    { 
+                    $sr_no=$j-1;
                     // print_r($info); die;
                      ?>
+
                   <tr>
-                    <td><?php echo $i; ?></td>
+                    <td><?php echo $j; ?></td>
                     <td><?php echo $info['mr/mrs'] ?> <?php echo $info['first_name'] ?> <?php echo $info['middle_name'] ?> <?php echo $info['last_name'] ?></td>
                     <td><?php echo $info['total_allocated_rooms_1'] ?></td>
                     <td>
@@ -87,15 +89,21 @@
 
                     <td>
                       
-                        <select class="select2" multiple="multiple" data-placeholder="Allocate rooms" style="width: 100%;" name="allocate_rooms[]" id="allocate_rooms" required="required">
-                            <option value="">Allocate Rooms</option>
-                            <?php
-                              foreach($hotel_allocated_room_data as $hotel_allocated_room_data_info) 
-                              { 
-                            ?>
-                              <option value="<?php echo $hotel_allocated_room_data_info['id']; ?>"><?php echo $hotel_allocated_room_data_info['booking_center']; ?></option>
-                          <?php } ?>
-                          </select>
+                      <input type="hidden" class="traveller_id" name="traveller_id[]" id="traveller_id" value="<?php echo $info['traveller_id']; ?>">
+                      
+                      <select class="select2 allocate_rooms" multiple="multiple" data-placeholder="Allocate rooms" style="width: 100%;" name="allocate_rooms[<?php echo $sr_no; ?>][]" id="allocate_rooms<?php echo $j; ?>" required="required">
+                          <option value="">Allocate Rooms</option>
+                          <?php
+                              // print_r($all_room_data); die;
+                              for($i=0;$i<count($all_room_data);$i++){
+                                $room_id=$all_room_data[$i];
+                                $query = $this->db->query("select * from hotel_room where id=$room_id");
+                                $result_data = $query->row();
+
+                          ?>
+                            <option value="<?php echo $result_data->id; ?>"><?php echo $result_data->room_type; ?> - <?php echo $result_data->room_number; ?> - <?php echo $result_data->bed_type; ?></option>
+                        <?php } ?>
+                        </select>
                       
                     
                     </td>
@@ -103,11 +111,14 @@
                     
                   </tr>
                   
-                  <?php $i++; } ?>
+                  <?php $j++; } ?>
                   
                   </tbody>
                   
                 </table>
+                
+                <center><button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button></center>
+
                 <?php } else
                 { echo '<div class="alert alert-danger alert-dismissable">
                 <i class="fa fa-ban"></i>
@@ -116,6 +127,7 @@
                 </div>' ; } ?>
                
               </div>
+              </form>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
