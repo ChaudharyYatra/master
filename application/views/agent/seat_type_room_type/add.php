@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <label>Tour Details -</label>
-                            </div>  
+                            </div> 
                             <div class="col-md-5">
                                 <div><?php echo $traveller_booking_info_value['tour_number']; ?> - <?php echo $traveller_booking_info_value['tour_title']; ?></div>
                             </div>

@@ -1887,7 +1887,6 @@ var baseURL = "<?php echo base_url(); ?>";
 $(document).ready(function() {
 
     // district change
-<<<<<<< HEAD
     $('#all_traveller_district').change(function(){
       var did = $(this).val();
     //   alert(did); 
@@ -1911,7 +1910,7 @@ $(document).ready(function() {
    });
  });
  </script>
-=======
+ <script>
     $('#all_traveller_district').change(function() {
         var did = $(this).val();
         //   alert(did); 
@@ -1938,7 +1937,6 @@ $(document).ready(function() {
     });
 });
 </script>
->>>>>>> vivek_cyc
 
 
 <!-- booking all traveller info (state,district,taluka) start -->
@@ -4753,4 +4751,139 @@ $(document).ready(function() {
         }
     });
 });
+</script>
+
+<script type='text/javascript'>
+
+
+
+
+  $(document).ready(function(){
+
+    var js_array1 =<?php echo json_encode($final_booked_data);?>;
+
+    var booke_data = $('#booked_data').val();
+
+    var is_main_page = $('#is_main_page').val();
+
+    if(is_main_page=='no'){
+
+     $('.seatCharts-seat').off('click');
+
+    }
+
+    // console.log(booke_data);
+
+    for(var i=0; i<js_array1.length;i++)
+
+    {
+
+        var seat_data_id=js_array1[i];
+
+        // alert(seat_data_id);
+
+        // $("#seat_data_id").css("color", "white");
+
+        // // $("[data_id=" + seat_data_id + "]").css("background", "yellow");
+
+        // $("[data_id=" + seat_data_id + "]").off('click');
+
+        // $("[data_id=" + seat_data_id + "]").removeClass("available");
+
+        // $("[data_id=" + seat_data_id + "]").addClass("unavailable");
+
+        // $("[data_id=" + seat_data_id + "]").css("background", "yellow");
+
+
+
+
+        console.log(seat_data_id);
+
+        var abc="#"+seat_data_id;
+
+        $(abc).css("color", "white");
+
+        $(abc).off('click');
+
+        $(abc).removeClass("available");
+
+        $(abc).addClass("unavailable");
+
+
+
+
+    }
+
+  });
+
+  </script>
+
+
+
+
+ 
+
+<script type='text/javascript'>
+
+
+
+
+$(document).ready(function(){
+
+  var temp_array =<?php echo json_encode($temp_booking_data);?>;
+
+  var temp_booke_data = $('#temp_booked_data').val();
+
+  var is_main_page = $('#is_main_page').val();
+
+//   if(is_main_page=='no'){
+
+//    $('.seatCharts-seat').off('click');
+
+//   }
+
+  // console.log(booke_data);
+
+  for(var i=0; i<temp_array.length;i++)
+
+  {
+
+      var seat_data_id=temp_array[i];
+
+      // alert(seat_data_id);
+
+      // $("#seat_data_id").css("color", "white");
+
+      // // $("[data_id=" + seat_data_id + "]").css("background", "yellow");
+
+      // $("[data_id=" + seat_data_id + "]").off('click');
+
+      // $("[data_id=" + seat_data_id + "]").removeClass("available");
+
+      // $("[data_id=" + seat_data_id + "]").addClass("unavailable");
+
+      // $("[data_id=" + seat_data_id + "]").css("background", "yellow");
+
+
+
+
+    //   console.log(seat_data_id);
+
+      var abc="#"+seat_data_id;
+
+      $(abc).css("color", "white");
+
+    //   $(abc).off('click');
+
+      $(abc).removeClass("available");
+
+      $(abc).addClass("selected");
+
+
+
+
+  }
+
+});
+
 </script>

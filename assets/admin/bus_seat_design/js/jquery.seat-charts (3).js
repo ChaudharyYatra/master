@@ -9,7 +9,8 @@
 (function($) {
 		
 	//'use strict';	
-		
+		var pqr=[];
+		var ttttt=0;
 	$.fn.seatCharts = function (setup) {
 		//if there's seatCharts object associated with the current element, return it
 		if (this.data('seatCharts')) {
@@ -17,6 +18,9 @@
 			return this.data('seatCharts');
 		}
 		var did='1';
+		var $cart = $('#selected-seats');
+		$counter = $('#counter');
+            $total = $('#total');
 		var fn       = this,
 			seats    = {},
 			seatIds  = [],
@@ -124,9 +128,39 @@
 							//anything goes here?
 						}, setup);
 						fn.settings.$node = $('<div></div>');
-				console.log('hhhhhhhhhhhhh',fn.settings.status);
+				// console.log('hhhhhhhhhhhhh',fn.settings.status);
 
+					}else if($.inArray(fn.settings.id, temp_booked_seats_data) != '-1'){
+						fn.settings = $.extend({
+							status : '', //available, unavailable, selected
+							style  : '',
+							//make sure there's an empty hash if user doesn't pass anything
+							data   : seatChartsSettings.seats[setup.character] || {}
+							//anything goes here?
+						}, setup);
+
+						fn.settings = $.extend({
+							status : 'selected', //available, unavailable, selected
+							style  : 'selected',
+							//make sure there's an empty hash if user doesn't pass anything
+							data   : seatChartsSettings.seats[setup.character] || {}
+							//anything goes here?
+						}, setup);
+						console.log(fn.settings);
+
+
+						  $('<li>' + fn.settings.data.classes + ' Seat # ' + fn.settings.label + ': <b>$' + fn.settings.data.price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+            .attr('id', 'cart-item-' + fn.settings.id)
+            .data('seatId', fn.settings.id)
+            .appendTo($cart);
+
+			pqr.push(fn.settings.data.price)
+			$counter.text(temp_booked_seats_data.length);
+			ttttt += fn.settings.data.price;
+            $total.text(ttttt);
+						fn.settings.$node = $('<div></div>');
 					}
+					
 					fn.settings.$node
 						.attr({
 							id             : fn.settings.id,

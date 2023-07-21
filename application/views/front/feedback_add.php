@@ -84,7 +84,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group mb-2">
-                                                
+                                                <input type="hidden" placeholder="upload photo" name="traveller_id" id="traveller_id" value="<?php echo $info['traveller_id'];?>">
                                                 <div class="input-box">
                                                     <select class="niceSelect" name="categories" id="categories">
                                                         <option value="">Select Categories</option>

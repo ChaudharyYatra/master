@@ -47,8 +47,8 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-					<th>Tour Details</th>
-					<th>Tour Date</th>
+                    <th>Tour Details</th>
+                    <th>Tour Date</th>
                     <th>uploaded Image</th>
                     <th>Customer Feedback</th>
                   </tr>

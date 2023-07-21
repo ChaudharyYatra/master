@@ -104,6 +104,9 @@
                         { 
                         ?>
                         <tr>
+                        <?php if($info['for_credentials']=='yes'){?>
+                        <input type="text" class="form-control" name="traveller_id" id="traveller_id" value="<?php echo $info['id']; ?>">
+                        <?php } ?>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $info['mr/mrs'] ?>. <?php echo $info['first_name'] ?> <?php echo $info['middle_name'] ?> <?php echo $info['last_name'] ?></td>
                         <td><?php echo date("d-m-Y",strtotime($info['dob'])) ?></td>

@@ -100,6 +100,7 @@ class Booking_preview extends CI_Controller {
                 $hotel_name_id    = $this->input->post('hotel_name_id'); 
                 $package_date_id    = $this->input->post('package_date_id'); 
                 $package_id    = $this->input->post('package_id'); 
+                $traveller_id    = $this->input->post('traveller_id'); 
                 $today = date('y-m-d');
                 
                 $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
@@ -111,6 +112,7 @@ class Booking_preview extends CI_Controller {
                     'package_id'   =>   $package_id,
                     'booking_date'   =>   $today,
                     'booking_reference_no'  =>  $booking_reference_no,
+                    'traveller_id'  =>  $traveller_id,
                     'booking_status'   =>  'confirm'
                 );
                 

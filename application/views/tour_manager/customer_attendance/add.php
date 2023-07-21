@@ -71,7 +71,7 @@
                   <tbody>
                   <?php  
                   
-                   $i=1; 
+                   $i=0; 
                    foreach($arr_data as $info) 
                    { 
                     // print_r($info); die;
@@ -81,12 +81,11 @@
                     <td class="text-center"><?php echo $info['first_name'] ?> <?php echo $info['middle_name'] ?> <?php echo $info['last_name'] ?>
                         <input type="text" class="form-control" name="traveller_id[]" id="traveller_id" value="<?php echo $info['id']; ?>" placeholder="Enter seat count">
                     </td>
-                    
-                    <td class="text-center"><input type="radio" name="m_attendance<?php echo $i; ?>" id="m_attendance" value="Present">&nbsp;&nbsp;Present
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="m_attendance<?php echo $i; ?>" id="m_attendance" value="Absent">&nbsp;&nbsp;Absent
+                    <td class="text-center"><input type="radio" name="m_attendance[<?php echo $i; ?>]" id="m_attendance" value="Present">&nbsp;&nbsp;Present
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="m_attendance[<?php echo $i; ?>]" id="m_attendance" value="Absent">&nbsp;&nbsp;Absent
                     </td>
-                    <td class="text-center"><input type="radio" name="e_attendance<?php echo $i; ?>" id="e_attendance" value="Present">&nbsp;&nbsp;Present
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="e_attendance<?php echo $i; ?>" id="e_attendance" value="Absent">&nbsp;&nbsp;Absent
+                    <td class="text-center"><input type="radio" name="e_attendance[<?php echo $i; ?>]" id="e_attendance" value="Present">&nbsp;&nbsp;Present
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="e_attendance[<?php echo $i; ?>]" id="e_attendance" value="Absent">&nbsp;&nbsp;Absent
                     </td>
                   </tr>
                   

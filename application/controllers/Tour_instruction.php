@@ -39,7 +39,7 @@ class Tour_instruction extends CI_Controller {
         $fields = "final_booking.*,packages.tour_title,package_date.journey_date,cust_instraction.instraction";
         $this->db->where('final_booking.is_deleted','no');
         $this->db->where('final_booking.is_active','yes');
-        $this->db->where('final_booking.traveler_id',$id); //check session id & traverl id match
+        $this->db->where('final_booking.id',$id); //check session id & traverl id match
         $this->db->join("packages", 'final_booking.package_id=packages.id','left');
         $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','left');
         $this->db->join("cust_instraction", 'final_booking.package_id=cust_instraction.tour_no','left');
@@ -53,7 +53,7 @@ class Tour_instruction extends CI_Controller {
         $this->db->where('final_booking.is_active','yes');
         // $this->db->where('final_booking.tour_status','1');
         // $this->db->OR_where('final_booking.tour_status','2');
-        $this->db->where('final_booking.traveler_id',$id); //check session id & traverl id match
+        $this->db->where('final_booking.id',$id); //check session id & traverl id match
         $this->db->join("packages", 'final_booking.package_id=packages.id','left');
         $arr_data2 = $this->master_model->getRecords('final_booking',array('final_booking.is_deleted'=>'no'),$fields);    
 

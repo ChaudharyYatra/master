@@ -6,9 +6,9 @@ class Customer_attendance extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('tour_manager_sess_id')=="") 
+        if($this->session->userdata('supervision_sess_id')=="") 
         { 
-                redirect(base_url().'tour_manager/login'); 
+                redirect(base_url().'supervision/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/customer_attendance";
         $this->module_url_tour_photos    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tour_photos";
@@ -22,21 +22,22 @@ class Customer_attendance extends CI_Controller{
 
 	public function index()
 	{
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $id = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $id = $this->session->userdata('supervision_sess_id'); 
 
-        $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_title,packages.package_type,
-        package_type.package_type,tour_manager.name,package_date.journey_date,package_date.id as did";
-        $this->db->where('asign_tour_manager.is_deleted','no');
-        $this->db->where('asign_tour_manager.tour_manager_id',$id);
-        $this->db->join("packages", 'asign_tour_manager.package_id=packages.id','left');
+        $fields = "assign_staff.*,packages.tour_number,packages.tour_title,packages.package_type,
+        package_type.package_type,tour_manager.name,package_date.journey_date,package_date.id as did,
+        supervision.supervision_name";
+        $this->db->where('assign_staff.is_deleted','no');
+        $this->db->where('assign_staff.name',$id);
+        $this->db->join("packages", 'assign_staff.package_id=packages.id','left');
         $this->db->join("package_type", 'packages.package_type=package_type.id','left');
-        $this->db->join("package_date", 'asign_tour_manager.package_date_id=package_date.id','left');
-        $this->db->join("tour_manager", 'asign_tour_manager.tour_manager_id=tour_manager.id','left');
-        $arr_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
+        $this->db->join("package_date", 'assign_staff.package_date_id=package_date.id','left');
+        $this->db->join("supervision", 'assign_staff.name=supervision.id','left');
+        $arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['module_url_tour_photos'] = $this->module_url_tour_photos;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
@@ -51,8 +52,8 @@ class Customer_attendance extends CI_Controller{
     public function add($id,$did,$day_id)
     {   
         
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
         $id=base64_decode($id);
         $did=base64_decode($did);
@@ -77,19 +78,19 @@ class Customer_attendance extends CI_Controller{
             
             // if($this->form_validation->run() == TRUE)
             // {
-                // print_r($_REQUEST); die;
+               
+                // echo($this->input->post('m_attendance'));die();
                 $i=1;
-                $m_attendance	  = $this->input->post('m_attendance'.$i); 
-                $e_attendance	  = $this->input->post('e_attendance'.$i); 
-                $traveller_id	  = $this->input->post('traveller_id');
-                // echo $traveller_id=implode(',',$this->input->post('traveller_id')); die;
-                // print_r($traveller_id); die;
+                $m_attendance	  = $this->input->post('m_attendance'); 
+                $e_attendance	  = $this->input->post('e_attendance'); 
+                $traveller_id	  = $this->input->post('traveller_id');  
+                
                 $c=count($traveller_id);
               
                 for($j=0; $j<$c; $j++){
                 $arr_insert = array(
-                    'morning_attendance'   =>   $m_attendance,
-                    'evening_attendance'   =>   $e_attendance,
+                    'morning_attendance'   =>   $m_attendance[$j],
+                    'evening_attendance'   =>   $e_attendance[$j],
                     'traveller_id	'   =>   $traveller_id[$j],
                     'package_id	'   =>   $id,
                     'tour_manager_id'   =>   $iid,
@@ -97,10 +98,11 @@ class Customer_attendance extends CI_Controller{
                     'day_id'   =>   $day_id
 
                 );
+                $inserted_id = $this->master_model->insertRecord('traveller_attendance',$arr_insert,true);
             }
                 $i++;
                 // print_r($arr_insert); die;
-                $inserted_id = $this->master_model->insertRecord('traveller_attendance',$arr_insert,true);
+                
             
 
                 if($inserted_id > 0)
@@ -125,13 +127,13 @@ class Customer_attendance extends CI_Controller{
             redirect($this->module_url_path.'/index');
         }
 
-        $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_number_of_days,packages.tour_title,packages.tour_number,packages.tour_title,package_date.journey_date";
-        $this->db->where('asign_tour_manager.is_deleted','no');
-        $this->db->where('asign_tour_manager.package_id',$id);
-        $this->db->where('asign_tour_manager.package_date_id',$did);
-        $this->db->join("packages", 'asign_tour_manager.package_id=packages.id','left');
-        $this->db->join("package_date", 'asign_tour_manager.package_date_id=package_date.id','left');
-        $tour_arr_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
+        $fields = "assign_staff.*,packages.tour_number,packages.tour_number_of_days,packages.tour_title,packages.tour_number,packages.tour_title,package_date.journey_date";
+        $this->db->where('assign_staff.is_deleted','no');
+        $this->db->where('assign_staff.package_id',$id);
+        $this->db->where('assign_staff.package_date_id',$did);
+        $this->db->join("packages", 'assign_staff.package_id=packages.id','left');
+        $this->db->join("package_date", 'assign_staff.package_date_id=package_date.id','left');
+        $tour_arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
         $fields = "all_traveller_info.*";
@@ -142,7 +144,7 @@ class Customer_attendance extends CI_Controller{
         // print_r($arr_data); die;
 
         $this->arr_view_data['action']          = 'add';
-        $this->arr_view_data['tour_manager_sess_name'] = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['tour_arr_data']        = $tour_arr_data;
         $this->arr_view_data['page_title']      = "Traveller Attendance";
@@ -156,8 +158,8 @@ class Customer_attendance extends CI_Controller{
     // Get Details of Package
     public function take_attendance($id,$did)
     {
-        $tour_manager_sess_name = $this->session->userdata('tour_manager_name');
-        $iid = $this->session->userdata('tour_manager_sess_id'); 
+        $supervision_sess_name = $this->session->userdata('supervision_name');
+        $iid = $this->session->userdata('supervision_sess_id');
 
 		$id=base64_decode($id);
         $did=base64_decode($did);
@@ -185,7 +187,7 @@ class Customer_attendance extends CI_Controller{
         $tour_arr_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
-        $this->arr_view_data['tour_manager_sess_name']        = $tour_manager_sess_name;
+        $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['tour_arr_data']        = $tour_arr_data;
         $this->arr_view_data['page_title']      = $this->module_title."";

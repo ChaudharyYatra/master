@@ -60,11 +60,18 @@
                       ); ?>'>
 
                   <input type="hidden" id="booked_data" value='<?php print_r($final_booked_data); ?>'>
-
                   <script>
+                    var booked_data=<?php echo json_encode($final_booked_data);?>;
+                  </script>
 
-                  var booked_data=<?php echo json_encode($final_booked_data);?>;
+                  <input type="hidden" id="temp_booked_data" value='<?php print_r($temp_booking_data); ?>'>
+                  <script>
+                    var temp_booked_data=<?php echo json_encode($temp_booking_data);?>;
+                  </script>
 
+                  <input type="hidden" id="cart_temp_booking_data" value='<?php print_r($cart_temp_booking_data); ?>'>
+                  <script>
+                    var cart_temp_booking_data=<?php echo json_encode($cart_temp_booking_data);?>;
                   </script>
                           <h2>Booking Details</h2>
 

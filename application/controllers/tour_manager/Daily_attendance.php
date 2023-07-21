@@ -25,15 +25,16 @@ class Daily_attendance extends CI_Controller{
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $id = $this->session->userdata('supervision_sess_id');
 
-        $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_title,packages.package_type,
-        package_type.package_type,tour_manager.name,package_date.journey_date,package_date.id as did";
-        $this->db->where('asign_tour_manager.is_deleted','no');
-        $this->db->where('asign_tour_manager.tour_manager_id',$id);
-        $this->db->join("packages", 'asign_tour_manager.package_id=packages.id','left');
+        $fields = "assign_staff.*,packages.tour_number,packages.tour_title,packages.package_type,
+        package_type.package_type,tour_manager.name,package_date.journey_date,package_date.id as did,
+        supervision.supervision_name";
+        $this->db->where('assign_staff.is_deleted','no');
+        $this->db->where('assign_staff.name',$id);
+        $this->db->join("packages", 'assign_staff.package_id=packages.id','left');
         $this->db->join("package_type", 'packages.package_type=package_type.id','left');
-        $this->db->join("package_date", 'asign_tour_manager.package_date_id=package_date.id','left');
-        $this->db->join("tour_manager", 'asign_tour_manager.tour_manager_id=tour_manager.id','left');
-        $arr_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
+        $this->db->join("package_date", 'assign_staff.package_date_id=package_date.id','left');
+        $this->db->join("supervision", 'assign_staff.name=supervision.id','left');
+        $arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
@@ -65,21 +66,21 @@ class Daily_attendance extends CI_Controller{
         }   
 
 
-        $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_number_of_days,packages.tour_title";
-        $this->db->where('asign_tour_manager.is_deleted','no');
-        $this->db->where('asign_tour_manager.package_id',$id);
-        $this->db->where('asign_tour_manager.package_date_id',$did);
-        $this->db->join("packages", 'asign_tour_manager.package_id=packages.id','left');
-        $arr_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
+        $fields = "assign_staff.*,packages.tour_number,packages.tour_number_of_days,packages.tour_title";
+        $this->db->where('assign_staff.is_deleted','no');
+        $this->db->where('assign_staff.package_id',$id);
+        $this->db->where('assign_staff.package_date_id',$did);
+        $this->db->join("packages", 'assign_staff.package_id=packages.id','left');
+        $arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
-        $fields = "asign_tour_manager.*,packages.tour_number,packages.tour_number_of_days,packages.tour_title,packages.tour_number,packages.tour_title,package_date.journey_date";
-        $this->db->where('asign_tour_manager.is_deleted','no');
-        $this->db->where('asign_tour_manager.package_id',$id);
-        $this->db->where('asign_tour_manager.package_date_id',$did);
-        $this->db->join("packages", 'asign_tour_manager.package_id=packages.id','left');
-        $this->db->join("package_date", 'asign_tour_manager.package_date_id=package_date.id','left');
-        $tour_arr_data = $this->master_model->getRecords('asign_tour_manager',array('asign_tour_manager.is_deleted'=>'no'),$fields);
+        $fields = "assign_staff.*,packages.tour_number,packages.tour_number_of_days,packages.tour_title,packages.tour_number,packages.tour_title,package_date.journey_date";
+        $this->db->where('assign_staff.is_deleted','no');
+        $this->db->where('assign_staff.package_id',$id);
+        $this->db->where('assign_staff.package_date_id',$did);
+        $this->db->join("packages", 'assign_staff.package_id=packages.id','left');
+        $this->db->join("package_date", 'assign_staff.package_date_id=package_date.id','left');
+        $tour_arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;

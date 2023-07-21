@@ -29,7 +29,8 @@ class Customer_feedback extends CI_Controller{
         // package_type.package_type
         $record = array();
         $fields = "assign_staff.*,packages.tour_title,packages.tour_number,supervision.supervision_name,
-        customer_feedback.feedback,customer_feedback.image_name,customer_feedback.image_name,package_date.journey_date";
+        customer_feedback.feedback,customer_feedback.image_name,customer_feedback.image_name,package_date.journey_date,
+        role_type.role_name as r_name";
         $this->db->where('assign_staff.is_deleted','no');
         $this->db->where('assign_staff.name',$id);
         $this->db->where('assign_staff.package_id',$iid);
@@ -38,6 +39,7 @@ class Customer_feedback extends CI_Controller{
         $this->db->join("package_date", 'assign_staff.package_date_id=package_date.id','left');
         $this->db->join("supervision", 'assign_staff.name=supervision.id','left');
         $this->db->join("customer_feedback", 'assign_staff.package_id=customer_feedback.package_id','left');
+        $this->db->join("role_type", 'assign_staff.role_name=role_type.id','left');
         $arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 

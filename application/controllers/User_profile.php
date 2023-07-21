@@ -24,17 +24,19 @@ class User_profile extends CI_Controller {
 
         if($this->input->post('submit'))
         {  
+            
                 $this->form_validation->set_rules('mobile', 'Mobile', 'required');
                 $this->form_validation->set_rules('password', 'Password', 'required');
 
                 if($this->form_validation->run() == TRUE)
                 {              
-                   $mobile_login = trim($this->input->post('mobile'));
-                   $pass_login = trim($this->input->post('password'));
+                    $mobile_login = trim($this->input->post('mobile'));
+                    $pass_login = trim($this->input->post('password'));
                   
                    $this->db->where('mobile_number',$mobile_login);
                    $this->db->where('password',$pass_login);
-                   $arr_data = $this->master_model->getRecords('all_traveller_info');        
+                   $this->db->where('for_credentials','yes');
+                   $arr_data = $this->master_model->getRecord('all_traveller_info');        
                 //    print_r($arr_data);  die;
 
                     if(empty($arr_data))
@@ -49,7 +51,7 @@ class User_profile extends CI_Controller {
 
                              $this->session->set_userdata('cust_email',$cust_data['email']);
                              $this->session->set_userdata('cust_mobile_no',$cust_data['mobile_no']);
-                             $this->session->set_userdata('cust_sess_id',$cust_data['traveler_id']);
+                             $this->session->set_userdata('cust_sess_id',$cust_data['id']);
                              $this->session->set_userdata('cust_fname',$cust_data['first_name']);
                              $this->session->set_userdata('cust_mname',$cust_data['middle_name']);
                              $this->session->set_userdata('cust_lname',$cust_data['last_name']);

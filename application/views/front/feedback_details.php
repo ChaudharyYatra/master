@@ -114,7 +114,7 @@
                                         
                                         <tr>
                                             <td><?php echo $i; ?></td>
-                                            <td><?php echo $info['category'] ?></td>
+                                            <td><?php echo $info['role_name'] ?></td>
                                             <td><div class="rating">
                                         <?php if($info['rating']=='1') { ?>
                                         <span class="fa fa-star checked"></span>

@@ -5,10 +5,20 @@
     did = $('#bdata').val();
     var array_data = js_array;
     var booked_seats_data=booked_data;
-    // console.log(booked_seats_data);
+    var temp_booked_seats_data=temp_booked_data;
+
+    // console.log(temp_booked_seats_data);
+    // for(var p=0; p<temp_booked_seats_data.length;p++)
+    // {
+    //     var abc = temp_booked_seats_data[p];
+    //     var ppp='#'+abc;
+    //     alert(ppp);
+    //     $(ppp).click();
+    // }
+    // console.log(temp_booked_seats_data);
     var total_seat_count = array_data.total_seat_count;
     var new_first_string = array_data.first_cls_seats;
-    // console.log(array_data.total_seat_count);
+    // console.log(array_data);
 
     var new_first_array = new_first_string.split(',');
 
@@ -227,7 +237,7 @@
 
     var array_final = numbersArray.concat(numbersArray_second, numbersArray_economy);
     var final_filtered = array_final.filter(elm => elm);
-    // console.log(final_filtered);
+    console.log(final_filtered.length);
     var firstSeatLabel = 1;
     var booked = !!localStorage.getItem('booked') ? $.parseJSON(localStorage.getItem('booked')) : [];
     $(document).ready(function() {
@@ -1109,7 +1119,10 @@
 
         //let's pretend some seats have already been booked
         // sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
-        sc.get(booked).status('unavailable');
+        // alert(sc.get(booked).status('unavailable'));
+
+        // alert(temp_booked_seats_data);
+       
 
     });
 
@@ -1123,6 +1136,28 @@
             total += this.data().price;
 
         });
+        // alert(total);
+
+        return total;
+    }
+
+    function recalculateTotalTemp(pqr) {
+        var total = 0;
+
+        //basically find every selected seat and sum its price
+        console.log(pqr);
+
+        for(var z=0; z<pqr.length;z++)
+        {
+            total += pqr[0];
+        }
+
+
+        // temp_booked_seats_data.each(function() {
+        //     // alert(this.data().price);
+        //     total += fn.settings.data.price;
+
+        // });
         // alert(total);
 
         return total;
@@ -1152,7 +1187,7 @@
             location.reload()
         })
 
-        
+
         $('#reset-btn').click(function() {
             if (confirm("are you sure to reset the reservation of the bus?") === true) {
                 localStorage.removeItem('booked')
@@ -1226,3 +1261,20 @@
         // $counter.text(sc.find('selected').length + 1);
         // $total.text(recalculateTotal(sc) + this.data().price);
     }
+
+    
+    function selected_add_cart()
+    {
+        // $('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+        //                             .attr('id', 'cart-item-' + this.settings.id)
+        //                             .data('seatId', this.settings.id)
+        //                             .appendTo($cart);
+
+        //                         $counter.text(sc.find('selected').length + 1);
+        //                         $total.text(recalculateTotal(sc) + this.data().price);
+
+        
+
+    }
+
+    
