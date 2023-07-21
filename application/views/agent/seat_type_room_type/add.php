@@ -528,27 +528,27 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                    <input type="number" class="form-control" name="total_agewise_cal_adult" id="total_agewise_cal_adult" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_adult'];} ?>">
+                                                    <input type="hidden" class="form-control" name="total_agewise_cal_adult" id="total_agewise_cal_adult" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_adult'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                    <input type="number" class="form-control" name="total_agewise_cal_90" id="total_agewise_cal_90" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_90'];} ?>">
+                                                    <input type="hidden" class="form-control" name="total_agewise_cal_90" id="total_agewise_cal_90" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_90'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                <input type="number" class="form-control" name="total_agewise_cal_60" id="total_agewise_cal_60" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_60'];} ?>">
+                                                <input type="hidden" class="form-control" name="total_agewise_cal_60" id="total_agewise_cal_60" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_60'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                <input type="number" class="form-control" name="total_agewise_cal_40" id="total_agewise_cal_40" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_40'];} ?>">
+                                                <input type="hidden" class="form-control" name="total_agewise_cal_40" id="total_agewise_cal_40" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_40'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group" id="traveller_count_error">
-                                                <input type="number" class="form-control" name="total_agewise_cal_0" id="total_agewise_cal_0" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_0'];} ?>">
+                                                <input type="hidden" class="form-control" name="total_agewise_cal_0" id="total_agewise_cal_0" placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_agewise_cal_0'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
@@ -571,7 +571,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group" id="traveller_count_error">
-                                                <input type="number" class="form-control" name="total_adult_90" id="total_adult_90" placeholder="total_adult_90" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_adult_90'];} ?>">
+                                                <input type="hidden" class="form-control" name="total_adult_90" id="total_adult_90" placeholder="total_adult_90" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php if(!empty($seat_type_room_type)){ echo $seat_type_room_type['total_adult_90'];} ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">

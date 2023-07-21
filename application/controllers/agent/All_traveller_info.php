@@ -259,6 +259,7 @@ class All_traveller_info extends CI_Controller {
                             file_put_contents($file_aadhar_img, $image_base64_aadhar_img);
                         }
 
+
                         if(!empty($all_traveller_info_tble)){
 
                             $credentials_yes_no = 'no';
@@ -274,6 +275,7 @@ class All_traveller_info extends CI_Controller {
                             $credentials_yes_no = 'no';
 
                             if($for_credentials[0]==$traveller_id[$i]){
+                                
                                 $credentials_yes_no='yes';
                             }else{
                                 $credentials_yes_no='no';

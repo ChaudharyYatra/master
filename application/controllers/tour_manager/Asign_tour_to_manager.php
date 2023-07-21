@@ -16,6 +16,7 @@ class Asign_tour_to_manager extends CI_Controller{
 		$this->module_url_path_tour_expenses    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tour_expenses";
 		$this->module_url_path_request_more_fund   =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tm_request_more_fund";
 		$this->module_url_path_customer_feedback   =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/customer_feedback";
+        // $this->module_back   =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/asign_tour_to_manager";
         $this->module_title       = "Asign Tour";
         $this->module_url_slug    = "asign_tour_to_manager";
         $this->module_view_folder = "asign_tour_to_manager/";    
@@ -151,8 +152,9 @@ class Asign_tour_to_manager extends CI_Controller{
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');
 
-        $fields = "package_hotel.*";
+        $fields = "package_hotel.*,hotel.hotel_name";
         $this->db->where('package_hotel.package_id',$id);
+        $this->db->join("hotel", 'package_hotel.hotel_name_id=hotel.id','left');
         $arr_data = $this->master_model->getRecords('package_hotel',array('package_hotel.is_deleted'=>'no'),$fields);
 
 
@@ -196,7 +198,7 @@ class Asign_tour_to_manager extends CI_Controller{
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');
 
-        $fields = "all_traveller_info.*,seat_type_room_type.*";
+        $fields = "all_traveller_info.*,seat_type_room_type.*,all_traveller_info.id as traveller_id";
         $this->db->where('all_traveller_info.package_id',$id);
         $this->db->where('all_traveller_info.for_credentials','yes');
         // $this->db->group_by('hotel_allocated_room.hotel_name_id'); 
@@ -210,7 +212,139 @@ class Asign_tour_to_manager extends CI_Controller{
         $this->db->join("hotel_room", 'hotel_allocated_room.hotel_name_id=hotel_room.hotel_id','left');
         $hotel_allocated_room_data = $this->master_model->getRecords('hotel_allocated_room',array('hotel_allocated_room.is_deleted'=>'no'),$fields);
 
+
+        
+        if($this->input->post('submit'))
+        {
+            // print_r($_REQUEST); 
+
+            $traveller_id  = $this->input->post('traveller_id');
+
+            $count_allocate_rooms = $this->input->post('allocate_rooms');
+            
+            $count=count($traveller_id);
+                for($i=0; $i<$count; $i++){
+
+                    $allocate_rooms=implode(',',$count_allocate_rooms[$i]);
+                    
+                    $arr_insert = array(
+                        'traveller_id'   =>   $traveller_id[$i],
+                        'allocate_rooms'   =>   $allocate_rooms
+                    );
+
+                    $inserted_id = $this->master_model->insertRecord('allocate_room_to_traveller',$arr_insert,true);  
+                    // print_r($inserted_id); die;
+                echo 'true';
+
+            }
+
+            // if($inserted_id > 0)
+            //      {
+            //          $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
+            //          redirect($this->module_back.'/allocate_hotel/'.$id);
+            //      }
+            //      else
+            //      {
+            //          $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
+            //      }
+
+            //      redirect($this->module_url_path.'/index');
+        }
+
+        // print_r($_REQUEST); die;
+        // print_r($hotel_allocated_room_data); die;
+        $all_room_data=array();
+
+        foreach($hotel_allocated_room_data as $hotel_allocated_room_data_info){
+            $one_bed_AC_data = $hotel_allocated_room_data_info['one_bed_AC'];
+            $one_bed_AC_data_info = explode(',',$one_bed_AC_data);
+            if(!empty($one_bed_AC_data_info)){
+                foreach($one_bed_AC_data_info as $key =>$one_bed_AC_data_room){
+                    array_push($all_room_data,$one_bed_AC_data_room);
+                }
+            }
+            
+
+            $two_bed_AC_data = $hotel_allocated_room_data_info['two_bed_AC'];
+            $two_bed_AC_data_info = explode(',',$two_bed_AC_data);
+            foreach($two_bed_AC_data_info as $two_bed_AC_data_data_room){
+                array_push($all_room_data,$two_bed_AC_data_data_room);
+            }
+            
+
+            $three_bed_AC_data = $hotel_allocated_room_data_info['three_bed_AC'];
+            $three_bed_AC_data_info = explode(',',$three_bed_AC_data);
+
+            $three_bed_AC_count=count($three_bed_AC_data_info);
+                for($j=0;$j<$three_bed_AC_count;$j++){
+                    if($three_bed_AC_data_info[$j]!='')
+                    {
+                        array_push($all_room_data,$three_bed_AC_data_info[$j]);
+                    }
+                }
+            
+
+            $four_bed_AC_data = $hotel_allocated_room_data_info['four_bed_AC'];
+            $four_bed_AC_data_info = explode(',',$four_bed_AC_data);
+
+            $four_bed_AC_count=count($four_bed_AC_data_info);
+            for($j=0;$j<$four_bed_AC_count;$j++){
+                if($four_bed_AC_data_info[$j]!='')
+                {
+                    array_push($all_room_data,$four_bed_AC_data_info[$j]);
+                }
+            }
+            
+
+            $one_bed_Non_AC_data = $hotel_allocated_room_data_info['one_bed_Non_AC'];
+            $one_bed_Non_AC_data_info = explode(',',$one_bed_Non_AC_data);
+            foreach($one_bed_Non_AC_data_info as $one_bed_Non_AC_data_room){
+                array_push($all_room_data,$one_bed_Non_AC_data_room);
+            }
+            
+            
+            $two_bed_Non_AC_data = $hotel_allocated_room_data_info['two_bed_Non_AC'];
+            $two_bed_Non_AC_data_info = explode(',',$two_bed_Non_AC_data);
+            foreach($two_bed_Non_AC_data_info as $two_bed_Non_AC_data_room){
+                array_push($all_room_data,$two_bed_Non_AC_data_room);
+            }
+            
+
+            $three_bed_Non_AC_data = $hotel_allocated_room_data_info['three_bed_Non_AC'];
+            $three_bed_Non_AC_data_info = explode(',',$three_bed_Non_AC_data);
+
+            $dcouhnt1=count($three_bed_Non_AC_data_info);
+                for($j=0;$j<$dcouhnt1;$j++){
+                    if($three_bed_Non_AC_data_info[$j]!='')
+                    {
+                        array_push($all_room_data,$three_bed_Non_AC_data_info[$j]);
+                    }
+                }
+
+            
+
+            $four_bed_Non_AC_data = $hotel_allocated_room_data_info['four_bed_Non_AC'];
+            // print_r($four_bed_Non_AC_data);
+            $four_bed_Non_AC_data_info = explode(',',$four_bed_Non_AC_data);
+            $dcouhnt=count($four_bed_Non_AC_data_info);
+                for($i=0;$i<$dcouhnt;$i++){
+                    if($four_bed_Non_AC_data_info[$i]>0)
+                    {
+                        array_push($all_room_data,$four_bed_Non_AC_data_info[$i]);
+                    }
+                }
+                // foreach($four_bed_Non_AC_data_info as $four_bed_Non_AC_data_room){
+                //     array_push($all_room_data,$four_bed_Non_AC_data_room);
+                // }
+           
+            
+
+        }
+        // print_r($all_room_data); die;
+        
+
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
+        $this->arr_view_data['all_room_data'] = $all_room_data;
         $this->arr_view_data['arr_data'] = $arr_data;
         $this->arr_view_data['hotel_allocated_room_data'] = $hotel_allocated_room_data;
         $this->arr_view_data['action']          = 'add';       

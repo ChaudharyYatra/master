@@ -48,7 +48,7 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['hotel_name_id'] ?></td>
+                    <td><?php echo $info['hotel_name'] ?></td>
 
                     <td>
 
