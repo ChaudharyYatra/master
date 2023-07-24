@@ -1439,7 +1439,7 @@ class Seat_type_room_type extends CI_Controller {
         $fields = "bus_seat_book.seat_orignal_id";
 
         $this->db->where('bus_seat_book.package_id',$pack_id);
-
+        $this->db->where('bus_seat_book.enquiry_id',$iid);
         $this->db->where('bus_seat_book.is_book','no');
 
         $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
@@ -1459,7 +1459,7 @@ class Seat_type_room_type extends CI_Controller {
         $fields = "bus_seat_book.*";
 
         $this->db->where('bus_seat_book.package_id',$pack_id);
-
+        $this->db->where('bus_seat_book.enquiry_id',$iid);
         $this->db->where('bus_seat_book.is_book','no');
 
         $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
