@@ -425,8 +425,8 @@ $(".send_qty").each(function () {
         
 			var remove_tr_id='detail_tr'+modal_id;
           $('.'+remove_tr_id).remove(); 
-	// var id_for_update_series = '0'+modal_id;
-	var id_for_update_series = modal_id;
+          // var id_for_update_series = '0'+modal_id;
+          var id_for_update_series = modal_id;
             for(var i=0; i<count; i++){
             var add_id=i+modal_id;
              var add_id_name=modal_id;

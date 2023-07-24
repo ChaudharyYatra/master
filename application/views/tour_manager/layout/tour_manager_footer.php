@@ -2827,7 +2827,7 @@ function child_share_count() {
         document.getElementById("total_two_child_share_one_seat").value = x;
         document.getElementById('booknow_submit').disabled = false;
     } else {
-        alert("Please Enter Only Even Number Count");
+        alert("Please Enter Only Even Number Count (e.g.-2,4,6,8,etc.)");
         document.getElementById('booknow_submit').disabled = true;
     }
     }
@@ -5083,7 +5083,17 @@ $('#edit_tour_photo').validate({ // initialize the plugin
 </script>
 <!-- Bank transaction ---------------------------------------- -->
 
+<!--  -->
 
+<script>
+    $(document).on("change","select",function(){
+        var selectedOption=$(this).val();
+        var select_name=$(this).attr('name');
+        var select_id=$(this).attr('id');
 
+        $('.allocate_rooms').find('option[value="' + selectedOption + '"]').prop('disabled', true);
 
+        $('#'+select_id).find('option[value="' + selectedOption + '"]').prop('disabled', false);
+    });
 
+</script>

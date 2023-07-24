@@ -121,6 +121,7 @@ class Agent extends CI_Controller{
                 $street_name  = $this->input->post('street_name');
                 $landmark  = $this->input->post('landmark'); 
 
+                $agent_state  = $this->input->post('agent_state');
                 $agent_district  = $this->input->post('agent_district');
                 $agent_taluka  = $this->input->post('agent_taluka');
                 $agent_city  = $this->input->post('agent_city');

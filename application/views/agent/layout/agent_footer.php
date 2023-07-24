@@ -2877,7 +2877,7 @@ function child_share_count() {
         document.getElementById("total_two_child_share_one_seat").value = x;
         document.getElementById('booknow_submit').disabled = false;
     } else {
-        alert("Please Enter Only Even Number Count");
+        alert("Please Enter Only Even Number Count (e.g.-2,4,6,8,etc.)");
         document.getElementById('booknow_submit').disabled = true;
     }
 }
