@@ -11,6 +11,7 @@ class Bus_open extends CI_Controller{
                 redirect(base_url().'admin/login'); 
         }
 	
+        
         $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/bus_open";
         $this->module_title       = "Bus Open";
         $this->module_url_slug    = "bus_open";
