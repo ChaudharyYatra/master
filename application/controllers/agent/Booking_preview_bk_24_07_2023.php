@@ -95,12 +95,12 @@ class Booking_preview extends CI_Controller {
 
                 // print_r('hii'); die;
                 $journey_date  = $this->input->post('journey_date');
-                $journey_date  = $this->input->post('journey_date');
                
                 $enquiry_id    = $this->input->post('enquiry_id'); 
                 $hotel_name_id    = $this->input->post('hotel_name_id'); 
                 $package_date_id    = $this->input->post('package_date_id'); 
                 $package_id    = $this->input->post('package_id'); 
+                $traveller_id    = $this->input->post('traveller_id'); 
                 $today = date('y-m-d');
                 
                 $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
@@ -112,23 +112,29 @@ class Booking_preview extends CI_Controller {
                     'package_id'   =>   $package_id,
                     'booking_date'   =>   $today,
                     'booking_reference_no'  =>  $booking_reference_no,
+                    'traveller_id'  =>  $traveller_id,
                     'booking_status'   =>  'confirm'
                 );
                 
                 $inserted_id = $this->master_model->insertRecord('final_booking',$arr_insert,true);
+
                 $arr_update = array(
                     'booking_done'   =>   'yes'
                 );
                 $arr_where     = array("id" => $enquiry_id);
                 $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
 
-                $arr_update1 = array(
-                    'is_book'    =>  'yes',
-                    'booking_reference_no'=>$booking_reference_no, 
-
+                $arr_update = array(
+                    'booking_reference_no'   =>   $booking_reference_no
                 );
-                $arr_where1     = array("enquiry_id" => $enquiry_id);
-                $this->master_model->updateRecord('bus_seat_book',$arr_update1,$arr_where1);
+                $arr_where     = array("domestic_enquiry_id" => $enquiry_id);
+                $this->master_model->updateRecord('all_traveller_info',$arr_update,$arr_where);
+
+                $arr_update = array(
+                    'booking_reference_no'   =>   $booking_reference_no
+                );
+                $arr_where     = array("domestic_enquiry_id" => $enquiry_id);
+                $this->master_model->updateRecord('seat_type_room_type',$arr_update,$arr_where);
                                
                 if($inserted_id > 0)
                 {    
