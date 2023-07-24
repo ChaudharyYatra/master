@@ -1392,7 +1392,7 @@ class Seat_type_room_type extends CI_Controller {
 
                    third_class_price,window_class_price,vehicle_details.id,vehicle_seat_preference.vehicle_id,booking_basic_info.tour_no,booking_basic_info.domestic_enquiry_id,
 
-                   bus_seat_book.tour_dates";
+                   booking_basic_info.tour_date";
 
         $this->db->where('booking_basic_info.domestic_enquiry_id',$iid);
 
@@ -1410,15 +1410,17 @@ class Seat_type_room_type extends CI_Controller {
 
 
 
-        $pack_id=$bus_info['package_id'];
+         $pack_id=$bus_info['package_id'];
 
-        $pack_date_id=$bus_info['tour_dates'];
+        $pack_date_id=$bus_info['tour_date'];
 
 
 
         $fields = "bus_seat_book.seat_orignal_id";
 
         $this->db->where('bus_seat_book.package_id',$pack_id);
+
+        $this->db->where('bus_seat_book.is_book','yes');
 
         $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
 
@@ -1432,6 +1434,46 @@ class Seat_type_room_type extends CI_Controller {
 
         }
 
+
+
+        $fields = "bus_seat_book.seat_orignal_id";
+
+        $this->db->where('bus_seat_book.package_id',$pack_id);
+
+        $this->db->where('bus_seat_book.is_book','no');
+
+        $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
+
+        $temp_booked_seats_data = $this->master_model->getRecords('bus_seat_book','',$fields);
+
+        $temp_booking_data=array();
+
+        foreach($temp_booked_seats_data as $temp_booked_data){
+
+            array_push($temp_booking_data, $temp_booked_data['seat_orignal_id']);
+
+        }
+
+
+
+        $fields = "bus_seat_book.*";
+
+        $this->db->where('bus_seat_book.package_id',$pack_id);
+
+        $this->db->where('bus_seat_book.is_book','no');
+
+        $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
+
+        $cart_temp_booked_seats_data = $this->master_model->getRecords('bus_seat_book','',$fields);
+
+        $cart_temp_booking_data=array();
+
+        foreach($cart_temp_booked_seats_data as $cart_temp_booked_data){
+
+            array_push($cart_temp_booking_data, $cart_temp_booked_data['seat_orignal_id']);
+
+        }
+
      
 
             //    print_r($final_booked_data); die;
@@ -1441,6 +1483,8 @@ class Seat_type_room_type extends CI_Controller {
         $fields = "booking_basic_info.*,packages.id,packages.tour_title,packages.tour_number,packages.tour_number,package_date.journey_date";
 
         $this->db->where('booking_basic_info.is_deleted','no');
+
+        // $this->db->where('booking_basic_info.is_book','no');
 
         $this->db->where('domestic_enquiry_id',$iid);
 
@@ -1456,7 +1500,7 @@ class Seat_type_room_type extends CI_Controller {
 
        
 
-        // print_r($bus_info); die;
+        // print_r($traveller_booking_info); die;
 
        
 
@@ -1527,6 +1571,10 @@ class Seat_type_room_type extends CI_Controller {
          $this->arr_view_data['bus_info'] = $bus_info;
 
          $this->arr_view_data['traveller_booking_info'] = $traveller_booking_info;
+
+         $this->arr_view_data['temp_booking_data'] = $temp_booking_data;
+
+         $this->arr_view_data['cart_temp_booking_data'] = $cart_temp_booking_data;
 
          $this->arr_view_data['final_booked_data'] = $final_booked_data;
 
