@@ -523,7 +523,6 @@ $(".send_qty").each(function () {
                     return this.value;
                }).get();
 
-<<<<<<< HEAD
                //var from_count=from_series.length;
                
                // 
@@ -544,15 +543,6 @@ $(".send_qty").each(function () {
                          method: 'post',
                          url:'<?=base_url()?>stationary/stationary_request/save_details',
                          data: {order_id: order_id,
-=======
-        var remark = $('input[name="remark[]"]').map(function () {
-            return this.value; // $(this).val()
-        }).get();
-        $.ajax({
-                          method: 'post',
-                          url:'<?=base_url()?>stationary/stationary_request/save_details',
-                          data: {order_id: order_id,
->>>>>>> rupali
                             order_d_id: order_d_id,
                             form_type: form_type,
                             academic_year: academic_year,
