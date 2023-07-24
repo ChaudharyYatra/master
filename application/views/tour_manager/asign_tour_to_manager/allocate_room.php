@@ -48,6 +48,7 @@
                    $j=1; 
                    foreach($arr_data as $info) 
                    { 
+                    // print_r($info); die;
                     $sr_no=$j-1;
                     // print_r($info); die;
                      ?>
@@ -55,13 +56,31 @@
                   <tr>
                     <td><?php echo $j; ?></td>
                     <td><?php echo $info['mr/mrs'] ?> <?php echo $info['first_name'] ?> <?php echo $info['middle_name'] ?> <?php echo $info['last_name'] ?></td>
-                    <td><?php echo $info['total_allocated_rooms_1'] ?></td>
+                    
+                    <td>
+                      <?php 
+                      if($info['total_allocated_rooms_1']!==''){
+                        echo $info['total_allocated_rooms_1'] ;
+                        $bed_type1 = 'One Bed';
+                        $room_type1 = 'AC';
+                      } else{
+                        echo '0';
+                        $bed_type1 = '';
+                        $room_type1 = '';
+                      }
+                      
+                      ?>
+                    </td>
                     <td>
                       <?php 
                       if($info['total_allocated_rooms_2']!==''){
                         echo $info['total_allocated_rooms_2'] ;
+                        $bed_type2 = 'Two Bed';
+                        $room_type2 = 'AC';
                       } else{
                         echo '0';
+                        $bed_type2 = '';
+                        $room_type2 = '';
                       }
                       
                       ?>
@@ -70,8 +89,12 @@
                       <?php 
                       if($info['total_allocated_rooms_3']!==''){
                         echo $info['total_allocated_rooms_3'] ;
+                        $bed_type3 = 'Three Bed';
+                        $room_type3 = 'AC';
                       } else{
                         echo '0';
+                        $bed_type3 = '';
+                        $room_type3 = '';
                       }
                       
                       ?>
@@ -80,8 +103,12 @@
                       <?php 
                       if($info['total_allocated_rooms_4']!==''){
                         echo $info['total_allocated_rooms_4'] ;
+                        $bed_type4 = 'Four Bed';
+                        $room_type4 = 'AC';
                       } else{
                         echo '0';
+                        $bed_type4 = '';
+                        $room_type4 = '';
                       }
                       
                       ?>
@@ -101,9 +128,10 @@
                                 $result_data = $query->row();
 
                           ?>
+                         
                             <option value="<?php echo $result_data->id; ?>"><?php echo $result_data->room_type; ?> - <?php echo $result_data->room_number; ?> - <?php echo $result_data->bed_type; ?></option>
                         <?php } ?>
-                        </select>
+                      </select>
                       
                     
                     </td>

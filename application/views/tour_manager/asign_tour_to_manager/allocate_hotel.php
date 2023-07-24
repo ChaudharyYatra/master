@@ -52,7 +52,8 @@
 
                     <td>
 
-                    <a href="<?php echo $module_url_path;?>/allocate_room/<?php echo $info['package_id']; ?>" ><button type="button" class="btn btn-primary">View</button></a>
+                    <a href="<?php echo $module_url_path;?>/allocate_room/<?php $aid=base64_encode($info['package_id']); 
+                          echo rtrim($aid, '='); ?>" ><button type="button" class="btn btn-primary">View</button></a>
                           
                     </td>
                     

@@ -116,19 +116,21 @@
                                   </select>
                               </div>
                             </div>
+
+                            
 					 
-					 <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
+                            <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
+                                    <div class="form-group">
+                                      <label>Enquiry destination name</label>
+                                      <input type="text" class="form-control" name="other_tour_name" id="other_tour_name" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                            </div>
+                            <div class="col-md-6">
                               <div class="form-group">
-                                <label>Enquiry destination name</label>
-                                <input type="text" class="form-control" name="other_tour_name" id="other_tour_name" placeholder="Enter destination name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <label>Enter Seat Count</label>
+                                <input type="text" class="form-control" name="enq_seat_count" id="enq_seat_count" value="<?php if(!empty($visitor_data)){ echo $visitor_data['total_seat'];} ?>" placeholder="Enter seat count" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
-                      </div>
-					 <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Enter Seat Count</label>
-                          <input type="text" class="form-control" name="enq_seat_count" id="enq_seat_count" value="<?php if(!empty($visitor_data)){ echo $visitor_data['total_seat'];} ?>" placeholder="Enter seat count" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                        </div>
-                      </div>
+                            </div>
                       
               </div>
                 <!-- /.card-body -->

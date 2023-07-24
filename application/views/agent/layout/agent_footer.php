@@ -120,7 +120,13 @@ var js_array =<?php echo json_encode($bus_info);?>
 <script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script>
 <script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script> 
 
-
+<!-- Page specific script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
 
 <script>
 $(function() {
@@ -2730,15 +2736,17 @@ $('.resetBtn').click(function() {
     // alert(currentRow); 
     // console.log(currentRow);
 
-    currentRow.find("td:eq(0) select").val('');
-    currentRow.find("td:eq(1) input").val('');
+    currentRow.find("td:eq(1) select").val('');
     currentRow.find("td:eq(2) input").val('');
     currentRow.find("td:eq(3) input").val('');
-    currentRow.find("td:eq(4) #dob").val('');
-    currentRow.find("td:eq(5) #anniversary_date").val('');
-    currentRow.find("td:eq(6) select").val('');
-    currentRow.find("td:eq(7) input:file").val('');
-    currentRow.find("td:eq(7) .img_size_cast").empty();
+    currentRow.find("td:eq(4) input").val('');
+    currentRow.find("td:eq(5) #dob").val('');
+    currentRow.find("td:eq(7) #anniversary_date").val('');
+    currentRow.find("td:eq(9) select").val('');
+    currentRow.find("td:eq(10) input:file").val('');
+    currentRow.find("td:eq(10) .img_size_cast").empty();
+    currentRow.find("td:eq(11) input:file").val('');
+    currentRow.find("td:eq(11) .img_size_cast").empty();
     // alert(col1);
 
 
