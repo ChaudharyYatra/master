@@ -195,6 +195,7 @@ class Asign_tour_to_manager extends CI_Controller{
 
     public function allocate_room($id)
     {          
+        $id=base64_decode($id);
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');
 
