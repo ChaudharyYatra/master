@@ -1880,7 +1880,36 @@ $(document).ready(function() {
 });
 </script>
 
+<script type='text/javascript'>
+// baseURL variable
+var baseURL = "<?php echo base_url(); ?>";
 
+$(document).ready(function() {
+
+    // district change
+    $('#all_traveller_district').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>agent/all_traveller_info/get_taluka',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#all_traveller_taluka').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#all_traveller_taluka').append('<option value="'+data['id']+'">'+data['Taluka']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+ </script>
  <script>
     $('#all_traveller_district').change(function() {
         var did = $(this).val();
