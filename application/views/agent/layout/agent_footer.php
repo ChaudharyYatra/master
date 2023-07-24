@@ -1883,7 +1883,6 @@ $(document).ready(function() {
 <script type='text/javascript'>
 // baseURL variable
 var baseURL = "<?php echo base_url(); ?>";
-
 $(document).ready(function() {
 
     // district change
@@ -1902,7 +1901,7 @@ $(document).ready(function() {
           $('#all_traveller_taluka').find('option').not(':first').remove();
        
           $.each(response,function(index,data){       
-             $('#all_traveller_taluka').append('<option value="'+data['id']+'">'+data['Taluka']+'</option>');
+             $('#all_traveller_taluka').append('<option value="'+data['id']+'">'+data['taluka']+'</option>');
           });
          
         }
