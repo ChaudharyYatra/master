@@ -253,10 +253,10 @@
                             ?>
                             <tr>
 
-                            <input type="text" name="traveller_id[]" value="<?php echo $traveller_id; ?>" required>
+                            <input type="hidden" name="traveller_id[]" value="<?php echo $traveller_id; ?>" required>
 
                                 <td>
-                                <input type="radio" id="yes" name="for_credentials[]" value="<?php echo $traveller_id; ?>" >
+                                <input type="radio" id="yes" name="for_credentials[]" value="<?php echo $traveller_id; ?>" required>
                           
                                 </td>
                                     

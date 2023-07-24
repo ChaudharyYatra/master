@@ -16,7 +16,7 @@ class Asign_tour_to_manager extends CI_Controller{
 		$this->module_url_path_tour_expenses    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tour_expenses";
 		$this->module_url_path_request_more_fund   =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/tm_request_more_fund";
 		$this->module_url_path_customer_feedback   =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/customer_feedback";
-        // $this->module_back   =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/asign_tour_to_manager";
+        $this->module_back   =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/asign_tour_to_manager";
         $this->module_title       = "Asign Tour";
         $this->module_url_slug    = "asign_tour_to_manager";
         $this->module_view_folder = "asign_tour_to_manager/";    
@@ -193,9 +193,10 @@ class Asign_tour_to_manager extends CI_Controller{
     //     $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
     // }
 
-    public function allocate_room($id)
+    public function allocate_room($aid)
     {          
-        $id=base64_decode($id);
+        $id=base64_decode($aid);
+        
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');
 
@@ -235,21 +236,22 @@ class Asign_tour_to_manager extends CI_Controller{
 
                     $inserted_id = $this->master_model->insertRecord('allocate_room_to_traveller',$arr_insert,true);  
                     // print_r($inserted_id); die;
-                echo 'true';
+                // echo 'true';
 
             }
+             
 
-            // if($inserted_id > 0)
-            //      {
-            //          $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
-            //          redirect($this->module_back.'/allocate_hotel/'.$id);
-            //      }
-            //      else
-            //      {
-            //          $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
-            //      }
+            if($inserted_id > 0)
+                 {
+                     $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
+                     redirect($this->module_back.'/allocate_hotel/'.$aid);
+                 }
+                 else
+                 {
+                     $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
+                 }
 
-            //      redirect($this->module_url_path.'/index');
+                 redirect($this->module_url_path.'/index');
         }
 
         // print_r($_REQUEST); die;
