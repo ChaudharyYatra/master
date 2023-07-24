@@ -32,7 +32,9 @@ class Dashboard extends CI_Controller{
 
         $this->db->where('agent_id',$id);  
         $this->db->where('is_deleted','no'); 
-        // $this->db->where('created_at',$today);  
+        $this->db->where('followup_status','no');  
+        $this->db->where('booking_process','no');  
+        $this->db->where('enquiry_type','Domestic');  
         $enquiry_data = $this->master_model->getRecords('booking_enquiry');
         $arr_data['enquiry_count_total'] = count($enquiry_data);
         // print_r($enquiry_data); die;
@@ -53,6 +55,11 @@ class Dashboard extends CI_Controller{
         $this->db->where('created_at',$today);
         $international_enquiry_data_today = $this->master_model->getRecords('international_booking_enquiry');
         $arr_data['internatinal_enquiry_count'] = count($international_enquiry_data_today);
+
+        $this->db->where('agent_id',$id);  
+        $this->db->where('is_deleted','no'); 
+        $custom_domestic_booking_enquiry = $this->master_model->getRecords('custom_domestic_booking_enquiry');
+        $arr_data['custom_domestic_booking_count'] = count($custom_domestic_booking_enquiry);
 
         // $this->db->where('agent_id',$id);  
         // $this->db->where('not_interested','no');  

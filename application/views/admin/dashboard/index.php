@@ -144,17 +144,37 @@
           <?php } ?>
           <!-- ./col -->
 
+          <!-- <?php 
+            //if($arr_data['enquiry_count'] >0 ){
+
+          ?> 
+          <div class="col-lg-3 col-6">
+            <a href="<?php //echo base_url(); ?>admin/contact_us/index">
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3><?php //echo  $arr_data['enquiry_count']; ?></h3>
+                <p>Contact Us</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+          <?php //} ?> -->
+          <!-- ./col -->
+
           <?php 
-            if($arr_data['enquiry_count'] >0 ){
+            if($arr_data['bus_open_count'] >0 ){
 
           ?> 
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <a href="<?php echo base_url(); ?>admin/contact_us/index">
+            <a href="<?php echo base_url(); ?>admin/bus_open/index">
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo  $arr_data['enquiry_count']; ?></h3>
-                <p>Contact Us</p>
+                <h3><?php echo  $arr_data['bus_open_count']; ?></h3>
+                <p>Bus Open Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -164,6 +184,7 @@
           </div>
           <?php } ?>
           <!-- ./col -->
+          
 
           <?php 
             if($arr_data['enquiry_count'] >0 ){
@@ -229,25 +250,25 @@
 
 
           <?php 
-            if($arr_data['bus_open_count'] >0 ){
+            if($arr_data['vehicle_driver_count'] >0 ){
 
-          ?> 
+          ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <a href="<?php echo base_url(); ?>admin/bus_open/index">
+            <a href="<?php echo base_url(); ?>admin/vehicle_driver/index">
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo  $arr_data['bus_open_count']; ?></h3>
-                <p>Bus Open Count</p>
+                <h3><?php echo  $arr_data['vehicle_driver_count']; ?></h3>
+                <p>Vehicle Driver Count</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-pie-graph"></i>
               </div>
             </div>
             </a>
           </div>
           <?php } ?>
-          <!-- ./col -->
+          
 
           <?php 
             if($arr_data['final_booking_count'] >0 ){
@@ -297,7 +318,7 @@
           ?> 
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <a href="<?php echo base_url(); ?>admin/contact_us/index">
+            <a href="<?php echo base_url(); ?>admin/vehicle_details/index">
             <div class="small-box bg-success">
               <div class="inner">
                 <h3><?php echo  $arr_data['vehicle_data_count']; ?></h3>
@@ -312,25 +333,7 @@
           <?php } ?>
           <!-- ./col -->
 
-          <?php 
-            if($arr_data['vehicle_driver_count'] >0 ){
-
-          ?>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <a href="<?php echo base_url(); ?>admin/client_reviews/index">
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3><?php echo  $arr_data['vehicle_driver_count']; ?></h3>
-                <p>Vehicle Driver Count</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-            </div>
-            </a>
-          </div>
-          <?php } ?>
+          
 
         </div>
         <!-- /.row -->

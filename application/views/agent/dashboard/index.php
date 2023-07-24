@@ -105,7 +105,26 @@
           </div>
           <?php } ?>
 
-          
+          <?php 
+            if($arr_data['custom_domestic_booking_count'] >0 ){
+
+          ?> 
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <a class="underline" href="<?php echo base_url(); ?>agent/fixed_customized_enquiries/index">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3><?php echo $arr_data['custom_domestic_booking_count']; ?></h3>
+
+                <p>Fixed Customized Enquiries</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+          <?php } ?>
 
         </div>
         <!-- /.row -->
