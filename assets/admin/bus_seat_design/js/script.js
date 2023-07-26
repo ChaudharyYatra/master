@@ -3,19 +3,28 @@
     var total_final_seat_count = $('#total_seat_count').val();
 
     did = $('#bdata').val();
-    var array_data = js_array;
-    var booked_seats_data=booked_data;
-    var temp_booked_seats_data=temp_booked_data;
+    if(js_array.length != 0){
 
-    // console.log(temp_booked_seats_data);
-    // for(var p=0; p<temp_booked_seats_data.length;p++)
-    // {
-    //     var abc = temp_booked_seats_data[p];
-    //     var ppp='#'+abc;
-    //     alert(ppp);
-    //     $(ppp).click();
-    // }
-    // console.log(temp_booked_seats_data);
+        var array_data = js_array;
+    
+       
+    
+    
+    
+    
+        if(typeof booked_data != 'undefined'){
+    
+        var booked_seats_data=booked_data;
+    
+        }else{
+    
+        var booked_seats_data='';
+    
+    
+    
+    
+        }
+    // console.log(booked_seats_data);
     var total_seat_count = array_data.total_seat_count;
     var new_first_string = array_data.first_cls_seats;
     // console.log(array_data);
@@ -1261,6 +1270,7 @@
         // $counter.text(sc.find('selected').length + 1);
         // $total.text(recalculateTotal(sc) + this.data().price);
     }
+<<<<<<< HEAD:assets/admin/bus_seat_design/js/script (3).js
 
     
     function selected_add_cart()
@@ -1278,3 +1288,6 @@
     }
 
     
+=======
+}
+>>>>>>> vivek_cyc:assets/admin/bus_seat_design/js/script.js

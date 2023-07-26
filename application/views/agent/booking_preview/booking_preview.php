@@ -2,6 +2,10 @@
     a {
     text-decoration: none !important;
     }
+    .cash_payment_div{
+        border: 1px solid #DEE2E6;
+        padding: 10px;
+    }
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -30,7 +34,7 @@
             <!-- jquery validation -->
             <?php $this->load->view('agent/layout/agent_alert'); ?>
 
-            <form method="post" action="<?php echo base_url(); ?>agent/booking_preview/add" enctype="multipart/form-data" id="">
+            <form method="post" action="<?php echo base_url(); ?>agent/booking_preview/add" enctype="multipart/form-data" id="final_booking_preview">
 
             <div class="card card-primary">
               <div class="card-header">
@@ -185,7 +189,7 @@
 
                                 <tr>
                                     <th>Total Seats</th>
-                                    <td><?php echo $info['total_seat']; ?></td>
+                                    <td><?php echo $info['total_busseattype']; ?></td>
                                 </tr>
 
                             </table>
@@ -236,6 +240,7 @@
                             <td></td>
                             <td></td>
                             <td><b><?php echo $seat_total_cost; ?></b></td>
+                            <?php $seat_total_cost = $seat_total_cost; ?>
                         </tr>
                         </tbody>
                     </table>
@@ -480,10 +485,203 @@
                             <td></td>
                             <th>Total</th>
                             <th><?php echo $info['total_hotel_amount']; ?></th>
+                            <?php $total_hotel_amount = $info['total_hotel_amount']; ?>
                         </tr>
 
                     </table>
                     <?php } ?>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Final Payment Details :</h5>
+                            
+                            <table id="example2" class="table table-bordered table-hover table-striped">
+                                <tr>
+                                    <th>Final Total</th>
+                                    <?php $final_total = $total_hotel_amount + $seat_total_cost; ?>
+                                    <td><input readonly type="text" class="form-control" name="final_amt" id="final_amt" placeholder="Final amount" value="<?php echo $final_total ?>" required></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    <th>Booking Amount</th>
+                                    <td>
+                                    <input type="text" class="form-control" name="booking_amt" id="booking_amt" placeholder="Enter booking amount" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Pending Amount</th>
+                                    <td>
+                                    <input readonly type="text" class="form-control" name="pending_amt" id="pending_amt" placeholder="Enter pending amount" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Payment Mode</th>
+                                    <td>
+                                    <select class="select_css" name="select_transaction" id="select_transaction" onchange='account_details(this.value); 
+                                        this.blur();'required="required">
+                                        <option value="">Select Transaction</option>
+                                        <option value="CASH">CASH</option>
+                                        <option value="UPI">UPI</option>
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="Net Banking">Net Banking</option>
+                                    </select>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="upi_no_div" style='display:none;'>
+                                    
+                                    <th>UPI Payment Transaction Number</th>
+                                    <td>
+                                        <input type="text" class="form-control" name="upi_no" id="upi_no" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </td>
+                                </tr>
+                                <tr id="cheque_tr" style='display:none;'>
+                                    
+                                    <th>Cheque Number</th>
+                                    <td>
+                                        <input type="text" class="form-control" name="cheque" id="cheque" placeholder="Enter Cheque Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </td>
+                                </tr>
+                                <tr id="net_banking_tr" style='display:none;'>
+                                    
+                                    <th>Net Banking Transaction Number</th>
+                                    <td>
+                                        <input type="text" class="form-control" name="net_banking" id="net_banking" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <div class="row cash_payment_div" id="cash_tr" style='display:none;'>
+
+                                    <div class="col-md-6">
+                                        <h6 class="text-center">Particulars</h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="text-center">Rupees</h6>
+                                    </div>
+                                
+                                    <div class="col-md-2">
+                                        <label id="amt_cash">2000 x </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control data_amt" attr-amt="2000" name="cash_2000" id="cash_2000" placeholder="Enter Particulars" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </div>
+                                    <div class="col-md-1">
+                                        =
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input readonly type="text" class="form-control" name="total_cash_2000" id="total_cash_2000" placeholder="Enter Rupees" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" > 
+                                    </div>
+
+                                    <div class="col-md-2">
+                                    <label>500 x </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control data_amt" attr-amt="500" name="cash_500" id="cash_500" placeholder="Enter Particulars" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </div>
+                                    <div class="col-md-1">
+                                        =
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input readonly type="text" class="form-control" name="total_cash_500" id="total_cash_500" placeholder="Enter Rupees" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" > 
+                                    </div>
+
+                                    <div class="col-md-2">
+                                    <label>200 x </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control data_amt" attr-amt="200" name="cash_200" id="cash_200" placeholder="Enter Particulars" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </div>
+                                    <div class="col-md-1">
+                                        =
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input readonly type="text" class="form-control" name="total_cash_200" id="total_cash_200" placeholder="Enter Rupees" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" > 
+                                    </div>
+
+                                    <div class="col-md-2">
+                                    <label>100 x </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control data_amt" attr-amt="100" name="cash_100" id="cash_100" placeholder="Enter Particulars" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </div>
+                                    <div class="col-md-1">
+                                        =
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input readonly type="text" class="form-control" name="total_cash_100" id="total_cash_100" placeholder="Enter Rupees" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" > 
+                                    </div>
+
+                                    <div class="col-md-2">
+                                    <label>50 x </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control data_amt" attr-amt="50" name="cash_50" id="cash_50" placeholder="Enter Particulars" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </div>
+                                    <div class="col-md-1">
+                                        =
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input readonly type="text" class="form-control" name="total_cash_50" id="total_cash_50" placeholder="Enter Rupees" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" > 
+                                    </div>
+
+                                    <div class="col-md-2">
+                                    <label>20 x </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control data_amt" attr-amt="20" name="cash_20" id="cash_20" placeholder="Enter Particulars" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </div>
+                                    <div class="col-md-1">
+                                        =
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input readonly type="text" class="form-control" name="total_cash_20" id="total_cash_20" placeholder="Enter Rupees" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" > 
+                                    </div>
+
+                                    <div class="col-md-2">
+                                    <label>10 x </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control data_amt" attr-amt="10" name="cash_10" id="cash_10" placeholder="Enter Particulars" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </div>
+                                    <div class="col-md-1">
+                                        =
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input readonly type="text" class="form-control" name="total_cash_10" id="total_cash_10" placeholder="Enter Rupees" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" > 
+                                    </div>
+
+                                    <div class="col-md-2">
+                                    <label> </label>
+                                    </div>
+                                    <div class="col-md-4 mt-3 text-center">
+                                        <h5>Total</h5>
+                                    </div>
+                                    <div class="col-md-1 mt-3">
+                                        =
+                                    </div>
+                                    <div class="col-md-5 mt-2">
+                                        <input readonly type="text" class="form-control" name="total_cash_amt" id="total_cash_amt" placeholder="Total Cash" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" > 
+                                    </div>
+                                
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                    
                 </div>
 
 

@@ -105,7 +105,7 @@ class Booking_enquiry extends CI_Controller {
              $this->form_validation->set_rules('last_name', 'last_name', 'required');
              $this->form_validation->set_rules('mobile_number', 'mobile_number', 'required');
              $this->form_validation->set_rules('gender', 'gender', 'required');
-             $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
+            //  $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
              $this->form_validation->set_rules('wp_mobile_number', 'wp_mobile_number', 'required');
              
              
@@ -117,7 +117,8 @@ class Booking_enquiry extends CI_Controller {
                  $mobile_number  = $this->input->post('mobile_number'); 
                  $email_address  = $this->input->post('email_address'); 
                  $gender  = $this->input->post('gender'); 
-                 $tour_number  = $this->input->post('tour_number'); 
+                //  $tour_number  = $this->input->post('tour_number'); 
+                $tour_number = implode(",", $this->input->post('tour_number')); 
                  $media_source_name         = $this->input->post('media_source_name');
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
@@ -228,7 +229,7 @@ class Booking_enquiry extends CI_Controller {
              $this->form_validation->set_rules('mobile_number', 'mobile_number', 'required');
              $this->form_validation->set_rules('email_address', 'email_address', 'required');
              $this->form_validation->set_rules('gender', 'gender', 'required');
-             $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
+            //  $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
              
              if($this->form_validation->run() == TRUE)
              { 
@@ -238,7 +239,8 @@ class Booking_enquiry extends CI_Controller {
                  $mobile_number  = $this->input->post('mobile_number'); 
                  $email_address  = $this->input->post('email_address'); 
                  $gender  = $this->input->post('gender'); 
-                 $tour_number  = $this->input->post('tour_number'); 
+                //  $tour_number  = $this->input->post('tour_number'); 
+                 $tour_number = implode(",", $this->input->post('tour_number')); 
                  $media_source_name         = $this->input->post('media_source_name');
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
@@ -588,7 +590,7 @@ class Booking_enquiry extends CI_Controller {
                 $this->form_validation->set_rules('email_address', 'email_address', 'required');
                 $this->form_validation->set_rules('gender', 'gender', 'required');
                 // $this->form_validation->set_rules('packages', 'packages', 'required');
-                $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
+                // $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
 				$this->form_validation->set_rules('wp_mobile_number', 'whatsapp mobile number', 'required');
                 if($this->input->post('tour_number')=='Other'){
                 $this->form_validation->set_rules('other_tour_name', 'enter destination name', 'required');
@@ -604,7 +606,8 @@ class Booking_enquiry extends CI_Controller {
                     $email_address  = $this->input->post('email_address'); 
                     $gender  = $this->input->post('gender'); 
                     // $packages  = $this->input->post('packages'); 
-                    $tour_number  = $this->input->post('tour_number'); 
+                    // $tour_number  = $this->input->post('tour_number'); 
+                    $tour_number = implode(",", $this->input->post('tour_number'));
                     $media_source_name         = $this->input->post('media_source_name');
 				 	$wp_mobile_number         = $this->input->post('wp_mobile_number');
                  	$other_tour_name         = $this->input->post('other_tour_name');
