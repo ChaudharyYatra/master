@@ -4940,13 +4940,47 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#final_booking_preview').validate({ // initialize the plugin
         errorPlacement: function($error, $element) {
-            $error.appendTo($element.closest("tr,td"));
+            $error.appendTo($element.closest("tr,td,div"));
         },
         rules: {
             upi_no: {
                 required: function(element) {
-                    var action = $("#select_transaction").val();
-                    if (action == "UPI") {
+                    
+                    if($('#select_transaction').val() == 'UPI')
+                     {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            cheque: {
+                required: function(element) {
+                    
+                    if($('#select_transaction').val() == 'Cheque')
+                     {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            net_banking: {
+                required: function(element) {
+                    
+                    if($('#select_transaction').val() == 'Net Banking')
+                     {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            total_cash_amt: {
+                required: function(element) {
+                    
+                    if($('#select_transaction').val() == 'CASH')
+                     {
                         return true;
                     } else {
                         return false;
@@ -4959,6 +4993,15 @@ $(document).ready(function() {
         messages: {
             upi_no: {
                 required: "Please enter transaction number",
+            },
+            cheque: {
+                required: "Please enter cheque number",
+            },
+            net_banking: {
+                required: "Please enter transaction number",
+            },
+            total_cash_amt: {
+                required: "Please enter cash",
             }
 
 
