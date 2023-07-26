@@ -3,8 +3,27 @@
     var total_final_seat_count = $('#total_seat_count').val();
 
     did = $('#bdata').val();
-    var array_data = js_array;
-    var booked_seats_data=booked_data;
+    if(js_array.length != 0){
+
+        var array_data = js_array;
+    
+       
+    
+    
+    
+    
+        if(typeof booked_data != 'undefined'){
+    
+        var booked_seats_data=booked_data;
+    
+        }else{
+    
+        var booked_seats_data='';
+    
+    
+    
+    
+        }
     // console.log(booked_seats_data);
     var total_seat_count = array_data.total_seat_count;
     var new_first_string = array_data.first_cls_seats;
@@ -1226,3 +1245,4 @@
         // $counter.text(sc.find('selected').length + 1);
         // $total.text(recalculateTotal(sc) + this.data().price);
     }
+}

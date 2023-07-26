@@ -102,18 +102,24 @@
                               </div>
                       </div>
 
-                       <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Tour number</label>
-                                    <select class="form-control" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
-                                  this.blur();' onfocus='this.size=6;' onblur='this.size=1;'>
-                                        <option value="">Select tour Number</option>
-                                        <option value="Other" <?php if(isset($info['package_id'])){if("Other" == $info['package_id']) {echo 'selected';}}?>>Other</option>
-                                        <?php foreach($packages_data as $packages_data_value){ ?> 
-                                            <option value="<?php echo $packages_data_value['tour_number'];?>" <?php if(isset($info['package_id'])){if($packages_data_value['tour_number'] == $info['package_id']) {echo 'selected';}}?> ><?php echo $packages_data_value['tour_number'];?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Tour Number-Name</label>
+                            <select class="select2" multiple="multiple" data-placeholder="Select Tour" style="width: 100%;" name="tour_number[]" id="tour_number" required="required">
+                              <option value="">Select tour</option>
+                              <?php
+                              $title = $temparray=explode(',',$info['package_id']);
+                              $c=count($title);
+                                foreach($packages_data as $packages_data_value) 
+                                { 
+                                    for($i=0; $i<$c; $i++){
+                                        $tid= $title[$i];
+                                    }
+                              ?>
+                                <option value="<?php echo $packages_data_value['id']; ?>" <?php if(in_array($packages_data_value['id'], $title)) { echo "selected"; } ?>><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
+                            <?php  } ?>
+                            </select>
+                          </div>
                         </div>
 
                         <div class="col-md-6" id="other_tour_name_div" style='display:none;'>

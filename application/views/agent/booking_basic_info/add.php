@@ -163,31 +163,77 @@
                         </div>
                       </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Select Tour</label>
-                            <select class="select_css" name="tour_no" id="tour_no">
-                              <option value="">Select Tour</option>
-                                <?php foreach($packages_data_booking as $packages_data_booking_value){ ?>  
-                                  <option value="<?php echo $packages_data_booking_value['id'];?>" <?php if($packages_data_booking_value['id']==$package_agent_booking_enquiry_data['package_id']){echo "selected";} ?>>
-                                  <?php echo $packages_data_booking_value['tour_number'];?>   -  <?php echo $packages_data_booking_value['tour_title'];?></option>
-                                <?php } ?>
-                            </select>
+                      <div class="col-md-3">
+                         
                         </div>
-                      </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Enquiry Tour Number-Name</label>
+                            <select disabled class="select2" multiple="multiple" data-placeholder="Select Tour" style="width: 100%;" name="tour_number[]" id="tour_number" required="required">
+                              <option value="">Select tour</option>
+                              <?php
+                              
+                              foreach($agent_booking_enquiry_data as $info) 
+                              { 
+                              $title = $temparray=explode(',',$info['package_id']);
+                              $c=count($title);
+                                foreach($packages_data as $packages_data_value) 
+                                { 
+                                    for($i=0; $i<$c; $i++){
+                                        $tid= $title[$i];
+                                    }
+                              ?>
+                                <option value="<?php echo $packages_data_value['id']; ?>" <?php if(in_array($packages_data_value['id'], $title)) { echo "selected"; } ?>><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
+                            <?php  } } ?>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                         
+                        </div>
+                        
+                        <?php if($booking_data!=""){ ?>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Select Tour</label>
+                                <select class="select_css" name="tour_no" id="tour_no">
+                                  <option value="">Select Tour</option>
+                                    <?php foreach($packages_data_booking as $packages_data_booking_value){ ?>  
+                                      <option value="<?php echo $packages_data_booking_value['id'];?>" <?php if($packages_data_booking_value['id']==$booking_basic_info_tour['tour_no']){echo "selected";} ?>>
+                                      <?php echo $packages_data_booking_value['tour_number'];?>   -  <?php echo $packages_data_booking_value['tour_title'];?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                          </div>
+                        <?php } else {?>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Select Tour</label>
+                                <select class="select_css" name="tour_no" id="tour_no">
+                                  <option value="">Select Tour</option>
+                                    <?php foreach($packages_data_booking as $packages_data_booking_value){ ?>  
+                                      <option value="<?php echo $packages_data_booking_value['id'];?>" <?php if($packages_data_booking_value['id']==$package_agent_booking_enquiry_data['package_id']){echo "selected";} ?>>
+                                      <?php echo $packages_data_booking_value['tour_number'];?>   -  <?php echo $packages_data_booking_value['tour_title'];?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                          </div>
+                        <?php } ?>
+
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Boarding Office Location</label>
                           <select class="select_css" name="boarding_office_location" id="boarding_office_location">
                             <option value="">Select Boarding Office Location</option>
                               <?php foreach($boarding_office_location as $boarding_office_location_value){ ?> 
-                                <!-- <option value="<?php //echo $boarding_office_location_value['id'];?>" <?php //if($boarding_office_location_value['id']==$booking_data['boarding_office_location']){echo "selected";} ?>><?php //echo $boarding_office_location_value['booking_center'];?></option> -->
-                                <option value="<?php echo $boarding_office_location_value['id'];?>" <?php if(isset($booking_data['boarding_office_location'])){if($boarding_office_location_value['id'] == $booking_data['boarding_office_location']) {echo 'selected';}}?>><?php echo $boarding_office_location_value['booking_center'];?></option>
                                 
                               <?php } ?>
                           </select>
                         </div>
                       </div>
+                      
                       <div class="col-md-12">
                         <div class="row">
                           <div class="col-md-6">
@@ -196,8 +242,7 @@
                                 <select class="select_css" name="tour_date" id="tour_date">
                                   <option value="">Select Tour Date</option>
                                   <?php foreach($add_journey_date as $add_journey_date_value){ ?> 
-                                      <!-- <option value="<?php //echo $add_journey_date_value['id'];?>" <?php //if($add_journey_date_value['id']==$booking_data['tour_date']){echo "selected";} ?>><?php //echo $add_journey_date_value['journey_date'];?></option> -->
-                                      <option value="<?php echo $add_journey_date_value['p_date_id'];?>" <?php if(isset($booking_data['tour_date'])){if($add_journey_date_value['p_date_id'] == $booking_data['tour_date']) {echo 'selected';}}?>><?php echo date('d-m-Y',strtotime($add_journey_date_value['journey_date']));?></option>
+                                      
                                   <?php } ?>
                                 </select>
                             </div>

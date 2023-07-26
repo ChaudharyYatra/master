@@ -18,7 +18,18 @@
 <!-- ./wrapper -->
 
 <script>
+
+<?php if(!empty($bus_info)){ ?>
+
 var js_array =<?php echo json_encode($bus_info);?>;
+
+// console.log(js_array);
+
+  <?php   }else{ ?>
+
+        var js_array=[];
+
+   <?php  } ?>
 
 </script>
 
@@ -4731,5 +4742,228 @@ $(document).ready(function() {
             });
         }
     });
+});
+</script>
+
+<!-- Final booking preview final amt calculation -->
+<script>
+    
+$("#booking_amt").on("keyup", function() {
+var val = +this.value || 0;
+$("#pending_amt").val($("#final_amt").val() - val);
+});
+
+</script>
+<!-- Final booking preview final amt calculation -->
+
+<!-- Bank transaction ---------------------------------------- -->
+<script type="text/javascript">
+    function account_details(val){
+        // alert('hiiiiiiiii');
+    var element=document.getElementById('net_banking_tr');
+	var element2=document.getElementById('net_banking');
+
+    var upi_no_div=document.getElementById('upi_no_div');
+	var upi_no=document.getElementById('upi_no');
+
+    var mob_no_div=document.getElementById('cheque_tr');
+	var mob_no=document.getElementById('cheque');
+
+    var cash_no_div=document.getElementById('cash_tr');
+	var cash_no=document.getElementById('cash');
+
+    if(val=='Net Banking'){
+    upi_no_div.style.display='none';
+    mob_no_div.style.display='none';
+    cash_no_div.style.display='none';
+    element.style.display='contents';
+    
+    }else if(val=='UPI') {
+    element.style.display='none';
+    mob_no_div.style.display='none';
+    cash_no_div.style.display='none';
+    upi_no_div.style.display='contents';
+	// element2.value="";
+    }else if(val=='Cheque'){
+        element.style.display='none';
+        upi_no_div.style.display='none';
+        cash_no_div.style.display='none';
+        mob_no_div.style.display='contents';
+    }else if(val=='CASH'){
+        element.style.display='none';
+        upi_no_div.style.display='none';
+        cash_no_div.style.display='flex';
+        mob_no_div.style.display='none';
+    }
+    }
+</script>
+<!-- Bank transaction ---------------------------------------- -->
+
+<script>
+    $('.data_amt').keyup(function(){
+        // alert('hiiii');
+        var seat_type_data = $(this).attr('attr-amt');
+        // alert(seat_type_data);
+        
+        // alert(price);
+        if(seat_type_data=='2000'){
+            var price = parseFloat($('#cash_2000').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_2000').val(total_amt );
+            }else{
+                $('#total_cash_2000').val('0');
+            }
+        }else if(seat_type_data=='500'){
+            var price = parseFloat($('#cash_500').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_500').val(total_amt );
+            }else{
+                $('#total_cash_500').val('0');
+            }
+        }else if(seat_type_data=='200'){
+            var price = parseFloat($('#cash_200').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_200').val(total_amt );
+            }else{
+                $('#total_cash_200').val('0');
+            }
+        }else if(seat_type_data=='100'){
+            var price = parseFloat($('#cash_100').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_100').val(total_amt );
+            }else{
+                $('#total_cash_100').val('0');
+            }
+        }else if(seat_type_data=='50'){
+            var price = parseFloat($('#cash_50').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_50').val(total_amt );
+            }else{
+                $('#total_cash_50').val('0');
+            }
+        }else if(seat_type_data=='20'){
+            var price = parseFloat($('#cash_20').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_20').val(total_amt );
+            }else{
+                $('#total_cash_20').val('0');
+            }
+        }else if(seat_type_data=='10'){
+            var price = parseFloat($('#cash_10').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_10').val(total_amt );
+            }else{
+                $('#total_cash_10').val('0');
+            }
+        }
+        
+
+    });
+</script>
+
+<script>
+$(document).ready(function() {
+
+    var f_count = '';
+    var e_count = '';
+    var g_count = '';
+    var m_count = '';
+    var l_count = '';
+    var n_count = '';
+    var o_count = '';
+
+
+    $(".data_amt").on('keyup', function() {
+        var f_count = $("#total_cash_2000").val()
+        var e_count = $("#total_cash_500").val();
+        var g_count = $("#total_cash_200").val();
+        var m_count = $("#total_cash_100").val();
+        var l_count = $("#total_cash_50").val();
+        var n_count = $("#total_cash_20").val();
+        var o_count = $("#total_cash_10").val();
+
+        if (f_count != '') {
+            var ftotal = f_count;
+        } else {
+            var ftotal = 0;
+        }
+        if (e_count != '') {
+            var etotal = e_count;
+        } else {
+            var etotal = 0;
+        }
+        if (g_count != '') {
+            var gtotal = g_count;
+        } else {
+            var gtotal = 0;
+        }
+        if (m_count != '') {
+            var mtotal = m_count;
+        } else {
+            var mtotal = 0;
+        }
+        if (l_count != '') {
+            var ltotal = l_count;
+        } else {
+            var ltotal = 0;
+        }
+        if (n_count != '') {
+            var ntotal = n_count;
+        } else {
+            var ntotal = 0;
+        }
+        if (o_count != '') {
+            var ototal = o_count;
+        } else {
+            var ototal = 0;
+        }
+        var final_total = parseInt(ftotal) + parseInt(etotal) + parseInt(gtotal) + parseInt(mtotal) +
+            parseInt(ltotal) + parseInt(ntotal) + parseInt(ototal);
+
+
+        $("#total_cash_amt").val(final_total);
+
+
+    });
+
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#final_booking_preview').validate({ // initialize the plugin
+        errorPlacement: function($error, $element) {
+            $error.appendTo($element.closest("tr,td"));
+        },
+        rules: {
+            upi_no: {
+                required: function(element) {
+                    var action = $("#select_transaction").val();
+                    if (action == "UPI") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+        },
+
+        messages: {
+            upi_no: {
+                required: "Please enter transaction number",
+            }
+
+
+        }
+    });
+
 });
 </script>

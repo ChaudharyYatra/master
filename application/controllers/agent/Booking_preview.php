@@ -115,6 +115,78 @@ class Booking_preview extends CI_Controller {
                 );
                 
                 $inserted_id = $this->master_model->insertRecord('final_booking',$arr_insert,true);
+                
+                // ==========================================================================================
+                
+                $journey_date  = $this->input->post('journey_date');
+                $enquiry_id    = $this->input->post('enquiry_id');  
+                $package_id    = $this->input->post('package_id'); 
+                
+                $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
+
+                $final_amt    = $this->input->post('final_amt'); 
+                $booking_amt    = $this->input->post('booking_amt'); 
+                $pending_amt    = $this->input->post('pending_amt'); 
+                $select_transaction    = $this->input->post('select_transaction'); 
+                $upi_no    = $this->input->post('upi_no'); 
+                $cheque    = $this->input->post('cheque'); 
+                $net_banking    = $this->input->post('net_banking'); 
+
+                $cash_2000    = $this->input->post('cash_2000'); 
+                $total_cash_2000    = $this->input->post('net_banking'); 
+
+                $cash_500    = $this->input->post('cash_500'); 
+                $total_cash_500    = $this->input->post('total_cash_500'); 
+
+                $cash_200    = $this->input->post('cash_200'); 
+                $total_cash_200    = $this->input->post('total_cash_200'); 
+
+                $cash_100    = $this->input->post('cash_100'); 
+                $total_cash_100    = $this->input->post('total_cash_100'); 
+
+                $cash_50    = $this->input->post('cash_50'); 
+                $total_cash_50    = $this->input->post('total_cash_50'); 
+
+                $cash_20    = $this->input->post('cash_20'); 
+                $total_cash_20    = $this->input->post('total_cash_20'); 
+
+                $cash_10    = $this->input->post('cash_10'); 
+                $total_cash_10    = $this->input->post('total_cash_10'); 
+
+                $total_cash_amt    = $this->input->post('total_cash_amt'); 
+
+                $arr_insert = array(
+                    'final_amt'   =>   $final_amt,
+                    'booking_amt'   =>   $booking_amt,
+                    'pending_amt'   =>   $pending_amt,
+                    'select_transaction'   =>   $select_transaction,
+                    'upi_no'   =>   $upi_no,
+                    'cheque'   =>   $cheque,
+                    'net_banking'   =>   $net_banking,
+
+                    'cash_2000'   =>   $cash_2000,
+                    'total_cash_2000'   =>   $total_cash_2000,
+                    'cash_500'   =>   $cash_500,
+                    'total_cash_500'   =>   $total_cash_500,
+                    'cash_200'   =>   $cash_200,
+                    'total_cash_200'   =>   $total_cash_200,
+                    'cash_100'   =>   $cash_100,
+                    'total_cash_100'   =>   $total_cash_100,
+                    'cash_50'   =>   $cash_50,
+                    'total_cash_50'   =>   $total_cash_50,
+                    'cash_20'   =>   $cash_20,
+                    'total_cash_20'   =>   $total_cash_20,
+                    'cash_10'   =>   $cash_10,
+                    'total_cash_10'   =>   $total_cash_10,
+                    'total_cash_amt'   =>   $total_cash_amt,
+
+                    'booking_reference_no'  =>  $booking_reference_no,
+                    'booking_status'   =>  'confirm'
+                );
+                
+                $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
+
+                // ==========================================================================================
 
                 $arr_update = array(
                     'booking_done'   =>   'yes'

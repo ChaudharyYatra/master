@@ -102,22 +102,21 @@
                                   </select>
                               </div>
                             </div>
-					 
+
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Tour number</label>
-                                  <select class="form-control" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
-                                  this.blur();' onfocus='this.size=6;' onblur='this.size=1;'>
-                                    <option value="">Select tour title</option>
-                                    <option value="Other">Other</option>
-                                    <?php foreach($packages_data as $packages_data_value){ ?> 
-                                        <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
-                                    <?php } ?>
+                                <label>Tour Number-Name</label>
+                                <select class="select2" multiple="multiple" data-placeholder="Select tour" style="width: 100%;" name="tour_number[]" id="tour_number" required="required">
+                                    <option value="">Select Tour</option>
+                                    <?php
+                                      foreach($packages_data as $packages_data_value) 
+                                      { 
+                                    ?>
+                                      <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
+                                  <?php } ?>
                                   </select>
                               </div>
                             </div>
-
-                            
 					 
                             <div class="col-md-6" id="other_tour_name_div" style='display:none;'>
                                     <div class="form-group">

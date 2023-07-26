@@ -95,6 +95,13 @@ class Booking_basic_info extends CI_Controller {
         $package_id=$package_agent_booking_enquiry_data['package_id'];
         // print_r($package_agent_booking_enquiry_data); die;
 
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $this->db->where('booking_basic_info.domestic_enquiry_id',$iid);
+        $booking_basic_info_tour = $this->master_model->getRecord('booking_basic_info');
+        // $booking_basic_info_tour_id=$booking_basic_info_tour['tour_no'];
+        // print_r($booking_basic_info_tour); die;
+
         $record = array();
         $fields = "packages.*,booking_enquiry.package_id,hotel_type.hotel_type_name";
         $this->db->where('packages.is_deleted','no');
@@ -180,6 +187,11 @@ class Booking_basic_info extends CI_Controller {
         $booking_data = $this->master_model->getRecord('booking_basic_info',
         array('booking_basic_info.is_deleted'=>'no'),$fields);
         // print_r($booking_data); die;
+
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('tour_number','ASC');
+        $packages_data = $this->master_model->getRecords('packages');
         
          if($this->input->post('submit'))
         {
@@ -371,6 +383,7 @@ class Booking_basic_info extends CI_Controller {
          $this->arr_view_data['agent_sess_name'] = $agent_sess_name;
          $this->arr_view_data['action']          = 'add';
          $this->arr_view_data['agent_data']        = $agent_data;
+         $this->arr_view_data['booking_basic_info_tour']        = $booking_basic_info_tour;
          $this->arr_view_data['agent_booking_enquiry_data']        = $agent_booking_enquiry_data;
          $this->arr_view_data['package_agent_booking_enquiry_data']  = $package_agent_booking_enquiry_data;
          $this->arr_view_data['agent_department']        = $agent_department;
@@ -378,6 +391,7 @@ class Booking_basic_info extends CI_Controller {
          $this->arr_view_data['booking_data']        = $booking_data;
          $this->arr_view_data['master_media_source']        = $master_media_source;
          $this->arr_view_data['arr_packages_data_booking']        = $arr_packages_data_booking;
+         $this->arr_view_data['packages_data']        = $packages_data;
          $this->arr_view_data['tour_no_title']        = $tour_no_title;
          $this->arr_view_data['add_journey_date']        = $add_journey_date;
          $this->arr_view_data['boarding_office_location']        = $boarding_office_location;
