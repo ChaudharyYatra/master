@@ -35,6 +35,7 @@ class Allocate_tour extends CI_Controller {
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
         $this->db->where('final_booking.hotel_name_id',$id);
+        $this->db->group_by('package_date.id','package.id'); 
         $this->db->join("final_booking", 'final_booking.package_id=packages.id','right');
         $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','right');
         $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
