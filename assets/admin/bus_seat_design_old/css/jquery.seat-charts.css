@@ -50,17 +50,12 @@ div.seatCharts-seat.focused {
 	background-color: #6db131;
 }
 
-/* div.seatCharts-seat.available {
+div.seatCharts-seat.available {
 	background-color: green;
-} */
+}
 
 div.seatCharts-seat.unavailable {
 	background-color: red;
-	cursor: not-allowed;
-}
-
-div.seatCharts-seat.hold {
-	background-color: orange;
 	cursor: not-allowed;
 }
 

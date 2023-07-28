@@ -52,10 +52,12 @@ class Booking_basic_info extends CI_Controller {
         $agent_sess_name = $this->session->userdata('agent_name');
         $id=$this->session->userdata('agent_sess_id');
          
+        $this->db->where('is_active','yes');
         $this->db->where('is_deleted','no');
         $this->db->where('id',$id);
         $agent_data = $this->master_model->getRecords('agent');
         // print_r($agent_data); die;
+        
         
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');

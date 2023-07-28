@@ -23,11 +23,11 @@ class State extends CI_Controller{
         // $this->db->where('is_deleted','no');
         // $arr_data = $this->master_model->getRecords('state');
 
-        $fields = "state.*,country.country_name";
-        $this->db->order_by('state.country_id','asc');        
-        $this->db->where('state.is_deleted','no');        
-        $this->db->join("country", 'state.country_id=country.id','left');
-        $arr_data = $this->master_model->getRecords('state',array('state.is_deleted'=>'no'),$fields);
+        $fields = "state_table.*,country.country_name";
+        $this->db->order_by('state_table.country_id','asc');        
+        $this->db->where('state_table.is_deleted','no');        
+        $this->db->join("country", 'state_table.country_id=country.id','left');
+        $arr_data = $this->master_model->getRecords('state_table',array('state_table.is_deleted'=>'no'),$fields);
 
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
@@ -60,14 +60,14 @@ class State extends CI_Controller{
                 $this->db->where('state_name',$state_name);
                 $this->db->where('is_deleted','no');
                 $this->db->where('is_active','yes');
-                $state_exist_data = $this->master_model->getRecords('state');
+                $state_exist_data = $this->master_model->getRecords('state_table');
                 if(count($state_exist_data) > 0)
                 {
                     $this->session->set_flashdata('error_message',"Hotel".$state_name." Already Exist.");
                     redirect($this->module_url_path.'/add');
                 }
                 
-                $inserted_id = $this->master_model->insertRecord('state',$arr_insert,true);
+                $inserted_id = $this->master_model->insertRecord('state_table',$arr_insert,true);
                                
                 if($inserted_id > 0)
                 {    
@@ -102,7 +102,7 @@ class State extends CI_Controller{
         if(is_numeric($id) && ($type == "yes" || $type == "no") )
         {   
             $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('state');
+            $arr_data = $this->master_model->getRecords('state_table');
             if(empty($arr_data))
             {
                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
@@ -120,7 +120,7 @@ class State extends CI_Controller{
                 $arr_update['is_active'] = "yes";
             }
             
-            if($this->master_model->updateRecord('state',$arr_update,array('id' => $id)))
+            if($this->master_model->updateRecord('state_table',$arr_update,array('id' => $id)))
             {
                 $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
             }
@@ -145,7 +145,7 @@ class State extends CI_Controller{
         if(is_numeric($id))
         {   
             $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('state');
+            $arr_data = $this->master_model->getRecords('state_table');
 
             if(empty($arr_data))
             {
@@ -156,7 +156,7 @@ class State extends CI_Controller{
             // $arr_update = array('is_deleted' => 'yes');
             $arr_where = array("id" => $id);
                  
-            if($this->master_model->deleteRecord('state',$arr_where))
+            if($this->master_model->deleteRecord('state_table',$arr_where))
             {
                 $this->session->set_flashdata('success_message',$this->module_title.' Deleted Successfully.');
             }
@@ -186,7 +186,7 @@ class State extends CI_Controller{
         if(is_numeric($id))
         {   
             $this->db->where('id',$id);
-            $arr_data = $this->master_model->getRecords('state');
+            $arr_data = $this->master_model->getRecords('state_table');
             if($this->input->post('submit'))
             {
                 $this->form_validation->set_rules('state_name', 'Vehicle Brand', 'required');
@@ -194,16 +194,17 @@ class State extends CI_Controller{
 
                 if($this->form_validation->run() == TRUE)
                 {
-                   $state_name = trim($this->input->post('state_name'));
+                    $state_name = $this->input->post('state_name');
                      $country_id = $this->input->post('country_id');
 
                    $this->db->where('state_name',$state_name);
                     $this->db->where('id!='.$id);
                     $this->db->where('is_deleted','no');
-                    $bus_master_exist_data = $this->master_model->getRecords('state');
+                    $bus_master_exist_data = $this->master_model->getRecords('state_table');
+
                     if(count($bus_master_exist_data) > 0)
                     {
-                        $this->session->set_flashdata('error_message',"Bus".$state_name." Already Exist.");
+                        $this->session->set_flashdata('error_message',"state".$state_name." Already Exist.");
                         redirect($this->module_url_path.'/add');
                     }
 
@@ -213,7 +214,7 @@ class State extends CI_Controller{
                     
                     );
                     $arr_where     = array("id" => $id);
-                   $this->master_model->updateRecord('state',$arr_update,$arr_where);
+                   $this->master_model->updateRecord('state_table',$arr_update,$arr_where);
                     if($id > 0)
                     {
                         $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");

@@ -40,9 +40,10 @@ class Booking_preview extends CI_Controller {
         $traveller_booking_info = $this->master_model->getRecords('booking_basic_info',array('booking_basic_info.is_deleted'=>'no'),$fields);
 
         $record = array();
-        $fields = "all_traveller_info.*";
+        $fields = "all_traveller_info.*,relation.relation";
         $this->db->where('all_traveller_info.is_deleted','no');
         $this->db->where('all_traveller_info.domestic_enquiry_id',$iid);
+        $this->db->join("relation", 'relation.id=all_traveller_info.all_traveller_relation','left');
         $arr_data = $this->master_model->getRecords('all_traveller_info',array('all_traveller_info.is_deleted'=>'no'),$fields);
         
         $record = array();
@@ -83,8 +84,111 @@ class Booking_preview extends CI_Controller {
 
     }
 
+    public function cust_otp()
+    { 
+        // echo 'hiiiii IN Controller'; die;
+        $agent_sess_name = $this->session->userdata('agent_name');
+        $id=$this->session->userdata('agent_sess_id');
+
+            $booking_amt = $this->input->post('booking_amt');
+            $mobile_no = $this->input->post('mobile_no');
+
+            $alphabet = '1234567890';
+            $otp = str_shuffle($alphabet);
+            $traveler_otp = substr($otp, 0, '6'); 
+
+            $from_email='test@choudharyyatra.co.in';
+            
+            $authKey = "1207168241267288907";
+            
+        $message="Dear User, Thank you for booking the tour with us, Your OTP is $traveler_otp, Valid for 30 minutes. Please share with only Choudhary Yatra team. Regards,CYCPL Team.";
+        $senderId  = "CYCPLN";
+        
+        $apiurl = "http://sms.sumagoinfotech.com/api/sendhttp.php?authkey=394685AG84OZGHLV0z6438e5e3P1&mobiles=$mobile_no&message=$message&sender=CYCPLN&route=4&country=91&DLT_TE_ID=1207168251580901563";
+        
+         $apiurl = str_replace(" ", '%20', $apiurl); 
+            
+            
+            $ch = curl_init($apiurl);
+                    $get_url = $apiurl;
+                    curl_setopt($ch, CURLOPT_POST,0);
+                    curl_setopt($ch, CURLOPT_URL, $get_url);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1);
+                    curl_setopt($ch, CURLOPT_HEADER,0);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+            $return_val = curl_exec($ch); 
+               
+            
+
+                // $final_amt    = $this->input->post('final_amt'); 
+                // $booking_amt    = $this->input->post('booking_amt'); 
+                // $pending_amt    = $this->input->post('pending_amt'); 
+                // $booking_tm_mobile_no    = $this->input->post('booking_tm_mobile_no'); 
+                // $select_transaction    = $this->input->post('select_transaction'); 
+                // $upi_no    = $this->input->post('upi_no'); 
+                // $cheque    = $this->input->post('cheque'); 
+                // $net_banking    = $this->input->post('net_banking'); 
+
+                // $cash_2000    = $this->input->post('cash_2000'); 
+                // $total_cash_2000    = $this->input->post('total_cash_2000'); 
+
+                // $cash_500    = $this->input->post('cash_500'); 
+                // $total_cash_500    = $this->input->post('total_cash_500'); 
+
+                // $cash_200    = $this->input->post('cash_200'); 
+                // $total_cash_200    = $this->input->post('total_cash_200'); 
+
+                // $cash_100    = $this->input->post('cash_100'); 
+                // $total_cash_100    = $this->input->post('total_cash_100'); 
+
+                // $cash_50    = $this->input->post('cash_50'); 
+                // $total_cash_50    = $this->input->post('total_cash_50'); 
+
+                // $cash_20    = $this->input->post('cash_20'); 
+                // $total_cash_20    = $this->input->post('total_cash_20'); 
+
+                // $cash_10    = $this->input->post('cash_10'); 
+                // $total_cash_10    = $this->input->post('total_cash_10'); 
+
+                // $total_cash_amt    = $this->input->post('total_cash_amt'); 
+
+                $arr_insert = array(
+                    // 'final_amt'   =>   $final_amt,
+                    // 'booking_amt'   =>   $booking_amt,
+                    // 'pending_amt'   =>   $pending_amt,
+                    // 'booking_tm_mobile_no'   =>   $booking_tm_mobile_no,
+                    // 'select_transaction'   =>   $select_transaction,
+                    // 'upi_no'   =>   $upi_no,
+                    // 'cheque'   =>   $cheque,
+                    // 'net_banking'   =>   $net_banking,
+
+                    // 'cash_2000'   =>   $cash_2000,
+                    // 'total_cash_2000'   =>   $total_cash_2000,
+                    // 'cash_500'   =>   $cash_500,
+                    // 'total_cash_500'   =>   $total_cash_500,
+                    // 'cash_200'   =>   $cash_200,
+                    // 'total_cash_200'   =>   $total_cash_200,
+                    // 'cash_100'   =>   $cash_100,
+                    // 'total_cash_100'   =>   $total_cash_100,
+                    // 'cash_50'   =>   $cash_50,
+                    // 'total_cash_50'   =>   $total_cash_50,
+                    // 'cash_20'   =>   $cash_20,
+                    // 'total_cash_20'   =>   $total_cash_20,
+                    // 'cash_10'   =>   $cash_10,
+                    // 'total_cash_10'   =>   $total_cash_10,
+                    // 'total_cash_amt'   =>   $total_cash_amt,
+                    'traveler_otp'   =>   $traveler_otp
+                );
+                
+                $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
+           
+
+        
+    }
+
     public function add()
     { 
+        
         $agent_sess_name = $this->session->userdata('agent_name');
         $id=$this->session->userdata('agent_sess_id');
 
@@ -120,68 +224,9 @@ class Booking_preview extends CI_Controller {
                 
                 // ==========================================================================================
                 
-                $journey_date  = $this->input->post('journey_date');
-                $enquiry_id    = $this->input->post('enquiry_id');  
-                $package_id    = $this->input->post('package_id'); 
-                
                 $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
 
-                $final_amt    = $this->input->post('final_amt'); 
-                $booking_amt    = $this->input->post('booking_amt'); 
-                $pending_amt    = $this->input->post('pending_amt'); 
-                $select_transaction    = $this->input->post('select_transaction'); 
-                $upi_no    = $this->input->post('upi_no'); 
-                $cheque    = $this->input->post('cheque'); 
-                $net_banking    = $this->input->post('net_banking'); 
-
-                $cash_2000    = $this->input->post('cash_2000'); 
-                $total_cash_2000    = $this->input->post('net_banking'); 
-
-                $cash_500    = $this->input->post('cash_500'); 
-                $total_cash_500    = $this->input->post('total_cash_500'); 
-
-                $cash_200    = $this->input->post('cash_200'); 
-                $total_cash_200    = $this->input->post('total_cash_200'); 
-
-                $cash_100    = $this->input->post('cash_100'); 
-                $total_cash_100    = $this->input->post('total_cash_100'); 
-
-                $cash_50    = $this->input->post('cash_50'); 
-                $total_cash_50    = $this->input->post('total_cash_50'); 
-
-                $cash_20    = $this->input->post('cash_20'); 
-                $total_cash_20    = $this->input->post('total_cash_20'); 
-
-                $cash_10    = $this->input->post('cash_10'); 
-                $total_cash_10    = $this->input->post('total_cash_10'); 
-
-                $total_cash_amt    = $this->input->post('total_cash_amt'); 
-
                 $arr_insert = array(
-                    'final_amt'   =>   $final_amt,
-                    'booking_amt'   =>   $booking_amt,
-                    'pending_amt'   =>   $pending_amt,
-                    'select_transaction'   =>   $select_transaction,
-                    'upi_no'   =>   $upi_no,
-                    'cheque'   =>   $cheque,
-                    'net_banking'   =>   $net_banking,
-
-                    'cash_2000'   =>   $cash_2000,
-                    'total_cash_2000'   =>   $total_cash_2000,
-                    'cash_500'   =>   $cash_500,
-                    'total_cash_500'   =>   $total_cash_500,
-                    'cash_200'   =>   $cash_200,
-                    'total_cash_200'   =>   $total_cash_200,
-                    'cash_100'   =>   $cash_100,
-                    'total_cash_100'   =>   $total_cash_100,
-                    'cash_50'   =>   $cash_50,
-                    'total_cash_50'   =>   $total_cash_50,
-                    'cash_20'   =>   $cash_20,
-                    'total_cash_20'   =>   $total_cash_20,
-                    'cash_10'   =>   $cash_10,
-                    'total_cash_10'   =>   $total_cash_10,
-                    'total_cash_amt'   =>   $total_cash_amt,
-
                     'booking_reference_no'  =>  $booking_reference_no,
                     'booking_status'   =>  'confirm'
                 );

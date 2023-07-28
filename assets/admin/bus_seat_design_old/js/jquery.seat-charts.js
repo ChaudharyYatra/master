@@ -107,10 +107,10 @@
 
 
 					fn.settings.$node = $('<div></div>');
-					var title='';
 					if($.inArray(fn.settings.id, booked_seats_data) != '-1')
 					{
 						// fn.settings.status(fn.settings.id,'unvailable');
+						// console.log('lllllllllllllllll',fn.settings.id);
 						// fn.settings.status('2_15','unvailable');
 						fn.settings = $.extend({
 							status : '', //available, unavailable, selected
@@ -129,8 +129,8 @@
 						}, setup);
 						fn.settings.$node = $('<div></div>');
 				// console.log('hhhhhhhhhhhhh',fn.settings.status);
-				var title='';
-					}else if($.inArray(fn.settings.id, temp_booked_seats_data) != '-1'  && $.inArray(fn.settings.id, temp_hold_seats_data) == '-1'){
+
+					}else if($.inArray(fn.settings.id, temp_booked_seats_data) != '-1'){
 						fn.settings = $.extend({
 							status : '', //available, unavailable, selected
 							style  : '',
@@ -150,46 +150,15 @@
 
 
 						  $('<li>' + fn.settings.data.classes + ' Seat # ' + fn.settings.label + ': <b>$' + fn.settings.data.price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
-						.attr('id', 'cart-item-' + fn.settings.id)
-						.data('seatId', fn.settings.id)
-						.appendTo($cart);
+            .attr('id', 'cart-item-' + fn.settings.id)
+            .data('seatId', fn.settings.id)
+            .appendTo($cart);
 
-						pqr.push(fn.settings.data.price)
-						$counter.text(temp_booked_seats_data.length);
-						ttttt += fn.settings.data.price;
-						// $total.text(ttttt);
+			pqr.push(fn.settings.data.price)
+			$counter.text(temp_booked_seats_data.length);
+			ttttt += fn.settings.data.price;
+            $total.text(ttttt);
 						fn.settings.$node = $('<div></div>');
-						var title='';
-				}else if($.inArray(fn.settings.id, temp_hold_seats_data) != '-1'){
-						fn.settings = $.extend({
-							status : '', //available, unavailable, selected
-							style  : '',
-							//make sure there's an empty hash if user doesn't pass anything
-							data   : seatChartsSettings.seats[setup.character] || {}
-							//anything goes here?
-						}, setup);
-
-						fn.settings = $.extend({
-							status : 'hold', //available, unavailable, selected
-							style  : 'hold',
-							//make sure there's an empty hash if user doesn't pass anything
-							data   : seatChartsSettings.seats[setup.character] || {}
-							//anything goes here?
-						}, setup);
-						// console.log(fn.settings);
-
-
-						//   $('<li>' + fn.settings.data.classes + ' Seat # ' + fn.settings.label + ': <b>$' + fn.settings.data.price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
-						// .attr('id', 'cart-item-' + fn.settings.id)
-						// .data('seatId', fn.settings.id)
-						// .appendTo($cart);
-
-						// pqr.push(fn.settings.data.price)
-						// $counter.text(temp_booked_seats_data.length);
-						// ttttt += fn.settings.data.price;
-						// $total.text(ttttt);
-						fn.settings.$node = $('<div></div>');
-						var title='This seat is on hold for some time';
 					}
 					
 					fn.settings.$node
@@ -200,7 +169,6 @@
 							focusable      : true,
 							tabIndex       : -1, //manual focus
 							data_id		   : did,
-							title          : title,
 							seat_type      :fn.settings.data.classes,
 							seat_price     :fn.settings.data.price,
 						})

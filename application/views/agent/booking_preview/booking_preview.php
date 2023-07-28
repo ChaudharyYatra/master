@@ -109,11 +109,18 @@
                         ?>
                         <tr>
                         <?php if($info['for_credentials']=='yes'){?>
-                        <input type="text" class="form-control" name="traveller_id" id="traveller_id" value="<?php echo $info['id']; ?>">
+                        <input type="hidden" class="form-control" name="traveller_id" id="traveller_id" value="<?php echo $info['id']; ?>">
                         <?php } ?>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $info['mr/mrs'] ?>. <?php echo $info['first_name'] ?> <?php echo $info['middle_name'] ?> <?php echo $info['last_name'] ?></td>
-                        <td><?php echo date("d-m-Y",strtotime($info['dob'])) ?></td>
+                        <td>
+                             <?php if($info['dob']=='0000-00-00') { ?>
+                                NA
+                            <?php } else{ ?>
+                                <?php echo date("d-m-Y",strtotime($info['dob'])) ?>
+                            <?php }?>
+                            
+                        </td>
                         <td><?php echo $info['age'] ?></td>
                         <td>
                             <?php if($info['anniversary_date']=='0000-00-00') { ?>
@@ -123,7 +130,7 @@
                             <?php }?>
                         </td>
                         <td><?php echo $info['mobile_number'] ?></td>
-                        <td><?php echo $info['all_traveller_relation'] ?></td>
+                        <td><?php echo $info['relation'] ?></td>
                         <td>
                             <img src="<?php echo base_url(); ?>uploads/traveller/<?php echo $info['image_name']; ?>" width="70px;" height="30px;" alt="Image">
                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/traveller/<?php echo $info['image_name']; ?>">Download</a>
@@ -503,6 +510,13 @@
                             
                             <table id="example2" class="table table-bordered table-hover table-striped">
                                 <tr>
+                                    <th>Mobile Number</th>
+                                    <td>
+                                    <input type="text" class="form-control" name="booking_tm_mobile_no" id="booking_tm_mobile_no" minlength="10" maxlength="10" placeholder="Enter mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
                                     <th>Final Total</th>
                                     <?php $final_total = $total_hotel_amount + $seat_total_cost; ?>
                                     <td><input readonly type="text" class="form-control" name="final_amt" id="final_amt" placeholder="Final amount" value="<?php echo $final_total ?>" required></td>
@@ -684,6 +698,29 @@
                     
                 </div>
 
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <h5>OTP Details :</h5> -->
+                            <button type="button" class="btn btn-warning" name="submit_otp" id="submit_otp">Send OTP</button>
+                            <!-- <center><th><button type="button" class="btn btn-primary mb-4" name="submit_otp" id="submit_otp" value="submit_otp" >Send OTP</button></th></center> -->
+                            
+                            <table id="example2" class="table table-bordered table-hover table-striped">
+                                <tr>
+                                    <th><input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required> </th>
+                                    <th><a onclick="return confirm('Are You Sure You Want To Book This Tour ?')" href="<?php echo $module_url_path;?>/booking_enquiry/add"><button type="submit" class="btn btn-success" name="submit" id="final_booking_submit" value="submit">Verify OTP</button> </th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+                
 
               <!-- /.card-header -->
               <!-- form start -->
@@ -695,7 +732,7 @@
 
                 <div class="card-footer">
                     <!-- <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button> -->
-                    <a onclick="return confirm('Are You Sure You Want To Book This Tour ?')" href="<?php echo $module_url_path;?>/booking_enquiry/add"><button type="submit" class="btn btn-success" name="submit" value="submit">Final Booking</button> 
+                    
                     <a href="<?php echo $module_url_path_back; ?>/add_bus/<?php echo $enquiry_id; ?>/1"><button type="button" class="btn btn-warning" name="back_btn">Back</button></a>
                     <a href="<?php echo $module_url_booking_process; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>

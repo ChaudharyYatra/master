@@ -40,9 +40,9 @@
                 <div class="row">
                 <div class="col-md-6">
                           <div class="form-group">
-                            <label>Hotel Type</label>
-                            <select class="form-control" style="width: 100%;" name="hotel_type_id" id="hotel_type_id" required="required">
-                                <option value="">Select Hotel Type</option>
+                            <label>Country</label>
+                            <select class="form-control" style="width: 100%;" name="country_id" id="country_id" required="required">
+                                <option value="">Select Country</option>
                                 <?php
                                    foreach($country_data as $hotel_type_info) 
                                    { 

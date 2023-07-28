@@ -228,9 +228,7 @@
                           <label>Boarding Office Location</label>
                           <select class="select_css" name="boarding_office_location" id="boarding_office_location">
                             <option value="">Select Boarding Office Location</option>
-                              <?php foreach($boarding_office_location as $boarding_office_location_value){ ?> 
-                                
-                              <?php } ?>
+                              
                           </select>
                         </div>
                       </div>

@@ -378,14 +378,14 @@
                                     ?>
                                         <option value="">Select State</option>
                                         <?php foreach($state_data as $state_data_value){ ?> 
-                                            <option value="<?php echo $state_data_value['id'];?>" <?php if($state_data_value['id']==$all_traveller_info_value['state_name']){echo "selected";} ?>><?php echo $state_data_value['state'];?></option>
+                                            <option value="<?php echo $state_data_value['id'];?>" <?php if($state_data_value['id']==$all_traveller_info_value['state_name']){echo "selected";} ?>><?php echo $state_data_value['state_name'];?></option>
                                             <?php } ?>
                                     <?php }
                                     else{
                                         ?>
                                         <option value="">Select State</option>
                                         <?php foreach($state_data as $state_data_value){ ?> 
-                                            <option value="<?php echo $state_data_value['id'];?>"><?php echo $state_data_value['state'];?></option>
+                                            <option value="<?php echo $state_data_value['id'];?>"><?php echo $state_data_value['state_name'];?></option>
                                             <?php } ?>
                                     <?php 
                                     }?>

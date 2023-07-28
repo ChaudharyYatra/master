@@ -23,11 +23,11 @@ class District extends CI_Controller{
         // $this->db->where('is_deleted','no');
         // $arr_data = $this->master_model->getRecords('state');
 
-        $fields = "district_table.*,country.country_name,.state.state_name";
+        $fields = "district_table.*,country.country_name,.state_table.state_name";
         $this->db->order_by('district_table.id','asc');        
         $this->db->where('district_table.is_deleted','no');        
         $this->db->join("country", 'district_table.country_id=country.id','left');
-        $this->db->join("state", 'district_table.state_id=state.id','left');
+        $this->db->join("state_table", 'district_table.state_id=state_table.id','left');
         $arr_data = $this->master_model->getRecords('district_table',array('district_table.is_deleted'=>'no'),$fields);
 
         $this->arr_view_data['listing_page']    = 'yes';
@@ -91,7 +91,7 @@ class District extends CI_Controller{
 
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
-        $state_name_data = $this->master_model->getRecords('state');
+        $state_name_data = $this->master_model->getRecords('state_table');
 
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
@@ -259,7 +259,7 @@ class District extends CI_Controller{
 
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
-        $state_name_data = $this->master_model->getRecords('state');
+        $state_name_data = $this->master_model->getRecords('state_table');
 
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['city_arr_data']        = $city_arr_data;
@@ -280,7 +280,7 @@ class District extends CI_Controller{
                         $this->db->where('is_deleted','no');
                         $this->db->where('is_active','yes');
                         $this->db->where('country_id',$state_data);   
-                        $data = $this->master_model->getRecords('state');
+                        $data = $this->master_model->getRecords('state_table');
         echo json_encode($data);
     }
    

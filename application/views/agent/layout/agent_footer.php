@@ -1144,11 +1144,13 @@ $(document).ready(function() {
     var element = document.getElementById('other_tour_name_div');
     //var element2=document.getElementById('other_tour_name');
     var tno = $("#packages").val();
+    if(tno != undefined){
     if (tno == 'Other') {
         element.style.display = 'block';
     } else {
         element.style.display = 'none';
         //element2.value="";
+    }
     }
 });
 </script>
@@ -1767,7 +1769,7 @@ $(document).ready(function() {
 var baseURL = "<?php echo base_url(); ?>";
 
 $(document).ready(function() {
-    if (enq_id != '') {
+    // if (enq_id != '') {
         var did = $('#tour_no').val();
         // var enq_id = $('#domestic_enquiry_id').val();
         //alert(enq_id); 
@@ -1792,7 +1794,7 @@ $(document).ready(function() {
 
             }
         });
-    }
+    // }
 });
 
 // district change
@@ -2828,23 +2830,6 @@ function encodeImgtoBase64traveller_img(element) {
 var baseURL = "<?php echo base_url(); ?>";
 
 $(document).ready(function() {
-
-    var did = $(this).val();
-    // alert(did); 
-    // AJAX request
-    $.ajax({
-        url: '<?= base_url() ?>agent/booking_basic_info/get_hotel_type',
-        method: 'post',
-        data: {
-            did: did
-        },
-        dataType: 'json',
-        success: function(response) {
-            console.log(response);
-            // var p = response['mobile_number1'];
-            $('#hotel_type').val(response['hotel_type_name']);
-        }
-    });
 
 
     $('#tour_no').on('change', function() {
@@ -4770,140 +4755,14 @@ $(".selectall").click(function() {
       });  
  </script>
 
-<script type='text/javascript'>
 
-
-
-
-  $(document).ready(function(){
-
-    var js_array1 =<?php echo json_encode($final_booked_data);?>;
-
-    var booke_data = $('#booked_data').val();
-
-    var is_main_page = $('#is_main_page').val();
-
-    if(is_main_page=='no'){
-
-     $('.seatCharts-seat').off('click');
-
-    }
-
-    // console.log(booke_data);
-
-    for(var i=0; i<js_array1.length;i++)
-
-    {
-
-        var seat_data_id=js_array1[i];
-
-        // alert(seat_data_id);
-
-        // $("#seat_data_id").css("color", "white");
-
-        // // $("[data_id=" + seat_data_id + "]").css("background", "yellow");
-
-        // $("[data_id=" + seat_data_id + "]").off('click');
-
-        // $("[data_id=" + seat_data_id + "]").removeClass("available");
-
-        // $("[data_id=" + seat_data_id + "]").addClass("unavailable");
-
-        // $("[data_id=" + seat_data_id + "]").css("background", "yellow");
-
-
-
-
-        console.log(seat_data_id);
-
-        var abc="#"+seat_data_id;
-
-        $(abc).css("color", "white");
-
-        $(abc).off('click');
-
-        $(abc).removeClass("available");
-
-        $(abc).addClass("unavailable");
-
-
-
-
-    }
-
-  });
-
-  </script>
 
 
 
 
  
 
-<script type='text/javascript'>
 
-
-
-
-$(document).ready(function(){
-
-  var temp_array =<?php echo json_encode($temp_booking_data);?>;
-
-  var temp_booke_data = $('#temp_booked_data').val();
-
-  var is_main_page = $('#is_main_page').val();
-
-//   if(is_main_page=='no'){
-
-//    $('.seatCharts-seat').off('click');
-
-//   }
-
-  // console.log(booke_data);
-
-  for(var i=0; i<temp_array.length;i++)
-
-  {
-
-      var seat_data_id=temp_array[i];
-
-      // alert(seat_data_id);
-
-      // $("#seat_data_id").css("color", "white");
-
-      // // $("[data_id=" + seat_data_id + "]").css("background", "yellow");
-
-      // $("[data_id=" + seat_data_id + "]").off('click');
-
-      // $("[data_id=" + seat_data_id + "]").removeClass("available");
-
-      // $("[data_id=" + seat_data_id + "]").addClass("unavailable");
-
-      // $("[data_id=" + seat_data_id + "]").css("background", "yellow");
-
-
-
-
-    //   console.log(seat_data_id);
-
-      var abc="#"+seat_data_id;
-
-      $(abc).css("color", "white");
-
-    //   $(abc).off('click');
-
-      $(abc).removeClass("available");
-
-      $(abc).addClass("selected");
-
-
-
-
-  }
-
-});
-
-</script>
 <!-- Final booking preview final amt calculation -->
 <script>
     
@@ -5135,6 +4994,9 @@ $(document).ready(function() {
                     }
                 }
             },
+            booking_amt: {
+                required: true,
+            },
             total_cash_amt: {
                 required: function(element) {
                     
@@ -5159,6 +5021,9 @@ $(document).ready(function() {
             net_banking: {
                 required: "Please enter transaction number",
             },
+            booking_amt: {
+                required: "Please booking amount",
+            },
             total_cash_amt: {
                 required: "Please enter cash",
             }
@@ -5168,4 +5033,77 @@ $(document).ready(function() {
     });
 
 });
+</script>
+
+<!-- <script>
+$('.data_amt').keyup(function(){
+
+    var booking_amt = $("#booking_amt").val();
+    var total_cash_amt = $("#total_cash_amt").val();
+    // alert(total_travaller_count);
+
+    if (booking_amt == total_cash_amt) {
+        $("#final_booking_submit").prop('disabled', false)
+        alert('Matching!');
+    } else {
+        $("#final_booking_submit").prop('disabled', true)
+        alert('Not Matching!');
+    }
+
+
+});
+</script> -->
+
+<script>
+$(document).ready(function() {
+    $("#submit_otp").click(function() {
+        // alert('hiiiiiiiiiii');
+        var mobile_no = $('#booking_tm_mobile_no').val();  
+        var booking_amt = $('#booking_amt').val(); 
+        // alert(mobile_no);
+        
+        //alert(email);
+        if (mobile_no != '') {
+            // alert('IN hiiiii');
+            $.ajax({
+                url: "<?php echo base_url(); ?>agent/booking_preview/cust_otp",
+                type: "post",
+                data: {
+                    booking_amt: booking_amt,
+                    mobile_no: mobile_no
+                },
+                // dataType: 'json',
+                success: function(responce) {
+                    if (responce = true) {
+                        // alert('jjjjjjjjjjjj');
+                        
+                    }
+                }
+            });
+        }
+    });
+});
+</script>
+
+<script>
+    var fewSeconds = 5;
+    $('#submit_otp').click(function(){
+        // Ajax request
+        var btn = $(this);
+        btn.prop('disabled', true);
+        setTimeout(function(){
+            btn.prop('disabled', false);
+        }, fewSeconds*20000);
+    });
+</script>
+
+<script>
+    $('#yes').change(function () {
+    if(this.checked) {
+        var currentRow = $(this).closest("tr");
+        var col3 = currentRow.find('input[name="mobile_number[]"]').attr('required', true);
+        // $('#mobile_number').attr('required', true);
+    }
+});
+
 </script>

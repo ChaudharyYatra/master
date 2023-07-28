@@ -23,11 +23,11 @@ class Taluka extends CI_Controller{
         // $this->db->where('is_deleted','no');
         // $arr_data = $this->master_model->getRecords('state');
 
-        $fields = "taluka_table.*,country.country_name,.state.state_name,district_table.district";
+        $fields = "taluka_table.*,country.country_name,.state_table.state_name,district_table.district";
         $this->db->order_by('taluka_table.id','asc');        
         $this->db->where('taluka_table.is_deleted','no');        
         $this->db->join("country", 'taluka_table.country_id=country.id','left');
-        $this->db->join("state", 'taluka_table.state_id=state.id','left');
+        $this->db->join("state_table", 'taluka_table.state_id=state_table.id','left');
         $this->db->join("district_table", 'taluka_table.district_id=district_table.id','left');
         $arr_data = $this->master_model->getRecords('taluka_table',array('taluka_table.is_deleted'=>'no'),$fields);
 
@@ -268,7 +268,7 @@ class Taluka extends CI_Controller{
 
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
-        $state_name_data = $this->master_model->getRecords('state');
+        $state_name_data = $this->master_model->getRecords('state_table');
 
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
@@ -294,7 +294,7 @@ class Taluka extends CI_Controller{
                         $this->db->where('is_deleted','no');
                         $this->db->where('is_active','yes');
                         $this->db->where('country_id',$state_data);   
-                        $data = $this->master_model->getRecords('state');
+                        $data = $this->master_model->getRecords('state_table');
         echo json_encode($data);
     }
 
