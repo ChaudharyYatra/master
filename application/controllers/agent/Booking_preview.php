@@ -45,6 +45,16 @@ class Booking_preview extends CI_Controller {
         $this->db->where('all_traveller_info.domestic_enquiry_id',$iid);
         $this->db->join("relation", 'relation.id=all_traveller_info.all_traveller_relation','left');
         $arr_data = $this->master_model->getRecords('all_traveller_info',array('all_traveller_info.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
+
+
+        $record = array();
+        $fields = "all_traveller_info.*";
+        $this->db->where('all_traveller_info.is_deleted','no');
+        $this->db->where('all_traveller_info.domestic_enquiry_id',$iid);
+        $this->db->where('all_traveller_info.for_credentials','yes');
+        $traveller_id_data = $this->master_model->getRecord('all_traveller_info',array('all_traveller_info.is_deleted'=>'no'),$fields);
+        // print_r($traveller_id_data); die;
         
         $record = array();
         $fields = "seat_type_room_type.*";
@@ -71,6 +81,7 @@ class Booking_preview extends CI_Controller {
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['traveller_booking_info']        = $traveller_booking_info;
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['traveller_id_data']        = $traveller_id_data;
         $this->arr_view_data['seat_type_room_type_data']        = $seat_type_room_type_data;
         $this->arr_view_data['bus_seat_book_data']        = $bus_seat_book_data;
         $this->arr_view_data['arr_package_info']        = $arr_package_info;
@@ -79,6 +90,7 @@ class Booking_preview extends CI_Controller {
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['module_url_path_back'] = $this->module_url_path_back;
         $this->arr_view_data['module_url_booking_process'] = $this->module_url_booking_process;
+        $this->arr_view_data['module_url_path_payment_receipt'] = $this->module_url_path_payment_receipt;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."booking_preview";
         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
 
@@ -196,12 +208,12 @@ class Booking_preview extends CI_Controller {
         {
             // print_r($_REQUEST); die;
             // $this->form_validation->set_rules('package_hotel', 'package_hotel', 'required');
-            
 
                 // print_r('hii'); die;
                 $journey_date  = $this->input->post('journey_date');
                 $journey_date  = $this->input->post('journey_date');
-               
+
+                $traveller_id  = $this->input->post('traveller_id');
                 $enquiry_id    = $this->input->post('enquiry_id'); 
                 $hotel_name_id    = $this->input->post('hotel_name_id'); 
                 $package_date_id    = $this->input->post('package_date_id'); 
@@ -216,7 +228,9 @@ class Booking_preview extends CI_Controller {
                     'package_date_id'   =>   $package_date_id,
                     'package_id'   =>   $package_id,
                     'booking_date'   =>   $today,
+                    'traveller_id'   =>   $traveller_id,
                     'booking_reference_no'  =>  $booking_reference_no,
+                    'agent_id'   =>   $id,
                     'booking_status'   =>  'confirm'
                 );
                 

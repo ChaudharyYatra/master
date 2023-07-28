@@ -7460,7 +7460,7 @@ $(document).ready(function(){
           $('#agent_taluka').find('option').not(':first').remove();
        
           $.each(response,function(index,data){       
-             $('#agent_taluka').append('<option value="'+data['id']+'">'+data['Taluka']+'</option>');
+             $('#agent_taluka').append('<option value="'+data['id']+'">'+data['taluka']+'</option>');
           });
          
         }

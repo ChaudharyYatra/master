@@ -297,7 +297,7 @@ class All_traveller_info extends CI_Controller {
 
                         $today = date('y-m-d');
 
-                        // $traveller_uniqe_no = $domestic_enquiry_id.'_'.$package_id;
+                        $traveller_uniqe_no = $domestic_enquiry_id.'_'.$package_id;
                         
     // echo $credentials_yes_no; die;
                         $arr_insert = array(

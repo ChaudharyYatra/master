@@ -138,7 +138,7 @@
 
                                   <option value="">Select State</option>
                                     <?php foreach($state_data as $state_data_value){ ?> 
-                                      <option value="<?php echo $state_data_value['id'];?>"><?php echo $state_data_value['state'];?></option>
+                                      <option value="<?php echo $state_data_value['id'];?>"><?php echo $state_data_value['state_name'];?></option>
                                     <?php } ?>
                                     
                                 </select>
