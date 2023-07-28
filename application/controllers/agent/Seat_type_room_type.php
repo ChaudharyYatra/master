@@ -623,7 +623,7 @@ class Seat_type_room_type extends CI_Controller {
                     $arr_where     = array("domestic_enquiry_id" => $iid);
                     // print_r($arr_where); die;
                      $inserted_id = $this->master_model->updateRecord('seat_type_room_type',$arr_insert,$arr_where);
-                    }else{
+                    } else{
                         // $inserted_id = $this->master_model->insertRecord('all_traveller_info',$arr_insert,true);
                         $inserted_id = $this->master_model->insertRecord('seat_type_room_type',$arr_insert,true);
 
@@ -1235,7 +1235,7 @@ class Seat_type_room_type extends CI_Controller {
 
      public function add_bus($iid)
 
-     {  
+    {  
 
          $agent_sess_name = $this->session->userdata('agent_name');
 
@@ -1441,7 +1441,7 @@ class Seat_type_room_type extends CI_Controller {
 
          $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
 
-     }
+    }
 
 
 
@@ -1643,7 +1643,7 @@ class Seat_type_room_type extends CI_Controller {
 
                     $this->master_model->deleteRecord('bus_seat_book',$arr_where);
 
-                }else{
+                } else{
 
 
 
@@ -1684,25 +1684,5 @@ class Seat_type_room_type extends CI_Controller {
    
 
      }
-    }
 
-    
-
-
-
- 
-
-    
-
- 
-
- 
-
-     
-
- 
-
- 
-
-
-
+} 
