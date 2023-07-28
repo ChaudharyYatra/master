@@ -1683,24 +1683,9 @@ class Seat_type_room_type extends CI_Controller {
 
    
 
-     }
     }
-
     
-
-
-
- 
-
-    
-
- 
-
- 
-
-     
-
- 
+}
 
  
 
