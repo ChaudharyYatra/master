@@ -45,6 +45,7 @@ class Asign_driver extends CI_Controller{
         $this->db->order_by('bus_open.id','desc');
         $this->db->where('bus_open.is_deleted','no');
         $this->db->where('bus_open.is_active','yes');
+        $this->db->where('vehicle_owner.id',$id);
         $this->db->join("packages", 'bus_open.package_id=packages.id','left');
         $this->db->join("package_date", 'bus_open.package_date_id=package_date.id','left');
         $this->db->join("vehicle_details", 'bus_open.vehicle_rto_registration=vehicle_details.id','left');
@@ -73,7 +74,7 @@ class Asign_driver extends CI_Controller{
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['vehicle_driver']        = $vehicle_driver;
-        $this->arr_view_data['vehicle_driver_name']        = $vehicle_driver_name;
+        // $this->arr_view_data['vehicle_driver_name']        = $vehicle_driver_name;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -176,6 +177,7 @@ class Asign_driver extends CI_Controller{
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $this->db->where('status','approved');
+        $this->db->where('vehicle_driver.vehicle_owner_id',$id);
         $vehicle_driver = $this->master_model->getRecords('vehicle_driver');
         // print_r($vehicle_driver); die;
         
@@ -322,6 +324,7 @@ class Asign_driver extends CI_Controller{
         $this->db->order_by('id','ASC');
         $this->db->where('is_deleted','no');
         $this->db->where('status','approved');
+        $this->db->where('vehicle_driver.vehicle_owner_id',$id);
         $vehicle_driver = $this->master_model->getRecords('vehicle_driver');
         // print_r($vehicle_driver); die;
 

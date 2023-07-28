@@ -6,9 +6,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Seat_type_room_type extends CI_Controller {
-	 
 	function __construct() {
-
         parent::__construct();
         if($this->session->userdata('agent_sess_id')=="") 
         { 

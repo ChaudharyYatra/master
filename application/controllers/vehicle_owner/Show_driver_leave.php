@@ -25,13 +25,15 @@ class Show_driver_leave extends CI_Controller{
         $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
         $id = $this->session->userdata('vehicle_owner_sess_id');
 
-        $this->db->order_by('id','ASC');
-        $this->db->where('is_deleted','no');
-        $arr_data = $this->master_model->getRecords('driver_leave');
+        // $this->db->order_by('id','ASC');
+        // $this->db->where('is_deleted','no');
+        // $arr_data = $this->master_model->getRecords('driver_leave');
 
         $fields = "driver_leave.*,vehicle_driver.driver_name,vehicle_driver.mobile_number1";
         $this->db->where('driver_leave.is_deleted','no');
+        $this->db->where('vehicle_owner.id',$id);
         $this->db->join("vehicle_driver", 'driver_leave.driver_id=vehicle_driver.id','left');
+        $this->db->join("vehicle_owner", 'vehicle_driver.vehicle_owner_id=vehicle_owner.id','left');
         $arr_data = $this->master_model->getRecords('driver_leave',array('driver_leave.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
         

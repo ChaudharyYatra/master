@@ -23,7 +23,7 @@ class Asign_tour extends CI_Controller{
 	public function index()
 	{
         $vehicle_ssession_driver_name = $this->session->userdata('vehicle_ssession_driver_name');
-        $id = $this->session->userdata('vehicle_driver_sess_id');
+            $id = $this->session->userdata('vehicle_driver_sess_id');
 
         // $fields = "packages.*,package_date.journey_date,agent.booking_center,vehicle_details.registration_number,package_date.id as did";
         // // $this->db->order_by('id','ASC');
@@ -40,6 +40,7 @@ class Asign_tour extends CI_Controller{
         $fields = "bus_open.*,vehicle_driver.driver_name,vehicle_details.registration_number,packages.tour_number,packages.tour_title,
         package_date.journey_date,agent.booking_center,packages.tour_number_of_days,package_date.id as did";
         $this->db->where('bus_open.is_deleted','no');
+        $this->db->where('bus_open.asign_driver_name',$id);
         $this->db->join("packages", 'bus_open.package_id=packages.id','left');
          $this->db->join("package_date", 'bus_open.package_date_id=package_date.id','left');
          $this->db->join("agent", 'packages.boarding_office=agent.id','left');

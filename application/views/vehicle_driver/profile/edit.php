@@ -75,7 +75,7 @@
                               </div>
                       </div>
 
-                        <div class="col-md-6">
+                      <div class="col-md-6">
                               <div class="form-group">
                                 <?php 
                                 $quali1=array();
@@ -83,11 +83,11 @@
                                   $quali1 = explode(',',$p);
                                   // print_r($quali1); die;
                                 ?>
-                                <label>Hotel Type
+                                <label>Licence Type
                                   <?php ?>
                                 </label><br>
-                                            <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="light weight vehicle" <?php if(in_array('light weight vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;light weight vehicle
-                                &nbsp;&nbsp;<input type="checkbox" name="licence_type[]" id="licence_type" value="Heavy Vehicle" <?php if(in_array('Heavy Vehicle',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; Heavy Vehicle
+                                            <input type="checkbox" class="" name="licence_type[]" id="licence_type" value="Permanent Driving License" <?php if(in_array('Permanent Driving License',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp;Permanent Driving License
+                                &nbsp;&nbsp;<input type="checkbox" name="licence_type[]" id="licence_type" value="Commercial Driving License" <?php if(in_array('Commercial Driving License',$quali1)) {echo 'checked';}?>>&nbsp;&nbsp; Commercial Driving License
                               </div>
                       </div>
 
