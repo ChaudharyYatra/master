@@ -80,7 +80,7 @@
                     <td><?php echo $info['landmark']; ?></td>
                       
                     <th>State</th>
-                    <td><?php echo $info['state']; ?></td>
+                    <td><?php echo $info['state_name']; ?></td>
             
                     <th>District Name</th>
                     <td><?php echo $info['district']; ?></td>

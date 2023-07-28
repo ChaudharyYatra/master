@@ -705,7 +705,7 @@
                         </div>
                         <div class="col-md-6">
                             <!-- <h5>OTP Details :</h5> -->
-                            <button type="button" class="btn btn-warning" name="submit_otp" id="submit_otp">Send OTP</button>
+                            <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp">Send OTP</button></th></center>
                             <!-- <center><th><button type="button" class="btn btn-primary mb-4" name="submit_otp" id="submit_otp" value="submit_otp" >Send OTP</button></th></center> -->
                             
                             <table id="example2" class="table table-bordered table-hover table-striped">
