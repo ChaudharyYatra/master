@@ -5059,7 +5059,30 @@ $(document).ready(function() {
     $("#submit_otp").click(function() {
         // alert('hiiiiiiiiiii');
         var mobile_no = $('#booking_tm_mobile_no').val();  
+        var final_amt = $('#final_amt').val();
         var booking_amt = $('#booking_amt').val(); 
+        var pending_amt = $('#pending_amt').val();
+
+        var upi_no = $('#upi_no').val();
+        var cheque = $('#cheque').val();
+        var net_banking = $('#net_banking').val();
+
+        var cash_2000 = $('#cash_2000').val();
+        var total_cash_2000 = $('#total_cash_2000').val();
+        var cash_500 = $('#cash_500').val();
+        var total_cash_500 = $('#total_cash_500').val();
+        var cash_200 = $('#cash_200').val();
+        var total_cash_200 = $('#total_cash_200').val();
+        var cash_100 = $('#cash_100').val();
+        var total_cash_100 = $('#total_cash_100').val();
+        var cash_50 = $('#cash_50').val();
+        var total_cash_50 = $('#total_cash_50').val();
+        var cash_20 = $('#cash_20').val();
+        var total_cash_20 = $('#total_cash_20').val();
+        var cash_10 = $('#cash_10').val();
+        var total_cash_10 = $('#total_cash_10').val();
+
+        var total_cash_amt = $('#total_cash_amt').val();
         // alert(mobile_no);
         
         //alert(email);
@@ -5070,7 +5093,25 @@ $(document).ready(function() {
                 type: "post",
                 data: {
                     booking_amt: booking_amt,
-                    mobile_no: mobile_no
+                    final_amt: final_amt,
+                    mobile_no: mobile_no,
+                    upi_no: upi_no,
+                    cheque: cheque,
+                    net_banking: net_banking,
+                    cash_2000: cash_2000,
+                    total_cash_2000: total_cash_2000,
+                    cash_500: cash_500,
+                    total_cash_500: total_cash_500,
+                    cash_200: cash_200,
+                    total_cash_200: total_cash_200,
+                    cash_100: cash_100,
+                    total_cash_100: total_cash_100,
+                    cash_50: cash_50,
+                    total_cash_50: total_cash_50,
+                    cash_20: cash_20,
+                    total_cash_20: total_cash_20,
+                    cash_10: cash_10,
+                    total_cash_10: total_cash_10,
                 },
                 // dataType: 'json',
                 success: function(responce) {
