@@ -56,7 +56,7 @@ class Asign_tour extends CI_Controller{
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
-        $this->arr_view_data['module_url_path_dates'] = $this->module_url_path_dates;
+        // $this->arr_view_data['module_url_path_dates'] = $this->module_url_path_dates;
 		$this->arr_view_data['module_url_path_iternary'] = $this->module_url_path_iternary;
 		$this->arr_view_data['module_url_asign_driver'] = $this->module_url_asign_driver;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";

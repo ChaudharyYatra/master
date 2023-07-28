@@ -522,7 +522,7 @@ class Agent extends CI_Controller{
             redirect($this->module_url_path.'/index');
         }   
         
-        $fields = "agent.*,department.department,taluka_table.taluka,district_table.district,state_table.state";
+        $fields = "agent.*,department.department,taluka_table.taluka,district_table.district,state_table.state_name";
         $this->db->where('agent.id',$id);
         $this->db->join("department", 'agent.department=department.id','left');
         $this->db->join("taluka_table", 'agent.taluka_name=taluka_table.id','left');
