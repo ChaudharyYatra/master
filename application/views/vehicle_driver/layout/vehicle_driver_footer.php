@@ -5323,5 +5323,173 @@ $('#edit_vehicle_driver').validate({ // initialize the plugin
 </script>
 
 
+<!-- kilometer update add validation -->
+<script>
+$(document).ready(function () {
+$('#add_kilometer_update').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+    city_id: {
+            required: true,
+        },
+        kilometer_image: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        city_id : {
+            required : "Please Select City",
+        },
+        kilometer_image : {
+            required : "Please upload kilometer photo",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- kilometer update add validation -->
+<!-- kilometer update add validation -->
+<script>
+$(document).ready(function () {
+$('#edit_kilometer_update').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+    city_id: {
+            required: true,
+        },
+        // kilometer_image: {
+        //     required: true,
+        // },
+        
+    },
+
+    messages :{
+        city_id : {
+            required : "Please Select City",
+        },
+        // kilometer_image : {
+        //     required : "Please upload kilometer photo",
+        // },
+    
+    }
+});
+
+});
+
+</script>
+<!-- kilometer update add validation -->
+
+<!-- add_vehicle_disel_expenses update add validation -->
+<script>
+$(document).ready(function () {
+$('#add_vehicle_disel_expenses').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+    city_id: {
+            required: true,
+        },
+        kilometer_no: {
+            required: true,
+        },
+        disel_amount: {
+            required: true,
+        },
+        disel_receipt_image: {
+            required: true,
+        },
+        kilometer_image: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        city_id : {
+            required : "Please Select City",
+        },
+        kilometer_no : {
+            required : "Please Enter kilometer no",
+        },
+        disel_amount : {
+            required : "Please enter Disel Amount",
+        },
+        disel_receipt_image : {
+            required : "Please Upload Disel Receipt Photo",
+        },
+        kilometer_image : {
+            required : "Please upload kilometer photo",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- add_vehicle_disel_expenses update add validation -->
+
+<!-- edit_vehicle_disel_expenses update add validation -->
+<script>
+$(document).ready(function () {
+$('#edit_vehicle_disel_expenses').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+    city_id: {
+            required: true,
+        },
+        kilometer_no: {
+            required: true,
+        },
+        disel_amount: {
+            required: true,
+        },
+        // disel_receipt_image: {
+        //     required: true,
+        // },
+        // kilometer_image: {
+        //     required: true,
+        // },
+        
+    },
+
+    messages :{
+        city_id : {
+            required : "Please Select City",
+        },
+        kilometer_no : {
+            required : "Please Enter kilometer no",
+        },
+        disel_amount : {
+            required : "Please enter Disel Amount",
+        },
+        // disel_receipt_image : {
+        //     required : "Please Upload Disel Receipt Photo",
+        // },
+        // kilometer_image : {
+        //     required : "Please upload kilometer photo",
+        // },
+    
+    }
+});
+
+});
+
+</script>
+<!-- edit_vehicle_disel_expenses update add validation -->
+
+
 
 
