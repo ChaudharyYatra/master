@@ -695,7 +695,7 @@
 
                 <div class="card-footer">
                     <!-- <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button> -->
-                    <a onclick="return confirm('Are You Sure You Want To Book This Tour ?')" href="<?php echo $module_url_path;?>/booking_enquiry/add"><button type="submit" class="btn btn-success" name="submit" value="submit">Final Booking</button> 
+                    <a onclick="return confirm('Are You Sure You Want To Book This Tour ?')" href="<?php echo $module_url_path_payment_receipt;?>/index/<?php echo $traveller_id_data['domestic_enquiry_id'];?>"><button type="submit" class="btn btn-success" name="submit" value="submit">Final Booking</button> 
                     <a href="<?php echo $module_url_path_back; ?>/add_bus/<?php echo $enquiry_id; ?>/1"><button type="button" class="btn btn-warning" name="back_btn">Back</button></a>
                     <a href="<?php echo $module_url_booking_process; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>

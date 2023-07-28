@@ -19,6 +19,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
+
+              
             </ol>
           </div>
         </div>
@@ -37,10 +39,14 @@
                       <div class="front-indicator">Bus Seat Reservation</div>
 
                       <input type="hidden" class="form-control" name="domestic_enquiry_id" id="domestic_enquiry_id" value="<?php echo $agent_all_travaller_info['domestic_enquiry_id']; ?>">
+                      <input type="hidden" class="form-control" name="is_main_page" id="is_main_page" value="yes">
                       
                       <?php foreach($traveller_booking_info as $traveller_booking_info_value) 
-                        {  ?>
+                        { 
+                          ?>
+                      <input type="hidden" class="form-control" name="total_seat_count" id="total_seat_count" value="<?php echo $agent_all_travaller_info['seat_count']; ?>">
                       <input type="hidden" class="form-control" name="package_id" id="package_id" value="<?php echo $traveller_booking_info_value['tour_no']; ?>">
+                      <input type="hidden" class="form-control" name="tour_dates" id="tour_dates" value="<?php echo $traveller_booking_info_value['tour_date']; ?>">
                       <?php }  ?>
                       
                       <h4 class="text-muted fw-bold text-center" style="padding-left:3em; margin:.5em">From Front Row</h4>
@@ -52,25 +58,28 @@
                   <div class="booking-details">
 
                       <form action="" method="post">
+                      <input type="hidden" id="bdata" value='<?php print_r($bus_info); ?>'>
+                   
 
-                      <input type="hidden" id="bdata" value='<?php print_r(
-                          $bus_info
-                      ); ?>'>
-
-                  <input type="hidden" id="booked_data" value='<?php print_r($final_booked_data); ?>'>
-                  <script>
-                    var booked_data=<?php echo json_encode($final_booked_data);?>;
-                  </script>
+                      <input type="hidden" id="booked_data" value='<?php print_r($final_booked_data); ?>'>
+                      <script>
+                      var booked_data=<?php echo json_encode($final_booked_data);?>;
+                    </script> 
 
                   <input type="hidden" id="temp_booked_data" value='<?php print_r($temp_booking_data); ?>'>
-                  <script>
-                    var temp_booked_data=<?php echo json_encode($temp_booking_data);?>;
-                  </script>
+                    <script>
+                      var temp_booked_data=<?php echo json_encode($temp_booking_data);?>;
+                    </script> 
 
-                  <input type="hidden" id="cart_temp_booking_data" value='<?php print_r($cart_temp_booking_data); ?>'>
-                  <script>
-                    var cart_temp_booking_data=<?php echo json_encode($cart_temp_booking_data);?>;
-                  </script>
+                    <input type="hidden" id="cart_temp_booking_data" value='<?php print_r($cart_temp_booking_data); ?>'>
+                    <script>
+                      var cart_temp_booking_data=<?php echo json_encode($cart_temp_booking_data);?>;
+                    </script> 
+
+                    <input type="hidden" id="temp_hold_data" value='<?php print_r($temp_hold_data); ?>'>
+                    <script>
+                      var temp_hold_data=<?php echo json_encode($temp_hold_data);?>;
+                    </script> 
                           <h2>Booking Details</h2>
 
                           <h3> Selected Seats (<span id="counter">0</span>):</h3>
@@ -78,7 +87,7 @@
 
                           <h2 id="total_amt">Total: <b>Rs. <span id="total">0</span>/-</b></h2>
 
-                          <button type="button" id="checkout-button">Submit Book</button>
+                          <button type="button" id="hold_button">Hold Seats</button>
 
                       </form>
 
@@ -102,6 +111,16 @@
                 <a href="<?php echo $module_url_booking_process; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
               </div>
     </div>
+
+
+
+
+
+
+
+
+
+
 
 
 

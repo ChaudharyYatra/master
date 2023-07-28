@@ -4,30 +4,44 @@
 
     did = $('#bdata').val();
     if(js_array.length != 0){
+    var array_data = js_array;
+   
 
-        var array_data = js_array;
-    
-       
-    
-    
-    
-    
-        if(typeof booked_data != 'undefined'){
-    
-        var booked_seats_data=booked_data;
-    
+    if(typeof booked_data != 'undefined'){
+    var booked_seats_data=booked_data;
+    }else{
+    var booked_seats_data='';
+
+    }
+
+    if(typeof temp_booked_data != 'undefined'){
+    var temp_booked_seats_data=temp_booked_data;
         }else{
-    
-        var booked_seats_data='';
-    
-    
-    
-    
+        var temp_booked_seats_data='';
         }
-    // console.log(booked_seats_data);
+
+        if(typeof temp_hold_data != 'undefined'){
+            var temp_hold_seats_data=temp_hold_data;
+            }else{
+            var temp_hold_seats_data='';
+            }
+
+    console.log(temp_booked_seats_data);
+    console.log(temp_hold_seats_data);
+
+        
+
+    // console.log(temp_booked_seats_data);
+    // for(var p=0; p<temp_booked_seats_data.length;p++)
+    // {
+    //     var abc = temp_booked_seats_data[p];
+    //     var ppp='#'+abc;
+    //     alert(ppp);
+    //     $(ppp).click();
+    // }
+    // console.log(temp_booked_seats_data);
     var total_seat_count = array_data.total_seat_count;
     var new_first_string = array_data.first_cls_seats;
-    // console.log(array_data);
 
     var new_first_array = new_first_string.split(',');
 
@@ -246,7 +260,7 @@
 
     var array_final = numbersArray.concat(numbersArray_second, numbersArray_economy);
     var final_filtered = array_final.filter(elm => elm);
-    console.log(final_filtered.length);
+    // console.log(final_filtered.length);
     var firstSeatLabel = 1;
     var booked = !!localStorage.getItem('booked') ? $.parseJSON(localStorage.getItem('booked')) : [];
     $(document).ready(function() {
@@ -337,7 +351,6 @@
                     var click_id = this.settings.$node.attr('data_id');
                     var middle_seat_pre = total_seat_count - 3;
                     var middle_id = total_seat_count - 2;
-
 
                     //1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
                     selection_array.push(this.settings.id);
@@ -1154,7 +1167,7 @@
         var total = 0;
 
         //basically find every selected seat and sum its price
-        console.log(pqr);
+        // console.log(pqr);
 
         for(var z=0; z<pqr.length;z++)
         {
@@ -1270,24 +1283,6 @@
         // $counter.text(sc.find('selected').length + 1);
         // $total.text(recalculateTotal(sc) + this.data().price);
     }
-<<<<<<< HEAD:assets/admin/bus_seat_design/js/script (3).js
 
-    
-    function selected_add_cart()
-    {
-        // $('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
-        //                             .attr('id', 'cart-item-' + this.settings.id)
-        //                             .data('seatId', this.settings.id)
-        //                             .appendTo($cart);
-
-        //                         $counter.text(sc.find('selected').length + 1);
-        //                         $total.text(recalculateTotal(sc) + this.data().price);
-
-        
-
-    }
-
-    
-=======
 }
->>>>>>> vivek_cyc:assets/admin/bus_seat_design/js/script.js
+    

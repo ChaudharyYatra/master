@@ -140,7 +140,7 @@
                                     <select class="select_css" name="agent_state" id="agent_state" required>
                                             <option value="">Select State</option>
                                             <?php foreach($state_data as $state_data_value){ ?> 
-                                                <option value="<?php echo $state_data_value['id'];?>" <?php if(isset($info['state_name'])){if($state_data_value['id'] == $info['state_name']) {echo 'selected';}}?>><?php echo $state_data_value['state'];?></option>
+                                                <option value="<?php echo $state_data_value['id'];?>" <?php if(isset($info['state_name'])){if($state_data_value['id'] == $info['state_name']) {echo 'selected';}}?>><?php echo $state_data_value['state_name'];?></option>
                                             <?php } ?>
                                     </select>
                                 </div>
