@@ -5067,6 +5067,8 @@ $(document).ready(function() {
         var cheque = $('#cheque').val();
         var net_banking = $('#net_banking').val();
 
+        var select_transaction =($('#select_transaction :selected').val());
+        // alert(select_transaction);
         var cash_2000 = $('#cash_2000').val();
         var total_cash_2000 = $('#total_cash_2000').val();
         var cash_500 = $('#cash_500').val();
@@ -5084,6 +5086,9 @@ $(document).ready(function() {
 
         var total_cash_amt = $('#total_cash_amt').val();
         // alert(mobile_no);
+        var enquiry_id = $('#enquiry_id').val();
+        var package_id = $('#package_id').val();
+        var journey_date = $('#journey_date').val();
         
         //alert(email);
         if (mobile_no != '') {
@@ -5092,12 +5097,17 @@ $(document).ready(function() {
                 url: "<?php echo base_url(); ?>agent/booking_preview/cust_otp",
                 type: "post",
                 data: {
+                    enquiry_id: enquiry_id,
+                    package_id: package_id,
+                    journey_date: journey_date,
                     booking_amt: booking_amt,
                     final_amt: final_amt,
                     mobile_no: mobile_no,
+                    pending_amt: pending_amt,
                     upi_no: upi_no,
                     cheque: cheque,
                     net_banking: net_banking,
+                    select_transaction: select_transaction,
                     cash_2000: cash_2000,
                     total_cash_2000: total_cash_2000,
                     cash_500: cash_500,
@@ -5112,6 +5122,7 @@ $(document).ready(function() {
                     total_cash_20: total_cash_20,
                     cash_10: cash_10,
                     total_cash_10: total_cash_10,
+                    total_cash_amt: total_cash_amt
                 },
                 // dataType: 'json',
                 success: function(responce) {
