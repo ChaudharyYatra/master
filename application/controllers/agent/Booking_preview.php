@@ -238,14 +238,14 @@ class Booking_preview extends CI_Controller {
                 
                 // ==========================================================================================
                 
-                $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
+                // $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
 
-                $arr_insert = array(
-                    'booking_reference_no'  =>  $booking_reference_no,
-                    'booking_status'   =>  'confirm'
-                );
+                // $arr_insert = array(
+                //     'booking_reference_no'  =>  $booking_reference_no,
+                //     'booking_status'   =>  'confirm'
+                // );
                 
-                $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
+                // $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
 
                 // ==========================================================================================
 

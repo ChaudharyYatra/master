@@ -1277,9 +1277,9 @@ class Seat_type_room_type extends CI_Controller {
 
 
 
-        $pack_id=$bus_info['package_id'];
+        $pack_id=(isset($bus_info['package_id']));
 
-        $pack_date_id=$bus_info['tour_date'];
+        $pack_date_id=(isset($bus_info['tour_date']));
 
 
 
