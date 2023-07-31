@@ -378,7 +378,7 @@ class All_traveller_info extends CI_Controller {
         $this->db->order_by('id','desc');
         $this->db->limit('1');
         $all_traveller_info_tble = $this->master_model->getRecord('all_traveller_info');
-        $all_traveller_info_tble_id = $all_traveller_info_tble['id'];
+        $all_traveller_info_tble_id = (isset($all_traveller_info_tble['id']));
         // echo ($all_traveller_info_tble_id ); die;
  
 
