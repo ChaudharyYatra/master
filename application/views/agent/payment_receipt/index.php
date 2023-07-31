@@ -77,10 +77,14 @@
     <div id="invoice">
     <section class="section-css">
         <div class="container border">
-            <!-- <?php  
-                //foreach($payment_receipt as $info) 
-               // { 
-            ?> -->
+            <?php  
+                //foreach($arr_data as $info) 
+                //{ 
+            ?>
+            <?php //if($info['for_credentials']=='yes'){?>
+                <!-- <input type="hidden" class="form-control" name="traveller_id" id="traveller_id" value="<?php //echo $info['id']; ?>"> -->
+            <?php //} ?>
+            <?php //} ?>
             <div class="row box-color">
                 <div class="col-md-12">
                     <div class="mt-4">
