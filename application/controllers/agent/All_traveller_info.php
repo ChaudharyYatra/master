@@ -191,9 +191,17 @@ class All_traveller_info extends CI_Controller {
                 
                 $c=count($first_name);
 
-              
+                // $this->db->where('is_deleted','no');
+                // $this->db->order_by('id','desc');
+                // $this->db->limit('1');
+                // $all_traveller_info_tble = $this->master_model->getRecord('all_traveller_info');
+                // $all_traveller_info_tble_id = $all_traveller_info_tble['id'];
+
+                // print_r($_REQUEST);
 
                    for($i=0; $i<$c; $i++){
+
+                    // $traveller_id = $all_traveller_info_tble_id+$i;
 
                     $img_encoded= '';
                     $fname_traveller_img='';
@@ -334,7 +342,7 @@ class All_traveller_info extends CI_Controller {
                         'email_id'=>$email_id ,
                         'password' => $traveler_password_yes
                         ); 
-                        // print_r($all_traveller_info_tble); 
+                        //   die;
 
                         if(!empty($all_traveller_info_tble)){
                             $arr_where  = array("id" => $travaller_info_id[$i]);
