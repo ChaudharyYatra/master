@@ -285,10 +285,4 @@ class Booking_preview extends CI_Controller {
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
     }
-
-
-
-
-
-
 }
