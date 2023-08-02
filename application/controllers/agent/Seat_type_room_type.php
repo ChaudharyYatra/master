@@ -1233,7 +1233,7 @@ class Seat_type_room_type extends CI_Controller {
 
      public function add_bus($iid)
 
-    {  
+     {  
 
          $agent_sess_name = $this->session->userdata('agent_name');
 
@@ -1275,11 +1275,13 @@ class Seat_type_room_type extends CI_Controller {
 
         $bus_info = $this->master_model->getRecord('bus_open',array('bus_open.is_deleted'=>'no'),$fields);
 
+       
 
 
-        $pack_id=(isset($bus_info['package_id']));
 
-        $pack_date_id=(isset($bus_info['tour_date']));
+        $pack_id=$bus_info['package_id'];
+
+        $pack_date_id=$bus_info['tour_date'];
 
 
 
@@ -1327,6 +1329,12 @@ class Seat_type_room_type extends CI_Controller {
 
 
 
+        // print_r($temp_booking_data);
+
+        // die;
+
+
+
         $fields = "bus_seat_book.*";
 
         $this->db->where('bus_seat_book.package_id',$pack_id);
@@ -1366,8 +1374,6 @@ class Seat_type_room_type extends CI_Controller {
         $temp_hold_data=array();
 
         foreach($temp_hold_seats_data as $seat_temp_hold_data){
-
-           
 
             array_push($temp_hold_data, $seat_temp_hold_data['seat_orignal_id']);
 
@@ -1439,7 +1445,7 @@ class Seat_type_room_type extends CI_Controller {
 
          $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
 
-    }
+     }
 
 
 
@@ -1641,7 +1647,7 @@ class Seat_type_room_type extends CI_Controller {
 
                     $this->master_model->deleteRecord('bus_seat_book',$arr_where);
 
-                } else{
+                }else{
 
 
 
@@ -1682,5 +1688,136 @@ class Seat_type_room_type extends CI_Controller {
    
 
      }
+
+
+
+     public function fetch_new_hold()
+
+     {  
+
+        $agent_sess_name = $this->session->userdata('agent_name');
+
+        $id=$this->session->userdata('agent_sess_id');
+
+
+
+        $package_id  = $this->input->post('package_id');
+
+        // print_r($_REQUEST);
+
+        // die;
+
+        $temp_hold_data=array();
+
+        if($package_id!='')
+
+        {
+
+                // $package_id  = $this->input->post('package_id');
+
+                // $enq_id  = $this->input->post('enq_id');
+
+                $tour_dates  = $this->input->post('tour_dates');
+
+
+
+                $fields = "bus_seat_book.seat_orignal_id";
+
+                $this->db->where('bus_seat_book.package_id',$package_id);
+
+                $this->db->where('bus_seat_book.agent_id !=',$id);
+
+                $this->db->where('bus_seat_book.is_book','no');
+
+                $this->db->where('bus_seat_book.is_hold','yes');
+
+                $this->db->where('bus_seat_book.tour_dates',$tour_dates);
+
+                $temp_hold_seats_data = $this->master_model->getRecords('bus_seat_book','',$fields);
+
+               
+
+                foreach($temp_hold_seats_data as $seat_temp_hold_data){
+
+                    array_push($temp_hold_data, $seat_temp_hold_data['seat_orignal_id']);
+
+                }
+
+                // print_r($temp_hold_data); die;
+
+                echo json_encode($temp_hold_data);
+
+        }
+
+   
+
+     }
+
+
+
+     public function fetch_new_bus_data()
+
+     {  
+
+        $agent_sess_name = $this->session->userdata('agent_name');
+
+        $id=$this->session->userdata('agent_sess_id');
+
+
+
+        $package_id  = $this->input->post('package_id');
+
+        // $temp_hold_data=array();
+
+        if($package_id!='')
+
+        {
+
+                // $package_id  = $this->input->post('package_id');
+
+                $enq_id  = $this->input->post('enq_id');
+
+                $tour_dates  = $this->input->post('tour_dates');
+
+
+
+                $fields = "bus_open.*,vehicle_seat_preference.total_seat_count,first_cls_seats,second_cls_seats,third_cls_seats,first_class_price,second_class_price,
+
+                   third_class_price,window_class_price,vehicle_details.id,vehicle_seat_preference.vehicle_id,booking_basic_info.tour_no,booking_basic_info.domestic_enquiry_id,
+
+                   booking_basic_info.tour_date";
+
+        $this->db->where('booking_basic_info.domestic_enquiry_id',$enq_id);
+
+        $this->db->join("vehicle_details", 'vehicle_details.id=bus_open.vehicle_rto_registration','left');
+
+        $this->db->join("vehicle_seat_preference", 'vehicle_seat_preference.vehicle_id=bus_open.vehicle_rto_registration','left');
+
+        $this->db->join("bus_seat_book", 'vehicle_seat_preference.vehicle_id=bus_open.vehicle_rto_registration','left');
+
+        $this->db->join("booking_basic_info", 'booking_basic_info.tour_no=bus_open.package_id AND booking_basic_info.tour_date=bus_open.package_date_id','left');
+
+        $this->db->group_by('booking_basic_info.domestic_enquiry_id');
+
+        $bus_info = $this->master_model->getRecord('bus_open',array('bus_open.is_deleted'=>'no'),$fields);
+
+               
+
+                // foreach($temp_hold_seats_data as $seat_temp_hold_data){
+
+                //     array_push($temp_hold_data, $seat_temp_hold_data['seat_orignal_id']);
+
+                // }
+
+                // print_r($bus_info); die;
+
+                echo json_encode($bus_info);
+
+        }
+
+   
+
+     }
+     
 
 } 

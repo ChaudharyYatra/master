@@ -34,6 +34,7 @@ class Final_booking_details extends CI_Controller {
         $fields = "packages.*,final_booking.package_id,final_booking.package_date_id,package_date.id as p_date_id,package_date.journey_date,booking_enquiry.id";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
+        $this->db->group_by('package_date.id','package.id'); 
         $this->db->join("final_booking", 'final_booking.package_id=packages.id','right');
         $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','right');
         $this->db->join("booking_enquiry", 'final_booking.enquiry_id=booking_enquiry.id','right');

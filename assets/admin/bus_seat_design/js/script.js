@@ -25,7 +25,7 @@
             }else{
             var temp_hold_seats_data='';
             }
-    recalculateTotalTemp(temp_hold_seats_data);
+    // recalculateTotalTemp(temp_hold_seats_data);
         
 
     // console.log(temp_booked_seats_data);
