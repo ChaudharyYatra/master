@@ -226,12 +226,12 @@
             </ul>
           </li>
 
-          <li class="nav-item">
-                <a href="<?php echo base_url(); ?>agent/seat_checker/index" class="nav-link">
+          <!-- <li class="nav-item">
+                <a href="<?php //echo base_url(); ?>agent/seat_checker/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Seat Checker</p>
                 </a>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>agent/final_booking_details/index" class="nav-link">
