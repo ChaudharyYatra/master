@@ -63,7 +63,6 @@
 					
 				},
 				focus  : function() {
-					// console.log(this.status());
 					if (this.status() == 'available') {
 						return 'focused';
 					} else if (this.status() == 'unavailable') {
@@ -102,8 +101,7 @@
 						data   : seatChartsSettings.seats[setup.character] || {}
 						//anything goes here?
 					}, setup);
-				// console.log(fn.settings);
-				// console.log(this.style());
+				
 
 
 					fn.settings.$node = $('<div></div>');
@@ -128,7 +126,6 @@
 							//anything goes here?
 						}, setup);
 						fn.settings.$node = $('<div></div>');
-				// console.log('hhhhhhhhhhhhh',fn.settings.status);
 				var title='';
 					}else if($.inArray(fn.settings.id, temp_booked_seats_data) != '-1'  && $.inArray(fn.settings.id, temp_hold_seats_data) == '-1'){
 						fn.settings = $.extend({
@@ -146,7 +143,6 @@
 							data   : seatChartsSettings.seats[setup.character] || {}
 							//anything goes here?
 						}, setup);
-						console.log(fn.settings);
 
 
 						  $('<li>' + fn.settings.data.classes + ' Seat # ' + fn.settings.label + ': <b>$' + fn.settings.data.price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
@@ -156,8 +152,9 @@
 
 						pqr.push(fn.settings.data.price)
 						$counter.text(temp_booked_seats_data.length);
+						console.log(fn.settings.data.price);
 						ttttt += fn.settings.data.price;
-						// $total.text(ttttt);
+						$total.text(ttttt);
 						fn.settings.$node = $('<div></div>');
 						var title='';
 				}else if($.inArray(fn.settings.id, temp_hold_seats_data) != '-1'){
@@ -437,12 +434,10 @@
 		$.extend(true, settings, setup);		
 		
 		//Generate default row ids unless user passed his own
-		// console.log(settings.map);
 		settings.naming.rows = settings.naming.rows || (function(length) {
 			var rows = [];
 			for (var i = 0; i < length; i++) {
 		var row_abc=settings.map[i].split('');
-		//   console.log(row_abc);
 
 				if(row_abc=='x' || row_abc=='z')
 				{
@@ -528,7 +523,6 @@
 					overrideId      = params.length ? params[0] : null,
 					//label param should be second
 					overrideLabel   = params.length === 2 ? params[1] : null;
-					// console.log(matches);		
 				$row.append(character != '_' ?
 					//if the character is not an underscore (empty space)
 					(function(naming) {
@@ -537,7 +531,6 @@
 						settings.seats[character] = character in settings.seats ? settings.seats[character] : {};
 	
 						var id = overrideId ? overrideId : naming.getId(character, naming.rows[row], naming.columns[column]);
-					// console.log(naming.rows[row]);
 
 						if(character=='x'){
 							seats[id] = new seat({
@@ -634,7 +627,6 @@
 			//set for one, set for many, get for one
 			status: function() {
 				var fn = this;
-			// console.log(arguments);
 				return arguments.length == 1 ? fn.seats[arguments[0]].status() : (function(seatsIds, newStatus) {
 				
 					return typeof seatsIds == 'string' ? fn.seats[seatsIds].status(newStatus) : (function() {

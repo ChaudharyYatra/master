@@ -25,10 +25,7 @@
             }else{
             var temp_hold_seats_data='';
             }
-
-    console.log(temp_booked_seats_data);
-    console.log(temp_hold_seats_data);
-
+    recalculateTotalTemp(temp_hold_seats_data);
         
 
     // console.log(temp_booked_seats_data);
@@ -1257,27 +1254,26 @@
         return total;
     }
 
-    function recalculateTotalTemp(pqr) {
-        var total = 0;
+    // function recalculateTotalTemp(temp_hold_seats_data) {
+    //     var total = 0;
 
-        //basically find every selected seat and sum its price
-        // console.log(pqr);
+    //     //basically find every selected seat and sum its price
+    //     // console.log(pqr);
 
-        for(var z=0; z<pqr.length;z++)
-        {
-            total += pqr[0];
-        }
+    //     // for(var z=0; z<temp_hold_seats_data.length;z++)
+    //     // {
+    //         alert(temp_hold_seats_data);
+    //         total += temp_hold_seats_data[0];
+    //     // }
 
 
-        // temp_booked_seats_data.each(function() {
-        //     // alert(this.data().price);
-        //     total += fn.settings.data.price;
+    //     // temp_booked_seats_data.each(function() {
+    //     //     total += fn.settings.data.price;
 
-        // });
-        // alert(total);
+    //     // });
 
-        return total;
-    }
+    //     return total;
+    // }
 
     $(function() {
         $('#checkout-button').click(function() {
@@ -1373,7 +1369,6 @@
             .appendTo($cart);
 
         $('#cart-item-' + last_row_first_idid).remove();
-        // alert('#cart-item-'+last_row_first_idid);
         // $counter.text(sc.find('selected').length + 1);
         // $total.text(recalculateTotal(sc) + this.data().price);
     }
