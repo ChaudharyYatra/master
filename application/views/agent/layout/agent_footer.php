@@ -5330,3 +5330,340 @@ $(document).ready(function(){
   });
 
   </script>
+
+
+<script type='text/javascript'>
+
+$(document).ready(function(){
+
+
+
+  var is_main_page = $('#is_main_page').val();
+
+
+
+});
+
+</script>
+
+<script>  
+
+ $(document).ready(function(){
+
+  $(".seatCharts-seat").click(function() {  
+
+        var enq_id =  $("#domestic_enquiry_id").val();
+
+        var package_id =  $("#package_id").val();
+
+        var tour_dates =  $("#tour_dates").val();
+
+        var seat_orignal_id =  $(this).attr('id');
+
+        var selected_seat =  $(this).attr('data_id');
+
+        var seat_type =  $(this).attr('seat_type');
+
+        var seat_price =  $(this).attr('seat_price');
+
+        var btn_class =  $(this).attr('class').split(' ');
+
+        // console.log(btn_class);
+
+
+
+           if(seat_orignal_id != '' && $.inArray('hold', btn_class) == '-1')  
+
+           {  
+
+                $.ajax({  
+
+                     url:"<?php echo base_url(); ?>agent/seat_type_room_type/seat_hold",  
+
+                     method:"post",  
+
+                     data:{
+
+                        seat_orignal_id: seat_orignal_id,
+
+                           enq_id: enq_id,
+
+                           package_id: package_id,
+
+                           seat_type:seat_type,
+
+                            seat_price:seat_price,
+
+                            tour_dates:tour_dates,
+
+                             selected_seat:selected_seat,
+
+                             btn_class:btn_class},  
+
+                     dataType: 'json',
+
+                     success:function(responce){
+
+                         if(responce = 'true')
+
+                         {
+
+                          console.log('Seat On Hold');
+
+                         }
+
+                     }  
+
+                });  
+
+           }
+
+          });
+
+
+
+      });  
+
+ </script>
+
+
+
+
+
+<script>
+
+function fetch_new_hold(){
+
+        var enq_id =  $("#domestic_enquiry_id").val();
+
+        var package_id =  $("#package_id").val();
+
+        var tour_dates =  $("#tour_dates").val();
+
+        var temp_array_hold = [];
+
+   $.ajax({
+
+  url: '<?php echo base_url(); ?>agent/seat_type_room_type/fetch_new_hold',
+
+  method:"post",  
+
+  data:{
+
+        enq_id: enq_id,
+
+        package_id: package_id,
+
+        tour_dates:tour_dates
+
+    },  
+
+  dataType: 'json',
+
+  success: function(response){  
+
+     if(response.length>0){
+
+        var temp_array_hold =response;
+
+    }else{
+
+        var temp_array_hold=[];
+
+    }
+
+
+
+          for(var i=0; i<temp_array_hold.length;i++)
+
+  {
+
+      var seat_data_id=temp_array_hold[i];
+
+
+
+      var abc="#"+seat_data_id;
+
+      $(abc).css("color", "white");
+
+      $(abc).removeClass("selected");
+
+      $(abc).addClass("hold");
+
+
+
+  }
+
+  }
+
+ });
+
+}
+
+
+
+$(document).ready(function(){
+
+ setInterval(fetch_new_hold,5000);
+
+});
+
+</script>
+
+<!-- for bus seat selected -->
+
+ 
+
+<script>  
+
+ $(document).ready(function(){
+
+  $(".booknow_submit").click(function() {  
+
+        var enq_id =  $("#domestic_enquiry_id").val();
+
+        // var package_id =  $("#package_id").val();
+
+        // var tour_dates =  $("#tour_dates").val();
+
+ 
+
+        // var seat_type =  [];
+
+        // var selected_seat = [];
+
+        // var selected_seat_id = [];
+
+        // var seat_price = [];
+
+        // var seat_orignal_id = [];
+
+ 
+
+        //   $('.selected').each(function ()
+
+        //     {                
+
+        //         var seat_book = $(this).attr('data_id');
+
+        //         selected_seat.push($(this).attr('data_id'));
+
+ 
+
+        //         var seat_book_id = $(this).attr('id');
+
+        //         seat_orignal_id.push($(this).attr('id'));
+
+        //     });
+
+ 
+
+        //     $('.selected').each(function ()
+
+        //     {                
+
+        //         var seat_type_data = $(this).attr('seat_type');
+
+        //         seat_type.push($(this).attr('seat_type'));
+
+ 
+
+        //         var seat_price_data = $(this).attr('seat_price');
+
+        //         seat_price.push($(this).attr('seat_price'))
+
+        //     });
+
+ 
+
+        //    if(selected_seat != '')  
+
+        //    {  
+
+        //         $.ajax({  
+
+        //              url:"<?php //echo base_url(); ?>agent/seat_type_room_type/selected_bus_seat",  
+
+        //              method:"post",  
+
+        //              data:{selected_seat: selected_seat, enq_id: enq_id, package_id: package_id, seat_type:seat_type,
+
+        //                  seat_price:seat_price,tour_dates:tour_dates,seat_orignal_id:seat_orignal_id},  
+
+        //              dataType: 'json',
+
+        //              success:function(responce){
+
+        //                  if(responce = 'true')
+
+        //                  {
+
+        //                   console.log('now done');
+
+                          window.location.href = "<?=base_url()?>agent/booking_preview/index/"+enq_id;
+
+                    //      }
+
+                    //  }  
+
+                });  
+
+        //    }
+
+        //   });
+
+      });  
+
+</script>
+ 
+
+ 
+
+<script type='text/javascript'>
+
+ 
+
+$(document).ready(function(){
+
+
+    <?php if(!empty($bus_info)){ ?>
+
+        var temp_array =<?php echo json_encode($temp_booking_data);?>;
+
+// console.log('temp',temp_array);
+
+  <?php   }else{ ?>
+
+        var temp_array=[];
+
+   <?php  } ?>
+
+ 
+
+  var temp_booke_data = $('#temp_booked_data').val();
+
+  var is_main_page = $('#is_main_page').val();
+
+  for(var i=0; i<temp_array.length;i++)
+
+  {
+
+      var seat_data_id=temp_array[i];
+
+ 
+
+      var abc="#"+seat_data_id;
+
+      $(abc).css("color", "white");
+
+      $(abc).removeClass("available");
+
+      $(abc).addClass("selected");
+
+ 
+
+  }
+
+});
+
+</script>
