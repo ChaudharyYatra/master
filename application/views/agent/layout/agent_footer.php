@@ -4702,59 +4702,6 @@ $(".selectall").click(function() {
 
 <!-- for bus seat selected -->
 
-<script>  
-
- $(document).ready(function(){
-  $(".booknow_submit").click(function() {  
-        var enq_id =  $("#domestic_enquiry_id").val();
-        var package_id =  $("#package_id").val();
-        var tour_dates =  $("#tour_dates").val();
-
-        var seat_type =  [];
-        var selected_seat = [];
-        var selected_seat_id = [];
-        var seat_price = [];
-        var seat_orignal_id = [];
-
-          $('.selected').each(function ()
-            {                
-                var seat_book = $(this).attr('data_id');
-                selected_seat.push($(this).attr('data_id'));
-
-                var seat_book_id = $(this).attr('id');
-                seat_orignal_id.push($(this).attr('id'));
-            });
-
-            $('.selected').each(function ()
-            {                
-                var seat_type_data = $(this).attr('seat_type');
-                seat_type.push($(this).attr('seat_type'));
-
-                var seat_price_data = $(this).attr('seat_price');
-                seat_price.push($(this).attr('seat_price'))
-            });
-
-           if(selected_seat != '')  
-           {  
-                $.ajax({  
-                     url:"<?php echo base_url(); ?>agent/seat_type_room_type/selected_bus_seat",  
-                     method:"post",  
-                     data:{selected_seat: selected_seat, enq_id: enq_id, package_id: package_id, seat_type:seat_type,
-                         seat_price:seat_price,tour_dates:tour_dates,seat_orignal_id:seat_orignal_id},  
-                     dataType: 'json',
-                     success:function(responce){
-                         if(responce = 'true')
-                         {
-                          console.log('now done');
-                          window.location.href = "<?=base_url()?>agent/booking_preview/index/"+enq_id;
-                         }
-                     }  
-                });  
-           }
-          });
-      });  
- </script>
-
 
 
 
@@ -5115,6 +5062,7 @@ $(document).ready(function() {
         var enquiry_id = $('#enquiry_id').val();
         var package_id = $('#package_id').val();
         var journey_date = $('#journey_date').val();
+        var package_date_id = $('#package_date_id').val();
         
         //alert(email);
         if (mobile_no != '') {
@@ -5126,6 +5074,7 @@ $(document).ready(function() {
                     enquiry_id: enquiry_id,
                     package_id: package_id,
                     journey_date: journey_date,
+                    package_date_id: package_date_id,
                     booking_amt: booking_amt,
                     final_amt: final_amt,
                     mobile_no: mobile_no,
@@ -5196,6 +5145,14 @@ $("#final_booking_submit").click(function() {
     var enquiry_id = $('#enquiry_id').val(); 
     // alert(verify_otp);
     
+    var journey_date  = $("#journey_date").val();
+    
+    var traveller_id  = $("#traveller_id").val();
+    var enquiry_id    = $("#enquiry_id").val();
+    var hotel_name_id    = $("#hotel_name_id").val();
+    var package_date_id    = $("#package_date_id").val();
+    var package_id    = $("#package_id").val();
+    // alert(package_id);
 
     if (verify_otp != '') {
         $.ajax({
@@ -5205,12 +5162,18 @@ $("#final_booking_submit").click(function() {
                 verify_otp: verify_otp,
                 mobile_no: mobile_no,
                 booking_ref_no: booking_ref_no,
-                enquiry_id: enquiry_id
+                enquiry_id: enquiry_id,
+                journey_date: journey_date,
+                traveller_id: traveller_id,
+                enquiry_id: enquiry_id,
+                hotel_name_id: hotel_name_id,
+                package_date_id: package_date_id,
+                package_id: package_id
             },
             //  dataType: 'json',
             //  cache: false,
             success: function(response) {
-                alert(response);
+                // alert(response);
                 if (response == 'true') {
                     // alert('Doneeeee');
                     window.location.href = "<?= base_url() ?>agent/payment_receipt/index/"+enquiry_id;

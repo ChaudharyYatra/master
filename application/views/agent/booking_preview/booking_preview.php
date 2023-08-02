@@ -712,7 +712,7 @@
                             <table id="example2" class="table table-bordered table-hover table-striped">
                                 <tr>
                                     <th><input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required> </th>
-                                    <th><button type="button" class="btn btn-success" name="submit_temp" id="final_booking_submit" value="submit">Verify OTP</button> </th>
+                                    <th><button type="button" class="btn btn-success" name="submit" id="final_booking_submit" value="submit">Verify OTP</button> </th>
                                 </tr>
                             </table>
                         </div>
