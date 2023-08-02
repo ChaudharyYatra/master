@@ -5632,3 +5632,27 @@ $(document).ready(function(){
 });
 
 </script>
+
+<script> 
+function initializeValidation() { 
+    $("form").validate({ 
+        rules: 
+        { 
+            // Add your validation rules here 
+            "first_name[]": 
+            { required: true, 
+                // Add other validation rules as needed
+            }, 
+
+            }, messages: 
+
+            { 
+                // Add custom error messages here, if needed 
+                "first_name[]": 
+                { 
+                    required: "This field is required.", 
+                }, 
+            }, 
+        }); 
+    } 
+</script>

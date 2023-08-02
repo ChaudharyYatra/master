@@ -312,6 +312,11 @@
                         price: '0',
                         classes: 'booked', //your custom CSS class
                         category: 'Booked Class'
+                    },
+                    h: {
+                        price: '0',
+                        classes: 'hold', //your custom CSS class
+                        category: 'Hold Class'
                     }
                 },
                 naming: {
@@ -334,11 +339,12 @@
                     node: $('#legend'),
                     items: [
                         ['f', 'available', 'First Class'],
+                        ['s', 'available', 'Second Class'],
                         ['e', 'available', 'Economy Class'],
                         ['u', 'unavailable', 'Already Booked'],
-                        ['a', 'freeze', 'Already'],
-                        // ['z', 'available window', 'Available Window'],
-                        // ['x', 'not for select', 'Not For Select'],
+                        ['a', 'selected', 'Selected'],
+                        ['h', 'hold', 'Hold Seats'],
+                        ['b', 'available', 'Window Seats'],
                     ]
                 },
                 click: function() {
@@ -471,7 +477,7 @@
 
                                 selection_array.splice($.inArray(last_row_first_idid, selection_array), 1);
                             } else {
-                                alert('eeelllslsls');
+                                // alert('eeelllslsls');
 
                                 $('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
                                     .attr('id', 'cart-item-' + this.settings.id)
@@ -593,7 +599,7 @@
 
                             //remove the item from our cart
                             $('#cart-item-' + this.settings.id).remove();
-                            alert('iid' + this.settings.id);
+                            // alert('iid' + this.settings.id);
                             selection_array.splice($.inArray(this.settings.id, selection_array), 1);
 
                             if (total_final_seat_count == $('#selected-seats li').length) {
@@ -870,7 +876,7 @@
                                 $counter.text(sc.find('selected').length + 1);
                                 // $total.text(recalculateTotal(sc) - this.data().price);
                                 var amt_for_addition = recalculateTotal(sc);
-                                alert(amt_for_addition);
+                                // alert(amt_for_addition);
                                 var final_amt = amt_for_addition - this.data().price;
                                 $total.text(amt_for_addition);
 
@@ -936,7 +942,7 @@
                                 $counter.text(sc.find('selected').length + 1);
                                 // $total.text(recalculateTotal(sc) - this.data().price);
                                 var amt_for_addition = recalculateTotal(sc);
-                                alert(amt_for_addition);
+                                // alert(amt_for_addition);
                                 var final_amt = amt_for_addition - this.data().price;
                                 $total.text(amt_for_addition);
 
