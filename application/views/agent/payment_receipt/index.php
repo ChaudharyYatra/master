@@ -126,7 +126,7 @@
                         <h6 class="mr-5">Time: </h6>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                     </div>
 
                     <div class="col-md-4 mt-3">
@@ -157,20 +157,20 @@
                         <h6 class="ml-5">Drawn on </h6>  
                     </div>
                     <div class="col-md-2 mt-3">
-                        <input type="text" class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                     </div>
                     <div class="col-md-1 mt-3">
                         <h6>Bank</h6>  
                     </div>
                     <div class="col-md-7 mt-3">
-                        <input type="text" class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                     </div>
 
                     <div class="col-md-3 mt-3">
                         <h6 class="ml-5">against SBA/BBA No.</h6>  
                     </div>
                     <div class="col-md-2 mt-3">
-                        <input type="text" class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                     </div>
                     <div class="col-md-1 mt-3">
                         <h6>Tour No.</h6>  
@@ -189,7 +189,7 @@
                 <div class="row mb-3">
                     <div class="col-md-4 rupees_css">
                         <div class="amt-css ml-5">
-                            <h3 class="ml-2 rupees">₹  <?php echo $payment_receipt['total_cash_amt']; ?>/-</h3>
+                            <h3 class="ml-2 rupees">₹  <?php echo $payment_receipt['booking_amt']; ?>/-</h3>
                         </div>
                     </div>
 
@@ -334,7 +334,7 @@
             <!-- <?php //} ?> -->
         </div>
         <div class="card-footer">
-            <a onclick="return confirm('Are You Sure You Want To Final Book This Tour ?')" href="<?php echo $domestic_final_booking;?>/index"><button type="submit" class="btn btn-success float-right" name="submit" value="submit">Final Submit</button> 
+            <a href="<?php echo $domestic_final_booking;?>/index"><button type="submit" class="btn btn-success float-right" name="submit" value="submit">Final Submit</button> 
             <!-- <button class="btn btn-success" onclick="generatePDF()">Generate Invoice</button> -->
         </div>
     </section>

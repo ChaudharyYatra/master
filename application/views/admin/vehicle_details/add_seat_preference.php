@@ -105,10 +105,13 @@ input:disabled+label {
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-md-3 col-sm-3">
                     <h1><?php echo $module_title; ?></h1>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-md-6 col-sm-3 mt-2">
+                    <h5><b>Vehicle RTO Registration No : <?php echo $vehicle_details_data['registration_number']; ?></b></h5>
+                </div>
+                <div class="col-md-3 col-sm-3">
                     <ol class="breadcrumb float-sm-right">
                         <a href="<?php echo $module_url_path; ?>/index/"><button
                                 class="btn btn-primary">Back</button></a>

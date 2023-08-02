@@ -5063,6 +5063,7 @@ $(document).ready(function() {
         var package_id = $('#package_id').val();
         var journey_date = $('#journey_date').val();
         var package_date_id = $('#package_date_id').val();
+        var traveller_id = $('#traveller_id').val();
         
         //alert(email);
         if (mobile_no != '') {
@@ -5075,6 +5076,7 @@ $(document).ready(function() {
                     package_id: package_id,
                     journey_date: journey_date,
                     package_date_id: package_date_id,
+                    traveller_id: traveller_id,
                     booking_amt: booking_amt,
                     final_amt: final_amt,
                     mobile_no: mobile_no,

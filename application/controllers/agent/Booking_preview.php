@@ -127,6 +127,7 @@ class Booking_preview extends CI_Controller {
             $total_cash_amt = $this->input->post('total_cash_amt');
 
             $enquiry_id = $this->input->post('enquiry_id');
+            $traveller_id = $this->input->post('traveller_id');
             $package_id = $this->input->post('package_id');
             $journey_date = $this->input->post('journey_date');
             $package_date_id = $this->input->post('package_date_id');
@@ -205,6 +206,7 @@ class Booking_preview extends CI_Controller {
                     'package_date_id' => $package_date_id,
                     'enquiry_id' => $enquiry_id,
                     'package_id' => $package_id,
+                    'traveller_id' => $traveller_id,
 
 
                     'cash_2000'   =>   $cash_2000,
