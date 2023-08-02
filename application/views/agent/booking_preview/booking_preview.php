@@ -79,6 +79,7 @@
                         <input type="hidden" class="form-control" name="package_id" id="package_id" value="<?php echo $traveller_booking_info_value['pid']; ?>">
                         <input type="hidden" class="form-control" name="journey_date" id="journey_date" value="<?php echo $traveller_booking_info_value['journey_date']; ?>">
                     
+                        <input type="hidden" class="form-control" name="booking_ref_no" id="booking_ref_no" value="">
                     </div>
                 <?php } ?>
               </div>
@@ -705,13 +706,13 @@
                         </div>
                         <div class="col-md-6">
                             <!-- <h5>OTP Details :</h5> -->
-                            <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp">Send OTP</button></th></center>
+                            <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp" >Send OTP</button></th></center>
                             <!-- <center><th><button type="button" class="btn btn-primary mb-4" name="submit_otp" id="submit_otp" value="submit_otp" >Send OTP</button></th></center> -->
                             
                             <table id="example2" class="table table-bordered table-hover table-striped">
                                 <tr>
                                     <th><input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required> </th>
-                                    <th><a onclick="return confirm('Are You Sure You Want To Book This Tour ?')" href="<?php echo $module_url_path;?>/booking_enquiry/add"><button type="submit" class="btn btn-success" name="submit" id="final_booking_submit" value="submit">Verify OTP</button> </th>
+                                    <th><button type="button" class="btn btn-success" name="submit_temp" id="final_booking_submit" value="submit">Verify OTP</button> </th>
                                 </tr>
                             </table>
                         </div>

@@ -5055,6 +5055,32 @@ $('.data_amt').keyup(function(){
 </script> -->
 
 <script>
+
+    $(document).ready(function(){
+
+    $('#pack_id').change(function(){
+
+    var did = $(this).val();
+
+      $.ajax({
+        url:'<?=base_url()?>agent/booking_basic_info/get_tourdate',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+          $('#pack_date_id').find('option').not(':first').remove();
+          $.each(response,function(index,data){      
+             $('#pack_date_id').append('<option value="'+data['id']+'">'+data['journey_date']+'</option>');
+          });
+        }
+     });
+   });
+});
+
+</script>
+
+<script>
 $(document).ready(function() {
     $("#submit_otp").click(function() {
         // alert('hiiiiiiiiiii');
@@ -5126,8 +5152,9 @@ $(document).ready(function() {
                 },
                 // dataType: 'json',
                 success: function(responce) {
-                    if (responce = true) {
-                        // alert('jjjjjjjjjjjj');
+                    if (responce != false && responce !='') {
+                        // alert(responce);
+                        var booking_ref_no = $('#booking_ref_no').val(responce);
                         
                     }
                 }
@@ -5159,3 +5186,147 @@ $(document).ready(function() {
 });
 
 </script>
+
+<script>
+$("#final_booking_submit").click(function() {
+
+    var verify_otp = $("#otp").val();
+    var mobile_no = $('#booking_tm_mobile_no').val(); 
+    var booking_ref_no = $('#booking_ref_no').val(); 
+    var enquiry_id = $('#enquiry_id').val(); 
+    // alert(verify_otp);
+    
+
+    if (verify_otp != '') {
+        $.ajax({
+            type: "POST",
+            url: '<?= base_url() ?>agent/booking_preview/verify_otp',
+            data: {
+                verify_otp: verify_otp,
+                mobile_no: mobile_no,
+                booking_ref_no: booking_ref_no,
+                enquiry_id: enquiry_id
+            },
+            //  dataType: 'json',
+            //  cache: false,
+            success: function(response) {
+                alert(response);
+                if (response == 'true') {
+                    // alert('Doneeeee');
+                    window.location.href = "<?= base_url() ?>agent/payment_receipt/index/"+enquiry_id;
+
+                } else {
+                    alert('You Entered Wrong OTP. Please check it and submit right OTP');
+
+                }
+            },
+
+        });
+    }
+    
+});
+</script>
+
+<script>
+$('#submit_otp').keyup(function(){
+
+    var booking_tm_mobile_no = $("#booking_tm_mobile_no").val();
+    var booking_amt = $("#booking_amt").val();
+    var booking_amt = $("#select_transaction").val();
+    // alert(total_travaller_count);
+
+    if (booking_tm_mobile_no != '') {
+        $("#submit_otp").prop('disabled', true)
+        // alert('Matching!');
+    } else {
+        $("#submit_otp").prop('disabled', false)
+        // alert('Not Matching!');
+    }
+
+
+});
+</script>
+
+<!-- <script>
+    $(document).ready(function() {
+    $('#submit_otp').attr('disabled',true);
+    $('#booking_tm_mobile_no').keyup(function() {
+        if ($(this).val().length !=0)
+            $('#submit_otp').attr('disabled', false);            
+        else
+            $('#submit_otp').attr('disabled',true);
+    })
+     $('#booking_amt').keyup(function() {
+        if ($(this).val().length !=0)
+            $('#submit_otp').attr('disabled', false);            
+        else
+            $('#submit_otp').attr('disabled',true);
+    })
+});
+</script> -->
+
+<script>
+$(document).ready(function(){
+    $("#booking_start").prop('disabled', true);
+    var btn_disabled = $("#btn_disabled").val();
+    // alert(btn_disabled);
+
+    if (btn_disabled=='yes'){
+        $("#booking_start").prop('disabled', true)
+        // alert('Matching!');
+    } else {
+        $("#booking_start").prop('disabled', false);
+        // alert('Not Matching!');
+    }
+    // $("#btn_disabled").val("");
+
+
+});
+</script>
+
+<script type='text/javascript'>
+
+  $(document).ready(function(){
+
+    <?php if(!empty($bus_info)){ ?>
+
+        var js_array1 =<?php echo json_encode($final_booked_data);?>;
+
+  <?php   }else{ ?>
+
+        var js_array1=[];
+
+   <?php  } ?>
+
+    var booke_data = $('#booked_data').val();
+
+    var is_main_page = $('#is_main_page').val();
+
+    if(is_main_page=='no'){
+
+     $('.seatCharts-seat').off('click');
+
+    }
+    // console.log(booke_data);
+
+    for(var i=0; i<js_array1.length;i++)
+
+    {
+        var seat_data_id=js_array1[i];
+
+        // console.log(seat_data_id);
+
+        var abc="#"+seat_data_id;
+
+        $(abc).css("color", "white");
+
+        $(abc).off('click');
+
+        $(abc).removeClass("available");
+
+        $(abc).addClass("unavailable");
+    }
+
+  });
+
+  </script>

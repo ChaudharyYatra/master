@@ -30,16 +30,40 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-
+        <?php $this->load->view('agent/layout/agent_alert'); ?>
       <div class="wrapper">
         <div class="container">
             <div class="row">
               
             <form method="post" enctype="multipart/form-data" id="bus_seat_selection">
             <input type="hidden" class="form-control" name="is_main_page" id="is_main_page" value="no">
+            <input type="hidden" class="form-control" name="btn_disabled" id="btn_disabled" value="<?php echo $p;?>">
+            <input type="hidden" id="bdata" value='<?php print_r(
+                          $bus_info
+                      ); ?>'>
+                   
+
+                      <input type="hidden" id="booked_data" value='<?php print_r($final_booked_data); ?>'>
+                      <script>
+                      var booked_data=<?php echo json_encode($final_booked_data);?>;
+                    </script> 
+                         
+                         <input type="hidden" id="temp_booked_data" value='<?php print_r($temp_booking_data); ?>'>
+                    <script>
+                      var temp_booked_data=<?php echo json_encode($temp_booking_data);?>;
+                    </script> 
 
                 <div class="card-body card-bg">
                   <div class="row">
+
+                      <?php
+                        foreach($agent_booking_enquiry_data as $agent_booking_enquiry_data_info) 
+                        { 
+                          // print_r($agent_booking_enquiry_data); die;
+                          $enq_id=$agent_booking_enquiry_data_info['id'];
+                      ?>
+                      <input type="hidden" class="form-control" name="domestic_enquiry_id" id="domestic_enquiry_id" value="<?php echo $agent_booking_enquiry_data_info['id']; ?>">
+                      <?php } ?>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label>Select Tour</label>
@@ -64,9 +88,11 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <button type="submit" class="btn btn-success mt-4" name="submit" value="Search" id="search">Search </button> 
-                          <button type="button" class="btn btn-danger mt-4" >Cancel</button>
+                          <a href="<?php echo $module_booking_enquiry; ?>/index"><button type="button" class="btn btn-danger mt-4" >Cancel</button></a>
+                          <a href="<?php echo $module_url_path_booking_basic_info;?>/add/<?php echo $enq_id; ?>"><button type="button" id="booking_start" class="btn btn-primary btn-md mt-4" class="dropdown-item">Booking</button></a>  
                         </div>
                       </div>
+
                     </div>
                 </div>
               </form>
@@ -85,18 +111,10 @@
                           $bus_info
                       ); ?>'>
                    
+                      <!-- <form action="" method="post"> -->
+                     
 
-                      <input type="hidden" id="booked_data" value='<?php print_r($final_booked_data); ?>'>
-                      <script>
-                      var booked_data=<?php echo json_encode($final_booked_data);?>;
-                    </script> 
-                         
-                         <input type="hidden" id="temp_booked_data" value='<?php print_r($temp_booking_data); ?>'>
-                    <script>
-                      var temp_booked_data=<?php echo json_encode($temp_booking_data);?>;
-                    </script> 
-
-                      </form>
+                      <!-- </form> -->
                       <div id="legend"></div>
                   </div>
                 </div>
