@@ -88,8 +88,8 @@
                       ?>
                       <!--<a data-bs-toggle="modal" data-bs-target="#exampleModal" class="enq_id" data-bs-whatever="Form" data-enq-id="<?php //echo $enq_id;?>"><img src=<?php //echo base_url(); ?>uploads\do_not_delete\follow.png height="30%" width="30%" alt></img></a>-->
                       <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="enq_id" data-bs-whatever="Form" data-enq-id="<?php echo $enq_id;?>"><button type="button" class="btn btn-primary btn-sm btn_follow take_followup_btn" class="dropdown-item">Take Followup</button> </a>
-                      <a href="<?php echo $module_url_path_booking_basic_info;?>/add/<?php echo $enq_id; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow mt-1" class="dropdown-item">Booking</button></a>  
-                      <a href="<?php echo base_url(); ?>agent/seat_checker/index/<?php echo $enq_id; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow mt-1" class="dropdown-item">checker</button></a>                 
+                      <!-- <a href="<?php //echo $module_url_path_booking_basic_info;?>/add/<?php //echo $enq_id; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow mt-1" class="dropdown-item">Booking</button></a>   -->
+                      <a href="<?php echo base_url(); ?>agent/seat_checker/index/<?php echo $enq_id; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow mt-1" class="dropdown-item">Booking</button></a>                 
                     </td>
                      <?php } ?>
                      

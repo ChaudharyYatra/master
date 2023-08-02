@@ -104,7 +104,13 @@
                         <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $info['mr/mrs'] ?> <?php echo $info['first_name'] ?> <?php echo $info['middle_name'] ?> <?php echo $info['last_name'] ?></td>
-                        <td><?php echo date("d-m-Y",strtotime($info['dob'])) ?></td>
+                        <td>
+                            <?php if($info['dob']=='0000-00-00') { ?>
+                                NA
+                            <?php } else{ ?>
+                                <?php echo date("d-m-Y",strtotime($info['dob'])) ?>
+                            <?php }?>
+                        </td>
                         <td><?php echo $info['age'] ?></td>
                         <td>
                             <?php if($info['anniversary_date']=='0000-00-00') { ?>
@@ -143,14 +149,19 @@
                             { 
                             ?>
                             <table id="example2" class="table table-bordered table-hover table-striped">
+                            <?php if($info['seperate_seat']!='' && $info['total_seperate_seat']!='') { ?>
                                 <tr>
                                     <th>Seperate Seat</th>
                                     <td><?php echo $info['seperate_seat']; ?></td>
                                 </tr>
+                                <?php } ?>
+
+                                <?php if($info['child_seperate_seat']!='' && $info['total_child_seperate_seat']!='') { ?>
                                 <tr>
                                     <th>Child Seperate Seat</th>
                                     <td><?php echo $info['child_seperate_seat']; ?></td>
                                 </tr>
+                                <?php } ?>
 
                                 <?php if($info['two_child_share_one_seat']!='' && $info['total_two_child_share_one_seat']!='') { ?>
                                 <tr>
