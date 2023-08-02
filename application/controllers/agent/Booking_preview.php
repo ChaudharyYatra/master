@@ -220,8 +220,44 @@ class Booking_preview extends CI_Controller {
                     'booking_status'   =>  'confirm'
                 );
                 
-                $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
-           
+                 $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
+                if($inserted_id!=''){
+                    echo $booking_reference_no;
+
+                }else {
+                    echo false;
+                }
+                
+
+        
+    }
+
+    public function verify_otp()
+    { 
+        // echo 'hiiiii IN Controller'; die;
+        $agent_sess_name = $this->session->userdata('agent_name');
+        $id=$this->session->userdata('agent_sess_id');
+
+            $verify_otp = $this->input->post('verify_otp');
+            $mobile_no = $this->input->post('mobile_no'); 
+            $booking_ref_no = $this->input->post('booking_ref_no'); 
+
+            $record = array();
+            $fields = "booking_payment_details.*";
+            $this->db->where('is_deleted','no');
+            $this->db->where('traveler_otp',$verify_otp);
+            $this->db->where('booking_tm_mobile_no',$mobile_no);
+            $this->db->where('booking_reference_no',$booking_ref_no);
+            $booking_payment_details_info = $this->master_model->getRecord('booking_payment_details');
+
+            // print_r($booking_payment_details_info); die;
+
+            if($booking_payment_details_info !=''){
+                echo 'true';
+            }else {
+                echo 'false';
+            }
+                
 
         
     }
@@ -274,6 +310,8 @@ class Booking_preview extends CI_Controller {
                 // );
                 
                 // $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
+            
+
 
                 // ==========================================================================================
 

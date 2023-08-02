@@ -43,7 +43,7 @@ class Booking_enquiry extends CI_Controller {
         $this->db->where('booking_enquiry.booking_status','no');
 
         $this->db->where('booking_enquiry.agent_id',$id);
-        $this->db->where('booking_enquiry.created_at >', $twentyFourHoursAgo);
+        $this->db->where('booking_enquiry.created_at <', $twentyFourHoursAgo);
         $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
         $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');
         $this->db->order_by("booking_enquiry.id", "desc");

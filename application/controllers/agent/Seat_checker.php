@@ -18,6 +18,8 @@ class Seat_checker extends CI_Controller {
         }
 
         $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/seat_checker";
+        $this->module_url_path_booking_basic_info    =  base_url().$this->config->item('agent_panel_slug')."/booking_basic_info";
+        $this->module_booking_enquiry   =  base_url().$this->config->item('agent_panel_slug')."/booking_enquiry";
         $this->module_title       = "Seat Details ";
         $this->module_url_slug    = "seat_checker";
         $this->module_view_folder = "seat_checker/";
@@ -25,7 +27,7 @@ class Seat_checker extends CI_Controller {
 	}
 
 
-    public function index()
+    public function index($iid="")
     {
        $agent_sess_name = $this->session->userdata('agent_name');
        $id = $this->session->userdata('agent_sess_id');
@@ -35,7 +37,15 @@ class Seat_checker extends CI_Controller {
         $this->db->order_by('tour_number','ASC');
         $packages_data_booking = $this->master_model->getRecords('packages');
 
+        $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $this->db->where('booking_enquiry.id',$iid);
+        $agent_booking_enquiry_data = $this->master_model->getRecords('booking_enquiry');
 
+        $final_booked_data=array();
+        $temp_booking_data=array();
+        $bus_info=array();
+        $p='yes';
         
         if($this->input->post('submit'))
         {
@@ -84,6 +94,12 @@ class Seat_checker extends CI_Controller {
             $this->db->where('package_date_id',$pack_date_id );
             $bus_info = $this->master_model->getRecord('bus_open',array('bus_open.is_deleted'=>'no'),$fields);
             // print_r($bus_info); die;
+            if($bus_info==''){
+                $this->session->set_flashdata('error_message',"Bus is not open, Please cantact to admin.");
+                $p='yes';
+            }else{
+                $p='no';
+            }
 
             
 //         $fields = "bus_open.*,vehicle_seat_preference.total_seat_count,first_cls_seats,second_cls_seats,third_cls_seats,first_class_price,second_class_price,
@@ -108,8 +124,12 @@ class Seat_checker extends CI_Controller {
 //  array_push($final_booked_data, $booked_data['seat_orignal_id']);
 // }
 
-            }   
-        }
+            }
+            else{
+                $this->session->set_flashdata('error_message',"Please Select Tour Name & Tour Date.");
+                $p='yes';
+            }
+        } 
 
 
 
@@ -119,12 +139,16 @@ class Seat_checker extends CI_Controller {
         $this->arr_view_data['final_booked_data'] = $final_booked_data;
         $this->arr_view_data['temp_booking_data'] = $temp_booking_data;
         $this->arr_view_data['bus_info'] = $bus_info;
+        $this->arr_view_data['p'] = $p;
         $this->arr_view_data['packages_data_booking'] = $packages_data_booking;
+        $this->arr_view_data['agent_booking_enquiry_data'] = $agent_booking_enquiry_data;
         // $this->arr_view_data['bus_open_data'] = $bus_open_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."check_seat";
+        $this->arr_view_data['module_url_path_booking_basic_info'] = $this->module_url_path_booking_basic_info;
+        $this->arr_view_data['module_booking_enquiry'] = $this->module_booking_enquiry;
         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
        
     }
