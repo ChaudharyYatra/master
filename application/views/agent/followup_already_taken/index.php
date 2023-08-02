@@ -51,7 +51,7 @@
                     <th>Enquiry Date</th>
                     <th>Followup form</th>
                     <th>Followup List</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                   </tr>
                   </thead>
                   <tbody>
@@ -94,10 +94,10 @@
                     <a href="<?php echo $module_url_path_domestic_followup;?>/index/<?php echo $info['id']; ?>"><button type="button" class="btn btn-primary btn-sm btn_follow" class="dropdown-item">View</button></a>
                     </td>
                     
-                    <td>
-                      <a href="<?php echo $module_url_path;?>/edit/<?php echo $info['id'];  ?>" ><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
-                      <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
-                    </td>
+                    <!-- <td>
+                      <a href="<?php ///echo $module_url_path;?>/edit/<?php //echo $info['id'];  ?>" ><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
+                      <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php //echo $module_url_path;?>/delete/<?php //echo $info['id']; ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
+                    </td> -->
 
               
 
