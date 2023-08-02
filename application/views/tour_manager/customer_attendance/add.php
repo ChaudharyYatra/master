@@ -39,18 +39,28 @@
             <?php foreach($tour_arr_data as $tour_arr_data_value) 
                    {  ?>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-1">
+                            
+                        </div>  
+                        <div class="col-md-2">
                             <label>Tour Details -</label>
                         </div>  
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div><?php echo $tour_arr_data_value['tour_number']; ?> - <?php echo $tour_arr_data_value['tour_title']; ?></div>
                         </div>
-                        <div class="col-md-3">  
+                        <div class="col-md-2">  
                             <label>Tour Date -</label>
                         </div>
-                        <div class="col-md-3">  
+                        <div class="col-md-2">  
                             <div><?php echo date('d-m-Y', strtotime($tour_arr_data_value['journey_date'])); ?></div>
                         </div>
+                        <div class="col-md-1">  
+                            <label>Day-</label>
+                        </div>
+                        <div class="col-md-1">  
+                            <div><?php echo $day_id; ?></div>
+                        </div>
+                        
                     </div>
                 <?php } ?>
                    </div>

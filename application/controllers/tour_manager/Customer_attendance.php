@@ -5,6 +5,7 @@ class Customer_attendance extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
+        $this->load->model("json_model");
 	    $this->arr_view_data = [];
         if($this->session->userdata('supervision_sess_id')=="") 
         { 
@@ -26,7 +27,7 @@ class Customer_attendance extends CI_Controller{
         $id = $this->session->userdata('supervision_sess_id'); 
 
         $fields = "assign_staff.*,packages.tour_number,packages.tour_title,packages.package_type,
-        package_type.package_type,tour_manager.name,package_date.journey_date,package_date.id as did,
+        package_type.package_type,package_date.journey_date,package_date.id as did,
         supervision.supervision_name";
         $this->db->where('assign_staff.is_deleted','no');
         $this->db->where('assign_staff.name',$id);
@@ -49,15 +50,15 @@ class Customer_attendance extends CI_Controller{
        
 	}
 
-    public function add($id,$did,$day_id)
+    public function add($pid,$pdid,$d_day_id)
     {   
         
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');
 
-        $id=base64_decode($id);
-        $did=base64_decode($did);
-        $day_id=($day_id);
+        $id=base64_decode($pid);
+        $did=base64_decode($pdid);
+        $day_id=($d_day_id);
         if ($id=='') 
         {
             $this->session->set_flashdata('error_message','Invalid Selection Of Record');
@@ -85,27 +86,46 @@ class Customer_attendance extends CI_Controller{
                 $e_attendance	  = $this->input->post('e_attendance'); 
                 $traveller_id	  = $this->input->post('traveller_id');  
                 
+                
+
                 $c=count($traveller_id);
               
                 for($j=0; $j<$c; $j++){
+                    $Data=array();
                 $arr_insert = array(
                     'morning_attendance'   =>   $m_attendance[$j],
                     'evening_attendance'   =>   $e_attendance[$j],
-                    'traveller_id	'   =>   $traveller_id[$j],
-                    'package_id	'   =>   $id,
+                    
+                );
+                // print_r(json_encode($arr_insert));die;
+                array_push($Data,json_encode($arr_insert));
+
+                // print_r($xyz_arr_data); die;
+                $arr_insert_data= array(
+                    'traveller_id'   =>   $traveller_id[$j],
+                    'package_id'   =>   $id,
                     'tour_manager_id'   =>   $iid,
                     'package_date_id'   =>   $did,
-                    'day_id'   =>   $day_id
-
+                    'day_id'   =>   $day_id,
+                    'morning_attendance'=> $Data
                 );
-                $inserted_id = $this->master_model->insertRecord('traveller_attendance',$arr_insert,true);
+                // print_r($arr_insert_data); die;
+
+
+                
+                // $json_data['morning_attendance'] = json_encode($arr_insert);
+                // print_r($json_data); die;
+                // $return = $this->master_model-> insertRecord($json_data);
+                // print_r($return); die;
+                $inserted_id = $this->master_model->insertRecord('traveller_attendance',$arr_insert_data,true);
+                // $inserted_id = $this->json_model->insert_json_in_db($json_data);
             }
                 $i++;
                 // print_r($arr_insert); die;
                 
             
 
-                if($inserted_id > 0)
+                if($inserted_id == true)
                 {
                     $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
                     redirect($this->module_url_path.'/add');
@@ -147,6 +167,7 @@ class Customer_attendance extends CI_Controller{
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['tour_arr_data']        = $tour_arr_data;
+        $this->arr_view_data['day_id']        = $day_id;
         $this->arr_view_data['page_title']      = "Traveller Attendance";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;

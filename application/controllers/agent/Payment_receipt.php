@@ -50,7 +50,7 @@ class Payment_receipt extends CI_Controller {
         // $traveller_id = $this->input->post('traveller_id');
 
         $record = array();
-        $fields = "final_booking.*,booking_payment_details.*,agent.agent_name,all_traveller_info.mr/mrs,all_traveller_info.first_name,
+        $fields = "final_booking.*,agent.agent_name,all_traveller_info.mr/mrs,all_traveller_info.first_name,
         all_traveller_info.middle_name,all_traveller_info.last_name,packages.tour_number,packages.tour_title,
         package_date.journey_date";
         $this->db->where('final_booking.is_deleted','no');

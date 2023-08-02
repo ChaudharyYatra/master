@@ -73,8 +73,6 @@
               <div class="grid-50">
                   <div id="seat-map">
                       <div class="front-indicator">Bus Seat Reservation</div>
-
-                      
                       <h4 class="text-muted fw-bold text-center" style="padding-left:3em; margin:.5em">From Front Row</h4>
                       <div id="bus-seat-map" class="no_click"></div>
                       <h4 class="text-muted fw-bold text-center" style="padding-left:3em; margin:.5em">End of Seat Row</h4>
@@ -82,7 +80,6 @@
               </div>
                 <div class="grid-50">
                   <div class="booking-details">
-
                       <form action="" method="post">
                       <input type="hidden" id="bdata" value='<?php print_r(
                           $bus_info
