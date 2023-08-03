@@ -7571,8 +7571,223 @@ $(second_selecter_id).prop('disabled', false);
 
 });
 
+</script>
 
+<!-- jquery validation on add vehicle type source -->
+<script>
+$(document).ready(function () {
+
+$('#add_vehicle_type').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_type_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        vehicle_type_name : {
+            required : "Please Enter Vehicle Type Name",
+        },
+    
+    }
+});
+
+});
 
 </script>
+<!-- jquery validation on add vehicle type source -->
+<!-- jquery validation on edit vehicle type source -->
+<script>
+$(document).ready(function () {
+
+$('#edit_vehicle_type').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_type_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        vehicle_type_name : {
+            required : "Please Enter Vehicle Type Name",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit vehicle type source -->
+
+<!-- jquery validation on add vehicle fuel source -->
+<script>
+$(document).ready(function () {
+
+$('#add_vehicle_fuel').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_fuel_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        vehicle_fuel_name : {
+            required : "Please Enter Vehicle Fuel Name",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add vehicle fuel source -->
+<!-- jquery validation on edit vehicle fuel source -->
+<script>
+$(document).ready(function () {
+
+$('#edit_vehicle_fuel').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_fuel_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        vehicle_fuel_name : {
+            required : "Please Enter Vehicle Fuel Name",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit vehicle fuel source -->
+
+<!-- jquery validation on add vehicle brand source -->
+<script>
+$(document).ready(function () {
+
+$('#add_vehicle_brand').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_brand_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        vehicle_brand_name : {
+            required : "Please Enter Vehicle Brand Name",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add vehicle brand source -->
+<!-- jquery validation on edit vehicle brand source -->
+<script>
+$(document).ready(function () {
+
+$('#edit_vehicle_brand').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        vehicle_brand_name: {
+            required: true,
+        },
+        
+    },
+
+    messages :{
+        vehicle_brand_name : {
+            required : "Please Enter Vehicle Brand Name",
+        },
+    
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit vehicle brand source -->
+
+<!-- jquery validation on add Bus Type source -->
+<script>
+$(document).ready(function () {
+
+$('#add_bus_type').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        bus_type: {
+            required: true,
+        }
+    },
+
+    messages :{
+        bus_type : {
+            required : "Please Enter Bus Type",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add Bus Type source -->
+<!-- jquery validation on edit Bus Type source -->
+<script>
+$(document).ready(function () {
+
+$('#edit_bus_type').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+    bus_type: {
+            required: true,
+        }
+    },
+
+    messages :{
+        bus_type : {
+            required : "Please Enter Bus Type",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit Bus Type source -->
+
 
 

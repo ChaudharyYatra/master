@@ -286,6 +286,30 @@
                   <p>User Operation</p>
                 </a>
                </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/vehicle_type/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vehicle Type</p>s
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/vehicle_fuel/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vehicle Fuel</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/vehicle_brand/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vehicle Brand</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/bus_type/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bus Type</p>
+                </a>
+               </li>
             </ul>
           </li>
           
