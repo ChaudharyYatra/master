@@ -1,3 +1,8 @@
+<style>
+  .btn{
+    padding: 2px 5px !important;
+  }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -92,11 +97,20 @@
                         <a href="<?php //echo $module_url_path ?>/active_inactive/<?php //$aid=base64_encode($info['id']); 
 							//echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><i class="fa fa-thumbs-up"></i> </a>
                         <?php //} ?> -->
+
+                        <br>
+                        <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($info['id']); echo rtrim($aid, '='); ?>
+                      " ><button type="button" class="btn btn-primary mt-1">Documents</button></a> 
                     </td>
 
                     <td>
+                      <?php if($info['status']=='approved'){?>
                       <a href="<?php echo $module_url_path;?>/add_seat_preference/<?php $aid=base64_encode($info['id']); echo rtrim($aid, '='); ?>
-                      " ><button type="button" class="btn btn-primary">View</button></a>
+                      " ><button type="button" class="btn btn-primary">View</button></a>  
+                      <?php } else{ ?>
+                        <a href="<?php echo $module_url_path;?>/add_seat_preference/<?php $aid=base64_encode($info['id']); echo rtrim($aid, '='); ?>
+                      " ><button type="button" class="btn btn-primary" disabled>View</button></a>
+                      <?php } ?>
                     </td>
                   </tr>
                   

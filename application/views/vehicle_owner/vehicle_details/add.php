@@ -39,10 +39,12 @@
                           <label>Bus Type</label><br>
                           <select class="select_css" name="vehicle_bus_type" id="vehicle_bus_type">
                             <option value="">Select Bus Type</option>
-                            <option value="1*2">1*2</option>
-                            <option value="1*3">1*3</option>
-                            <option value="2*2">2*2</option>
-                            <option value="2*3">2*3</option>
+                            <?php
+                                   foreach($bus_type as $bus_type_info) 
+                                   { 
+                                ?>
+                            <option value="<?php echo $bus_type_info['id']; ?>"><?php echo $bus_type_info['bus_type']; ?></option>
+                            <?php } ?>
                           </select>
                         </div>
                       </div>
@@ -166,7 +168,7 @@
                        <div class="col-md-6">
                               <div class="form-group">
                                 <label>RTO Registration Number</label>
-                                <input type="text" class="form-control" name="registration_number" id="registration_number" placeholder="Enter Registration Number" required="required">
+                                <input type="text" class="form-control" name="registration_number" id="registration_number" placeholder="Enter Registration Number" required="required" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)">
                               </div>
                         </div>
                         <div class="col-md-6">

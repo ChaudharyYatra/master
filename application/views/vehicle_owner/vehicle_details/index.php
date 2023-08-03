@@ -62,7 +62,7 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-					          <td><?php echo $info['vehicle_bus_type'] ?></td>
+					          <td><?php echo $info['bus_type'] ?></td>
 					          <td><?php echo $info['vehicle_type_name'] ?></td> 
                     <td><?php echo $info['vehicle_fuel_name'] ?></td>
                     <td><?php echo $info['vehicle_brand_name'] ?></td>

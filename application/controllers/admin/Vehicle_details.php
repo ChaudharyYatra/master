@@ -196,6 +196,57 @@ public function add_seat_preference($id) {
     $this->arr_view_data["middle_content"] = $this->module_view_folder . "add_seat_preference";
     $this->load->view("admin/layout/admin_combo", $this->arr_view_data);
 }
+
+// Get Details of Package
+public function details($id)
+{
+    $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
+    $iid = $this->session->userdata('vehicle_owner_sess_id');
+
+    $id=base64_decode($id);
+    if ($id=='') 
+    {
+        $this->session->set_flashdata('error_message','Invalid Selection Of Record');
+        redirect($this->module_url_path.'/index');
+    }   
+    
+    $this->db->order_by('id','ASC');
+    $this->db->where('is_deleted','no');
+    $this->db->where('is_active','yes');
+    $vehicle_type = $this->master_model->getRecords('vehicle_type');
+
+    $this->db->order_by('id','ASC');
+    $this->db->where('is_deleted','no');
+    $vehicle_fuel = $this->master_model->getRecords('vehicle_fuel');
+    // print_r($package_type); die;
+
+    $this->db->order_by('id','ASC');
+    $this->db->where('is_deleted','no');
+    $vehicle_brand = $this->master_model->getRecords('vehicle_brand');
+
+    $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name,
+    bus_type.bus_type";
+    $this->db->where('vehicle_details.is_deleted','no');
+    $this->db->where('vehicle_details.id',$id);
+    $this->db->join("vehicle_type", 'vehicle_details.vehicle_type=vehicle_type.id','left');
+    $this->db->join("vehicle_fuel", 'vehicle_details.fuel_type=vehicle_fuel.id','left');
+    $this->db->join("vehicle_brand", 'vehicle_details.vehicle_brand=vehicle_brand.id','left');
+    $this->db->join("bus_type", 'vehicle_details.vehicle_bus_type=bus_type.id','left');
+    $arr_data = $this->master_model->getRecords('vehicle_details',array('vehicle_details.is_deleted'=>'no'),$fields);
+    // print_r($arr_data); die;
+    
+    $this->arr_view_data['vehicle_ssession_owner_name']        = $vehicle_ssession_owner_name;
+    $this->arr_view_data['vehicle_type']        = $vehicle_type;
+    $this->arr_view_data['vehicle_fuel']        = $vehicle_fuel;
+    $this->arr_view_data['vehicle_brand']        = $vehicle_brand;
+    $this->arr_view_data['arr_data']        = $arr_data;
+    $this->arr_view_data['page_title']      = $this->module_title." Details ";
+    $this->arr_view_data['module_title']    = $this->module_title;
+    $this->arr_view_data['module_url_path'] = $this->module_url_path;
+    $this->arr_view_data['middle_content']  = $this->module_view_folder."details";
+    $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
+}
+
    
    
 }

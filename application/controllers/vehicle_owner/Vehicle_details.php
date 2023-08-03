@@ -25,13 +25,15 @@ class Vehicle_details extends CI_Controller{
         $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
         $id = $this->session->userdata('vehicle_owner_sess_id');
 
-        $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name";
+        $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name,
+        bus_type.bus_type";
         $this->db->where('vehicle_details.is_deleted','no');
         $this->db->where('vehicle_owner_id',$id);
         $this->db->order_by('id','DESC');
         $this->db->join("vehicle_type", 'vehicle_details.vehicle_type=vehicle_type.id','left');
         $this->db->join("vehicle_fuel", 'vehicle_details.fuel_type=vehicle_fuel.id','left');
         $this->db->join("vehicle_brand", 'vehicle_details.vehicle_brand=vehicle_brand.id','left');
+        $this->db->join("bus_type", 'vehicle_details.vehicle_bus_type=bus_type.id','left');
         $arr_data = $this->master_model->getRecords('vehicle_details',array('vehicle_details.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
@@ -493,7 +495,7 @@ class Vehicle_details extends CI_Controller{
                                
                 if($inserted_id > 0)
                 {
-                    $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
+                    $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully. <br> Now visit choudhary yatra office with your original document and one xerox copy.");
                     redirect($this->module_url_path.'/index');
                 }
 
@@ -507,7 +509,11 @@ class Vehicle_details extends CI_Controller{
        
         }
 
-        
+        $this->db->order_by('id','ASC');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $bus_type = $this->master_model->getRecords('bus_type');
+
         $this->db->order_by('id','ASC');
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
@@ -532,6 +538,7 @@ class Vehicle_details extends CI_Controller{
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['vehicle_type'] = $vehicle_type;
         $this->arr_view_data['vehicle_fuel'] = $vehicle_fuel;
+        $this->arr_view_data['bus_type'] = $bus_type;
         $this->arr_view_data['vehicle_brand'] = $vehicle_brand;
         $this->arr_view_data['zone_info'] = $zone_info;
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
@@ -1168,7 +1175,7 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
                     $this->master_model->updateRecord('vehicle_details',$arr_update,$arr_where);
                     if($id > 0)
                     {
-                        $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");
+                        $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully. <br> Now visit choudhary yatra office with your original document and one xerox copy.");
                     }
                     else
                     {
@@ -1178,6 +1185,11 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
             }
           }
         }
+
+        $this->db->order_by('id','ASC');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $bus_type = $this->master_model->getRecords('bus_type');
         
         $this->db->order_by('id','ASC');
         $this->db->where('is_deleted','no');
@@ -1206,6 +1218,7 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
         $this->arr_view_data['vehicle_ssession_owner_name']        = $vehicle_ssession_owner_name;
         $this->arr_view_data['vehicle_type']        = $vehicle_type;
         $this->arr_view_data['vehicle_fuel']        = $vehicle_fuel;
+        $this->arr_view_data['bus_type']        = $bus_type;
         $this->arr_view_data['vehicle_brand']        = $vehicle_brand;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
@@ -1242,12 +1255,14 @@ $old_vehicle_insidetwo_img_name = $this->input->post('old_vehicle_insidetwo_img_
         $this->db->where('is_deleted','no');
         $vehicle_brand = $this->master_model->getRecords('vehicle_brand');
 
-        $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name";
+        $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name,
+        bus_type.bus_type";
         $this->db->where('vehicle_details.is_deleted','no');
         $this->db->where('vehicle_details.id',$id);
         $this->db->join("vehicle_type", 'vehicle_details.vehicle_type=vehicle_type.id','left');
         $this->db->join("vehicle_fuel", 'vehicle_details.fuel_type=vehicle_fuel.id','left');
         $this->db->join("vehicle_brand", 'vehicle_details.vehicle_brand=vehicle_brand.id','left');
+        $this->db->join("bus_type", 'vehicle_details.vehicle_bus_type=bus_type.id','left');
         $arr_data = $this->master_model->getRecords('vehicle_details',array('vehicle_details.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
         

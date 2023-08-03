@@ -75,7 +75,7 @@
                       <img src="<?php echo base_url(); ?>uploads/insurance_photo/<?php echo $info['insurance_image_name']; ?>" width="50%">
                       <input type="hidden" name="old_insurance_img_name" id="old_insurance_img_name" value="<?php echo $info['insurance_image_name']; ?>">
                       <?php } ?>
-
+                        <br>
                       <?php if(!empty($info['insurance_image_name'])){ ?>
                           <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/insurance_photo/<?php echo $info['insurance_image_name']; ?>">Download</a>
                           <input type="hidden" name="old_insurance_img_name" id="old_insurance_img_name" value="<?php if(!empty($info['insurance_image_name'])){echo $info['insurance_image_name'];}?>">
@@ -97,7 +97,7 @@
                                         <img src="<?php echo base_url(); ?>uploads/permit_photo/<?php echo $info['permit_image_name']; ?>" width="30%">
                                         <input type="hidden" name="old_permit_img_name" id="old_permit_img_name" value="<?php echo $info['permit_image_name']; ?>">
                                         <?php } ?>
-
+                                        <br>
                                         <?php if(!empty($info['permit_image_name'])){ ?>
                                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/permit_photo/<?php echo $info['permit_image_name']; ?>">Download</a>
                                             <input type="hidden" name="old_permit_img_name" id="old_permit_img_name" value="<?php if(!empty($info['permit_image_name'])){echo $info['permit_image_name'];}?>">
@@ -131,7 +131,7 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_front_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_front_img_name" id="old_vehicle_front_img_name" value="<?php echo $info['vehicle_front_image']; ?>">
                                         <?php } ?>
-
+                                        <br>
                                         <?php if(!empty($info['vehicle_front_image'])){ ?>
                                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_front_image']; ?>">Download</a>
                                             <input type="hidden" name="old_vehicle_front_img_name" id="old_vehicle_front_img_name" value="<?php if(!empty($info['vehicle_front_image'])){echo $info['vehicle_front_image'];}?>">
@@ -143,7 +143,7 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_back_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_back_img_name" id="old_vehicle_back_img_name" value="<?php echo $info['vehicle_back_image']; ?>">
                                         <?php } ?>
-
+                                        <br>
                                         <?php if(!empty($info['vehicle_back_image'])){ ?>
                                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_back_image']; ?>">Download</a>
                                             <input type="hidden" name="old_vehicle_back_img_name" id="old_vehicle_back_img_name" value="<?php if(!empty($info['vehicle_back_image'])){echo $info['vehicle_back_image'];}?>">
@@ -158,7 +158,7 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_left_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_left_img_name" id="old_vehicle_left_img_name" value="<?php echo $info['vehicle_left_image']; ?>">
                                         <?php } ?>
-
+                                        <br>
                                         <?php if(!empty($info['vehicle_left_image'])){ ?>
                                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_left_image']; ?>">Download</a>
                                             <input type="hidden" name="old_vehicle_left_img_name" id="old_vehicle_left_img_name" value="<?php if(!empty($info['vehicle_left_image'])){echo $info['vehicle_left_image'];}?>">
@@ -170,7 +170,7 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insidetwo_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_insidetwo_img_name" id="old_vehicle_insidetwo_img_name" value="<?php echo $info['vehicle_insidetwo_image']; ?>">
                                         <?php } ?>
-
+                                        <br>
                                         <?php if(!empty($info['vehicle_insidetwo_image'])){ ?>
                                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insidetwo_image']; ?>">Download</a>
                                             <input type="hidden" name="old_vehicle_insidetwo_img_name" id="old_vehicle_insidetwo_img_name" value="<?php if(!empty($info['vehicle_insidetwo_image'])){echo $info['vehicle_insidetwo_image'];}?>">
@@ -182,7 +182,7 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_right_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_right_img_name" id="old_vehicle_right_img_name" value="<?php echo $info['vehicle_right_image']; ?>">
                                         <?php } ?>
-
+                                        <br>
                                         <?php if(!empty($info['vehicle_right_image'])){ ?>
                                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_right_image']; ?>">Download</a>
                                             <input type="hidden" name="old_vehicle_right_img_name" id="old_vehicle_right_img_name" value="<?php if(!empty($info['vehicle_right_image'])){echo $info['vehicle_right_image'];}?>">
@@ -196,14 +196,12 @@
                                         <img src="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>" width="50%">
                                         <input type="hidden" name="old_vehicle_insideone_img_name" id="old_vehicle_insideone_img_name" value="<?php echo $info['vehicle_insideone_image']; ?>">
                                         <?php } ?>
-
+                                        <br>
                                         <?php if(!empty($info['vehicle_insideone_image'])){ ?>
                                             <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/vehicle_photo/<?php echo $info['vehicle_insideone_image']; ?>">Download</a>
                                             <input type="hidden" name="old_vehicle_insideone_img_name" id="old_vehicle_insideone_img_name" value="<?php if(!empty($info['vehicle_insideone_image'])){echo $info['vehicle_insideone_image'];}?>">
                                         <?php } ?></td>
                   </tr>
-
-
                   </table>
               </div>
             </div>
