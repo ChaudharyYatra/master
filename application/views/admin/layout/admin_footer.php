@@ -161,6 +161,31 @@
 </script>
 
 <script>
+  function checkPasswordStrength() {
+	var number = /([0-9])/;
+	var alphabets = /([a-zA-Z])/;
+	var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+	var password = $('#password').val().trim();
+	if (password.length < 6) {
+		$('#password-strength-status').removeClass();
+		$('#password-strength-status').addClass('weak-password text-danger');
+		$('#password-strength-status').html("Password should be atleast 6 characters with include alphabets, numbers and special characters.");
+	} else {
+		if (password.match(number) && password.match(alphabets) && password.match(special_characters)) {
+			$('#password-strength-status').removeClass();
+			$('#password-strength-status').addClass('strong-password');
+			$('#password-strength-status').html("Strong password");
+		}
+		else {
+			$('#password-strength-status').removeClass();
+			$('#password-strength-status').addClass('medium-password text-danger');
+			$('#password-strength-status').html("Password should be atleast 6 characters with include alphabets, numbers and special characters.");
+		}
+	}
+}
+</script>
+
+<script>
 $(function () {
 //   $.validator.setDefaults({
 //     submitHandler: function () {
@@ -7008,6 +7033,7 @@ $('#add_vehicle_owner').validate({ // initialize the plugin
         },
         confirm_pass : {
             required : "Please Enter Confirm Password",
+            equalTo: "Password Doesn't Match",
         }
     
     }

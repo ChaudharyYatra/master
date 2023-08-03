@@ -118,7 +118,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Upload Insurance Image</label><br>
-                            <input type="file" name="insurance_image_name" id="insurance_image_name" required="required">
+                            <input type="file" name="insurance_image_name" id="insurance_image_name" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF" required="required">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span><br>
                           </div>
                       </div>
@@ -144,7 +144,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Upload Permit Image</label><br>
-                            <input type="file" name="permit_image_name" id="permit_image_name" required="required">
+                            <input type="file" name="permit_image_name" id="permit_image_name" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF" required="required">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -185,7 +185,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Vehicle Image(Front)</label><br>
-                            <input type="file" name="vehicle_front_image" id="vehicle_front_image" required="required">
+                            <input type="file" name="vehicle_front_image" id="vehicle_front_image" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF" required="required">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -193,7 +193,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Vehicle Image(Back)</label><br>
-                            <input type="file" name="vehicle_back_image" id="vehicle_back_image" required="required">
+                            <input type="file" name="vehicle_back_image" id="vehicle_back_image" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF" required="required">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -201,7 +201,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Vehicle Image(left)</label><br>
-                            <input type="file" name="vehicle_left_image" id="vehicle_left_image" required="required">
+                            <input type="file" name="vehicle_left_image" id="vehicle_left_image" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF" required="required">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -209,7 +209,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Vehicle Image(right)</label><br>
-                            <input type="file" name="vehicle_right_image" id="vehicle_right_image" required="required">
+                            <input type="file" name="vehicle_right_image" id="vehicle_right_image" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF" required="required">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -217,7 +217,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Vehicle Image(inside one)</label><br>
-                            <input type="file" name="vehicle_insideone_image" id="vehicle_insideone_image" required="required">
+                            <input type="file" name="vehicle_insideone_image" id="vehicle_insideone_image" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF" required="required">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -225,7 +225,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Vehicle Image(inside two)</label><br>
-                            <input type="file" name="vehicle_insidetwo_image" id="vehicle_insidetwo_image" required="required">
+                            <input type="file" name="vehicle_insidetwo_image" id="vehicle_insidetwo_image" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF" required="required">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>

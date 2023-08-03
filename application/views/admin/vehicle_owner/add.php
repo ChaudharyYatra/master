@@ -63,7 +63,7 @@
                               <div class="form-group">
                                 <label>Aadhar Card(Front Photo)</label>
                                     <div class="form-group">
-                                        <input type="file" name="aadhar_front_image" id="aadhar_front_image" placeholder="Logo Photo">
+                                        <input type="file" name="aadhar_front_image" id="aadhar_front_image" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG" placeholder="Logo Photo">
                                         <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                                     </div>
                               </div>
@@ -72,7 +72,7 @@
                               <div class="form-group">
                                 <label>Aadhar Card(Back Photo)</label>
                                     <div class="form-group">
-                                        <input type="file" name="aadhar_back_image" id="aadhar_back_image" placeholder="Logo Photo">
+                                        <input type="file" name="aadhar_back_image" id="aadhar_back_image" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG" placeholder="Logo Photo">
                                         <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                                     </div>
                               </div>
@@ -80,7 +80,7 @@
                         <div class="col-md-6">
                             <label>Profile photo</label>
                               <div class="form-group">
-                                <input type="file" name="image_name" id="image_name" placeholder="Logo Photo">
+                                <input type="file" name="image_name" id="image_name" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG" placeholder="Logo Photo">
                                 <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span><br>
                               </div>
                         </div>
@@ -100,13 +100,15 @@
                             <label>Password</label>
                               <div class="form-group input-group">
                                 
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="" required="required">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="" required="required" onkeyup="checkPasswordStrength();">
                                 <div class="input-group-append">
                                   <div class="input-group-text">
                                     <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password"></span>
                                   </div>
                                 </div> 
+                                
                               </div>
+                              <div id="password-strength-status"></div>
                       </div>
                       <div class="col-md-6">
                             <label>Confirm Password</label>
@@ -190,6 +192,27 @@ $("body").on('click', '.toggle-password2', function() {
 
 });
 </script>
+
+<!-- <script> 
+$(document).ready(function() { 
+  $("#btn_agent").click(function(event) { 
+    event.preventDefault(); 
+    // Get the password input value 
+    var password = $("#password").val(); 
+    // Define the regex pattern for password validation 
+    var passwordPattern = /^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/; 
+    // Test the password against the regex pattern 
+    if (!passwordPattern.test(password)) { 
+      alert("Password does not meet the requirements!"); 
+      return; 
+    } 
+      // If the password is valid, you can proceed with further actions here 
+      alert("Password is valid!"); 
+      }); 
+      }); 
+</script> -->
+
+
   
   
 

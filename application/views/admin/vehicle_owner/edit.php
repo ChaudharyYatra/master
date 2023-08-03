@@ -67,7 +67,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Aadhar Card(Front Photo)</label><br>
-                            <input type="file" name="aadhar_front_image" id="aadhar_front_image">
+                            <input type="file" name="aadhar_front_image" id="aadhar_front_image" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                           </div>
                         </div>
@@ -85,7 +85,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Aadhar Card(Back Photo)</label><br>
-                            <input type="file" name="aadhar_back_image" id="aadhar_back_image">
+                            <input type="file" name="aadhar_back_image" id="aadhar_back_image" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                           </div>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Profile Photo</label><br>
-                            <input type="file" name="image_name" id="image_name">
+                            <input type="file" name="image_name" id="image_name" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                           </div>
                         </div>
@@ -134,13 +134,14 @@
                             <label>Password</label>
                               <div class="form-group input-group">
                                 
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="<?php echo $info['password']; ?>" required>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="<?php echo $info['password']; ?>" required onkeyup="checkPasswordStrength();">
                                 <div class="input-group-append">
                                   <div class="input-group-text">
                                     <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password"></span>
                                   </div>
                                 </div> 
                               </div>
+                              <div id="password-strength-status"></div>
                       </div>
                       <div class="col-md-6">
                             <label>Confirm Password</label>

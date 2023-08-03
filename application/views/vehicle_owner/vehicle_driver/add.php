@@ -111,7 +111,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Upload licence Image(front)</label><br>
-                            <input type="file" name="licence_image_front" id="licence_image_front" required="required">
+                            <input type="file" name="licence_image_front" id="licence_image_front" required="required" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -119,7 +119,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Upload licence Image(back)</label><br>
-                            <input type="file" name="licence_image_back" id="licence_image_back" required="required">
+                            <input type="file" name="licence_image_back" id="licence_image_back" required="required" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -127,7 +127,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Upload Aadhaar Image(front)</label><br>
-                            <input type="file" name="aadhaar_image_front" id="aadhaar_image_front" required="required">
+                            <input type="file" name="aadhaar_image_front" id="aadhaar_image_front" required="required" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -135,7 +135,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Upload Aadhaar Image(back)</label><br>
-                            <input type="file" name="aadhaar_image_back" id="aadhaar_image_back" required="required">
+                            <input type="file" name="aadhaar_image_back" id="aadhaar_image_back" required="required" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
@@ -143,7 +143,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label>Upload Profile Image</label><br>
-                            <input type="file" name="profile_image" id="profile_image" required="required">
+                            <input type="file" name="profile_image" id="profile_image" required="required" accept=".png, .jpg, .jpeg, .pdf, .PNG, .JPG, .JPEG, , .PDF">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG,PDF format files.</span>
                           </div>
                       </div>
