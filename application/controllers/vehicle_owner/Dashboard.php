@@ -44,8 +44,11 @@ class Dashboard extends CI_Controller{
         $arr_data['vehicle_driver_count'] = count($vehicle_driver);
         // print_r($arr_data['vehicle_driver_count']); die;
 
-        $this->db->where('is_deleted','no');
-        $driver_leave = $this->master_model->getRecords('driver_leave');
+        $fields = "driver_leave.*,vehicle_driver.driver_name,vehicle_driver.vehicle_owner_id";
+        $this->db->where('driver_leave.is_deleted','no');
+        $this->db->where('vehicle_driver.vehicle_owner_id',$id);
+        $this->db->join("vehicle_driver", 'driver_leave.driver_id=vehicle_driver.id','left');
+        $driver_leave = $this->master_model->getRecords('driver_leave',array('driver_leave.is_deleted'=>'no'),$fields);
         $arr_data['driver_leave_count'] = count($driver_leave);
         // print_r($driver_leave); die;
 

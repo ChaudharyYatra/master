@@ -5490,6 +5490,83 @@ $('#edit_vehicle_disel_expenses').validate({ // initialize the plugin
 </script>
 <!-- edit_vehicle_disel_expenses update add validation -->
 
+<!-- add_vehicle_driver_leave add validation -->
+<script>
+$(document).ready(function () {
+$('#add_vehicle_driver_leave').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+    from_date: {
+            required: true,
+        },
+        to_date: {
+            required: true,
+        },
+        reason: {
+            required: true,
+        }
+        
+    },
+
+    messages :{
+        from_date : {
+            required : "Please Select From Date",
+        },
+        to_date : {
+            required : "Please Select To Date",
+        },
+        reason : {
+            required : "Please Enter Reason",
+        }
+    
+    }
+});
+
+});
+
+</script>
+<!-- add_vehicle_driver_leave add validation -->
+<!-- add_vehicle_driver_leave add validation -->
+<script>
+$(document).ready(function () {
+$('#edit_vehicle_driver_leave').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+    from_date: {
+            required: true,
+        },
+        to_date: {
+            required: true,
+        },
+        reason: {
+            required: true,
+        }
+        
+    },
+
+    messages :{
+        from_date : {
+            required : "Please Select From Date",
+        },
+        to_date : {
+            required : "Please Select To Date",
+        },
+        reason : {
+            required : "Please Enter Reason",
+        }
+    
+    }
+});
+
+});
+
+</script>
+<!-- add_vehicle_driver_leave add validation -->
+
 
 
 

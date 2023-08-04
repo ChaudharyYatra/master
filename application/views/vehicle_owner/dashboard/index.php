@@ -62,7 +62,7 @@
 
           ?> 
           <div class="col-lg-3 col-6">
-            <a class="underline" href="<?php echo base_url(); ?>agent/booking_enquiry/index">
+            <a class="underline" href="<?php echo base_url(); ?>vehicle_owner/show_driver_leave/index">
             <div class="small-box bg-warning">
               <div class="inner">
                 <h3 style="color:white;"><?php echo $arr_data['driver_leave_count']; ?></h3>
