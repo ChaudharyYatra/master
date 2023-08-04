@@ -240,13 +240,55 @@ public function details($id)
     $this->arr_view_data['vehicle_fuel']        = $vehicle_fuel;
     $this->arr_view_data['vehicle_brand']        = $vehicle_brand;
     $this->arr_view_data['arr_data']        = $arr_data;
-    $this->arr_view_data['page_title']      = $this->module_title." Details ";
+    $this->arr_view_data['page_title']      = $this->module_title." ";
     $this->arr_view_data['module_title']    = $this->module_title;
     $this->arr_view_data['module_url_path'] = $this->module_url_path;
     $this->arr_view_data['middle_content']  = $this->module_view_folder."details";
     $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
 }
 
+
+ // Edit - Get data for edit
+    
+ public function add()
+ {
+    $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
+    $iid = $this->session->userdata('vehicle_owner_sess_id');
+
+         if($this->input->post('submit'))
+         {
+            // print_r($_REQUEST); die;
+             $this->form_validation->set_rules('document_checker_name', 'document_checker_name', 'required');
+             
+             if($this->form_validation->run() == TRUE)
+             {
+                $document_checker_name = trim($this->input->post('document_checker_name'));
+                $vehicle_id = trim($this->input->post('vehicle_id'));
+                
+                $arr_update = array(
+                     'document_checker_name' => $document_checker_name,
+                 );
+                 $arr_where     = array("id" => $vehicle_id);
+                $inserted = $this->master_model->updateRecord('vehicle_details',$arr_update,$arr_where);
+                 if($inserted > 0)
+                 {
+                     $this->session->set_flashdata('success_message',"Document Checker Name Added Successfully.");
+                 }
+                 else
+                 {
+                     $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
+                 }
+                 redirect($this->module_url_path.'/index');
+             }   
+         }
+      
+     $this->arr_view_data['arr_data']        = $arr_data;
+     $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
+     $this->arr_view_data['module_title']    = $this->module_title;
+     $this->arr_view_data['module_url_path'] = $this->module_url_path;
+     $this->arr_view_data['middle_content']  = $this->module_view_folder."edit";
+     $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
+ }
    
    
 }

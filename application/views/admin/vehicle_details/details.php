@@ -10,7 +10,6 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">Back</button></a>
-              
             </ol>
           </div>
         </div>
@@ -203,6 +202,32 @@
                                         <?php } ?></td>
                   </tr>
                   </table>
+
+                  <form method="post" enctype="multipart/form-data" id="document_checker" action="<?php echo $module_url_path; ?>/add">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                              <label> Document Checker Name</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <input type="text" class="form-control" name="document_checker_name" id="document_checker_name" value="<?php if(isset($info['document_checker_name'])){ echo $info['document_checker_name'];}?>" placeholder="Enter Document Checker Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                              <input type="hidden" class="form-control" name="vehicle_id" id="vehicle_id" value="<?php echo $info['id']; ?>" placeholder="Enter Document Checker Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+                          <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                    
+                  </form>
               </div>
             </div>
             <?php } ?>

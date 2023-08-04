@@ -7824,4 +7824,56 @@ $('#edit_bus_type').validate({ // initialize the plugin
 <!-- jquery validation on edit Bus Type source -->
 
 
+<!-- jquery validation on add document_checker -->
+<script>
+$(document).ready(function () {
+
+$('#document_checker').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        document_checker_name: {
+            required: true,
+        }
+    },
+
+    messages :{
+        document_checker_name : {
+            required : "Please Enter Document Checker Name",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add document_checker -->
+<!-- jquery validation on edit document_checker -->
+<script>
+$(document).ready(function () {
+
+$('#document_checker').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+  rules: {
+    document_checker_name: {
+            required: true,
+        }
+    },
+
+    messages :{
+        document_checker_name : {
+            required : "Please Enter Document Checker Name",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit document_checker -->
+
+
 
