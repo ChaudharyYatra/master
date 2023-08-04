@@ -86,7 +86,8 @@
                               <?php if(!empty($info['disel_receipt_photo'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/disel_receipt/<?php echo $info['disel_receipt_photo']; ?>" width="50%">
                                         <input type="hidden" name="old_disel_receipt_image" id="old_disel_receipt_image" value="<?php echo $info['disel_receipt_photo']; ?>">
-                                        <?php } ?>
+                                        <?php } ?><br>
+                              <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/disel_receipt/<?php echo $info['disel_receipt_photo']; ?>">Download</a>
                             </div>
                         </div>
 
@@ -103,7 +104,8 @@
                               <?php if(!empty($info['kilometer_photo'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/driver_disel_kilometer/<?php echo $info['kilometer_photo']; ?>" width="50%">
                                         <input type="hidden" name="old_kilometer_image" id="old_kilometer_image" value="<?php echo $info['kilometer_photo']; ?>">
-                                        <?php } ?>
+                                        <?php } ?><br>
+                              <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/driver_disel_kilometer/<?php echo $info['kilometer_photo']; ?>">Download</a>
                             </div>
                         </div>
               </div>

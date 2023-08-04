@@ -11,9 +11,10 @@ class Asign_tour extends CI_Controller{
                 redirect(base_url().'vehicle_driver/login'); 
         }
         $this->module_url_path    =  base_url().$this->config->item('vehicle_driver_panel_slug')."vehicle_driver/asign_tour";
-        $this->module_url_customer_feedback =  base_url().$this->config->item('vehicle_driver_panel_slug')."vehicle_driver/customer_feedback";
+        $this->module_url_kilometer_update =  base_url().$this->config->item('vehicle_driver_panel_slug')."vehicle_driver/kilometer_update";
 		$this->module_url_path_iternary    =  base_url().$this->config->item('vehicle_driver_panel_slug')."/package_iternary";
 		$this->module_url_asign_driver    =  base_url().$this->config->item('vehicle_driver_panel_slug')."vehicle_driver/asign_driver";
+		$this->module_url_disel_expenses    =  base_url().$this->config->item('vehicle_driver_panel_slug')."vehicle_driver/disel_tour_expenses";
         $this->module_title       = "Asign Tour";
         $this->module_url_slug    = "asign_tour";
         $this->module_view_folder = "asign_tour/";    
@@ -56,7 +57,8 @@ class Asign_tour extends CI_Controller{
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
-        // $this->arr_view_data['module_url_path_dates'] = $this->module_url_path_dates;
+        $this->arr_view_data['module_url_kilometer_update'] = $this->module_url_kilometer_update;
+		$this->arr_view_data['module_url_disel_expenses'] = $this->module_url_disel_expenses;
 		$this->arr_view_data['module_url_path_iternary'] = $this->module_url_path_iternary;
 		$this->arr_view_data['module_url_asign_driver'] = $this->module_url_asign_driver;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";

@@ -70,7 +70,7 @@
                     <td><?php echo $info['booking_center'] ?></td>
 
                     <?php 
-                    $today= date('d-m-Y');
+                    $today= date('Y-m-d');
                     if($info['journey_date'] > $today) {?>
                       <td> upcoming Tour </td>
                     <?php } else if($info['journey_date'] == $today){
@@ -95,9 +95,12 @@
                           <a class="asign_tour_css" href="<?php echo $module_url_asign_driver;?>/index/<?php $aid=base64_encode($info['package_id']); 
 					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
 					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">My Asign Vehicle</button></a>
-                          <!-- <a class="asign_tour_css" href="<?php //echo $module_url_customer_feedback;?>/index/<?php //$aid=base64_encode($info['package_id']); 
-					                  //echo rtrim($aid, '='); ?>/<?php //$did=base64_encode($info['did']); 
-					                  //echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Feedback From Customer</button></a> -->
+                          <a class="asign_tour_css" href="<?php echo $module_url_kilometer_update;?>/add/<?php $aid=base64_encode($info['package_id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
+					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Kilometer Update</button></a>
+                          <a class="asign_tour_css" href="<?php echo $module_url_disel_expenses;?>/add/<?php $aid=base64_encode($info['package_id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
+					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Disel Expenses</button></a>
                         </div>
                       </div>
                     </td>

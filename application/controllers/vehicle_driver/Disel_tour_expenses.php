@@ -49,10 +49,13 @@ class Disel_tour_expenses extends CI_Controller{
 	}
 	
 	
-    public function add()
+    public function add($pid,$p_date_id)
     {   
         $vehicle_ssession_driver_name = $this->session->userdata('vehicle_ssession_driver_name');
         $id = $this->session->userdata('vehicle_driver_sess_id');
+
+        $pid=base64_decode($pid); 
+        $p_date_id=base64_decode($p_date_id); 
 
         $this->db->order_by('id','ASC');
         $this->db->where('is_deleted','no');
@@ -171,7 +174,9 @@ class Disel_tour_expenses extends CI_Controller{
                     'kilometer_no'        => $kilometer_no,
                     'disel_amount'        => $disel_amount,
                     'disel_receipt_photo'        => $kilometer_filename,
-                    'kilometer_photo'        => $aadhaar_front_filename
+                    'kilometer_photo'        => $aadhaar_front_filename,
+                    'package_id'        => $pid,
+                    'package_date_id'        => $p_date_id,
                 );
                 
                 $inserted_id = $this->master_model->insertRecord('disel_tour_expenses',$arr_insert,true);

@@ -9,7 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a>
+              <!-- <a href="<?php //echo $module_url_path; ?>/add"><button class="btn btn-primary">Add</button></a> -->
               
             </ol>
           </div>
@@ -53,6 +53,10 @@
 					          <td><?php echo $info['city_name'] ?></td>
                     <td>                      
                       <img src="<?php echo base_url(); ?>uploads/driver_kilometer_update_photo/<?php echo $info['image_name']; ?>" width="70px;" height="30px;" alt="Slider Image">
+                      <?php if(!empty($info['image_name'])){ ?>
+                          <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/driver_kilometer_update_photo/<?php echo $info['image_name']; ?>">Download</a>
+                          <input type="hidden" name="old_kilometer_image" id="old_kilometer_image" value="<?php if(!empty($info['image_name'])){echo $info['image_name'];}?>">
+                      <?php } ?>
                     </td>
                     
                     <td>

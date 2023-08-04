@@ -67,7 +67,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Aadhar Card(Front Photo)</label><br>
-                            <input type="file" name="aadhar_front_image" id="aadhar_front_image" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG">
+                            <input type="file" name="aadhar_front_image" id="aadhar_front_image">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                           </div>
                         </div>
@@ -85,7 +85,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Aadhar Card(Back Photo)</label><br>
-                            <input type="file" name="aadhar_back_image" id="aadhar_back_image" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG">
+                            <input type="file" name="aadhar_back_image" id="aadhar_back_image" accept="image/png, image/jpg, image/jpeg">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                           </div>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label>Profile Photo</label><br>
-                            <input type="file" name="image_name" id="image_name" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG">
+                            <input type="file" name="image_name" id="image_name" accept="image/png, image/jpg, image/jpeg">
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                           </div>
                         </div>

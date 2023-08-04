@@ -72,7 +72,11 @@
                               <?php if(!empty($info['image_name'])){ ?>
                                         <img src="<?php echo base_url(); ?>uploads/driver_kilometer_update_photo/<?php echo $info['image_name']; ?>" width="50%">
                                         <input type="hidden" name="old_kilometer_image" id="old_kilometer_image" value="<?php echo $info['image_name']; ?>">
-                                        <?php } ?>
+                                        <?php } ?><br>
+                              <?php if(!empty($info['image_name'])){ ?>
+                                  <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/driver_kilometer_update_photo/<?php echo $info['image_name']; ?>">Download</a>
+                                  <input type="hidden" name="old_kilometer_image" id="old_kilometer_image" value="<?php if(!empty($info['image_name'])){echo $info['image_name'];}?>">
+                              <?php } ?>
                             </div>
                         </div>
               </div>
