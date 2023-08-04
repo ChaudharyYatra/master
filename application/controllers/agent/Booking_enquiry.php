@@ -124,7 +124,8 @@ class Booking_enquiry extends CI_Controller {
                  $media_source_name         = $this->input->post('media_source_name');
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
-                 $wp_mobile_number  = $this->input->post('wp_mobile_number'); 
+                 $wp_mobile_number  = $this->input->post('wp_mobile_number');
+                 $followup_date  = $this->input->post('followup_date'); 
 
                  $arr_insert = array(
                      'agent_id' =>   $id,
@@ -139,10 +140,12 @@ class Booking_enquiry extends CI_Controller {
                      'seat_count'    =>$enq_seat_count,
                      'created_at'=>$today,
                      'wp_mobile_number'    =>$wp_mobile_number,
-                     'enquiry_from'    =>'Agent'
+                     'enquiry_from'    =>'Agent',
+                     'followup_date'    =>$followup_date
                  );
-                 
+                //  print_r($arr_insert); die;
                 $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
+                
                 //  $id = $this->db->inserted_id();
                  $this->db->where('is_deleted','no');
                  $this->db->where('is_active','yes');
@@ -246,6 +249,7 @@ class Booking_enquiry extends CI_Controller {
                  $media_source_name         = $this->input->post('media_source_name');
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
+                 $followup_date  = $this->input->post('followup_date'); 
                 //  $packages  = $this->input->post('packages'); 
 
                  $arr_insert = array(
@@ -260,7 +264,8 @@ class Booking_enquiry extends CI_Controller {
                      'media_source_name'    =>$media_source_name,
                      'seat_count'    =>$enq_seat_count,
                      'created_at'=>$today,
-                     'enquiry_from'    =>'Agent'
+                     'enquiry_from'    =>'Agent',
+                     'followup_date'    =>$followup_date
                  );
                  
                  $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
@@ -615,6 +620,8 @@ class Booking_enquiry extends CI_Controller {
                  	$other_tour_name         = $this->input->post('other_tour_name');
 					$mrandmrs  = $this->input->post('mrandmrs'); 
                     $enq_seat_count         = $this->input->post('enq_seat_count');
+
+                    $followup_date  = $this->input->post('followup_date'); 
                     
                     $arr_update = array(
                         'first_name'   =>   $first_name,   
@@ -627,7 +634,8 @@ class Booking_enquiry extends CI_Controller {
 						'wp_mobile_number'    =>$wp_mobile_number,
                      	'other_tour_name'    =>$other_tour_name,
 						'MrandMrs'   =>   $mrandmrs,
-                        'seat_count'    =>$enq_seat_count
+                        'seat_count'    =>$enq_seat_count,
+                        'followup_date'    =>$followup_date,
                     );
                     $arr_where     = array("id" => $id);
                     $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
