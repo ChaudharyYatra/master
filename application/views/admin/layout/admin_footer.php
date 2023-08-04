@@ -160,7 +160,7 @@
   })
 </script>
 
-<script>
+<!-- <script>
   function checkPasswordStrength() {
 	var number = /([0-9])/;
 	var alphabets = /([a-zA-Z])/;
@@ -183,7 +183,7 @@
 		}
 	}
 }
-</script>
+</script> -->
 
 <script>
 $(function () {
@@ -6991,6 +6991,8 @@ $('#add_vehicle_owner').validate({ // initialize the plugin
         },
         password: {
             required: true,
+            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{6,15}$/,
+            
         },
         confirm_pass: {
             required: true,
@@ -7030,6 +7032,12 @@ $('#add_vehicle_owner').validate({ // initialize the plugin
         },
         password : {
             required : "Please Enter Password",
+            pattern: " Password must contain: " +
+                    "At least one upper case letter, " +
+                    "At least one lower case letter, " +
+                    "At least one number, " +
+                    "At least one special character " +
+                    "and be between 6-15 characters.",
         },
         confirm_pass : {
             required : "Please Enter Confirm Password",

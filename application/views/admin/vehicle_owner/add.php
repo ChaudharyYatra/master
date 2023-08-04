@@ -100,7 +100,7 @@
                             <label>Password</label>
                               <div class="form-group input-group">
                                 
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="" required="required" onkeyup="checkPasswordStrength();">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="" required="required">
                                 <div class="input-group-append">
                                   <div class="input-group-text">
                                     <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password"></span>
