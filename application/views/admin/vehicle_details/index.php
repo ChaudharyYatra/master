@@ -75,8 +75,14 @@
                         if($info['is_active']=='no' && $info['is_active']!='')
                           {
                         ?>
+
+                        <?php if($info['document_checker_name']!=''){?>
                         <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
 							          echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-primary">Approved</button></a>
+                        <?php } else {?>
+                          <a href="<?php echo $module_url_path ?>/active_inactive/<?php $aid=base64_encode($info['id']); 
+							          echo rtrim($aid, '=').'/'.$info['is_active']; ?>"><button class="btn btn-primary disabled">Approved</button></a>
+                        <?php } ?>
                         <?php } 
                         else if($info['is_active']=='yes' && $info['is_active']!=''){
                           ?> 
