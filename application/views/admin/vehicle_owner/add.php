@@ -63,7 +63,7 @@
                               <div class="form-group">
                                 <label>Aadhar Card(Front Photo)</label>
                                     <div class="form-group">
-                                        <input type="file" name="aadhar_front_image" id="aadhar_front_image" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG" placeholder="Logo Photo">
+                                        <input type="file" name="aadhar_front_image" id="aadhar_front_image" accept="image/png, image/jpg, image/jpeg" placeholder="Logo Photo">
                                         <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                                     </div>
                               </div>
@@ -72,7 +72,7 @@
                               <div class="form-group">
                                 <label>Aadhar Card(Back Photo)</label>
                                     <div class="form-group">
-                                        <input type="file" name="aadhar_back_image" id="aadhar_back_image" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG" placeholder="Logo Photo">
+                                        <input type="file" name="aadhar_back_image" id="aadhar_back_image" accept="image/png, image/jpg, image/jpeg" placeholder="Logo Photo">
                                         <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                                     </div>
                               </div>
@@ -80,7 +80,7 @@
                         <div class="col-md-6">
                             <label>Profile photo</label>
                               <div class="form-group">
-                                <input type="file" name="image_name" id="image_name" accept=".png, .jpg, .jpeg, .PNG, .JPG, .JPEG" placeholder="Logo Photo">
+                                <input type="file" name="image_name" id="image_name" accept="image/png, image/jpg, image/jpeg" placeholder="Logo Photo">
                                 <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span><br>
                               </div>
                         </div>
