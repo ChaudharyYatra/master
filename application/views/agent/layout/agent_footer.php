@@ -5231,6 +5231,33 @@ $('#submit_otp').keyup(function(){
 </script> -->
 
 <script>
+function validate() {
+    
+  var valid = true;
+  valid = checkEmpty($("#booking_tm_mobile_no")) && checkEmpty($("#booking_amt")) && $("#select_transaction").val() === "" ;
+
+  $("#submit_otp").attr("disabled", true);
+  if (valid) {
+    $("#submit_otp").attr("disabled", false);
+  }
+}
+
+function checkEmpty(obj) {
+  var name = $(obj).attr("name");
+  $("." + name + "-validation").html("");
+  $(obj).css("border", "");
+  if ($(obj).val() == "") {
+    $(obj).css("border", "#FF0000 1px solid");
+    $("." + name + "-validation").html("Required");
+    return false;
+  }
+
+  return true;
+}
+
+</script>
+
+<script>
 $(document).ready(function(){
     $("#booking_start").prop('disabled', true);
     var btn_disabled = $("#btn_disabled").val();
