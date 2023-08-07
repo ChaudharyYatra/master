@@ -30,11 +30,15 @@ class Dashboard extends CI_Controller{
 	      $agent_sess_name = $this->session->userdata('agent_name');
         $id = $this->session->userdata('agent_sess_id');
 
+        date_default_timezone_set('Asia/Kolkata');
+        $twentyFourHoursAgo = date('Y-m-d H:i:s', strtotime('-24 hours'));
+
         $this->db->where('agent_id',$id);  
         $this->db->where('is_deleted','no'); 
         $this->db->where('followup_status','no');  
         $this->db->where('booking_process','no');  
-        $this->db->where('enquiry_type','Domestic');  
+        $this->db->where('enquiry_type','Domestic'); 
+        $this->db->where('booking_enquiry.created_at >', $twentyFourHoursAgo);
         $enquiry_data = $this->master_model->getRecords('booking_enquiry');
         $arr_data['enquiry_count_total'] = count($enquiry_data);
         // print_r($enquiry_data); die;
