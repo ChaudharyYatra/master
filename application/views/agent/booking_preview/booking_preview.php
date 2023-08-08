@@ -513,7 +513,7 @@
                                 <tr>
                                     <th>Mobile Number</th>
                                     <td>
-                                    <input type="text" class="form-control" name="booking_tm_mobile_no" id="booking_tm_mobile_no" minlength="10" maxlength="10" placeholder="Enter mobile number" onkeyup="validate()" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                    <input type="text" class="form-control" name="booking_tm_mobile_no" id="booking_tm_mobile_no" minlength="10" maxlength="10" placeholder="Enter mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
                                     </td>
                                 </tr>
                                 
@@ -527,7 +527,7 @@
                                 <tr>
                                     <th>Booking Amount</th>
                                     <td>
-                                    <input type="text" class="form-control" name="booking_amt" id="booking_amt" placeholder="Enter booking amount" onkeyup="validate()" required>
+                                    <input type="text" class="form-control" name="booking_amt" id="booking_amt" placeholder="Enter booking amount" required>
                                     </td>
                                 </tr>
 
@@ -706,7 +706,7 @@
                         </div>
                         <div class="col-md-6">
                             <!-- <h5>OTP Details :</h5> -->
-                            <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp" disabled>Send OTP</button></th></center>
+                            <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp" >Send OTP</button></th></center>
                             <!-- <center><th><button type="button" class="btn btn-primary mb-4" name="submit_otp" id="submit_otp" value="submit_otp" >Send OTP</button></th></center> -->
                             
                             <table id="example2" class="table table-bordered table-hover table-striped">
