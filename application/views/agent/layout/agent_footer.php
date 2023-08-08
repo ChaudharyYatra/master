@@ -5234,13 +5234,27 @@ $('#submit_otp').keyup(function(){
 function validate() {
     
   var valid = true;
-  valid = checkEmpty($("#booking_tm_mobile_no")) && checkEmpty($("#booking_amt")) && $("#select_transaction").val() === "" ;
+  valid = checkEmpty($("#booking_tm_mobile_no")) && checkEmpty($("#booking_amt")) ;
 
-  $("#submit_otp").attr("disabled", true);
-  if (valid) {
-    $("#submit_otp").attr("disabled", false);
-  }
+  $("#select_transaction").click(function() {
+        if($("select").val() == '' && valid =='')
+        $("#submit_otp").prop( "disabled", true);
+        else 
+        $("#submit_otp").prop( "disabled", false);
+    });
+
+//   $("#submit_otp").attr("disabled", true);
+//   if (valid) {
+//     $("#submit_otp").attr("disabled", false);
+//   }
 }
+
+    // $("#select_transaction").click(function() {
+    //     if($("select").val() == '')
+    //     $("#submit_otp").prop( "disabled", true);
+    //     else $("#submit_otp").prop( "disabled", false);
+    // });
+
 
 function checkEmpty(obj) {
   var name = $(obj).attr("name");
@@ -5254,6 +5268,16 @@ function checkEmpty(obj) {
 
   return true;
 }
+
+// const select = document.getElementById('select_transaction');
+// const submitButton = document.getElementById('submit_otp');
+// document.getElementById('select_transaction').addEventListener('change', () => {
+//   if (select.value === '') {
+//     submitButton.disabled = true;
+//   } else {
+//     submitButton.disabled = false;
+//   }
+// });
 
 </script>
 
