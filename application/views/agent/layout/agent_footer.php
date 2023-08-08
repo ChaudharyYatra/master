@@ -1768,34 +1768,34 @@ $(document).ready(function() {
 // baseURL variable
 var baseURL = "<?php echo base_url(); ?>";
 
-$(document).ready(function() {
-    // if (enq_id != '') {
-        var did = $('#tour_no').val();
-        // var enq_id = $('#domestic_enquiry_id').val();
-        //alert(enq_id); 
-        // AJAX request
-        $.ajax({
-            url: '<?= base_url() ?>agent/booking_basic_info/getBlock',
-            method: 'post',
-            data: {
-                did: did
-            },
-            dataType: 'json',
-            success: function(response) {
-                console.log(response);
+// $(document).ready(function() {
+//     // if (enq_id != '') {
+//         var did = $('#tour_no').val();
+//         // var enq_id = $('#domestic_enquiry_id').val();
+//         //alert(enq_id); 
+//         // AJAX request
+//         $.ajax({
+//             url: '<?= base_url() ?>agent/booking_basic_info/getBlock',
+//             method: 'post',
+//             data: {
+//                 did: did
+//             },
+//             dataType: 'json',
+//             success: function(response) {
+//                 console.log(response);
 
-                $('#boarding_office_location').find('option').not(':first').remove();
+//                 $('#boarding_office_location').find('option').not(':first').remove();
 
-                $.each(response, function(index, data) {
-                    $('#boarding_office_location').append('<option value="' + data['id'] +
-                        '">' + data['booking_center'] + '</option>');
-                });
-                tour_dates();
+//                 $.each(response, function(index, data) {
+//                     $('#boarding_office_location').append('<option value="' + data['id'] +
+//                         '">' + data['booking_center'] + '</option>');
+//                 });
+//                 tour_dates();
 
-            }
-        });
-    // }
-});
+//             }
+//         });
+//     // }
+// });
 
 // district change
 $('#tour_no').change(function() {

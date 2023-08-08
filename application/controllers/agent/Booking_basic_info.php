@@ -97,12 +97,16 @@ class Booking_basic_info extends CI_Controller {
         $package_id=$package_agent_booking_enquiry_data['package_id'];
         // print_r($package_agent_booking_enquiry_data); die;
 
+        // ----------------------------------------------------------
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $this->db->where('booking_basic_info.domestic_enquiry_id',$iid);
         $booking_basic_info_tour = $this->master_model->getRecord('booking_basic_info');
-        // $booking_basic_info_tour_id=$booking_basic_info_tour['tour_no'];
+        $booking_basic_info_tour_id=$booking_basic_info_tour['tour_no'] ?? null;
+        $booking_basic_info_tour_date=$booking_basic_info_tour['tour_date'] ?? null;
+        $booking_basic_domestic_enquiry=$booking_basic_info_tour['domestic_enquiry_id'] ?? null;
         // print_r($booking_basic_info_tour); die;
+        // ---------------------------------------------------------------------
 
         $record = array();
         $fields = "packages.*,booking_enquiry.package_id,hotel_type.hotel_type_name";
@@ -194,7 +198,30 @@ class Booking_basic_info extends CI_Controller {
         $this->db->where('is_active','yes');
         $this->db->order_by('tour_number','ASC');
         $packages_data = $this->master_model->getRecords('packages');
+
+        // ---------------------------------------------------------------------------
+
+        $record = array();
+        $fields = "agent.*";
+        $this->db->where('agent.is_active','yes');
+        $this->db->where('agent.is_deleted','no');
+        $this->db->where('booking_basic_info.tour_no',$booking_basic_info_tour_id);
+        $this->db->where('booking_basic_info.domestic_enquiry_id',$booking_basic_domestic_enquiry);
+        $this->db->join("booking_basic_info", 'agent.id=booking_basic_info.boarding_office_location','left');
+        $agent_data_office_address = $this->master_model->getRecords('agent',array('agent.is_deleted'=>'no'),$fields);
+        // print_r($agent_data_office_address); die;
+
+        $record = array();
+        $fields = "package_date.*";
+        $this->db->where('package_date.is_active','yes');
+        $this->db->where('package_date.is_deleted','no');
+        $this->db->where('booking_basic_info.tour_date',$booking_basic_info_tour_date);
+        $this->db->where('booking_basic_info.domestic_enquiry_id',$booking_basic_domestic_enquiry);
+        $this->db->join("booking_basic_info", 'package_date.id=booking_basic_info.tour_date','left');
+        $arr_package_date = $this->master_model->getRecords('package_date',array('package_date.is_deleted'=>'no'),$fields);
+        // print_r($arr_package_date); die;
         
+        // --------------------------------------------------------------------------
          if($this->input->post('submit'))
         {
             //  print_r($_REQUEST);
@@ -276,7 +303,6 @@ class Booking_basic_info extends CI_Controller {
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
                      redirect($this->domestic_booking_process.'/index');
                  }
- 
                  else
                  {
                      $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
@@ -373,7 +399,6 @@ class Booking_basic_info extends CI_Controller {
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
                      redirect($this->module_all_traveller_info.'/add/'.$iid);
                  }
- 
                  else
                  {
                      $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
@@ -390,6 +415,8 @@ class Booking_basic_info extends CI_Controller {
          $this->arr_view_data['package_agent_booking_enquiry_data']  = $package_agent_booking_enquiry_data;
          $this->arr_view_data['agent_department']        = $agent_department;
          $this->arr_view_data['media_source_data']        = $media_source_data;
+         $this->arr_view_data['arr_package_date']        = $arr_package_date;
+         $this->arr_view_data['agent_data_office_address']        = $agent_data_office_address;
          $this->arr_view_data['booking_data']        = $booking_data;
          $this->arr_view_data['master_media_source']        = $master_media_source;
          $this->arr_view_data['arr_packages_data_booking']        = $arr_packages_data_booking;
@@ -754,10 +781,12 @@ class Booking_basic_info extends CI_Controller {
     public function get_tourdate(){ 
         // POST data 
         // $all_b=array();
+       $today= date('Y-m-d');
        $boarding_office_location = $this->input->post('did');
         // print_r($boarding_office_location); die;
                         $this->db->where('is_deleted','no');
                         $this->db->where('is_active','yes');
+                        $this->db->where('journey_date >=',$today);
                         $this->db->where('package_id',$boarding_office_location);
                         $data = $this->master_model->getRecords('package_date');
                         // print_r($data); die;

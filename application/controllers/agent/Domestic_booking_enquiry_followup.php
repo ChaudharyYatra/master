@@ -18,6 +18,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
         $this->module_url_path    =  base_url().$this->config->item('agent_panel_slug')."/domestic_booking_enquiry_followup";
         $this->module_url_booking_basic_info    =  base_url().$this->config->item('agent_panel_slug')."/booking_basic_info";
         $this->module_url_path_booking_enq    =  base_url().$this->config->item('agent_panel_slug')."/booking_enquiry";
+        $this->module_url_path_followup_already_taken    =  base_url().$this->config->item('agent_panel_slug')."/followup_already_taken";
         $this->module_title       = "Domestic Booking Enquiry Followup";
         $this->module_title_followup = "Domestic Booking Enquiry Followup";
         $this->module_url_slug    = "domestic_booking_enquiry_followup";
@@ -62,6 +63,7 @@ class Domestic_booking_enquiry_followup extends CI_Controller {
          $this->arr_view_data['module_url_path'] = $this->module_url_path;
          $this->arr_view_data['module_url_booking_basic_info'] = $this->module_url_booking_basic_info;
          $this->arr_view_data['module_url_path_booking_enq'] = $this->module_url_path_booking_enq;
+         $this->arr_view_data['module_url_path_followup_already_taken'] = $this->module_url_path_followup_already_taken;
          $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
          $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
         

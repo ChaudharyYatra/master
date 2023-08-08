@@ -25,11 +25,13 @@ class Vehicle_details extends CI_Controller{
         $vehicle_ssession_owner_name = $this->session->userdata('vehicle_ssession_owner_name');
         $id = $this->session->userdata('vehicle_owner_sess_id');
 
-        $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name";
+        $fields = "vehicle_details.*,vehicle_type.vehicle_type_name,vehicle_fuel.vehicle_fuel_name,vehicle_brand.vehicle_brand_name,
+        bus_type.bus_type";
         $this->db->where('vehicle_details.is_deleted','no');
         $this->db->join("vehicle_type", 'vehicle_details.vehicle_type=vehicle_type.id','left');
         $this->db->join("vehicle_fuel", 'vehicle_details.fuel_type=vehicle_fuel.id','left');
         $this->db->join("vehicle_brand", 'vehicle_details.vehicle_brand=vehicle_brand.id','left');
+        $this->db->join("bus_type", 'vehicle_details.vehicle_bus_type=bus_type.id','left');
         $arr_data = $this->master_model->getRecords('vehicle_details',array('vehicle_details.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
