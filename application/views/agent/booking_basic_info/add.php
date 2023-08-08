@@ -228,7 +228,10 @@
                           <label>Boarding Office Location</label>
                           <select class="select_css" name="boarding_office_location" id="boarding_office_location">
                             <option value="">Select Boarding Office Location</option>
-                              
+                            <?php foreach($agent_data_office_address as $agent_data_office_address_value){ ?>   
+                                      <option value="<?php echo $agent_data_office_address_value['id'];?>" <?php if($agent_data_office_address_value['id']==$booking_basic_info_tour['boarding_office_location']){echo "selected";} ?>>
+                                      <?php echo $agent_data_office_address_value['booking_center'];?></option>
+                                    <?php } ?>
                           </select>
                         </div>
                       </div>
@@ -240,8 +243,9 @@
                               <label>Select Tours Date</label>
                                 <select class="select_css" name="tour_date" id="tour_date">
                                   <option value="">Select Tour Date</option>
-                                  <?php foreach($add_journey_date as $add_journey_date_value){ ?> 
-                                      
+                                  <?php foreach($arr_package_date as $arr_package_date_value){ ?>   
+                                      <option value="<?php echo $arr_package_date_value['id'];?>" <?php if($arr_package_date_value['id']==$booking_basic_info_tour['tour_date']){echo "selected";} ?>>
+                                      <?php echo $arr_package_date_value['journey_date'];?></option>
                                   <?php } ?>
                                 </select>
                             </div>

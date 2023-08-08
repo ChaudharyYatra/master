@@ -40,6 +40,7 @@
                   <tr>
                     <th>SN</th>
                     <th>Vehicle RTO Registration No.</th>
+                    <th>Vehicle Bus Type</th>
                     <th>Vehicle Name</th>
 				            <th>Vehicle Fuel</th>
                     <th>Vehicle Brand</th>
@@ -62,6 +63,7 @@
                   <tr>
                     <td><?php echo $i; ?></td>
 					          <td><?php echo $info['registration_number'] ?></td>
+					          <td><?php echo $info['bus_type'] ?></td>
 					          <td><?php echo $info['vehicle_type_name'] ?></td>
                     <td><?php echo $info['vehicle_fuel_name'] ?></td>
                     <td><?php echo $info['vehicle_brand_name'] ?></td>

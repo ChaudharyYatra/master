@@ -82,7 +82,7 @@
                 //{ 
             ?>
             <?php //if($info['for_credentials']=='yes'){?>
-                <!-- <input type="hidden" class="form-control" name="traveller_id" id="traveller_id" value="<?php //echo $info['id']; ?>"> -->
+                <!-- <input type="text" class="form-control" name="traveller_id" id="traveller_id" value="<?php //echo $info['id']; ?>"> -->
             <?php //} ?>
             <?php //} ?>
             <div class="row box-color">

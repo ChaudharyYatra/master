@@ -43,18 +43,19 @@ class Payment_receipt extends CI_Controller {
         $fields = "all_traveller_info.*,relation.relation";
         $this->db->where('all_traveller_info.is_deleted','no');
         $this->db->where('all_traveller_info.domestic_enquiry_id',$iid);
+        $this->db->where('all_traveller_info.for_credentials','yes');
         $this->db->join("relation", 'relation.id=all_traveller_info.all_traveller_relation','left');
-        $arr_data = $this->master_model->getRecords('all_traveller_info',array('all_traveller_info.is_deleted'=>'no'),$fields);
+        $arr_data = $this->master_model->getRecord('all_traveller_info',array('all_traveller_info.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
-
-        // $traveller_id = $this->input->post('traveller_id');
+        $traveller_id = $arr_data['id'];
+        
 
         $record = array();
         $fields = "final_booking.*,booking_payment_details.*,agent.agent_name,all_traveller_info.mr/mrs,all_traveller_info.first_name,
         all_traveller_info.middle_name,all_traveller_info.last_name,packages.tour_number,packages.tour_title,
         package_date.journey_date";
         $this->db->where('final_booking.is_deleted','no');
-        // $this->db->where('all_traveller_info.id',$traveller_id);
+        $this->db->where('booking_payment_details.traveller_id',$traveller_id);
         $this->db->join("booking_payment_details", 'final_booking.traveller_id=booking_payment_details.traveller_id','left');
         $this->db->join("agent", 'final_booking.agent_id=agent.id','left');
         $this->db->join("all_traveller_info", 'final_booking.traveller_id=all_traveller_info.id','left');
