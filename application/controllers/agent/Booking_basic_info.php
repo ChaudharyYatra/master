@@ -751,17 +751,31 @@ class Booking_basic_info extends CI_Controller {
         echo json_encode($all_b); 
     }
 
-    public function get_tourdate(){ 
-        // POST data 
-        // $all_b=array();
-       $boarding_office_location = $this->input->post('did');
-        // print_r($boarding_office_location); die;
-                        $this->db->where('is_deleted','no');
-                        $this->db->where('is_active','yes');
-                        $this->db->where('package_id',$boarding_office_location);
-                        $data = $this->master_model->getRecords('package_date');
-                        // print_r($data); die;
-        echo json_encode($data);
+    // public function get_tourdate(){ 
+    //     // POST data 
+    //     // $all_b=array();
+    //    $boarding_office_location = $this->input->post('did');
+    //     // print_r($boarding_office_location); die;
+    //                     $this->db->where('is_deleted','no');
+    //                     $this->db->where('is_active','yes');
+    //                     $this->db->where('package_id',$boarding_office_location);
+    //                     $data = $this->master_model->getRecords('package_date');
+    //                     // print_r($data); die;
+    //     echo json_encode($data);
+    // }
+
+    public function get_tourdate(){
+
+        $boarding_office_location = $this->input->post('did');
+                           $this->db->where('package_date.is_deleted','no');
+                           $this->db->where('package_date.is_active','yes');
+                           $this->db->where('package_date.package_id',$boarding_office_location);
+                           $this->db->join("bus_open", 'package_date.id=bus_open.package_date_id','right');
+                           $this->db->group_by('bus_open.package_date_id');
+                           $data = $this->master_model->getRecords('package_date');
+                            
+   
+           echo json_encode($data);
     }
 
     public function get_hotel_type(){ 

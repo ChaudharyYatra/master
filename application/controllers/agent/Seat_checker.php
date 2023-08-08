@@ -32,9 +32,17 @@ class Seat_checker extends CI_Controller {
        $agent_sess_name = $this->session->userdata('agent_name');
        $id = $this->session->userdata('agent_sess_id');
 
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
+        // $this->db->where('is_deleted','no');
+        // $this->db->where('is_active','yes');
+        // $this->db->order_by('tour_number','ASC');
+        // $packages_data_booking = $this->master_model->getRecords('packages');
+
+        $fields = "packages.*,bus_open.package_id,packages.id as package_id";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
         $this->db->order_by('tour_number','ASC');
+        $this->db->group_by('bus_open.package_id');
+        $this->db->join("bus_open", 'packages.id=bus_open.package_id','right');
         $packages_data_booking = $this->master_model->getRecords('packages');
 
         $this->db->order_by('id','desc');

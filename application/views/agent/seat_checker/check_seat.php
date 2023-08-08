@@ -65,14 +65,14 @@
                       <input type="hidden" class="form-control" name="domestic_enquiry_id" id="domestic_enquiry_id" value="<?php echo $agent_booking_enquiry_data_info['id']; ?>">
                       <?php } ?>
                       <div class="col-md-4">
-                        <div class="form-group">
-                          <label>Select Tour</label>
-                            <select class="select_css" name="pack_id" id="pack_id">
-                              <option value="">Select Package</option>
-                                <?php foreach($packages_data_booking as $packages_data_booking){ ?>  
-                                  <option value="<?php echo $packages_data_booking['id'];?>"><?php echo $packages_data_booking['tour_title'];?></option>
-                                <?php } ?>
-                            </select>
+                      <div class="form-group">
+                        <label>Select Tour</label>
+                          <select class="select_css" name="pack_id" id="pack_id">
+                            <option value="">Select Package</option>
+                              <?php foreach($packages_data_booking as $packages_data_booking){ ?>  
+                                <option value="<?php echo $packages_data_booking['package_id'];?>"><?php echo $packages_data_booking['tour_title'];?></option>
+                              <?php } ?>
+                          </select>
                         </div>
                       </div>
 
