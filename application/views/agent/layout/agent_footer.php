@@ -5242,11 +5242,11 @@ function validate() {
         }
 }
 
-    $("#select_transaction").click(function() {
-        if($("select").val() == '')
-        $("#submit_otp").prop( "disabled", true);
-        else $("#submit_otp").prop( "disabled", false);
-    });
+    // $("#select_transaction").click(function() {
+    //     if($("select").val() == '')
+    //     $("#submit_otp").prop( "disabled", true);
+    //     else $("#submit_otp").prop( "disabled", false);
+    // });
 
 
 function checkEmpty(obj) {
