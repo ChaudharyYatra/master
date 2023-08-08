@@ -5235,25 +5235,18 @@ function validate() {
     
   var valid = true;
   valid = checkEmpty($("#booking_tm_mobile_no")) && checkEmpty($("#booking_amt")) ;
-
-  $("#select_transaction").click(function() {
-        if($("select").val() == '' && valid =='')
-        $("#submit_otp").prop( "disabled", true);
-        else 
-        $("#submit_otp").prop( "disabled", false);
-    });
-
-//   $("#submit_otp").attr("disabled", true);
-//   if (valid) {
-//     $("#submit_otp").attr("disabled", false);
-//   }
+   
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
 }
 
-    // $("#select_transaction").click(function() {
-    //     if($("select").val() == '')
-    //     $("#submit_otp").prop( "disabled", true);
-    //     else $("#submit_otp").prop( "disabled", false);
-    // });
+    $("#select_transaction").click(function() {
+        if($("select").val() == '')
+        $("#submit_otp").prop( "disabled", true);
+        else $("#submit_otp").prop( "disabled", false);
+    });
 
 
 function checkEmpty(obj) {
