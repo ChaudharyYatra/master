@@ -378,7 +378,7 @@ $(document).ready(function () {
                  unit: 'px',  
                  format: 'a4'  
              });  
-            doc.addImage(img, 'JPEG', -15, -35, -100, -110);  
+            doc.addImage(img, 'JPEG', -15, 0, -100, -110);  
             doc.save('Choudhary Yatra Payment Receipt.pdf');  
             form.width(cache_width);  
         });  
