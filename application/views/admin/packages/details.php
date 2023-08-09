@@ -92,8 +92,11 @@
                     <a class="nav-link" id="custom-tabs-one-terms_conditions-tab" data-toggle="pill" href="#custom-tabs-one-terms_conditions" role="tab" aria-controls="custom-tabs-one-terms_conditions" aria-selected="false">Terms and Conditions</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-contact_us-tab" data-toggle="pill" href="#custom-tabs-one-contact_us" role="tab" aria-controls="custom-tabs-one-contact_us" aria-selected="false">Contact Us</a>
+                    <a class="nav-link" id="custom-tabs-one-terms_conditions-tab" data-toggle="pill" href="#custom-tabs-one-itinerary" role="tab" aria-controls="custom-tabs-one-terms_itinerary" aria-selected="false">Upload Itinerary PDF</a>
                   </li>
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-contact_us-tab" data-toggle="pill" href="#custom-tabs-one-contact_us" role="tab" aria-controls="custom-tabs-one-contact_us" aria-selected="false">Contact Us</a>
+                  </li> -->
                 </ul>
               </div>
 
@@ -104,14 +107,30 @@
                   </div>
                  
                   <div class="tab-pane fade" id="custom-tabs-one-inclusion" role="tabpanel" aria-labelledby="custom-tabs-one-inclusion-tab">
-                    <?php echo $info['inclusion']; ?>
+                    <!-- <?php //echo $info['inclusion']; ?> -->
+                    <?php if(!empty($info['inclusion_img'])){ ?>
+                                      <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $info['inclusion_img']; ?>" width="30%">
+                                      <input type="hidden" name="old_inclusion_name" id="old_inclusion_name" value="<?php echo $info['inclusion_img']; ?>" required="required">
+                                      <?php } ?>
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-terms_conditions" role="tabpanel" aria-labelledby="custom-tabs-one-terms_conditions-tab">
-                    <?php echo $info['terms_conditions']; ?>
+                    <!-- <?php //echo $info['terms_conditions']; ?> -->
+                    <?php if(!empty($info['tc_img'])){ ?>
+                                      <img src="<?php echo base_url(); ?>uploads/tc_img/<?php echo $info['tc_img']; ?>" width="30%">
+                                      <input type="hidden" name="old_tc_name" id="old_tc_name" value="<?php echo $info['tc_img']; ?>" required="required">
+                                      <?php } ?>
                   </div>
-                  <div class="tab-pane fade" id="custom-tabs-one-contact_us" role="tabpanel" aria-labelledby="custom-tabs-one-short_contact_us-tab">
-                    <?php echo $info['contact_us']; ?>
+
+                  <div class="tab-pane fade" id="custom-tabs-one-itinerary" role="tabpanel" aria-labelledby="custom-tabs-one-terms_itinerary-tab">
+                    <!-- <?php //echo $info['terms_conditions']; ?> -->
+                    <?php if(!empty($info['pdf_name'])){ ?>
+                              <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/package_daywise_program/<?php echo $info['pdf_name']; ?>">Download</a>
+                                      <input type="hidden" name="old_pdf_name" id="old_pdf_name" value="<?php if(!empty($info['pdf_name'])){echo $info['pdf_name'];}?>">
+                                      <?php } ?>
                   </div>
+                  <!-- <div class="tab-pane fade" id="custom-tabs-one-contact_us" role="tabpanel" aria-labelledby="custom-tabs-one-short_contact_us-tab">
+                    <?php //echo $info['contact_us']; ?>
+                  </div> -->
 
                 </div>
               </div>
