@@ -860,19 +860,16 @@ class Packages extends CI_Controller{
 
                 
                 $academic_year  = $this->input->post('academic_year'); 
-                // $tour_number        = trim($this->input->post('tour_number'));
+                $tour_number        = trim($this->input->post('tour_number'));
                 $tour_title        = trim($this->input->post('tour_title'));
                 $destinations = trim($this->input->post('destinations'));
                 $rating = trim($this->input->post('rating'));
                 $cost = trim($this->input->post('cost'));
                 $tour_number_of_days = trim($this->input->post('tour_number_of_days'));
                 $short_description = trim($this->input->post('short_description'));
-                $full_description = trim($this->input->post('full_description'));               
-                //$inclusion = trim($this->input->post('inclusion'));
-                //$terms_conditions = trim($this->input->post('terms_conditions'));
-                //$contact_us = trim($this->input->post('contact_us'));
+                $full_description = trim($this->input->post('full_description'));      
                 $boarding_office = implode(",", $this->input->post('boarding_office'));
-                // $package_type = trim($this->input->post('package_type'));
+                $package_type = trim($this->input->post('package_type'));
                 $hotel_type = trim($this->input->post('hotel_type'));
                 $zone_name = trim($this->input->post('zone_name'));
                 $from_date = trim($this->input->post('from_date'));
@@ -881,7 +878,7 @@ class Packages extends CI_Controller{
 
                 $arr_update = array(
                     'academic_year'   =>   $academic_year,
-                    // 'tour_number'          => $tour_number,
+                    'tour_number'          => $tour_number,
                     'tour_title'          => $tour_title,
                     'destinations'          => $destinations,
                     'rating'          => $rating,
@@ -889,15 +886,13 @@ class Packages extends CI_Controller{
                     'tour_number_of_days'          => $tour_number_of_days,
                     'short_description'        => $short_description,
                     'full_description'        => $full_description,                    
-                    'inclusion'        => $inclusion_img_filename,
+                    'inclusion_img'        => $inclusion_img_filename,
                     'tc_img'        => $tc_img_filename,
-                    //'terms_conditions'        => $terms_conditions,
-                    //'contact_us'        => $contact_us,
                     'image_name'    => $filename,
                     'pdf_name'    => $pdf_filename,
                     'package_full_image'    => $new_img_filename,
                     'boarding_office'             => $boarding_office,
-                    // 'package_type'             => $package_type,
+                    'package_type'             => $package_type,
                     'hotel_type'             => $hotel_type,
                     'zone_name'  => $zone_name,
                     'from_date'             => $from_date,

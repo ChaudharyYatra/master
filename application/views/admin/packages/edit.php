@@ -268,8 +268,8 @@
                           <div class="form-group">
                             <label>Uploaded Image</label><br>
                             <?php if(!empty($info['inclusion_img'])){ ?>
-                                      <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $info['inclusion']; ?>" width="50%">
-                                      <input type="hidden" name="old_inclusion_name" id="old_inclusion_name" value="<?php echo $info['inclusion']; ?>" required="required">
+                                      <img src="<?php echo base_url(); ?>uploads/inclusion_img/<?php echo $info['inclusion_img']; ?>" width="50%">
+                                      <input type="hidden" name="old_inclusion_name" id="old_inclusion_name" value="<?php echo $info['inclusion_img']; ?>" required="required">
                                       <?php } ?>
                           </div>
                       </div>
