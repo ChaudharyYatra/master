@@ -84,6 +84,7 @@
                               <div class="form-group">
                                 <label>Tour Number</label>
                                 <input type="text" class="form-control" name="tour_number" id="tour_number" placeholder="Enter Tour Number" oninput="this.value = this.value.replace(/[^0-9a-zA-Z]/g, '').replace(/(\..*)\./g, '$1');" required="required" value="<?php echo $info['tour_number']; ?>">
+                                <input type="hidden" class="form-control" name="original_tour_number" id="original_tour_number" placeholder="Enter Tour Number" value="<?php echo $info['tour_number']; ?>">
                               </div>
                       </div>
                       <div class="col-md-6">

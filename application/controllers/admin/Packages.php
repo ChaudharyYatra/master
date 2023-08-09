@@ -557,9 +557,11 @@ class Packages extends CI_Controller{
                 // $this->form_validation->set_rules('image_name','Package Image', 'callback_handle_upload[edit]');
                 if($this->form_validation->run() == TRUE)
                 {
+                    $original_tour_number=$this->input->post('original_tour_number');
+
                     $this->db->where('is_active','yes');
                     $tourNo_check = $this->master_model->getRecords('packages',array('is_deleted'=>'no','tour_number'=>trim($this->input->post('tour_number')),'package_type'=>trim($this->input->post('package_type'))));
-                    if(count($tourNo_check)==0){
+                    if(count($tourNo_check)==0 || $original_tour_number==$this->input->post('tour_number')){
 
                 //  print_r($_REQUEST);
                 //  echo 'aaaaaaaaaaaaaa';
