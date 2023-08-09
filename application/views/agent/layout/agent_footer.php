@@ -4732,7 +4732,10 @@ $("#pending_amt").val($("#final_amt").val() - val);
 	var upi_no=document.getElementById('upi_no');
 
     var mob_no_div=document.getElementById('cheque_tr');
-	var mob_no=document.getElementById('cheque');
+	// var mob_no=document.getElementById('cheque');
+
+    // var mob_no_one=document.getElementById('cheque_bank');
+	// var mob_no_bank=document.getElementById('bank_name');
 
     var cash_no_div=document.getElementById('cash_tr');
 	var cash_no=document.getElementById('cash');
@@ -4754,6 +4757,7 @@ $("#pending_amt").val($("#final_amt").val() - val);
         upi_no_div.style.display='none';
         cash_no_div.style.display='none';
         mob_no_div.style.display='contents';
+        mob_no_one.style.display='contents';
     }else if(val=='CASH'){
         element.style.display='none';
         upi_no_div.style.display='none';
@@ -5033,11 +5037,14 @@ $(document).ready(function() {
         // alert('hiiiiiiiiiii');
         var mobile_no = $('#booking_tm_mobile_no').val();  
         var final_amt = $('#final_amt').val();
+        var payment_type = $('#payment_type').val();
         var booking_amt = $('#booking_amt').val(); 
         var pending_amt = $('#pending_amt').val();
 
         var upi_no = $('#upi_no').val();
         var cheque = $('#cheque').val();
+        var bank_name = $('#bank_name').val();
+        var drawn_on_date = $('#drawn_on_date').val();
         var net_banking = $('#net_banking').val();
 
         var select_transaction =($('#select_transaction :selected').val());
@@ -5079,10 +5086,13 @@ $(document).ready(function() {
                     traveller_id: traveller_id,
                     booking_amt: booking_amt,
                     final_amt: final_amt,
+                    payment_type: payment_type,
                     mobile_no: mobile_no,
                     pending_amt: pending_amt,
                     upi_no: upi_no,
                     cheque: cheque,
+                    bank_name: bank_name,
+                    drawn_on_date: drawn_on_date,
                     net_banking: net_banking,
                     select_transaction: select_transaction,
                     cash_2000: cash_2000,
@@ -5699,4 +5709,22 @@ function initializeValidation() {
             }, 
         }); 
     } 
+</script>
+
+<!-- ------------------------ -->
+
+<script type="text/javascript">
+function empty() {
+    var x = document.getElementById("followup_date").value;
+    // var y = document.getElementById("checkout").value;
+    // alert(x); 
+
+    if (x === "") {
+        confirm('Are You Sure You Want To Insert This Record Without Followup Date?');
+        return false;
+    };
+
+    return true;
+
+}
 </script>

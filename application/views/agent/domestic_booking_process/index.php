@@ -73,7 +73,8 @@
 
                     
                     <td>
-                        <a href="<?php echo $module_url_path_booking_basic_info;?>/add/<?php echo $info['id']; ?>">View Booking</a>
+                    <a href="<?php echo base_url(); ?>agent/seat_checker/index/<?php echo $enq_id; ?>">View Booking</a>
+                        <!-- <a href="<?php //echo $module_url_path_booking_basic_info;?>/add/<?php //echo $info['id']; ?>">View Booking</a> -->
                     </td>
                     
                     <!-- <td>

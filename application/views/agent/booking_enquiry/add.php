@@ -132,13 +132,13 @@
                             </div>
                             <div class="col-md-6 mb-2">
                               <label class="col-form-label">Followup Date:</label> 
-                              <input type="date" class="form-control" name="followup_date" id="followup_date" min="<?php echo date("Y-m-d"); ?>" >
+                              <input type="date" class="form-control" name="followup_date" id="followup_date" min="<?php echo date("Y-m-d"); ?>">
                             </div>
                       
               </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button>
+                  <button type="submit" class="btn btn-primary" name="submit" value="submit" onclick="empty()">Save & Close</button>
                   <!-- <button type="submit" class="btn btn-success" name="booknow_submit" value="Book Now">Submit & Proceed</button>  -->
                   <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>

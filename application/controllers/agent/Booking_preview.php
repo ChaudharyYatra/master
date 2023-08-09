@@ -104,11 +104,14 @@ class Booking_preview extends CI_Controller {
 
             $booking_amt = $this->input->post('booking_amt');
             $final_amt = $this->input->post('final_amt');
+            $payment_type = $this->input->post('payment_type');
             $mobile_no = $this->input->post('mobile_no');
             $pending_amt = $this->input->post('pending_amt');
             $select_transaction = $this->input->post('select_transaction');
             $upi_no = $this->input->post('upi_no');
             $cheque = $this->input->post('cheque');
+            $bank_name = $this->input->post('bank_name');
+            $drawn_on_date = $this->input->post('drawn_on_date');
             $net_banking = $this->input->post('net_banking');
             $cash_2000 = $this->input->post('cash_2000');
             $total_cash_2000 = $this->input->post('total_cash_2000');
@@ -195,12 +198,15 @@ class Booking_preview extends CI_Controller {
                 $arr_insert = array(
                     'booking_reference_no'  =>  $booking_reference_no,
                     'final_amt'   =>   $final_amt,
+                    'payment_type'   =>   $payment_type,
                     'booking_amt'   =>   $booking_amt,
                     'pending_amt'   =>   $pending_amt,
                     'booking_tm_mobile_no'   =>   $mobile_no,
                     'select_transaction'   =>   $select_transaction,
                     'upi_no'   =>   $upi_no,
                     'cheque'   =>   $cheque,
+                    'bank_name'   =>   $bank_name,
+                    'drawn_on_date'   =>   $drawn_on_date,
                     'net_banking'   =>   $net_banking,
 
                     'package_date_id' => $package_date_id,

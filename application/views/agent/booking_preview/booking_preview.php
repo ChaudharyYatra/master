@@ -3,7 +3,7 @@
     text-decoration: none !important;
     }
     .cash_payment_div{
-        border: 1px solid #DEE2E6;
+        border: 1px solid red;
         padding: 10px;
     }
 </style>
@@ -525,6 +525,14 @@
                                 </tr>
 
                                 <tr>
+                                    <th>Payemnt Type</th>
+                                    <td>&nbsp;&nbsp;<input type="radio" name="payment_type" id="payment_type" value="Advance">&nbsp;&nbsp;Advance
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="payment_type" id="payment_type" value="Part">&nbsp;&nbsp;Part
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="payment_type" id="payment_type" value="Full">&nbsp;&nbsp;Full</td>
+                                    
+                                </tr>
+
+                                <tr>
                                     <th>Booking Amount</th>
                                     <td>
                                     <input type="text" class="form-control" name="booking_amt" id="booking_amt" placeholder="Enter booking amount" required>
@@ -559,13 +567,7 @@
                                         <input type="text" class="form-control" name="upi_no" id="upi_no" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                     </td>
                                 </tr>
-                                <tr id="cheque_tr" style='display:none;'>
-                                    
-                                    <th>Cheque Number</th>
-                                    <td>
-                                        <input type="text" class="form-control" name="cheque" id="cheque" placeholder="Enter Cheque Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
-                                    </td>
-                                </tr>
+                                
                                 <tr id="net_banking_tr" style='display:none;'>
                                     
                                     <th>Net Banking Transaction Number</th>
@@ -575,6 +577,31 @@
                                 </tr>
 
                             </table>
+
+                            <div class="" id="cheque_tr" style='display:none;'>
+                                <div class="row cash_payment_div">
+                                    <div class="col-md-6 mt-1">
+                                        <h6 class="text-center">Cheque Number</h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="cheque" id="cheque" placeholder="Enter Cheque Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                    </div>
+
+                                    <div class="col-md-6 mt-2">
+                                        <h6 class="text-center">Bank Name</h6>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <input type="text" class="form-control" name="bank_name" id="bank_name" placeholder="Enter Bank Name">
+                                    </div>
+
+                                    <div class="col-md-6 mt-2">
+                                        <h6 class="text-center">Drawn On Date</h6>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <input type="date" class="form-control" name="drawn_on_date" id="drawn_on_date" placeholder="Select Date">
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row cash_payment_div" id="cash_tr" style='display:none;'>
 
@@ -690,12 +717,14 @@
                                     </div>
                                 
                             </div>
-
                         </div>
+
                         <div class="col-md-3">
 
                         </div>
                     </div>
+
+
                     
                 </div>
 

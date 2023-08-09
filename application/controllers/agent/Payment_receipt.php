@@ -53,7 +53,7 @@ class Payment_receipt extends CI_Controller {
         $record = array();
         $fields = "final_booking.*,booking_payment_details.*,agent.agent_name,all_traveller_info.mr/mrs,all_traveller_info.first_name,
         all_traveller_info.middle_name,all_traveller_info.last_name,packages.tour_number,packages.tour_title,
-        package_date.journey_date";
+        package_date.journey_date,booking_payment_details.id as booking_payement_id";
         $this->db->where('final_booking.is_deleted','no');
         $this->db->where('booking_payment_details.traveller_id',$traveller_id);
         $this->db->join("booking_payment_details", 'final_booking.traveller_id=booking_payment_details.traveller_id','left');
@@ -62,7 +62,7 @@ class Payment_receipt extends CI_Controller {
         $this->db->join("packages", 'final_booking.package_id=packages.id','left');
         $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','left');
         $payment_receipt = $this->master_model->getRecord('final_booking',array('final_booking.is_deleted'=>'no'),$fields);
-        // print_r($payment_receipt); die;
+        // print_r($payment_receipt); die;  
 
         $payment_rupee = $payment_receipt['booking_amt'];
         $pay= $this->getIndianCurrency($payment_rupee);

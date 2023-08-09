@@ -115,10 +115,10 @@
                 
                 <div class="row mt-3">
                     <div class="col-md-2">
-                        <h6 class="ml-5">Code No. </h6>  
+                        <h6 class="ml-5">Receipt No. </h6>  
                     </div>
                     <div class="col-md-2">
-                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['booking_reference_no']; ?>">
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['booking_payement_id']; ?>">
                     </div>
                     <div class="col-md-1">
                         <h6>given by </h6>
@@ -147,34 +147,52 @@
                         <input type="text" style='text-transform:capitalize' readonly class="form-control input_css" name="payment_rupee" id="payment_rupee" value="<?php echo $pay; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                     </div>
                     <div class="col-md-5 mt-3">
-                        <h6 class="mr-5">as Advance / Part / Full Payment of Choudhary</h6>
+                        <h6 class="mr-5">as  <?php echo $payment_receipt['payment_type']; ?>  Payment of Choudhary</h6>
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <h6 class="ml-5">Yatra Co Pvt. Ltd. By QR Code/Cash/cheque/D.D.No.</h6>  
                     </div>
                     <div class="col-md-6 mt-3">
-                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['select_transaction']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <?php if($payment_receipt['select_transaction'] == 'Cheque'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['select_transaction']; ?> - <?php echo $payment_receipt['cheque']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <?php } ?>
+
+                        <?php if($payment_receipt['select_transaction'] == 'UPI'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['select_transaction']; ?> - <?php echo $payment_receipt['upi_no']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <?php } ?>
+
+                        <?php if($payment_receipt['select_transaction'] == 'Net Banking'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['select_transaction']; ?> - <?php echo $payment_receipt['net_banking']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <?php } ?>
                     </div>
 
                     <div class="col-md-2 mt-3">
                         <h6 class="ml-5">Drawn on </h6>  
                     </div>
                     <div class="col-md-2 mt-3">
-                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    <?php if($payment_receipt['select_transaction'] == 'Cheque'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo date("d-m-Y",strtotime($payment_receipt['drawn_on_date'])); ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    <?php }else{?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="-" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    <?php } ?>
                     </div>
                     <div class="col-md-1 mt-3">
                         <h6>Bank</h6>  
                     </div>
                     <div class="col-md-7 mt-3">
-                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    <?php if($payment_receipt['select_transaction'] == 'Cheque'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['bank_name']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    <?php }else{?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="-" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    <?php } ?>
                     </div>
 
                     <div class="col-md-3 mt-3">
                         <h6 class="ml-5">against SBA/BBA No.</h6>  
                     </div>
                     <div class="col-md-2 mt-3">
-                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['booking_reference_no']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                     </div>
                     <div class="col-md-1 mt-3">
                         <h6>Tour No.</h6>  
