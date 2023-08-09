@@ -52,6 +52,7 @@
                 </table>
                 <?php } ?>
               </div>
+
               <!-- /.card-header -->
               <?php
                    foreach($agent_department as $agent_department_info) 
