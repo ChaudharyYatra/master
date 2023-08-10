@@ -44,6 +44,7 @@
     border: 2px solid #e50000e8 !important;
     border-radius: 5px;
     width: 100%;
+    margin-top:50px !important;
   }
   .input_css{
     height:30px;
@@ -57,6 +58,14 @@
 .form{
     width: 100%;
 }
+</style>
+
+<style>
+    @media print {
+        .h-color{
+            color:green !important;
+        }
+    }
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -78,21 +87,14 @@
     </section>
 
     <!-- Main content -->
-    <div id="invoice">
+    <div id="invoicee">
     <section class="section-css">
-        <div class="container border form">
-            <?php  
-                //foreach($arr_data as $info) 
-                //{ 
-            ?>
-            <?php //if($info['for_credentials']=='yes'){?>
-                <!-- <input type="text" class="form-control" name="traveller_id" id="traveller_id" value="<?php //echo $info['id']; ?>"> -->
-            <?php //} ?>
-            <?php //} ?>
-            <div class="row box-color">
+        <div class="container form" id="invoice">
+          
+            <div class="row border box-color">
                 <div class="col-md-12">
                     <div class="mt-4">
-                        <h2 class="h-color">CHOUDHARY YATRA COMPANY PVT.LTD.</h2>
+                        <h5 class="h-color">CHOUDHARY YATRA COMPANY PVT.LTD.</h5>
                         <p class="text-center"><b>Reg No.</b> 17-88888888  <b>Corp.Office :</b>Tirupatil Apt. Nandini Nadi Road, Nr. Gaikwad Sabhagruh, Bhabha Nagar, Nashik Mo.7588 48 48 48</p>
                         <hr>
                     </div>
@@ -356,7 +358,8 @@
             <!-- <?php //} ?> -->
         </div>
         <div class="card-footer">
-        <input type="button" id="create_pdf" value="Generate PDF">  
+        <!-- <input type="button" id="create_pdf" value="Generate PDF">  -->
+        <button class="btn btn-primary" id="download"> download pdf</button> 
             <a href="<?php echo $domestic_final_booking;?>/index"><button type="submit" class="btn btn-success float-right" name="submit" value="submit">Final Submit</button> 
             <!-- <button class="btn btn-success" onclick="generatePDF()">Generate Invoice</button> -->
         </div>
@@ -375,11 +378,12 @@
     }
 </script> -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>  
 <script>
 $(document).ready(function () {  
     var form = $('.form'),  
+
     cache_width = form.width(),  
     a4 = [595.28, 842.89]; // for a4 size paper width and height  
 
@@ -393,23 +397,46 @@ $(document).ready(function () {
             var  
              img = canvas.toDataURL("image/png"),  
              doc = new jsPDF({  
+                orientation: 'landscape',
                  unit: 'px',  
                  format: 'a4'  
              });  
-            doc.addImage(img, 'JPEG', -15, 0, -100, -110);  
+            doc.addImage(img, 'JPEG', 20, 20);  
             doc.save('Choudhary Yatra Payment Receipt.pdf');  
             form.width(cache_width);  
         });  
     }  
       
     function getCanvas() {  
-        form.width((a4[0] * 1.33333) - 8).css('max-width', 'none');  
+        form.width((a4[0] * 1.33333)).css('max-width', 'none');  
+
         return html2canvas(form, {  
             imageTimeout: 2000,  
-            removeContainer: false  
+            removeContainer: true  
         });  
     }
 });
+</script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+<script>
+    window.onload = function () {
+    document.getElementById("download")
+        .addEventListener("click", () => {
+            const invoice = this.document.getElementById("invoice");
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: 1,
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 1 },
+                jsPDF: { unit: 'cm', format: 'a4', orientation: 'landscape' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+}
 </script>
 
 </body>
