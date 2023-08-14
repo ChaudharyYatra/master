@@ -1275,72 +1275,136 @@ class Seat_type_room_type extends CI_Controller {
 
         $bus_info = $this->master_model->getRecord('bus_open',array('bus_open.is_deleted'=>'no'),$fields);
 
+       
+
+
 
         $pack_id=$bus_info['package_id'];
+
         $pack_date_id=$bus_info['tour_date'];
 
 
 
         $fields = "bus_seat_book.seat_orignal_id";
+
         $this->db->where('bus_seat_book.package_id',$pack_id);
+
         $this->db->where('bus_seat_book.is_book','yes');
+
         $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
+
         $booked_seats_data = $this->master_model->getRecords('bus_seat_book','',$fields);
 
         $final_booked_data=array();
+
         foreach($booked_seats_data as $booked_data){
+
             array_push($final_booked_data, $booked_data['seat_orignal_id']);
+
         }
 
 
 
         $fields = "bus_seat_book.seat_orignal_id";
+
         $this->db->where('bus_seat_book.package_id',$pack_id);
+
         $this->db->where('bus_seat_book.enquiry_id',$iid);
+
         $this->db->where('bus_seat_book.agent_id',$id);
+
         $this->db->where('bus_seat_book.is_book','no');
+
         $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
+
         $temp_booked_seats_data = $this->master_model->getRecords('bus_seat_book','',$fields);
+
         $temp_booking_data=array();
 
         foreach($temp_booked_seats_data as $temp_booked_data){
+
             array_push($temp_booking_data, $temp_booked_data['seat_orignal_id']);
+
         }
 
+
+
+        // print_r($temp_booking_data);
+
+        // die;
+
+
+
         $fields = "bus_seat_book.*";
+
         $this->db->where('bus_seat_book.package_id',$pack_id);
+
         $this->db->where('bus_seat_book.agent_id',$id);
+
         $this->db->where('bus_seat_book.is_book','no');
+
         $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
+
         $cart_temp_booked_seats_data = $this->master_model->getRecords('bus_seat_book','',$fields);
 
         $cart_temp_booking_data=array();
+
         foreach($cart_temp_booked_seats_data as $cart_temp_booked_data){
+
             array_push($cart_temp_booking_data, $cart_temp_booked_data['seat_orignal_id']);
+
         }
 
 
 
         $fields = "bus_seat_book.seat_orignal_id";
+
         $this->db->where('bus_seat_book.package_id',$pack_id);
+
         $this->db->where('bus_seat_book.agent_id !=',$id);
+
         $this->db->where('bus_seat_book.is_book','no');
+
         $this->db->where('bus_seat_book.is_hold','yes');
+
         $this->db->where('bus_seat_book.tour_dates',$pack_date_id);
+
         $temp_hold_seats_data = $this->master_model->getRecords('bus_seat_book','',$fields);
 
         $temp_hold_data=array();
+
         foreach($temp_hold_seats_data as $seat_temp_hold_data){
+
             array_push($temp_hold_data, $seat_temp_hold_data['seat_orignal_id']);
+
         }
 
+        // print_r($temp_hold_data);
+
+        // die;
+
+     
+
+     
+
         $record = array();
+
         $fields = "booking_basic_info.*,packages.id,packages.tour_title,packages.tour_number,packages.tour_number,package_date.journey_date";
+
         $this->db->where('booking_basic_info.is_deleted','no');
+
+        // $this->db->where('booking_basic_info.is_book','no');
+
         $this->db->where('domestic_enquiry_id',$iid);
+
         $this->db->join("packages", 'packages.id=booking_basic_info.tour_no','left');
+
         $this->db->join("package_date", 'package_date.id=booking_basic_info.tour_date','left');
+
         $traveller_booking_info = $this->master_model->getRecords('booking_basic_info',array('booking_basic_info.is_deleted'=>'no'),$fields);
+
+
+
 
 
         if($this->input->post('booknow_submit'))
@@ -1524,55 +1588,105 @@ class Seat_type_room_type extends CI_Controller {
      {  
 
         $agent_sess_name = $this->session->userdata('agent_name');
+
         $id=$this->session->userdata('agent_sess_id');
+
+
 
         $package_id_data  = $this->input->post('package_id');
 
         // print_r($_REQUEST);
+
         // die;
 
+
+
         if($package_id_data!='')
+
         {
+
                 $package_id  = $this->input->post('package_id');
+
                 $enq_id  = $this->input->post('enq_id');
+
                 $selected_seat  = $this->input->post('selected_seat');
+
                 $seat_type  = $this->input->post('seat_type');
+
                 $seat_price  = $this->input->post('seat_price');
+
                 $tour_dates  = $this->input->post('tour_dates');
+
                 $seat_orignal_id  = $this->input->post('seat_orignal_id');
+
                 $btn_class  = $this->input->post('btn_class');
 
+
+
                 $fields = "bus_seat_book.seat_orignal_id";
+
                 $this->db->where('bus_seat_book.package_id',$package_id);
+
                 $this->db->where('bus_seat_book.agent_id',$id);
+
                 $this->db->where('bus_seat_book.is_book','no');
+
                 $this->db->where('bus_seat_book.is_hold','yes');
+
                 $this->db->where('bus_seat_book.tour_dates',$tour_dates);
+
                 $temp_hold = $this->master_model->getRecords('bus_seat_book','',$fields);
 
+
+
                 if(in_array("available", $btn_class)){
+
                     $arr_where     = array("enquiry_id" => $enq_id,'package_id'=>$package_id,'tour_dates'=>$tour_dates,
+
                     'seat_orignal_id'=>$seat_orignal_id);
+
                     $this->master_model->deleteRecord('bus_seat_book',$arr_where);
+
                 }else{
+
+
+
                      $arr_insert = array(
+
                         'package_id' =>    $package_id,
+
                         'enquiry_id'     =>    $enq_id,
+
                         'tour_dates'     =>    $tour_dates,
+
                         'seat_id'    =>    $selected_seat,
+
                         'seat_type'    =>    $seat_type,  
+
                         'seat_price'    =>    $seat_price,  
+
                         'seat_orignal_id'    =>    $seat_orignal_id,  
+
                         'agent_id' => $id,
+
                         'is_hold'=>'yes',
+
                         'is_book'    =>  'no',
+
                         'booking_reference_no'=>''
+
                      );
 
                      $result = $this->master_model->insertRecord('bus_seat_book',$arr_insert);  
+
                     echo json_encode($result);
+
                }
+
         }
+
+   
+
      }
 
 

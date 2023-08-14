@@ -310,6 +310,13 @@
                   <p>Bus Type</p>
                 </a>
                </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/special_req_master/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Special Request Master</p>
+                </a>
+               </li>
+
             </ul>
           </li>
           

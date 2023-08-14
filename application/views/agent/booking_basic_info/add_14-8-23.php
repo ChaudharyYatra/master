@@ -200,48 +200,57 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Select Tour</label>
-                              <input type="text" class="form-control" name="tour_no_new" id="tour_no_new" placeholder="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['tour_number'] .'-'. $packages_data_booking['tour_title'];}?>" value="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['tour_number'] .'-'. $packages_data_booking['tour_title'];}?>" readonly>
-                              <input type="hidden" class="form-control" name="tour_no" id="tour_no" placeholder="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['tour_number'] .'-'. $packages_data_booking['tour_title'];}?>" value="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['id'];}?>" readonly>
+                                <select class="select_css" name="tour_no" id="tour_no">
+                                  <option value="">Select Tour</option>
+                                    <?php foreach($packages_data_booking as $packages_data_booking_value){ ?>  
+                                      <option value="<?php echo $packages_data_booking_value['id'];?>" <?php if($packages_data_booking_value['id']==$booking_basic_info_tour['tour_no']){echo "selected";} ?>>
+                                      <?php echo $packages_data_booking_value['tour_number'];?>   -  <?php echo $packages_data_booking_value['tour_title'];?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                           </div>
                         <?php } else {?>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Select Tour</label>
-                              <input type="text" class="form-control" name="tour_no_new" id="tour_no_new" placeholder="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['tour_number'] .'-'. $packages_data_booking['tour_title'];}?>" value="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['tour_number'] .'-'. $packages_data_booking['tour_title'];}?>" readonly>
-                              <input type="hidden" class="form-control" name="tour_no" id="tour_no" placeholder="" value="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['id'];}?>" readonly>
-
+                                <select class="select_css" name="tour_no" id="tour_no">
+                                  <option value="">Select Tour</option>
+                                    <?php foreach($packages_data_booking as $packages_data_booking_value){ ?>  
+                                      <option value="<?php echo $packages_data_booking_value['id'];?>" <?php if($packages_data_booking_value['id']==$package_agent_booking_enquiry_data['package_id']){echo "selected";} ?>>
+                                      <?php echo $packages_data_booking_value['tour_number'];?>   -  <?php echo $packages_data_booking_value['tour_title'];?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                           </div>
                         <?php } ?>
 
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Select Tours Date</label>
-                              <input type="text" class="form-control" name="tour_date_new" id="tour_date_new" placeholder="" value="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['journey_date'];}?>" readonly>
-                              <input type="hidden" class="form-control" name="tour_date" id="tour_date" placeholder="" value="<?php if(!empty($packages_data_booking)){ echo $packages_data_booking['p_date_id'];}?>" readonly>
-                            </div>
-                          </div>
-                     
-                      
-                      <div class="col-md-12">
-                        <div class="row">
-
-                        <div class="col-md-6">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label>Boarding Office Location</label>
                           <select class="select_css" name="boarding_office_location" id="boarding_office_location">
                             <option value="">Select Boarding Office Location</option>
                             <?php foreach($agent_data_office_address as $agent_data_office_address_value){ ?>   
-                                      <option value="<?php echo $agent_data_office_address_value['id'];?>" <?php
-                                        if(!empty($booking_basic_info_tour)){ if($agent_data_office_address_value['id']==$booking_basic_info_tour['boarding_office_location']){echo "selected";}} ?>>
+                                      <option value="<?php echo $agent_data_office_address_value['id'];?>" <?php if($agent_data_office_address_value['id']==$booking_basic_info_tour['boarding_office_location']){echo "selected";} ?>>
                                       <?php echo $agent_data_office_address_value['booking_center'];?></option>
                                     <?php } ?>
                           </select>
                         </div>
                       </div>
-                         
+                      
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Select Tours Date</label>
+                                <select class="select_css" name="tour_date" id="tour_date">
+                                  <option value="">Select Tour Date</option>
+                                  <?php foreach($arr_package_date as $arr_package_date_value){ ?>   
+                                      <option value="<?php echo $arr_package_date_value['id'];?>" <?php if($arr_package_date_value['id']==$booking_basic_info_tour['tour_date']){echo "selected";} ?>>
+                                      <?php echo $arr_package_date_value['journey_date'];?></option>
+                                  <?php } ?>
+                                </select>
+                            </div>
+                          </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>hotel Type</label>
