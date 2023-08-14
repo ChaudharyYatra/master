@@ -1,3 +1,9 @@
+<style>
+  .hide {
+    display: none;
+    }
+</style>
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -66,6 +72,51 @@
                           </select>
                         </div>
                       </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Tour Type</label> <br>
+                            <input type="radio" id="main_tour" name="tour_type" onclick="main();"
+                            value="1" <?php if(isset($info['tour_type'])){if($info['tour_type']=='1') {echo'checked';}}?>/>
+                                <label for="Yes" id="main_tour">Main Tour</label> &nbsp;&nbsp;
+                            <input type="radio" id="sub_tour" name="tour_type" value="0" onclick="sub();"
+                            value="0" <?php if(isset($info['tour_type'])){if($info['tour_type']=='0') {echo'checked';}}?>/>
+                                <label for="No" id="sub_tour">Sub Tour</label> <br>
+                        </div>
+                      </div>
+
+                      <?php if($info['tour_type']=='1') { ?>
+                      <div class="col-md-6 hide" id="sub_main_tour_div1">
+                        <div class="form-group">
+                          <label>Select Main Tour</label>
+                          <select class="select_css" name="main_tour_id" id="main_tour_id">
+                          <option value="">Select main tour</option>
+                                <?php
+                                  foreach($packages_tour_type as $packages_tour_type_info) 
+                                  { 
+                                ?>
+                            <option value="<?php echo $packages_tour_type_info['id'];?>" <?php if(isset($info['main_tour_id'])){if($packages_tour_type_info['id'] == $info['main_tour_id']) {echo 'selected';}}?>><?php echo $packages_tour_type_info['tour_title'];?></option>
+                                <?php } ?>
+                          </select>
+                        </div>
+                      </div>
+                      <?php } else { ?>
+                      <div class="col-md-6" id="sub_main_tour_div1" >
+                        <div class="form-group">
+                          <label>Select Main Tour</label>
+                          <select class="select_css" name="main_tour_id" id="main_tour_id">
+                          <option value="">Select main tour</option>
+                                <?php
+                                  foreach($packages_tour_type as $packages_tour_type_info) 
+                                  { 
+                                ?>
+                            <option value="<?php echo $packages_tour_type_info['id'];?>" <?php if(isset($info['main_tour_id'])){if($packages_tour_type_info['id'] == $info['main_tour_id']) {echo 'selected';}}?>><?php echo $packages_tour_type_info['tour_title'];?></option>
+                                <?php } ?>
+                          </select>
+                        </div>
+                      </div>
+                      <?php } ?>
+
                       <?php if($info['package_type'] == '7') { ?>
                       <div class="col-md-6 c_from_date">
                               <div class="form-group">
@@ -348,3 +399,12 @@
     <!-- /.content -->
   </div>
   
+  <script>
+    function sub(){
+    document.getElementById('sub_main_tour_div1').style.display = 'block';
+    }
+    function main(){
+    document.getElementById('sub_main_tour_div1').style.display = 'none';
+    document.getElementById('main_tour_id').value = "";
+    }
+</script>

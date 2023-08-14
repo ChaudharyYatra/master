@@ -2893,6 +2893,21 @@ $('#add_package').validate({ // initialize the plugin
         package_type: {
             required: true,
         },
+        tour_type: {
+            required: true,
+        },
+        main_tour_id: {
+            
+            required: function(element) {
+                rdVaule = $("input[name='tour_type']:checked").val();
+                    if(rdVaule == '0')
+                     {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+        },
         tour_number: {
             required: true,
         },
@@ -2971,6 +2986,12 @@ $('#add_package').validate({ // initialize the plugin
         package_type : {
             required : "Please Select package type",
         },
+        tour_type: {
+            required: "Please select tour type",
+        },
+        main_tour_id: {
+            required: "Please select main tour of this tour",
+        },
         tour_number : {
             required : "Please enter tour number",
         },
@@ -3041,6 +3062,21 @@ $('#edit_package').validate({ // initialize the plugin
         },
         package_type: {
             required: true,
+        },
+        tour_type: {
+            required: true,
+        },
+        main_tour_id: {
+            
+            required: function(element) {
+                rdVaule = $("input[name='tour_type']:checked").val();
+                    if(rdVaule == '0')
+                     {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
         },
         tour_number: {
             required: true,
@@ -3119,6 +3155,12 @@ $('#edit_package').validate({ // initialize the plugin
         },
         package_type : {
             required : "Please select package type",
+        },
+        tour_type: {
+            required: "Please select tour type",
+        },
+        main_tour_id: {
+            required: "Please select main tour of this tour",
         },
         tour_number : {
             required : "Please enter tour number",

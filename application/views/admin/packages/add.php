@@ -76,15 +76,15 @@
                             <input type="radio" id="main_tour" name="tour_type" value="1" onclick="main();"/>
                                 <label for="Yes" id="main_tour">Main Tour</label> &nbsp;&nbsp;
                             <input type="radio" id="sub_tour" name="tour_type" value="0" onclick="sub();"/>
-                                <label for="No" id="sub_tour">Sub Tour</label>
+                                <label for="No" id="sub_tour">Sub Tour</label> <br>
                         </div>
                       </div>
 
                       <div class="col-md-6 hide" id="sub_main_tour_div1">
                         <div class="form-group">
                           <label>Select Main Tour</label>
-                          <select class="select_css" name="sub_main_tour" id="sub_main_tour">
-                          <option value="">Select package type</option>
+                          <select class="select_css" name="main_tour_id" id="main_tour_id">
+                          <option value="">Select main tour</option>
                                 <?php
                                   foreach($packages_tour_type as $packages_tour_type_info) 
                                   { 
