@@ -56,6 +56,8 @@ class Booking_basic_info extends CI_Controller {
         $this->db->where('is_deleted','no');
         $this->db->where('id',$id);
         $agent_data = $this->master_model->getRecords('agent');
+        // print_r($agent_data); die;
+        
         
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
@@ -71,26 +73,22 @@ class Booking_basic_info extends CI_Controller {
         $this->db->join("department", 'agent.department=department.id','left');
         $this->db->join("booking_enquiry", 'agent.id=booking_enquiry.agent_id','left');
         $agent_department = $this->master_model->getRecords('agent',array('agent.is_deleted'=>'no'),$fields);
+        // print_r($agent_department); die;
 
         $record = array();
         $fields = "booking_enquiry.*,media_source.media_source_name";
         $this->db->where('booking_enquiry.is_deleted','no');
+        // $this->db->where('booking_enquiry.id',$id);
         $this->db->where('booking_enquiry.id',$iid);
         $this->db->join("media_source", 'booking_enquiry.media_source_name=media_source.id','left');
         $media_source_data = $this->master_model->getRecords('booking_enquiry',array('booking_enquiry.is_deleted'=>'no'),$fields);
+        // print_r($media_source_data); die;
 
-        $fields = "packages.*,package_date.journey_date,package_date.id as p_date_id,bus_seat_book.package_id";
-        $this->db->where('packages.is_deleted','no');
-        $this->db->where('packages.is_active','yes');
-        $this->db->where('bus_seat_book.enquiry_id',$iid);
-        $this->db->join("bus_seat_book", 'packages.id=bus_seat_book.package_id','left');
-        $this->db->join("package_date", 'package_date.id=bus_seat_book.tour_dates','left');
-        $this->db->group_by('bus_seat_book.package_id');
-        // $packages_data_booking = $this->master_model->getRecord('packages');
-        $packages_data_booking = $this->master_model->getRecord('packages','',$fields);
-
-        // print_r($packages_data_booking);
-        // die;
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('tour_number','ASC');
+        $packages_data_booking = $this->master_model->getRecords('packages');
+        // print_r($packages_data_booking); die; 
         
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
@@ -135,7 +133,9 @@ class Booking_basic_info extends CI_Controller {
         $boarding_office_location=array();
         if(!empty($arr_packages_data_booking)){
         $boffice=explode(',',$arr_packages_data_booking['boarding_office']);
-
+        // die;
+            // print_r($boffice);
+            // die;
        
         for($i=0;$i<count($boffice);$i++){
             $boffice[$i];
@@ -143,10 +143,12 @@ class Booking_basic_info extends CI_Controller {
         $this->db->where('is_active','yes');
         $this->db->where('agent.id',$boffice[$i]);
         $boarding_location_multi = $this->master_model->getRecord('agent');
-
+        //     print_r($boarding_location_multi);
+        // die;
         array_push($boarding_office_location,$boarding_location_multi);
             }
         }
+    // print_r($boarding_office_location); die;
 
         $record = array();
         $fields = "booking_enquiry.*,packages.id,packages.tour_title,packages.tour_number";
@@ -155,19 +157,20 @@ class Booking_basic_info extends CI_Controller {
         $this->db->where('booking_enquiry.id',$iid);
         $this->db->join("packages", 'packages.id=booking_enquiry.package_id','left');
         $tour_no_title = $this->master_model->getRecords('booking_enquiry',array('booking_enquiry.is_deleted'=>'no'),$fields);
+        // print_r($tour_no_title); die;
 
         $this->db->where('is_deleted','no');
+        // $this->db->where('is_active','yes');
         $master_media_source = $this->master_model->getRecords('media_source');
-     
-        $record = array();
-        $fields = "booking_basic_info.*,packages.tour_number,packages.tour_title,package_date.journey_date,agent.booking_center";
-        $this->db->where('booking_basic_info.is_deleted','no');
-        $this->db->where('booking_basic_info.domestic_enquiry_id',$iid);
-        $this->db->join("package_date", 'booking_basic_info.tour_date=package_date.id','left');
-        $this->db->join("packages", 'booking_basic_info.tour_no=packages.id','left');
-        $this->db->join("agent", 'booking_basic_info.boarding_office_location=agent.id','left');
-        $booking_data = $this->master_model->getRecord('booking_basic_info',
-        array('booking_basic_info.is_deleted'=>'no'),$fields);
+        // print_r($master_media_source); die;
+
+        // $record = array();
+        // $fields = "booking_basic_info.*,packages.id,packages.tour_title,packages.tour_number";
+        // $this->db->where('booking_basic_info.is_deleted','no');
+        // $this->db->where('domestic_enquiry_id',$iid);
+        // $this->db->join("packages", 'packages.id=booking_basic_info.tour_no','left');
+        // $booking_data = $this->master_model->getRecord('booking_basic_info');
+        // print_r($booking_data); die;
 
         $record = array();
         $fields = "booking_basic_info.*,packages.tour_number,packages.tour_title,package_date.journey_date,agent.booking_center";
@@ -178,19 +181,35 @@ class Booking_basic_info extends CI_Controller {
         $this->db->join("agent", 'booking_basic_info.boarding_office_location=agent.id','left');
         $booking_data = $this->master_model->getRecord('booking_basic_info',
         array('booking_basic_info.is_deleted'=>'no'),$fields);
+        // print_r($booking_data); die;
 
+        $record = array();
+        $fields = "booking_basic_info.*,packages.tour_number,packages.tour_title,package_date.journey_date,agent.booking_center";
+        $this->db->where('booking_basic_info.is_deleted','no');
+        $this->db->where('booking_basic_info.domestic_enquiry_id',$iid);
+        $this->db->join("package_date", 'booking_basic_info.tour_date=package_date.id','left');
+        $this->db->join("packages", 'booking_basic_info.tour_no=packages.id','left');
+        $this->db->join("agent", 'booking_basic_info.boarding_office_location=agent.id','left');
+        $booking_data = $this->master_model->getRecord('booking_basic_info',
+        array('booking_basic_info.is_deleted'=>'no'),$fields);
+        // print_r($booking_data); die;
+
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('tour_number','ASC');
+        $packages_data = $this->master_model->getRecords('packages');
+
+        // ---------------------------------------------------------------------------
 
         $record = array();
         $fields = "agent.*";
         $this->db->where('agent.is_active','yes');
         $this->db->where('agent.is_deleted','no');
-        // $this->db->where('booking_basic_info.tour_no',$booking_basic_info_tour_id);
-        // $this->db->where('booking_basic_info.domestic_enquiry_id',$booking_basic_domestic_enquiry);
-        // $this->db->join("booking_basic_info", 'agent.id=booking_basic_info.boarding_office_location','left');
-        $agent_data_office_address = $this->master_model->getRecords('agent','',$fields);
-
-        // print_r( $agent_data_office_address);
-        // die;
+        $this->db->where('booking_basic_info.tour_no',$booking_basic_info_tour_id);
+        $this->db->where('booking_basic_info.domestic_enquiry_id',$booking_basic_domestic_enquiry);
+        $this->db->join("booking_basic_info", 'agent.id=booking_basic_info.boarding_office_location','left');
+        $agent_data_office_address = $this->master_model->getRecords('agent',array('agent.is_deleted'=>'no'),$fields);
+        // print_r($agent_data_office_address); die;
 
         $record = array();
         $fields = "package_date.*";
@@ -200,15 +219,12 @@ class Booking_basic_info extends CI_Controller {
         $this->db->where('booking_basic_info.domestic_enquiry_id',$booking_basic_domestic_enquiry);
         $this->db->join("booking_basic_info", 'package_date.id=booking_basic_info.tour_date','left');
         $arr_package_date = $this->master_model->getRecords('package_date',array('package_date.is_deleted'=>'no'),$fields);
-        
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');
-        $this->db->order_by('tour_number','ASC');
-        $packages_data = $this->master_model->getRecords('packages');
+        // print_r($arr_package_date); die;
         
         // --------------------------------------------------------------------------
          if($this->input->post('submit'))
         {
+            //  print_r($_REQUEST);
             $this->form_validation->set_rules('domestic_enquiry_id', 'domestic_enquiry_id', 'required');
             $this->form_validation->set_rules('booking_office', 'Booking office', 'required');
             $this->form_validation->set_rules('regional_office', 'Regional office', 'required');
@@ -227,7 +243,8 @@ class Booking_basic_info extends CI_Controller {
              
              if($this->form_validation->run() == TRUE)
              { 
-               
+                //echo 'ppppppp';
+                //die;
                 $domestic_enquiry_id  = $this->input->post('domestic_enquiry_id');
                 $booking_office  = $this->input->post('booking_office'); 
                 $regional_office  = $this->input->post('regional_office');
@@ -243,6 +260,8 @@ class Booking_basic_info extends CI_Controller {
                 $boarding_office_location  = $this->input->post('boarding_office_location');
                 $tour_date  = $this->input->post('tour_date'); 
                 $hotel_type  = $this->input->post('hotel_type'); 
+                //  $today=date("Y-m-d");
+                //  $packages  = $this->input->post('packages'); 
 
                  $arr_insert = array(
                     'domestic_enquiry_id' =>   $domestic_enquiry_id,
@@ -270,6 +289,7 @@ class Booking_basic_info extends CI_Controller {
                         $inserted_id = $this->master_model->insertRecord('booking_basic_info',$arr_insert,true);
                     }
                     
+                //  print_r($arr_insert); die;
                 
                                
                  $arr_update = array(
@@ -295,6 +315,7 @@ class Booking_basic_info extends CI_Controller {
         //booking basic info  book now btn functinality 
         if($this->input->post('booknow_submit'))
         {
+            // print_r($_REQUEST);
             $this->form_validation->set_rules('domestic_enquiry_id', 'domestic_enquiry_id', 'required');
             $this->form_validation->set_rules('booking_office', 'Booking office', 'required');
             $this->form_validation->set_rules('regional_office', 'Regional office', 'required');
@@ -313,7 +334,8 @@ class Booking_basic_info extends CI_Controller {
              
              if($this->form_validation->run() == TRUE)
              { 
-                
+                //echo 'ppppppp';
+                //die;
                 $domestic_enquiry_id  = $this->input->post('domestic_enquiry_id');
                 $booking_office  = $this->input->post('booking_office'); 
                 $regional_office  = $this->input->post('regional_office');
@@ -329,6 +351,8 @@ class Booking_basic_info extends CI_Controller {
                 $boarding_office_location  = $this->input->post('boarding_office_location');
                 $tour_date  = $this->input->post('tour_date'); 
                 $hotel_type  = $this->input->post('hotel_type');
+                //  $today=date("Y-m-d");
+                //  $packages  = $this->input->post('packages'); 
 
                  $arr_insert = array(
                      'domestic_enquiry_id' =>   $domestic_enquiry_id,
@@ -361,6 +385,7 @@ class Booking_basic_info extends CI_Controller {
                     }else{
                         $inserted_id = $this->master_model->insertRecord('booking_basic_info',$arr_insert,true);
                     }
+                //  print_r($arr_insert); die;
             
                                
                  $arr_update = array(

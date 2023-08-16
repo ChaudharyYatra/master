@@ -306,5 +306,6 @@
     }
     function main(){
     document.getElementById('sub_main_tour_div1').style.display = 'none';
+    document.getElementById('main_tour_id').value = "";
     }
 </script>
