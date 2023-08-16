@@ -108,7 +108,7 @@ class Booking_enquiry extends CI_Controller {
              $this->form_validation->set_rules('mobile_number', 'mobile_number', 'required');
              $this->form_validation->set_rules('gender', 'gender', 'required');
             //  $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
-             $this->form_validation->set_rules('wp_mobile_number', 'wp_mobile_number', 'required');
+            //  $this->form_validation->set_rules('wp_mobile_number', 'wp_mobile_number', 'required');
              
              
              if($this->form_validation->run() == TRUE)
@@ -249,6 +249,7 @@ class Booking_enquiry extends CI_Controller {
                  $media_source_name         = $this->input->post('media_source_name');
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
+                 $wp_mobile_number  = $this->input->post('wp_mobile_number');
                  $followup_date  = $this->input->post('followup_date'); 
                 //  $packages  = $this->input->post('packages'); 
 
@@ -265,6 +266,7 @@ class Booking_enquiry extends CI_Controller {
                      'seat_count'    =>$enq_seat_count,
                      'created_at'=>$today,
                      'enquiry_from'    =>'Agent',
+                     'wp_mobile_number'    =>$wp_mobile_number,
                      'followup_date'    =>$followup_date
                  );
                  
@@ -598,7 +600,8 @@ class Booking_enquiry extends CI_Controller {
                 $this->form_validation->set_rules('gender', 'gender', 'required');
                 // $this->form_validation->set_rules('packages', 'packages', 'required');
                 // $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
-				$this->form_validation->set_rules('wp_mobile_number', 'whatsapp mobile number', 'required');
+				// $this->form_validation->set_rules('wp_mobile_number', 'whatsapp mobile number', 'required');
+                
                 if($this->input->post('tour_number')=='Other'){
                 $this->form_validation->set_rules('other_tour_name', 'enter destination name', 'required');
 				$this->form_validation->set_rules('mrandmrs', 'Mr and Mrs', 'required');

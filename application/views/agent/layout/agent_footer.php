@@ -789,7 +789,7 @@ $(document).ready(function() {
                 minlength: 10
             },
             wp_mobile_number: {
-                required: true,
+                // required: true,
                 maxlength: 10,
                 minlength: 10
             },
@@ -839,7 +839,7 @@ $(document).ready(function() {
                 minlength: "Please enter minimum 10 digit number"
             },
             wp_mobile_number: {
-                required: "Please enter mobile number",
+                // required: "Please enter mobile number",
                 maxlength: "Please enter maximum 10 digit number",
                 minlength: "Please enter minimum 10 digit number"
             },
@@ -897,7 +897,7 @@ $(document).ready(function() {
                 minlength: 10
             },
             wp_mobile_number: {
-                required: true,
+                // required: true,
                 maxlength: 10,
                 minlength: 10
             },
@@ -946,7 +946,7 @@ $(document).ready(function() {
                 minlength: "Please enter minimum 10 digit number"
             },
             wp_mobile_number: {
-                required: "Please enter mobile number",
+                // required: "Please enter mobile number",
                 maxlength: "Please enter maximum 10 digit number",
                 minlength: "Please enter minimum 10 digit number"
             },
@@ -5805,4 +5805,17 @@ function empty() {
         }
     });
     });
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#mrandmrs').change(function(){
+        // alert($(this).val());
+      if($('#mrandmrs').val() == 'Mr' ){
+        $('#male').prop("checked", true);
+      } else if($('#mrandmrs').val() == 'Mrs' ) {
+        $('#female').prop("checked", true);
+      }
+    });
+  });
 </script>
