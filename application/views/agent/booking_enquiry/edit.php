@@ -82,8 +82,8 @@
                         <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gender </label> <br>
-                                    &nbsp;&nbsp;<input type="radio" name="gender" id="gender" value="Male" <?php if(isset($info['gender'])){if($info['gender']=='Male') {echo'checked';}}?>>&nbsp;&nbsp;Male
-                                    &nbsp;&nbsp;<input type="radio" name="gender" id="gender" value="Female" <?php if(isset($info['gender'])){if($info['gender']=='Female') {echo'checked';}}?>>&nbsp;&nbsp;Female <br>
+                                    &nbsp;&nbsp;<input type="radio" name="gender" id="male" value="Male" <?php if(isset($info['gender'])){if($info['gender']=='Male') {echo'checked';}}?>>&nbsp;&nbsp;Male
+                                    &nbsp;&nbsp;<input type="radio" name="gender" id="female" value="Female" <?php if(isset($info['gender'])){if($info['gender']=='Female') {echo'checked';}}?>>&nbsp;&nbsp;Female <br>
                                 </div>
                         </div>
 					
@@ -167,5 +167,3 @@
   </div>
   
 
-</body>
-</html>

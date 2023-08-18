@@ -6,6 +6,22 @@
         border: 1px solid red;
         padding: 10px;
     }
+
+    .extrax_services_div{
+        border: solid 1px #00000030;
+        margin: 15px;
+        padding: 10px;
+    }
+
+    .hide {
+    display: none;
+    }
+    
+    #least_count{
+        font-weight:400;
+        color:red;
+    }
+
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -500,6 +516,39 @@
                     <?php } ?>
                 </div>
 
+                <div class="card-body extrax_services_div">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="coupon_question">Do You Want Extra Services ?</label>
+
+                        </div>
+                        <div class="col-md-2">
+                            <input type="radio" id="extra_services_yes" name="extra_services" value="Yes" onclick="show2();"/>
+                                <label for="Yes" id="extra_services_yes">Yes</label> &nbsp;&nbsp;
+                            <input type="radio" id="extra_services_no" name="extra_services" value="No" onclick="show1();"/>
+                                <label for="No" id="extra_services_no">No</label>
+                        </div>
+
+                        <div class="col-md-3 hide" id="extra_services_div1">
+                            <label>Services Name-Cost</label>
+
+                        </div>
+                        <div class="col-md-4 hide" id="extra_services_div2">
+                            <div class="form-group">
+                                
+                                <select class="select2" multiple="multiple" data-placeholder="Select Services" style="width: 100%;" name="select_services[]" id="select_services" required="required">
+                                <option value="">Select Services</option>
+                                <?php
+                                    foreach($special_req_master_data as $special_req_master_data_value) 
+                                    { 
+                                ?>
+                                    <option value="<?php echo $special_req_master_data_value['id'];?>"><?php echo $special_req_master_data_value['service_name'];?> -  <?php echo $special_req_master_data_value['cost'];?></option>
+                                <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <div class="row">
@@ -513,7 +562,7 @@
                                 <tr>
                                     <th>Mobile Number</th>
                                     <td>
-                                    <input type="text" class="form-control" name="booking_tm_mobile_no" id="booking_tm_mobile_no" minlength="10" maxlength="10" placeholder="Enter mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                    <input type="text" class="form-control" name="booking_tm_mobile_no" id="booking_tm_mobile_no" minlength="10" maxlength="10" placeholder="Enter mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required onkeyup="validate()">
                                     </td>
                                 </tr>
                                 
@@ -535,7 +584,7 @@
                                 <tr>
                                     <th>Booking Amount</th>
                                     <td>
-                                    <input type="text" class="form-control" name="booking_amt" id="booking_amt" placeholder="Enter booking amount" required>
+                                    <input type="text" class="form-control" name="booking_amt" id="booking_amt" placeholder="Enter booking amount" required onkeyup="validate()">
                                     </td>
                                 </tr>
 
@@ -734,14 +783,24 @@
 
                         </div>
                         <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp" disabled>Send OTP</button></th></center>
+                                </div>
+                                <div class="col-md-4">
+                                    <center><th><button type="button" class="btn btn-primary mb-3" name="re_send_otp" id="re_send_otp" disabled>Resend OTP</button></th></center>
+                                </div>
+                            </div>
                             <!-- <h5>OTP Details :</h5> -->
-                            <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp" >Send OTP</button></th></center>
                             <!-- <center><th><button type="button" class="btn btn-primary mb-4" name="submit_otp" id="submit_otp" value="submit_otp" >Send OTP</button></th></center> -->
                             
                             <table id="example2" class="table table-bordered table-hover table-striped">
                                 <tr>
-                                    <th><input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required> </th>
-                                    <th><button type="button" class="btn btn-success" name="submit" id="final_booking_submit" value="submit">Verify OTP</button> </th>
+                                    <th><input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required> 
+                                    <p id="least_count"></p>
+                                </th>
+                                    
+                                    <th><button type="button" class="btn btn-success" name="submit" id="final_booking_submit" value="submit" disabled>Verify OTP</button> </th>
                                 </tr>
                             </table>
                         </div>
@@ -782,6 +841,13 @@
     <!-- /.content -->
   </div>
   
-
-</body>
-</html>
+<script>
+    function show1(){
+    document.getElementById('extra_services_div1').style.display = 'none';
+    document.getElementById('extra_services_div2').style.display ='none';
+    }
+    function show2(){
+    document.getElementById('extra_services_div1').style.display = 'block';
+    document.getElementById('extra_services_div2').style.display = 'block';
+    }
+</script>

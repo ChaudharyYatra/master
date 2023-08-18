@@ -323,6 +323,8 @@ class Packages extends CI_Controller{
                 $zone_name = trim($this->input->post('zone_name'));
                 $from_date = trim($this->input->post('from_date'));
                 $to_date = trim($this->input->post('to_date'));
+                $tour_type = trim($this->input->post('tour_type'));
+                $main_tour_id = trim($this->input->post('main_tour_id'));
                 
                 $arr_insert = array(
                     'academic_year'   =>   $academic_year,
@@ -344,7 +346,9 @@ class Packages extends CI_Controller{
                     'hotel_type'             => $hotel_type,
                     'zone_name'  => $zone_name,
                     'from_date'             => $from_date,
-                    'to_date'  => $to_date
+                    'to_date'  => $to_date,
+                    'tour_type' => $tour_type,
+                    'main_tour_id' => $main_tour_id
                 );
                 
                 $inserted_id = $this->master_model->insertRecord('packages',$arr_insert,true);
@@ -389,11 +393,19 @@ class Packages extends CI_Controller{
         $this->db->where('is_active','yes');
         $zone_info = $this->master_model->getRecords('zone_master');
 
+         // $this->db->order_by('id','desc');
+         $this->db->where('is_deleted','no');
+         $this->db->where('is_active','yes');
+         $this->db->where('tour_type',1);
+         $packages_tour_type = $this->master_model->getRecords('packages');
+         // print_r($packages_tour_type); die;
+
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['academic_years_data'] = $academic_years_data;
         $this->arr_view_data['package_type'] = $package_type;
         $this->arr_view_data['hotel_type_info'] = $hotel_type_info;
         $this->arr_view_data['zone_info'] = $zone_info;
+        $this->arr_view_data['packages_tour_type'] = $packages_tour_type;
         $this->arr_view_data['page_title']      = " Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -876,6 +888,8 @@ class Packages extends CI_Controller{
                 $zone_name = trim($this->input->post('zone_name'));
                 $from_date = trim($this->input->post('from_date'));
                 $to_date = trim($this->input->post('to_date'));
+                $tour_type = trim($this->input->post('tour_type'));
+                $main_tour_id = trim($this->input->post('main_tour_id'));
 
 
                 $arr_update = array(
@@ -898,7 +912,9 @@ class Packages extends CI_Controller{
                     'hotel_type'             => $hotel_type,
                     'zone_name'  => $zone_name,
                     'from_date'             => $from_date,
-                    'to_date'  => $to_date
+                    'to_date'  => $to_date,
+                    'tour_type'  => $tour_type,
+                    'main_tour_id'  => $main_tour_id
                 );
                 
                     $arr_where     = array("id" => $id);
@@ -932,6 +948,13 @@ class Packages extends CI_Controller{
         $package_type = $this->master_model->getRecords('package_type');
         // print_r($package_type); die;
 
+        // $this->db->order_by('id','desc');
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->where('tour_type',1);
+        $packages_tour_type = $this->master_model->getRecords('packages');
+        // print_r($packages_tour_type); die;
+
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
@@ -946,6 +969,7 @@ class Packages extends CI_Controller{
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['hotel_type_info']        = $hotel_type_info;
         $this->arr_view_data['zone_info']        = $zone_info;
+        $this->arr_view_data['packages_tour_type'] = $packages_tour_type;
         $this->arr_view_data['package_type']        = $package_type;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
