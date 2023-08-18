@@ -38,8 +38,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Tour Details</label>
-                                <select class="form-control" name="tour_number" id="tour_number" onchange='CheckColors(this.value); 
-                                  this.blur();' onfocus='this.size=6;' onblur='this.size=1;'>
+                                <select class="form-control" name="tour_number" id="tour_number">
                                 <option value="">Select tour title</option>
                                 <?php foreach($packages_data as $packages_data_value){ ?> 
                                     <option value="<?php echo $packages_data_value['id'];?>"><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>

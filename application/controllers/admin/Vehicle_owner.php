@@ -42,9 +42,9 @@ class Vehicle_owner extends CI_Controller{
         {
             $this->form_validation->set_rules('vehicle_owner_name', 'vehicle_owner_name', 'required');
             $this->form_validation->set_rules('mobile_number1', 'mobile_number1', 'required');
-            $this->form_validation->set_rules('email', 'email', 'required');
-            $this->form_validation->set_rules('home_address', 'home_address', 'required');
-            $this->form_validation->set_rules('office_address', 'office_address', 'required');
+            // $this->form_validation->set_rules('email', 'email', 'required');
+            // $this->form_validation->set_rules('home_address', 'home_address', 'required');
+            // $this->form_validation->set_rules('office_address', 'office_address', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
 
             if($this->form_validation->run() == TRUE)
@@ -324,9 +324,9 @@ class Vehicle_owner extends CI_Controller{
             {
 				$this->form_validation->set_rules('vehicle_owner_name', 'vehicle_owner_name', 'required');
                 $this->form_validation->set_rules('mobile_number1', 'mobile_number1', 'required');
-                $this->form_validation->set_rules('email', 'email', 'required');
-                $this->form_validation->set_rules('home_address', 'home_address', 'required');
-                $this->form_validation->set_rules('office_address', 'office_address', 'required');
+                // $this->form_validation->set_rules('email', 'email', 'required');
+                // $this->form_validation->set_rules('home_address', 'home_address', 'required');
+                // $this->form_validation->set_rules('office_address', 'office_address', 'required');
                 $this->form_validation->set_rules('password', 'Password', 'required');
                     
                 if($this->form_validation->run() == TRUE)

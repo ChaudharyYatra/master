@@ -37,7 +37,7 @@
                     <th>Package Date Unique Id</th>
                     <th>Tour Title</th>
                     <th>Tour Date</th>
-                    <th>Available Seats</th>
+                    <th>Year Slot</th>
                     <th>Single Seat Cost</th>
                     <th>Twin Sharing Cost</th>
                     <th>3/4 Sharing Cost</th>
@@ -57,7 +57,7 @@
                     <td><?php echo $info['package_unique_id'] ?></td>
                     <td><?php echo $info['tour_title'] ?></td>
                     <td><?php echo date('d F Y', strtotime($info['journey_date'])); ?></td>
-                    <td><?php echo $info['available_seats'] ?></td>
+                    <td><?php echo $info['year_slot'] ?></td>
                     <td><?php echo $info['single_seat_cost'] ?></td>
                     <td><?php echo $info['twin_seat_cost'] ?></td>
                     <td><?php echo $info['three_four_sharing_cost'] ?></td>

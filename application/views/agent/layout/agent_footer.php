@@ -5723,8 +5723,6 @@ function empty() {
         confirm('Are You Sure You Want To Insert This Record Without Followup Date?');
         return false;
     };
-
     return true;
-
 }
 </script>

@@ -18,6 +18,7 @@ class Booking_enquiry extends CI_Controller {
         $this->module_url_path_domestic_followup    =  base_url().$this->config->item('agent_panel_slug')."/domestic_booking_enquiry_followup";
 		$this->module_url_path_booking_basic_info    =  base_url().$this->config->item('agent_panel_slug')."/booking_basic_info";
 		$this->module_url_path_payment_receipt   =  base_url().$this->config->item('agent_panel_slug')."/payment_receipt";
+		$this->module_url_path_seat_checker   =  base_url().$this->config->item('agent_panel_slug')."/seat_checker";
         $this->module_title       = "Booking Enquiry";
         $this->module_title_followup       = "Domestic Booking Enquiry Followup";
         $this->module_url_slug    = "booking_enquiry";
@@ -125,7 +126,7 @@ class Booking_enquiry extends CI_Controller {
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
                  $wp_mobile_number  = $this->input->post('wp_mobile_number');
-                 $followup_date  = $this->input->post('followup_date'); 
+                //  $followup_date  = $this->input->post('followup_date'); 
 
                  $arr_insert = array(
                      'agent_id' =>   $id,
@@ -141,7 +142,7 @@ class Booking_enquiry extends CI_Controller {
                      'created_at'=>$today,
                      'wp_mobile_number'    =>$wp_mobile_number,
                      'enquiry_from'    =>'Agent',
-                     'followup_date'    =>$followup_date
+                    //  'followup_date'    =>$followup_date
                  );
                 //  print_r($arr_insert); die;
                 $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
@@ -249,7 +250,7 @@ class Booking_enquiry extends CI_Controller {
                  $media_source_name         = $this->input->post('media_source_name');
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
-                 $followup_date  = $this->input->post('followup_date'); 
+                //  $followup_date  = $this->input->post('followup_date'); 
                 //  $packages  = $this->input->post('packages'); 
 
                  $arr_insert = array(
@@ -264,8 +265,8 @@ class Booking_enquiry extends CI_Controller {
                      'media_source_name'    =>$media_source_name,
                      'seat_count'    =>$enq_seat_count,
                      'created_at'=>$today,
-                     'enquiry_from'    =>'Agent',
-                     'followup_date'    =>$followup_date
+                     'enquiry_from'    =>'Agent'
+                    //  'followup_date'    =>$followup_date
                  );
                  
                  $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
@@ -273,9 +274,8 @@ class Booking_enquiry extends CI_Controller {
                  if($inserted_id > 0)
                  {
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
-                     redirect($this->module_url_path_booking_basic_info.'/add/'.$iid);
+                     redirect($this->module_url_path_seat_checker.'/index/'.$iid);
                  }
- 
                  else
                  {
                      $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
@@ -386,6 +386,7 @@ class Booking_enquiry extends CI_Controller {
          $this->arr_view_data['page_title']      = " Add ".$this->module_title;
          $this->arr_view_data['module_title']    = $this->module_title;
          $this->arr_view_data['module_url_path'] = $this->module_url_path;
+         $this->arr_view_data['module_url_path_seat_checker'] = $this->module_url_path_seat_checker;
          $this->arr_view_data['middle_content']  = $this->module_view_folder."add";
          $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
      }

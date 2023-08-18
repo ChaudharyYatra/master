@@ -215,7 +215,7 @@
 
 
     <!-- *Scripts* -->
-    
+    <script src="<?php echo base_url(); ?>assets/front/js/search_bar.js"></script>
     <script src="<?php echo base_url(); ?>assets/front/js/jquery-3.5.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/front/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/front/js/particles.js"></script>
@@ -300,7 +300,7 @@
     });  
 </script>
 
-  <script>
+<script>
 function validateregForms() 
 {
   $("#firstname_error").hide();
@@ -1275,6 +1275,40 @@ function validateFeedbackForms()
     toggler.addEventListener('click', showHidePassword);
 </script>
 
+
+<script>
+function search_bar() 
+{
+  // $("#zone_master").hide();
+  // $("#tour_name").hide();
+  // $("#tour_days").hide();
+  
+  var submiform='';
+  
+  var zone_master = $('#zone_master').val();
+  var tour_name = $('#tour_name').val();
+  var tour_days = $('#tour_days').val();
+
+  if (zone_master == '' && tour_name == '' && tour_days == '') 
+  {
+    $('#search_bar_error').text('Please Select Or Enter Atleast One Field.');
+    $('#search_bar_error').show();
+    submiform=false;
+  }  
+  
+  if(submiform==='')
+  {
+      return true;
+  }
+  else
+  {
+     return false; 
+  }
+  
+  
+}
+    
+</script>
 
 </body>
 </html>

@@ -388,11 +388,15 @@ var structure = $('<div class="row" style="width:100% !important" id="new_row'+i
                      '</div>'+
 
                     '<div class="col-md-5">'+
-                             '<div class="form-group">'+
-                                '<label>Available Seats</label>'+
-                                '<input type="number" class="form-control" name="available_seats[]" id="tour_seat" placeholder="Enter Available Seats" required>'+
-                              '</div>'+
-                      '</div>'+
+                        '<div class="form-group">'+
+                        '<label>Year Slot</label>'+
+                        '<select class="form-control" style="width: 100%;" name="year_slot[]" id="year_slot" required="required">'+
+                            '<option value="">Select Year Slot</option>'+
+                            '<option value="April to Sep">April to September</option>'+
+                            '<option value="October to March">October to March</option>'+
+                            '</select>'+
+                        '</div>'+
+                    '</div>'+
                     '<div class="col-md-2 pt-4 d-flex justify-content-center align-self-center">'+
                         '<div class="form-group">'+
                         '<label></label>'+
@@ -6971,24 +6975,24 @@ $('#add_vehicle_owner').validate({ // initialize the plugin
             maxlength:10,
             minlength:10,
         },
-        email: {
-            required: true,
-        },
-        aadhar_front_image: {
-            required: true,
-        },
-        aadhar_back_image: {
-            required: true,
-        },
-        image_name: {
-            required: true,
-        },
-        home_address: {
-            required: true,
-        },
-        office_address: {
-            required: true,
-        },
+        // email: {
+        //     required: true,
+        // },
+        // aadhar_front_image: {
+        //     required: true,
+        // },
+        // aadhar_back_image: {
+        //     required: true,
+        // },
+        // image_name: {
+        //     required: true,
+        // },
+        // home_address: {
+        //     required: true,
+        // },
+        // office_address: {
+        //     required: true,
+        // },
         password: {
             required: true,
             pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{6,15}$/,
@@ -7008,28 +7012,31 @@ $('#add_vehicle_owner').validate({ // initialize the plugin
         },
         mobile_number1 : {
             required : "Please Enter Mobile Number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
         },
         mobile_number2 : {
-            required : "Please Enter Another Mobile Number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
         },
-        email : {
-            required : "Please Enter Email Address",
-        },
-        aadhar_front_image : {
-            required : "Please Enter Aadhar Front Photo",
-        },
-        aadhar_back_image : {
-            required : "Please Enter Aadhar Back Photo",
-        },
-        image_name : {
-            required : "Please Enter Profile Photo",
-        },
-        home_address : {
-            required : "Please Enter Home Address",
-        },
-        office_address : {
-            required : "Please Enter Office Address",
-        },
+        // email : {
+        //     required : "Please Enter Email Address",
+        // },
+        // aadhar_front_image : {
+        //     required : "Please Enter Aadhar Front Photo",
+        // },
+        // aadhar_back_image : {
+        //     required : "Please Enter Aadhar Back Photo",
+        // },
+        // image_name : {
+        //     required : "Please Enter Profile Photo",
+        // },
+        // home_address : {
+        //     required : "Please Enter Home Address",
+        // },
+        // office_address : {
+        //     required : "Please Enter Office Address",
+        // },
         password : {
             required : "Please Enter Password",
             pattern: " Password must contain: " +
@@ -7069,19 +7076,18 @@ $('#edit_vehicle_owner').validate({ // initialize the plugin
             minlength:10,
         },
         mobile_number2: {
-            required: true,
             maxlength:10,
             minlength:10,
         },
-        email: {
-            required: true,
-        },
-        home_address: {
-            required: true,
-        },
-        office_address: {
-            required: true,
-        },
+        // email: {
+        //     required: true,
+        // },
+        // home_address: {
+        //     required: true,
+        // },
+        // office_address: {
+        //     required: true,
+        // },
         password: {
             required: true,
         },
@@ -7099,19 +7105,22 @@ $('#edit_vehicle_owner').validate({ // initialize the plugin
         },
         mobile_number1 : {
             required : "Please Enter Mobile Number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
         },
         mobile_number2 : {
-            required : "Please Enter Another Mobile Number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
         },
-        email : {
-            required : "Please Enter Email Address",
-        },
-        home_address : {
-            required : "Please Enter Home Address",
-        },
-        office_address : {
-            required : "Please Enter Office Address",
-        },
+        // email : {
+        //     required : "Please Enter Email Address",
+        // },
+        // home_address : {
+        //     required : "Please Enter Home Address",
+        // },
+        // office_address : {
+        //     required : "Please Enter Office Address",
+        // },
         password : {
             required : "Please Enter Password",
         },
@@ -7253,7 +7262,7 @@ $(document).ready(function(){
      
       var attr_val = $(this).attr('attr-type');
       var currentRow=$(this).closest("tr"); 
-        // alert(attr_val);
+        alert(attr_val);
 
       if(attr_val == 'state'){
         // alert('if');
@@ -7876,4 +7885,40 @@ $('#document_checker').validate({ // initialize the plugin
 <!-- jquery validation on edit document_checker -->
 
 
+<!-- add dates in that select slot  -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#year_slot').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/package_dates/get_slot',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        // console.log(response);
+        // alert(response);
+        
+          $('#single_seat_cost').find('input').not(':first').remove();
+          
+          $.each(response,function(index,data){       
+            // alert(data['single_seat_cost']); 
+            $('#single_seat_cost').val(data['single_seat_cost']);
+            $('#twin_seat_cost').val(data['twin_seat_cost']);
+            $('#three_four_sharing_cost').val(data['three_four_sharing_cost']);
+        });
+         
+        }
+     });
+   });
+ });
+</script>
+<!-- add dates in that select slot  -->
 

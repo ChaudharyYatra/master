@@ -37,13 +37,13 @@
                       <div class="col-md-6">
                             <div class="form-group">
                             <label>Full Name</label>
-                            <input type="text" class="form-control" name="vehicle_owner_name" id="vehicle_owner_name" placeholder="Enter vehicle owner Name"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                            <input type="text" class="form-control" name="vehicle_owner_name" id="vehicle_owner_name" placeholder="Enter vehicle owner Name"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Mobile Number 1</label>
-                                <input type="text" class="form-control" name="mobile_number1" id="mobile_number1" placeholder="Enter 10 Digits Mobile Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                                <input type="text" class="form-control" name="mobile_number1" id="mobile_number1" placeholder="Enter 10 Digits Mobile Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                         </div>
                        <div class="col-md-6">
@@ -55,7 +55,7 @@
                         <div class="col-md-6">
                               <div class="form-group">
                                 <label>Email Address</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" value="" required="required">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" value="">
 								  <span id="email_result"></span>
                               </div>
                         </div>
@@ -100,7 +100,7 @@
                             <label>Password</label>
                               <div class="form-group input-group">
                                 
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="" required="required">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="">
                                 <div class="input-group-append">
                                   <div class="input-group-text">
                                     <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password"></span>
@@ -114,7 +114,7 @@
                             <label>Confirm Password</label>
                               <div class="form-group input-group">
                                 
-                                <input type="password" class="form-control" name="confirm_pass" id="confirm_pass" placeholder="Enter Confirm Password" value="" required="required">
+                                <input type="password" class="form-control" name="confirm_pass" id="confirm_pass" placeholder="Enter Confirm Password" value="">
                                 <div class="input-group-append">
                                   <div class="input-group-text">
                                     <span toggle="#password-field" class="fas fa-fw fa-eye field_icon toggle-password2"></span>

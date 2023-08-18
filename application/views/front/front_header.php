@@ -19,13 +19,14 @@
     <link href="<?php echo base_url(); ?>assets/front/css/style.css" rel="stylesheet" type="text/css">
     <!--Plugin CSS-->
     <link href="<?php echo base_url(); ?>assets/front/css/plugin.css" rel="stylesheet" type="text/css">
+    <!--Custom CSS-->
+    <link href="<?php echo base_url(); ?>assets/front/css/style.css" rel="stylesheet" type="text/css">
 
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/fonts/line-icons.css" type="text/css">
-    
 
     <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js"></script>
   <script src="https://cdn.tutorialjinni.com/pdfobject/2.2.7/pdfobject.js"></script>

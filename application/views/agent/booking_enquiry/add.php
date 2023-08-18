@@ -130,16 +130,16 @@
                                 <input type="text" class="form-control" name="enq_seat_count" id="enq_seat_count" value="<?php if(!empty($visitor_data)){ echo $visitor_data['total_seat'];} ?>" placeholder="Enter seat count" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                             </div>
-                            <div class="col-md-6 mb-2">
+                            <!-- <div class="col-md-6 mb-2">
                               <label class="col-form-label">Followup Date:</label> 
                               <input type="date" class="form-control" name="followup_date" id="followup_date" min="<?php echo date("Y-m-d"); ?>">
-                            </div>
+                            </div> -->
                       
               </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit" value="submit" onclick="empty()">Save & Close</button>
-                  <!-- <button type="submit" class="btn btn-success" name="booknow_submit" value="Book Now">Submit & Proceed</button>  -->
+                  <button type="submit" class="btn btn-success" name="booknow_submit" value="Seat Checker">Seat Checker</button> 
                   <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>
               </form>

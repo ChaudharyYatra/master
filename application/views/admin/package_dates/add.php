@@ -45,19 +45,24 @@
                         <div class="form-group">
                       <label>Date:</label>
                         <div class="input-group">
-                            <input type="date" name="journey_date[]" class="form-control" required min="<?php echo date("Y-m-d"); ?>"/>
-                        </div>
+                            <input type="date" name="journey_date[]" id="datepicker" class="form-control" required/>
+                            <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['id']; ?>" >
+                                <input type="hidden" class="form-control" name="package_title" placeholder="Enter Available Seats" value="<?php echo $info['tour_title']; ?>" >
+                          </div>
                         </div>
                      </div>
 
-                      <div class="col-md-5">
-                              <div class="form-group">
-                                <label>Available Seats</label>
-                                <input type="text" class="form-control" name="available_seats[]" id="available_seats" placeholder="Enter Available Seats" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
-                                <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['id']; ?>" >
-                                <input type="hidden" class="form-control" name="package_title" placeholder="Enter Available Seats" value="<?php echo $info['tour_title']; ?>" >
-                              </div>
+                     <div class="col-md-5">
+                          <div class="form-group">
+                            <label>Year Slot</label>
+                            <select class="form-control" style="width: 100%;" name="year_slot[]" id="year_slot" required="required">
+                                <option value="">Select Year Slot</option>
+                                <option value="April to September">April to September</option>
+                                <option value="October to March">October to March</option>
+                              </select>
+                          </div>
                       </div>
+                      <?php } ?>  
                         <!-- <div class="col-md-2">
                               <div class="form-group">
                                 <label>Single Seat Cost</label>
@@ -86,30 +91,33 @@
                      
               </div>
 
-              
+              <?php
+                   //foreach($data as $arr_data_dates_info) 
+                   //{ 
+                     ?>
                 <div class="card-body">
                   <div class="row" id="main_row">
                         <div class="col-md-4">
                                 <div class="form-group">
                                   <label>Single Seat Cost</label>
-                                  <input type="text" class="form-control" name="single_seat_cost" id="available_seats" placeholder="Enter Single Seat Cost" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                  <input type="text" class="form-control" name="single_seat_cost" id="single_seat_cost" placeholder="Enter Single Seat Cost" value="<?php //if(!empty($arr_data_dates_info)){echo $arr_data_dates_info['single_seat_cost'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
                                 </div>
                         </div>
                         <div class="col-md-4">
                                 <div class="form-group">
                                   <label>Twin Sharing Cost</label>
-                                  <input type="text" class="form-control" name="twin_seat_cost" id="available_seats" placeholder="Enter Twin Sharing Cost" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                  <input type="text" class="form-control" name="twin_seat_cost" id="twin_seat_cost" placeholder="Enter Twin Sharing Cost" value="<?php //if(!empty($arr_data_dates_info)){echo $arr_data_dates_info['twin_seat_cost'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
                                 </div>
                         </div>
                         <div class="col-md-4">
                                 <div class="form-group">
                                   <label>3/4 Sharing Cost</label>
-                                  <input type="text" class="form-control" name="three_four_sharing_cost" id="available_seats" placeholder="Enter 3/4 Sharing Cost" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                  <input type="text" class="form-control" name="three_four_sharing_cost" id="three_four_sharing_cost" placeholder="Enter 3/4 Sharing Cost" value="<?php //if(!empty($arr_data_dates_info)){echo $arr_data_dates_info['three_four_sharing_cost'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
                         </div>
                     </div>
                      
                 </div> 
-              
+              <?php //} ?>
               
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -118,7 +126,7 @@
                 </div>
             </div>
               </form>
-             <?php } ?>  
+             
             </div>
             <!-- /.card -->
             </div>

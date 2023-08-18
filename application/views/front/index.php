@@ -87,53 +87,72 @@ table.scrolldown tbody{
     <!-- form main starts -->
     <div class="form-main">
         <div class="section-shape top-0" style="background-image: url(<?php echo base_url(); ?>assets/front/images/shape-pat.png);"></div>
-        <div class="container">
-            <div class="row align-items-center form-content rounded position-relative ms-5 me-5">
-                <div class="col-lg-2 p-0">
-                    <h4 class="form-title form-title1 text-center p-4 py-5 white bg-theme mb-0 rounded-start d-lg-flex align-items-center"><i class="icon-location-pin fs-1 me-1"></i> Find Your Holidays</h4>
+        <form action="<?php echo base_url();?>home/all_packages_search" method="post" id="search_bar" onsubmit="return search_bar()">
+        <div class="container all_search">
+            <div class="row align-items-center form-content rounded position-relative ms-1 me-1">
+                <div class="col-md-3 symbol_css">
+                <h4 class="form-title form-title1 text-center white bg-theme mb-0 search-rounded-start d-lg-flex align-items-center"><i class="icon-location-pin fs-1 me-1"></i> Find Your Holidays</h4>
                 </div>
-                <div class="col-lg-10 px-4">
-                    <form action="<?php echo base_url();?>home/all_packages_search" method="post">
-                    <div class="form-content-in d-lg-flex align-items-center">
-                        <div class="form-group me-2">
-                            <div class="input-box">
-                                <!-- <select class="niceSelect" name="destination_name" >
-                                    <option value="">Select Destination</option>
-                                    <?php //foreach($main_packages as $pack_data){  ?>
-                                    <option value="<?php //echo $pack_data['tour_title'];?>"><?php //echo $pack_data['tour_title'];?></option>
-                                    <?php //} ?>
-                                </select> -->
-                                    <input type="text" list="mylist" size="5" name="destination_name" placeholder="Where would you like to go?">
-                                    <datalist id="mylist" style="margin-top:500px!important;">
-                                        <?php foreach($main_packages as $pack_data){  ?>
-                                            <option value="<?php echo $pack_data['tour_title'];?>"><?php echo $pack_data['tour_title'];?></option>
-                                        <?php } ?>
-                                        
-                                    </datalist>
-                            </div>                            
-                        </div>
-                            
-                      
-                        <div class="form-group mb-0 text-center">
-                            <input type="submit" class="nir-btn w-100" id="submit" value="Search Now" name="submit" style="width:20px">
+                <div class="col-md-2">
+                    <div class="custom-select">
+                        <div class="select-box">
+                            <input type="text" class="search-input" name="zone_master" id="zone_master" placeholder="select Region" autocomplete="off">
+                            <div class="options-containers scrollbar_search" id="search_style-1" style="display:none;">
+                            <?php foreach($search_data_zone_master as $search_data_zone_master_value){  ?>
+                                    <div class="option" value="<?php echo $search_data_zone_master_value['zone_name'];?>"><?php echo $search_data_zone_master_value['zone_name'];?></div>
+                                    <?php } ?>
+                            <!-- Add more options here -->
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="search-custom-select">
+                        <div class="search-select-box">
+                            <input type="text" class="search-search-input" name="tour_name" id="tour_name" placeholder="select Tour Name" autocomplete="off">
+                            <div class="search-options-container search_scrollbar_search" id="search_style-2" style="display:none;">
+                            <?php foreach($search_data_packages as $search_data_packages_value){  ?>
+                                    <div class="search-option" value="<?php echo $search_data_packages_value['tour_title'];?>"><?php echo $search_data_packages_value['tour_title'];?></div>
+                                    <?php } ?>
+                            <!-- Add more options here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="days-custom-select">
+                        <div class="days-select-box">
+                            <input type="text" class="days-search-input" name="tour_days" id="tour_days" placeholder="select Tour Days" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group mb-0 text-center">
+                        <input type="submit" class="nir-btn w-100" id="submit" value="Search Now" name="submit" style="width:20px">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                </div>
 
-                    </form>
+                <div class="col-md-9">
+                <span class="text-danger float-left" id="search_bar_error" style="display:none"></span>
                 </div>
             </div>
+            
         </div>
+    </form>
     </div>
     <!-- form main ends -->
+
+    
+    <!--  -->
 
 <?php foreach($core_features as $key => $core_features_value) { ?>
     <!-- about-us starts -->
     <section class="about-us pb-0 pt-10" style="background-image:url(<?php echo base_url(); ?>assets/front/images/shape4.png); background-position:center;">
         <div class="container">
-            
         <!-- w-50 -->
             <div class="section-title mb-6 w-75 mx-auto text-center">
-                
                 <span>
                     <img src=<?php echo base_url(); ?>uploads\do_not_delete\get_to_know.png height="30%" width="30%" alt></img>
                 </span>

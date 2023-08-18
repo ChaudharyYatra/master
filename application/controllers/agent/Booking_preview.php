@@ -234,7 +234,7 @@ class Booking_preview extends CI_Controller {
                     'booking_status'   =>  'confirm'
                 );
                 
-                 $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
+                $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
                 if($inserted_id!=''){
                     echo $booking_reference_no;
 

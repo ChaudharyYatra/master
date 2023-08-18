@@ -276,7 +276,7 @@ class Profile extends CI_Controller {
 
                      if($inserted_id > 0)
                      {
-                         $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");
+                         $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.<br> Now visit choudhary yatra office with your original document and one xerox copy.");
                      }
                      else
                      {

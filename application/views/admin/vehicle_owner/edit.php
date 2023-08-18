@@ -41,13 +41,13 @@
                       <div class="col-md-6">
                             <div class="form-group">
                             <label>Full Name</label>
-                            <input type="text" class="form-control" name="vehicle_owner_name" id="vehicle_owner_name" placeholder="Enter vehicle owner Name" value="<?php echo $info['vehicle_owner_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                            <input type="text" class="form-control" name="vehicle_owner_name" id="vehicle_owner_name" placeholder="Enter vehicle owner Name" value="<?php echo $info['vehicle_owner_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                       </div>
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Mobile Number 1</label>
-                                <input type="text" class="form-control" name="mobile_number1" id="mobile_number1" placeholder="Enter 10 Digits Mobile Number" value="<?php echo $info['mobile_number1']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                                <input type="text" class="form-control" name="mobile_number1" id="mobile_number1" placeholder="Enter 10 Digits Mobile Number" value="<?php echo $info['mobile_number1']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                         </div>
                        <div class="col-md-6">
@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                               <div class="form-group">
                                 <label>Email Address</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" required="required" value="<?php echo $info['email']; ?>">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" value="<?php echo $info['email']; ?>">
 								  <span id="email_result"></span>
                               </div>
                         </div>

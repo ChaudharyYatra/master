@@ -58,7 +58,7 @@ class Package_dates extends CI_Controller{
                 $package_title  = $this->input->post('package_title');
                 $package_length = substr($package_title, 0, 3);
                 $journey_date  = $this->input->post('journey_date'); 
-                $available_seats = $this->input->post('available_seats');
+                $year_slot = $this->input->post('year_slot');
                 $package_id = $this->input->post('package_id');
                 $single_seat_cost = $this->input->post('single_seat_cost');
                 $twin_seat_cost = $this->input->post('twin_seat_cost');
@@ -69,11 +69,11 @@ class Package_dates extends CI_Controller{
                 {
                     $arr_insert = array(
                         'journey_date'   =>   $_POST["journey_date"][$i],
-                        'available_seats'   =>   $_POST["available_seats"][$i],
+                        'year_slot'   =>   $_POST["year_slot"][$i],
                         'single_seat_cost'   =>   $_POST["single_seat_cost"],
                         'twin_seat_cost'   =>   $_POST["twin_seat_cost"],
                         'three_four_sharing_cost'   =>   $_POST["three_four_sharing_cost"],
-                        'package_id' => $package_id,
+                        'package_id' => $package_id
                        
                     );
                     $inserted_id = $this->master_model->insertRecord('package_date',$arr_insert,true);
@@ -110,8 +110,19 @@ class Package_dates extends CI_Controller{
         $this->db->order_by('id','desc');
         $this->db->where('is_deleted','no');
         $academic_years_data = $this->master_model->getRecords('academic_years');
-        
+
+        $record = array();
+        $fields = "package_date.*,packages.tour_title";
+        $this->db->order_by('package_date.id','asc');
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('package_date.package_id',$id);
+        $this->db->join("packages", 'package_date.package_id=packages.id','left');
+        $this->db->group_by('package_date.year_slot');
+        $arr_data_dates = $this->master_model->getRecords('package_date',array('package_date.is_deleted'=>'no'),$fields);
+        // print_r($arr_data_dates); die;
+
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['arr_data_dates']        = $arr_data_dates;
         $this->arr_view_data['id']        = $id;
         $this->arr_view_data['page_title']      = "Add ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -357,5 +368,22 @@ class Package_dates extends CI_Controller{
         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
     }
    
+
+    public function get_slot(){ 
+        // POST data 
+        // $all_b=array();
+       $state_data = $this->input->post('did');
+        // print_r($state_data); die;
+        $record = array();
+        $fields = "package_date.*,packages.tour_title";
+        $this->db->order_by('package_date.id','asc');
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('package_date.year_slot',$state_data);
+        $this->db->join("packages", 'package_date.package_id=packages.id','left');
+        $this->db->group_by('package_date.year_slot');
+        $data = $this->master_model->getRecords('package_date',array('package_date.is_deleted'=>'no'),$fields);
+        
+        echo json_encode($data);
+    }
    
 }
