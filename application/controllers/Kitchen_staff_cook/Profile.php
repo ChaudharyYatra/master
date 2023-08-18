@@ -14,7 +14,7 @@ class Profile extends CI_Controller {
         { 
                 redirect(base_url().'supervision/login'); 
         }
-        $this->module_url_path    =  base_url().$this->config->item('tour_manager_panel_slug')."tour_manager/profile";
+        $this->module_url_path    =  base_url().$this->config->item('kitchen_staff_cook_panel_slug')."kitchen_staff_cook/profile";
         $this->module_title       = "Profile";
         $this->module_url_slug    = "profile";
         $this->module_view_folder = "profile/";
@@ -42,11 +42,11 @@ class Profile extends CI_Controller {
          
          $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
          $this->arr_view_data['arr_data']        = $arr_data;
-         $this->arr_view_data['page_title']      = "Tour Manager Profile Details";
+         $this->arr_view_data['page_title']      = "Kitchen Staff Profile Details";
          $this->arr_view_data['module_title']    = $this->module_title;
          $this->arr_view_data['module_url_path'] = $this->module_url_path;
          $this->arr_view_data['middle_content']  = $this->module_view_folder."details";
-         $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
+         $this->load->view('kitchen_staff_cook/layout/agent_combo',$this->arr_view_data);
      }
 
 
@@ -54,7 +54,6 @@ class Profile extends CI_Controller {
 
      public function edit($id)
      {
-
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $id = $this->session->userdata('supervision_sess_id');
 
@@ -238,7 +237,7 @@ class Profile extends CI_Controller {
          $this->arr_view_data['module_title']    = $this->module_title;
          $this->arr_view_data['module_url_path'] = $this->module_url_path;
          $this->arr_view_data['middle_content']  = $this->module_view_folder."edit";
-         $this->load->view('tour_manager/layout/agent_combo',$this->arr_view_data);
+         $this->load->view('kitchen_staff_cook/layout/agent_combo',$this->arr_view_data);
      }
     
 

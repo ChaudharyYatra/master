@@ -37,7 +37,7 @@
                     $days = $info['tour_number_of_days'];
                     $a=1;
                      ?>
-              <form method="post" enctype="multipart/form-data" id="edit_tour_photo">
+              <form method="post" enctype="multipart/form-data" id="edit_kitchen_staff_cook">
                 <div class="card-body">
                     <div class="row">
                       <div class="col-md-6">

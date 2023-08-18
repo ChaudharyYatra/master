@@ -145,7 +145,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>tour_manager/profile/index" class="nav-link">
+            <a href="<?php echo base_url(); ?>kitchen_staff_cook/profile/index" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
                Profile
@@ -153,7 +153,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>tour_manager/change_password/change_password" class="nav-link">
+            <a href="<?php echo base_url(); ?>kitchen_staff_cook/change_password/change_password" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
               Change Password

@@ -89,7 +89,7 @@
                           <div class="form-group">
                             <label>Upload Image (Two Image)</label><br>
                             <input type="file" name="image_name_two" id="image_name_two" required="required">
-                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span><br>
                           </div>
                       </div>
 

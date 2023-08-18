@@ -5097,3 +5097,105 @@ $('#edit_tour_photo').validate({ // initialize the plugin
     });
 
 </script>
+
+
+<!-- jquery validation on kitchen staff cook-->
+<script>
+$(document).ready(function () {
+
+$('#add_kitchen_staff_cook').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        tour_days: {
+            required: true,
+        },
+        menu_type: {
+            required: true,
+        },
+        menu_name: {
+            required: true,
+        },
+        image_name: {
+            required: true,
+        },
+        image_name_two: {
+            required: true,
+        } 
+    },
+
+    messages :{
+        tour_days : {
+            required : "Please select tour day",
+        },
+        menu_type : {
+            required : "Please select menu type",
+        },
+        menu_name : {
+            required : "Please enter menu name",
+        },
+        image_name : {
+            required : "Please upload image",
+        },
+        image_name_two : {
+            required : "Please upload image",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add kitchen staff cook -->
+
+<!-- jquery validation on edit kitchen staff cook-->
+<script>
+$(document).ready(function () {
+
+$('#edit_kitchen_staff_cook').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        tour_days: {
+            required: true,
+        },
+        menu_type: {
+            required: true,
+        },
+        menu_name: {
+            required: true,
+        },
+        old_img_name: {
+            required: true,
+        },
+        old_img_name_two: {
+            required: true,
+        } 
+    },
+
+    messages :{
+        tour_days : {
+            required : "Please select tour day",
+        },
+        menu_type : {
+            required : "Please select menu type",
+        },
+        menu_name : {
+            required : "Please enter menu name",
+        },
+        old_img_name : {
+            required : "Please upload image",
+        },
+        old_img_name_two : {
+            required : "Please upload image",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on edit kitchen staff cook -->
+

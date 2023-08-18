@@ -41,7 +41,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Tour Manager Name</label>
+                        <label>Kitchen Staff Name</label>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<?php echo $info['supervision_name']; ?>" required>
                       </div>
                     </div>

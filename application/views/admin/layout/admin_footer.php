@@ -2897,21 +2897,6 @@ $('#add_package').validate({ // initialize the plugin
         package_type: {
             required: true,
         },
-        tour_type: {
-            required: true,
-        },
-        main_tour_id: {
-            
-            required: function(element) {
-                rdVaule = $("input[name='tour_type']:checked").val();
-                    if(rdVaule == '0')
-                     {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-        },
         tour_number: {
             required: true,
         },
@@ -2990,12 +2975,6 @@ $('#add_package').validate({ // initialize the plugin
         package_type : {
             required : "Please Select package type",
         },
-        tour_type: {
-            required: "Please select tour type",
-        },
-        main_tour_id: {
-            required: "Please select main tour of this tour",
-        },
         tour_number : {
             required : "Please enter tour number",
         },
@@ -3066,21 +3045,6 @@ $('#edit_package').validate({ // initialize the plugin
         },
         package_type: {
             required: true,
-        },
-        tour_type: {
-            required: true,
-        },
-        main_tour_id: {
-            
-            required: function(element) {
-                rdVaule = $("input[name='tour_type']:checked").val();
-                    if(rdVaule == '0')
-                     {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
         },
         tour_number: {
             required: true,
@@ -3159,12 +3123,6 @@ $('#edit_package').validate({ // initialize the plugin
         },
         package_type : {
             required : "Please select package type",
-        },
-        tour_type: {
-            required: "Please select tour type",
-        },
-        main_tour_id: {
-            required: "Please select main tour of this tour",
         },
         tour_number : {
             required : "Please enter tour number",
@@ -7304,7 +7262,7 @@ $(document).ready(function(){
      
       var attr_val = $(this).attr('attr-type');
       var currentRow=$(this).closest("tr"); 
-        alert(attr_val);
+        // alert(attr_val);
 
       if(attr_val == 'state'){
         // alert('if');
@@ -7963,4 +7921,30 @@ $('#document_checker').validate({ // initialize the plugin
  });
 </script>
 <!-- add dates in that select slot  -->
+
+<!-- calendar Max date and min date  -->
+<!-- <script type='text/javascript'>
+$(document).ready(function(){
+
+    $('#year_slot').on('change', function () {
+    // $package_title = $('#datepicker').val();
+    var from_date = $(this).attr("attr_from_date");
+    // alert(from_date);
+
+    // alert($package_title); die;
+    $('#datepicker1').datepicker({
+         dateFormat: "yy-mm-dd",
+         maxDate: new Date('2023-2-12')
+    });
+
+    $('#datepicker1').datepicker({
+         dateFormat: "yy-mm-dd",
+         minDate: new Date('2022-12-5')
+    });
+
+    });
+});
+</script> -->
+
+<!-- calendar Max date and min date  -->
 

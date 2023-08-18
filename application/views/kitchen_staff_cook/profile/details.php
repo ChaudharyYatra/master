@@ -39,7 +39,7 @@
               <div class="card-body">
               <table id="" class="table table-bordered">
                   <tr>
-                    <th>Tour Manager Name</th>
+                    <th>Kitchen Staff Name</th>
                     <td><?php echo $info['supervision_name']; ?></td>
                     <th>Email Address</th>
                     <td><?php echo $info['email']; ?></td>
