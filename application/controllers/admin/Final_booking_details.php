@@ -125,7 +125,7 @@ class Final_booking_details extends CI_Controller {
         $this->db->where('extra_services_details.is_deleted','no');
         $this->db->where('extra_services_details.enquiry_id',$id);
         $extra_services_details_data = $this->master_model->getRecords('extra_services_details',array('extra_services_details.is_deleted'=>'no'),$fields);
-        // print_r($bus_seat_book_data); die;
+        // print_r($extra_services_details_data); die;
 
         $record = array();
         $fields = "special_req_master.*";
