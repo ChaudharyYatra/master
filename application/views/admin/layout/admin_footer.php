@@ -377,15 +377,15 @@ $(function () {
     $('#add_more').click(function() {
        // alert('hhhh');
             i++;
-var structure = $('<div class="row" style="width:100% !important" id="new_row'+i+'">'+
-                    '<div class="col-md-5">'+
-                    '<div class="form-group">'+
-                 '<label>Date:</label>'+
-                    '<div class="input-group">'+
-                        '<input type="date" name="journey_date[]" class="form-control" min="<?php echo date("Y-m-d"); ?>" required/>'+
-                   '</div>'+
-                   '</div>'+
-                     '</div>'+
+var structure = $(
+                            '<div class="col-md-5" id="new_row'+i+'">'+
+                                '<div class="form-group">'+
+                                    '<label>Date:</label>'+
+                                    '<div class="input-group">'+
+                                        '<input type="date" name="journey_date[]" class="form-control" min="<?php echo date("Y-m-d"); ?>" required/>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
 
                     '<div class="col-md-5">'+
                         '<div class="form-group">'+
@@ -402,8 +402,8 @@ var structure = $('<div class="row" style="width:100% !important" id="new_row'+i
                         '<label></label>'+
                             '<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>'+
                         '</div>'+
-                    '</div>'+   
-              '</div>');
+                    '</div>');
+                
 $('#main_row').append(structure); 
 
 });

@@ -42,11 +42,9 @@ class Special_req_master extends CI_Controller{
             if($this->form_validation->run() == TRUE)
             {
                 $service_name = $this->input->post('service_name');
-                $cost = $this->input->post('cost');
 
                 $arr_insert = array(
                     'service_name'   =>   $service_name,
-                    'cost'   =>   $cost
                     
                 );
                 
@@ -190,7 +188,6 @@ class Special_req_master extends CI_Controller{
                 if($this->form_validation->run() == TRUE)
                 {
                     $service_name = $this->input->post('service_name');
-                    $cost = $this->input->post('cost');
                    
                    $this->db->where('service_name',$service_name);
                     $this->db->where('id!='.$id);
@@ -204,7 +201,6 @@ class Special_req_master extends CI_Controller{
 
                    $arr_update = array(
                         'service_name' => $service_name,
-                        'cost' => $cost
                     );
                     $arr_where     = array("id" => $id);
                    $this->master_model->updateRecord('special_req_master ',$arr_update,$arr_where);

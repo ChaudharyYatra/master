@@ -45,12 +45,7 @@
                         <input type="text" class="form-control" name="service_name" id="service_name" placeholder="Enter Name" required="required" value="<?php echo $info['service_name'] ?>">
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                          <label>Cost</label>
-                          <input type="text" class="form-control" name="cost" id="cost" placeholder="Enter Cost" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required" value="<?php echo $info['cost'] ?>">
-                      </div>
-                    </div>
+                    
                   </div> 
                   <br>
                 </div>

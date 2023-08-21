@@ -34,7 +34,6 @@
                     <tr>
                       <th>SN</th>
                       <th>Service Name</th>
-                      <th>Cost</th>
                       <th>Is Active?</th>
                       <th>Action</th>
                     </tr>
@@ -49,7 +48,6 @@
                     <tr>
                       <td><?php echo $i; ?></td>
                       <td><?php echo $info['service_name'] ?></td>
-                      <td><?php echo $info['cost'] ?></td>
                       <td>
                           <?php 
                           if($info['is_active']=='yes')

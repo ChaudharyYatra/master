@@ -237,7 +237,7 @@ class Package_dates extends CI_Controller{
             {
                 $package_id = $_POST["package_id"];
                 $this->form_validation->set_rules('journey_date', 'Journey Date', 'required');
-                $this->form_validation->set_rules('available_seats', 'Available Seats', 'required');
+                // $this->form_validation->set_rules('available_seats', 'Available Seats', 'required');
                 $this->form_validation->set_rules('single_seat_cost', 'Single Seats', 'required');
                 $this->form_validation->set_rules('twin_seat_cost', 'Single Seats', 'required');
                 $this->form_validation->set_rules('three_four_sharing_cost', 'Single Seats', 'required');
@@ -246,7 +246,7 @@ class Package_dates extends CI_Controller{
                 {
                 $arr_update = array(
                         'journey_date'   =>   $_POST["journey_date"],
-                        'available_seats'   =>   $_POST["available_seats"],
+                        // 'available_seats'   =>   $_POST["available_seats"],
                         'single_seat_cost'   =>   $_POST["single_seat_cost"],
                         'twin_seat_cost'   =>   $_POST["twin_seat_cost"],
                         'three_four_sharing_cost'   =>   $_POST["three_four_sharing_cost"],
@@ -298,7 +298,7 @@ class Package_dates extends CI_Controller{
             {
       
                 $journey_date  = $this->input->post('journey_date'); 
-                $available_seats = $this->input->post('available_seats');
+                // $available_seats = $this->input->post('available_seats');
                 $package_id = $this->input->post('package_id');
                
                 $count = count($journey_date);
@@ -307,7 +307,7 @@ class Package_dates extends CI_Controller{
                 {
                     $arr_insert = array(
                         'journey_date'   =>   $_POST["journey_date"][$i],
-                        'available_seats'   =>   $_POST["available_seats"][$i],
+                        // 'available_seats'   =>   $_POST["available_seats"][$i],
                         'package_id' => $package_id,
                        
                     );

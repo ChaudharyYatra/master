@@ -82,12 +82,7 @@
                                 <input type="text" class="form-control" name="three_four_sharing_cost[]" id="available_seats" placeholder="Enter 3/4 Sharing Cost" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
                               </div>
                       </div> -->
-                      <div class="col-md-2 mt-4">
-                            <div class="form-group">
-                                <label></label>
-                                <button type="button" class="btn btn-primary" name="submit" value="add_more" id="add_more">Add More Dates</button>
-                            </div>
-                        </div>
+                        
                       
                      
               </div>

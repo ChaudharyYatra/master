@@ -329,6 +329,7 @@
 
                         </tr>
                         
+                        <?php if($info['total_onebed_oneroom']!= '') { ?>   
                         <tr>
                             <th>1</th>
 
@@ -364,6 +365,7 @@
                             </td>
                             
                         </tr>
+                        <?php } ?> 
                     
                         <?php if($info['total_twobed_oneroom']!= '') { ?>    
                         <tr>
@@ -409,7 +411,8 @@
                             </td>
 
                         </tr>
-                        <?php } ?>                
+                        <?php } ?>  
+
                         <?php if($info['total_threebed_oneroom']!= '') { ?>
                         <tr>
                             <th>3</th>
@@ -523,9 +526,9 @@
 
                         </div>
                         <div class="col-md-2">
-                            <input type="radio" id="extra_services_yes" name="extra_services" value="Yes" onclick="show2();"/>
+                            <input type="radio" id="extra_services_yes" name="extra_services" value="yes" onclick="show2();"/>
                                 <label for="Yes" id="extra_services_yes">Yes</label> &nbsp;&nbsp;
-                            <input type="radio" id="extra_services_no" name="extra_services" value="No" onclick="show1();"/>
+                            <input type="radio" id="extra_services_no" name="extra_services" value="no" onclick="show1();"/>
                                 <label for="No" id="extra_services_no">No</label>
                         </div>
 
@@ -542,7 +545,7 @@
                                     foreach($special_req_master_data as $special_req_master_data_value) 
                                     { 
                                 ?>
-                                    <option value="<?php echo $special_req_master_data_value['id'];?>"><?php echo $special_req_master_data_value['service_name'];?> -  <?php echo $special_req_master_data_value['cost'];?></option>
+                                    <option value="<?php echo $special_req_master_data_value['id'];?>"><?php echo $special_req_master_data_value['service_name'];?></option>
                                 <?php } ?>
                                 </select>
                             </div>

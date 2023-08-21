@@ -42,19 +42,20 @@
                     <div class="col-md-3">
                         <div class="form-group">
                       <label>Date:</label>
-                        <div class="input-group">
+                          <div class="input-group">
                             <input type="date" name="journey_date" class="form-control" required min="<?php echo date("Y-m-d"); ?>" value="<?php echo $info['journey_date']; ?>"/>
-                        </div>
+                            <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['package_id']; ?>" >
+                          </div>
                         </div>
                      </div>
 
-                      <div class="col-md-2">
+                      <!-- <div class="col-md-2">
                               <div class="form-group">
                                 <label>Available Seats</label>
                                 <input type="text" class="form-control" name="available_seats" id="available_seats" placeholder="Enter Available Seats" value="<?php echo $info['available_seats']; ?>" required>
-                                <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['package_id']; ?>" >
+                                
                               </div>
-                      </div>
+                      </div> -->
                       <div class="col-md-2">
                               <div class="form-group">
                                 <label>Single Seat Cost</label>

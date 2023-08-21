@@ -433,8 +433,10 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
+    // alert('heloooooooooooooooooooo');
     // $('#traveller_table .remove_row').remove();
     var count = $('#seat_count_add').val();
+    // alert(count); 
 
     var d_count = $('#d_hidden').val();
     // alert(d_count); 
@@ -480,7 +482,12 @@ $(document).ready(function() {
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="first_name[]" id="first_name">
+                                        <input type="text" class="form-control row_set" name="first_name[]" id="first_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                        <div id="user_name">
+                                            <ul id="search-results"> 
+                                            
+                                            </ul>
+                                        </div>
                                     </td>
                                     <td>
                                         <input type="text" class="form-contro row_set" style="text-transform: capitalize;" name="middle_name[]" id="middle_name">
@@ -2653,7 +2660,12 @@ $(document).ready(function() {
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control row_set" name="first_name[]" id="first_name">
+                                        <input type="text" class="form-control row_set" name="first_name[]" id="first_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                        <div id="user_name">
+                                            <ul id="search-results"> 
+                                            
+                                            </ul>
+                                        </div>
                                     </td>
                                     <td>
                                         <input type="text" class="form-contro row_set" name="middle_name[]" id="middle_name">
@@ -5071,8 +5083,13 @@ $(document).ready(function() {
         var journey_date = $('#journey_date').val();
         var package_date_id = $('#package_date_id').val();
         var traveller_id = $('#traveller_id').val();
+
+        var select_services = $('#select_services').val();
+        var extra_services = $('input[name="extra_services"]:checked').val();
         
-        // alert(traveller_id);
+        
+        // alert(extra_services); 
+        // alert(select_services); 
         if (mobile_no != '') {
             // alert('IN hiiiii');
             $.ajax({
@@ -5109,7 +5126,9 @@ $(document).ready(function() {
                     total_cash_20: total_cash_20,
                     cash_10: cash_10,
                     total_cash_10: total_cash_10,
-                    total_cash_amt: total_cash_amt
+                    total_cash_amt: total_cash_amt,
+                    select_services: select_services,
+                    extra_services: extra_services
                 },
                 // dataType: 'json',
                 success: function(responce) {
@@ -5300,16 +5319,16 @@ function validate() {
     var valid = true;
     valid = checkEmpty($("#booking_tm_mobile_no")) && checkEmpty($("#booking_amt")) ;
 
-        $("#select_transaction").click(function() {
-          if($("select").val() == '' && valid!='')
-          $("#submit_otp").prop( "disabled", true);
-          else $("#submit_otp").prop( "disabled", false);
-        });
+        // $("#select_transaction").click(function() {
+        //   if($("select").val() == '' && valid!='')
+        //   $("#submit_otp").prop( "disabled", true);
+        //   else $("#submit_otp").prop( "disabled", false);
+        // });
      
-        //   $("#submit_otp").attr("disabled", true);
-        //   if (valid) {
-        //       $("#submit_otp").attr("disabled", false);
-        //   }
+          $("#submit_otp").attr("disabled", true);
+          if (valid) {
+              $("#submit_otp").attr("disabled", false);
+          }
   }
   
     //   $("#select_transaction").click(function() {
@@ -5816,4 +5835,158 @@ function empty() {
       }
     });
   });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // alert('hiiiiii');
+        var count = $('#seat_count_add').val();
+        var total_count = $('#d_hidden').val();
+            $(document).on('keyup', '.first_name', function() {
+
+                var input_name = $(this).val();
+                if(input_name!=''){
+                    alert('hiiiiiiii if');
+                var attr_id_for_search = $(this).attr('attr_for_search');
+                var orignal_id = $(this).attr('id');
+                var did = $(this).val();
+                // alert(did);
+
+                $.ajax({
+                    url: '<?=base_url()?>agent/all_traveller_info/userNameList',
+                    method: 'post',
+                    data: {did: did},
+                    dataType: 'json',
+
+                    success: function(response){
+                        $('#search-results'+attr_id_for_search).empty();
+                        
+                        $('#search-results'+attr_id_for_search).css("position","absolute");
+                        $('#search-results'+attr_id_for_search).css("height","15vh");
+                        $('#search-results'+attr_id_for_search).css("overflow-y","auto");
+                        $('#search-results'+attr_id_for_search).css("width","12%");
+                        $('#search-results'+attr_id_for_search).css("background-color","#eaeaeaba");
+                        $('#search-results'+attr_id_for_search).css("list-style-type","none");
+                        $('#search-results'+attr_id_for_search).css("padding-left","2%");
+                        $('#search-results'+attr_id_for_search).css("cursor","pointer");
+
+                        $.each(response, function(index, data){      
+                            var listItem = $("<li>").text(data['first_name']);
+                            listItem.on('click', function(){
+                                $('#'+orignal_id).val(data['first_name']);
+                                $('#search-results'+attr_id_for_search).empty();
+                                $('#search-results'+attr_id_for_search).css("height","0vh");
+                            });
+                            $('#search-results'+attr_id_for_search).append(listItem);
+                        });
+                    }
+                });
+                }else{
+                    alert('hiiiiiiii else');
+
+                    $('#search-results'+attr_id_for_search).empty();
+                    $('#search-results'+attr_id_for_search).css("display","none");;
+                }
+            
+
+            });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // alert('hiiiiii');
+        var count = $('#seat_count_add').val();
+        var total_count = $('#d_hidden').val();
+            $(document).on('keyup', '.middle_name', function() {
+                var input_name = $(this).val();
+                if(input_name!=''){
+                var attr_id_for_search = $(this).attr('attr_for_search');
+                var orignal_id = $(this).attr('id');
+                var did = $(this).val();
+                // alert(did);
+
+                $.ajax({
+                    url: '<?=base_url()?>agent/all_traveller_info/middle_NameList',
+                    method: 'post',
+                    data: {did: did},
+                    dataType: 'json',
+
+                    success: function(response){
+                        $('#search-results2'+attr_id_for_search).empty();
+                        $('#search-results2'+attr_id_for_search).css("position","absolute");
+                        $('#search-results2'+attr_id_for_search).css("height","15vh");
+                        $('#search-results2'+attr_id_for_search).css("overflow-y","auto");
+                        $('#search-results2'+attr_id_for_search).css("width","12%");
+                        $('#search-results2'+attr_id_for_search).css("background-color","#eaeaeaba");
+                        $('#search-results2'+attr_id_for_search).css("list-style-type","none");
+                        $('#search-results2'+attr_id_for_search).css("padding-left","2%");
+                        $('#search-results2'+attr_id_for_search).css("cursor","pointer");
+                        $.each(response, function(index, data){      
+                            var listItem = $("<li>").text(data['middle_name']);
+                            listItem.on('click', function(){
+                                $('#'+orignal_id).val(data['middle_name']);
+                                $('#search-results2'+attr_id_for_search).empty();
+                                $('#search-results2'+attr_id_for_search).css("height","0vh");
+                            });
+                            $('#search-results2'+attr_id_for_search).append(listItem);
+                        });
+                    }
+                });
+                }else{
+
+                    $('#search-results'+attr_id_for_search).empty();
+                }
+            });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // alert('hiiiiii');
+        var count = $('#seat_count_add').val();
+        var total_count = $('#d_hidden').val();
+            $(document).on('keyup', '.last_name', function() {
+                var input_name = $(this).val();
+                if(input_name!=''){
+                var attr_id_for_search = $(this).attr('attr_for_search');
+                var orignal_id = $(this).attr('id');
+                var did = $(this).val();
+                // alert(did);
+
+                $.ajax({
+                    url: '<?=base_url()?>agent/all_traveller_info/last_nameList',
+                    method: 'post',
+                    data: {did: did},
+                    dataType: 'json',
+
+                    success: function(response){
+                        $('#search-results3'+attr_id_for_search).empty();
+                        $('#search-results3'+attr_id_for_search).css("position","absolute");
+                        $('#search-results3'+attr_id_for_search).css("height","15vh");
+                        $('#search-results3'+attr_id_for_search).css("overflow-y","auto");
+                        $('#search-results3'+attr_id_for_search).css("width","12%");
+                        $('#search-results3'+attr_id_for_search).css("background-color","#eaeaeaba");
+                        $('#search-results3'+attr_id_for_search).css("list-style-type","none");
+                        $('#search-results3'+attr_id_for_search).css("padding-left","2%");
+                        $('#search-results3'+attr_id_for_search).css("cursor","pointer");
+                        $.each(response, function(index, data){      
+                            var listItem = $("<li>").text(data['last_name']);
+                            listItem.on('click', function(){
+                                $('#'+orignal_id).val(data['last_name']);
+                                $('#search-results3'+attr_id_for_search).empty();
+                                $('#search-results3'+attr_id_for_search).css("height","0vh");
+                            });
+                            
+                            $('#search-results3'+attr_id_for_search).append(listItem);
+                        });
+                        
+                    }
+                });
+                }else{
+
+                    $('#search-results'+attr_id_for_search).empty();
+                }
+            });
+    });
 </script>
