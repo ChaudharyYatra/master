@@ -134,10 +134,10 @@
                             <input type="text" class="form-control" name="enq_seat_count" id="enq_seat_count" placeholder="Enter seat count" value="<?php echo $info['seat_count']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                           </div>
                         </div>
-                        <div class="col-md-6 mb-2">
+                        <!-- <div class="col-md-6 mb-2">
                           <label class="col-form-label">Followup Date:</label> 
-                          <input type="date" class="form-control" name="followup_date" id="followup_date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($info['followup_date'])){ echo $info['followup_date'];}?>" >
-                        </div>
+                          <input type="date" class="form-control" name="followup_date" id="followup_date" min="<?php //echo date("Y-m-d"); ?>" value="<?php //if(isset($info['followup_date'])){ echo $info['followup_date'];}?>" >
+                        </div> -->
 
              
 
