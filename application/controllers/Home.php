@@ -246,37 +246,101 @@ class Home extends CI_Controller {
         $this->load->view('front/common_view_home',$data);
     }
 
-    
-
-     public function all_packages_search() {
-        $zone_name = $this->input->get('zone_master');
-        $tour_name = $this->input->get('tour_name');
-        $tour_days = $this->input->get('tour_days');
-
-
-        // At least one field should be selected
-        if (!$zone_name && !$tour_name && !$tour_days) {
-           //  redirect('package_controller');
-            redirect($this->module_url_path_search_package);
-            return;
-        }
+    public function all_packages_search()
+    {
+        $zone_master = $this->input->post('zone_master');
+        $tour_name = $this->input->post('tour_name');
+        $tour_days = $this->input->post('tour_days');
+        $duration = $this->input->post('duration');
+        $aData['msg'] = '';
         
-        $data['packages'] = $this->Package_model->search_packages($zone_name, $tour_name, $tour_days);
-
-        // Load your view and pass the data to it
-        $data = array('middle_content' => 'search_packages',
-        // 'main_packages'       => $main_packages,
-        'main_packages_all' => $main_packages_all,
-        'website_basic_structure' => $website_basic_structure,
-        'social_media_link' => $social_media_link,
-        // 'count'      => $count,
-        'page_title' => 'search packages', 
-        'alert_msg'       => $aData,
-        );
+        // $this->db->where('is_deleted','no');
+        // $this->db->where('is_active','yes');
+        // // $this->db->where('package_type','Domestic Packages');
+        // $this->db->where('tour_title',$destination_name);
+        // // $this->db->or_where('tour_number_of_days',$duration);
+        // $this->db->order_by('id','DESC');
+        // $main_packages = $this->master_model->getRecords('packages');
+        // $count= sizeof($main_packages);
+        // // print_r($main_packages); die;
         
-       $this->arr_view_data['page_title']     =  "All Packages";
-       $this->load->view('front/common_view',$data);
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('id','ASC');
+        $website_basic_structure = $this->master_model->getRecords('website_basic_structure');
+        
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $this->db->order_by('id','ASC');
+        $social_media_link = $this->master_model->getRecords('social_media_link');
+
+        // $record = array();
+        $fields = "packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost,
+        zone_master.zone_name,packages.tour_title,packages.tour_number_of_days";
+        $this->db->where('packages.is_deleted','no');
+        // $this->db->where('zone_master.zone_name',$zone_master);
+        // $this->db->where('packages.tour_title',$tour_name);
+        // $this->db->where('packages.tour_number_of_days',$tour_days);    
+        // $this->db->where('zone_master.id',$zone_master);
+        // $this->db->where('package_type','1');
+        // $this->db->where('MONTH(package_date.journey_date)', date('m'));
+	    // $this->db->where('YEAR(package_date.journey_date)', date('Y'));
+	    // $this->db->order_by('id', 'RANDOM');
+	    // $this->db->limit(7);
+        $this->db->join("package_date", 'packages.id=package_date.package_id','right');
+        $this->db->join("zone_master", 'packages.zone_name=zone_master.id','right');
+        $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        $this->db->group_by('package_date.package_id');
+        $main_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no','zone_master.zone_name'=>$zone_master),$fields);
+        // $main_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        // print_r($main_packages_all); die;
+        
+         $data = array('middle_content' => 'search_packages',
+						// 'main_packages'       => $main_packages,
+						'main_packages_all' => $main_packages_all,
+						'website_basic_structure' => $website_basic_structure,
+						'social_media_link' => $social_media_link,
+                        // 'count'      => $count,
+                        'page_title' => 'search packages', 
+						'alert_msg'       => $aData,
+						);
+						
+        $this->arr_view_data['page_title']     =  "All Packages";
+        $this->load->view('front/common_view',$data);
     }
+	
+
+
+    //  public function all_packages_search() {
+    //     $zone_name = $this->input->get('zone_master');
+    //     $tour_name = $this->input->get('tour_name');
+    //     $tour_days = $this->input->get('tour_days');
+
+
+    //     // At least one field should be selected
+    //     if (!$zone_name && !$tour_name && !$tour_days) {
+    //        //  redirect('package_controller');
+    //     //    print_r('hiiiii');
+    //         redirect($this->module_url_path_search_package);
+    //         return;
+    //     }
+        
+    //     $data['packages'] = $this->Package_model->search_packages($zone_name, $tour_name, $tour_days);
+
+    //     // Load your view and pass the data to it
+    //     $data = array('middle_content' => 'search_packages',
+    //     // 'main_packages'       => $main_packages,
+    //     'main_packages_all' => $main_packages_all,
+    //     'website_basic_structure' => $website_basic_structure,
+    //     'social_media_link' => $social_media_link,
+    //     // 'count'      => $count,
+    //     'page_title' => 'search packages', 
+    //     'alert_msg'       => $aData,
+    //     );
+        
+    //    $this->arr_view_data['page_title']     =  "All Packages";
+    //    $this->load->view('front/common_view',$data);
+    // }
 
 
 
