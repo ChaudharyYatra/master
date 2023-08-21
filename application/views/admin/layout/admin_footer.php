@@ -7895,12 +7895,13 @@ $('#document_checker').validate({ // initialize the plugin
     // district change
     $('#year_slot').change(function(){
       var did = $(this).val();
-    //   alert(did); 
+      var pid = $('#package_id').val();
+    //   alert(pid); 
       // AJAX request
       $.ajax({
         url:'<?=base_url()?>admin/package_dates/get_slot',
         method: 'post',
-        data: {did: did},
+        data: {did: did,pid: pid},
         dataType: 'json',
         success: function(response){
         // console.log(response);

@@ -186,16 +186,16 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control row_set" name="first_name[]" id="first_name" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['first_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="first_name[]" id="first_name" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['first_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div id="user_name">
                                         <ul id="user_name_list"></ul>
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control row_set" name="middle_name[]" id="middle_name" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['middle_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="middle_name[]" id="middle_name" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['middle_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control row_set" name="last_name[]" id="last_name" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['last_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="last_name[]" id="last_name" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['last_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </td>
                                 <td>
                                     <input type="date" class="form-control row_set" name="dob[]" id="dob" max="<?php echo date("Y-m-d");?>" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['dob'];} ?>">
@@ -267,16 +267,16 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control row_set" name="first_name[]" id="first_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="first_name[]" id="first_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div id="user_name">
                                         <ul id="user_name_list"></ul>
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control row_set" name="middle_name[]" id="middle_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="middle_name[]" id="middle_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control row_set" name="last_name[]" id="last_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="last_name[]" id="last_name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </td>
                                 <td>
                                     <input type="date" class="form-control row_set" name="dob[]" id="dob" max="<?php echo date("Y-m-d");?>">

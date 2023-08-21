@@ -178,14 +178,11 @@
                               
                               foreach($agent_booking_enquiry_data as $info) 
                               { 
-                              $title = $temparray=explode(',',$info['package_id']);
-                              // print_r($title); die;
+                              $title = explode(',',$info['package_id']);
                               $c=count($title);
                                 foreach($packages_data as $packages_data_value) 
                                 { 
-                                    // for($i=0; $i<$c; $i++){
-                                    //     $tid= $title[$i];
-                                    // }
+                                   
                               ?>
                                 <option value="<?php echo $packages_data_value['id']; ?>" <?php if(in_array($packages_data_value['id'], $title)) { echo "selected"; } ?>><?php echo $packages_data_value['tour_number'];?> -  <?php echo $packages_data_value['tour_title'];?></option>
                             <?php  } } ?>

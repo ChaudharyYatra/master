@@ -371,18 +371,20 @@ class Package_dates extends CI_Controller{
 
     public function get_slot(){ 
         // POST data 
-        // $all_b=array();
+        // $all_b=array();pid
        $state_data = $this->input->post('did');
-        // print_r($state_data); die;
+       $package_id = $this->input->post('pid');
+        // print_r($package_id); die;
         $record = array();
         $fields = "package_date.*,packages.tour_title";
         $this->db->order_by('package_date.id','asc');
         $this->db->where('packages.is_deleted','no');
         $this->db->where('package_date.year_slot',$state_data);
+        $this->db->where('package_date.package_id',$package_id);
         $this->db->join("packages", 'package_date.package_id=packages.id','left');
         $this->db->group_by('package_date.year_slot');
         $data = $this->master_model->getRecords('package_date',array('package_date.is_deleted'=>'no'),$fields);
-        
+        // print_r($data); die;
         echo json_encode($data);
     }
    

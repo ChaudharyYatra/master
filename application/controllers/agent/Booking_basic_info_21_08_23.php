@@ -86,6 +86,7 @@ class Booking_basic_info extends CI_Controller {
         $this->db->join("bus_seat_book", 'packages.id=bus_seat_book.package_id','left');
         $this->db->join("package_date", 'package_date.id=bus_seat_book.tour_dates','left');
         $this->db->group_by('bus_seat_book.package_id');
+        // $packages_data_booking = $this->master_model->getRecord('packages');
         $packages_data_booking = $this->master_model->getRecord('packages','',$fields);
 
         // print_r($packages_data_booking);
@@ -199,7 +200,7 @@ class Booking_basic_info extends CI_Controller {
         $this->db->where('booking_basic_info.domestic_enquiry_id',$booking_basic_domestic_enquiry);
         $this->db->join("booking_basic_info", 'package_date.id=booking_basic_info.tour_date','left');
         $arr_package_date = $this->master_model->getRecords('package_date',array('package_date.is_deleted'=>'no'),$fields);
-
+        
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
         $this->db->order_by('tour_number','ASC');

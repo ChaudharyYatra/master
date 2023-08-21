@@ -5005,6 +5005,29 @@ $('.data_amt').keyup(function(){
 
     $(document).ready(function(){
 
+        var did = $('#pack_id').val();
+        var checker_pack_id = $('#new_pack_date_id').val();
+        if(did!=''){
+  $.ajax({
+    url:'<?=base_url()?>agent/booking_basic_info/get_tourdate',
+    method: 'post',
+    data: {did: did},
+    dataType: 'json',
+    success: function(response){
+    console.log(response);
+      $('#pack_date_id').find('option').not(':first').remove();
+      $.each(response,function(index,data){      
+         $('#pack_date_id').append('<option value="'+data['id']+'">'+data['journey_date']+'</option>');
+         if(data['id']==checker_pack_id)
+         {
+                    $('#pack_date_id').val(checker_pack_id);
+         }
+      });
+    }
+ });
+ $('#pack_id').trigger('change');
+        }
+
     $('#pack_id').change(function(){
 
     var did = $(this).val();
@@ -5235,6 +5258,37 @@ function checkEmpty(obj) {
 
 <script>
 $(document).ready(function(){
+
+
+    $("#booking_start").prop('disabled', true);
+    var btn_disabled = $("#btn_disabled").val();
+
+    if (btn_disabled=='yes'){
+        $("#booking_start").prop('disabled', true)
+    } else {
+        $("#booking_start").prop('disabled', false);
+    }
+});
+</script>
+
+<script>
+$(document).ready(function(){
+
+    $("#booking_start").click(function() {  
+        var enquiry_seat_count = $("#enquiry_seat_count").val();
+
+        if (enquiry_seat_count != $('#selected-seats li').length) {
+            var is_confirmed=confirm("The Enquired seats and selected seats are not same are you sure to continue");
+            if(is_confirmed)
+            {
+                return false;
+            }else{
+                return false;
+            }
+        }
+
+
+    });
     $("#booking_start").prop('disabled', true);
     var btn_disabled = $("#btn_disabled").val();
 
@@ -5300,9 +5354,10 @@ $(document).ready(function(){
         var seat_price =  $(this).attr('seat_price');
         var btn_class =  $(this).attr('class').split(' ');
      
-
            if(seat_orignal_id != '' && $.inArray('hold', btn_class) == '-1')  
            {  
+
+
                 $.ajax({  
 
                      url:"<?php echo base_url(); ?>agent/seat_checker/seat_hold",  
@@ -5325,6 +5380,8 @@ $(document).ready(function(){
                      }  
                 });  
            }
+
+
           });
       });  
  </script>
@@ -5374,7 +5431,7 @@ function fetch_new_hold(){
 
 $(document).ready(function(){
 
- setInterval(fetch_new_hold,5000);
+ setInterval(fetch_new_hold,2000);
 
 });
 

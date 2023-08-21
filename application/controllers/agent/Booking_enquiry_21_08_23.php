@@ -73,9 +73,8 @@ class Booking_enquiry extends CI_Controller {
         
      }
 
-    public function add($iid="")
+    public function add()
      {  
-        // echo $iid; die;
          $agent_sess_name = $this->session->userdata('agent_name');
          $id=$this->session->userdata('agent_sess_id');
          
@@ -86,11 +85,7 @@ class Booking_enquiry extends CI_Controller {
             $this->db->where('id',$v_booking);
             $visitor_data = $this->master_model->getRecord('website_visitor_data');
         }
-        $this->db->order_by('id','desc');
-        $this->db->where('is_deleted','no');
-        $this->db->where('booking_enquiry.id',$iid);
-        $agent_booking_enquiry_data = $this->master_model->getRecord('booking_enquiry');
-        // print_r($agent_booking_enquiry_data); die;
+        // print_r($visitor_data); die;
 
         $record = array();
         $fields = "booking_enquiry.*,packages.tour_title,agent.agent_name,packages.tour_number as tno,booking_enquiry.package_id as pid";
@@ -101,16 +96,20 @@ class Booking_enquiry extends CI_Controller {
         $this->db->join("packages", 'booking_enquiry.package_id=packages.id','left');
         $this->db->join("agent", 'booking_enquiry.agent_id=agent.id','left');
         $this->db->order_by("booking_enquiry.id", "desc");
+        // $this->db->join("domestic_followup", 'booking_enquiry.id=domestic_followup.booking_enquiry_id','left');
         $arr_data = $this->master_model->getRecords('booking_enquiry',array('booking_enquiry.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
             
          if($this->input->post('submit'))
          {
+            // print_r($_REQUEST); die;
              $this->form_validation->set_rules('mrandmrs', 'Mr and Mrs', 'required');
              $this->form_validation->set_rules('first_name', 'first_name', 'required');
              $this->form_validation->set_rules('last_name', 'last_name', 'required');
              $this->form_validation->set_rules('mobile_number', 'mobile_number', 'required');
              $this->form_validation->set_rules('gender', 'gender', 'required');
-             $this->form_validation->set_rules('wp_mobile_number', 'wp_mobile_number', 'required');
+            //  $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
+            //  $this->form_validation->set_rules('wp_mobile_number', 'wp_mobile_number', 'required');
              
              
              if($this->form_validation->run() == TRUE)
@@ -121,12 +120,13 @@ class Booking_enquiry extends CI_Controller {
                  $mobile_number  = $this->input->post('mobile_number'); 
                  $email_address  = $this->input->post('email_address'); 
                  $gender  = $this->input->post('gender'); 
+                //  $tour_number  = $this->input->post('tour_number'); 
                 $tour_number = implode(",", $this->input->post('tour_number')); 
                  $media_source_name         = $this->input->post('media_source_name');
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
                  $wp_mobile_number  = $this->input->post('wp_mobile_number');
-                 $followup_date  = $this->input->post('followup_date'); 
+                //  $followup_date  = $this->input->post('followup_date'); 
 
                  $arr_insert = array(
                      'agent_id' =>   $id,
@@ -142,16 +142,12 @@ class Booking_enquiry extends CI_Controller {
                      'created_at'=>$today,
                      'wp_mobile_number'    =>$wp_mobile_number,
                      'enquiry_from'    =>'Agent',
-                     'followup_date'    =>$followup_date
+                    //  'followup_date'    =>$followup_date
                  );
-
-                 if($iid!=''){
-                    $arr_where     = array("id" => $iid);
-                    $this->master_model->updateRecord('booking_enquiry',$arr_insert,$arr_where);
-                 }else{
+                //  print_r($arr_insert); die;
                 $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
-                 }
                 
+                //  $id = $this->db->inserted_id();
                  $this->db->where('is_deleted','no');
                  $this->db->where('is_active','yes');
                  $this->db->where('id',$id);
@@ -183,8 +179,10 @@ class Booking_enquiry extends CI_Controller {
 										<h5>ChoudharyYatra Company</h5>
 									</body>
 									</html>";
+						// echo $msg;
 						$subject='Thank You For Enquiry';
-						
+						//$this->send_mail($email_address,$from_email,$msg,$subject,$cc=null);
+						// die;
 				 }
 					if($agent_name !='')
                  {	
@@ -209,7 +207,9 @@ class Booking_enquiry extends CI_Controller {
 									</body>
 									</html>";
 									$subject_email=' New Enquiry from customer';
-						
+						//$this->send_mail($agent_email,$from_email,$msg_email,$subject_email,$cc=null);
+
+					 	//die;
 					}
 				 
                      $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
@@ -235,6 +235,7 @@ class Booking_enquiry extends CI_Controller {
              $this->form_validation->set_rules('mobile_number', 'mobile_number', 'required');
              $this->form_validation->set_rules('email_address', 'email_address', 'required');
              $this->form_validation->set_rules('gender', 'gender', 'required');
+            //  $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
              
              if($this->form_validation->run() == TRUE)
              { 
@@ -244,11 +245,13 @@ class Booking_enquiry extends CI_Controller {
                  $mobile_number  = $this->input->post('mobile_number'); 
                  $email_address  = $this->input->post('email_address'); 
                  $gender  = $this->input->post('gender'); 
+                //  $tour_number  = $this->input->post('tour_number'); 
                  $tour_number = implode(",", $this->input->post('tour_number')); 
                  $media_source_name         = $this->input->post('media_source_name');
                  $enq_seat_count         = $this->input->post('enq_seat_count');
                  $today=date("Y-m-d");
-                 $followup_date  = $this->input->post('followup_date'); 
+                //  $followup_date  = $this->input->post('followup_date'); 
+                //  $packages  = $this->input->post('packages'); 
 
                  $arr_insert = array(
                      'agent_id' =>   $id,
@@ -262,30 +265,17 @@ class Booking_enquiry extends CI_Controller {
                      'media_source_name'    =>$media_source_name,
                      'seat_count'    =>$enq_seat_count,
                      'created_at'=>$today,
-                     'enquiry_from'    =>'Agent',
-                     'followup_date'    =>$followup_date
+                     'enquiry_from'    =>'Agent'
+                    //  'followup_date'    =>$followup_date
                  );
                  
-                 
-
-                if($iid!=''){
-                $arr_where     = array("id" => $iid);
-                $inserted_id =$this->master_model->updateRecord('booking_enquiry',$arr_insert,$arr_where);
-                $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
-                    //  redirect($this->module_url_path_booking_basic_info.'/add/'.$iid);
-                    redirect($this->module_url_path_seat_checker.'/index/'.$iid);
-                }else{
-                $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
-                $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
-                    //  redirect($this->module_url_path_booking_basic_info.'/add/'.$iid);
-                    redirect($this->module_url_path_seat_checker.'/index/'.$inserted_id);
-                }
-                 
+                 $inserted_id = $this->master_model->insertRecord('booking_enquiry',$arr_insert,true);
+                 $iid = $this->db->insert_id(); 
                  if($inserted_id > 0)
                  {
-                     
+                     $this->session->set_flashdata('success_message',ucfirst($this->module_title)." Added Successfully.");
+                     redirect($this->module_url_path_seat_checker.'/index/'.$iid);
                  }
- 
                  else
                  {
                      $this->session->set_flashdata('error_message',"Something Went Wrong While Adding The ".ucfirst($this->module_title).".");
@@ -387,7 +377,6 @@ class Booking_enquiry extends CI_Controller {
          $followup_reason_data = $this->master_model->getRecords('followup_reason');
  
          $this->arr_view_data['agent_sess_name'] = $agent_sess_name;
-         $this->arr_view_data['agent_booking_enquiry_data'] = $agent_booking_enquiry_data;
          $this->arr_view_data['action']          = 'add';
          $this->arr_view_data['booking_enquiry_data'] = $booking_enquiry_data;
          $this->arr_view_data['media_source_data'] = $media_source_data;
@@ -610,7 +599,8 @@ class Booking_enquiry extends CI_Controller {
                 $this->form_validation->set_rules('gender', 'gender', 'required');
                 // $this->form_validation->set_rules('packages', 'packages', 'required');
                 // $this->form_validation->set_rules('tour_number', 'tour_number', 'required');
-				$this->form_validation->set_rules('wp_mobile_number', 'whatsapp mobile number', 'required');
+				// $this->form_validation->set_rules('wp_mobile_number', 'whatsapp mobile number', 'required');
+                
                 if($this->input->post('tour_number')=='Other'){
                 $this->form_validation->set_rules('other_tour_name', 'enter destination name', 'required');
 				$this->form_validation->set_rules('mrandmrs', 'Mr and Mrs', 'required');

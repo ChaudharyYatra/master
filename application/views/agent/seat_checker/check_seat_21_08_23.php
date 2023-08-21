@@ -38,7 +38,6 @@
             <form method="post" enctype="multipart/form-data" id="bus_seat_selection">
             <input type="hidden" class="form-control" name="is_main_page" id="is_main_page" value="no">
             <input type="hidden" class="form-control" name="btn_disabled" id="btn_disabled" value="<?php echo $p;?>">
-            <input type="hidden" class="form-control" name="enquiry_seat_count" id="enquiry_seat_count" value="<?php echo $agent_booking_enquiry_data['seat_count'];?>">
             <input type="hidden" class="form-control" name="new_pack_id" id="new_pack_id" value="<?php echo $new_pack_id;?>">
             <input type="hidden" class="form-control" name="new_pack_date_id" id="new_pack_date_id" value="<?php echo $new_pack_date_id;?>">
             <input type="hidden" id="bdata" value='<?php print_r(
@@ -61,21 +60,20 @@
                   <div class="row">
 
                       <?php
-                      //   foreach($agent_booking_enquiry_data as $agent_booking_enquiry_data_info) 
-                      //   { 
-                      //     // print_r($agent_booking_enquiry_data); die;
-                      //     $enq_id=$agent_booking_enquiry_data_info['id'];
-                      // ?>
-                      <input type="hidden" class="form-control" name="domestic_enquiry_id" id="domestic_enquiry_id" value="<?php echo $agent_booking_enquiry_data['id']; ?>">
-                      <!-- <?php //} ?> -->
+                        foreach($agent_booking_enquiry_data as $agent_booking_enquiry_data_info) 
+                        { 
+                          // print_r($agent_booking_enquiry_data); die;
+                          $enq_id=$agent_booking_enquiry_data_info['id'];
+                      ?>
+                      <input type="hidden" class="form-control" name="domestic_enquiry_id" id="domestic_enquiry_id" value="<?php echo $agent_booking_enquiry_data_info['id']; ?>">
+                      <?php } ?>
                       <div class="col-md-4">
                       <div class="form-group">
                         <label>Select Tour</label>
                           <select class="select_css" name="pack_id" id="pack_id">
-                            <option value="">Select Tour</option>
+                            <option value="">Select Package</option>
                               <?php foreach($packages_data_booking as $packages_data_booking){ ?>  
-                                <option value="<?php echo $packages_data_booking['package_id'];?>" <?php if($packages_data_booking['package_id']==$new_pack_id){
-                                  echo "selected";} ?>><?php echo $packages_data_booking['tour_title'];?></option>
+                                <option value="<?php echo $packages_data_booking['package_id'];?>"><?php echo $packages_data_booking['tour_title'];?></option>
                               <?php } ?>
                           </select>
                         </div>
@@ -94,8 +92,7 @@
                         <div class="form-group">
                           <button type="submit" class="btn btn-success mt-4" name="submit" value="Search" id="search">Search </button> 
                           <a href="<?php echo $module_booking_enquiry; ?>/index"><button type="button" class="btn btn-danger mt-4" >Cancel</button></a>
-                          <a href="<?php echo $module_booking_enquiry; ?>/add/<?php echo $agent_booking_enquiry_data['id']; ?>"><button type="button" class="btn btn-warning mt-4" >Back</button></a>
-                          <a href="<?php echo $module_url_path_booking_basic_info;?>/add/<?php echo $agent_booking_enquiry_data['id']; ?>"><button type="button" id="booking_start" class="btn btn-primary btn-md mt-4" class="dropdown-item">Booking</button></a>  
+                          <a href="<?php echo $module_url_path_booking_basic_info;?>/add/<?php echo $enq_id; ?>"><button type="button" id="booking_start" class="btn btn-primary btn-md mt-4" class="dropdown-item">Booking</button></a>  
                         </div>
                       </div>
 

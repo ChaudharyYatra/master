@@ -35,6 +35,7 @@
               <?php
                    foreach($arr_data as $info) 
                    { 
+                    // print_r($info); die;
                      ?>
               <form method="post" enctype="multipart/form-data">
                 <div class="card-body">
@@ -46,8 +47,8 @@
                       <label>Date:</label>
                         <div class="input-group">
                             <input type="date" name="journey_date[]" id="datepicker" class="form-control" required/>
-                            <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['id']; ?>" >
-                                <input type="hidden" class="form-control" name="package_title" placeholder="Enter Available Seats" value="<?php echo $info['tour_title']; ?>" >
+                            <input type="hidden" class="form-control" name="package_id" id="package_id" placeholder="Enter Available Seats" value="<?php echo $info['id']; ?>" >
+                            <input type="hidden" class="form-control" name="package_title" placeholder="Enter Available Seats" value="<?php echo $info['tour_title']; ?>" >
                           </div>
                         </div>
                      </div>

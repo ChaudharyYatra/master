@@ -128,8 +128,8 @@ var js_array =<?php echo json_encode($bus_info);?>;
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts.js"></script>
-<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script.js"></script> 
+<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/jquery.seat-charts_seat_checker.js"></script>
+<script src="<?php echo base_url();?>assets/admin/bus_seat_design/js/script_seat_checker.js"></script> 
 
 <!-- Page specific script -->
 <script>
@@ -480,13 +480,13 @@ $(document).ready(function() {
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="first_name[]" id="first_name">
+                                        <input type="text" class="form-control row_set" name="first_name[]" id="first_name">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-contro row_set" style="text-transform: capitalize;" name="middle_name[]" id="middle_name">
+                                        <input type="text" class="form-contro row_set" name="middle_name[]" id="middle_name">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control row_set" style="text-transform: capitalize;" name="last_name[]" id="last_name">
+                                        <input type="text" class="form-control row_set" name="last_name[]" id="last_name">
                                     </td>
                                     <td>
                                         <input type="date" class="form-control row_set" name="dob[]" id="dob" max="<?php echo date(
@@ -789,7 +789,7 @@ $(document).ready(function() {
                 minlength: 10
             },
             wp_mobile_number: {
-                // required: true,
+                required: true,
                 maxlength: 10,
                 minlength: 10
             },
@@ -839,7 +839,7 @@ $(document).ready(function() {
                 minlength: "Please enter minimum 10 digit number"
             },
             wp_mobile_number: {
-                // required: "Please enter mobile number",
+                required: "Please enter mobile number",
                 maxlength: "Please enter maximum 10 digit number",
                 minlength: "Please enter minimum 10 digit number"
             },
@@ -897,7 +897,7 @@ $(document).ready(function() {
                 minlength: 10
             },
             wp_mobile_number: {
-                // required: true,
+                required: true,
                 maxlength: 10,
                 minlength: 10
             },
@@ -946,7 +946,7 @@ $(document).ready(function() {
                 minlength: "Please enter minimum 10 digit number"
             },
             wp_mobile_number: {
-                // required: "Please enter mobile number",
+                required: "Please enter mobile number",
                 maxlength: "Please enter maximum 10 digit number",
                 minlength: "Please enter minimum 10 digit number"
             },
@@ -4732,10 +4732,7 @@ $("#pending_amt").val($("#final_amt").val() - val);
 	var upi_no=document.getElementById('upi_no');
 
     var mob_no_div=document.getElementById('cheque_tr');
-	// var mob_no=document.getElementById('cheque');
-
-    // var mob_no_one=document.getElementById('cheque_bank');
-	// var mob_no_bank=document.getElementById('bank_name');
+	var mob_no=document.getElementById('cheque');
 
     var cash_no_div=document.getElementById('cash_tr');
 	var cash_no=document.getElementById('cash');
@@ -4757,7 +4754,6 @@ $("#pending_amt").val($("#final_amt").val() - val);
         upi_no_div.style.display='none';
         cash_no_div.style.display='none';
         mob_no_div.style.display='contents';
-        mob_no_one.style.display='contents';
     }else if(val=='CASH'){
         element.style.display='none';
         upi_no_div.style.display='none';
@@ -5037,14 +5033,11 @@ $(document).ready(function() {
         // alert('hiiiiiiiiiii');
         var mobile_no = $('#booking_tm_mobile_no').val();  
         var final_amt = $('#final_amt').val();
-        var payment_type = $('#payment_type').val();
         var booking_amt = $('#booking_amt').val(); 
         var pending_amt = $('#pending_amt').val();
 
         var upi_no = $('#upi_no').val();
         var cheque = $('#cheque').val();
-        var bank_name = $('#bank_name').val();
-        var drawn_on_date = $('#drawn_on_date').val();
         var net_banking = $('#net_banking').val();
 
         var select_transaction =($('#select_transaction :selected').val());
@@ -5072,7 +5065,7 @@ $(document).ready(function() {
         var package_date_id = $('#package_date_id').val();
         var traveller_id = $('#traveller_id').val();
         
-        // alert(traveller_id);
+        //alert(email);
         if (mobile_no != '') {
             // alert('IN hiiiii');
             $.ajax({
@@ -5086,13 +5079,10 @@ $(document).ready(function() {
                     traveller_id: traveller_id,
                     booking_amt: booking_amt,
                     final_amt: final_amt,
-                    payment_type: payment_type,
                     mobile_no: mobile_no,
                     pending_amt: pending_amt,
                     upi_no: upi_no,
                     cheque: cheque,
-                    bank_name: bank_name,
-                    drawn_on_date: drawn_on_date,
                     net_banking: net_banking,
                     select_transaction: select_transaction,
                     cash_2000: cash_2000,
@@ -5126,53 +5116,8 @@ $(document).ready(function() {
 </script>
 
 <script>
-$(document).ready(function() {
-    $("#re_send_otp").click(function() {
-        // alert('hiiiiiiiiiii');
-        var mobile_no = $('#booking_tm_mobile_no').val();  
-        var enquiry_id = $('#enquiry_id').val();
-        
-        // alert(mobile_no);
-        // alert(enquiry_id);
-
-        if (mobile_no != '') {
-            // alert('IN hiiiii');
-            $.ajax({
-                url: "<?php echo base_url(); ?>agent/booking_preview/send_otp",
-                type: "post",
-                data: {
-                    enquiry_id: enquiry_id,
-                    mobile_no: mobile_no
-                },
-                dataType: 'json',
-                success: function(responce) {
-                    if (responce != false && responce !='') {
-                        console.log(responce);
-                        // alert(responce);
-                        // var booking_ref_no = $('#booking_ref_no').val(responce);
-                        
-                    }
-                }
-            });
-        }
-    });
-});
-</script>
-
-<script>
     var fewSeconds = 5;
     $('#submit_otp').click(function(){
-        // Ajax request
-        var btn = $(this);
-        btn.prop('disabled', true);
-        setTimeout(function(){
-            $("#re_send_otp").prop('disabled', false);
-        }, fewSeconds*20000);
-    });
-</script>
-<script>
-    var fewSeconds = 5;
-    $('#re_send_otp').click(function(){
         // Ajax request
         var btn = $(this);
         btn.prop('disabled', true);
@@ -5181,15 +5126,6 @@ $(document).ready(function() {
         }, fewSeconds*20000);
     });
 </script>
-
-<!-- <script>
-$(document).ready(function(){
-    $("#submit_otp").click(function btnclick() {
-    $("#submit_otp").attr("disabled", true);
-    $("#re_send_otp").delay(80000).attr("disabled", false);
-    });
-});
-</script> -->
 
 <script>
     $('#yes').change(function () {
@@ -5209,16 +5145,12 @@ $("#final_booking_submit").click(function() {
     var mobile_no = $('#booking_tm_mobile_no').val(); 
     var booking_ref_no = $('#booking_ref_no').val(); 
     var enquiry_id = $('#enquiry_id').val(); 
-    // alert(verify_otp);
-    
     var journey_date  = $("#journey_date").val();
-    
     var traveller_id  = $("#traveller_id").val();
     var enquiry_id    = $("#enquiry_id").val();
     var hotel_name_id    = $("#hotel_name_id").val();
     var package_date_id    = $("#package_date_id").val();
     var package_id    = $("#package_id").val();
-    // alert(package_id);
 
     if (verify_otp != '') {
         $.ajax({
@@ -5256,7 +5188,7 @@ $("#final_booking_submit").click(function() {
 });
 </script>
 
-<!-- <script>
+<script>
 $('#submit_otp').keyup(function(){
 
     var booking_tm_mobile_no = $("#booking_tm_mobile_no").val();
@@ -5271,141 +5203,75 @@ $('#submit_otp').keyup(function(){
         $("#submit_otp").prop('disabled', false)
         // alert('Not Matching!');
     }
-
-
 });
-</script> -->
-
-<!-- <script>
-    $(document).ready(function() {
-    $('#submit_otp').attr('disabled',true);
-    $('#booking_tm_mobile_no').keyup(function() {
-        if ($(this).val().length !=0)
-            $('#submit_otp').attr('disabled', false);            
-        else
-            $('#submit_otp').attr('disabled',true);
-    })
-     $('#booking_amt').keyup(function() {
-        if ($(this).val().length !=0)
-            $('#submit_otp').attr('disabled', false);            
-        else
-            $('#submit_otp').attr('disabled',true);
-    })
-});
-</script> -->
+</script>
 
 <script>
 function validate() {
     
-    var valid = true;
-    valid = checkEmpty($("#booking_tm_mobile_no")) && checkEmpty($("#booking_amt")) ;
+  var valid = true;
+  valid = checkEmpty($("#booking_tm_mobile_no")) && checkEmpty($("#booking_amt")) ;
+   
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
 
-        $("#select_transaction").click(function() {
-          if($("select").val() == '' && valid!='')
-          $("#submit_otp").prop( "disabled", true);
-          else $("#submit_otp").prop( "disabled", false);
-        });
-     
-        //   $("#submit_otp").attr("disabled", true);
-        //   if (valid) {
-        //       $("#submit_otp").attr("disabled", false);
-        //   }
+function checkEmpty(obj) {
+  var name = $(obj).attr("name");
+  $("." + name + "-validation").html("");
+  $(obj).css("border", "");
+  if ($(obj).val() == "") {
+    $(obj).css("border", "#FF0000 1px solid");
+    $("." + name + "-validation").html("Required");
+    return false;
   }
-  
-    //   $("#select_transaction").click(function() {
-    //       if($("select").val() == '')
-    //       $("#submit_otp").prop( "disabled", true);
-    //       else $("#submit_otp").prop( "disabled", false);
-    //   });
-  
-  
-  function checkEmpty(obj) {
-    var name = $(obj).attr("name");
-    $("." + name + "-validation").html("");
-    $(obj).css("border", "");
-    if ($(obj).val() == "") {
-      $(obj).css("border", "#FF0000 1px solid");
-      $("." + name + "-validation").html("Required");
-      return false;
-    }
-  
-    return true;
-  }
-  
-  // const select = document.getElementById('select_transaction');
-  // const submitButton = document.getElementById('submit_otp');
-  // document.getElementById('select_transaction').addEventListener('change', () => {
-  //   if (select.value === '') {
-  //     submitButton.disabled = true;
-  //   } else {
-  //     submitButton.disabled = false;
-  //   }
-  // });
-  
+
+  return true;
+}
+
 </script>
 
 <script>
 $(document).ready(function(){
     $("#booking_start").prop('disabled', true);
     var btn_disabled = $("#btn_disabled").val();
-    // alert(btn_disabled);
 
     if (btn_disabled=='yes'){
         $("#booking_start").prop('disabled', true)
-        // alert('Matching!');
     } else {
         $("#booking_start").prop('disabled', false);
-        // alert('Not Matching!');
     }
-    // $("#btn_disabled").val("");
-
-
 });
 </script>
 
 <script type='text/javascript'>
 
   $(document).ready(function(){
-
     <?php if(!empty($bus_info)){ ?>
-
         var js_array1 =<?php echo json_encode($final_booked_data);?>;
-
   <?php   }else{ ?>
-
         var js_array1=[];
-
    <?php  } ?>
 
     var booke_data = $('#booked_data').val();
-
     var is_main_page = $('#is_main_page').val();
 
-    if(is_main_page=='no'){
-
-     $('.seatCharts-seat').off('click');
-
-    }
-    // console.log(booke_data);
+    // if(is_main_page=='no'){
+    //  $('.seatCharts-seat').off('click');
+    // }
 
     for(var i=0; i<js_array1.length;i++)
-
     {
         var seat_data_id=js_array1[i];
-
-        // console.log(seat_data_id);
-
         var abc="#"+seat_data_id;
 
         $(abc).css("color", "white");
-
         $(abc).off('click');
-
         $(abc).removeClass("available");
-
         $(abc).addClass("unavailable");
     }
-
   });
 
   </script>
@@ -5414,13 +5280,7 @@ $(document).ready(function(){
 <script type='text/javascript'>
 
 $(document).ready(function(){
-
-
-
   var is_main_page = $('#is_main_page').val();
-
-
-
 });
 
 </script>
@@ -5432,77 +5292,41 @@ $(document).ready(function(){
   $(".seatCharts-seat").click(function() {  
 
         var enq_id =  $("#domestic_enquiry_id").val();
-
-        var package_id =  $("#package_id").val();
-
-        var tour_dates =  $("#tour_dates").val();
-
+        var package_id =  $("#new_pack_id").val();
+        var tour_dates =  $("#new_pack_date_id").val();
         var seat_orignal_id =  $(this).attr('id');
-
         var selected_seat =  $(this).attr('data_id');
-
         var seat_type =  $(this).attr('seat_type');
-
         var seat_price =  $(this).attr('seat_price');
-
         var btn_class =  $(this).attr('class').split(' ');
-
-        // console.log(btn_class);
-
-
+     
 
            if(seat_orignal_id != '' && $.inArray('hold', btn_class) == '-1')  
-
            {  
-
                 $.ajax({  
 
-                     url:"<?php echo base_url(); ?>agent/seat_type_room_type/seat_hold",  
-
+                     url:"<?php echo base_url(); ?>agent/seat_checker/seat_hold",  
                      method:"post",  
-
                      data:{
-
                         seat_orignal_id: seat_orignal_id,
-
                            enq_id: enq_id,
-
                            package_id: package_id,
-
                            seat_type:seat_type,
-
                             seat_price:seat_price,
-
                             tour_dates:tour_dates,
-
                              selected_seat:selected_seat,
-
                              btn_class:btn_class},  
-
                      dataType: 'json',
-
                      success:function(responce){
-
                          if(responce = 'true')
-
                          {
-
                           console.log('Seat On Hold');
-
                          }
-
                      }  
-
                 });  
-
            }
-
           });
-
-
-
       });  
-
  </script>
 
 
@@ -5514,68 +5338,35 @@ $(document).ready(function(){
 function fetch_new_hold(){
 
         var enq_id =  $("#domestic_enquiry_id").val();
-
-        var package_id =  $("#package_id").val();
-
-        var tour_dates =  $("#tour_dates").val();
-
+        var package_id =  $("#new_pack_id").val();
+        var tour_dates =  $("#new_pack_date_id").val();
         var temp_array_hold = [];
+            $.ajax({
+            url: '<?php echo base_url(); ?>agent/seat_checker/fetch_new_hold',
+            method:"post",  
+            data:{
+                    enq_id: enq_id,
+                    package_id: package_id,
+                    tour_dates:tour_dates
+                },  
+            dataType: 'json',
+            success: function(response){  
+                if(response.length>0){
+                    var temp_array_hold =response;
+                }else{
+                    var temp_array_hold=[];
+                }
 
-   $.ajax({
-
-  url: '<?php echo base_url(); ?>agent/seat_type_room_type/fetch_new_hold',
-
-  method:"post",  
-
-  data:{
-
-        enq_id: enq_id,
-
-        package_id: package_id,
-
-        tour_dates:tour_dates
-
-    },  
-
-  dataType: 'json',
-
-  success: function(response){  
-
-     if(response.length>0){
-
-        var temp_array_hold =response;
-
-    }else{
-
-        var temp_array_hold=[];
-
-    }
-
-
-
-          for(var i=0; i<temp_array_hold.length;i++)
-
-  {
-
-      var seat_data_id=temp_array_hold[i];
-
-
-
-      var abc="#"+seat_data_id;
-
-      $(abc).css("color", "white");
-
-      $(abc).removeClass("selected");
-
-      $(abc).addClass("hold");
-
-
-
-  }
-
-  }
-
- });
+                    for(var i=0; i<temp_array_hold.length;i++)
+            {
+                var seat_data_id=temp_array_hold[i];
+                var abc="#"+seat_data_id;
+                $(abc).css("color", "white");
+                $(abc).removeClass("selected");
+                $(abc).addClass("hold");
+            }
+            }
+            });
 
 }
 
@@ -5589,10 +5380,6 @@ $(document).ready(function(){
 
 </script>
 
-<!-- for bus seat selected -->
-
- 
-
 <script>  
 
  $(document).ready(function(){
@@ -5600,97 +5387,9 @@ $(document).ready(function(){
   $(".booknow_submit").click(function() {  
 
         var enq_id =  $("#domestic_enquiry_id").val();
-
-        // var package_id =  $("#package_id").val();
-
-        // var tour_dates =  $("#tour_dates").val();
-
- 
-
-        // var seat_type =  [];
-
-        // var selected_seat = [];
-
-        // var selected_seat_id = [];
-
-        // var seat_price = [];
-
-        // var seat_orignal_id = [];
-
- 
-
-        //   $('.selected').each(function ()
-
-        //     {                
-
-        //         var seat_book = $(this).attr('data_id');
-
-        //         selected_seat.push($(this).attr('data_id'));
-
- 
-
-        //         var seat_book_id = $(this).attr('id');
-
-        //         seat_orignal_id.push($(this).attr('id'));
-
-        //     });
-
- 
-
-        //     $('.selected').each(function ()
-
-        //     {                
-
-        //         var seat_type_data = $(this).attr('seat_type');
-
-        //         seat_type.push($(this).attr('seat_type'));
-
- 
-
-        //         var seat_price_data = $(this).attr('seat_price');
-
-        //         seat_price.push($(this).attr('seat_price'))
-
-        //     });
-
- 
-
-        //    if(selected_seat != '')  
-
-        //    {  
-
-        //         $.ajax({  
-
-        //              url:"<?php //echo base_url(); ?>agent/seat_type_room_type/selected_bus_seat",  
-
-        //              method:"post",  
-
-        //              data:{selected_seat: selected_seat, enq_id: enq_id, package_id: package_id, seat_type:seat_type,
-
-        //                  seat_price:seat_price,tour_dates:tour_dates,seat_orignal_id:seat_orignal_id},  
-
-        //              dataType: 'json',
-
-        //              success:function(responce){
-
-        //                  if(responce = 'true')
-
-        //                  {
-
-        //                   console.log('now done');
-
-                          window.location.href = "<?=base_url()?>agent/booking_preview/index/"+enq_id;
-
-                    //      }
-
-                    //  }  
+        window.location.href = "<?=base_url()?>agent/booking_preview/index/"+enq_id;
 
                 });  
-
-        //    }
-
-        //   });
-
       });  
 
 </script>
@@ -5700,51 +5399,29 @@ $(document).ready(function(){
 
 <script type='text/javascript'>
 
- 
-
 $(document).ready(function(){
 
 
     <?php if(!empty($bus_info)){ ?>
-
         var temp_array =<?php echo json_encode($temp_booking_data);?>;
-
-// console.log('temp',temp_array);
-
   <?php   }else{ ?>
-
         var temp_array=[];
-
    <?php  } ?>
 
- 
-
   var temp_booke_data = $('#temp_booked_data').val();
-
   var is_main_page = $('#is_main_page').val();
 
   for(var i=0; i<temp_array.length;i++)
-
   {
-
       var seat_data_id=temp_array[i];
-
- 
-
       var abc="#"+seat_data_id;
 
       $(abc).css("color", "white");
-
       $(abc).removeClass("available");
-
       $(abc).addClass("selected");
-
- 
-
   }
 
 });
-
 </script>
 
 <script> 
@@ -5769,51 +5446,4 @@ function initializeValidation() {
             }, 
         }); 
     } 
-</script>
-
-<!-- ------------------------ -->
-
-<script type="text/javascript">
-function empty() {
-    var x = document.getElementById("followup_date").value;
-    // var y = document.getElementById("checkout").value;
-    // alert(x); 
-
-    if (x === "") {
-        confirm('Are You Sure You Want To Insert This Record Without Followup Date?');
-        return false;
-    };
-    return true;
-}
-</script>
-
-<script>
-    $(document).ready(function(){ 
-    const target = document.getElementById('final_booking_submit');
-    target.disabled = true;
-    $('#otp').on('keyup', function() {
-        
-        if($(this).val().length != 6) {
-        target.disabled = true;
-        // alert('Please enter six(6) digit OTP.');
-        $('#least_count').html("( "+$(this).val().length+" ) You must enter 6 digit OTP.");
-        }
-        else{
-        target.disabled = false;
-        }
-    });
-    });
-</script>
-
-<script>
-  $(document).ready(function() {
-    $('#mrandmrs').change(function(){
-        // alert($(this).val());
-      if($('#mrandmrs').val() == 'Mr' ){
-        $('#male').prop("checked", true);
-      } else if($('#mrandmrs').val() == 'Mrs' ) {
-        $('#female').prop("checked", true);
-      }
-    });
-  });
 </script>
