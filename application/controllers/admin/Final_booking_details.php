@@ -113,12 +113,36 @@ class Final_booking_details extends CI_Controller {
         $bus_seat_book_data = $this->master_model->getRecords('bus_seat_book',array('bus_seat_book.is_deleted'=>'no'),$fields);
         // print_r($bus_seat_book_data); die; 
 
+        $record = array();
+        $fields = "booking_payment_details.*";
+        $this->db->where('booking_payment_details.is_deleted','no');
+        $this->db->where('booking_payment_details.enquiry_id',$id);
+        $booking_payment_details_data = $this->master_model->getRecords('booking_payment_details',array('booking_payment_details.is_deleted'=>'no'),$fields);
+        // print_r($bus_seat_book_data); die; 
+
+        $record = array();
+        $fields = "extra_services_details.*";
+        $this->db->where('extra_services_details.is_deleted','no');
+        $this->db->where('extra_services_details.enquiry_id',$id);
+        $extra_services_details_data = $this->master_model->getRecords('extra_services_details',array('extra_services_details.is_deleted'=>'no'),$fields);
+        // print_r($bus_seat_book_data); die;
+
+        $record = array();
+        $fields = "special_req_master.*";
+        $this->db->where('special_req_master.is_deleted','no');
+        $this->db->where('special_req_master.is_active','yes');
+        $special_req_master_data = $this->master_model->getRecords('special_req_master',array('special_req_master.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
+
 
         $this->arr_view_data['traveller_booking_info']        = $traveller_booking_info;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['p_date']        = $p_date;
         $this->arr_view_data['seat_type_room_type_data']        = $seat_type_room_type_data;
         $this->arr_view_data['bus_seat_book_data']        = $bus_seat_book_data;
+        $this->arr_view_data['booking_payment_details_data'] = $booking_payment_details_data;
+        $this->arr_view_data['extra_services_details_data'] = $extra_services_details_data;
+        $this->arr_view_data['special_req_master_data'] = $special_req_master_data;
         $this->arr_view_data['page_title']      = $this->module_title." Details ";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;

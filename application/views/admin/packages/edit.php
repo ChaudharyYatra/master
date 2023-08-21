@@ -175,7 +175,7 @@
                             <select class="select2" multiple="multiple" data-placeholder="Select Bording  Office/ Location" style="width: 100%;" name="boarding_office[]" id="boarding_office" required="required">
                               <option value="">Select Boarding  Office/ Location</option>
                               <?php
-                              $title = $temparray=explode(',',$info['boarding_office']);
+                              $title = explode(',',$info['boarding_office']);
                               $c=count($title);
                                 foreach($agent_data as $agent_info) 
                                 { 

@@ -49,6 +49,7 @@ class Booking_preview extends CI_Controller {
 
         $record = array();
         $fields = "special_req_master.*";
+        $this->db->where('special_req_master.is_deleted','no');
         $this->db->where('special_req_master.is_active','yes');
         $special_req_master_data = $this->master_model->getRecords('special_req_master',array('special_req_master.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
@@ -142,6 +143,9 @@ class Booking_preview extends CI_Controller {
             $journey_date = $this->input->post('journey_date');
             $package_date_id = $this->input->post('package_date_id');
 
+            $select_services = implode(",", $this->input->post('select_services'));
+            $extra_services = $this->input->post('extra_services');
+
             $alphabet = '1234567890';
             $otp = str_shuffle($alphabet);
             $traveler_otp = substr($otp, 0, '6'); 
@@ -221,6 +225,8 @@ class Booking_preview extends CI_Controller {
                     'package_id' => $package_id,
                     'traveller_id' => $traveller_id,
 
+                    'select_services' => $select_services,
+                    'extra_services' => $extra_services,
 
                     'cash_2000'   =>   $cash_2000,
                     'total_cash_2000'   =>   $total_cash_2000,
@@ -249,6 +255,19 @@ class Booking_preview extends CI_Controller {
                 }else {
                     echo false;
                 }
+
+                $arr_insert2 = array(
+                    'select_services' => $select_services,
+                    'extra_services' => $extra_services,
+                    'booking_reference_no'  =>  $booking_reference_no,
+                    'package_date_id' => $package_date_id,
+                    'enquiry_id' => $enquiry_id,
+                    'package_id' => $package_id,
+                    'traveller_id' => $traveller_id
+                );
+
+                $inserted_id2 = $this->master_model->insertRecord('extra_services_details',$arr_insert2,true);
+                
                 
     }
 
@@ -293,6 +312,7 @@ class Booking_preview extends CI_Controller {
                     
 
                     $arr_update = array(
+                        'mobile_no'   =>   $mobile_no,
                         'traveler_otp'   =>   $traveler_otp
                     );
 // print_r($arr_update); die;

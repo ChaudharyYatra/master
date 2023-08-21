@@ -42,7 +42,7 @@ class All_traveller_info extends CI_Controller {
         }
 
         public function add($iid="")
-        {  
+        {   
             // echo $iid; die;
             $agent_sess_name = $this->session->userdata('agent_name');
             $id=$this->session->userdata('agent_sess_id');
@@ -859,5 +859,45 @@ class All_traveller_info extends CI_Controller {
                     // print_r($data); die;
     echo json_encode($data); 
 }
+
+    public function userNameList(){
+        $user_data = $this->input->post('did');
+
+        $record = array();
+        $fields = "all_traveller_info.first_name";
+        $this->db->like('first_name', $user_data);
+        $this->db->group_by('first_name');
+        $arr_data = $this->master_model->getRecords('all_traveller_info','',$fields);
+
+        echo json_encode($arr_data);
+
+    }
+
+    public function middle_NameList(){
+        $user_data = $this->input->post('did');
+
+        $record = array();
+        $fields = "all_traveller_info.middle_name";
+        $this->db->like('middle_name', $user_data);
+        $this->db->group_by('middle_name');
+        $arr_data = $this->master_model->getRecords('all_traveller_info','',$fields);
+
+        echo json_encode($arr_data);
+
+    }
+
+    public function last_NameList(){
+        $user_data = $this->input->post('did');
+
+        $record = array();
+        $fields = "all_traveller_info.last_name";
+        $this->db->like('last_name', $user_data);
+        $this->db->group_by('last_name');
+        $arr_data = $this->master_model->getRecords('all_traveller_info','',$fields);
+
+        echo json_encode($arr_data);
+
+    }
+
 
 }

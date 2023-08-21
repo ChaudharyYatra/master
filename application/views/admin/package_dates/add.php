@@ -39,25 +39,42 @@
               <form method="post" enctype="multipart/form-data">
                 <div class="card-body">
                         
-                 <div class="row" id="main_row">
-                      
-                    <div class="col-md-5">
-                        <div class="form-group">
-                      <label>Date:</label>
-                        <div class="input-group">
-                            <input type="date" name="journey_date[]" class="form-control" required min="<?php echo date("Y-m-d"); ?>"/>
-                        </div>
-                        </div>
-                     </div>
-
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                        
                       <div class="col-md-5">
+                        <div class="form-group">
+                          <label>Date:</label>
+                          <div class="input-group">
+                            <input type="date" name="journey_date[]" class="form-control" required min="<?php echo date("Y-m-d"); ?>"/>
+                            <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['id']; ?>" >
+                            <input type="hidden" class="form-control" name="package_title" placeholder="Enter Available Seats" value="<?php echo $info['tour_title']; ?>" >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2 mt-4">
+                              <div class="form-group">
+                                  <label></label>
+                                  <button type="button" class="btn btn-primary" name="submit" value="add_more" id="add_more">Add More Dates</button>
+                              </div>
+                          </div>
+                    </div>
+                    
+                    <div class="row" id="main_row">
+  
+                    </div>
+
+                  </div>
+
+                      <!-- <div class="col-md-5">
                               <div class="form-group">
                                 <label>Available Seats</label>
                                 <input type="text" class="form-control" name="available_seats[]" id="available_seats" placeholder="Enter Available Seats" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
                                 <input type="hidden" class="form-control" name="package_id" placeholder="Enter Available Seats" value="<?php echo $info['id']; ?>" >
                                 <input type="hidden" class="form-control" name="package_title" placeholder="Enter Available Seats" value="<?php echo $info['tour_title']; ?>" >
                               </div>
-                      </div>
+                      </div> -->
                         <!-- <div class="col-md-2">
                               <div class="form-group">
                                 <label>Single Seat Cost</label>
@@ -76,12 +93,7 @@
                                 <input type="text" class="form-control" name="three_four_sharing_cost[]" id="available_seats" placeholder="Enter 3/4 Sharing Cost" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
                               </div>
                       </div> -->
-                      <div class="col-md-2 mt-4">
-                            <div class="form-group">
-                                <label></label>
-                                <button type="button" class="btn btn-primary" name="submit" value="add_more" id="add_more">Add More Dates</button>
-                            </div>
-                        </div>
+                        
                       
                      
               </div>
