@@ -53,13 +53,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>First name</label>
-                          <input type="text" class="form-control" name="first_name" id="first_name" value="<?php if(!empty($visitor_data)){ echo $visitor_data['first_name'];} ?>" placeholder="Enter First Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                          <input type="text" class="form-control" style="text-transform: capitalize;" name="first_name" id="first_name" value="<?php if(!empty($visitor_data)){ echo $visitor_data['first_name'];} ?>" placeholder="Enter First Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Last name</label>
-                          <input type="text" class="form-control" name="last_name" id="last_name" value="<?php if(!empty($visitor_data)){ echo $visitor_data['last_name'];} ?>" placeholder="Enter Last Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                          <input type="text" class="form-control" style="text-transform: capitalize;" name="last_name" id="last_name" value="<?php if(!empty($visitor_data)){ echo $visitor_data['last_name'];} ?>" placeholder="Enter Last Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -83,8 +83,8 @@
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Gender </label> <br>
-                                &nbsp;&nbsp;<input type="radio" name="gender" id="gender" value="Male">&nbsp;&nbsp;Male
-                                &nbsp;&nbsp;<input type="radio" name="gender" id="gender" value="Female">&nbsp;&nbsp;Female <br>
+                                &nbsp;&nbsp;<input type="radio" name="gender" id="male" value="Male">&nbsp;&nbsp;Male
+                                &nbsp;&nbsp;<input type="radio" name="gender" id="female" value="Female">&nbsp;&nbsp;Female <br>
                               </div>
                       </div>
                       <!-- <div class="col-md-6">
