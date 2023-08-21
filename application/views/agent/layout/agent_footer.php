@@ -5846,7 +5846,7 @@ function empty() {
 
                 var input_name = $(this).val();
                 if(input_name!=''){
-                    alert('hiiiiiiii if');
+                    // alert('hiiiiiiii if');
                 var attr_id_for_search = $(this).attr('attr_for_search');
                 var orignal_id = $(this).attr('id');
                 var did = $(this).val();
@@ -5882,7 +5882,7 @@ function empty() {
                     }
                 });
                 }else{
-                    alert('hiiiiiiii else');
+                    // alert('hiiiiiiii else');
 
                     $('#search-results'+attr_id_for_search).empty();
                     $('#search-results'+attr_id_for_search).css("display","none");;
