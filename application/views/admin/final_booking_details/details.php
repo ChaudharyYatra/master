@@ -13,6 +13,18 @@
         padding: 10px;
     }
 
+    input.largerCheckbox {
+        width: 30px;
+        height: 30px;
+    }
+
+    .text_center{
+        text-align: center;
+    }
+    .text_center_web{
+        text-align: -webkit-center;
+    }
+
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -560,14 +572,16 @@
 
                 <!-- /.card-header -->
               <div class="card-body">
-                <?php  if(count($booking_payment_details_data) > 0 ) 
+                <form style="border: 1px solid #cdcdcd; padding: 15px;">
+                <?php  if(count($extra_services_details_data) > 0 ) 
                 { ?>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>SN</th>
-                    <th>Services Name</th>
-                    <th>Action</th>
+                    <th class="text_center">SN</th>
+                    <th class="text_center">Services Name</th>
+                    <th class="text_center">Approval</th>
+                    <th class="text_center">Cost</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -575,7 +589,7 @@
 
                 //   $i=1 i replace by j coz below i use
                 //    $j=1; 
-                   foreach($booking_payment_details_data as $info) 
+                   foreach($extra_services_details_data as $info) 
                    { 
                     // print_r($info); die;
                     $title=array();
@@ -591,16 +605,27 @@
                         // echo '<br>';
                      ?>
                   <tr>
-                    <td><?php echo $no; ?></td>
-                    <td>
+                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="enquiry_id" id="enquiry_id" value="<?php echo $info['enquiry_id']; ?>">
+                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="package_id" id="package_id" value="<?php echo $info['package_id']; ?>">
+                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="package_date_id" id="package_date_id" value="<?php echo $info['package_date_id']; ?>">
+                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="booking_reference_no" id="booking_reference_no" value="<?php echo $info['booking_reference_no']; ?>">
+                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="traveller_id" id="traveller_id" value="<?php echo $info['traveller_id']; ?>">
+
+                    <td class="text_center"><?php echo $no; ?></td>
+                    <td class="text_center">
                         <?php 
                             echo $pack_data[$n]['service_name'];
                             ?> 
 
                     </td>    
-                    <td>
+                    <td class="text_center">
+                        <input type="checkbox" class="largerCheckbox" id="extra_services" name="is_approve[]" value="<?php echo $id; ?>">
+                        <label for="extra_services"> </label><br>
                         
                     </td>   
+                    <td class="text_center_web">
+                        <input type="text" style="width: 50%;" class="form-control row_set" name="service_cost[]" id="service_cost" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    </td>
                     <?php } ?>
 
                    
@@ -618,7 +643,10 @@
                 <b>Alert!</b>
                 Sorry No records available
                 </div>' ; } ?>
+
+                <center><button type="button" class="btn btn-primary" id="approve_service" name="approve_service" style="width:10%;">Submit</button></center>
                
+                </form>
               </div>
               <!-- /.card-body -->
 
@@ -632,7 +660,7 @@
 
                         </div>
                         <div class="col-md-6">
-                            <h5>FPayment Details :</h5>
+                            <h5>Payment Details :</h5>
                             
                             <table id="example2" class="table table-bordered table-hover table-striped">
                                 <tr>
