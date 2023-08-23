@@ -61,7 +61,7 @@
                               <div class="form-group">
                                 <label>Email Address</label>
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" required="required" value="<?php echo $info['email']; ?>">
-								  <span id="email_result"></span>
+								                <span id="email_result"></span>
                               </div>
                         </div>
 

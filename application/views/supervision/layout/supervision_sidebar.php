@@ -191,6 +191,15 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_operation_manager/replace_tm_request_bus/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                TM Request Replace Bus
+              </p>
+            </a>
+          </li>
           
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>tour_operation_manager/profile/index" class="nav-link">

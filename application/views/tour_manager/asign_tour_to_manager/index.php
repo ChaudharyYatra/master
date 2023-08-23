@@ -120,6 +120,10 @@
 					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
 					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Feedback From Customer</button></a>
 
+                          <a href="<?php echo $module_url_path_request_replace_bus;?>/add/<?php $aid=base64_encode($info['package_id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['did']); 
+					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">Request Replace Bus</button></a>
+
                             <!-- <?php //if($info['pid']!='3' && $info['pid']!='4' && $info['pid']!='7'){
                               ?>
                               <a href="<?php //echo $module_url_path_dates;?>/add/<?php //$aid=base64_encode($info['id']); 

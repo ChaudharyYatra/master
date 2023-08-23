@@ -5490,6 +5490,16 @@ $('#edit_vehicle_owner').validate({ // initialize the plugin
         email: {
             required: true,
         },
+        aadhar_front_image: {
+            required : function(element) {
+                var action = $("#old_aadhar_front_image").val();
+                if(action != '') { 
+                    return false;
+                } else {
+                    return true;
+                }
+            }    
+        },
         old_aadhar_front_image: {
             required: true,
         },
@@ -5531,6 +5541,9 @@ $('#edit_vehicle_owner').validate({ // initialize the plugin
         },
         email : {
             required : "Please Enter Email Address",
+        },
+        aadhar_front_image : {
+            required : "Please Enter Aadhar Front Photo",
         },
         old_aadhar_front_image : {
             required : "Please Enter Aadhar Front Photo",

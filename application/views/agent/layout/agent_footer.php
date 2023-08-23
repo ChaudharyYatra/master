@@ -5088,7 +5088,7 @@ $(document).ready(function() {
         var extra_services = $('input[name="extra_services"]:checked').val();
         
         
-        // alert(extra_services); 
+        alert(extra_services); 
         // alert(select_services); 
         if (mobile_no != '') {
             // alert('IN hiiiii');

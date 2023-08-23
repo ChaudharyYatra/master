@@ -372,49 +372,70 @@ $(function () {
 
 <!--// Package date add - Mahesh-->
 <script>
-
     var i=1;
-    $('#add_more').click(function() {
-       // alert('hhhh');
-            i++;
-var structure = $(
-                            '<div class="col-md-5" id="new_row'+i+'">'+
-                                '<div class="form-group">'+
-                                    '<label>Date:</label>'+
-                                    '<div class="input-group">'+
-                                        '<input type="date" name="journey_date[]" class="form-control" min="<?php echo date("Y-m-d"); ?>" required/>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
+$('#add_more').click(function() {
+   // alert('hhhh');
+        i++;
+var structure = $('<div class="row" style="width:100% !important" id="new_row'+i+'">'+
+                '<div class="col-md-5">'+
+                '<div class="form-group">'+
+             '<label>Date:</label>'+
+                '<div class="input-group">'+
+                    '<input type="date" name="journey_date[]" class="form-control" min="<?php echo date("Y-m-d"); ?>" required/>'+
+               '</div>'+
+               '</div>'+
+                 '</div>'+
 
-                    '<div class="col-md-5">'+
-                        '<div class="form-group">'+
-                        '<label>Year Slot</label>'+
-                        '<select class="form-control" style="width: 100%;" name="year_slot[]" id="year_slot" required="required">'+
-                            '<option value="">Select Year Slot</option>'+
-                            '<option value="April to Sep">April to September</option>'+
-                            '<option value="October to March">October to March</option>'+
-                            '</select>'+
-                        '</div>'+
+                '<div class="col-md-5">'+
+                '<div class="form-group">'+
+                '<label>Year Slot</label>'+
+                '<select class="form-control" style="width: 100%;" name="year_slot[]" id="year_slot" required="required">'+
+                    '<option value="">Select Year Slot</option>'+
+                    '<option value="April to September">April to September</option>'+
+                    '<option value="October to March">October to March</option>'+
+                '</select>'+
                     '</div>'+
-                    '<div class="col-md-2 pt-4 d-flex justify-content-center align-self-center">'+
-                        '<div class="form-group">'+
-                        '<label></label>'+
-                            '<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>'+
-                        '</div>'+
-                    '</div>');
+                '</div>'+
+
                 
+                  
+                //    '<div class="col-md-2">'+
+                //          '<div class="form-group">'+
+                //             '<label>Single Seat Cost</label>'+
+                //             '<input type="number" class="form-control" name="single_seat_cost[]" id="tour_cost1" placeholder="Enter Single Seat Cost">'+
+                //           '</div>'+
+                //   '</div>'+
+                //    '<div class="col-md-2">'+
+                //          '<div class="form-group">'+
+                //             '<label>Twin Sharing Cost</label>'+
+                //             '<input type="number" class="form-control" name="twin_seat_cost[]" id="tour_cost" placeholder="Enter Twin Sharing Cost">'+
+                //           '</div>'+
+                //   '</div>'+
+                //    '<div class="col-md-2">'+
+                //          '<div class="form-group">'+
+                //             '<label>3/4 Sharing Cost</label>'+
+                //             '<input type="number" class="form-control" name="three_four_sharing_cost[]" id="tour_cost" placeholder="Enter 3/4 Sharing Cos">'+
+                //           '</div>'+
+                //   '</div>'+
+                '<div class="col-md-2 pt-4 d-flex justify-content-center align-self-center">'+
+                    '<div class="form-group">'+
+                    '<label></label>'+
+                        '<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>'+
+                    '</div>'+
+                '</div>'+   
+          '</div>');
 $('#main_row').append(structure); 
 
 });
 
 
 $(document).on('click', '.btn_remove', function(){  
-           var button_id = $(this).attr("id");   
-           $('#new_row'+button_id+'').remove();  
-      });
+       var button_id = $(this).attr("id");   
+       $('#new_row'+button_id+'').remove();  
+  });
 
 </script>
+
 
 
 
