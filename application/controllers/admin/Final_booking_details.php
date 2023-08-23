@@ -73,6 +73,7 @@ class Final_booking_details extends CI_Controller {
     // Get Details 
     public function details($id)
     {
+        // echo $id;
 		//  $id=base64_decode($id);
         if ($id=='') 
         {
@@ -150,6 +151,45 @@ class Final_booking_details extends CI_Controller {
         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
     }
 
+    public function add_extra_services()
+    {   
+       
+
+            
+                $enquiry_id = $this->input->post('enquiry_id'); 
+                $package_id = $this->input->post('package_id'); 
+                $package_date_id = $this->input->post('package_date_id'); 
+                $booking_reference_no = $this->input->post('booking_reference_no'); 
+                $traveller_id = $this->input->post('traveller_id'); 
+
+                $is_approve = implode(",", $this->input->post('is_approve')); 
+                // $is_approve = $this->input->post('is_approve'); 
+                $service_cost = implode(",", $this->input->post('service_cost')); 
+                // $service_cost = $this->input->post('service_cost'); 
+
+                $arr_insert = array(
+                    'enquiry_id'   =>   $enquiry_id,
+                    'package_id'   =>   $package_id,
+                    'package_date_id'   =>   $package_date_id,
+                    'booking_reference_no'  =>   $booking_reference_no,
+                    'traveller_id'   =>   $traveller_id,
+
+                    'is_approve'   =>   $is_approve,
+                    'service_cost' =>   $service_cost
+                );
+                // print_r($arr_insert); die;
+
+                echo $inserted_id = $this->master_model->insertRecord('approve_extra_services',$arr_insert,true);
+                     die;          
+                if($inserted_id!=''){
+                    echo true;
+
+                }else {
+                    echo false;
+                }
+            
+        
+    }
 
 
 }

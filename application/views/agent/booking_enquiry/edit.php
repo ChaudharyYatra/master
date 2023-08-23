@@ -52,13 +52,13 @@
                         <div class="col-md-6">
                               <div class="form-group">
                                 <label>First name</label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter First Name" value="<?php echo $info['first_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input type="text" class="form-control" style="text-transform: capitalize;" name="first_name" id="first_name" placeholder="Enter First Name" value="<?php echo $info['first_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                               </div>
                         </div>
                         <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last name</label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name" value="<?php echo $info['last_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input type="text" class="form-control" style="text-transform: capitalize;" name="last_name" id="last_name" placeholder="Enter Last Name" value="<?php echo $info['last_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                         </div>
                         <div class="col-md-6">
