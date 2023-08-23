@@ -49,13 +49,17 @@
                         </div>
                      </div>
 
-                      <!-- <div class="col-md-2">
-                              <div class="form-group">
-                                <label>Available Seats</label>
-                                <input type="text" class="form-control" name="available_seats" id="available_seats" placeholder="Enter Available Seats" value="<?php echo $info['available_seats']; ?>" required>
-                                
-                              </div>
-                      </div> -->
+                     <div class="col-md-5">
+                        <div class="form-group">
+                          <label>Year Slot</label>
+                          <select class="form-control" style="width: 100%;" name="year_slot[]" id="year_slot" required="required">
+                              <option value="">Select Year Slot</option>
+                              <option value="April to September" <?php if(isset($info['year_slot'])){if("April to September" == $info['year_slot']) {echo 'selected';}}?>>April to September</option>
+                              <option value="October to March" <?php if(isset($info['year_slot'])){if("October to March" == $info['year_slot']) {echo 'selected';}}?>>October to March</option>
+                            </select>
+                        </div>
+                      </div>
+
                       <div class="col-md-2">
                               <div class="form-group">
                                 <label>Single Seat Cost</label>

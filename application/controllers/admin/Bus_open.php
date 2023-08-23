@@ -65,15 +65,16 @@ class Bus_open extends CI_Controller{
                     'package_id'   =>   $tour_number,
                     'package_date_id'   =>   $tour_date,
                     'vehicle_bus_type'   =>   $vehicle_bus_type,
-                    'vehicle_rto_registration'   =>   $vehicle_rto_registration
+                    'vehicle_rto_registration'   =>   $vehicle_rto_registration,
+                    'bus_open_status'   =>   'yes'
                 );
                 $inserted_id = $this->master_model->insertRecord('bus_open',$arr_insert,true);
 
-                // $arr_update = array(
-                //     'Bus_Status'   =>  'open'
-                // );
-                // $arr_where     = array("id" => $id);
-                // $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
+                $arr_update = array(
+                    'bus_open_status'   =>  'yes'
+                );
+                $arr_where     = array("id" => $id);
+                $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
                                
                 if($inserted_id > 0)
                 {    

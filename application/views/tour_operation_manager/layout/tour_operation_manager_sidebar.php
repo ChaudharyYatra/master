@@ -15,7 +15,7 @@
     <a href="<?php echo base_url(); ?>supervision/dashboard" class="brand-link">
 
       <img src="<?php echo base_url(); ?>uploads/do_not_delete/logo.png" alt="Chaudhary Yatra" style="width:100%;"></img>
-    </a>
+    </a>  
 
     <!-- Sidebar -->
     <div class="sidebar">

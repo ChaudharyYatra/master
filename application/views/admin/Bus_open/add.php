@@ -80,6 +80,7 @@
                                     { 
                                 ?>
                                     <option value="<?php echo $vehicle_details_info['id']; ?>"><?php echo $vehicle_details_info['registration_number']; ?> - <?php echo $vehicle_details_info['vehicle_owner_name']; ?></option>
+                                    <!-- <input type="text" name="vehicle_owner_id" value="<?php //echo $vehicle_details_info['vid']; ?>"> -->
                                 <?php } ?>
                                 </select>
                             </div>

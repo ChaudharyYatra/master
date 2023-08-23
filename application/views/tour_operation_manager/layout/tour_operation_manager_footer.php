@@ -493,3 +493,71 @@ $(document).on('click', '.btn_remove', function(){
           }); 
       });  
  </script>
+
+ <!-- ---------change bus ajax ----------------------------------------------->
+ <script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#vehicle_owner_name').change(function(){
+      var did = $(this).val();
+      // var seat = $('#seat_no').val();
+      // alert(seat); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>tour_operation_manager/change_bus/get_change_bus',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        // alert(response);
+          $('#rto_no').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#rto_no').append('<option value="'+data['id']+'">'+data['registration_number']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+<!-- ---------change bus ajax --------------------------------------------->
+
+<!-- ---------change bus seat capacity ajax ----------------------------------------------->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#rto_no').change(function(){
+      var did = $(this).val();
+      // var seat = $('#seat_no').val();
+      // alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>tour_operation_manager/change_bus/get_change_bus_seat',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        // alert(response);
+          $('#seat_capacity').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+            $('#seat_capacity').val(data['seat_capacity']);
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+<!-- ---------change bus seat capacity ajax --------------------------------------------->

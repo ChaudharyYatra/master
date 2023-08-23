@@ -150,60 +150,60 @@ class Booking_preview extends CI_Controller {
             $otp = str_shuffle($alphabet);
             $traveler_otp = substr($otp, 0, '6'); 
 
-        //     $from_email='test@choudharyyatra.co.in';
+            $from_email='test@choudharyyatra.co.in';
             
-        //     $authKey = "1207168241267288907";
+            $authKey = "1207168241267288907";
             
-        // $message="Dear User, Thank you for booking the tour with us, Your OTP is $traveler_otp, Valid for 30 minutes. Please share with only Choudhary Yatra team. Regards,CYCPL Team.";
-        // $senderId  = "CYCPLN";
+        $message="Dear User, Thank you for booking the tour with us, Your OTP is $traveler_otp, Valid for 30 minutes. Please share with only Choudhary Yatra team. Regards,CYCPL Team.";
+        $senderId  = "CYCPLN";
         
-        // $apiurl = "http://sms.sumagoinfotech.com/api/sendhttp.php?authkey=394685AG84OZGHLV0z6438e5e3P1&mobiles=$mobile_no&message=$message&sender=CYCPLN&route=4&country=91&DLT_TE_ID=1207168251580901563";
+        $apiurl = "http://sms.sumagoinfotech.com/api/sendhttp.php?authkey=394685AG84OZGHLV0z6438e5e3P1&mobiles=$mobile_no&message=$message&sender=CYCPLN&route=4&country=91&DLT_TE_ID=1207168251580901563";
         
-        //  $apiurl = str_replace(" ", '%20', $apiurl); 
+         $apiurl = str_replace(" ", '%20', $apiurl); 
             
             
-        //     $ch = curl_init($apiurl);
-        //             $get_url = $apiurl;
-        //             curl_setopt($ch, CURLOPT_POST,0);
-        //             curl_setopt($ch, CURLOPT_URL, $get_url);
-        //             curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1);
-        //             curl_setopt($ch, CURLOPT_HEADER,0);
-        //             curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-        //     $return_val = curl_exec($ch); 
+            $ch = curl_init($apiurl);
+                    $get_url = $apiurl;
+                    curl_setopt($ch, CURLOPT_POST,0);
+                    curl_setopt($ch, CURLOPT_URL, $get_url);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1);
+                    curl_setopt($ch, CURLOPT_HEADER,0);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+            $return_val = curl_exec($ch); 
                
             
 
-                // $final_amt    = $this->input->post('final_amt'); 
-                // $booking_amt    = $this->input->post('booking_amt'); 
-                // $pending_amt    = $this->input->post('pending_amt'); 
-                // $booking_tm_mobile_no    = $this->input->post('booking_tm_mobile_no'); 
-                // $select_transaction    = $this->input->post('select_transaction'); 
-                // $upi_no    = $this->input->post('upi_no'); 
-                // $cheque    = $this->input->post('cheque'); 
-                // $net_banking    = $this->input->post('net_banking'); 
+                $final_amt    = $this->input->post('final_amt'); 
+                $booking_amt    = $this->input->post('booking_amt'); 
+                $pending_amt    = $this->input->post('pending_amt'); 
+                $booking_tm_mobile_no    = $this->input->post('booking_tm_mobile_no'); 
+                $select_transaction    = $this->input->post('select_transaction'); 
+                $upi_no    = $this->input->post('upi_no'); 
+                $cheque    = $this->input->post('cheque'); 
+                $net_banking    = $this->input->post('net_banking'); 
 
-                // $cash_2000    = $this->input->post('cash_2000'); 
-                // $total_cash_2000    = $this->input->post('total_cash_2000'); 
+                $cash_2000    = $this->input->post('cash_2000'); 
+                $total_cash_2000    = $this->input->post('total_cash_2000'); 
 
-                // $cash_500    = $this->input->post('cash_500'); 
-                // $total_cash_500    = $this->input->post('total_cash_500'); 
+                $cash_500    = $this->input->post('cash_500'); 
+                $total_cash_500    = $this->input->post('total_cash_500'); 
 
-                // $cash_200    = $this->input->post('cash_200'); 
-                // $total_cash_200    = $this->input->post('total_cash_200'); 
+                $cash_200    = $this->input->post('cash_200'); 
+                $total_cash_200    = $this->input->post('total_cash_200'); 
 
-                // $cash_100    = $this->input->post('cash_100'); 
-                // $total_cash_100    = $this->input->post('total_cash_100'); 
+                $cash_100    = $this->input->post('cash_100'); 
+                $total_cash_100    = $this->input->post('total_cash_100'); 
 
-                // $cash_50    = $this->input->post('cash_50'); 
-                // $total_cash_50    = $this->input->post('total_cash_50'); 
+                $cash_50    = $this->input->post('cash_50'); 
+                $total_cash_50    = $this->input->post('total_cash_50'); 
 
-                // $cash_20    = $this->input->post('cash_20'); 
-                // $total_cash_20    = $this->input->post('total_cash_20'); 
+                $cash_20    = $this->input->post('cash_20'); 
+                $total_cash_20    = $this->input->post('total_cash_20'); 
 
-                // $cash_10    = $this->input->post('cash_10'); 
-                // $total_cash_10    = $this->input->post('total_cash_10'); 
+                $cash_10    = $this->input->post('cash_10'); 
+                $total_cash_10    = $this->input->post('total_cash_10'); 
 
-                // $total_cash_amt    = $this->input->post('total_cash_amt'); 
+                $total_cash_amt    = $this->input->post('total_cash_amt'); 
                 $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
 
                 $arr_insert = array(
@@ -248,7 +248,7 @@ class Booking_preview extends CI_Controller {
                 );
                 
                  $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
-                
+                print_r($inserted_id); die;
                  if($inserted_id!=''){
                     echo $booking_reference_no;
 
