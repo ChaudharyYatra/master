@@ -175,8 +175,7 @@ class Booking_basic_info extends CI_Controller {
         $this->db->join("package_date", 'booking_basic_info.tour_date=package_date.id','left');
         $this->db->join("packages", 'booking_basic_info.tour_no=packages.id','left');
         $this->db->join("agent", 'booking_basic_info.boarding_office_location=agent.id','left');
-        $booking_data = $this->master_model->getRecord('booking_basic_info',
-        array('booking_basic_info.is_deleted'=>'no'),$fields);
+        $booking_data = $this->master_model->getRecord('booking_basic_info', array('booking_basic_info.is_deleted'=>'no'),$fields);
 
 
         $record = array();

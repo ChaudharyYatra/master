@@ -95,9 +95,10 @@
                         <input type="hidden" class="form-control" name="package_id" id="package_id" value="<?php echo $traveller_booking_info_value['pid']; ?>">
                         <input type="hidden" class="form-control" name="journey_date" id="journey_date" value="<?php echo $traveller_booking_info_value['journey_date']; ?>">
                     
-                        <input type="hidden" class="form-control" name="booking_ref_no" id="booking_ref_no" value="">
+                        <!-- <input type="hidden" class="form-control" name="booking_ref_no" id="booking_ref_no" value=""> -->
                     </div>
                 <?php } ?>
+                
               </div>
 
                 <div class="card-body">
@@ -526,9 +527,9 @@
 
                         </div>
                         <div class="col-md-2">
-                            <input type="radio" id="extra_services_yes" name="extra_services" value="yes" onclick="show2();"/>
+                            <input type="radio" id="extra_services_yes" name="extra_services" class="extra_services_yes_no" value="yes" onclick="show2();"/>
                                 <label for="Yes" id="extra_services_yes">Yes</label> &nbsp;&nbsp;
-                            <input type="radio" id="extra_services_no" name="extra_services" value="no" onclick="show1();"/>
+                            <input type="radio" id="extra_services_no" name="extra_services" class="extra_services_yes_no" value="no" onclick="show1();"/>
                                 <label for="No" id="extra_services_no">No</label>
                         </div>
 
@@ -539,7 +540,7 @@
                         <div class="col-md-4 hide" id="extra_services_div2">
                             <div class="form-group">
                                 
-                                <select class="select2" multiple="multiple" data-placeholder="Select Services" style="width: 100%;" name="select_services[]" id="select_services" required="required">
+                                <select class="select2" multiple="multiple" data-placeholder="Select Services" style="width: 100%;" name="select_services[]" id="select_services" >
                                 <option value="">Select Services</option>
                                 <?php
                                     foreach($special_req_master_data as $special_req_master_data_value) 

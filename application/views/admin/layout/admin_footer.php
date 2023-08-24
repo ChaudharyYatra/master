@@ -7976,50 +7976,46 @@ $("#approve_service").click(function() {
     var enquiry_id= $("#enquiry_id").val();
     var package_id= $("#package_id").val();
     var package_date_id= $("#package_date_id").val();
-    var booking_reference_no= $("#booking_reference_no").val();
-    var traveller_id= $("#traveller_id").val();
 
-    // var is_approve    = $("input[type='checkbox']").val();
-    // var service_cost    = $("#service_cost").val();
-
-    var approve = [];
+    var is_approve = [];
         $.each($("input[name='is_approve[]']:checked"), function(){
-        approve.push($(this).val());
+            is_approve.push($(this).val());
         });
-    var is_approve = approve.join(",");
-    console.log(is_approve);
+        // alert(is_approve);
+    // var is_approve = approve.join(",");
+    // console.log(is_approve);
 
-    var service_cost_pay = [];
+    var service_cost = [];
 
     $('input[name="service_cost[]"]').each(function(){
-        service_cost_pay.push($(this).val());
+        service_cost.push($(this).val());
     });
-    var service_cost = service_cost_pay.join(",");
+    // var service_cost = service_cost_pay.join(",");
     // alert(service_cost);
 
-    // alert(is_approve);
-    // alert(service_cost);
-    // alert('hii');
+    var id=[];
+    $('input[name="id[]"]').each(function() {          
+        id.push($(this).val()); //result undefine
+    });
 
-    if (is_approve!='') {
-        alert('hiii');
+    if (is_approve!='' && service_cost>'0') {
+        // alert('hiii');
         $.ajax({
-            url:"<?php echo base_url();?>admin/final_booking_details/add_extra_services",
+            url:"<?php echo base_url();?>admin/final_booking_details/approve_extra_services",
             method:"POST",
             data:{
                 enquiry_id:enquiry_id,
                 package_id:package_id,
                 package_date_id:package_date_id,
-                booking_reference_no:booking_reference_no,
-                traveller_id:traveller_id,
                 is_approve:is_approve,
-                service_cost:service_cost
+                service_cost:service_cost,
+                id:id
             },
             //  dataType: 'json',
             //  cache: false,
             success: function(response) {
-                alert(response);
-                exit();
+                // alert(response);
+                // exit();
                
                 if (response == true) {
                     // alert('Doneeeee');

@@ -5084,11 +5084,21 @@ $(document).ready(function() {
         var package_date_id = $('#package_date_id').val();
         var traveller_id = $('#traveller_id').val();
 
-        var select_services = $('#select_services').val();
         var extra_services = $('input[name="extra_services"]:checked').val();
+
+        if(extra_services=='yes'){
+            // alert('yessssssssssss');
+            var select_services = $('#select_services').val();
+        }else {
+            // alert('nooooooooooooooooo');
+            var select_services =[];
+        }
+
+        alert(select_services);
         
         
-        alert(extra_services); 
+        
+        // alert(extra_services); 
         // alert(select_services); 
         if (mobile_no != '') {
             // alert('IN hiiiii');
@@ -5148,20 +5158,20 @@ $(document).ready(function() {
 $(document).ready(function() {
     $("#re_send_otp").click(function() {
         // alert('hiiiiiiiiiii');
-        var mobile_no = $('#booking_tm_mobile_no').val();  
+        var booking_tm_mobile_no = $('#booking_tm_mobile_no').val();  
         var enquiry_id = $('#enquiry_id').val();
         
-        // alert(mobile_no);
+        // alert(booking_tm_mobile_no);
         // alert(enquiry_id);
 
-        if (mobile_no != '') {
+        if (booking_tm_mobile_no != '') {
             // alert('IN hiiiii');
             $.ajax({
                 url: "<?php echo base_url(); ?>agent/booking_preview/send_otp",
                 type: "post",
                 data: {
                     enquiry_id: enquiry_id,
-                    mobile_no: mobile_no
+                    booking_tm_mobile_no: booking_tm_mobile_no
                 },
                 dataType: 'json',
                 success: function(responce) {
@@ -5226,9 +5236,10 @@ $("#final_booking_submit").click(function() {
 
     var verify_otp = $("#otp").val();
     var mobile_no = $('#booking_tm_mobile_no').val(); 
-    var booking_ref_no = $('#booking_ref_no').val(); 
+    // var booking_ref_no = $('#booking_ref_no').val(); 
+    // alert(booking_ref_no);
     var enquiry_id = $('#enquiry_id').val(); 
-    // alert(verify_otp);
+    
     
     var journey_date  = $("#journey_date").val();
     
@@ -5246,7 +5257,7 @@ $("#final_booking_submit").click(function() {
             data: {
                 verify_otp: verify_otp,
                 mobile_no: mobile_no,
-                booking_ref_no: booking_ref_no,
+                // booking_ref_no: booking_ref_no,
                 enquiry_id: enquiry_id,
                 journey_date: journey_date,
                 traveller_id: traveller_id,

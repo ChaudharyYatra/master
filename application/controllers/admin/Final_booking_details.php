@@ -125,8 +125,20 @@ class Final_booking_details extends CI_Controller {
         $fields = "extra_services_details.*";
         $this->db->where('extra_services_details.is_deleted','no');
         $this->db->where('extra_services_details.enquiry_id',$id);
+        // $this->db->group_by('extra_services'); 
         $extra_services_details_data = $this->master_model->getRecords('extra_services_details',array('extra_services_details.is_deleted'=>'no'),$fields);
         // print_r($extra_services_details_data); die;
+
+        // $record = array();
+        // $fields = "approve_extra_services.*";
+        // $this->db->where('approve_extra_services.is_deleted','no');
+        // $this->db->where('approve_extra_services.enquiry_id',$id);
+        // $approve_extra_services_data = $this->master_model->getRecords('approve_extra_services',array('approve_extra_services.is_deleted'=>'no'),$fields);
+        // print_r($approve_extra_services_data); die;
+        // foreach($approve_extra_services_data as $approve_extra_services_data_info){
+        //     $cost = $approve_extra_services_data_info['service_cost'];
+        // }
+        // print_r($cost); die;
 
         $record = array();
         $fields = "special_req_master.*";
@@ -143,6 +155,7 @@ class Final_booking_details extends CI_Controller {
         $this->arr_view_data['bus_seat_book_data']        = $bus_seat_book_data;
         $this->arr_view_data['booking_payment_details_data'] = $booking_payment_details_data;
         $this->arr_view_data['extra_services_details_data'] = $extra_services_details_data;
+        // $this->arr_view_data['approve_extra_services_data'] = $approve_extra_services_data;
         $this->arr_view_data['special_req_master_data'] = $special_req_master_data;
         $this->arr_view_data['page_title']      = $this->module_title." Details ";
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -151,37 +164,31 @@ class Final_booking_details extends CI_Controller {
         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
     }
 
-    public function add_extra_services()
+    public function approve_extra_services()
     {   
        
-
-            
+                $id = $this->input->post('id'); 
                 $enquiry_id = $this->input->post('enquiry_id'); 
                 $package_id = $this->input->post('package_id'); 
                 $package_date_id = $this->input->post('package_date_id'); 
-                $booking_reference_no = $this->input->post('booking_reference_no'); 
-                $traveller_id = $this->input->post('traveller_id'); 
+ 
+                $is_approve = $this->input->post('is_approve');  
+                $service_cost = $this->input->post('service_cost'); 
 
-                $is_approve = implode(",", $this->input->post('is_approve')); 
-                // $is_approve = $this->input->post('is_approve'); 
-                $service_cost = implode(",", $this->input->post('service_cost')); 
-                // $service_cost = $this->input->post('service_cost'); 
+                $count = count($is_approve);
+                for($i=0;$i<$count;$i++)
+                {
+                    $arr_update = array(
+                        'is_approve'   =>   $_POST["is_approve"][$i],
+                        'service_cost' =>   $_POST["service_cost"][$i]
+                    );
+                    // print_r($arr_update); die;
+                    $arr_where     = array("id" => $id[$i]);
+                    $this->master_model->updateRecord('extra_services_details',$arr_update,$arr_where);
+                    //  $this->master_model->insertRecord('extra_services_details',$arr_update,true);
+                }
 
-                $arr_insert = array(
-                    'enquiry_id'   =>   $enquiry_id,
-                    'package_id'   =>   $package_id,
-                    'package_date_id'   =>   $package_date_id,
-                    'booking_reference_no'  =>   $booking_reference_no,
-                    'traveller_id'   =>   $traveller_id,
-
-                    'is_approve'   =>   $is_approve,
-                    'service_cost' =>   $service_cost
-                );
-                // print_r($arr_insert); die;
-
-                echo $inserted_id = $this->master_model->insertRecord('approve_extra_services',$arr_insert,true);
-                     die;          
-                if($inserted_id!=''){
+                if($enquiry_id!=''){
                     echo true;
 
                 }else {

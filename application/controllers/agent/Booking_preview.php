@@ -143,8 +143,6 @@ class Booking_preview extends CI_Controller {
             $journey_date = $this->input->post('journey_date');
             $package_date_id = $this->input->post('package_date_id');
 
-            $select_services = implode(",", $this->input->post('select_services'));
-            $extra_services = $this->input->post('extra_services');
 
             $alphabet = '1234567890';
             $otp = str_shuffle($alphabet);
@@ -172,42 +170,10 @@ class Booking_preview extends CI_Controller {
             $return_val = curl_exec($ch); 
                
             
-
-                $final_amt    = $this->input->post('final_amt'); 
-                $booking_amt    = $this->input->post('booking_amt'); 
-                $pending_amt    = $this->input->post('pending_amt'); 
-                $booking_tm_mobile_no    = $this->input->post('booking_tm_mobile_no'); 
-                $select_transaction    = $this->input->post('select_transaction'); 
-                $upi_no    = $this->input->post('upi_no'); 
-                $cheque    = $this->input->post('cheque'); 
-                $net_banking    = $this->input->post('net_banking'); 
-
-                $cash_2000    = $this->input->post('cash_2000'); 
-                $total_cash_2000    = $this->input->post('total_cash_2000'); 
-
-                $cash_500    = $this->input->post('cash_500'); 
-                $total_cash_500    = $this->input->post('total_cash_500'); 
-
-                $cash_200    = $this->input->post('cash_200'); 
-                $total_cash_200    = $this->input->post('total_cash_200'); 
-
-                $cash_100    = $this->input->post('cash_100'); 
-                $total_cash_100    = $this->input->post('total_cash_100'); 
-
-                $cash_50    = $this->input->post('cash_50'); 
-                $total_cash_50    = $this->input->post('total_cash_50'); 
-
-                $cash_20    = $this->input->post('cash_20'); 
-                $total_cash_20    = $this->input->post('total_cash_20'); 
-
-                $cash_10    = $this->input->post('cash_10'); 
-                $total_cash_10    = $this->input->post('total_cash_10'); 
-
-                $total_cash_amt    = $this->input->post('total_cash_amt'); 
                 $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
 
                 $arr_insert = array(
-                    'booking_reference_no'  =>  $booking_reference_no,
+                    // 'booking_reference_no'  =>  $booking_reference_no,
                     'final_amt'   =>   $final_amt,
                     'payment_type'   =>   $payment_type,
                     'booking_amt'   =>   $booking_amt,
@@ -225,8 +191,8 @@ class Booking_preview extends CI_Controller {
                     'package_id' => $package_id,
                     'traveller_id' => $traveller_id,
 
-                    'select_services' => $select_services,
-                    'extra_services' => $extra_services,
+                    // 'select_services' => $select_services,
+                    // 'extra_services' => $extra_services,
 
                     'cash_2000'   =>   $cash_2000,
                     'total_cash_2000'   =>   $total_cash_2000,
@@ -248,25 +214,42 @@ class Booking_preview extends CI_Controller {
                 );
                 
                  $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
-                print_r($inserted_id); die;
+        //================================================================================================================== 
+                 $extra_services = $this->input->post('extra_services');
+
+                 if($this->input->post('select_services')!=''){
+                    $select_services = implode(",",$this->input->post('select_services'));
+                }else{
+                    $select_services = '';
+                }
+
+                $selected_services=explode(',',$select_services);
+
+                // print_r($selected_services); 
+                // $ccc=count($selected_services);
+                
+                for($i=0;$i<count($selected_services);$i++){
+                    
+                 $arr_insert2 = array(
+                    'select_services' => $selected_services[$i],
+                    'extra_services' => $extra_services,
+                    // 'booking_reference_no'  =>  $booking_reference_no,
+                    // 'package_date_id' => $package_date_id,
+                    // 'enquiry_id' => $enquiry_id,
+                    // 'package_id' => $package_id,
+                    // 'traveller_id' => $traveller_id
+                );
+
+                $inserted_id2 = $this->master_model->insertRecord('extra_services_details',$arr_insert2,true);
+            }
                  if($inserted_id!=''){
-                    echo $booking_reference_no;
+                    echo true;
 
                 }else {
                     echo false;
                 }
 
-                $arr_insert2 = array(
-                    'select_services' => $select_services,
-                    'extra_services' => $extra_services,
-                    'booking_reference_no'  =>  $booking_reference_no,
-                    'package_date_id' => $package_date_id,
-                    'enquiry_id' => $enquiry_id,
-                    'package_id' => $package_id,
-                    'traveller_id' => $traveller_id
-                );
-
-                $inserted_id2 = $this->master_model->insertRecord('extra_services_details',$arr_insert2,true);
+                
                 
                 
     }
@@ -279,7 +262,7 @@ class Booking_preview extends CI_Controller {
             $id=$this->session->userdata('agent_sess_id');
 
                 
-                $mobile_no = $this->input->post('mobile_no');
+                $booking_tm_mobile_no = $this->input->post('booking_tm_mobile_no');
 
                 $enquiry_id = $this->input->post('enquiry_id');
 
@@ -287,32 +270,32 @@ class Booking_preview extends CI_Controller {
                 $otp = str_shuffle($alphabet);
                 $traveler_otp = substr($otp, 0, '6'); 
 
-            //     $from_email='test@choudharyyatra.co.in';
+                $from_email='test@choudharyyatra.co.in';
                 
-            //     $authKey = "1207168241267288907";
+                $authKey = "1207168241267288907";
                 
-            // $message="Dear User, Thank you for booking the tour with us, Your OTP is $traveler_otp, Valid for 30 minutes. Please share with only Choudhary Yatra team. Regards,CYCPL Team.";
-            // $senderId  = "CYCPLN";
+            $message="Dear User, Thank you for booking the tour with us, Your OTP is $traveler_otp, Valid for 30 minutes. Please share with only Choudhary Yatra team. Regards,CYCPL Team.";
+            $senderId  = "CYCPLN";
             
-            // $apiurl = "http://sms.sumagoinfotech.com/api/sendhttp.php?authkey=394685AG84OZGHLV0z6438e5e3P1&mobiles=$mobile_no&message=$message&sender=CYCPLN&route=4&country=91&DLT_TE_ID=1207168251580901563";
+            $apiurl = "http://sms.sumagoinfotech.com/api/sendhttp.php?authkey=394685AG84OZGHLV0z6438e5e3P1&mobiles=$booking_tm_mobile_no&message=$message&sender=CYCPLN&route=4&country=91&DLT_TE_ID=1207168251580901563";
             
-            // $apiurl = str_replace(" ", '%20', $apiurl); 
+            $apiurl = str_replace(" ", '%20', $apiurl); 
                 
                 
-            //     $ch = curl_init($apiurl);
-            //             $get_url = $apiurl;
-            //             curl_setopt($ch, CURLOPT_POST,0);
-            //             curl_setopt($ch, CURLOPT_URL, $get_url);
-            //             curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1);
-            //             curl_setopt($ch, CURLOPT_HEADER,0);
-            //             curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-            //     $return_val = curl_exec($ch); 
+                $ch = curl_init($apiurl);
+                        $get_url = $apiurl;
+                        curl_setopt($ch, CURLOPT_POST,0);
+                        curl_setopt($ch, CURLOPT_URL, $get_url);
+                        curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1);
+                        curl_setopt($ch, CURLOPT_HEADER,0);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+                $return_val = curl_exec($ch); 
                 
                 
                     
 
                     $arr_update = array(
-                        'mobile_no'   =>   $mobile_no,
+                        'booking_tm_mobile_no'   =>   $booking_tm_mobile_no,
                         'traveler_otp'   =>   $traveler_otp
                     );
 // print_r($arr_update); die;
@@ -338,16 +321,17 @@ class Booking_preview extends CI_Controller {
         $agent_sess_name = $this->session->userdata('agent_name');
         $id=$this->session->userdata('agent_sess_id');
 
-            $verify_otp = $this->input->post('verify_otp');
-            $mobile_no = $this->input->post('mobile_no'); 
-            $booking_ref_no = $this->input->post('booking_ref_no'); 
+             $verify_otp = $this->input->post('verify_otp');
+             $mobile_no = $this->input->post('mobile_no'); 
+             $enquiry_id = $this->input->post('enquiry_id'); 
+            // echo $booking_ref_no = $this->input->post('booking_ref_no');  die;
 
             $record = array();
             $fields = "booking_payment_details.*";
             $this->db->where('is_deleted','no');
             $this->db->where('traveler_otp',$verify_otp);
             $this->db->where('booking_tm_mobile_no',$mobile_no);
-            $this->db->where('booking_reference_no',$booking_ref_no);
+            $this->db->where('enquiry_id',$enquiry_id);
             $booking_payment_details_info = $this->master_model->getRecord('booking_payment_details');
 
             // print_r($booking_payment_details_info); die;
@@ -401,7 +385,7 @@ class Booking_preview extends CI_Controller {
                 echo 'false';
             }
                 
-
+// die;
         
     }
 

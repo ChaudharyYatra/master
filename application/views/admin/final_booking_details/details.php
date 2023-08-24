@@ -521,134 +521,63 @@
                     <?php } ?>
                 </div>
 
-                <?php
-                   foreach($booking_payment_details_data as $info) 
-                   { 
-                     ?>
-                <div class="card-body extrax_services_div">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="coupon_question">Do You Want Extra Services ?</label>
 
-                        </div>
-                        <div class="col-md-2">
-                            <input disabled type="radio" id="extra_services_yes" name="extra_services" value="yes" <?php if(isset($info['extra_services'])){if("yes"==$info['extra_services']){echo "checked";}} ?> onclick="show2();"/>
-                                <label for="Yes" id="extra_services_yes">Yes</label> &nbsp;&nbsp;
-                            <input disabled type="radio" id="extra_services_no" name="extra_services" value="no" <?php if(isset($info['extra_services'])){if("no"==$info['extra_services']){echo "checked";}} ?> onclick="show1();"/>
-                                <label for="No" id="extra_services_no">No</label>
-                        </div>
 
-                        <?php if($info['extra_services']== 'yes') { ?>   
-                        <div class="col-md-3 hide" id="extra_services_div1">
-                            <label>Services Name-Cost</label>
-
-                        </div>
-                        <div class="col-md-4 hide" id="extra_services_div2">
-                            <div class="form-group">
-                                
-                                <select disabled class="select2" multiple="multiple" data-placeholder="Select Services" style="width: 100%;" name="select_services[]" id="select_services" required="required">
-                                <option value="">Select Services</option>
-                                
-                                <?php
-                                $title = explode(',',$info['select_services']);
-                                $c=count($title);
-                                    foreach($special_req_master_data as $special_req_master_data_value) 
-                                    { 
-                                        for($i=0; $i<$c; $i++){
-                                            $tid= $title[$i];
-                                        }
-                                ?>
-                                    <option value="<?php echo $special_req_master_data_value['id']; ?>" <?php if(in_array($special_req_master_data_value['id'], $title)) { echo "selected"; } ?>><?php echo $special_req_master_data_value['service_name']; ?></option>
-                                <?php  } ?>
-
-                                </select>
-                            </div>
-                        </div>
-                        <?php } ?>
-
-                    </div>
-                </div>
-                <?php } ?>
-
-                <!-- /.card-header -->
-              <div class="card-body">
+            <div class="card-body">
+                <h5> Extra Services :</h5>
                 <form style="border: 1px solid #cdcdcd; padding: 15px;">
-                <?php  if(count($extra_services_details_data) > 0 ) 
-                { ?>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th class="text_center">SN</th>
-                    <th class="text_center">Services Name</th>
-                    <th class="text_center">Approval</th>
-                    <th class="text_center">Cost</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <?php  
-
-                //   $i=1 i replace by j coz below i use
-                //    $j=1; 
-                   foreach($extra_services_details_data as $info) 
-                   { 
-                    // print_r($info); die;
-                    $title=array();
-                    $title = explode(',',$info['select_services']);
-                    $n=0;
-                    $c=count($title);
-                    for($i=0; $i<$c; $i++){
-                    $id=$title[$i];
-                    $no=$i+1;
-                        $query=$this->db->query("SELECT service_name FROM special_req_master WHERE id='$id'");
-                        $pack_data=$query->result_array();
+                    <?php  if(count($extra_services_details_data) > 0 ) 
+                    { ?>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                        <th class="text_center">SN</th>
+                        <th class="text_center">Services Name</th>
+                        <th class="text_center">Approval</th>
+                        <th class="text_center">Cost</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php  
                         
-                        // echo '<br>';
-                     ?>
-                  <tr>
-                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="enquiry_id" id="enquiry_id" value="<?php echo $info['enquiry_id']; ?>">
-                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="package_id" id="package_id" value="<?php echo $info['package_id']; ?>">
-                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="package_date_id" id="package_date_id" value="<?php echo $info['package_date_id']; ?>">
-                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="booking_reference_no" id="booking_reference_no" value="<?php echo $info['booking_reference_no']; ?>">
-                    <input type="hidden" style="width: 50%;" class="form-control row_set" name="traveller_id" id="traveller_id" value="<?php echo $info['traveller_id']; ?>">
-
-                    <td class="text_center"><?php echo $no; ?></td>
-                    <td class="text_center">
+                        $i=1; 
+                        foreach($extra_services_details_data as $info) 
+                        { 
+                        ?>
+                        <tr>
+                        <td><?php echo $i; ?></td>
+                        <td class="text_center">
                         <?php 
-                            echo $pack_data[$n]['service_name'];
+                            echo $info['select_services'];
                             ?> 
 
-                    </td>    
-                    <td class="text_center">
-                        <input type="checkbox" class="largerCheckbox" id="extra_services" name="is_approve[]" value="<?php echo $id; ?>">
-                        <label for="extra_services"> </label><br>
+                        </td>    
+                        <td class="text_center">
+                            <?php 
+                                $quali1=array();
+                                  $p = $info['is_approve'];
+                                  $quali1 = explode(',',$p);
+                                  // print_r($quali1); die;
+                            ?>
+                            <input type="checkbox" class="largerCheckbox" id="extra_services" name="is_approve[]" value="yes" <?php if(in_array('yes',$quali1)) {echo 'checked';}?>>
+                            <label for="extra_services"> </label>
+                            
+                        </td>   
+                        <td class="text_center_web">
+                            <input type="hidden" class="form-control table_id" name="id[]" id="tble_id" value="<?php echo $info['id']; ?>">
+                            <input type="text" style="width: 50%;" class="form-control row_set" name="service_cost[]" id="service_cost" value="<?php echo $info['service_cost']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        </td>
+
+                        </tr>
+                        <?php $i++; } ?>
+                        </tbody>
                         
-                    </td>   
-                    <td class="text_center_web">
-                        <input type="text" style="width: 50%;" class="form-control row_set" name="service_cost[]" id="service_cost" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                    </td>
+                    </table>
                     <?php } ?>
 
-                   
-                    
-                  </tr>
-                  
-                  <?php $i++; } ?>
-                  
-                  </tbody>
-                  
-                </table>
-                <?php } else
-                { echo '<div class="alert alert-danger alert-dismissable">
-                <i class="fa fa-ban"></i>
-                <b>Alert!</b>
-                Sorry No records available
-                </div>' ; } ?>
-
-                <center><button type="button" class="btn btn-primary" id="approve_service" name="approve_service" style="width:10%;">Submit</button></center>
-               
+                    <center><button type="button" class="btn btn-primary" id="approve_service" name="approve_service" style="width:10%;">Submit</button></center>
                 </form>
-              </div>
-              <!-- /.card-body -->
+            </div>
 
                 <?php
                    foreach($booking_payment_details_data as $info) 
