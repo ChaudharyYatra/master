@@ -19,30 +19,26 @@ class Request_replace_bus extends CI_Controller{
         $this->load->library('upload');
 	}
 
-	public function index($id,$did)
+	public function index()
 	{ 
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $iid = $this->session->userdata('supervision_sess_id');
 
-        $id=base64_decode($id);
-        $did=base64_decode($did);
-
-        $fields = "packages.*,package_type.package_type,package_type.id as pid, packages.id as pack_id,package_date.id as did";
-        $this->db->where('packages.is_deleted','no');
-        $this->db->where('packages.is_active','yes');
-        $this->db->where('packages.id',$id);
-        $this->db->where('package_date.id',$did);
-        $this->db->where('packages.instraction_status','yes');
-        // $this->db->OR_where('packages.cust_instraction_status','yes');
-		$this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
-        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
-        $this->db->join("package_type", 'packages.package_type=package_type.id','left');
-        $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
-        // print_r($arr_data); die;
+        $record = array();
+        $fields = "request_to_tom_replace_bus.*,packages.tour_number,packages.tour_title,package_date.journey_date,
+        vehicle_details.registration_number";
+        $this->db->where('request_to_tom_replace_bus.is_deleted','no');
+        $this->db->where('request_to_tom_replace_bus.is_active','yes');
+        $this->db->where('request_to_tom_replace_bus.tour_manager_id',$iid);
+        $this->db->join("packages", 'request_to_tom_replace_bus.package_id=packages.id','left');
+        $this->db->join("package_date", 'request_to_tom_replace_bus.package_date_id=package_date.id','left');
+        $this->db->join("vehicle_details", 'request_to_tom_replace_bus.vehicle_rto_registration=vehicle_details.id','left');
+        $request_to_tom_replace_bus_data = $this->master_model->getRecords('request_to_tom_replace_bus',array('request_to_tom_replace_bus.is_deleted'=>'no'),$fields);
+        // print_r($request_to_tom_replace_bus_data); die;
 
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
-        $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['request_to_tom_replace_bus_data']        = $request_to_tom_replace_bus_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -92,12 +88,12 @@ class Request_replace_bus extends CI_Controller{
                     'vehicle_rto_registration'   =>   $rto_registration_no,
                     'What_is_problem_of_bus'   =>   $bus_replace_reason,
                     'tour_manager_id'   =>   $iid,
-                    'package_date_id'   =>   $did
+                    'package_date_id'   =>   $did,
+                    'status'   =>   'pending'
 
                 );
                 // print_r($arr_insert); die;
                 $inserted_id = $this->master_model->insertRecord('request_to_tom_replace_bus',$arr_insert,true);
-                
 
                 if($inserted_id > 0)
                 {
@@ -127,6 +123,7 @@ class Request_replace_bus extends CI_Controller{
         vehicle_owner.id as vid";
         $this->db->where('bus_open.is_deleted','no');
         $this->db->where('bus_open.package_id',$id);
+        $this->db->where('bus_open.package_date_id',$did);
         $this->db->join("vehicle_details", 'bus_open.vehicle_rto_registration=vehicle_details.id','left');
         $this->db->join("vehicle_owner", 'vehicle_details.vehicle_owner_id=vehicle_owner.id','left');
         $this->db->join("packages", 'bus_open.package_id=packages.id','left');

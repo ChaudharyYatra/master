@@ -248,7 +248,7 @@ class Booking_preview extends CI_Controller {
                 );
                 
                  $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
-                print_r($inserted_id); die;
+                // print_r($inserted_id); die;
                  if($inserted_id!=''){
                     echo $booking_reference_no;
 

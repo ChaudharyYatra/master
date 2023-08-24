@@ -73,8 +73,8 @@ class Bus_open extends CI_Controller{
                 $arr_update = array(
                     'bus_open_status'   =>  'yes'
                 );
-                $arr_where     = array("id" => $id);
-                $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
+                $arr_where     = array("id" => $vehicle_rto_registration);
+                $this->master_model->updateRecord('vehicle_details',$arr_update,$arr_where);
                                
                 if($inserted_id > 0)
                 {    

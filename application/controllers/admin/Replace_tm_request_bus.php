@@ -6,12 +6,12 @@ class Replace_tm_request_bus extends CI_Controller{
 	{
 		parent::__construct();
 	    $this->arr_view_data = [];
-        if($this->session->userdata('supervision_sess_id')=="") 
+        if($this->session->userdata('chy_admin_id')=="") 
         { 
-                redirect(base_url().'supervision/login'); 
+                redirect(base_url().'admin/login'); 
         }
-        $this->module_url_path    =  base_url().$this->config->item('tour_operation_manager_panel_slug')."tour_operation_manager/replace_tm_request_bus";
-        $this->module_url_path_change_bus    =  base_url().$this->config->item('tour_operation_manager_panel_slug')."tour_operation_manager/change_bus";
+        $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/replace_tm_request_bus";
+        $this->module_url_path_change_bus    =  base_url().$this->config->item('admin_panel_slug')."/change_bus";
         $this->module_title       = "Request From TM For Replace Bus";
         $this->module_url_slug    = "Replace_tm_request_bus";
         $this->module_view_folder = "Replace_tm_request_bus/";    
@@ -48,7 +48,7 @@ class Replace_tm_request_bus extends CI_Controller{
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['module_url_path_change_bus'] = $this->module_url_path_change_bus;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
-        $this->load->view('tour_operation_manager/layout/tour_operation_manager_combo',$this->arr_view_data);
+        $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
        
 	}
 	
@@ -62,24 +62,12 @@ class Replace_tm_request_bus extends CI_Controller{
         // $arr_data = $this->master_model->getRecords('assign_staff');
         // print_r($arr_data); die;
 
-        // $fields = "change_bus.*,packages.tour_number,packages.tour_title,vehicle_owner.vehicle_owner_name,vehicle_details.registration_number,vehicle_details.seat_capacity";
-        // $this->db->where('change_bus.is_deleted','no'); 
-        // $this->db->where('change_bus.package_date_id',$did);
-        // $this->db->where('change_bus.request_to_tom_replace_bus_id',$bus_request_id);
-        // $this->db->join("packages", 'change_bus.package_id=packages.id','left');
-        // $this->db->join("request_to_tom_replace_bus", 'change_bus.package_id=request_to_tom_replace_bus.package_id','left');
-        // $this->db->join("package_date", 'change_bus.package_date_id=package_date.id','left');
-        // $this->db->join("vehicle_owner", 'change_bus.vehicle_owner_id=vehicle_owner.id','left');
-        // $this->db->join("vehicle_details", 'change_bus.vehicle_rto_registration=vehicle_details.id','left');
-        // $arr_data = $this->master_model->getRecords('change_bus',array('change_bus.is_deleted'=>'no'),$fields);
-        // // print_r($arr_data); die;
-
         $fields = "change_bus.*,packages.tour_number,packages.tour_title,vehicle_owner.vehicle_owner_name,vehicle_details.registration_number,vehicle_details.seat_capacity";
         $this->db->where('change_bus.is_deleted','no'); 
         $this->db->where('change_bus.package_date_id',$did);
         $this->db->where('change_bus.request_to_tom_replace_bus_id',$bus_request_id);
         $this->db->join("packages", 'change_bus.package_id=packages.id','left');
-        // $this->db->join("request_to_tom_replace_bus", 'change_bus.package_id=request_to_tom_replace_bus.package_id','left');
+        $this->db->join("request_to_tom_replace_bus", 'change_bus.package_id=request_to_tom_replace_bus.package_id','left');
         $this->db->join("package_date", 'change_bus.package_date_id=package_date.id','left');
         $this->db->join("vehicle_owner", 'change_bus.vehicle_owner_id=vehicle_owner.id','left');
         $this->db->join("vehicle_details", 'change_bus.vehicle_rto_registration=vehicle_details.id','left');
@@ -104,7 +92,7 @@ class Replace_tm_request_bus extends CI_Controller{
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
         $this->arr_view_data['module_url_path_change_bus'] = $this->module_url_path_change_bus;
         $this->arr_view_data['middle_content']  = $this->module_view_folder."show_replace_bus_record";
-        $this->load->view('tour_operation_manager/layout/tour_operation_manager_combo',$this->arr_view_data);
+        $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
        
 	}
    

@@ -52,11 +52,14 @@ class Change_bus extends CI_Controller{
 	}
 	
 	
-    public function add($id,$did,$seat_no)
+    public function add($bus_request_id,$pid,$did,$seat_no)
     {   
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $id = $this->session->userdata('supervision_sess_id');   
         
+        // echo $pid;
+        // echo $did;
+        // echo $seat_no; die;
         if($this->input->post('submit'))
         {
             $this->form_validation->set_rules('vehicle_owner_name', 'vehicle_owner_name', 'required');
@@ -68,17 +71,25 @@ class Change_bus extends CI_Controller{
                 $vehicle_owner_name	  = $this->input->post('vehicle_owner_name'); 
                 $rto_no	  = $this->input->post('rto_no');
                 $seat_capacity	  = $this->input->post('seat_capacity');
-
+                $request_bus_id	  = $this->input->post('request_bus_id');
 
                     $arr_insert = array(
                         'vehicle_owner_id'   =>   $vehicle_owner_name,
                         'vehicle_rto_registration'   =>   $rto_no,
                         'seat_capacity'   =>   $seat_capacity,
-                        'package_id'   =>   $id,
-                        'package_date_id'   =>   $did
+                        'package_id'   =>   $pid,
+                        'package_date_id'   =>   $did,
+                        'request_to_tom_replace_bus_id'   =>   $request_bus_id
                     );
 
                     $inserted_id = $this->master_model->insertRecord('change_bus',$arr_insert,true);
+
+                    $arr_update = array(
+                        'status'   =>   'Approved'
+
+                    );
+                    $arr_where     = array("id" => $request_bus_id);
+                    $inserted_id = $this->master_model->updateRecord('request_to_tom_replace_bus',$arr_update,$arr_where);
                 
                                
                 if($inserted_id > 0)
@@ -97,15 +108,19 @@ class Change_bus extends CI_Controller{
        
         }
 
-
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');  
-        $vehicle_owner_data = $this->master_model->getRecords('vehicle_owner');
+        $fields = "vehicle_owner.*,vehicle_details.registration_number";
+        $this->db->where('vehicle_owner.is_deleted','no');
+        $this->db->where('vehicle_owner.is_active','yes');  
+        $this->db->where('vehicle_details.status','approved');  
+        $this->db->join("vehicle_details", 'vehicle_owner.id=vehicle_details.vehicle_owner_id','left');
+        $this->db->group_by('vehicle_owner.vehicle_owner_name');
+        $vehicle_owner_data = $this->master_model->getRecords('vehicle_owner',array('vehicle_owner.is_deleted'=>'no'),$fields);
         // print_r($vehicle_owner_data); die;
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['vehicle_owner_data']        = $vehicle_owner_data;
         $this->arr_view_data['seat_no']        = $seat_no;
+        $this->arr_view_data['bus_request_id']        = $bus_request_id;
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Assign Staff";
         $this->arr_view_data['module_title']    = $this->module_title;

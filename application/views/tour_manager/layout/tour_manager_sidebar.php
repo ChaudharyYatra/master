@@ -92,6 +92,13 @@
               </li>
 
               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>tour_manager/request_replace_bus/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Request Replace Bus</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
                 <a href="<?php echo base_url(); ?>tour_manager/birthday_and_anniversary/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Birthday & Anniversary Module</p>
@@ -112,12 +119,12 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="<?php echo base_url(); ?>tour_manager/attendance/index" class="nav-link">
+              <!-- <li class="nav-item">
+                <a href="<?php //echo base_url(); ?>tour_manager/attendance/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daily Attendance</p>
                 </a>
-              </li>
+              </li> -->
 
               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>tour_manager/tm_request_more_fund/index" class="nav-link">
