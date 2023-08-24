@@ -13,7 +13,7 @@ class Bus_open extends CI_Controller{
 	
         
         $this->module_url_path    =  base_url().$this->config->item('admin_panel_slug')."/bus_open";
-        $this->module_title       = "Bus Open";
+        $this->module_title       = "Tour Wise Bus Open";
         $this->module_url_slug    = "bus_open";
         $this->module_view_folder = "bus_open/";    
 	}

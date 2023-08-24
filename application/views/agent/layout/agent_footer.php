@@ -5896,7 +5896,7 @@ function empty() {
                     // alert('hiiiiiiii else');
 
                     $('#search-results'+attr_id_for_search).empty();
-                    $('#search-results'+attr_id_for_search).css("display","none");;
+                    $('#search-results'+attr_id_for_search).css("display","none");
                 }
             
 

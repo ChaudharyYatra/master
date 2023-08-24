@@ -525,7 +525,7 @@
 
             <div class="card-body">
                 <h5> Extra Services :</h5>
-                <form style="border: 1px solid #cdcdcd; padding: 15px;">
+                <form id="approve_extra_services_admin" style="border: 1px solid #cdcdcd; padding: 15px;">
                     <?php  if(count($extra_services_details_data) > 0 ) 
                     { ?>
                     <table id="example1" class="table table-bordered table-striped">
