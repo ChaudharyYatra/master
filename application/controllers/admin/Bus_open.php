@@ -78,7 +78,7 @@ class Bus_open extends CI_Controller{
                                
                 if($inserted_id > 0)
                 {    
-                    $this->session->set_flashdata('success_message'," Media Source Added Successfully.");
+                    $this->session->set_flashdata('success_message'," Tour Wise Bus Open Added Successfully.");
                     redirect($this->module_url_path.'/index');
                 }
                 else
