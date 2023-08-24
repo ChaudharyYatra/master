@@ -34,13 +34,12 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Tour Number</th>
-                    <th>Tour Manager</th>
-                    <th>Vehicle Owner</th>
-                    <th>RTO Registration No</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>Tour Details</th>
+                    <th>Vehicle Owner Name</th>
+                    <th>Previous RTO Registration No</th>
+                    <th>Replace RTO Registration No</th>
+                    <th>Vehicle Seat Capacity</th>
+                    <!-- <th>Action</th> -->
                   </tr>
                   </thead>
                   <tbody>
@@ -54,24 +53,22 @@
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $info['tour_number'] ?> - <?php echo $info['tour_title'] ?></td>
-                    <td><?php echo $info['supervision_name'] ?></td>
                     <td><?php echo $info['vehicle_owner_name'] ?></td>
+                    <td><?php echo $RTO_no_data; ?></td>
                     <td><?php echo $info['registration_number'] ?></td>
-                    <td><?php echo $info['What_is_problem_of_bus'] ?></td>    
-                    <td><?php echo $info['status'] ?></td>    
+                    <td><?php echo $info['seat_capacity'] ?></td>    
                     
-                    <td>
+                    <!-- <td>
                       <div class="btn-group">
                         <button type="button" class="btn btn-default">Action</button>
                         <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu" role="menu">
-                          <a href="<?php echo $module_url_path_change_bus;?>/add/<?php echo $info['id']; ?>/<?php echo $info['package_id']; ?>/<?php echo $info['package_date_id']; ?>/<?php echo $info['seat_capacity']; ?>" ><button class="dropdown-item">Change Bus</button></a>
-                          <a href="<?php echo $module_url_path;?>/show_replace_bus_record/<?php echo $info['id']; ?>/<?php echo $info['package_id']; ?>/<?php echo $info['package_date_id']; ?>"><button class="dropdown-item">Show Replace Bus</button></a>
+                          <a href="<?php //echo $module_url_path_change_bus;?>/add/<?php //echo $info['package_id']; ?>/<?php //echo $info['package_date_id']; ?>/<?php //echo $info['seat_capacity']; ?>" ><button class="dropdown-item">Change Bus</button></a>
                         </div>
                       </div>
-                    </td>
+                    </td> -->
                     
                     
                   </tr>

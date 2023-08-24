@@ -67,7 +67,7 @@
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu" role="menu">
-                          <a href="<?php echo $module_url_path_change_bus;?>/add/<?php echo $info['id']; ?>/<?php echo $info['package_id']; ?>/<?php echo $info['package_date_id']; ?>/<?php echo $info['seat_capacity']; ?>" ><button class="dropdown-item">Change Bus</button></a>
+                          <!-- <a href="<?php //echo $module_url_path_change_bus;?>/add/<?php //echo $info['id']; ?>/<?php //echo $info['package_id']; ?>/<?php //echo $info['package_date_id']; ?>/<?php //echo $info['seat_capacity']; ?>" ><button class="dropdown-item">Change Bus</button></a> -->
                           <a href="<?php echo $module_url_path;?>/show_replace_bus_record/<?php echo $info['id']; ?>/<?php echo $info['package_id']; ?>/<?php echo $info['package_date_id']; ?>"><button class="dropdown-item">Show Replace Bus</button></a>
                         </div>
                       </div>

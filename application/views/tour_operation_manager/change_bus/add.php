@@ -48,7 +48,8 @@
                                 <option value="<?php echo $vehicle_owner_data_info['id'];?>"><?php echo $vehicle_owner_data_info['vehicle_owner_name'];?></option>
                               <?php } ?>
                               <input type="hidden" class="form-control" name="seat_no" id="seat_no" value="<?php echo $seat_no; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required">
-                        </select>
+                              <input type="hidden" class="form-control" name="request_bus_id" id="request_bus_id" value="<?php echo $bus_request_id; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                            </select>
                       </div>
                     </div>
 
