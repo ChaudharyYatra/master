@@ -13,8 +13,8 @@ class Replace_tm_request_bus extends CI_Controller{
         $this->module_url_path    =  base_url().$this->config->item('tour_operation_manager_panel_slug')."tour_operation_manager/replace_tm_request_bus";
         $this->module_url_path_change_bus    =  base_url().$this->config->item('tour_operation_manager_panel_slug')."tour_operation_manager/change_bus";
         $this->module_title       = "Request From TM For Replace Bus";
-        $this->module_url_slug    = "Replace_tm_request_bus";
-        $this->module_view_folder = "Replace_tm_request_bus/";    
+        $this->module_url_slug    = "replace_tm_request_bus";
+        $this->module_view_folder = "replace_tm_request_bus/";    
         $this->load->library('upload');
 	}
 
