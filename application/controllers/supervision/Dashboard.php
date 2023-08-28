@@ -48,13 +48,23 @@ class Dashboard extends CI_Controller{
                 $request_code_completed = $this->master_model->getRecords('request_code_number',array('request_code_number.is_deleted'=>'no'),$fields);
                 $arr_data['request_code_completed'] = count($request_code_completed);
 
-                
+                $this->db->select("stationary.stationary_name, COUNT(stationary_order_details.id) AS request_count");
+                $this->db->from('stationary_order_details');
+                $this->db->where('stationary_order_details.is_deleted', 'no');
+                $this->db->where('stationary_order_details.order_status', 'completed');
+                $this->db->join("stationary", 'stationary_order_details.stationary_name = stationary.id', 'left');
+                $this->db->group_by('stationary.stationary_name');
+                $this->db->order_by('request_count', 'desc'); // Order by request_count in descending order
+                $this->db->limit(5); // Limit the result to the top 5 stationary names
+
+                $top_s_product = $this->db->get()->result_array();
         
         $this->arr_view_data['supervision_role_name']        = $supervision_role_name;
         $this->arr_view_data['supervision_sess_name']        = $supervision_sess_name;
         $this->arr_view_data['supervision_role']        = $supervision_role;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['top_s_product']        = $top_s_product;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;

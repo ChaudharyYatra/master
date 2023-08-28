@@ -137,11 +137,132 @@ class Dashboard extends CI_Controller{
         $fields = "sum(visiter_count) as vcount";
         $arr_data1 = $this->master_model->getRecord('visiter_data',array('visiter_data.is_deleted'=>'yes'),$fields);
         $visiter_c = $arr_data1['vcount'];
-		
+
+
+        // pie cart query
+        // $record = array();
+        // $fields = "packages.*,package_type.package_type";
+        // $this->db->where('packages.is_deleted','no');
+        // // $this->db->where('package_type.package_type','Domestic Packages');
+        // $this->db->join("package_type",'packages.package_type=package_type.id','left');
+        // $package_type_wise_data = $this->master_model->getRecords('packages');
+        // $arr_data['package_count'] = count($package_type_wise_data);
+        // print_r($package_type_wise_data); die;
+
+
+        $record = array();
+        $this->db->select("package_type.package_type, COUNT(packages.id) AS package_count");
+        $this->db->from('packages');
+        $this->db->where('packages.is_deleted', 'no');
+        $this->db->join('package_type', 'packages.package_type = package_type.id', 'left');
+        $this->db->group_by('package_type.package_type'); // Group by package type
+        $package_type_wise_data = $this->db->get()->result_array();
+        // print_r($package_type_wise_data); die;
+
+        $record = array();
+        $this->db->select("agent.agent_name, COUNT(booking_enquiry.id) AS enquiry_count");
+        $this->db->from('agent');
+        $this->db->where('agent.is_deleted', 'no');
+        $this->db->join('booking_enquiry', 'agent.id = booking_enquiry.agent_id', 'left');
+        $this->db->group_by('agent.id'); // Group by agent.id
+        $agent_wise_data = $this->db->get()->result_array();
+
+        $record = array();
+        $this->db->select("DATE_FORMAT(package_date.journey_date, '%Y-%m') AS month, packages.tour_title, COUNT(packages.id) AS package_count");
+        $this->db->from('packages');
+        $this->db->where('packages.is_deleted', 'no');
+        $this->db->join('package_date', 'packages.id = package_date.package_id', 'left');
+        $this->db->group_by('month'); // Group by month and package type
+        $month_wise_data = $this->db->get()->result_array();
+        // print_r($month_wise_data); die;
+
+        $record = array();
+        $this->db->select("agent.agent_name, COUNT(booking_enquiry.id) AS enquiry_count");
+        $this->db->from('agent');
+        $this->db->where('agent.is_deleted', 'no');
+        $this->db->where('booking_enquiry.booking_done', 'yes');
+        $this->db->join('booking_enquiry', 'agent.id = booking_enquiry.agent_id', 'left');
+        $this->db->group_by('agent.id'); // Group by agent.id
+        $top_agent_wise_data = $this->db->get()->result_array();
+        // print_r($agent_wise_data); die; 
+
+        $record = array();
+        $this->db->select("packages.tour_title, COUNT(packages.id) AS package_count");
+        $this->db->from('packages');
+        $this->db->where('packages.is_deleted', 'no');
+        $this->db->where('booking_basic_info.booking_done', 'yes');
+        $this->db->join('booking_basic_info', 'packages.id = booking_basic_info.tour_no', 'left');
+        $this->db->group_by('packages.tour_title'); // Group by package name
+        $this->db->order_by('package_count', 'desc'); // Order by package_count in descending order
+        $this->db->limit(1); // Limit the result to the top rows
+
+        $booking_max_package_data = $this->db->get()->row_array();
+        // print_r($booking_max_package_data); die;
+
+        $record = array();
+        $this->db->select("vehicle_type.vehicle_type_name, COUNT(vehicle_details.id) AS vehicle_type_count");
+        $this->db->from('vehicle_details');
+        $this->db->where('vehicle_details.is_deleted', 'no');
+        $this->db->join('vehicle_type', 'vehicle_type.id = vehicle_details.vehicle_type', 'left');
+        $this->db->group_by('vehicle_details.vehicle_type'); // Group by agent.id
+        $vehicle_type_data = $this->db->get()->result_array();
+        // print_r($vehicle_type_data); die;
+
+
+        
+        $this->db->select("
+        COUNT(booking_enquiry.id) AS total_enquiey_count,
+        SUM(CASE WHEN booking_enquiry.followup_status = 'yes' THEN 1 ELSE 0 END) AS total_followup_count,
+        SUM(CASE WHEN booking_enquiry.booking_done = 'yes' THEN 1 ELSE 0 END) AS total_booked_count,
+        SUM(CASE WHEN booking_enquiry.not_interested = 'no' THEN 1 ELSE 0 END) AS total_notintersted_count
+        ");
+
+        $this->db->from('booking_enquiry');
+        $this->db->where('booking_enquiry.is_deleted', 'no');
+
+        $enquiry_status = $this->db->get()->row_array();
+
+        // print_r($enquiry_status); die;
+
+
+        $this->db->select("
+        COUNT(agent.id) AS total_agent_count,
+        SUM(CASE WHEN agent.is_active = 'yes' THEN 1 ELSE 0 END) AS total_isactive_count,
+        SUM(CASE WHEN agent.is_deleted = 'yes' THEN 1 ELSE 0 END) AS total_isdeleted_count
+        ");
+
+        $this->db->from('agent');
+
+        $agent_status = $this->db->get()->row_array();
+
+        // print_r($agent_status); die;
+
+        $this->db->select("stationary.stationary_name, COUNT(stationary_order_details.id) AS request_count");
+        $this->db->from('stationary_order_details');
+        $this->db->where('stationary_order_details.is_deleted', 'no');
+        $this->db->where('stationary_order_details.order_status', 'completed');
+        $this->db->join("stationary", 'stationary_order_details.stationary_name = stationary.id', 'left');
+        $this->db->group_by('stationary.stationary_name');
+        $this->db->order_by('request_count', 'desc'); // Order by request_count in descending order
+        $this->db->limit(5); // Limit the result to the top 5 stationary names
+
+        $top_s_product = $this->db->get()->result_array();
+
+        // print_r($top_s_product); die;
+        
         $this->arr_view_data['admin_name']        = $admin_name;
         $this->arr_view_data['chy_admin_id']        = $chy_admin_id;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['top_s_product']        = $top_s_product;
+        $this->arr_view_data['vehicle_type_data']        = $vehicle_type_data;
+        $this->arr_view_data['enquiry_status']        = $enquiry_status;
+        $this->arr_view_data['agent_status']        = $agent_status;
+        $this->arr_view_data['package_type_wise_data']        = $package_type_wise_data;
+        $this->arr_view_data['agent_wise_data']        = $agent_wise_data;
+        $this->arr_view_data['month_wise_data']        = $month_wise_data;
+        $this->arr_view_data['booking_max_package_data']        = $booking_max_package_data;
+        $this->arr_view_data['top_agent_wise_data']        = $top_agent_wise_data;
         $this->arr_view_data['visiter_c']        = $visiter_c;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
@@ -149,5 +270,5 @@ class Dashboard extends CI_Controller{
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
         $this->load->view('admin/layout/admin_combo',$this->arr_view_data);
 	} 
-   
+
 }

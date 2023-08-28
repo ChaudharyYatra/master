@@ -371,6 +371,12 @@ class Booking_preview extends CI_Controller {
                 $arr_where     = array("id" => $enquiry_id);
                 $this->master_model->updateRecord('booking_enquiry',$arr_update,$arr_where);
 
+                $arr_update = array(
+                    'booking_done'   =>   'yes'
+                );
+                $arr_where     = array("domestic_enquiry_id" => $enquiry_id);
+                $this->master_model->updateRecord('booking_basic_info',$arr_update,$arr_where);
+
                 $arr_update1 = array(
                     'is_book'    =>  'yes',
                     'booking_reference_no'=>$booking_reference_no, 

@@ -75,10 +75,24 @@ class Dashboard extends CI_Controller{
         // $arr_data['total_enquiry_count'] = $enquiry_count + $internatinal_enquiry_count;
         // print_r($total_enquiry_count); die;
         // $arr_data['enquiry_count'] = count($enquiry_data);
-        
+
+        $record = array();
+        $this->db->select("agent.agent_name, COUNT(booking_enquiry.id) AS enquiry_count");
+        $this->db->from('agent');
+        $this->db->where('agent.is_deleted', 'no');
+        $this->db->where('booking_enquiry.booking_done', 'yes');
+        $this->db->join('booking_enquiry', 'agent.id = booking_enquiry.agent_id', 'left');
+        $this->db->group_by('agent.id'); // Group by agent.id
+        $this->db->order_by('enquiry_count', 'desc'); // Order by enquiry_count in descending order
+        $this->db->limit(5); // Limit the result to the top 5 agents
+
+        $top_agent_wise_data = $this->db->get()->result_array();
+        // print_r($top_agent_wise_data); die;
+
         $this->arr_view_data['agent_sess_name']        = $agent_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['top_agent_wise_data']        = $top_agent_wise_data;
       //  $this->arr_view_data['total_enquiry_count']  = $total_enquiry_count;
         //$this->arr_view_data['enquiry_count']  = $enquiry_count;
        // $this->arr_view_data['enquiry_count_total']  = $enquiry_count_total;
