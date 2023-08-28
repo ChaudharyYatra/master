@@ -5848,156 +5848,197 @@ function empty() {
   });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        // alert('hiiiiii');
-        var count = $('#seat_count_add').val();
-        var total_count = $('#d_hidden').val();
-            $(document).on('keyup', '.first_name', function() {
+<script>
+    $(document).ready(function() {
+        var activeSearchResults = null; 
+        // To keep track of the active search results
 
-                var input_name = $(this).val();
-                if(input_name!=''){
-                    // alert('hiiiiiiii if');
-                var attr_id_for_search = $(this).attr('attr_for_search');
-                var orignal_id = $(this).attr('id');
-                var did = $(this).val();
-                // alert(did);
+        $(document).on('keyup', '.first_name', function() {
+            var input_name = $(this).val();
+            var attr_id_for_search = $(this).attr('attr_for_search');
+            var orignal_id = $(this).attr('id');
+            var searchResults = $('#search-results' + attr_id_for_search);
 
+            if (input_name !== '') {
                 $.ajax({
                     url: '<?=base_url()?>agent/all_traveller_info/userNameList',
                     method: 'post',
-                    data: {did: did},
+                    data: {did: input_name},
                     dataType: 'json',
-
-                    success: function(response){
-                        $('#search-results'+attr_id_for_search).empty();
-                        
-                        $('#search-results'+attr_id_for_search).css("position","absolute");
-                        $('#search-results'+attr_id_for_search).css("height","15vh");
-                        $('#search-results'+attr_id_for_search).css("overflow-y","auto");
-                        $('#search-results'+attr_id_for_search).css("width","12%");
-                        $('#search-results'+attr_id_for_search).css("background-color","#eaeaeaba");
-                        $('#search-results'+attr_id_for_search).css("list-style-type","none");
-                        $('#search-results'+attr_id_for_search).css("padding-left","2%");
-                        $('#search-results'+attr_id_for_search).css("cursor","pointer");
-
-                        $.each(response, function(index, data){      
-                            var listItem = $("<li>").text(data['first_name']);
-                            listItem.on('click', function(){
-                                $('#'+orignal_id).val(data['first_name']);
-                                $('#search-results'+attr_id_for_search).empty();
-                                $('#search-results'+attr_id_for_search).css("height","0vh");
+                    success: function(response) {
+                        searchResults.empty();
+                        if (response.length > 0) { 
+                            searchResults.css({
+                                "position": "absolute",
+                                "background-color": "#eaeaeaba",
+                                "list-style-type": "none",
+                                "padding-left": "2%",
+                                "cursor": "pointer",
+                                "height": "15vh", 
+                                "width": "12%",
+                                "overflow-y": "scroll",
+                                "display": "block"
                             });
-                            $('#search-results'+attr_id_for_search).append(listItem);
-                        });
+
+                            $.each(response, function(index, data) {
+                                var listItem = $("<li>").text(data['first_name']);
+                                listItem.on('click', function() {
+                                    $('#' + orignal_id).val(data['first_name']);
+                                    searchResults.empty().css("display", "none");
+                                });
+                                searchResults.append(listItem);
+                            });
+
+                            activeSearchResults = searchResults; 
+                        } else {
+                            searchResults.empty().css("display", "none");
+                            activeSearchResults = null; 
+                        }
                     }
                 });
-                }else{
-                    // alert('hiiiiiiii else');
+            } else {
+                searchResults.empty().css("display", "none");
+                activeSearchResults = null; 
+            }
+        });
 
-                    $('#search-results'+attr_id_for_search).empty();
-                    $('#search-results'+attr_id_for_search).css("display","none");
-                }
-            
-
-            });
+        $(document).on('click', function(event) {
+            if (activeSearchResults && !$(event.target).closest(activeSearchResults).length) {
+                activeSearchResults.empty().css("display", "none");
+                activeSearchResults = null;
+            }
+        });
     });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        // alert('hiiiiii');
-        var count = $('#seat_count_add').val();
-        var total_count = $('#d_hidden').val();
-            $(document).on('keyup', '.middle_name', function() {
-                var input_name = $(this).val();
-                if(input_name!=''){
-                var attr_id_for_search = $(this).attr('attr_for_search');
-                var orignal_id = $(this).attr('id');
-                var did = $(this).val();
-                // alert(did);
+<script>
+    $(document).ready(function() {
+        var activeSearchResults2 = null; 
 
+        $(document).on('keyup', '.middle_name', function() {
+            var input_name = $(this).val();
+            var attr_id_for_search = $(this).attr('attr_for_search');
+            var orignal_id = $(this).attr('id');
+            var searchResults = $('#search-results2' + attr_id_for_search);
+
+            if (input_name !== '') {
                 $.ajax({
                     url: '<?=base_url()?>agent/all_traveller_info/middle_NameList',
                     method: 'post',
-                    data: {did: did},
+                    data: {did: input_name},
                     dataType: 'json',
-
-                    success: function(response){
-                        $('#search-results2'+attr_id_for_search).empty();
-                        $('#search-results2'+attr_id_for_search).css("position","absolute");
-                        $('#search-results2'+attr_id_for_search).css("height","15vh");
-                        $('#search-results2'+attr_id_for_search).css("overflow-y","auto");
-                        $('#search-results2'+attr_id_for_search).css("width","12%");
-                        $('#search-results2'+attr_id_for_search).css("background-color","#eaeaeaba");
-                        $('#search-results2'+attr_id_for_search).css("list-style-type","none");
-                        $('#search-results2'+attr_id_for_search).css("padding-left","2%");
-                        $('#search-results2'+attr_id_for_search).css("cursor","pointer");
-                        $.each(response, function(index, data){      
-                            var listItem = $("<li>").text(data['middle_name']);
-                            listItem.on('click', function(){
-                                $('#'+orignal_id).val(data['middle_name']);
-                                $('#search-results2'+attr_id_for_search).empty();
-                                $('#search-results2'+attr_id_for_search).css("height","0vh");
+                    success: function(response) {
+                        searchResults.empty();
+                        if (response.length > 0) { 
+                            searchResults.css({
+                                "position": "absolute",
+                                "background-color": "#eaeaeaba",
+                                "list-style-type": "none",
+                                "padding-left": "2%",
+                                "cursor": "pointer",
+                                "height": "15vh", 
+                                "width": "12%",
+                                "overflow-y": "scroll",
+                                "display": "block"
                             });
-                            $('#search-results2'+attr_id_for_search).append(listItem);
-                        });
+
+                            $.each(response, function(index, data) {
+                                var listItem = $("<li>").text(data['middle_name']);
+                                listItem.on('click', function() {
+                                    $('#' + orignal_id).val(data['middle_name']);
+                                    searchResults.empty().css("display", "none");
+                                });
+                                searchResults.append(listItem);
+                            });
+
+                            activeSearchResults2 = searchResults; 
+                            // Update active search results
+                        } else {
+                            searchResults.empty().css("display", "none");
+                            activeSearchResults2 = null; 
+                            // Reset active search results
+                        }
                     }
                 });
-                }else{
+            } else {
+                searchResults.empty().css("display", "none");
+                activeSearchResults2 = null; 
+                // Reset active search results
+            }
+        });
 
-                    $('#search-results'+attr_id_for_search).empty();
-                }
-            });
+        // Hide search results when clicking outside
+        $(document).on('click', function(event) {
+            if (activeSearchResults2 && !$(event.target).closest(activeSearchResults2).length) {
+                activeSearchResults2.empty().css("display", "none");
+                activeSearchResults2 = null;
+            }
+        });
     });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        // alert('hiiiiii');
-        var count = $('#seat_count_add').val();
-        var total_count = $('#d_hidden').val();
-            $(document).on('keyup', '.last_name', function() {
-                var input_name = $(this).val();
-                if(input_name!=''){
-                var attr_id_for_search = $(this).attr('attr_for_search');
-                var orignal_id = $(this).attr('id');
-                var did = $(this).val();
-                // alert(did);
+<script>
+    $(document).ready(function() {
+        var activeSearchResults3 = null; 
 
+        $(document).on('keyup', '.last_name', function() {
+            var input_name = $(this).val();
+            var attr_id_for_search = $(this).attr('attr_for_search');
+            var orignal_id = $(this).attr('id');
+            var searchResults = $('#search-results3' + attr_id_for_search);
+
+            if (input_name !== '') {
                 $.ajax({
                     url: '<?=base_url()?>agent/all_traveller_info/last_nameList',
                     method: 'post',
-                    data: {did: did},
+                    data: {did: input_name},
                     dataType: 'json',
-
-                    success: function(response){
-                        $('#search-results3'+attr_id_for_search).empty();
-                        $('#search-results3'+attr_id_for_search).css("position","absolute");
-                        $('#search-results3'+attr_id_for_search).css("height","15vh");
-                        $('#search-results3'+attr_id_for_search).css("overflow-y","auto");
-                        $('#search-results3'+attr_id_for_search).css("width","12%");
-                        $('#search-results3'+attr_id_for_search).css("background-color","#eaeaeaba");
-                        $('#search-results3'+attr_id_for_search).css("list-style-type","none");
-                        $('#search-results3'+attr_id_for_search).css("padding-left","2%");
-                        $('#search-results3'+attr_id_for_search).css("cursor","pointer");
-                        $.each(response, function(index, data){      
-                            var listItem = $("<li>").text(data['last_name']);
-                            listItem.on('click', function(){
-                                $('#'+orignal_id).val(data['last_name']);
-                                $('#search-results3'+attr_id_for_search).empty();
-                                $('#search-results3'+attr_id_for_search).css("height","0vh");
+                    success: function(response) {
+                        searchResults.empty();
+                        if (response.length > 0) { 
+                            searchResults.css({
+                                "position": "absolute",
+                                "background-color": "#eaeaeaba",
+                                "list-style-type": "none",
+                                "padding-left": "2%",
+                                "cursor": "pointer",
+                                "height": "15vh", 
+                                "width": "12%",
+                                "overflow-y": "scroll",
+                                "display": "block"
                             });
-                            
-                            $('#search-results3'+attr_id_for_search).append(listItem);
-                        });
-                        
+
+                            $.each(response, function(index, data) {
+                                var listItem = $("<li>").text(data['last_name']);
+                                listItem.on('click', function() {
+                                    $('#' + orignal_id).val(data['last_name']);
+                                    searchResults.empty().css("display", "none");
+                                });
+                                searchResults.append(listItem);
+                            });
+
+                            activeSearchResults3 = searchResults; 
+                            // Update active search results
+                        } else {
+                            searchResults.empty().css("display", "none");
+                            activeSearchResults3 = null; 
+                            // Reset active search results
+                        }
                     }
                 });
-                }else{
+            } else {
+                searchResults.empty().css("display", "none");
+                activeSearchResults3 = null; 
+                // Reset active search results
+            }
+        });
 
-                    $('#search-results'+attr_id_for_search).empty();
-                }
-            });
+        // Hide search results when clicking outside
+        $(document).on('click', function(event) {
+            if (activeSearchResults3 && !$(event.target).closest(activeSearchResults3).length) {
+                activeSearchResults3.empty().css("display", "none");
+                activeSearchResults3 = null;
+            }
+        });
     });
 </script>
