@@ -89,43 +89,10 @@
           </li> -->
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                 Custom Domestic Enquiry
-                <i class="right fas fa-angle-left"></i>
-              </p>
+            <a href="<?php echo base_url(); ?>custom_tour_agent/booking_enquiry/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Custom Booking Enquiry</p>
             </a>
-            <ul class="nav nav-treeview">
-               
-              <!-- <li class="nav-item">
-                <a href="<?php //echo base_url(); ?>custom_tour_agent/domestic_booking_process/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Booking Process</p>
-                </a>
-               </li> -->
-
-              <li class="nav-item">
-                <a href="<?php echo base_url(); ?>custom_tour_agent/booking_enquiry/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Custom Domestic Booking Enquiry</p>
-                </a>
-               </li>
-               
-               <!-- <li class="nav-item">
-                <a href="<?php //echo base_url(); ?>custom_tour_agent/todays_domestic_followup_list/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Todays Followup</p>
-                </a>
-               </li> -->
-
-               <!-- <li class="nav-item">
-                <a href="<?php //echo base_url(); ?>custom_tour_agent/not_interested/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Not Interested Customers</p>
-                </a>
-               </li> -->
-            </ul>
           </li>
 
           <!-- <li class="nav-item">

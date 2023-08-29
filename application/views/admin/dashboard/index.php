@@ -385,7 +385,7 @@ function drawChart10() {
             <h1><?php echo $module_title; ?></h1>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
     
@@ -722,14 +722,18 @@ function drawChart10() {
 <section class="content">
       <div class="container-fluid">
         <div class="row">
+        <?php 
+            if($package_type_wise_data >0 ){
+
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Package Type - wise Package Counts</h3>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -743,17 +747,22 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
+          <?php 
+            if($agent_wise_data >0 ){
+
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Agent-wise Enquiry Counts</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -767,17 +776,22 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
+          <?php 
+            if($month_wise_data >0 ){
+
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Month-wise Package Counts</h3>
+                <h3 class="card-title text-white">Month-wise Package Counts</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus text-white"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -791,18 +805,22 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
+          <?php 
+            if($top_agent_wise_data >0 ){
 
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Top Agents by Booking Conversion</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -816,17 +834,22 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
+          <?php 
+            if($booking_max_package_data >0 ){
+
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-secondary">
               <div class="card-header">
                 <h3 class="card-title">Top Packages by Booking Conversion</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -840,18 +863,22 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
+          <?php 
+            if($vehicle_type_data >0 ){
 
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Vehicle Type - wise Vehicle Counts</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -865,18 +892,23 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
 
+          <?php 
+            if($enquiry_status >0 ){
+
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Enquiry Status</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -890,18 +922,22 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
-          
+          <?php 
+            if($agent_status >0 ){
+
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-danger">
               <div class="card-header">
                 <h3 class="card-title">Agent Status</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -915,17 +951,22 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
+          <?php 
+            if($top_s_product >0 ){
+
+          ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Top 5 Stationary Names by Request Count</h3>
+                <h3 class="card-title text-white">Top 5 Stationary Names by Request Count</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus text-white"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
@@ -939,6 +980,7 @@ function drawChart10() {
             </div>
             <!-- /.card -->
           </div>
+          <?php } ?>
           <!-- /.col (LEFT) -->
 
         </div>

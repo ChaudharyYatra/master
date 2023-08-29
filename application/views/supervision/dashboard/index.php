@@ -129,13 +129,13 @@ function drawChart10() {
         <div class="row">
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-danger collapsed-card">
+            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Column Chart</h3>
+                <h3 class="card-title">Top 5 Stationary Names by Request Count</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-minus"></i>
                   </button>
                   <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
