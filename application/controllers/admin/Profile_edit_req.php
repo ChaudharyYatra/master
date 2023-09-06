@@ -59,7 +59,7 @@ class Profile_edit_req extends CI_Controller{
                 $this->db->where('agent_temp_tbl.profile_update_request','requested');
                 $this->db->join("department", 'agent_temp_tbl.department=department.id','left');
                 $arr_data = $this->master_model->getRecords('agent_temp_tbl',array('agent_temp_tbl.is_deleted'=>'no'),$fields);
-
+                // print_r($arr_data); die;
                 $profile_update_request=$arr_data[0]['profile_update_request'];
                 //     print_r($profile_update_request); die;
 
@@ -82,13 +82,14 @@ class Profile_edit_req extends CI_Controller{
 
         public function approve()
         {
-                $request_id  = $this->input->post('request_id');
+            $request_id  = $this->input->post('request_id');
 
             $fields = "agent_temp_tbl.*,department.department";
             $this->db->where('agent_temp_tbl.id',$request_id);
             $this->db->where('agent_temp_tbl.profile_update_request','requested');
             $this->db->join("department", 'agent_temp_tbl.department=department.id','left');
             $arr_data = $this->master_model->getRecord('agent_temp_tbl',array('agent_temp_tbl.is_deleted'=>'no'),$fields);
+            // print_r($arr_data); die;
 
         //     print_r($arr_data); die;
                 $city = $arr_data['city'];
@@ -106,6 +107,8 @@ class Profile_edit_req extends CI_Controller{
                 $fld_GST_number = $arr_data['fld_GST_number'];
                 $fld_pan_number = $arr_data['fld_pan_number'];
                 $image_name = $arr_data['image_name'];
+                $filename_qr_code = $arr_data['qr_code_image'];
+                $upi_id = $arr_data['upi_id'];
             
                 $arr_update = array(
                         'city'   =>    $city,
@@ -122,7 +125,11 @@ class Profile_edit_req extends CI_Controller{
                         'fld_GST_number'          => $fld_GST_number,
                         'fld_pan_number'          => $fld_pan_number,
                         'image_name'          => $image_name,
-                        'profile_update_request' => 'accepted'
+                        'profile_update_request' => 'accepted',
+                        'status_of_QR_UPI' => 'Approved',
+                        'qr_code_image'          => $filename_qr_code,
+                        'upi_id'          => $upi_id
+
                     );
                     
                         $arr_where     = array("id" => $agent_id);
@@ -131,7 +138,8 @@ class Profile_edit_req extends CI_Controller{
                         if($inserted_id > 0)
                     {
                         $arr_update2 = array(
-                                'profile_update_request' => 'accepted'
+                                'profile_update_request' => 'accepted',
+                                'status_of_QR_UPI' => 'Approved'
                         );
             
                      $arr_where2     = array("agent_temp_tbl.id" => $request_id);

@@ -4,14 +4,14 @@
   }
 </style>
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 scrollbar" id="style-4">
     <!-- Brand Logo -->
     <a href="<?php echo base_url(); ?>admin/dashboard/index" class="brand-link">      
       <img src="<?php echo base_url(); ?>uploads/do_not_delete/logo.png" alt="Chaudhary Yatra" style="width:100%;">
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar scrollbar" id="style-4">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
@@ -314,6 +314,12 @@
                 <a href="<?php echo base_url(); ?>admin/special_req_master/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Special Request Master</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/add_qr_code/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>QR Code Master</p>
                 </a>
                </li>
 

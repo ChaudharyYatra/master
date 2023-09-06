@@ -1707,7 +1707,41 @@ function validateFeedbackForms()
     
 </script>
 
+<script>
+    $(document).ready(function() {
+    var start = 0; // Starting index
+    var limit = 10; // Number of records to load initially
 
+    var dataTable = $('#data-table').DataTable({
+        "paging": false, // Disable DataTables pagination
+        "searching": false, // Disable DataTables search
+        "ordering": false, // Disable DataTables sorting
+        "info": false, // Disable DataTables info
+        "scrollY": "10000px", // Set the height of the scrollable area
+        "scrollCollapse": true,
+        "ajax": {
+            "url": "<?php echo base_url('packages/all_packages'); ?>", // Replace with your controller and method
+            "type": "POST",
+            "data": function(d) {
+                d.start = start; // Pass start and limit parameters to the server
+                d.length = limit;
+            },
+            "dataSrc": "data" // The data source property in your JSON response
+        }
+    });
+
+    // Detect when the user scrolls to the bottom
+    $('#data-table').on('scroll', function() {
+        var container = $(this);
+        if (container.scrollTop() + container.innerHeight() >= container[0].scrollHeight) {
+            // User has scrolled to the bottom, load more data
+            start += limit; // Update the starting index
+            dataTable.ajax.reload(); // This will trigger the server-side request with updated parameters
+        }
+    });
+});
+
+</script>
 
 </body>
 </html>

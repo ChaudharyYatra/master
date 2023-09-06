@@ -449,7 +449,7 @@ function drawChart9() {
           ?> 
           <div class="col-md-6">
             <!-- PIE CHART -->
-            <div class="card card-info">
+            <div class="card card-danger">
               <div class="card-header">
                 <h3 class="card-title text-white">Agent Status</h3>
 

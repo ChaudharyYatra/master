@@ -8033,3 +8033,74 @@ $("#approve_service").click(function() {
 });
 </script>
 
+<!-- QR code master------------------------------------------------------ -->
+<script type="text/javascript">
+    function role_name_div(val){
+    var element=document.getElementById('other_role_name');
+	var element2=document.getElementById('other_role');
+    if(val=='Other')
+    element.style.display='block';
+    else  
+    element.style.display='none';
+	element2.value="";	
+    }
+</script>
+
+<!-- jquery validation on add QR code master -->
+<script>
+$(document).ready(function () {
+
+$('#add_QR_code').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        full_name: {
+            required: true,
+        },
+        role_name: {
+            required: true,
+        },
+        upi_id: {
+            required: true,
+        },
+        image_name: {
+            required: true,
+        },
+        other_role: {
+                required: function(element) {
+                    var action = $("#role_name").val();
+                    if (action == "Other") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+    },
+
+    messages :{
+        full_name : {
+            required : "Please Enter Full Name",
+        },
+        role_name : {
+            required : "Please Select Role Name",
+        },
+        other_role : {
+            required : "Please Enter other role Name",
+        },
+        image_name : {
+            required : "Please upload QR code image",
+        },
+        upi_id : {
+            required : "Please Enter UPI Id",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add QR code master -->
+
+<!-- QR code master------------------------------------------------------ -->

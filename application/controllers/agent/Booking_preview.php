@@ -84,10 +84,17 @@ class Booking_preview extends CI_Controller {
         $bus_seat_book_data = $this->master_model->getRecords('bus_seat_book',array('bus_seat_book.is_deleted'=>'no'),$fields);
         // print_r($bus_seat_book_data); die; 
 
+
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $upi_qr_data = $this->master_model->getRecords('qr_code_master');
+        // print_r($upi_qr_data); die;
+
         $this->arr_view_data['agent_sess_name']        = $agent_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['traveller_booking_info']        = $traveller_booking_info;
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['upi_qr_data']        = $upi_qr_data;
         $this->arr_view_data['special_req_master_data']        = $special_req_master_data;
         $this->arr_view_data['traveller_id_data']        = $traveller_id_data;
         $this->arr_view_data['seat_type_room_type_data']        = $seat_type_room_type_data;
@@ -110,12 +117,23 @@ class Booking_preview extends CI_Controller {
         $agent_sess_name = $this->session->userdata('agent_name');
         $id=$this->session->userdata('agent_sess_id');
 
+
             $booking_amt = $this->input->post('booking_amt');
             $final_amt = $this->input->post('final_amt');
             $payment_type = $this->input->post('payment_type');
             $mobile_no = $this->input->post('mobile_no');
             $pending_amt = $this->input->post('pending_amt');
             $select_transaction = $this->input->post('select_transaction');
+
+            $upi_holder_name = $this->input->post('upi_holder_name');
+            // print_r($upi_holder_name); die;
+            $upi_self_no = $this->input->post('upi_self_no');
+            $upi_reason = $this->input->post('upi_reason');
+
+            $qr_holder_name = $this->input->post('qr_holder_name');
+            $qr_upi_no = $this->input->post('qr_upi_no');
+
+
             $upi_no = $this->input->post('upi_no');
             $cheque = $this->input->post('cheque');
             $bank_name = $this->input->post('bank_name');
@@ -180,6 +198,13 @@ class Booking_preview extends CI_Controller {
                     'pending_amt'   =>   $pending_amt,
                     'booking_tm_mobile_no'   =>   $mobile_no,
                     'select_transaction'   =>   $select_transaction,
+
+                    'UPI_holder_name'   =>   $upi_holder_name,
+                    'UPI_transaction_no'   =>   $upi_self_no,
+                    'UPI_reason'   =>   $upi_reason,
+                    'QR_holder_name'   =>   $qr_holder_name,
+                    'QR_transaction_no'   =>   $qr_upi_no,
+
                     'upi_no'   =>   $upi_no,
                     'cheque'   =>   $cheque,
                     'bank_name'   =>   $bank_name,
@@ -212,7 +237,7 @@ class Booking_preview extends CI_Controller {
                     'traveler_otp'   =>   $traveler_otp,
                     'booking_status'   =>  'confirm'
                 );
-                
+                // print_r($arr_insert); die;
                  $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
         //================================================================================================================== 
                  $extra_services = $this->input->post('extra_services');
@@ -249,9 +274,6 @@ class Booking_preview extends CI_Controller {
                     echo false;
                 }
 
-                
-                
-                
     }
 
 
@@ -484,4 +506,74 @@ class Booking_preview extends CI_Controller {
         $this->arr_view_data['middle_content']  = $this->module_view_folder."index";
         $this->load->view('agent/layout/agent_combo',$this->arr_view_data);
     }
+
+    public function get_upi_qr_code(){ 
+    $taluka_data = $this->input->post('did');
+        // print_r($taluka_data); die;
+                        $this->db->where('is_deleted','no');
+                        $this->db->where('is_active','yes');
+                        $this->db->where('id',$taluka_data);   
+                        $data = $this->master_model->getRecords('qr_code_master');
+                        // print_r($data); die;
+        echo json_encode($data); 
+    }
+
+    public function get_upi_code(){ 
+
+        $agent_sess_name = $this->session->userdata('agent_name');
+        $id=$this->session->userdata('agent_sess_id');
+
+        $did_upi = $this->input->post('did');
+        // print_r($did_upi); die;
+        $taluka_data = $this->input->post('self_data');
+        // print_r($taluka_data);
+        // $taluka_data_1 = $this->input->post('other_data');
+        // print_r($taluka_data_1); die;
+
+        if($taluka_data == 'self'){
+            $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $this->db->where('id',$id);   
+            $data = $this->master_model->getRecords('agent');
+            // print_r($data); die;
+        }else{
+            $this->db->where('is_deleted','no');
+            $this->db->where('is_active','yes');
+            $this->db->where('id',$did_upi);   
+            $data = $this->master_model->getRecords('qr_code_master');
+            // print_r($data); die;
+        }
+            echo json_encode($data); 
+
+        }
+
+        public function get_QR_code(){ 
+
+            $agent_sess_name = $this->session->userdata('agent_name');
+            $id=$this->session->userdata('agent_sess_id');
+    
+            $did_upi = $this->input->post('qr_did');
+            // print_r($did_upi); die;
+            $taluka_data = $this->input->post('qr_self_data');
+            // print_r($taluka_data);
+            // $taluka_data_1 = $this->input->post('other_data');
+            // print_r($taluka_data_1); die;
+    
+            if($taluka_data == 'self'){
+                $this->db->where('is_deleted','no');
+                $this->db->where('is_active','yes');
+                $this->db->where('id',$id);   
+                $data = $this->master_model->getRecords('agent');
+                // print_r($data); die;
+            }else{
+                $this->db->where('is_deleted','no');
+                $this->db->where('is_active','yes');
+                $this->db->where('id',$did_upi);   
+                $data = $this->master_model->getRecords('qr_code_master');
+                // print_r($data); die;
+            }
+                echo json_encode($data); 
+    
+            }
+    
 }

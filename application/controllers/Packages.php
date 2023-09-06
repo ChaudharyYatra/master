@@ -22,15 +22,39 @@ class Packages extends CI_Controller {
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $main_packages = $this->master_model->getRecords('packages');
 
-        $record = array();
+        // Get the start and limit parameters from the AJAX request
+        $start = $this->input->post('start');
+        $limit = $this->input->post('length');
+
+        // Your existing query code
         $fields = "packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
-        $this->db->where('packages.is_deleted','no');
-        $this->db->where('packages.is_active','yes');
-        $this->db->where('package_type','1');
-        $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+        $this->db->where('packages.is_deleted', 'no');
+        $this->db->where('packages.is_active', 'yes');
+        $this->db->where('package_type', '1');
+        $this->db->join("package_date", 'packages.id=package_date.package_id', 'left');
         $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
         $this->db->group_by('package_id');
-        $main_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        $this->db->limit($limit, $start);
+        $main_packages_all = $this->master_model->getRecords('packages', array('packages.is_deleted' => 'no'), $fields);
+
+        // Prepare the response data
+        $response = array(
+            "data" => $main_packages_all, // Data for the current page
+        );
+
+        // Send the JSON response to the client
+        // echo json_encode($response);
+
+        // $record = array();
+        // $fields = "packages.*,package_date.journey_date,package_date.single_seat_cost,package_date.twin_seat_cost,package_date.three_four_sharing_cost";
+        // $this->db->where('packages.is_deleted','no');
+        // $this->db->where('packages.is_active','yes');
+        // $this->db->where('package_type','1');
+        // $this->db->join("package_date", 'packages.id=package_date.package_id','left');
+        // $this->db->order_by('CAST(tour_number AS DECIMAL(10,6)) ASC');
+        // $this->db->group_by('package_id');
+        // $this->db->limit($limit, $start);
+        // $main_packages_all = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
 
         $record = array();
         $fields = "packages.*,package_date.*";

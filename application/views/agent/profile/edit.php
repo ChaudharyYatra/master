@@ -124,7 +124,7 @@
                             <span id="email_result"></span>
                           </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <label>Photo</label>
                           <div class="form-group">
                             <input type="file" name="image_name" id="image_name" placeholder="Enter Photo" value="<?php echo $info['image_name']; ?>">
@@ -142,9 +142,35 @@
                           <div class="form-group">
                             <label>Uploaded Image</label><br>
                             <?php if(!empty($info['image_name'])){ ?>
-                                      <img src="<?php echo base_url(); ?>uploads/agent_photo/<?php echo $info['image_name']; ?>" width="50%">
+                                      <img src="<?php echo base_url(); ?>uploads/agent_photo/<?php echo $info['image_name']; ?>" width="80%">
                                       <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['image_name']; ?>">
                                       <?php } ?>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Upload QR Image</label><br>
+                              <input type="file" name="qr_code" id="qr_code">
+                              <br><span class="text-danger">Please selects only JPG,PNG,JPEG format files.</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <label>Uploaded Image</label><br>
+                            <?php if(!empty($info['qr_code_image'])){ ?>
+                                      <img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>" width="80%">
+                                      <input type="hidden" name="old_qr_code_name" id="old_qr_code_name" value="<?php echo $info['qr_code_image']; ?>">
+                                      <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>">Download</a>
+                                      <?php } ?>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label>UPI ID</label>
+                              <input type="text" class="form-control" name="upi_id" id="upi_id" required placeholder="Enter UPI ID" value="<?php echo $info['upi_id']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                           </div>
                         </div>
                         

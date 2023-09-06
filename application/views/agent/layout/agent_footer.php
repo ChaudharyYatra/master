@@ -4746,8 +4746,8 @@ $("#pending_amt").val($("#final_amt").val() - val);
     var mob_no_div=document.getElementById('cheque_tr');
 	// var mob_no=document.getElementById('cheque');
 
-    // var mob_no_one=document.getElementById('cheque_bank');
-	// var mob_no_bank=document.getElementById('bank_name');
+    var rq_div=document.getElementById('rq_div');
+	var mob_no_bank=document.getElementById('bank_name');
 
     var cash_no_div=document.getElementById('cash_tr');
 	var cash_no=document.getElementById('cash');
@@ -4755,29 +4755,76 @@ $("#pending_amt").val($("#final_amt").val() - val);
     if(val=='Net Banking'){
     upi_no_div.style.display='none';
     mob_no_div.style.display='none';
+    rq_div.style.display='none';
     cash_no_div.style.display='none';
     element.style.display='contents';
     
     }else if(val=='UPI') {
     element.style.display='none';
     mob_no_div.style.display='none';
+    rq_div.style.display='none';
     cash_no_div.style.display='none';
     upi_no_div.style.display='contents';
 	// element2.value="";
+
+    }else if(val=='QR Code') {
+    element.style.display='none';
+    mob_no_div.style.display='none';
+    cash_no_div.style.display='none';
+    upi_no_div.style.display='none';
+    rq_div.style.display='contents';
+	// element2.value="";
+
     }else if(val=='Cheque'){
         element.style.display='none';
         upi_no_div.style.display='none';
         cash_no_div.style.display='none';
+        rq_div.style.display='none';
         mob_no_div.style.display='contents';
         mob_no_one.style.display='contents';
     }else if(val=='CASH'){
         element.style.display='none';
+        rq_div.style.display='none';
         upi_no_div.style.display='none';
         cash_no_div.style.display='flex';
         mob_no_div.style.display='none';
     }
     }
 </script>
+
+<script type="text/javascript">
+    function upi_QR_details(val){
+        // alert('hiiiiiiiii');
+
+    var upi_no_reason_div=document.getElementById('upi_no_reason_div');
+	var upi_no=document.getElementById('upi_no');
+
+    if(val=='Self') {
+        // alert(val);
+    // element.style.display='none';
+    upi_no_reason_div.style.display='contents';
+    }else{
+    upi_no_reason_div.style.display='none';
+    }
+    }
+</script>
+
+<!-- <script type="text/javascript">
+    function QR_details(val){
+        // alert('hiiiiiiiii');
+
+    var upi_no_reason_div=document.getElementById('upi_no_reason_div');
+	var upi_no=document.getElementById('upi_no');
+
+    if(val=='Self') {
+        // alert(val);
+    // element.style.display='none';
+    upi_no_reason_div.style.display='contents';
+    }else{
+    upi_no_reason_div.style.display='none';
+    }
+    }
+</script> -->
 <!-- Bank transaction ---------------------------------------- -->
 
 <script>
@@ -5059,6 +5106,16 @@ $(document).ready(function() {
         var drawn_on_date = $('#drawn_on_date').val();
         var net_banking = $('#net_banking').val();
 
+        var upi_holder_name = $('#select_upi_no').val();
+        // alert(upi_holder_name);
+        var upi_self_no = $('#self_upi_no').val();
+        var upi_reason = $('#reason').val();
+
+
+        var qr_holder_name = $('#select_qr_upi_no').val();
+        var qr_upi_no = $('#qr_upi_no').val();
+
+
         var select_transaction =($('#select_transaction :selected').val());
         // alert(select_transaction);
         var cash_2000 = $('#cash_2000').val();
@@ -5094,8 +5151,7 @@ $(document).ready(function() {
             var select_services =[];
         }
 
-        alert(select_services);
-        
+        // alert(select_services);
         
         
         // alert(extra_services); 
@@ -5121,6 +5177,13 @@ $(document).ready(function() {
                     bank_name: bank_name,
                     drawn_on_date: drawn_on_date,
                     net_banking: net_banking,
+
+                    upi_holder_name: upi_holder_name,
+                    upi_self_no: upi_self_no,
+                    upi_reason: upi_reason,
+                    qr_holder_name: qr_holder_name,
+                    qr_upi_no: qr_upi_no,
+                    
                     select_transaction: select_transaction,
                     cash_2000: cash_2000,
                     total_cash_2000: total_cash_2000,
@@ -6042,3 +6105,117 @@ function empty() {
         });
     });
 </script>
+
+<!-- dependency for booking preview page upi and QR code  -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#select_upi_no').change(function(){
+      var did = $(this).val();
+      var imageUrl='<?php echo base_url(); ?>uploads/QR_code_image/'
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>agent/booking_preview/get_upi_qr_code',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#qr_code_image').find('img').not(':first').remove();
+       
+          $.each(response,function(index,data){   
+            $('#qr_code_image').append('<img src="' + imageUrl + data['image_name'] + '" alt="' + data['image_name'] + '">'); 
+          });
+         
+        }
+     });
+   });
+ });
+ </script>
+
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#select_upi_no').change(function(){
+        var did = $('#select_upi_no').val();
+    selectedOption = $("#select_upi_no option:selected");
+      var self_data = selectedOption.attr('attr_self');
+    //   alert(self_data);
+      var other_data = selectedOption.attr('attr_other');
+    //   alert(other_data);
+
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>agent/booking_preview/get_upi_code',
+        method: 'post',
+        data: {self_data: self_data,other_data: other_data,did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#self_upi_no').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){   
+            $('#self_upi_no').val(data['upi_id']);
+          });
+         
+        }
+     });
+   });
+ });
+ </script>
+
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#select_qr_upi_no').change(function(){
+      var imageUrl='<?php echo base_url(); ?>uploads/QR_code_image/'
+        var qr_did = $('#select_qr_upi_no').val();
+        // alert(qr_did);
+    qrselectedOption = $("#select_qr_upi_no option:selected");
+      var qr_self_data = qrselectedOption.attr('attr_self');
+    //   alert(self_data);
+      var qr_other_data = qrselectedOption.attr('attr_other');
+    //   alert(other_data);
+
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>agent/booking_preview/get_QR_code',
+        method: 'post',
+        data: {qr_self_data: qr_self_data,qr_other_data: qr_other_data,qr_did: qr_did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#qr_mode_code_image').find('img').not(':first').remove();
+       
+          $.each(response,function(index,data){   
+            $('#qr_mode_code_image').append('<img src="' + imageUrl + data['qr_code_image'] + '" alt="' + data['image_name'] + '">'); 
+            // $('#qr_code_image').val(data['upi_id']);
+          });
+         
+        }
+     });
+   });
+ });
+ </script>
+ 
+<!-- dependency for booking preview page upi and QR code  -->

@@ -205,7 +205,6 @@
                             <br><span class="text-danger">PDF size should be less than 2MB.</span>
                             <br><span class="text-danger">Please upload only PDF files.</span>
                             <br><span class="text-danger" id="pdf_format" style="display:none;">You selected wrong file format.</span>
-                            
                           </div>
                       </div>
                       
@@ -244,9 +243,9 @@
                             <br><span class="text-danger">Image height should be 605 & width should be 1920.</span>
                             <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                             <br>
-                      <span class="text-danger" id="full_img_width" style="display:none;">Image Width should be Minimum 1919 px To Maximum 1922 px.</span>
-                      <span class="text-danger" id="full_img_height" style="display:none;">Image Height should be Minimum 600 px To Maximum 605 px.</span>
-                      <span class="text-danger" id="full_img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
+                            <span class="text-danger" id="full_img_width" style="display:none;">Image Width should be Minimum 1919 px To Maximum 1922 px.</span>
+                            <span class="text-danger" id="full_img_height" style="display:none;">Image Height should be Minimum 600 px To Maximum 605 px.</span>
+                            <span class="text-danger" id="full_img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
                           </div>
                       </div>
 

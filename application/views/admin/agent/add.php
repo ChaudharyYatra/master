@@ -10,7 +10,6 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">Back</button></a>
-              
             </ol>
           </div>
         </div>
@@ -173,6 +172,19 @@
                         </div>
                         
                         <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Logo Photo</label><br>
+                            <input type="file" name="image_name" id="image_nam" required="required">
+                            <br><span class="text-danger">Image height should be 530 & width should be 800.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <br>
+                            <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span>
+                            <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span>
+                            <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
+                          </div>
+                        </div>
+
+                        <!-- <div class="col-md-6">
                             <label>Logo photo</label>
                               <div class="form-group">
                                 <input type="file" name="image_name" id="image_name" placeholder="Logo Photo">
@@ -183,6 +195,21 @@
                           <span class="text-danger" id="logo_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span></br>
                           <span class="text-danger" id="logo_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
                               </div>
+                        </div> -->
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Upload QR Image</label><br>
+                            <input type="file" name="qr_code" id="qr_code">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label>UPI ID</label>
+                              <input type="text" class="form-control" name="upi_id" id="upi_id" placeholder="Enter UPI ID" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                          </div>
                         </div>
 
                       <div class="col-md-6">

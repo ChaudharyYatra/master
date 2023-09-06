@@ -34,6 +34,7 @@
                <?php
                    foreach($arr_data as $info) 
                    { 
+                    // print_r($info); die;
                      ?>
               <form method="post" enctype="multipart/form-data" id="edit_agent">
                 <div class="card-body">
@@ -181,6 +182,78 @@
                                 <input type="file" name="logo_photo" id="logo_photo" placeholder="Logo Photo" >
                               </div>
                         </div> -->
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Logo Photo</label><br>
+                            <input type="file" name="image_name" id="image_name_package">
+                            <br><span class="text-danger">Image height should be 530 & width should be 800.</span>
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                             <br>
+                            <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span>
+                            <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span>
+                            <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
+                          </div>
+                        </div>
+                      
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label>Uploaded Image</label><br>
+                          <?php if(!empty($info['image_name'])){ ?>
+                                    <img src="<?php echo base_url(); ?>uploads/agent_photo/<?php echo $info['image_name']; ?>" width="80%">
+                                    <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['image_name']; ?>">
+                                    <?php } ?>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Upload QR Image</label><br>
+                            <input type="file" name="qr_code" id="qr_code">
+                            <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                             <br>
+                            <span class="text-danger" id="img_width" style="display:none;">Image Width should be Minimum 780 px To Maximum 820 px.</span>
+                            <span class="text-danger" id="img_height" style="display:none;">Image Height should be Minimum 510 px To Maximum 550 px.</span>
+                            <span class="text-danger" id="img_size" style="display:none;">Image Size Should Be Less Than 2 MB.</span>
+                          </div>
+                        </div>
+                      
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label>Uploaded Image</label><br>
+                          <?php if(!empty($info['qr_code_image'])){ ?>
+                                    <img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>" width="80%">
+                                    <input type="hidden" name="old_qr_code_name" id="old_qr_code_name" value="<?php echo $info['qr_code_image']; ?>">
+                                    <?php } ?>
+                        </div>
+                      </div>
+
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Upload QR Image</label><br>
+                              <input type="file" name="qr_code" id="qr_code">
+                              <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <label>Uploaded Image</label><br>
+                            <?php //if(!empty($info['qr_code_image'])){ ?>
+                                      <img src="<?php //echo base_url(); ?>uploads/QR_code_image/<?php //echo $info['qr_code_image']; ?>" width="80%">
+                                      <input type="hidden" name="old_qr_code_name" id="old_qr_code_name" value="<?php //echo $info['qr_code_image']; ?>">
+                                      <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php //echo base_url(); ?>uploads/QR_code_image/<?php //echo $info['qr_code_image']; ?>">Download</a>
+                                      <?php //} ?>
+                          </div>
+                        </div> -->
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label>UPI ID</label>
+                              <input type="text" class="form-control" name="upi_id" id="upi_id" placeholder="Enter UPI ID" value="<?php echo $info['upi_id']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                          </div>
+                        </div>
+
                         <div class="col-md-6">
                               <div class="form-group">
                                 <label>Email Address</label>

@@ -81,8 +81,15 @@
                     <td><?php echo $info['fld_registration_date']; ?></td>
 
                     <th>Photo</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/agent_photo/<?php echo $info['image_name']; ?>" width="20%;" height="20%;" alt="Agent Image"></td>
+                    <td><img src="<?php echo base_url(); ?>uploads/agent_photo/<?php echo $info['image_name']; ?>" width="50%;" height="50%;" alt="Agent Image"></td>
 
+                  </tr>
+                  <tr>
+                  <th>QR Code Photo</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>" width="50%;" height="50%;" alt="Agent Image"></td>
+                  
+                    <th>UPI ID</th>
+                    <td><?php echo $info['upi_id']; ?></td>
                   </tr>
 
                   </table>

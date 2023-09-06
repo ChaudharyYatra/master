@@ -36,8 +36,6 @@ class Agent extends CI_Controller{
        
 	}
 
-
-
     public function add()
     {          
         if(isset($_POST['submit']))
@@ -55,49 +53,98 @@ class Agent extends CI_Controller{
                 $arrangeid_check = $this->master_model->getRecords('agent',array('is_deleted'=>'no','arrange_id'=>trim($this->input->post('arrange_id'))));
                 if(count($arrangeid_check)==0){
                     
-                $file_name     = $_FILES['image_name']['name'];
-                $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg');
-
-                if($file_name!="")
-                {               
-                    $ext = explode('.',$_FILES['image_name']['name']); 
-                    $config['file_name']   = $this->input->post('txtEmp_id').'.'.$ext[1];
-
-                    if(!in_array($ext[1],$arr_extension))
-                    {
-                        $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
-                        redirect($this->module_url_path.'/add');  
+                    $file_name     = $_FILES['image_name']['name'];
+                    $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg');
+    
+                    if($file_name!="")
+                    {               
+                        $ext = explode('.',$_FILES['image_name']['name']); 
+                        $config['file_name']   = $this->input->post('txtEmp_id').'.'.$ext[1];
+    
+                        if(!in_array($ext[1],$arr_extension))
+                        {
+                            $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                            redirect($this->module_url_path.'/add');  
+                        }
                     }
-                // }
-                $file_name_to_dispaly =  $this->config->item('project_name').''.round(microtime(true)).str_replace(' ','_',$file_name);
-
-                $config['upload_path']   = './uploads/agent_photo/';
-                $config['allowed_types'] = 'png|jpg|jpeg|JPG|PNG|JPEG'; 
-                $config['max_size']      = '10000';
-                $config['file_name']     =  $file_name_to_dispaly;
-                $config['overwrite']     =  TRUE;
-
-                $this->load->library('upload',$config);
-                $this->upload->initialize($config); // Important
-
-                if(!$this->upload->do_upload('image_name'))
-                {  
-                    $data['error'] = $this->upload->display_errors();
-                    $this->session->set_flashdata('error_message',$this->upload->display_errors());
-                    redirect($this->module_url_path);  
-                }
-
-                // if($file_name!="")
-                // {
-                    $file_name = $this->upload->data();
-                    $filename = $file_name_to_dispaly;
-                }
-
-                else
-                {
-                    $filename = $this->input->post('image_name',TRUE);
-                }
+                    $file_name_to_dispaly =  $this->config->item('project_name').''.round(microtime(true)).str_replace(' ','_',$file_name);
+    
+                    $config['upload_path']   = './uploads/agent_photo/';
+                    $config['allowed_types'] = 'png|jpg|jpeg|JPG|PNG|JPEG'; 
+                    $config['max_size']      = '10000';
+                    $config['file_name']     =  $file_name_to_dispaly;
+                    $config['overwrite']     =  TRUE;
+    
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config); // Important
+    
+                    if(!$this->upload->do_upload('image_name'))
+                    {  
+                        $data['error'] = $this->upload->display_errors();
+                        $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                        redirect($this->module_url_path);  
+                    }
+    
+                    if($file_name!="")
+                    {
+                        $file_name = $this->upload->data();
+                        $filename = $file_name_to_dispaly;
+                    }
+    
+                    else
+                    {
+                        $filename = $this->input->post('image_name',TRUE);
+                    }
+    
+            // -----------------------------------------------------------------------------
+            if($_FILES['qr_code']['name']!=""){
+                $file_name     = $_FILES['qr_code']['name'];
+                    $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg');
+    
+                    if($file_name!="")
+                    {               
+                        $ext = explode('.',$_FILES['qr_code']['name']); 
+                        $config['file_name']   = $this->input->post('txtEmp_id').'.'.$ext[1];
+    
+                        if(!in_array($ext[1],$arr_extension))
+                        {
+                            $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                            redirect($this->module_url_path.'/add');  
+                        }
+                    }
+                    $file_name_to_dispaly =  $this->config->item('project_name').''.round(microtime(true)).str_replace(' ','_',$file_name);
+    
+                    $config['upload_path']   = './uploads/QR_code_image/';
+                    $config['allowed_types'] = 'png|jpg|jpeg|JPG|PNG|JPEG'; 
+                    $config['max_size']      = '10000';
+                    $config['file_name']     =  $file_name_to_dispaly;
+                    $config['overwrite']     =  TRUE;
+    
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config); // Important
+    
+                    if(!$this->upload->do_upload('qr_code'))
+                    {  
+                        $data['error'] = $this->upload->display_errors();
+                        $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                        redirect($this->module_url_path);  
+                    }
+    
+                    if($file_name!="")
+                    {
+                        $file_name = $this->upload->data();
+                        $qr_img_filename = $file_name_to_dispaly;
+                    }
+    
+                    else
+                    {
+                        $qr_img_filename = $this->input->post('qr_code',TRUE);
+                    }
+        }else{
+                     $qr_img_filename = '';
+            }
             
+            // -----------------------------------------------------------------------------
                           
                 $department  = $this->input->post('department'); 
 				$arrange_id  = $this->input->post('arrange_id');
@@ -109,7 +156,7 @@ class Agent extends CI_Controller{
                 $email = trim($this->input->post('email'));
                
 				$password = trim($this->input->post('password'));
-                $agency_name = trim($this->input->post('agency_name'));
+                $agency_name = $this->input->post('agency_name');
                 $mobile_number3 = trim($this->input->post('mobile_number3'));
                 $landline_number = trim($this->input->post('landline_number'));
                 $registration_date = trim($this->input->post('registration_date'));
@@ -125,6 +172,18 @@ class Agent extends CI_Controller{
                 $agent_district  = $this->input->post('agent_district');
                 $agent_taluka  = $this->input->post('agent_taluka');
                 $agent_city  = $this->input->post('agent_city');
+                $upi_id  = $this->input->post('upi_id');
+
+                if($upi_id!='' || $qr_img_filename!=''){
+                    $upi_id  = $this->input->post('upi_id');
+                    $qr_img_filename = $file_name_to_dispaly;
+                    $status = 'Approved';
+                    }
+                    else{
+                        $upi_id  = $this->input->post('upi_id');
+                        $qr_img_filename = '';
+                        $status = 'Disapproved';
+                    }
 
                 $arr_insert = array(
                     'department'   =>   $department,
@@ -152,13 +211,18 @@ class Agent extends CI_Controller{
                     'state_name'    =>$agent_state,
                     'district_name' =>   $agent_district,
                     'taluka_name'   =>   $agent_taluka,
-                    'city_name'     =>   $agent_city
+                    'city_name'     =>   $agent_city,
+                    'upi_id'     =>   $upi_id,
+                    'qr_code_image'     =>   $qr_img_filename,
+                    'status_of_QR_UPI'     => $status
+                    
                 );
-                
+                // print_r($arr_insert); die;
+                // print_r($_REQUEST); die;
                 $inserted_id = $this->master_model->insertRecord('agent',$arr_insert,true);
-					
-					$this->db->where('is_deleted','no');
-                 $this->db->where('is_active','yes');
+
+				$this->db->where('is_deleted','no');
+                $this->db->where('is_active','yes');
                 
                  $admin_data_email = $this->master_model->getRecord('admin');
                  $admin_email=$admin_data_email['email'];
@@ -379,6 +443,7 @@ class Agent extends CI_Controller{
            
             $this->db->where('id',$id);
             $arr_data = $this->master_model->getRecords('agent');
+            // print_r($arr_data); die;
 
             foreach($arr_data  as $arr_data_info){
                 $state_id = $arr_data_info['state_name'];
@@ -397,11 +462,177 @@ class Agent extends CI_Controller{
 				
                 if($this->form_validation->run() == TRUE)
                 { 
-                    
                     $this->db->where('id!=',$id);
                     $arrangeid_check = $this->master_model->getRecords('agent',array('is_deleted'=>'no','arrange_id'=>trim($this->input->post('arrange_id'))));
                     if(count($arrangeid_check)==0){
-                           
+                // -------------------------------------------------------------------------
+                $old_img_name = $this->input->post('old_img_name');
+                
+                if(!empty($_FILES['image_name']) && $_FILES['image_name']['name'] !='')
+                {
+                $file_name     = $_FILES['image_name']['name'];
+                $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg','PDF','pdf');
+
+                $file_name = $_FILES['image_name'];
+                $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG','PDF','pdf');
+
+                if($file_name['name']!="")
+                {
+                    $ext = explode('.',$_FILES['image_name']['name']); 
+                    $config['file_name'] = rand(1000,90000);
+
+                    if(!in_array($ext[1],$arr_extension))
+                    {
+                        $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+                        redirect($this->module_url_path.'/edit/'.$id);
+                    }
+                }   
+
+                $file_name_to_dispaly =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+                
+                $config['upload_path']   = './uploads/agent_photo/';
+                $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg|PDF|pdf';  
+                $config['max_size']      = '10000';
+                $config['file_name']     = $file_name_to_dispaly;
+                $config['overwrite']     = TRUE;
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config); // Important
+                
+                if(!$this->upload->do_upload('image_name'))
+                {  
+                    $data['error'] = $this->upload->display_errors();
+                    $this->session->set_flashdata('error_message',$this->upload->display_errors());
+                    redirect($this->module_url_path.'/edit/'.$id);
+                }
+                if($file_name['name']!="")
+                {   
+                    $file_name = $this->upload->data();
+                    $filename = $file_name_to_dispaly;
+                    if($old_img_name!='') unlink('./uploads/agent_photo/'.$old_img_name);
+                }
+                else
+                {
+                    $filename = $this->input->post('image_name',TRUE);
+                }
+            }
+            else
+            {
+                $filename = $old_img_name;
+            }
+
+        //    ----------------------------------------------------------------------
+        $old_tc_name = $this->input->post('old_qr_code_name');
+                
+        if(!empty($_FILES['qr_code']) && $_FILES['qr_code']['name'] !='')
+        {
+        $file_name     = $_FILES['qr_code']['name'];
+
+        $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+
+        $file_name = $_FILES['qr_code'];
+        $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+
+        if($file_name['name']!="")
+        {
+            $ext = explode('.',$_FILES['qr_code']['name']); 
+            $config['file_name'] = rand(1000,90000);
+
+            if(!in_array($ext[1],$arr_extension))
+            {
+                $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+            }
+        }   
+
+        $file_name_to_dispaly_pdf =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+    
+        $config['upload_path']   = './uploads/QR_code_image/';
+        $config['allowed_types'] = 'JPEG|PNG|png|jpg|JPG|jpeg';  
+        $config['max_size']      = '10000';
+        $config['file_name']     = $file_name_to_dispaly_pdf;
+        $config['overwrite']     = TRUE;
+        $this->load->library('upload',$config);
+        $this->upload->initialize($config); // Important
+        
+        if(!$this->upload->do_upload('qr_code'))
+        {  
+            $data['error'] = $this->upload->display_errors();
+            $this->session->set_flashdata('error_message',$this->upload->display_errors());
+            redirect($this->module_url_path.'/edit/'.$id);
+        }
+        if($file_name['name']!="")
+        {   
+            $file_name = $this->upload->data();
+            $qr_img_filename = $file_name_to_dispaly_pdf;
+        }
+        else
+        {
+            $qr_img_filename = $this->input->post('qr_code',TRUE);
+            
+        }
+         }
+        else
+        {
+            $qr_img_filename = $old_qr_code_name;
+            
+        }
+
+        // ----------------------------------------------------------------------------
+    //     $old_qr_code_name = $this->input->post('old_qr_code_name');
+                
+    //     if(!empty($_FILES['qr_code']) && $_FILES['qr_code']['name'] !='')
+    //     {
+    //     $file_name     = $_FILES['qr_code']['name'];
+    //     $arr_extension = array('png','jpg','JPEG','PNG','JPG','jpeg');
+
+    //     $file_name = $_FILES['qr_code'];
+    //     $arr_extension = array('png','jpg','jpeg','PNG','JPG','JPEG');
+
+    //     if($file_name['name']!="")
+    //     {
+    //         $ext = explode('.',$_FILES['qr_code']['name']); 
+    //         $config['file_name'] = rand(1000,90000);
+
+    //         if(!in_array($ext[1],$arr_extension))
+    //         {
+    //             $this->session->set_flashdata('error_message','Please Upload png/jpg Files.');
+    //             redirect($this->module_url_path.'/edit/'.$id);
+    //         }
+    //     }   
+
+    //     $file_name_to_dispaly =  $this->config->item('project_name').round(microtime(true)).str_replace(' ','_',$file_name['name']);
+        
+    //     $config['upload_path']   = './uploads/QR_code_image/';
+    //     $config['allowed_types'] = 'png|jpg|jpeg|PNG|JPEG|JPG';
+    //     $config['max_size']      = '10000';
+    //     $config['file_name']     = $file_name_to_dispaly;
+    //     $config['overwrite']     = TRUE;
+    //     $this->load->library('upload',$config);
+    //     $this->upload->initialize($config); // Important
+        
+    //     if(!$this->upload->do_upload('qr_code'))
+    //     {  
+    //         $data['error'] = $this->upload->display_errors();
+    //         $this->session->set_flashdata('error_message',$this->upload->display_errors());
+    //         redirect($this->module_url_path.'/edit/'.$id);
+    //     }
+    //     if($file_name['name']!="")
+    //     {   
+    //         $file_name = $this->upload->data();
+    //         $filename_qr_code = $file_name_to_dispaly;
+    //         if($old_qr_code_name!='') unlink('./uploads/QR_code_image/'.$old_qr_code_name);
+    //     }
+    //     else
+    //     {
+    //         $filename_qr_code = $this->input->post('qr_code',TRUE);
+    //     }
+    // }
+    // else
+    // {
+    //     $filename_qr_code = $old_qr_code_name;
+    // }
+   
+        // --------------------------------------------------------------------------
+
                  $department  = $this->input->post('department'); 
 			     $arrange_id  = $this->input->post('arrange_id'); 
 				 $city  = $this->input->post('city'); 
@@ -428,6 +659,7 @@ class Agent extends CI_Controller{
                 $agent_district  = $this->input->post('agent_district');
                 $agent_taluka  = $this->input->post('agent_taluka');
                 $agent_city  = $this->input->post('agent_city');
+                $upi_id  = $this->input->post('upi_id');
                 
                 $arr_update = array(
                     'department'   =>    $department,
@@ -454,7 +686,10 @@ class Agent extends CI_Controller{
                     'state_name'    =>$agent_state,
                     'district_name' =>   $agent_district,
                     'taluka_name'   =>   $agent_taluka,
-                    'city_name'     =>   $agent_city
+                    'city_name'     =>   $agent_city,
+                    'image_name'     =>   $filename,
+                    'qr_code_image'     =>   $filename_qr_code,
+                    'upi_id'     =>   $upi_id
                 );
                 
                     $arr_where     = array("id" => $id);

@@ -33,15 +33,11 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Arrange Id</th>
-                    <th>Agent ID / Name</th>
-                    <th>City Name</th>
-                    <th>Department Name</th>
-                    <!-- <th>Booking Centre</th> -->
-                    <!-- <th>Email Address</th> -->
-                    <th>Agent Mobile Number 1</th>
-                    <th>Password</th>
-                    <!-- <th>Agent Mobile Number 2</th> -->
+                    <th>Full Name</th>
+                    <th>Role Name</th>
+                    <th>Other Role Name</th>
+                    <th>UPI Id</th>
+                    <th>Image</th>
                     <th>Is Active?</th>
                     <th>Action</th>
                   </tr>
@@ -55,15 +51,23 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $info['arrange_id'] ?></td>
-                    <td><b><?php echo $info['id'] ?></b> - <?php echo $info['agent_name'] ?></td>
-                    <td><?php echo $info['city'] ?></td>
-                    <td><?php echo $info['department'] ?></td>
-                    <!-- <td><?php //echo $info['booking_center'] ?></td> -->
-                    <!-- <td><?php //echo $info['email'] ?></td> -->
-                    <td><?php echo $info['mobile_number1'] ?></td>
-                    <td><?php echo $info['password'] ?></td>
-                    <!-- <td><?php //echo $info['mobile_number2'] ?></td> -->
+                    <td><?php echo $info['full_name'] ?></td>
+                    <?php if($info['Role_name']=='Other'){?>
+                    <td><?php echo $info['Role_name'] ?></td>
+                    <?php } else{?>
+                    <td><?php echo $info['role_name'] ?></td>
+                    <?php } ?>
+
+                    <?php if($info['Role_name']=='Other'){?>
+                    <td><?php echo $info['other_role_name'] ?></td>
+                    <?php } else{?>
+                    <td>--</td>
+                    <?php } ?>
+                    <td><?php echo $info['upi_id'] ?></td>
+                    <td>
+                      <img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['image_name']; ?>" width="90px;" height="60px;" alt="Image"><br>
+                      <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['image_name']; ?>">Download</a>
+                    </td>
                     <td>
                         <?php 
                         if($info['is_active']=='yes')
@@ -77,13 +81,11 @@
                         <?php } ?>
                     </td>
                     <td>
-                          <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($info['id']); 
-					   echo rtrim($aid, '='); ?>" title="View"><i class="fas fa-eye" aria-hidden="true" style="color:black";></i></a> &nbsp;/&nbsp;
                           <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
 					   echo rtrim($aid, '='); ?>" title="Update"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a> &nbsp;/&nbsp;
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php $aid=base64_encode($info['id']); 
 					   echo rtrim($aid, '='); ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
-                       
+                        
                     </td>
                   </tr>
                   
@@ -92,7 +94,7 @@
                   </tbody>
                   
                 </table>
-                 <?php } else
+                <?php } else
                 { echo '<div class="alert alert-danger alert-dismissable">
                 <i class="fa fa-ban"></i>
                 <b>Alert!</b>

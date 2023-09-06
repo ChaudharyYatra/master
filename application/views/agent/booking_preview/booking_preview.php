@@ -22,6 +22,14 @@
         color:red;
     }
 
+    #qr_code_image img{
+        width:40%;
+        height:40%;
+    }
+    #qr_mode_code_image img{
+        width:40%;
+        height:40%;
+    }
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -607,19 +615,13 @@
                                         <option value="">Select Transaction</option>
                                         <option value="CASH">CASH</option>
                                         <option value="UPI">UPI</option>
+                                        <option value="QR Code">QR Code</option>
                                         <option value="Cheque">Cheque</option>
                                         <option value="Net Banking">Net Banking</option>
                                     </select>
                                     </td>
                                 </tr>
                                 
-                                <tr id="upi_no_div" style='display:none;'>
-                                    
-                                    <th>UPI Payment Transaction Number</th>
-                                    <td>
-                                        <input type="text" class="form-control" name="upi_no" id="upi_no" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
-                                    </td>
-                                </tr>
                                 
                                 <tr id="net_banking_tr" style='display:none;'>
                                     
@@ -630,6 +632,87 @@
                                 </tr>
 
                             </table>
+
+                            <div class="" id="upi_no_div" style='display:none;'>
+                                <div class="row cash_payment_div">
+                                    <div class="col-md-6 mt-1">
+                                        <h6 class="text-center">UPI ID Holder Name</h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="select_css"  name="select_upi_no" id="select_upi_no" required="required">
+                                        <!-- onchange='upi_QR_details(this.value); this.blur();' -->
+                                            <option value="">Select UPI ID Holder Name</option>
+                                            <option class="self_upi" attr_self="self" value="Self">Self</option>
+                                            <?php
+                                                foreach($upi_qr_data as $upi_qr_data_value) 
+                                                { 
+                                            ?>
+                                                <option class="self_upi" attr_other="other" value="<?php echo $upi_qr_data_value['id'];?>"><?php echo $upi_qr_data_value['full_name'];?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                    <!-- <div id="upi_no_reason_div" style='display:none;'> -->
+                                        <div class="col-md-6 mt-2">
+                                            <h6 class="text-center">UPI ID Number</h6>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <input type="text" readonly class="form-control" name="self_upi_no" id="self_upi_no" placeholder="Enter Self UPI ID" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                        </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <h6 class="text-center">UPI Payment Transaction Number</h6>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <input type="text" class="form-control" name="upi_no" id="upi_no" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                        </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <h6 class="text-center">reason</h6>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <input type="text" class="form-control" name="reason" id="reason" placeholder="Enter Reason">
+                                        </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+
+
+                            <div class="" id="rq_div" style='display:none;'>
+                                <div class="row cash_payment_div">
+                                    <div class="col-md-6 mt-1">
+                                        <h6 class="text-center">UPI ID Holder Name</h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="select_css" name="select_qr_upi_no" id="select_qr_upi_no" required="required">
+                                        <!-- onchange='upi_QR_details(this.value); this.blur();' -->
+                                            <option value="">Select UPI ID Holder Name</option>
+                                            <option value="Self">Self</option>
+                                            <?php
+                                                foreach($upi_qr_data as $upi_qr_data_value) 
+                                                { 
+                                            ?>
+                                                <option value="<?php echo $upi_qr_data_value['id'];?>"><?php echo $upi_qr_data_value['full_name'];?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <h6 class="text-center">UPI Payment Transaction Number</h6>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <input type="text" class="form-control" name="qr_upi_no" id="qr_upi_no" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                        </div>
+
+
+                                    <div class="col-md-6 mt-2">
+                                        <h6 class="text-center">QR code Image</h6>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div name="qr_mode_code_image" id="qr_mode_code_image"></div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="" id="cheque_tr" style='display:none;'>
                                 <div class="row cash_payment_div">

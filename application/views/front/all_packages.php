@@ -1,3 +1,5 @@
+
+
 <style>
         table.scrolldown tbody td, thead th {
   width : 260px;
@@ -7,12 +9,14 @@
 table.scrolldown tbody{
     height : auto !important;
 }
-
+.scrolling{
+    overflow-x: hidden;
+    height:95vh;
+}
 </style>  
 
     <!-- BreadCrumb Starts -->  
     <section class="breadcrumb-main pb-20 pt-14" style="background-image: url(<?php echo base_url(); ?>uploads/do_not_delete/domestic_slider.jpg);">
-        
         <div class="breadcrumb-outer">
             <div class="container">
                 <div class="breadcrumb-content text-center">
@@ -33,7 +37,7 @@ table.scrolldown tbody{
 
     <!-- top Destination starts -->
     <section class="trending pt-6 pb-0 bg-lgrey">
-        <div class="container">
+        <div class="container scrolling">
             <div class="list-results d-flex align-items-center justify-content-between">
                 <div class="list-results-sort">
                     <!--<p class="m-0">Showing 1-5 of <?php //echo $count; ?> results</p>-->
@@ -51,7 +55,7 @@ table.scrolldown tbody{
             </div>
 
             <div class="row">
-           <?PHP foreach($main_packages_all as $key => $main_packages_all_value) { ?>
+                <?PHP foreach($main_packages_all as $key => $main_packages_all_value) { ?>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="trend-item rounded box-shadow card_bg" data-aos="fade-up" data-duration="500">
                         <div class="trend-image position-relative">
@@ -171,7 +175,7 @@ table.scrolldown tbody{
                
             </div>
         </div>
-    </section>
+    </section>  
     <!-- top Destination ends -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

@@ -67,11 +67,16 @@
                   <tr>
                     <th>Registration Date</th>
                     <td><?php echo $info['fld_registration_date']; ?></td>
-                    <th> </th>
-                    <td> </td>
+                    
                     <th>Photo</th>
-                    <td><img src="<?php echo base_url(); ?>uploads/agent_photo/<?php echo $info['image_name']; ?>" width="20%;" height="20%;" alt="Agent Image"></td>
+                    <td><img src="<?php echo base_url(); ?>uploads/agent_photo/<?php echo $info['image_name']; ?>" width="40%;" height="40%;" alt="Agent Image"></td>
 
+                    <th>QR Image Photo</th>
+                    <td><img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>" width="40%;" height="40%;" alt="QR Image"></td>
+                  </tr>
+                  <tr>
+                    <th>UPI ID</th>
+                    <td><?php echo $info['upi_id']; ?></td>
                   </tr>
 
                 </table>
