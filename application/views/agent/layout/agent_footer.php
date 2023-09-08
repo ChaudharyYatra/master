@@ -4834,15 +4834,16 @@ $("#pending_amt").val($("#final_amt").val() - val);
         // alert(seat_type_data);
         
         // alert(price);
-        if(seat_type_data=='2000'){
-            var price = parseFloat($('#cash_2000').val());
-            var total_amt = price * seat_type_data;
-            if(total_amt>0){
-                $('#total_cash_2000').val(total_amt );
-            }else{
-                $('#total_cash_2000').val('0');
-            }
-        }else if(seat_type_data=='500'){
+        // if(seat_type_data=='2000'){
+        //     var price = parseFloat($('#cash_2000').val());
+        //     var total_amt = price * seat_type_data;
+        //     if(total_amt>0){
+        //         $('#total_cash_2000').val(total_amt );
+        //     }else{
+        //         $('#total_cash_2000').val('0');
+        //     }
+        // }else 
+        if(seat_type_data=='500'){
             var price = parseFloat($('#cash_500').val());
             var total_amt = price * seat_type_data;
             if(total_amt>0){
@@ -4909,7 +4910,7 @@ $(document).ready(function() {
 
 
     $(".data_amt").on('keyup', function() {
-        var f_count = $("#total_cash_2000").val()
+        // var f_count = $("#total_cash_2000").val()
         var e_count = $("#total_cash_500").val();
         var g_count = $("#total_cash_200").val();
         var m_count = $("#total_cash_100").val();
@@ -4917,11 +4918,11 @@ $(document).ready(function() {
         var n_count = $("#total_cash_20").val();
         var o_count = $("#total_cash_10").val();
 
-        if (f_count != '') {
-            var ftotal = f_count;
-        } else {
-            var ftotal = 0;
-        }
+        // if (f_count != '') {
+        //     var ftotal = f_count;
+        // } else {
+        //     var ftotal = 0;
+        // }
         if (e_count != '') {
             var etotal = e_count;
         } else {
@@ -4952,7 +4953,7 @@ $(document).ready(function() {
         } else {
             var ototal = 0;
         }
-        var final_total = parseInt(ftotal) + parseInt(etotal) + parseInt(gtotal) + parseInt(mtotal) +
+        var final_total = parseInt(etotal) + parseInt(gtotal) + parseInt(mtotal) +
             parseInt(ltotal) + parseInt(ntotal) + parseInt(ototal);
 
 
@@ -5096,7 +5097,22 @@ $(document).ready(function() {
         // alert('hiiiiiiiiiii');
         var mobile_no = $('#booking_tm_mobile_no').val();  
         var final_amt = $('#final_amt').val();
-        var payment_type = $('#payment_type').val();
+
+        var payment_type = $("input[name='payment_type']:checked").val();
+        var selectedId = "";
+        if (payment_type === undefined) {
+            // No radio button is checked, insert a default value
+            payment_type = ""; // You can change this to your desired default value
+        } else {
+            // Loop through radio buttons to find the one with the selected value
+            $("input[name='payment_type']").each(function() {
+                if ($(this).val() === payment_type) {
+                    selectedId = $(this).attr("id");
+                    return false; // Exit the loop once a match is found
+                }
+            });
+        }
+
         var booking_amt = $('#booking_amt').val(); 
         var pending_amt = $('#pending_amt').val();
 
@@ -5104,22 +5120,48 @@ $(document).ready(function() {
         var cheque = $('#cheque').val();
         var bank_name = $('#bank_name').val();
         var drawn_on_date = $('#drawn_on_date').val();
-        var net_banking = $('#net_banking').val();
+
+
+        // var netbanking_payment_type = $('#netbanking_payment_type').val();
+        var netbanking_payment_type = $("input[name='netbanking_payment_type']:checked").val();
+        var selectedId = "";
+        if (netbanking_payment_type === undefined) {
+            // No radio button is checked, insert a default value
+            netbanking_payment_type = ""; // You can change this to your desired default value
+        } else {
+            // Loop through radio buttons to find the one with the selected value
+            $("input[name='netbanking_payment_type']").each(function() {
+                if ($(this).val() === netbanking_payment_type) {
+                    selectedId = $(this).attr("id");
+                    return false; // Exit the loop once a match is found
+                }
+            });
+        }
+
+
+        // alert(netbanking_payment_type);
+        var net_banking_utr_no = $('#net_banking_utr_no').val();
+        var net_banking_acc_no = $('#net_banking_acc_no').val();
+        var net_banking_branch_name = $('#net_banking_branch_name').val();
+        var netbanking_bank_name = $('#netbanking_bank_name').val();
+        var netbanking_date = $('#netbanking_date').val();
 
         var upi_holder_name = $('#select_upi_no').val();
-        // alert(upi_holder_name);
+        var upi_payment_type = $('#upi_payment_type').val();
+        // alert(upi_payment_type);
         var upi_self_no = $('#self_upi_no').val();
         var upi_reason = $('#reason').val();
 
 
         var qr_holder_name = $('#select_qr_upi_no').val();
+        var qr_payment_type = $('#qr_payment_type').val();
         var qr_upi_no = $('#qr_upi_no').val();
 
 
         var select_transaction =($('#select_transaction :selected').val());
         // alert(select_transaction);
-        var cash_2000 = $('#cash_2000').val();
-        var total_cash_2000 = $('#total_cash_2000').val();
+        // var cash_2000 = $('#cash_2000').val();
+        // var total_cash_2000 = $('#total_cash_2000').val();
         var cash_500 = $('#cash_500').val();
         var total_cash_500 = $('#total_cash_500').val();
         var cash_200 = $('#cash_200').val();
@@ -5176,17 +5218,26 @@ $(document).ready(function() {
                     cheque: cheque,
                     bank_name: bank_name,
                     drawn_on_date: drawn_on_date,
-                    net_banking: net_banking,
 
+                    netbanking_payment_type: netbanking_payment_type,
+                    net_banking_acc_no: net_banking_acc_no,
+                    net_banking_branch_name: net_banking_branch_name,
+                    net_banking_utr_no: net_banking_utr_no,
+                    netbanking_bank_name: netbanking_bank_name,
+                    netbanking_date: netbanking_date,
+                    
                     upi_holder_name: upi_holder_name,
+                    upi_payment_type: upi_payment_type,
                     upi_self_no: upi_self_no,
                     upi_reason: upi_reason,
+                    
                     qr_holder_name: qr_holder_name,
+                    qr_payment_type: qr_payment_type,
                     qr_upi_no: qr_upi_no,
                     
                     select_transaction: select_transaction,
-                    cash_2000: cash_2000,
-                    total_cash_2000: total_cash_2000,
+                    // cash_2000: cash_2000,
+                    // total_cash_2000: total_cash_2000,
                     cash_500: cash_500,
                     total_cash_500: total_cash_500,
                     cash_200: cash_200,

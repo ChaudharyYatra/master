@@ -5097,3 +5097,83 @@ $('#edit_tour_photo').validate({ // initialize the plugin
     });
 
 </script>
+
+<!--// tour Expenses add - Rupali-->
+
+<script>
+    var i=1;
+$('#expenses_add_more').click(function() {
+   // alert('hhhh');
+        i++;
+var structure = $('<div class="row" id="new_row'+i+'">'+
+                    '<div class="col-md-3">'+
+                        '<div class="form-group">'+
+                        '<label>Product Name</label>'+
+                            '<input type="text" class="form-control" name="product_name[]" id="product_name" placeholder="Enter product name" required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-1">'+
+                        '<div class="form-group">'+
+                        '<label>Unit</label>'+
+                            '<input type="text" class="form-control" name="measuring_unit[]" id="measuring_unit" placeholder="Enter measuring unit" required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-2">'+
+                        '<div class="form-group">'+
+                        '<label>Quantity</label>'+
+                            '<input type="text" class="form-control" name="quantity[]" id="quantity" placeholder="Enter quantity" required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-2">'+
+                        '<div class="form-group">'+
+                        '<label>Rate</label>'+
+                            '<input type="text" class="form-control" name="rate[]" id="rate" placeholder="Enter rate" required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-2">'+
+                        '<div class="form-group">'+
+                        '<label>Per Unit Rate</label>'+
+                            '<input type="text" class="form-control" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" required>'+
+                        '</div>'+   
+                    '</div>'+
+
+                    '<div class="col-md-2 pt-4 d-flex justify-content-center align-self-center">'+
+                    '<div class="form-group">'+
+                    '<label></label>'+
+                        '<button type="button" name="expenses_remove" id="'+i+'" class="btn btn-danger expenses_btn_remove">X</button>'+
+                    '</div>'+
+                '</div>'+
+                '</div>');
+$('#expenses_main_row').append(structure); 
+
+});
+
+
+$(document).on('click', '.expenses_btn_remove', function(){  
+       var button_id = $(this).attr("id");   
+       $('#new_row'+button_id+'').remove();  
+  });
+
+</script>
+
+<script>
+    const inputValue1 = document.getElementById('rate');
+    const inputValue2 = document.getElementById('quantity');
+    const resultSpan = document.getElementById('per_unit_rate');
+    
+    inputValue1.addEventListener('keyup', calculateDivision);
+    inputValue2.addEventListener('keyup', calculateDivision);
+    
+    function calculateDivision() {
+        const value1 = parseFloat(inputValue1.value);
+        const value2 = parseFloat(inputValue2.value);
+        
+        if (!isNaN(value1) && !isNaN(value2) && value2 !== 0) {
+            const result = value1 / value2;
+            resultSpan.value = result; 
+        } else {
+            resultSpan.value = 'Invalid input';
+        }
+    }
+</script>
+

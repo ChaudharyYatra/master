@@ -26,23 +26,38 @@ class Tour_expenses extends CI_Controller {
         $supervision_sess_name = $this->session->userdata('supervision_name');
         $id = $this->session->userdata('supervision_sess_id');
 
-        $record = array();
-        $fields = "tour_expenses.*,expense_type.expense_type_name,expense_category.expense_category,
-        packages.tour_title,packages.tour_number,package_date.journey_date,hotel_advance_payment.advance_amt";
-        $this->db->where('tour_expenses.is_deleted','no');
-        $this->db->where('tour_expenses.tour_manager_id',$id);
-        $this->db->order_by('tour_expenses.id','desc');
-        $this->db->join("expense_type", 'tour_expenses.expense_type=expense_type.id','left');
-        $this->db->join("expense_category", 'tour_expenses.expense_category_id=expense_category.id','left');
-        $this->db->join("packages", 'tour_expenses.package_id=packages.id','left');
-        $this->db->join("package_date", 'tour_expenses.package_date_id=package_date.id','left');
-        $this->db->join("hotel_advance_payment", 'tour_expenses.package_id=hotel_advance_payment.tour_number','left');
-        $arr_data = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
-        // print_r($arr_data); die;
+        // $record = array();
+        // $fields = "tour_expenses.*,expense_type.expense_type_name,expense_category.expense_category,
+        // packages.tour_title,packages.tour_number,package_date.journey_date";
+        // // hotel_advance_payment.advance_amt
+        // $this->db->where('tour_expenses.is_deleted','no');
+        // $this->db->where('tour_expenses.tour_manager_id',$id);
+        // $this->db->order_by('tour_expenses.id','desc');
+        // $this->db->join("expense_type", 'tour_expenses.expense_type=expense_type.id','left');
+        // $this->db->join("expense_category", 'tour_expenses.expense_category_id=expense_category.id','left');
+        // $this->db->join("packages", 'tour_expenses.package_id=packages.id','left');
+        // $this->db->join("package_date", 'tour_expenses.package_date_id=package_date.id','left');
+        // // $this->db->join("hotel_advance_payment", 'tour_expenses.package_id=hotel_advance_payment.tour_number','left');
+        // $arr_data = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
+        // // print_r($arr_data); die;
+
+
+        $fields = "tour_expenses.*,assign_staff.*,packages.tour_number,packages.tour_title,packages.package_type,
+        package_type.package_type,package_date.journey_date,package_date.id as did";
+        $this->db->where('assign_staff.is_deleted','no');
+        // $this->db->where('tour_expenses.tour_manager_id',$id);
+        $this->db->join("packages", 'assign_staff.package_id=packages.id','left');
+        $this->db->join("package_type", 'packages.package_type=package_type.id','left');
+        $this->db->join("package_date", 'assign_staff.package_date_id=package_date.id','left');
+        // $this->db->join("supervision", 'assign_staff.role_name=supervision.id','left');
+        $this->db->join("tour_expenses", 'assign_staff.package_id=tour_expenses.package_id','left');
+        $arr_data_assign_staff = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
+        // print_r($arr_data_assign_staff); die;
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
-        $this->arr_view_data['arr_data']        = $arr_data;
+        // $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['arr_data_assign_staff']        = $arr_data_assign_staff;
         $this->arr_view_data['page_title']      = $this->module_title." List";
         $this->arr_view_data['module_title']    = $this->module_title;
         $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -171,6 +186,7 @@ class Tour_expenses extends CI_Controller {
 // ==============================upload image 2===============================================================//
 
                 $expense_type  = $this->input->post('expense_type');
+                // print_r($expense_type); die;
                 $expense_category  = $this->input->post('expense_category');
                 $other_expense_category  = $this->input->post('other_expense_category');
                 $expense_place  = $this->input->post('expense_place');
@@ -183,27 +199,49 @@ class Tour_expenses extends CI_Controller {
                 $tour_number  = $this->input->post('tour_number');
                 $pax_type  = $this->input->post('pax_type');
                 $tour_date  = $this->input->post('tour_date');
+
+                $expenses_type  = $this->input->post('expenses_type');
+                $product_name  = $this->input->post('product_name');
+                // print_r($product_name);
+                $measuring_unit  = $this->input->post('measuring_unit');
+                $quantity  = $this->input->post('quantity');
+                $rate  = $this->input->post('rate');
+                // print_r($rate);
+                $per_unit_rate  = $this->input->post('per_unit_rate');
+
                
-                
+                $count = count($product_name);
+                // print_r($count); die;
+                for($i=0;$i<$count;$i++)
+                {
                 $arr_insert = array(
-                'expense_type' =>   $expense_type,
-                'expense_category_id' =>   $expense_category,
-                'other_expense_category' =>   $other_expense_category,
-                'expense_place' =>   $expense_place,
-                'expense_date' =>   $expense_date,
-                'bill_number' =>   $bill_number,
-                'total_pax' =>   $total_pax,
-                'expense_amt' =>   $expense_amt,
-                'expense_date' =>   $expense_date,
-                'tour_expenses_remark' =>   $tour_expenses_remark,
-                'image_name' =>   $filename,
-                'image_name_2' =>   $new_img_filename,
-                'tour_manager_id' =>   $iid,
-                'package_id' =>   $tour_number,
-                'pax_type' =>   $pax_type,
-                'package_date_id' =>   $tour_date
+                'product_name'   =>   $_POST["product_name"][$i],
+                'measuring_unit'   =>   $_POST["measuring_unit"][$i],
+                'quantity'   =>   $_POST["quantity"][$i],
+                'rate'   =>   $_POST["rate"][$i],
+                'per_unit_rate'   =>   $_POST["per_unit_rate"][$i],
+                'expense_type'   =>   $_POST["expense_type"],
+                'expense_category_id'   =>   $_POST["expense_category"],
+                'other_expense_category'   =>   $_POST["other_expense_category"],
+                'expense_place'   =>   $_POST["expense_place"],
+                'expense_date'   =>   $_POST["expense_date"],
+                'bill_number'   =>   $_POST["bill_number"],
+                'total_pax'   =>   $_POST["total_pax"],
+                'expense_amt'   =>   $_POST["expense_amt"],
+                'expense_date'   =>   $_POST["expense_date"],
+                'tour_expenses_remark'   =>   $_POST["tour_expenses_remark"],
+                'package_id'   =>   $_POST["tour_number"],
+                'pax_type'   =>   $_POST["pax_type"],
+                'package_date_id'   =>   $_POST["tour_date"],
+                'tour_expenses_type'   =>   $_POST["tour_expenses_type"],
+                
+                'image_name' => $filename,
+                'image_name_2' => $new_img_filename,
+                'tour_manager_id' => $iid
+                
                 ); 
                 $inserted_id = $this->master_model->insertRecord('tour_expenses',$arr_insert,true);
+            }
                          //sleep(2);
 
                 // if()
@@ -228,10 +266,10 @@ class Tour_expenses extends CI_Controller {
                 // }   
         }
 
-        // $this->db->where('is_deleted','no');
-		// $this->db->order_by('tour_number','ASC');
-        // $packages_data = $this->master_model->getRecords('packages');
-        // //  print_r($packages_data); die;
+        $this->db->where('is_deleted','no');
+		$this->db->order_by('expense_category','ASC');
+        $expense_category = $this->master_model->getRecords('expense_category');
+        //  print_r($expense_category); die;
 
         $record = array();
         $fields = "packages.*,package_date.journey_date,package_date.id as pd_id";
@@ -247,6 +285,7 @@ class Tour_expenses extends CI_Controller {
          $this->arr_view_data['action']          = 'add';
          $this->arr_view_data['expense_type_data']        = $expense_type_data;
          $this->arr_view_data['packages_data']        = $packages_data;
+         $this->arr_view_data['expense_category']        = $expense_category;
          $this->arr_view_data['page_title']      = " Add ".$this->module_title;
          $this->arr_view_data['module_title']    = $this->module_title;
          $this->arr_view_data['module_url_path'] = $this->module_url_path;

@@ -41,11 +41,7 @@
               <form method="post" enctype="multipart/form-data" id="edit_package">
                 <div class="card-body">
                   <div class="row">
-
-                    
                         <input type="hidden" readonly class="form-control" name="tour_no" id="tour_no" placeholder="Enter tour number" value="<?php echo $arr_data_main['tour_no'] ?>" required="required">
-                      
-                    
                     <?php
                     foreach($arr_data2 as $info) 
                     { 
@@ -92,7 +88,6 @@
                     foreach($arr_data as $info) 
                     { 
                       ?>
-
                       <input type="hidden" readonly class="form-control" name="tm_intr_id[]" id="tm_intr_id" placeholder="Enter tour number" value="<?php echo $info['id'] ?>" required="required">
 
                     <div class="col-md-6">

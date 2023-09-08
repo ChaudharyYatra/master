@@ -58,6 +58,7 @@ class Package_dates extends CI_Controller{
                 $package_title  = $this->input->post('package_title');
                 $package_length = substr($package_title, 0, 3);
                 $journey_date  = $this->input->post('journey_date'); 
+                // print_r($journey_date); die;
                 $year_slot = $this->input->post('year_slot');
                 $package_id = $this->input->post('package_id');
                 $single_seat_cost = $this->input->post('single_seat_cost');

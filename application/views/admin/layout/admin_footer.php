@@ -8104,3 +8104,59 @@ $('#add_QR_code').validate({ // initialize the plugin
 <!-- jquery validation on add QR code master -->
 
 <!-- QR code master------------------------------------------------------ -->
+
+<!-- measuring unit master------------------------------------ -->
+<!-- jquery validation on add measuring unit source -->
+<script>
+$(document).ready(function () {
+
+$('#add_measuring_type').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        measuring_type: {
+            required: true,
+        }
+    },
+
+    messages :{
+        measuring_type : {
+            required : "Please Enter Measuring Type",
+        }
+    }
+});
+
+});
+
+</script>
+
+<script>
+$(document).ready(function () {
+
+$('#edit_measuring_type').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        measuring_type: {
+            required: true,
+        }
+    },
+
+    messages :{
+        measuring_type : {
+            required : "Please Enter Measuring Type",
+        }
+    }
+});
+
+});
+
+</script>
+<!-- jquery validation on add measuring unit source -->
+<!-- measuring unit master------------------------------------ -->
+
+
+
+

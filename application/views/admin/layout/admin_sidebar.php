@@ -322,6 +322,12 @@
                   <p>QR Code Master</p>
                 </a>
                </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/measuring_unit/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Measuring Unit Master</p>
+                </a>
+               </li>
 
             </ul>
           </li>
