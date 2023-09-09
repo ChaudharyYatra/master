@@ -947,7 +947,7 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp" disabled>Send OTP</button></th></center>
+                                    <center><th><button type="button" class="btn btn-primary mb-3" name="submit_otp" id="submit_otp"  disabled>Send OTP</button></th></center>
                                 </div>
                                 <div class="col-md-4">
                                     <center><th><button type="button" class="btn btn-primary mb-3" name="re_send_otp" id="re_send_otp" disabled>Resend OTP</button></th></center>
