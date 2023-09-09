@@ -26,6 +26,16 @@
     .mealplan_css{
             border: 1px solid red !important;
         }
+
+    .cash_payment_div{
+        border: 1px solid red;
+        padding: 10px;
+        margin-top:10px;
+        margin-bottom:40px;
+    }
+    .add_more_css{
+        margin-top:30px;
+    }
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -167,6 +177,67 @@
                                 <input type="text" class="form-control" name="bill_number" id="bill_number" placeholder="Enter bill Number" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label>Expenses Type</label> <br>
+                                <input type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
+                            </div>
+                        </div>
+                        
+                        <div class="cash_payment_div" id="sub_main_tour_div1" style='display:none;'>
+                            <div class="col-md-12">
+                                <div class="row" id="expenses_main_row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Expense Head</label>
+                                                <select class="select_css" name="product_name[]" id="product_name" required>
+                                                    <option value="">Select Product Name</option>
+                                                    <?php foreach($expense_category as $expense_category_info){ ?> 
+                                                        <option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                        </div>
+
+                                        <!-- <div class="form-group">
+                                        <label>Product Name</label>
+                                            <input type="text" class="form-control" name="product_name[]" id="product_name" placeholder="Enter product name" required>
+                                        </div> -->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                        <label>Unit</label>
+                                            <input type="text" class="form-control" name="measuring_unit[]" id="measuring_unit" placeholder="Enter measuring unit" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <label>Quantity</label>
+                                            <input type="text" class="form-control" name="quantity[]" id="quantity" placeholder="Enter quantity" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <label>Rate</label>
+                                            <input type="text" class="form-control" name="rate[]" id="rate" placeholder="Enter rate" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <label>Per Unit Rate</label>
+                                            <input readonly type="text" class="form-control" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex justify-content-center">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <button type="button" class="btn btn-primary add_more_css" name="submit" value="expenses_add_more" id="expenses_add_more">Add More Dates</button>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="col-md-6">
                             <div class="form-group">
@@ -182,7 +253,7 @@
                                 <br><span class="text-danger">Please select only PDF,JPG,PNG,JPEG,PDF format files.</span>
                             </div>
                         </div>
-                            
+
                         <div class="col-md-6">
                             <div class="form-group">
                             <label>Upload Photo/PDF</label>
@@ -224,6 +295,18 @@
     <!-- /.content -->
   </div>
   
+  <!-- tour expenses in that single and multiple click script-->
+<script>
+    function sub(){
+    document.getElementById('sub_main_tour_div1').style.display = 'block';
+    }
+    function main(){
+    document.getElementById('sub_main_tour_div1').style.display = 'none';
+    document.getElementById('main_tour_id').value = "";
+    }
+</script>
+<!-- tour expenses in that single and multiple click script-->
+
 
 </body>
 </html>

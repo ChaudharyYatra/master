@@ -688,7 +688,7 @@ class Agent extends CI_Controller{
                     'taluka_name'   =>   $agent_taluka,
                     'city_name'     =>   $agent_city,
                     'image_name'     =>   $filename,
-                    'qr_code_image'     =>   $filename_qr_code,
+                    'qr_code_image'     =>   $qr_img_filename,
                     'upi_id'     =>   $upi_id
                 );
                 

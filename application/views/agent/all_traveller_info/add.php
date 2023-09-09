@@ -157,6 +157,7 @@
                             <tbody class="for_row_set">
                                 <?php 
                                 if(!empty($all_traveller_info)){
+                                    // alert('hiiiiiiiiiiiii'); 
                                     $pre_count= count($all_traveller_info);
                                     $all_traveller_count = $tcount-count($all_traveller_info);
                                     ?>
@@ -186,9 +187,13 @@
                                     </select>
                                 </td>
                                 <td>
+                                
                                     <input type="text" style="text-transform: capitalize;" class="form-control row_set first_name" name="first_name[]" id="first_name<?php echo $img_count; ?>" attr_for_search="<?php echo $img_count; ?>" autocomplete="off"
-
                                     value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['first_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                               
+                                    <!-- <input type="text" style="text-transform: capitalize;" class="form-control row_set first_name" name="first_name[]" id="first_name<?php //echo $img_count; ?>" attr_for_search="<?php //echo $img_count; ?>" autocomplete="off"
+                                    value="<?php //echo $traveller_booking_info['first_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');"> -->
+                                
 
                                     <div id="user_name">
                                         <ul class="search-results" id="search-results<?php echo $img_count;?>">
@@ -300,9 +305,19 @@
                                 </td> -->
 
                                 <td>
+                                <?php if(!empty($all_traveller_info)){ ?> 
                                     <input type="text" style="text-transform: capitalize;" class="form-control row_set first_name" name="first_name[]" id="first_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
-
                                     value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['first_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php } else if($i==1){ 
+                                    foreach($traveller_booking_info as $traveller_booking_info_value){ 
+                                        ?> 
+                                    <input type="text" style="text-transform: capitalize;" class="form-control row_set first_name" name="first_name[]" id="first_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
+                                    value="<?php echo $traveller_booking_info_value['first_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php } } else{ 
+                                        ?> 
+                                    <input type="text" style="text-transform: capitalize;" class="form-control row_set first_name" name="first_name[]" id="first_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
+                                    value="" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php  }?>
 
                                     <div id="user_name">
                                         <ul class="search-results" id="search-results<?php echo $i;?>">
@@ -312,9 +327,18 @@
 
                                 </td>
                                 <td>
+                                <?php if(!empty($all_traveller_info)){ ?> 
                                     <input type="text" style="text-transform: capitalize;" class="form-control row_set middle_name" name="middle_name[]" id="middle_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
-
                                     value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['middle_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php } else if($i==1){ 
+                                    foreach($traveller_booking_info as $traveller_booking_info_value){ 
+                                        ?> 
+                                    <input type="text" style="text-transform: capitalize;" class="form-control row_set middle_name" name="middle_name[]" id="middle_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
+                                    value="<?php echo $traveller_booking_info_value['middle_name']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php } } else{ ?> 
+                                    <input type="text" style="text-transform: capitalize;" class="form-control row_set middle_name" name="middle_name[]" id="middle_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
+                                    value="" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php  } ?>
 
                                     <div id="user_name">
                                         <ul id="search-results2<?php echo $i;?>">
@@ -324,9 +348,18 @@
 
                                 </td>
                                 <td>
+                                <?php if(!empty($all_traveller_info)){ ?>
                                     <input type="text" style="text-transform: capitalize;" class="form-control row_set last_name" name="last_name[]" id="last_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
-
                                     value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['last_name'];} ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php } else if($i==1){ 
+                                foreach($traveller_booking_info as $traveller_booking_info_value){ 
+                                    ?>
+                                    <input type="text" style="text-transform: capitalize;" class="form-control row_set last_name" name="last_name[]" id="last_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
+                                    value="<?php echo $traveller_booking_info_value['srname']; ?>" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php } } else{ ?> 
+                                    <input type="text" style="text-transform: capitalize;" class="form-control row_set last_name" name="last_name[]" id="last_name<?php echo $i; ?>" attr_for_search="<?php echo $i; ?>" autocomplete="off"
+                                    value="" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                                <?php  } ?>
 
                                     <div id="user_name">
                                         <ul id="search-results3<?php echo $i;?>">
@@ -351,7 +384,15 @@
                                     <input type="date" class="form-control row_set" name="anniversary_date[]" id="anniversary_date" max="<?php echo date("Y-m-d");?>">
                                 </td>
                                 <td>
+                                <?php if(!empty($all_traveller_info)){ ?>
                                     <input type="text" class="form-control row_set" name="mobile_number[]" id="mobile_number" value="<?php if(!empty($all_traveller_info_value)){ echo $all_traveller_info_value['mobile_number'];} ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10" minlength="10">
+                                    <?php } else if($i==1){ 
+                                foreach($traveller_booking_info as $traveller_booking_info_value){ 
+                                    ?>
+                                    <input type="text" class="form-control row_set" name="mobile_number[]" id="mobile_number" value="<?php echo $traveller_booking_info_value['mobile_number']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10" minlength="10">
+                                <?php } } else{ ?> 
+                                    <input type="text" class="form-control row_set" name="mobile_number[]" id="mobile_number" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10" minlength="10">
+                                    <?php  } ?>
                                 </td>
                                 <td>
                                 <select class="select_css row_set" name="relation[]" id="relation">

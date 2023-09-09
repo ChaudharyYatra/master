@@ -153,19 +153,23 @@
                     </div>
 
                     <div class="col-md-6 mt-3">
-                        <h6 class="ml-5">Yatra Co Pvt. Ltd. By QR Code/Cash/cheque/D.D.No.</h6>  
+                        <h6 class="ml-5">Yatra Co Pvt. Ltd. By <?php echo $payment_receipt['select_transaction']; ?></h6>  
                     </div>
                     <div class="col-md-6 mt-3">
                         <?php if($payment_receipt['select_transaction'] == 'Cheque'){?>
                         <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['select_transaction']; ?> - <?php echo $payment_receipt['cheque']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                        <?php } ?>
+                        
+                        <?php } else if($payment_receipt['select_transaction'] == 'UPI'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['upi_payment_type']; ?> - <?php echo $payment_receipt['upi_no']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
 
-                        <?php if($payment_receipt['select_transaction'] == 'UPI'){?>
-                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['select_transaction']; ?> - <?php echo $payment_receipt['upi_no']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                        <?php } ?>
+                        <?php } else if($payment_receipt['select_transaction'] == 'Net Banking'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['netbanking_payment_type']; ?> - <?php echo $payment_receipt['net_banking_acc_no']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
 
-                        <?php if($payment_receipt['select_transaction'] == 'Net Banking'){?>
-                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['select_transaction']; ?> - <?php echo $payment_receipt['net_banking']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        <?php } else if($payment_receipt['select_transaction'] == 'QR Code'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['QR_payment_type']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        
+                        <?php } else if($payment_receipt['select_transaction'] == 'CASH'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="-" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                         <?php } ?>
                     </div>
 
@@ -175,7 +179,11 @@
                     <div class="col-md-2 mt-3">
                     <?php if($payment_receipt['select_transaction'] == 'Cheque'){?>
                         <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo date("d-m-Y",strtotime($payment_receipt['drawn_on_date'])); ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                    <?php }else{?>
+                    
+                        <?php } else if($payment_receipt['select_transaction'] == 'Net Banking'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo date("d-m-Y",strtotime($payment_receipt['netbanking_date'])); ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    
+                        <?php } else{?>
                         <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="-" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                     <?php } ?>
                     </div>
@@ -185,7 +193,9 @@
                     <div class="col-md-7 mt-3">
                     <?php if($payment_receipt['select_transaction'] == 'Cheque'){?>
                         <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['bank_name']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                    <?php }else{?>
+                    <?php }else if($payment_receipt['select_transaction'] == 'Net Banking'){?>
+                        <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['netbanking_bank_name']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                    <?php } else{?>
                         <input type="text" readonly class="form-control input_css" name="enq_seat_count" id="enq_seat_count" value="-" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                     <?php } ?>
                     </div>
@@ -223,12 +233,12 @@
                                 <div class="col-md-6">
                                     <h6 class="mt-2 ml-3 text-center">Particulars</h6>  
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <!-- <div class="col-md-5">
                                             <h6 class="mt-2 ml-3">2000 X</h6>
                                         </div>
                                         <div class="col-md-7">
-                                            <input type="text" readonly class="form-control input_css mt-2" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['cash_2000']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                                        </div>
+                                            <input type="text" readonly class="form-control input_css mt-2" name="enq_seat_count" id="enq_seat_count" value="<?php //echo $payment_receipt['cash_2000']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                        </div> -->
 
                                         <div class="col-md-5 mt-2">
                                             <h6 class="mt-2 ml-3">500 X</h6>
@@ -282,12 +292,12 @@
                                 <div class="col-md-6">
                                     <h6 class="mt-2 ml-3 text-center">Rupees</h6>  
                                     <div class="row">
-                                        <div class="col-md-2 mt-2">
+                                        <!-- <div class="col-md-2 mt-2">
                                             =
                                         </div>
                                         <div class="col-md-9">
-                                            <input type="text" readonly class="form-control input_css mt-2" name="enq_seat_count" id="enq_seat_count" value="<?php echo $payment_receipt['total_cash_2000']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                                        </div>
+                                            <input type="text" readonly class="form-control input_css mt-2" name="enq_seat_count" id="enq_seat_count" value="<?php //echo $payment_receipt['total_cash_2000']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                        </div> -->
 
                                         <div class="col-md-2 mt-3">
                                             =

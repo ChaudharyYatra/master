@@ -124,13 +124,16 @@ class Booking_preview extends CI_Controller {
             $mobile_no = $this->input->post('mobile_no');
             $pending_amt = $this->input->post('pending_amt');
             $select_transaction = $this->input->post('select_transaction');
-
+            // print_r($select_transaction);
+            
             $upi_holder_name = $this->input->post('upi_holder_name');
+            $upi_payment_type = $this->input->post('upi_payment_type');
             // print_r($upi_holder_name); die;
             $upi_self_no = $this->input->post('upi_self_no');
             $upi_reason = $this->input->post('upi_reason');
 
             $qr_holder_name = $this->input->post('qr_holder_name');
+            $qr_payment_type = $this->input->post('qr_payment_type');
             $qr_upi_no = $this->input->post('qr_upi_no');
 
 
@@ -138,9 +141,16 @@ class Booking_preview extends CI_Controller {
             $cheque = $this->input->post('cheque');
             $bank_name = $this->input->post('bank_name');
             $drawn_on_date = $this->input->post('drawn_on_date');
-            $net_banking = $this->input->post('net_banking');
-            $cash_2000 = $this->input->post('cash_2000');
-            $total_cash_2000 = $this->input->post('total_cash_2000');
+
+            $netbanking_payment_type = $this->input->post('netbanking_payment_type');
+            $net_banking_acc_no = $this->input->post('net_banking_acc_no');
+            $net_banking_branch_name = $this->input->post('net_banking_branch_name');
+            $net_banking_utr_no = $this->input->post('net_banking_utr_no');
+            $netbanking_bank_name = $this->input->post('netbanking_bank_name');
+            $netbanking_date = $this->input->post('netbanking_date');
+
+            // $cash_2000 = $this->input->post('cash_2000');
+            // $total_cash_2000 = $this->input->post('total_cash_2000');
             $cash_500 = $this->input->post('cash_500');
             $total_cash_500 = $this->input->post('total_cash_500');
             $cash_200 = $this->input->post('cash_200');
@@ -161,6 +171,8 @@ class Booking_preview extends CI_Controller {
             $journey_date = $this->input->post('journey_date');
             $package_date_id = $this->input->post('package_date_id');
 
+
+            $booking_reference_no = $enquiry_id.'_'.$package_id.'_'.$journey_date;
 
             $alphabet = '1234567890';
             $otp = str_shuffle($alphabet);
@@ -198,19 +210,29 @@ class Booking_preview extends CI_Controller {
                     'pending_amt'   =>   $pending_amt,
                     'booking_tm_mobile_no'   =>   $mobile_no,
                     'select_transaction'   =>   $select_transaction,
-
+                    
                     'UPI_holder_name'   =>   $upi_holder_name,
+                    'upi_payment_type'   =>   $upi_payment_type,
                     'UPI_transaction_no'   =>   $upi_self_no,
                     'UPI_reason'   =>   $upi_reason,
+
                     'QR_holder_name'   =>   $qr_holder_name,
+                    'QR_payment_type'   =>   $qr_payment_type,
                     'QR_transaction_no'   =>   $qr_upi_no,
 
                     'upi_no'   =>   $upi_no,
                     'cheque'   =>   $cheque,
                     'bank_name'   =>   $bank_name,
                     'drawn_on_date'   =>   $drawn_on_date,
-                    'net_banking'   =>   $net_banking,
 
+                    'netbanking_payment_type'   =>   $netbanking_payment_type,
+                    'net_banking_acc_no'   =>   $net_banking_acc_no,
+                    'net_banking_branch_name'   =>   $net_banking_branch_name,
+                    'net_banking'   =>   $net_banking_utr_no,
+                    'netbanking_bank_name'   =>   $netbanking_bank_name,
+                    'netbanking_date'   =>   $netbanking_date,
+
+                    'booking_reference_no'  =>  $booking_reference_no,
                     'package_date_id' => $package_date_id,
                     'enquiry_id' => $enquiry_id,
                     'package_id' => $package_id,
@@ -219,8 +241,8 @@ class Booking_preview extends CI_Controller {
                     // 'select_services' => $select_services,
                     // 'extra_services' => $extra_services,
 
-                    'cash_2000'   =>   $cash_2000,
-                    'total_cash_2000'   =>   $total_cash_2000,
+                    // 'cash_2000'   =>   $cash_2000,
+                    // 'total_cash_2000'   =>   $total_cash_2000,
                     'cash_500'   =>   $cash_500,
                     'total_cash_500'   =>   $total_cash_500,
                     'cash_200'   =>   $cash_200,
@@ -239,6 +261,13 @@ class Booking_preview extends CI_Controller {
                 );
                 // print_r($arr_insert); die;
                  $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
+
+                // $arr_update = array(
+                //     'booking_reference_no'  =>  $booking_reference_no
+                // );
+                // $arr_where     = array("id" => $enquiry_id);
+                // $this->master_model->updateRecord('booking_payment_details',$arr_update,$arr_where);
+
         //================================================================================================================== 
                  $extra_services = $this->input->post('extra_services');
 
@@ -518,7 +547,7 @@ class Booking_preview extends CI_Controller {
         echo json_encode($data); 
     }
 
-    public function get_upi_code(){ 
+    public function get_upi_code(){
 
         $agent_sess_name = $this->session->userdata('agent_name');
         $id=$this->session->userdata('agent_sess_id');
