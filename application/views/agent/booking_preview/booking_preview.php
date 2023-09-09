@@ -634,44 +634,44 @@
                                         <!-- &nbsp;&nbsp;<input type="radio" name="gender" id="male" value="Male">&nbsp;&nbsp;Male
                                         &nbsp;&nbsp;<input type="radio" name="gender" id="female" value="Female">&nbsp;&nbsp;Female -->
 
-                                        <input type="radio" name="netbanking_payment_type" id="netbanking_payment_type" value="NEFT">&nbsp;&nbsp;NEFT
-                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="netbanking_payment_type" id="netbanking_payment_type" value="RTGS">&nbsp;&nbsp;RTGS
-                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="netbanking_payment_type" id="netbanking_payment_type" value="IMPS">&nbsp;&nbsp;IMPS
+                                        <input type="radio" name="netbanking_payment_type" id="netbanking_payment_type_neft" onchange="netpayment_validate()" value="NEFT">&nbsp;&nbsp;NEFT
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="netbanking_payment_type" id="netbanking_payment_type_rtgs" onchange="netpayment_validate()" value="RTGS">&nbsp;&nbsp;RTGS
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="netbanking_payment_type" id="netbanking_payment_type_imps" onchange="netpayment_validate()" value="IMPS">&nbsp;&nbsp;IMPS
                                         </div>
 
                                         <div class="col-md-6 mt-2">
                                             <h6 class="text-center">Account Number</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <input type="text" class="form-control" name="net_banking_acc_no" id="net_banking_acc_no" placeholder="Enter Account No" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                            <input type="text" class="form-control" name="net_banking_acc_no" id="net_banking_acc_no" onkeyup="netbank_accno_validate()" placeholder="Enter Account No" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                         </div>
 
                                         <div class="col-md-6 mt-2">
                                             <h6 class="text-center">Branch Name</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <input type="text" class="form-control" name="net_banking_branch_name" id="net_banking_branch_name" placeholder="Enter Branch Name">
+                                            <input type="text" class="form-control" name="net_banking_branch_name" id="net_banking_branch_name" onkeyup="netbank_branch_nm_validate()" placeholder="Enter Branch Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                         </div>
 
                                         <div class="col-md-6 mt-2">
                                             <h6 class="text-center">UTR No</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <input type="text" class="form-control" name="net_banking_utr_no" id="net_banking_utr_no" placeholder="Enter UTR No" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                            <input type="text" class="form-control" name="net_banking_utr_no" id="net_banking_utr_no" onkeyup="netbank_utr_no_validate()" placeholder="Enter UTR No" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                         </div>
 
                                         <div class="col-md-6 mt-2">
                                             <h6 class="text-center">Bank Name</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <input type="text" class="form-control" name="netbanking_bank_name" id="netbanking_bank_name" placeholder="Enter Bank Name">
+                                            <input type="text" class="form-control" name="netbanking_bank_name" id="netbanking_bank_name" onkeyup="netbank_bank_nm_validate()" placeholder="Enter Bank Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                         </div>
 
                                         <div class="col-md-6 mt-2">
                                             <h6 class="text-center">Transaction Date</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <input type="date" class="form-control" name="netbanking_date" id="netbanking_date" placeholder="">
+                                            <input type="date" class="form-control" name="netbanking_date" id="netbanking_date" onchange="netbank_date_validate()" placeholder="">
                                         </div>
                                     <!-- </div> -->
                                 </div>
@@ -684,7 +684,7 @@
                                         <h6 class="text-center">UPI ID Holder Name</h6>
                                     </div>
                                     <div class="col-md-6">
-                                        <select class="select_css"  name="select_upi_no" id="select_upi_no" required="required">
+                                        <select class="select_css"  name="select_upi_no" id="select_upi_no" required="required" onchange="transaction_upi_validate()">
                                         <!-- onchange='upi_QR_details(this.value); this.blur();' -->
                                             <option value="">Select UPI ID Holder Name</option>
                                             <option class="self_upi" attr_self="self" value="Self">Self</option>
@@ -702,7 +702,7 @@
                                             <h6 class="text-center">Payment Type</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <select class="select_css" name="upi_payment_type" id="upi_payment_type">
+                                            <select class="select_css" name="upi_payment_type" id="upi_payment_type" onchange="payment_type_validate()">
                                                 <option value="">Select Transaction</option>
                                                 <option value="Google Pay">Google Pay</option>
                                                 <option value="BHIM App">BHIM App</option>
@@ -724,14 +724,14 @@
                                             <h6 class="text-center">UTR No</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <input type="text" class="form-control" name="upi_no" id="upi_no" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                            <input type="text" class="form-control" name="upi_no" id="upi_no" onkeyup="utr_no_validate()" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                         </div>
 
                                         <div class="col-md-6 mt-2">
                                             <h6 class="text-center">reason</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <input type="text" class="form-control" name="reason" id="reason" placeholder="Enter Reason">
+                                            <input type="text" class="form-control" name="reason" id="reason" onkeyup="reason_validate()" placeholder="Enter Reason" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                         </div>
                                     <!-- </div> -->
                                 </div>
@@ -744,7 +744,7 @@
                                         <h6 class="text-center">UPI ID Holder Name</h6>
                                     </div>
                                     <div class="col-md-6">
-                                        <select class="select_css" name="select_qr_upi_no" id="select_qr_upi_no" required="required">
+                                        <select class="select_css" name="select_qr_upi_no" id="select_qr_upi_no" required="required" onchange="qr_hoder_name_validate()">
                                         <!-- onchange='upi_QR_details(this.value); this.blur();' -->
                                             <option value="">Select UPI ID Holder Name</option>
                                             <option value="Self">Self</option>
@@ -761,7 +761,7 @@
                                         <h6 class="text-center">Payment Type</h6>
                                     </div>
                                     <div class="col-md-6 mt-2">
-                                        <select class="select_css" name="qr_payment_type" id="qr_payment_type">
+                                        <select class="select_css" name="qr_payment_type" id="qr_payment_type" onchange="qr_payment_type_validate()">
                                             <option value="">Select Transaction</option>
                                             <option value="Google Pay">Google Pay</option>
                                             <option value="BHIM App">BHIM App</option>
@@ -776,7 +776,7 @@
                                         <h6 class="text-center">UTR No</h6>
                                     </div>
                                     <div class="col-md-6 mt-2">
-                                        <input type="text" class="form-control" name="qr_upi_no" id="qr_upi_no" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                        <input type="text" class="form-control" name="qr_upi_no" id="qr_upi_no" onkeyup="qr_utr_no_validate()" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                     </div>
 
 
@@ -795,21 +795,21 @@
                                         <h6 class="text-center">Cheque Number</h6>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="cheque" id="cheque" placeholder="Enter Cheque Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
+                                        <input type="text" class="form-control" name="cheque" id="cheque" onkeyup="cheque_no_validate()" placeholder="Enter Cheque Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                     </div>
 
                                     <div class="col-md-6 mt-2">
                                         <h6 class="text-center">Bank Name</h6>
                                     </div>
                                     <div class="col-md-6 mt-2">
-                                        <input type="text" class="form-control" name="bank_name" id="bank_name" placeholder="Enter Bank Name">
+                                        <input type="text" class="form-control" name="bank_name" id="bank_name" onkeyup="cheque_banknm_validate()" placeholder="Enter Bank Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                                     </div>
 
                                     <div class="col-md-6 mt-2">
                                         <h6 class="text-center">Drawn On Date</h6>
                                     </div>
                                     <div class="col-md-6 mt-2">
-                                        <input type="date" class="form-control" name="drawn_on_date" id="drawn_on_date" placeholder="Select Date">
+                                        <input type="date" class="form-control" name="drawn_on_date" id="drawn_on_date" onchange="cheque_date_validate()" placeholder="Select Date">
                                     </div>
                                 </div>
                             </div>

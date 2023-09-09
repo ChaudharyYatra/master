@@ -4736,6 +4736,28 @@ $("#pending_amt").val($("#final_amt").val() - val);
 <!-- Bank transaction ---------------------------------------- -->
 <script type="text/javascript">
     function account_details(val){
+
+    var booking_preview = $('#select_transaction').val();
+    // alert(booking_preview);
+
+    if(booking_preview == 'CASH'){
+        $("#submit_otp").attr("disabled", false);
+    }else if(booking_preview == 'UPI'){
+        $("#submit_otp").attr("disabled", true);
+    }else if(booking_preview == 'QR Code'){
+        $("#submit_otp").attr("disabled", true);
+    }else if(booking_preview == 'Cheque'){
+        $("#submit_otp").attr("disabled", true);
+    }else if(booking_preview == 'Net Banking'){
+        $("#submit_otp").attr("disabled", true);
+    }
+        
+    // if(checkEmpty($("#select_transaction"))){
+    // $("#submit_otp").attr("disabled", true);
+    // }
+    // else{
+    //     $("#submit_otp").attr("disabled", false);
+    // }
         // alert('hiiiiiiiii');
     var element=document.getElementById('net_banking_tr');
 	var element2=document.getElementById('net_banking');
@@ -4789,6 +4811,7 @@ $("#pending_amt").val($("#final_amt").val() - val);
         cash_no_div.style.display='flex';
         mob_no_div.style.display='none';
     }
+
     }
 </script>
 
@@ -5018,7 +5041,18 @@ $(document).ready(function() {
                         return false;
                     }
                 }
-            }
+            },
+            select_upi_no: {
+                required: function(element) {
+                    
+                    if($('#select_transaction').val() == 'UPI')
+                     {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
 
         },
 
@@ -5037,6 +5071,9 @@ $(document).ready(function() {
             },
             total_cash_amt: {
                 required: "Please enter cash",
+            },
+            select_upi_no: {
+                required: "Please Holder Name",
             }
 
 
@@ -5164,6 +5201,7 @@ $(document).ready(function() {
         // var total_cash_2000 = $('#total_cash_2000').val();
         var cash_500 = $('#cash_500').val();
         var total_cash_500 = $('#total_cash_500').val();
+        // alert(total_cash_500);
         var cash_200 = $('#cash_200').val();
         var total_cash_200 = $('#total_cash_200').val();
         var cash_100 = $('#cash_100').val();
@@ -6270,3 +6308,175 @@ function empty() {
  </script>
  
 <!-- dependency for booking preview page upi and QR code  -->
+
+<script>
+    
+function transaction_upi_validate() {
+    var valid = true;
+    valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_upi_no")) && checkEmpty($("#upi_payment_type"));
+          $("#submit_otp").attr("disabled", true);
+          if (valid) {
+              $("#submit_otp").attr("disabled", false);
+          }
+  }
+
+function payment_type_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_upi_no")) && checkEmpty($("#upi_payment_type")) && checkEmpty($("#upi_no"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function utr_no_validate() {
+    var valid = true;
+    valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_upi_no")) && checkEmpty($("#upi_payment_type")) && checkEmpty($("#upi_no")) && checkEmpty($("#reason"));
+          $("#submit_otp").attr("disabled", true);
+          if (valid) {
+              $("#submit_otp").attr("disabled", false);
+          }
+  }
+
+function reason_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_upi_no")) && checkEmpty($("#upi_payment_type")) && checkEmpty($("#upi_no")) && checkEmpty($("#reason"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function qr_hoder_name_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_payment_type"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function qr_payment_type_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function qr_payment_type_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function qr_utr_no_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function cheque_no_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#cheque")) && checkEmpty($("#bank_name"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function cheque_banknm_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#cheque")) && checkEmpty($("#bank_name")) && checkEmpty($("#drawn_on_date"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function cheque_date_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#cheque")) && checkEmpty($("#bank_name")) && checkEmpty($("#drawn_on_date"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function netpayment_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function netbank_accno_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function netbank_branch_nm_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function netbank_utr_no_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function netbank_bank_nm_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name")) && checkEmpty($("#netbanking_date"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function netbank_date_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name")) && checkEmpty($("#netbanking_date"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+
+  
+  function checkEmpty(obj) {
+    var name = $(obj).attr("name");
+    $("." + name + "-validation").html("");
+    $(obj).css("border", "");
+    if ($(obj).val() == "") {
+      $(obj).css("border", "#FF0000 1px solid");
+      $("." + name + "-validation").html("Required");
+      return false;
+    }
+  
+    return true;
+  }
+  
+</script>

@@ -124,6 +124,7 @@ class Booking_preview extends CI_Controller {
             $mobile_no = $this->input->post('mobile_no');
             $pending_amt = $this->input->post('pending_amt');
             $select_transaction = $this->input->post('select_transaction');
+            // print_r($select_transaction);
             
             $upi_holder_name = $this->input->post('upi_holder_name');
             $upi_payment_type = $this->input->post('upi_payment_type');
@@ -546,7 +547,7 @@ class Booking_preview extends CI_Controller {
         echo json_encode($data); 
     }
 
-    public function get_upi_code(){ 
+    public function get_upi_code(){
 
         $agent_sess_name = $this->session->userdata('agent_name');
         $id=$this->session->userdata('agent_sess_id');
