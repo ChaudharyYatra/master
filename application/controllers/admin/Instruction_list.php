@@ -466,11 +466,13 @@ class Instruction_list extends CI_Controller{
         $this->db->where('is_active','yes');
         $this->db->group_by('tour_no');
         $arr_data2 = $this->master_model->getRecords('tm_instraction');
+        // print_r($arr_data2); die;
 
         $this->db->where('tour_no',$id);
         $this->db->where('is_active','yes');
         $this->db->group_by('tour_no');
         $arr_data3 = $this->master_model->getRecord('tm_instraction_attachment');
+        // print_r($arr_data3); die;
 
         
         $this->arr_view_data['arr_data']        = $arr_data;

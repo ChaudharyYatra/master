@@ -41,7 +41,7 @@
                    { 
                     // print_r($info); die;
                      ?>
-              <form method="post" enctype="multipart/form-data" id="add_QR_code">
+              <form method="post" enctype="multipart/form-data" id="edit_QR_code">
                 <div class="card-body">
                  <div class="row">
                     <div class="col-md-6">
@@ -84,7 +84,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                           <label>Upload QR Image</label><br>
-                          <input type="file" name="image_name" id="image_nam" required="required">
+                          <input type="file" name="image_name" id="image_nam">
                           <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
                         </div>
                     </div>
@@ -92,10 +92,10 @@
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Uploaded Image</label><br>
-                        <?php if(!empty($info['image_name'])){ ?>
-                                  <img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['image_name']; ?>" width="80%">
-                                  <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['image_name']; ?>">
-                                  <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['image_name']; ?>">Download</a>
+                        <?php if(!empty($info['qr_code_image'])){ ?>
+                                  <img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>" width="80%">
+                                  <input type="hidden" name="old_img_name" id="old_img_name" value="<?php echo $info['qr_code_image']; ?>">
+                                  <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>">Download</a>
                                   <?php } ?>
                       </div>
                     </div>

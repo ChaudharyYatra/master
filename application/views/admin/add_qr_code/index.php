@@ -65,8 +65,8 @@
                     <?php } ?>
                     <td><?php echo $info['upi_id'] ?></td>
                     <td>
-                      <img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['image_name']; ?>" width="90px;" height="60px;" alt="Image"><br>
-                      <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['image_name']; ?>">Download</a>
+                      <img src="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>" width="90px;" height="60px;" alt="Image"><br>
+                      <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>">Download</a>
                     </td>
                     <td>
                         <?php 

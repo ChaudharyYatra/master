@@ -4738,9 +4738,11 @@ $("#pending_amt").val($("#final_amt").val() - val);
     function account_details(val){
 
     var booking_preview = $('#select_transaction').val();
+    var booking_preview_mobno = $('#booking_tm_mobile_no').val();
+    var booking_preview_amt = $('#booking_amt').val();
     // alert(booking_preview);
 
-    if(booking_preview == 'CASH'){
+    if(booking_preview == 'CASH' && booking_preview_mobno != '' && booking_preview_amt != ''){
         $("#submit_otp").attr("disabled", false);
     }else if(booking_preview == 'UPI'){
         $("#submit_otp").attr("disabled", true);
@@ -4781,6 +4783,14 @@ $("#pending_amt").val($("#final_amt").val() - val);
     cash_no_div.style.display='none';
     element.style.display='contents';
     
+    }else if(val=='') {
+    element.style.display='none';
+    mob_no_div.style.display='none';
+    rq_div.style.display='none';
+    cash_no_div.style.display='none';
+    upi_no_div.style.display='none';
+	// element2.value="";
+
     }else if(val=='UPI') {
     element.style.display='none';
     mob_no_div.style.display='none';
@@ -5481,7 +5491,7 @@ function validate() {
     
     var valid = true;
     valid = checkEmpty($("#booking_tm_mobile_no")) && checkEmpty($("#booking_amt")) ;
-
+    
         // $("#select_transaction").click(function() {
         //   if($("select").val() == '' && valid!='')
         //   $("#submit_otp").prop( "disabled", true);
@@ -6267,7 +6277,7 @@ function empty() {
  </script>
 
 
-<script type='text/javascript'>
+<!-- <script type='text/javascript'>
   // baseURL variable
   var baseURL= "<?php echo base_url();?>";
  
@@ -6305,7 +6315,48 @@ function empty() {
      });
    });
  });
- </script>
+ </script> -->
+
+ <script type='text/javascript'>
+  // baseURL variable
+  var baseURL = "<?php echo base_url(); ?>";
+
+  $(document).ready(function () {
+    // district change
+    $('#select_qr_upi_no').change(function () {
+      var imageUrl = '<?php echo base_url(); ?>uploads/QR_code_image/';
+      var qr_did = $('#select_qr_upi_no').val();
+
+      qrselectedOption = $("#select_qr_upi_no option:selected");
+      var qr_self_data = qrselectedOption.attr('attr_self');
+      var qr_other_data = qrselectedOption.attr('attr_other');
+
+      // AJAX request
+      $.ajax({
+        url: '<?= base_url() ?>agent/booking_preview/get_QR_code',
+        method: 'post',
+        data: {
+          qr_self_data: qr_self_data,
+          qr_other_data: qr_other_data,
+          qr_did: qr_did
+        },
+        dataType: 'json',
+        success: function (response) {
+          console.log(response);
+
+          // Clear existing images
+          $('#qr_mode_code_image').empty();
+
+          $.each(response, function (index, data) {
+            $('#qr_mode_code_image').append('<img src="' + imageUrl + data['qr_code_image'] + '" alt="' + data['image_name'] + '">');
+          });
+
+        }
+      });
+    });
+  });
+</script>
+
  
 <!-- dependency for booking preview page upi and QR code  -->
 

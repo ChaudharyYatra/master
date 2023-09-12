@@ -62,7 +62,7 @@ class Payment_receipt extends CI_Controller {
         $this->db->join("packages", 'final_booking.package_id=packages.id','left');
         $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','left');
         $payment_receipt = $this->master_model->getRecord('final_booking',array('final_booking.is_deleted'=>'no'),$fields);
-        // print_r($payment_receipt); die;  
+        // print_r($payment_receipt); die;
 
         $payment_rupee = $payment_receipt['booking_amt'];
         $pay= $this->getIndianCurrency($payment_rupee);

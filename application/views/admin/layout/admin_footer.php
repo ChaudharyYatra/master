@@ -8101,6 +8101,60 @@ $('#add_QR_code').validate({ // initialize the plugin
 });
 
 </script>
+<script>
+$(document).ready(function () {
+
+$('#edit_QR_code').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        full_name: {
+            required: true,
+        },
+        role_name: {
+            required: true,
+        },
+        upi_id: {
+            required: true,
+        },
+        old_img_name: {
+            required: true,
+        },
+        other_role: {
+                required: function(element) {
+                    var action = $("#role_name").val();
+                    if (action == "Other") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+    },
+
+    messages :{
+        full_name : {
+            required : "Please Enter Full Name",
+        },
+        role_name : {
+            required : "Please Select Role Name",
+        },
+        other_role : {
+            required : "Please Enter other role Name",
+        },
+        old_img_name : {
+            required : "Please upload QR code image",
+        },
+        upi_id : {
+            required : "Please Enter UPI Id",
+        }
+    }
+});
+
+});
+
+</script>
 <!-- jquery validation on add QR code master -->
 
 <!-- QR code master------------------------------------------------------ -->

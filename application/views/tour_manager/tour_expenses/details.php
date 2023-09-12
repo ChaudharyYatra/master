@@ -2,6 +2,13 @@
   .blink{
     color:red;
   }
+
+  .add_product{
+    border:1px solid gray;
+  }
+  .accordion-button{
+    border: 1px solid gray !important;
+  }
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -117,14 +124,53 @@
                         <?php } ?>
                     </td>
                   </tr>
-
-                  
-                  </table>
+                </table>
               </div>
               
+              <div class="card-body">
+                <div class="accordion accordion-flush" id="accordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <b>Show Added Product Details</b>
+                      </button>
+                    </h2>
+                    <table class="table table-bordered table-bordered collapse hide" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                      <thead>
+                        <tr>
+                          <th>Sr.No</th>
+                          <th>Product Name</th>
+                          <th>Unit</th>
+                          <th>Quantity</th>
+                          <th>Rate</th>
+                          <th>Per Unit Rate</th>
+                        </tr>
+                      </thead>  
+                      
+                      <tbody>
+                      <?php  
+                      $i=1; 
+                      foreach($add_more_tour_expenses_all as $add_more_tour_expenses_all_value) 
+                      { 
+                        ?>
+                        <tr>
+                          <td><?php echo $i; ?></td>
+                          <td><?php echo $add_more_tour_expenses_all_value['expense_category'] ?></td>
+                          <td><?php echo $add_more_tour_expenses_all_value['measuring_unit'] ?></td>
+                          <td><?php echo $add_more_tour_expenses_all_value['quantity'] ?></td>
+                          <td><?php echo $add_more_tour_expenses_all_value['rate'] ?></td>
+                          <td><?php echo $add_more_tour_expenses_all_value['per_unit_rate'] ?></td>
+                        </tr>
+                        <?php $i++; } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
         <br>
         <div class="row">
 
+        
 
             </div>
             <?php } ?>
@@ -140,6 +186,8 @@
     </section>
     <!-- /.content -->
   </div>
+  
+
   
 
 </body>

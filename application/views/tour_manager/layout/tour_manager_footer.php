@@ -5108,8 +5108,15 @@ $('#expenses_add_more').click(function() {
 var structure = $('<div class="row" id="new_row'+i+'">'+
                     '<div class="col-md-3">'+
                         '<div class="form-group">'+
+                        // '<label>Product Name</label>'+
+                        //     '<input type="text" class="form-control" name="product_name[]" id="product_name" placeholder="Enter product name" required>'+
                         '<label>Product Name</label>'+
-                            '<input type="text" class="form-control" name="product_name[]" id="product_name" placeholder="Enter product name" required>'+
+                        '<select class="select_css" name="product_name[]" id="product_name" required>'+
+                            '<option value="">Select Product Name</option>'+
+                            <?php foreach($expense_category as $expense_category_info){ ?>
+                                '<option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>'+
+                            <?php } ?>
+                        '</select>'+
                         '</div>'+
                     '</div>'+
                     '<div class="col-md-1">'+
@@ -5176,4 +5183,80 @@ $(document).on('click', '.expenses_btn_remove', function(){
         }
     }
 </script>
+
+<!-- <script>
+  $(".delete_instruction").click(function() { 
+   
+     var delete_add_more_tour_expenses_id =  $(this).attr('value');
+// alert(delete_instruction_id);
+
+     if(delete_instruction_id!='')
+     {
+          $.ajax({
+                          type: "POST",
+                          url:'<?=base_url()?>tour_manager/tour_expenses/add_more_delete',
+                          data: {request_id: delete_add_more_tour_expenses_id
+                           },
+                         //  dataType: 'json',
+                         //  cache: false,
+                          success: function(response) {
+                              console.log(response);
+                               if (response= true) {
+                                // window.location.href = "<//?=base_url()?>admin/instruction_list/index";
+                                onclick="return confirm('Are You Sure You Want To Delete This Record? ')"
+                              } else {
+                                  alert('error');
+
+                              }
+                          },
+                          
+                      });
+     }
+     // else{
+     //      $('.sendButton').attr("disabled", true);
+     // }
+}); 
+
+</script> -->
+
+<script>
+  $(".delete_instruction").click(function() { 
+   
+     var delete_add_more_tour_expenses_id =  $(this).attr('value');
+     
+     if(delete_add_more_tour_expenses_id !== '')
+     {
+          // Display a confirmation dialog
+          var confirmDelete = confirm('Are You Sure You Want To Delete This Record?');
+
+          if (confirmDelete) {
+              // User clicked "OK," send the AJAX request to delete the record
+              $.ajax({
+                  type: "POST",
+                  url: '<?=base_url()?>tour_manager/tour_expenses/add_more_delete',
+                  data: {
+                      request_id: delete_add_more_tour_expenses_id
+                  },
+                  success: function(response) {
+                      console.log(response);
+                      if (response === true) {
+                          // The record was successfully deleted
+                          alert("Record deleted successfully.");
+                          // You can add further handling here
+                      } else {
+                          alert('Record deleted successfully.');
+                      }
+                  },
+              });
+          }
+     }
+});
+</script>
+
+
+
+
+
+
+
 
