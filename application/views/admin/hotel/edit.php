@@ -63,7 +63,7 @@
                               foreach($city_name_data as $city_name_info) 
                               { 
                           ?>
-                              <option value="<?php echo $city_name_info['id']; ?>" <?php if($city_name_info['id']==$info['city']) { echo "selected"; } ?>><?php echo $city_name_info['city_name']; ?></option>
+                              <option value="<?php echo $city_name_info['id']; ?>" <?php if($city_name_info['id']==$info['city']) { echo "selected"; } ?>><?php echo $city_name_info['district']; ?></option>
                           <?php } ?>
                         </select>
                       </div>

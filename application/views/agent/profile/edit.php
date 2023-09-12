@@ -102,6 +102,73 @@
                             <span id="email_result"></span>
                           </div>
                         </div>
+
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Flat No.</label>
+                            <input type="text" class="form-control" name="flat_no" id="flat_no" placeholder="Enter Flat No." value="<?php if($info){ echo $info['flat_no'];} ?>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Building / House Name</label>
+                            <input type="text" class="form-control" name="building_house_nm" id="building_house_nm" placeholder="Enter Building / House Name" value="<?php if($info){echo $info['building_house_nm'];} ?>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Street Name</label>
+                            <input type="text" class="form-control" name="street_name" id="street_name" placeholder="Enter Street Name" value="<?php if($info){echo $info['street_name'];} ?>">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Landmark</label>
+                            <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Enter Landmark" value="<?php if($info){echo $info['landmark'];} ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>select State</label>
+                                    <select class="select_css" name="agent_state" id="agent_state" required>
+                                            <option value="">Select State</option>
+                                            <?php foreach($state_data as $state_data_value){ ?> 
+                                                <option value="<?php echo $state_data_value['id'];?>" <?php if(isset($info['state_name'])){if($state_data_value['id'] == $info['state_name']) {echo 'selected';}}?>><?php echo $state_data_value['state_name'];?></option>
+                                            <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Select District</label>
+                                    <select class="select_css" name="agent_district" id="agent_district" required>
+                                        <option value="">Select District</option>
+                                        <?php foreach($district_data as $district_data_value){ ?> 
+                                            <option value="<?php echo $district_data_value['id'];?>" <?php if(isset($info['district_name'])){if($district_data_value['id'] == $info['district_name']) {echo 'selected';}}?>><?php echo $district_data_value['district'];?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Select Taluka</label>
+                                    <select class="select_css" name="agent_taluka" id="agent_taluka" required>
+                                        <option value="">Select Taluka</option>
+                                           <?php foreach($taluka_data as $taluka_data_value){ ?> 
+                                            <option value="<?php echo $taluka_data_value['id'];?>" <?php if(isset($info['taluka_name'])){if($taluka_data_value['id'] == $info['taluka_name']) {echo 'selected';}}?>><?php echo $taluka_data_value['taluka'];?></option>
+                                        <?php } ?> 
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                <label>City/Village Name</label>
+                                <input type="text" class="form-control" name="agent_city" id="agent_city" placeholder="Enter City Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $info['city_name']; ?>" required>
+                              </div>
+                            </div>
+
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>PAN Card</label>
@@ -117,14 +184,14 @@
 
                           </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                           <div class="form-group">
                             <label>Office Address</label>
                             <textarea type="text" class="form-control" name="office_address" id="office_address" placeholder="Enter Office Address" value="" required><?php echo $info['fld_office_address']; ?></textarea>
                             <span id="email_result"></span>
                           </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div> -->
+                        <div class="col-md-6">
                           <label>Photo</label>
                           <div class="form-group">
                             <input type="file" name="image_name" id="image_name" placeholder="Enter Photo" value="<?php echo $info['image_name']; ?>">

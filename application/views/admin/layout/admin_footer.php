@@ -704,7 +704,6 @@ $("#image_name_guide").change(function (e) {
  </script>
 
 
-
 <script>
  $(document).ready(function(){
      $('#img_width').hide();
@@ -4335,7 +4334,6 @@ function getAddress()
  
     $('#agent_region').on('change', function () {
       var did = $(this).val();
-    //   alert('ppppppppppppppppppppppppppp');
      
       // AJAX request
       $.ajax({
@@ -6968,7 +6966,7 @@ $('#add_hotel').validate({ // initialize the plugin
           $('#city').find('option').not(':first').remove();
        
           $.each(response,function(index,data){             
-             $('#city').append('<option value="'+data['id']+'">'+data['city_name']+'</option>');
+             $('#city').append('<option value="'+data['id']+'">'+data['district']+'</option>');
           });
         }
      });
@@ -7337,6 +7335,74 @@ $(document).ready(function(){
  });
 </script>
 
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+    // alert('hiiiiii');
+ 
+    // district change
+    $(document).on("change","select",function(){
+        // alert('hiiiiii');
+     
+      var attr_val = $(this).attr('attr-type');
+      var currentRow=$(this).closest("tr"); 
+        // alert(attr_val);
+
+      if(attr_val == 'state'){
+        // alert('if');
+        var did = $(this).val();
+      $.ajax({
+        url:'<?=base_url()?>admin/tour_creation_hotel/get_city',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+        //   $('.city_id').find('option').not(':first').remove();
+          currentRow.find(".city_id").find('option').not(':first').remove();
+       
+            var col3=currentRow.text(); 
+
+          $.each(response,function(index,data){       
+            currentRow.find(".city_id").append('<option value="'+data['id']+'">'+data['city_name']+'</option>');
+          });
+         
+        }
+     });
+    }
+// ------------------------------------------------------------------------------------
+
+       else if(attr_val == 'city'){
+        // alert('else');
+        var did = $(this).val();
+            $.ajax({
+                url:'<?=base_url()?>admin/tour_creation_hotel/get_hotel_name',
+                method: 'post',
+                data: {did: did},
+                dataType: 'json',
+                success: function(response){
+                console.log(response);
+                
+                // $('.hotel_name_id').find('option').not(':first').remove();
+                currentRow.find(".hotel_name_id").find('option').not(':first').remove();
+            
+                $.each(response,function(index,data){       
+                    currentRow.find(".hotel_name_id").append('<option value="'+data['id']+'">'+data['hotel_name']+'</option>');
+                });
+                
+                }
+            });
+        }
+
+
+   });
+ });
+</script>
+
 <!------ package -> hotel add  state wise city display dependency start ---->
 
 <script>
@@ -7420,12 +7486,74 @@ $(document).on("click",'.in_travel',function(){
   $(document).ready(function(){
  
     // district change
+    $('#state_id').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/tour_creation_hotel/get_city',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#city_id').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#city_id').append('<option value="'+data['id']+'">'+data['city_name']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
     $('#city_id').change(function(){
       var did = $(this).val();
     //   alert(did); 
       // AJAX request
       $.ajax({
         url:'<?=base_url()?>admin/package_hotel/get_hotel_name',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#hotel_name_id').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#hotel_name_id').append('<option value="'+data['id']+'">'+data['hotel_name']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+</script>
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#city_id').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/tour_creation_hotel/get_hotel_name',
         method: 'post',
         data: {did: did},
         dataType: 'json',
@@ -7942,6 +8070,42 @@ $('#document_checker').validate({ // initialize the plugin
    });
  });
 </script>
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#year_slot').change(function(){
+      var did = $(this).val();
+      var pid = $('#package_id').val();
+    //   alert(pid); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>admin/tour_creation_dates/get_slot',
+        method: 'post',
+        data: {did: did,pid: pid},
+        dataType: 'json',
+        success: function(response){
+        // console.log(response);
+        // alert(response);
+        
+          $('#single_seat_cost').find('input').not(':first').remove();
+          
+          $.each(response,function(index,data){       
+            // alert(data['single_seat_cost']); 
+            $('#single_seat_cost').val(data['single_seat_cost']);
+            $('#twin_seat_cost').val(data['twin_seat_cost']);
+            $('#three_four_sharing_cost').val(data['three_four_sharing_cost']);
+        });
+         
+        }
+     });
+   });
+ });
+</script>
 <!-- add dates in that select slot  -->
 
 <!-- calendar Max date and min date  -->
@@ -8047,10 +8211,11 @@ $("#approve_service").click(function() {
 </script>
 
 <!-- jquery validation on add QR code master -->
+
 <script>
 $(document).ready(function () {
 
-$('#add_QR_code').validate({ // initialize the plugin
+$('#add_train').validate({ // initialize the plugin
     errorPlacement: function($error, $element) {
     $error.appendTo($element.closest("div"));
   },
@@ -8095,12 +8260,373 @@ $('#add_QR_code').validate({ // initialize the plugin
         upi_id : {
             required : "Please Enter UPI Id",
         }
+        train_name: {
+            required: true,
+        },
+        train_number: {
+            required: true,
+        },
+        train_boarding_station: {
+            required: true,
+        },
+        train_arrival_station: {
+            required: true,
+        },
+        other_stations: {
+            required: true,
+        },
+        "train_coach[]": {
+            required: true,
+        },
+        "running_days[]": {
+            required: true,
+        }
+    },
+
+    messages :{
+        train_name : {
+            required : "Please enter train name",
+        },
+        train_number : {
+            required : "Please enter train number",
+        },
+        train_boarding_station : {
+            required : "Please enter boarding station",
+        },
+        train_arrival_station : {
+            required : "Please enter arrival station",
+        },
+        other_stations : {
+            required : "Please enter other stations",
+        },
+        "train_coach[]": {
+            required : "Please select train coach",
+        },
+        "running_days[]": {
+            required : "Please select running days",
+        },
     }
 });
 
 });
 
 </script>
+
+<script>
+$(document).ready(function () {
+
+$('#edit_train').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        train_name: {
+            required: true,
+        },
+        train_number: {
+            required: true,
+        },
+        train_boarding_station: {
+            required: true,
+        },
+        train_arrival_station: {
+            required: true,
+        },
+        other_stations: {
+            required: true,
+        },
+        "train_coach[]": {
+            required: true,
+        },
+        "running_days[]": {
+            required: true,
+        }
+    },
+
+    messages :{
+        train_name : {
+            required : "Please enter train name",
+        },
+        train_number : {
+            required : "Please enter train number",
+        },
+        train_boarding_station : {
+            required : "Please enter boarding station",
+        },
+        train_arrival_station : {
+            required : "Please enter arrival station",
+        },
+        other_stations : {
+            required : "Please enter other stations",
+        },
+        "train_coach[]": {
+            required : "Please select train coach",
+        },
+        "running_days[]": {
+            required : "Please select running days",
+        },
+    }
+});
+
+});
+
+</script>
+
+<script>
+    $(document).ready(function (){
+        // $(".if_ticket_yes_div").hide();
+
+    $("#Yes").change(function () {
+        var tno = $("#Yes").val();
+        if(tno=='Yes')
+        {
+            $(".if_ticket_yes_div").show();
+        }
+        else
+        {
+            $(".if_ticket_yes_div").hide();
+        }
+        });
+        $("#No").change(function () {
+        var tno = $("#No").val();
+        if(tno=='No')
+        {
+            $(".if_ticket_yes_div").hide();
+        }
+        else if(tno=='No')
+        {
+            $(".if_ticket_yes_div").show();
+        }
+        });
+    });
+</script>
+
+<script>
+
+    var i=1;
+    
+    $('#add_more_place').click(function() {
+        $('.select2').select2()
+       // alert('hhhh');
+            i++;
+            
+var structure = $(`<div class="row" id="new_row`+i+`"> 
+
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Place Name</label>
+                            <input type="text" class="form-control" name="Place_name[]" id="Place_name`+i+`" placeholder="Enter Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                        </div>
+                        </div>
+
+                        <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Opening Time</label>
+                            <input type="time" class="form-control" name="opening_time[]" id="opening_time`+i+`" placeholder="Enter opening time" required="required">
+                        </div>
+                        </div>
+
+                        <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Closing Time</label>
+                            <input type="time" class="form-control" name="closing_time[]" id="closing_time`+i+`" placeholder="Enter closing time" required="required">
+                        </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Open Days</label>
+                            <select class="select2" multiple="multiple" data-placeholder="Select Days" style="width: 100%;" name="open_days[]" id="open_days`+i+`" required="required">
+                                <option value="">Select </option>
+                                <option value="1">Sunday</option>
+                                <option value="2">Monday</option>
+                                <option value="3">Tuesday</option>
+                                <option value="4">Wednesday</option>
+                                <option value="5">Thursday</option>
+                                <option value="6">Friday</option>
+                                <option value="7">Saturday</option>
+                            </select>
+                        </div>
+                        </div>
+
+                        <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Required Time will it take to see this place</label>
+                            <input type="text" class="form-control" name="state_tax[]" id="state_tax`+i+`" placeholder="Enter time" required="required">
+                        </div>
+                        </div>
+
+                        <div class="col-md-3">
+                        <label>Is It Entry Ticket Cost </span></label>
+                        <div class="form-group">
+                            <input type="radio" id="Yes`+i+`" class="ticket_yes_no`+i+`" name="ticket_yes_no[]" value="Yes" > &nbsp;
+                            <label>Yes</label>  &nbsp; &nbsp; 
+                            <input type="radio" id="No`+i+`" class="ticket_yes_no`+i+`" name="ticket_yes_no[]" value="No"> &nbsp;
+                            <label>No</label><br>
+                        </div>
+                        </div>
+                        <div class="col-md-4 if_ticket_yes_div">
+                        <div class="form-group">
+                            <label>Enter Ticket Cost </span></label>
+                            <input type="text" class="form-control if_ticket_yes_no" name="ticket_cost[]" id="ticket_cost`+i+`" placeholder="Enter cost" required="required" />
+                        </div>
+                        </div>
+
+                        <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Allowed Vehicle Types</label>
+                            <select class="select2" multiple="multiple" data-placeholder="Select Vehicle Types" style="width: 100%;" name="allow_vehicle_types[]" id="allow_vehicle_types`+i+`" required="required">
+                                <option value="">Select types</option>
+                                <?php
+                                foreach($vehicle_type as $vehicle_type_info) 
+                                { 
+                                ?>
+                                <option value="<?php echo $vehicle_type_info['id']; ?>"><?php echo $vehicle_type_info['vehicle_type_name']; ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        </div>
+
+                        <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Enter Nearest Railway Station Name</label>
+                            <input type="text" class="form-control" name="railway_station_name[]" id="railway_station_name`+i+`" placeholder="Enter Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                        </div>
+                        </div>
+
+                        <div class="col-md-1 pt-4 d-flex justify-content-center align-self-center">
+                            <div class="form-group">
+                                <label></label>
+                                <button type="button" name="remove" id="`+i+`" class="btn btn-danger btn_remove">X</button>
+                            </div>
+                        </div>
+                    </div>`);
+    $('#main_row').append(structure); 
+    $('.select2').select2()
+
+    // $(".if_ticket_yes_div").hide();
+        
+        $('input[name="ticket_yes_no[]"]').change(function() {
+            if ($(this).val() === 'Yes') {
+                element.closest('.if_ticket_yes_div').show(error);
+                $(".if_ticket_yes_div").show();
+                $('#ticket_cost' + i).prop('required', true);
+            } else {
+                $(".if_ticket_yes_div").hide();
+                $('#ticket_cost' + i).prop('required', false);
+            }
+        });
+
+});
+
+
+$(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#new_row'+button_id+'').remove();  
+      });
+
+</script>
+
+<script>
+$(document).ready(function () {
+
+$('#add_citywise_place_master').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        "Place_name[]": {
+            required: true,
+        },
+        "open_days[]": {
+            required: true,
+        },
+        "allow_vehicle_types[]": {
+            required: true,
+        }
+    },
+
+    messages :{
+        "Place_name[]": {
+            required : "Please enter name",
+        },
+        "open_days[]": {
+            required : "Please select days",
+        },
+        "allow_vehicle_types[]": {
+            required : "Please select vehicle types",
+        },
+    }
+});
+
+});
+
+</script>
+
+<!-- jquery validation on add QR code master -->
+
+<script>
+
+$(document).ready(function () {
+
+$('#add_QR_code').validate({ // initialize the plugin
+    errorPlacement: function($error, $element) {
+    $error.appendTo($element.closest("div"));
+  },
+    rules: {
+        full_name: {
+            required: true,
+        },
+        role_name: {
+            required: true,
+        },
+        upi_id: {
+            required: true,
+        },
+        image_name: {
+            required: true,
+        },
+        other_role: {
+                required: function(element) {
+                    var action = $("#role_name").val();
+                    if (action == "Other") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+    },
+
+    messages :{
+        full_name : {
+            required : "Please Enter Full Name",
+        },
+        role_name : {
+            required : "Please Select Role Name",
+        },
+
+        other_role : {
+            required : "Please Enter other role Name",
+        },
+
+        image_name : {
+            required : "Please upload QR code image",
+        },
+
+        upi_id : {
+            required : "Please Enter UPI Id",
+        }
+
+    }
+
+});
+
+
+});
+
+</script>
+
 <script>
 $(document).ready(function () {
 
@@ -8214,3 +8740,410 @@ $('#edit_measuring_type').validate({ // initialize the plugin
 
 
 
+
+<!--  -->
+
+<script>
+    $(document).ready(function () {
+        var newFields = $();
+
+        $("#tour_creation_total_days").keyup(function (e) {
+            e.preventDefault();
+            var n = this.value || 0;
+            $('#myInput').val(n);
+
+            if (n >= 0) {
+                if (n > newFields.length) {
+                    addFields(n);
+                } else {
+                    removeFields(n);
+                }
+            } else {
+                // If total days is less than 1, clear the accordion
+                $("#accordion").empty();
+            }
+        });
+
+        function addFields(n) {
+            for (var i = 0; i < n; i++) {
+                var day = i + 1;
+                var input = `
+                    <div class="card">
+                        <div class="card-header" id="heading${day}" data-toggle="collapse" data-target="#collapse${day}" aria-expanded="false" aria-controls="collapse${day}">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" >
+                                    Day ${day} Fields
+                                    <i class="rotate-icon"></i>
+                                </button>
+                            </h5>
+                        </div>
+                        
+                        <div id="collapse${day}" class="collapse" aria-labelledby="heading${day}" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Day Number <span class="text-danger">*</label>
+                                                    <input type="number" readonly class="form-control" name="day_number[]" id="day_number" placeholder="Enter Day Number" required value="${day}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Select District <span class="text-danger">*</label>
+                                                <select class="select_css district" name="district[]" attr_district="district" required="required" attr_day="${day}">
+                                                    <option value="">Select district</option>
+                                                    <?php
+                                                    foreach($district_data as $district_info){ 
+                                                    ?>
+                                                    <option value="<?php echo $district_info['select_district']; ?> "><?php echo $district_info['district']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <table border="1" class="table table-bordered" id="table_${day}">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Sr no.</th>
+                                                                <th>Places <span class="text-danger">*</th>
+                                                                <th>Time <span class="text-danger">*</th>
+                                                                <th>Visit Time <span class="text-danger">*</th>
+                                                                <th>Details</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>${day}</td>
+                                                                <td>
+                                                                    <select class="select_css place_name${day}" name="place_name[]" id="place_name" attr_time="${day}" required="required">
+                                                                        <option value="">Select Place</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td><input readonly type="input" name="time[]" id="time" value=""></td>
+                                                                <td><input type="time" class="form-control" name="visit_time[]" id="visit_time" placeholder="Enter Visit Time" required></td>
+                                                                <td><input type="text" class="form-control" name="details[]" id="details" placeholder="Enter Details"></td>
+                                                                <td>
+                                                                    <button class="btn btn-success add-row" id="add_tr${day}" type="button" data-day="${day}">Add row</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label style="display: block;">Upload Image ${day} <span class="text-danger">*</label>
+                                                    <input type="file" name="image_name[]" id="image_name" required="required">
+                                                    <br><span class="text-danger">Please select only JPG, PNG, JPEG format files.</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Itinerary For Day ${day} <span class="text-danger">*</span></label>
+                                                    <textarea class="form-control iternary_desc" name="iternary_desc[]" id="" placeholder="Enter Itinerary Description" required="required"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success add-row_district" type="button" data-day="${day}">Add another district</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>`;
+                var newInput = $(input);
+                newFields = newFields.add(newInput);
+                newInput.appendTo('#accordion');
+            }
+                // Add a click event handler for the "Add row" buttons
+                var p=1;
+                $('#accordion').on('click', '.add-row', function () {
+                    p++;
+                    var day = $(this).attr('data-day');
+                    
+                    var newRow = $(`
+                        <tr>
+                            <td>${p}</td>
+                            <td>
+                                <select class="select_css place_name${day}" name="place_name[]" id="place_name" required="required">
+                                <option value="">Select Place</option>
+                                </select>
+                            </td>
+                            <td><input readonly type="input" name="time[]" id="time" value=""></td>
+                            <td><input type="time" class="form-control" name="visit_time[]" id="visit_time" placeholder="Enter Visit Time" required></td>
+                            <td><input type="text" class="form-control" name="details[]" id="details" placeholder="Enter Details"></td>
+                            <td>
+                                <button class="btn btn-danger remove-row" type="button">Remove</button>
+                            </td>
+                        </tr>
+                    `);
+
+                    // Append the new row to the table
+                    // console.log(newRow);
+                    $(`#table_${day}`).append(newRow);
+
+                                    // district change
+
+            var totaldays = $('#tour_creation_total_days').val();
+            var district_id = $("[attr_day=" + day + "]").val();
+
+        $.ajax({
+            url:'<?=base_url()?>admin/tour_creation_iternary/getplaces',
+            method: 'post',
+            data: {did: district_id},
+            dataType: 'json',
+            success: function(response){
+               var place_name= newRow.find('.place_name'+day);
+               place_name.empty();
+               place_name.append('<option value="">Select Place</option>');
+
+            $.each(response,function(index,data){  
+                place_name.append('<option value="'+data['id']+'">'+data['place_name']+'</option>');
+            });
+            }
+        });
+        
+
+                    // Add a click event handler for the "Remove" buttons in the newly added row
+                    $('.remove-row').click(function () {
+                        $(this).closest('tr').remove();
+                    });
+                });
+
+                var xyz=1;
+                $('.add-row_district').click(function () {
+                    xyz++;
+                    
+                    var day = $(this).data('day');
+                    var new_district_day = `
+                        
+                            <div class="card-body new_district${day}">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="tour_day_number[]" id="tour_day_number" placeholder="Enter Day Number" value="${day}_${xyz}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Day Number <span class="text-danger">*</label>
+                                                    <input type="number" readonly class="form-control" name="day_number[]" id="day_number" placeholder="Enter Day Number" value="${day}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Select District <span class="text-danger">*</label>
+                                                <select class="select_css district" name="district[]" attr_district="district" required="required" attr_day="${day}_${xyz}">
+                                                <option value="">Select Place</option>
+                                                    <?php
+                                                    foreach($district_data as $district_info){ 
+                                                    ?>
+                                                    <option value="<?php echo $district_info['select_district']; ?> "><?php echo $district_info['district']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <table border="1" class="table table-bordered" id="table_${day}_${xyz}">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Sr no.</th>
+                                                                <th>Places <span class="text-danger">*</th>
+                                                                <th>Time <span class="text-danger">*</th>
+                                                                <th>Visit Time <span class="text-danger">*</th>
+                                                                <th>Details</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>${day}</td>
+                                                                <td>
+                                                                    <select class="select_css place_name${day}_${xyz}" name="place_name[]" id="place_name" attr_time="${day}" required="required">
+                                                                        <option value="">Select district</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td><input readonly type="input" name="time[]" id="time" value=""></td>
+                                                                <td><input type="time" class="form-control" name="visit_time[]" id="visit_time" placeholder="Enter Visit Time" required></td>
+                                                                <td><input type="text" class="form-control" name="details[]" id="details" placeholder="Enter Details"></td>
+                                                                <td>
+                                                                    <button class="btn btn-success add-row" type="button" data-day="${day}_${xyz}">Add row</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label style="display: block;">Upload Image ${day} <span class="text-danger">*</label>
+                                                    <input type="file" name="image_name[]" id="image_name" required="required">
+                                                    <br><span class="text-danger">Please select only JPG, PNG, JPEG format files.</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Itinerary For Day ${day} <span class="text-danger">*</span></label>
+                                                    <textarea class="form-control iternary_desc" name="iternary_desc[]" id="" placeholder="Enter Itinerary Description" required="required"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-danger remove_d_row" type="button">Remove</button>
+                                </div>
+                            </div> `;
+
+                    // Append the new row to the table
+                    $(`#accordion #collapse${day}`).append(new_district_day);
+                    // Add a click event handler for the "Remove" buttons in the newly added row
+                    $('.remove_d_row').click(function () {
+                        $(this).closest(`.new_district${day}`).remove();
+                    });
+                });
+        }
+
+        function removeFields(n) {
+            var removeField = newFields.slice(n).remove();
+            newFields = newFields.not(removeField);
+        }
+
+        // Add event listener to update the arrow icon when the accordion is clicked
+        $('#accordion').on('shown.bs.collapse', function (e) {
+            $(e.target)
+                .prev()
+                .find('.rotate-icon')
+                .addClass('collapsed');
+        });
+
+        $('#accordion').on('hidden.bs.collapse', function (e) {
+            $(e.target)
+                .prev()
+                .find('.rotate-icon')
+                .removeClass('collapsed');
+        });
+    });
+</script>
+
+
+<script type='text/javascript'>
+    // baseURL variable
+    var baseURL= "<?php echo base_url();?>";
+    
+    $(document).ready(function(){
+    
+        // district change
+        $(document).on("change",".district",function(){
+            var totaldays = $('#tour_creation_total_days').val();
+            var district_id = $(this).val();
+            var day_no = $(this).attr('attr_day');
+
+        $.ajax({
+            url:'<?=base_url()?>admin/tour_creation_iternary/getplaces',
+            method: 'post',
+            data: {did: district_id},
+            dataType: 'json',
+            success: function(response){
+
+            var closestTable = $(this).closest("table");
+
+            console.log(closestTable.closest("tr"));
+
+                $('.place_name'+day_no).find('option').not(':first').remove();
+            $.each(response,function(index,data){   
+                $('.place_name'+day_no).append('<option value="'+data['id']+'">'+data['place_name']+'</option>');
+            });
+            
+            }
+        });
+        });
+    });
+</script>
+
+<script type='text/javascript'>
+    // baseURL variable
+    var baseURL= "<?php echo base_url();?>";
+    
+    $(document).ready(function(){
+        // district change
+        $(document).on("change",".district",function(){
+            var totaldays = $('#tour_creation_total_days').val();
+            var district_id = $(this).val();
+            var day_no = $(this).attr('attr_day');
+        $.ajax({
+            url:'<?=base_url()?>admin/tour_creation_iternary/getplaces',
+            method: 'post',
+            data: {did: district_id},
+            dataType: 'json',
+            success: function(response){
+            
+            var closestTable = $(this).closest("table");
+
+                $('.place_name'+day_no).find('option').remove();
+                $('.place_name'+day_no).append('<option value="">Select Place</option>');
+            $.each(response,function(index,data){   
+                $('.place_name'+day_no).append('<option value="'+data['id']+'">'+data['place_name']+'</option>');
+            });
+            }
+        });
+        });
+    });
+</script>
+
+<!--  -->
+
+<script type='text/javascript'>
+    // baseURL variable
+    var baseURL = "<?php echo base_url(); ?>";
+
+    $(document).ready(function () {
+
+        // district change
+        $(document).on("change", "#place_name", function () {
+
+            var time_data = $(this).val();
+            // alert(time_data);
+
+            var closestTr = $(this).closest("tr");
+
+            $.ajax({
+                url: '<?= base_url() ?>admin/tour_creation_iternary/gettime',
+                method: 'post',
+                data: { did: time_data },
+                dataType: 'json',
+                success: function (response) {
+
+                    // Find the input element within the same row and update its value
+                    var timeInput = closestTr.find('input[name="time[]"]');
+                    timeInput.val(response[0]['req_time']);
+
+                    // If you expect multiple time values and want to append them to the same input field, you can use the following code
+                    // var timeInput = closestTr.find('input[name="time"]');
+                    // $.each(response, function (index, data) {
+                    //     timeInput.val(timeInput.val() + data['req_time'] + ' '); // Append values with a space separator
+                    // });
+
+                }
+            });
+        });
+    });
+</script>
+
+<!-- <script>
+    $(document).on("change","select",function(){
+        var selectedOption=$(this).val();
+        var select_name=$(this).attr('place_name');
+        var select_id=$(this).attr('id');
+
+        $('#place_name').find('option[value="' + selectedOption + '"]').prop('disabled', true);
+
+        $('#'+select_id).find('option[value="' + selectedOption + '"]').prop('disabled', false);
+    });
+
+</script> -->

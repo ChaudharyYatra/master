@@ -60,11 +60,41 @@
                     <td><?php echo $info['fld_GST_number']; ?></td>
                     <th>PAN Card</th>
                     <td><?php echo $info['fld_pan_number']; ?></td>
-                    <th>Office Address</th>
-                    <td><?php echo $info['fld_office_address']; ?></td>
+                    <th>Flat No.</th>
+                    <td><?php echo $info['flat_no']; ?></td>
                   </tr>
 
                   <tr>
+                      
+                    <th>Building / House Name</th>
+                    <td><?php echo $info['building_house_nm']; ?></td>
+					  
+                    <th>Street Name</th>
+                    <td><?php echo $info['street_name']; ?></td>
+
+                    <th>Landmark</th>
+                    <td><?php echo $info['landmark']; ?></td>
+
+                  </tr>
+
+                  <tr>
+                      
+                    <th>State</th>
+                    <td><?php echo $info['state_name']; ?></td>
+            
+                    <th>District Name</th>
+                    <td><?php echo $info['district']; ?></td>
+
+                    <th>Taluka</th>
+                    <td><?php echo $info['taluka']; ?></td>
+
+                  </tr>
+
+                  <tr>
+
+                    <th>City</th>
+                    <td><?php echo $info['city_name']; ?></td>
+                    
                     <th>Registration Date</th>
                     <td><?php echo $info['fld_registration_date']; ?></td>
                     

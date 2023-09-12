@@ -47,131 +47,187 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/slider/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Slider</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/website_basic_structure/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Website Basic Structure</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/core_features/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Core Features</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/about_us/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>About Us</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/privacy_policy/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Privacy Policy</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/terms_conditions/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Terms and Conditions</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/academic_year/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Academic Year</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/department/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Department</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/client_reviews/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Client Reviews</p>
-                </a>
-               </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/tour_guides/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Our Experts</p>
-                </a>
-               </li>
-               
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  CMS Master
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                
                 <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/tour_cancel_rules/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tour Cancel Rules</p>
-                </a>
-               </li>
-               
+                  <a href="<?php echo base_url(); ?>admin/slider/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Slider</p>
+                  </a>
+                </li>
+                
                 <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/seat_reservation_rules/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Seat Reservation Rules</p>
-                </a>
-               </li>
+                  <a href="<?php echo base_url(); ?>admin/website_basic_structure/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Website Basic Structure</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/core_features/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Core Features</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/about_us/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>About Us</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/privacy_policy/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Privacy Policy</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/terms_conditions/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Terms and Conditions</p>
+                  </a>
+                </li>
 
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/gallery/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Gallery</p>
-                </a>
-               </li>
-				
-				        <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/award/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Awards</p>
-                </a>
-               </li>
-				
-			          <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/faq/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                   <p>FAQ</p>
-                </a>
-               </li>
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/client_reviews/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Client Reviews</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/tour_guides/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Our Experts</p>
+                  </a>
+                </li>
 
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/agent_percentage/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                   <p>Agent Percentage</p>
-                </a>
-               </li>
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/gallery/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Gallery</p>
+                  </a>
+                </li>
+          
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/award/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Awards</p>
+                  </a>
+                </li>
+          
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/faq/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>FAQ</p>
+                  </a>
+                </li>
 
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/media_source/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                   <p>Media Source</p>
-                </a>
-               </li>
-				
-				      <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/relation/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                   <p>Relation</p>
-                </a>
-               </li>
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/tour_cancel_rules/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tour Cancel Rules</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/seat_reservation_rules/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Seat Reservation Rules</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Booking Master / Package Master
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/academic_year/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Academic Year</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/department/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Department</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/agent_percentage/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Agent Percentage</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/media_source/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Media Source</p>
+                  </a>
+                </li>
+          
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/relation/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Relation</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/followup_reason/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Followup Reason</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/hotel_type/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Hotel Type</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/bus_master/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Bus Type</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/package_type/index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Package Type</p>
+                  </a>
+                </li>
+                
+              </ul>
+            </li>
+          
 
                <li class="nav-item">
                 <a href="<?php echo base_url(); ?>admin/stationary/index" class="nav-link">
@@ -186,14 +242,6 @@
                    <p>Courier Company Name</p>
                 </a>
                </li>
-
-
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/followup_reason/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                   <p>Followup Reason</p>
-                </a>
-               </li>
 				
 				      <li class="nav-item">
                 <a href="<?php echo base_url(); ?>admin/region_head/index" class="nav-link">
@@ -201,19 +249,7 @@
                    <p>Region Head Master</p>
                 </a>
                </li>
-               
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/hotel_type/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Hotel Type</p>
-                </a>
-               </li>
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/bus_master/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bus Type</p>
-                </a>
-               </li>
+
                <li class="nav-item">
                 <a href="<?php echo base_url(); ?>admin/boarding_expenses_master/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -226,12 +262,7 @@
                   <p>Zone Master</p>
                 </a>
                </li>
-               <li class="nav-item">
-                <a href="<?php echo base_url(); ?>admin/package_type/index" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Package Type</p>
-                </a>
-               </li>
+               
                <li class="nav-item">
                 <a href="<?php echo base_url(); ?>admin/expense_type/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -326,12 +357,26 @@
                 <a href="<?php echo base_url(); ?>admin/measuring_unit/index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Measuring Unit Master</p>
+                <a href="<?php echo base_url(); ?>admin/train_master/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Train Master</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/citywise_place_master/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Citywise PlaceMaster</p>
+                </a>
+               </li>
+               <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/expences_checker_master/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Expences Checker Master</p>
                 </a>
                </li>
 
             </ul>
           </li>
-          
           
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -406,6 +451,26 @@
                 Vehicle Driver
               </p>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Tour Creation Module
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+               
+              <li class="nav-item">
+                <a href="<?php echo base_url(); ?>admin/tour_creation/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tour create</p>
+                </a>
+               </li>
+               
+            </ul>
           </li>
 
           <li class="nav-item">

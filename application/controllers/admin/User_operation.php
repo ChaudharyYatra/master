@@ -259,7 +259,8 @@ class User_operation extends CI_Controller{
         }   
         
         $fields = "supervision.*";
-        // $this->db->order_by('agent.arrange_id','asc');        
+        // $this->db->order_by('agent.arrange_id','asc');  
+        $this->db->where('id',$id);        
         $this->db->where('supervision.is_deleted','no');        
         // $this->db->join("department", 'agent.department=department.id','left');
         $arr_data = $this->master_model->getRecords('supervision',array('supervision.is_deleted'=>'no'),$fields);
