@@ -528,11 +528,7 @@ $(document).ready(function() {
                                             $relation_data
                                             as $relation_data_info
                                         ) { ?>
-                                        <option value="<?php echo $relation_data_info[
-                                            "id"
-                                        ]; ?>"><?php echo $relation_data_info[
-    "relation"
-]; ?></option>
+                                        <option value="<?php echo $relation_data_info["id"]; ?>"><?php echo $relation_data_info["relation"]; ?></option>
                                         <?php } ?>
                                     </select>
                                     </td>
@@ -1773,7 +1769,7 @@ $(document).ready(function() {
 <!-- bus seat selection form  boarding office location start -->
 <script type='text/javascript'>
 // baseURL variable
-var baseURL = "<?php echo base_url(); ?>";
+var baseURL = "<?php //echo base_url(); ?>";
 
 // $(document).ready(function() {
 //     // if (enq_id != '') {
@@ -1782,7 +1778,7 @@ var baseURL = "<?php echo base_url(); ?>";
 //         //alert(enq_id); 
 //         // AJAX request
 //         $.ajax({
-//             url: '<?= base_url() ?>agent/booking_basic_info/getBlock',
+//             url: '<?//= base_url() ?>agent/booking_basic_info/getBlock',
 //             method: 'post',
 //             data: {
 //                 did: did
@@ -6042,3 +6038,68 @@ function empty() {
         });
     });
 </script>
+
+<!-- Agent add info (state,district,taluka) start -->
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#agent_state').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>agent/profile/get_district',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#agent_district').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#agent_district').append('<option value="'+data['id']+'">'+data['district']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+ </script>
+
+<script type='text/javascript'>
+  // baseURL variable
+  var baseURL= "<?php echo base_url();?>";
+ 
+  $(document).ready(function(){
+ 
+    // district change
+    $('#agent_district').change(function(){
+      var did = $(this).val();
+    //   alert(did); 
+      // AJAX request
+      $.ajax({
+        url:'<?=base_url()?>agent/profile/get_taluka',
+        method: 'post',
+        data: {did: did},
+        dataType: 'json',
+        success: function(response){
+        console.log(response);
+        
+          $('#agent_taluka').find('option').not(':first').remove();
+       
+          $.each(response,function(index,data){       
+             $('#agent_taluka').append('<option value="'+data['id']+'">'+data['taluka']+'</option>');
+          });
+         
+        }
+     });
+   });
+ });
+ </script>
+
+ <!-- -------------------------------- -->

@@ -209,7 +209,7 @@ class District extends CI_Controller{
                     $state_id = $this->input->post('state_id');
                     $district = $this->input->post('district');
 
-                   $this->db->where('district',$district);
+                    $this->db->where('district',$district);
                     $this->db->where('id!='.$id);
                     $this->db->where('is_deleted','no');
                     $city_exist_data = $this->master_model->getRecords('district_table');

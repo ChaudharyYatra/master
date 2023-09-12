@@ -176,7 +176,7 @@
                                  
                                 <td>
                                 <input type="radio" id="yes" name="for_credentials[]" value="<?php echo $all_traveller_info_value['id']; ?>" <?php if(isset($all_traveller_info_value['for_credentials'])){if($all_traveller_info_value['for_credentials']=='yes'){echo "checked";}} ?> required>
-                          
+                                
                                 </td>
                                 <td>
                                     <select class="select_css row_set1" name="mrandmrs[]" id="mrandmrs">
@@ -275,7 +275,7 @@
                                 $img_count=$i+1;
                                 $traveller_id = $all_traveller_info_tble_id+$i;
                             ?>
-                            <tr>
+                            <tr class="dynamic-row">
 
                             <input type="hidden" name="traveller_id[]" value="<?php echo $traveller_id; ?>" required>
 

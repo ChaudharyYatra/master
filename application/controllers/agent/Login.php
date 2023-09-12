@@ -32,6 +32,7 @@ class Login extends CI_Controller{
               $this->db->where('mobile_number1',$mobile_number1);
               $this->db->where('password',$Pass_login);
               $this->db->where('is_active','yes');
+              $this->db->where('is_deleted','no');
               $arr_data = $this->master_model->getRecords('agent');       
                      
                 if(empty($arr_data))

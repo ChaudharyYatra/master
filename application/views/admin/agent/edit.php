@@ -181,13 +181,13 @@
                                 <input type="file" name="logo_photo" id="logo_photo" placeholder="Logo Photo" >
                               </div>
                         </div> -->
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                               <div class="form-group">
                                 <label>Email Address</label>
                                 <input type="email" class="form-control" name="email" id="email_edit" placeholder="Enter Email Address" value="<?php echo $info['email']; ?>" required>
                                 <span id="email_result"></span>
                               </div>
-                      </div>
+                      </div> -->
                       <div class="col-md-6">
                               <div class="form-group">
                                 <label>Registration Date</label>

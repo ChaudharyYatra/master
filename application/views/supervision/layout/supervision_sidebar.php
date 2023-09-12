@@ -106,6 +106,15 @@
           </li>
 
           <li class="nav-item">
+            <a href="<?php echo base_url(); ?>tour_operation_manager/assign_expences_checker/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Assign Expences Checker
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -492,7 +501,50 @@
             </a>
            </li>
         </ul>
-        <?php } ?>
+        <?php } elseif($this->session->userdata['supervision_role']=='9'){?>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+                <a href="<?php echo base_url(); ?>expences_checker/dashboard/index" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+            </li>
+
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>expences_checker/tour_expenses/index" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               Tour Expenses
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>expences_checker/profile/index" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               Profile
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url(); ?>expences_checker/change_password/change_password" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+              Change Password
+              </p>
+            </a>
+          </li>
+               
+           <li class="nav-item">
+            <a href="<?php echo base_url(); ?>supervision/login/logout" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+           </li>
+        </ul>
+
+        <?php }?>
 
       </nav>
       <!-- /.sidebar-menu -->
