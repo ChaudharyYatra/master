@@ -191,7 +191,7 @@
                                 <div class="row" id="expenses_main_row">
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Expense Head</label>
+                                            <label>Product Name</label>
                                                 <select class="select_css" name="product_name[]" id="product_name" required>
                                                     <option value="">Select Product Name</option>
                                                     <?php foreach($expense_category as $expense_category_info){ ?> 
@@ -199,12 +199,11 @@
                                                     <?php } ?>
                                                 </select>
                                         </div>
-
-                                        <!-- <div class="form-group">
+                                    </div>
+                                    <!-- <div class="form-group">
                                         <label>Product Name</label>
                                             <input type="text" class="form-control" name="product_name[]" id="product_name" placeholder="Enter product name" required>
                                         </div> -->
-                                    </div>
                                     <div class="col-md-1">
                                         <div class="form-group">
                                         <label>Unit</label>
@@ -232,7 +231,7 @@
                                     <div class="col-md-2 d-flex justify-content-center">
                                         <div class="form-group">
                                             <label></label>
-                                            <button type="button" class="btn btn-primary add_more_css" name="submit" value="expenses_add_more" id="expenses_add_more">Add More Dates</button>
+                                            <button type="button" class="btn btn-primary add_more_css" name="submit" value="expenses_add_more" id="expenses_add_more">Add More</button>
                                         </div>
                                     </div> 
                                 </div>
@@ -295,7 +294,7 @@
     <!-- /.content -->
   </div>
   
-  <!-- tour expenses in that single and multiple click script-->
+<!-- tour expenses in that single and multiple click script-->
 <script>
     function sub(){
     document.getElementById('sub_main_tour_div1').style.display = 'block';

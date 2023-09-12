@@ -27,8 +27,8 @@
         height:40%;
     }
     #qr_mode_code_image img{
-        width:40%;
-        height:40%;
+        width:100%;
+        height:100%;
     }
 </style>
 <!-- Content Wrapper. Contains page content -->
@@ -680,8 +680,8 @@
 
                             <div class="" id="upi_no_div" style='display:none;'>
                                 <div class="row cash_payment_div">
-                                    <div class="col-md-6 mt-1">
-                                        <h6 class="text-center">UPI ID Holder Name</h6>
+                                    <div class="col-md-5 mt-1">
+                                        <h6 class="text-center float-right">UPI ID Holder Name</h6>
                                     </div>
                                     <div class="col-md-6">
                                         <select class="select_css"  name="select_upi_no" id="select_upi_no" required="required" onchange="transaction_upi_validate()">
@@ -698,8 +698,8 @@
                                     </div>
 
                                     <!-- <div id="upi_no_reason_div" style='display:none;'> -->
-                                        <div class="col-md-6 mt-2">
-                                            <h6 class="text-center">Payment Type</h6>
+                                        <div class="col-md-5 mt-2">
+                                            <h6 class="text-center float-right">Payment Type</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <select class="select_css" name="upi_payment_type" id="upi_payment_type" onchange="payment_type_validate()">
@@ -713,22 +713,22 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-md-6 mt-2">
-                                            <h6 class="text-center">UPI ID Number</h6>
+                                        <div class="col-md-5 mt-2">
+                                            <h6 class="text-center float-right">UPI ID Number</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <input type="text" readonly class="form-control" name="self_upi_no" id="self_upi_no" placeholder="Enter Self UPI ID" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                         </div>
 
-                                        <div class="col-md-6 mt-2">
-                                            <h6 class="text-center">UTR No</h6>
+                                        <div class="col-md-5 mt-2">
+                                            <h6 class="text-center float-right">UTR No</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <input type="text" class="form-control" name="upi_no" id="upi_no" onkeyup="utr_no_validate()" placeholder="Enter Transaction Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                                         </div>
 
-                                        <div class="col-md-6 mt-2">
-                                            <h6 class="text-center">reason</h6>
+                                        <div class="col-md-5 mt-2">
+                                            <h6 class="text-center float-right">reason</h6>
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <input type="text" class="form-control" name="reason" id="reason" onkeyup="reason_validate()" placeholder="Enter Reason" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">

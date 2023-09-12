@@ -25,7 +25,7 @@ class Add_qr_code extends CI_Controller{
         $this->db->where('qr_code_master.is_deleted','no');
         $this->db->join("role_type", 'qr_code_master.role_name=role_type.id','left');
         $arr_data = $this->master_model->getRecords('qr_code_master',array('qr_code_master.is_deleted'=>'no'),$fields);
-        
+        // print_r($arr_data); die;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = $this->module_title." List";
@@ -196,7 +196,7 @@ class Add_qr_code extends CI_Controller{
             $arr_data = $this->master_model->getRecords('qr_code_master');
             if($this->input->post('submit'))
             {
-                $this->form_validation->set_rules('title', 'Title', 'required');
+                $this->form_validation->set_rules('full_name', 'full_name', 'required');
                 // $this->form_validation->set_rules('image_name','Image', '');
                 if($this->form_validation->run() == TRUE)
                 {
@@ -256,14 +256,20 @@ class Add_qr_code extends CI_Controller{
                 }
                
                 
-                $title = trim($this->input->post('title'));
+                $full_name = trim($this->input->post('full_name'));
+                $role_name = trim($this->input->post('role_name'));
+                $other_role = trim($this->input->post('other_role'));
+                $upi_id = trim($this->input->post('upi_id'));
                 $arr_update = array(
-                    'title'   => $title,
-                    'qr_code_image'    => $filename
+                    'full_name'  => $full_name,
+                    'Role_name'  => $role_name,
+                    'other_role_name'  => $other_role,
+                    'qr_code_image'      => $filename,
+                    'upi_id'  => $upi_id
                 );
                 
                     $arr_where     = array("id" => $id);
-                    $this->master_model->updateRecord('award',$arr_update,$arr_where);
+                    $this->master_model->updateRecord('qr_code_master',$arr_update,$arr_where);
                     if($id > 0)
                     {
                         $this->session->set_flashdata('success_message',$this->module_title." Information Updated Successfully.");
