@@ -167,5 +167,28 @@ $('#changepassword').validate({ // initialize the plugin
 
 </script>
 
+<script>
+    $(document).ready(function() {
+        // Handle Approve button click
+        $('#approveButton').click(function() {
+            // Perform actions when the Approve button is clicked
+        });
 
+        // Handle Hold button click to toggle the Hold section
+        $('#holdButton').click(function() {
+            $('#holdSection').toggle(); // Toggle the visibility of the Hold section
+        });
+
+        // Handle form submission when the Hold button is clicked
+        $('#holdForm').submit(function(e) {
+            e.preventDefault(); // Prevent the default form submission
+            const holdReason = $('#holdReason').val();
+            
+            // Here, you can send the hold reason to your server for processing
+            
+            // Optionally, hide the Hold section again after submission
+            $('#holdSection').hide();
+        });
+    });
+</script>
 

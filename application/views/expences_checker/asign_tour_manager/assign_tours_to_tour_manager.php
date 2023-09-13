@@ -64,8 +64,8 @@
                         </button>
                         <div class="dropdown-menu" role="menu">
                        
-                          <!-- <a href="<?php //echo $module_url_path;?>/assign_tours_to_tour_manager/<?php //$aid=base64_encode($info['tour_manager_name']); 
-					                 // echo rtrim($aid, '='); ?>" class="itinerary_css"><button class="dropdown-item">Show Expences</button></a> -->
+                          <a href="<?php echo $module_url_path;?>/tourwise_expences/<?php $aid=base64_encode($info['name']); 
+					                  echo rtrim($aid, '='); ?>/<?php $aid=base64_encode($info['package_date_id']); echo rtrim($aid, '='); ?>" class="itinerary_css"><button class="dropdown-item">Show Expences</button></a>
 							            
                         </div>
                       </div>
