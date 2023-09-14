@@ -38,7 +38,7 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Select role </label>
+                        <label>Select Tour Manager </label>
                         <select class="select_css" attr_name="role" name="tour_manager_name" id="tour_manager_name" required="required">
                         <option value="">select role</option>
                           <?php
@@ -53,7 +53,7 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Name </label>
+                        <label>Select Expences Checker </label>
                         <select class="select_css" name="expences_checker_name" id="expences_checker_name" required="required">
                           <option value="">select name</option>
                           <?php
@@ -65,7 +65,7 @@
                       </div>
                     </div>
 
-                    <!-- <input type="hidden" class="form-control" name="tour_manager_id" id="tour_manager_id" value="<?php echo $id ?>"> -->
+                    <!-- <input type="hidden" class="form-control" name="tour_manager_id" id="tour_manager_id" value="<?php //echo $id ?>"> -->
                     
 
                   </div>  

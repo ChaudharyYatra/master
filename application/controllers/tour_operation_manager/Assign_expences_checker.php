@@ -139,7 +139,7 @@ class Assign_expences_checker extends CI_Controller{
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['tour_manager_name']        = $tour_manager_name;
         $this->arr_view_data['expences_checker_name']        = $expences_checker_name;
-        $this->arr_view_data['id']        = $id;
+        $this->arr_view_data['iid']        = $iid;
         $this->arr_view_data['action']          = 'add';
         $this->arr_view_data['page_title']      = " Assign Staff";
         $this->arr_view_data['module_title']    = $this->module_title;
