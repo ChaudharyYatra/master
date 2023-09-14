@@ -192,3 +192,86 @@ $('#changepassword').validate({ // initialize the plugin
     });
 </script>
 
+<!-- this link for sweet alert -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<!-- anove link for sweet alert -->
+
+<script>  
+ $(document).ready(function(){
+  $(".approve").click(function() {   
+    // alert('hii');
+    var did = $('#expense_id').val();
+    // alert(did);
+          var attr_approve =$(this).attr('attr_approve');
+          //  alert(attr_approve);
+
+           
+           if(attr_approve != '' && did != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>expences_checker/asign_tour_manager/get_approve",  
+                     method:"post",  
+                     data:{attr_approve:attr_approve , did:did},  
+                     dataType: 'json',
+                     success:function(responce){ 
+                      // alert('alert done');
+                         if(responce = 'true')
+                         {
+                          console.log('now done'); 
+                          // alert('This Expence is Approve Now');
+                          swal("Success", "This Expense is Approved Now", "success");
+                          setTimeout(function(){
+                            location.reload();
+                        }, 4000); 
+                              // alert(responce);
+                              
+                          // redirect($this->module_url_path.'agent/booking_enquiry/index');
+                          // window.location.href = "<?//=base_url()?>tour_operation_manager/completed_tours/expenses/"+did;
+                         }
+                     }  
+                });  
+           } 
+          }); 
+      });  
+ </script>
+
+<script>  
+$(document).ready(function(){
+    $(".hold").click(function() {   
+        var did = $('#expense_id').val();
+        var attr_hold = $(this).attr('attr_hold');
+        // var hold_reason = $(this).attr('hold_reason');
+        var hold_reason = $('#hold_reason').val();
+        // alert(hold_reason);
+        
+        // Check if hold_reason is empty
+        if (hold_reason.trim() === '') {
+            alert('Please enter a reason in the textbox.');
+            return; // Don't proceed with the AJAX request
+        }
+
+        if (attr_hold != '' && did != '' && hold_reason != '') {
+            $.ajax({  
+                url: "<?php echo base_url(); ?>expences_checker/asign_tour_manager/get_hold",  
+                method: "post",  
+                data: {attr_hold: attr_hold, did: did, hold_reason: hold_reason},  
+                dataType: 'json',
+                success: function(response) { 
+                  swal("Hold", "This Expense is Hold Now", "success");
+                  setTimeout(function(){
+                            location.reload();
+                        }, 4000); 
+                  // alert('yess');
+                    if (response === 'true') {
+                        console.log('now done'); 
+                        alert('doneeeeeeeeeeeee');
+                        // Redirect or perform other actions as needed
+                    }
+                }  
+            });  
+        }
+    }); 
+});  
+</script>
+

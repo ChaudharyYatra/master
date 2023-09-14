@@ -156,47 +156,53 @@ class Asign_tour_manager extends CI_Controller{
        
 	}
 
-        public function tourwise_expences_approve($id,$type)
-	{
-                $id=base64_decode($id);
 
-                if(is_numeric($id) && ($type == "yes" || $type == "no") )
-                {   
-                $this->db->where('id',$id);
-                $arr_data = $this->master_model->getRecords('tour_expenses');
-                if(empty($arr_data))
-                {
-                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-                redirect($this->module_url_path.'/index');
-                }   
+        public function get_approve(){ 
 
-                $arr_update =  array();
-
-                if($type == 'yes')
-                {
-                        $arr_update['is_active'] = "no";
-                }
-                else
-                {
-                        $arr_update['is_active'] = "yes";
-                }
+                $expences_checker_master_sess_name = $this->session->userdata('expences_checker_name');
+                $iid = $this->session->userdata('expences_checker_sess_id');   
+        
+                $approve_id = $this->input->post('attr_approve'); 
+                // $now_time =  date('Y-m-d H:i:s');
                 
-                if($this->master_model->updateRecord('tour_expenses',$arr_update,array('id' => $id)))
-                {
-                        $this->session->set_flashdata('success_message',$this->module_title.' Updated Successfully.');
-                }
-                else
-                {
-                $this->session->set_flashdata('error_message'," Something Went Wrong While Updating The ".ucfirst($this->module_title).".");
-                }
-                }
-                else
-                {
-                $this->session->set_flashdata('error_message','Invalid Selection Of Record');
-                }
-                redirect($this->module_url_path.'/index');  
-       
-	}
+                        $arr_update = array(
+                        'approval'  => 'yes',
+                        'hold'  => 'no',
+                        'hold_reason'  => ''
+                        );
+                        
+                        $arr_where     = array("id" => $approve_id);
+                        $this->master_model->updateRecord('tour_expenses',$arr_update,$arr_where);
+        
+                                // print_r($data); die;
+                        $this->arr_view_data['expences_checker_master_sess_name'] = $expences_checker_master_sess_name;
+        
+                echo 'true';
+        }
+
+        public function get_hold(){ 
+
+                $expences_checker_master_sess_name = $this->session->userdata('expences_checker_name');
+                $iid = $this->session->userdata('expences_checker_sess_id'); 
+                
+                        $hold_id = $this->input->post('attr_hold'); 
+                        $hold_reason = $this->input->post('hold_reason'); 
+                // $now_time =  date('Y-m-d H:i:s');
+                        
+                        $arr_update = array(
+                                'approval'  => 'no',
+                                'hold'  => 'yes',
+                                'hold_reason'  => $hold_reason
+                                );
+                        
+                                $arr_where     = array("id" => $hold_id);
+                                $this->master_model->updateRecord('tour_expenses',$arr_update,$arr_where);
+                
+                                // print_r($data); die;
+                        $this->arr_view_data['expences_checker_master_sess_name'] = $expences_checker_master_sess_name;
+                
+                        echo 'true';
+        }
    
    
 }

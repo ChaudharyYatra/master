@@ -171,12 +171,47 @@
                 </div>
               </div>
               <?php $expences_id = $tour_expenses_all_info['t_expences_id']; ?>
+              <input type="hidden" readonly class="form-control" name="expense_id" id="expense_id" value="<?php echo $tour_expenses_all_info['t_expences_id']; ?>" required>
                <!-- Add Approve and Hold buttons -->
                 <div class="text-center mt-4">
-                  <a href="<?php echo $module_url_path; ?>/tourwise_expences_approve/<?php $aid=base64_encode($expences_id); 
-					            echo rtrim($aid, '='); ?>"><button type="button" class="btn btn-primary" id="approveButton" >Approve</button></a>
-                  <!-- <button class="btn btn-primary" id="approveButton">Approve</button> -->
-                  <button class="btn btn-warning" id="holdButton">Hold</button>
+
+                  <?php 
+                    if($tour_expenses_all_info['approval']=='no' && $tour_expenses_all_info['hold']=='yes')
+                      {
+                    ?>
+                    <button type="button" attr_approve="<?php echo $tour_expenses_all_info['t_expences_id'] ?>" class="btn btn-primary approve" name="submit" value="submit">Approve</button>
+                    
+                    <?php } else if($tour_expenses_all_info['approval']=='yes'  && $tour_expenses_all_info['hold']=='no'){ ?>
+                      <button type="button" disabled class="btn btn-success" name="submit" value="submit">Approved</button>
+                    <?php } ?>
+
+                    <?php 
+                      if($tour_expenses_all_info['approval']=='yes'  && $tour_expenses_all_info['hold']=='no')
+                      { ?>
+                      
+                    <?php } else if($tour_expenses_all_info['approval']=='no'  && $tour_expenses_all_info['hold']=='yes'){ ?>
+                      <button class="btn btn-warning" id="holdButton">Hold</button>
+                      <?php } ?>
+
+                      
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <label for="holdReason">Hold Reason:</label>
+                      <?php 
+                        if($tour_expenses_all_info['hold_reason']!='')
+                        { ?>
+                          <textarea disabled class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"><?php echo $tour_expenses_all_info['hold_reason'] ?></textarea>
+                      <?php } ?>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+
+                    </div>
                 </div>
 
                 <div class="row">
@@ -191,11 +226,14 @@
                         <form id="holdForm">
                             <div class="form-group">
                                 <label for="holdReason">Hold Reason:</label>
-                                <textarea class="form-control" id="holdReason" name="holdReason" placeholder="Enter Hold Reason" required="required"></textarea>
-                                
+                                <textarea class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"><?php echo $tour_expenses_all_info['hold_reason'] ?></textarea>
+
                             </div>
-                            <button type="submit" class="btn btn-primary" name="submit">Submit Hold</button>
+                            <!-- <button type="submit" class="btn btn-primary hold" name="submit">Submit Hold</button> -->
+
+                            <button type="button" attr_hold="<?php echo $tour_expenses_all_info['t_expences_id'] ?>" class="btn btn-primary hold" name="submit" value="submit">Submit Hold</button>
                         </form>
+                        
                       </div>
                     </div>
                     <div class="col-md-4 col-sm-4">
