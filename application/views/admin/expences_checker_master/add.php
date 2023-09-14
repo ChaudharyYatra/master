@@ -36,20 +36,20 @@
                  <div class="row">
                       <div class="col-md-6">
                               <div class="form-group">
-                                <label>Agent Name</label>
-                                <input type="text" class="form-control" name="expences_checker_name" id="expences_checker_name" placeholder="Enter Agent Name"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">
+                                <label>Expences Checker Name</label>
+                                <input type="text" class="form-control" name="expences_checker_name" id="expences_checker_name" placeholder="Enter Name"  oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" required="required">
                               </div>
                       </div>
 
                       <div class="col-md-6">
                               <div class="form-group">
-                                <label>Agent Mobile Number 1</label>
+                                <label>Mobile Number 1</label>
                                 <input type="text" class="form-control" name="mobile_number1" id="mobile_number1" placeholder="Enter 10 Digits Mobile Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required="required">
                               </div>
                         </div>
                        <div class="col-md-6">
                               <div class="form-group">
-                                <label>Agent Mobile Number 2</label>
+                                <label>Mobile Number 2</label>
                                 <input type="text" class="form-control" name="mobile_number2" id="mobile_number2" placeholder="Enter 10 Digits Mobile Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
                               </div>
                         </div>

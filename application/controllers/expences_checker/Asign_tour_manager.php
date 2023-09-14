@@ -86,6 +86,7 @@ class Asign_tour_manager extends CI_Controller{
                 package_date.id as did,expense_type.expense_type_name,expense_category.expense_category";
                 $this->db->where('tour_expenses.is_deleted','no');
                 $this->db->where('tour_expenses.tour_manager_id',$id);
+                $this->db->where('tour_expenses.package_date_id',$t_did);
 
                 $this->db->join("expense_type", 'tour_expenses.expense_type=expense_type.id','left');
                 $this->db->join("expense_category", 'tour_expenses.expense_category_id=expense_category.id','left');
@@ -93,7 +94,7 @@ class Asign_tour_manager extends CI_Controller{
                 $this->db->join("package_date", 'tour_expenses.package_date_id=package_date.id','left');
                 $this->db->join("add_more_tour_expenses", 'tour_expenses.id=add_more_tour_expenses.tour_expenses_id','left');
                 $this->db->join("hotel_advance_payment", 'tour_expenses.package_id=hotel_advance_payment.tour_number','left');
-                
+                $this->db->where('tour_expenses.package_date_id',$t_did);
                 $arr_data = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
                 // print_r($arr_data); die;
                 

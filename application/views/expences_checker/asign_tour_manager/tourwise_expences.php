@@ -60,8 +60,6 @@
                     <td>
                     <a href="<?php echo $module_url_path;?>/tourwise_expences_details/<?php $aid=base64_encode($info['package_id']); 
 					            echo rtrim($aid, '='); ?>/<?php $aid=base64_encode($info['id']); echo rtrim($aid, '='); ?>" title="View"><i class="fas fa-eye" aria-hidden="true" style="color:black";></i></a>&nbsp;/&nbsp;
-                    <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['package_id']); 
-					            echo rtrim($aid, '='); ?>/<?php $aid=base64_encode($info['id']); echo rtrim($aid, '='); ?>" title="Update"><i class="fas fa-edit" aria-hidden="true" style="color:blue";></i></a>
                     
                     </td>
                   </tr>

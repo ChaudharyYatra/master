@@ -202,10 +202,11 @@
 
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <label for="holdReason">Hold Reason:</label>
+                      
                       <?php 
                         if($tour_expenses_all_info['hold_reason']!='')
                         { ?>
+                          <label for="holdReason">Hold Reason:</label>
                           <textarea disabled class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"><?php echo $tour_expenses_all_info['hold_reason'] ?></textarea>
                       <?php } ?>
                     </div>

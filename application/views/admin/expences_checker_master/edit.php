@@ -40,8 +40,8 @@
                  <div class="row">
                       <div class="col-md-6">
                               <div class="form-group">
-                                <label>Agent Name</label>
-                                <input type="text" class="form-control" name="expences_checker_name" id="expences_checker_name" placeholder="Enter Agent Name" required="required" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $info['expences_checker_name']; ?>" required>
+                                <label>Expences Checker Name</label>
+                                <input type="text" class="form-control" name="expences_checker_name" id="expences_checker_name" placeholder="Enter Name" required="required" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $info['expences_checker_name']; ?>" required>
                               </div>
                       </div>
 

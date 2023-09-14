@@ -66,7 +66,7 @@ class Expences_checker_master extends CI_Controller{
 					
                 if($inserted_id > 0)
                 {    
-                    $this->session->set_flashdata('success_message',"District Added Successfully.");
+                    $this->session->set_flashdata('success_message',"Expences Checker Added Successfully.");
                     redirect($this->module_url_path.'/index');
                 }
                
