@@ -76,9 +76,8 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                          <label>Upload QR Image</label><br>
-                          <input type="file" name="image_name" id="image_nam" required="required">
-                          <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                            <label>Mobile Number</label>
+                            <input type="text" class="form-control" name="mobile_number" id="mobile_number" placeholder="Enter Mobile Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                     </div>
 
@@ -88,6 +87,15 @@
                             <input type="text" class="form-control" name="upi_id" id="upi_id" placeholder="Enter UPI ID" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Upload QR Image</label><br>
+                          <input type="file" name="image_name" id="image_nam" required="required">
+                          <br><span class="text-danger">Please select only JPG,PNG,JPEG format files.</span>
+                        </div>
+                    </div>
+                    
               </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

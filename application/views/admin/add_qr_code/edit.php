@@ -81,6 +81,20 @@
                     </div>
                     <?php } ?>
 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" class="form-control" name="mobile_number" id="mobile_number" value="<?php echo $info['mobile_number'];?>" placeholder="Enter Mobile Number" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>UPI ID</label>
+                            <input type="text" class="form-control" name="upi_id" id="upi_id" placeholder="Enter UPI ID" value="<?php echo $info['upi_id']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                        </div>
+                    </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                           <label>Upload QR Image</label><br>
@@ -98,13 +112,6 @@
                                   <a class="btn-link pull-right text-center" download="" target="_blank" href="<?php echo base_url(); ?>uploads/QR_code_image/<?php echo $info['qr_code_image']; ?>">Download</a>
                                   <?php } ?>
                       </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>UPI ID</label>
-                            <input type="text" class="form-control" name="upi_id" id="upi_id" placeholder="Enter UPI ID" value="<?php echo $info['upi_id']; ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                        </div>
                     </div>
               </div>
                 <!-- /.card-body -->

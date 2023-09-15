@@ -4714,14 +4714,6 @@ $(".selectall").click(function() {
 
 <!-- for bus seat selected -->
 
-
-
-
-
-
- 
-
-
 <!-- Final booking preview final amt calculation -->
 <script>
     
@@ -4924,6 +4916,32 @@ $("#pending_amt").val($("#final_amt").val() - val);
             }else{
                 $('#total_cash_10').val('0');
             }
+        }else if(seat_type_data=='5'){
+            var price = parseFloat($('#cash_5').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_5').val(total_amt );
+            }else{
+                $('#total_cash_5').val('0');
+            }
+        }
+        else if(seat_type_data=='2'){
+            var price = parseFloat($('#cash_2').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_2').val(total_amt );
+            }else{
+                $('#total_cash_2').val('0');
+            }
+        }
+        else if(seat_type_data=='1'){
+            var price = parseFloat($('#cash_1').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#total_cash_1').val(total_amt );
+            }else{
+                $('#total_cash_1').val('0');
+            }
         }
         
 
@@ -4940,6 +4958,9 @@ $(document).ready(function() {
     var l_count = '';
     var n_count = '';
     var o_count = '';
+    var a_count = '';
+    var b_count = '';
+    var c_count = '';
 
 
     $(".data_amt").on('keyup', function() {
@@ -4950,6 +4971,9 @@ $(document).ready(function() {
         var l_count = $("#total_cash_50").val();
         var n_count = $("#total_cash_20").val();
         var o_count = $("#total_cash_10").val();
+        var a_count = $("#total_cash_5").val();
+        var b_count = $("#total_cash_2").val();
+        var c_count = $("#total_cash_1").val();
 
         // if (f_count != '') {
         //     var ftotal = f_count;
@@ -4986,8 +5010,24 @@ $(document).ready(function() {
         } else {
             var ototal = 0;
         }
+        if (a_count != '') {
+            var atotal = a_count;
+        } else {
+            var atotal = 0;
+        }
+        if (b_count != '') {
+            var btotal = b_count;
+        } else {
+            var btotal = 0;
+        }
+        if (c_count != '') {
+            var ctotal = c_count;
+        } else {
+            var ctotal = 0;
+        }
         var final_total = parseInt(etotal) + parseInt(gtotal) + parseInt(mtotal) +
-            parseInt(ltotal) + parseInt(ntotal) + parseInt(ototal);
+            parseInt(ltotal) + parseInt(ntotal) + parseInt(ototal) + parseInt(atotal) + parseInt(btotal) +
+            parseInt(ctotal);
 
 
         $("#total_cash_amt").val(final_total);
@@ -4997,6 +5037,193 @@ $(document).ready(function() {
 
 });
 </script>
+
+<!-- ================================return to customer  =================================-->
+<script>
+    $('.return_data_amt').keyup(function(){
+        // alert('hiiii');
+        var seat_type_data = $(this).attr('return-attr-amt');
+        // alert(seat_type_data);
+        
+        // alert(price);
+        // if(seat_type_data=='2000'){
+        //     var price = parseFloat($('#cash_2000').val());
+        //     var total_amt = price * seat_type_data;
+        //     if(total_amt>0){
+        //         $('#total_cash_2000').val(total_amt );
+        //     }else{
+        //         $('#total_cash_2000').val('0');
+        //     }
+        // }else 
+        if(seat_type_data=='500'){
+            var price = parseFloat($('#return_cash_500').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_500').val(total_amt );
+            }else{
+                $('#return_total_cash_500').val('0');
+            }
+        }else if(seat_type_data=='200'){
+            var price = parseFloat($('#return_cash_200').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_200').val(total_amt );
+            }else{
+                $('#return_total_cash_200').val('0');
+            }
+        }else if(seat_type_data=='100'){
+            var price = parseFloat($('#return_cash_100').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_100').val(total_amt );
+            }else{
+                $('#return_total_cash_100').val('0');
+            }
+        }else if(seat_type_data=='50'){
+            var price = parseFloat($('#return_cash_50').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_50').val(total_amt );
+            }else{
+                $('#return_total_cash_50').val('0');
+            }
+        }else if(seat_type_data=='20'){
+            var price = parseFloat($('#return_cash_20').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_20').val(total_amt );
+            }else{
+                $('#return_total_cash_20').val('0');
+            }
+        }else if(seat_type_data=='10'){
+            var price = parseFloat($('#return_cash_10').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_10').val(total_amt );
+            }else{
+                $('#return_total_cash_10').val('0');
+            }
+        }else if(seat_type_data=='5'){
+            var price = parseFloat($('#return_cash_5').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_5').val(total_amt );
+            }else{
+                $('#return_total_cash_5').val('0');
+            }
+        }
+        else if(seat_type_data=='2'){
+            var price = parseFloat($('#return_cash_2').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_2').val(total_amt );
+            }else{
+                $('#return_total_cash_2').val('0');
+            }
+        }
+        else if(seat_type_data=='1'){
+            var price = parseFloat($('#return_cash_1').val());
+            var total_amt = price * seat_type_data;
+            if(total_amt>0){
+                $('#return_total_cash_1').val(total_amt );
+            }else{
+                $('#return_total_cash_1').val('0');
+            }
+        }
+        
+
+    });
+</script>
+
+<script>
+$(document).ready(function() {
+
+    var f_count = '';
+    var e_count = '';
+    var g_count = '';
+    var m_count = '';
+    var l_count = '';
+    var n_count = '';
+    var o_count = '';
+    var a_count = '';
+    var b_count = '';
+    var c_count = '';
+
+
+    $(".return_data_amt").on('keyup', function() {
+        // var f_count = $("#total_cash_2000").val()
+        var e_count = $("#return_total_cash_500").val();
+        var g_count = $("#return_total_cash_200").val();
+        var m_count = $("#return_total_cash_100").val();
+        var l_count = $("#return_total_cash_50").val();
+        var n_count = $("#return_total_cash_20").val();
+        var o_count = $("#return_total_cash_10").val();
+        var a_count = $("#return_total_cash_5").val();
+        var b_count = $("#return_total_cash_2").val();
+        var c_count = $("#return_total_cash_1").val();
+
+        // if (f_count != '') {
+        //     var ftotal = f_count;
+        // } else {
+        //     var ftotal = 0;
+        // }
+        if (e_count != '') {
+            var etotal = e_count;
+        } else {
+            var etotal = 0;
+        }
+        if (g_count != '') {
+            var gtotal = g_count;
+        } else {
+            var gtotal = 0;
+        }
+        if (m_count != '') {
+            var mtotal = m_count;
+        } else {
+            var mtotal = 0;
+        }
+        if (l_count != '') {
+            var ltotal = l_count;
+        } else {
+            var ltotal = 0;
+        }
+        if (n_count != '') {
+            var ntotal = n_count;
+        } else {
+            var ntotal = 0;
+        }
+        if (o_count != '') {
+            var ototal = o_count;
+        } else {
+            var ototal = 0;
+        }
+        if (a_count != '') {
+            var atotal = a_count;
+        } else {
+            var atotal = 0;
+        }
+        if (b_count != '') {
+            var btotal = b_count;
+        } else {
+            var btotal = 0;
+        }
+        if (c_count != '') {
+            var ctotal = c_count;
+        } else {
+            var ctotal = 0;
+        }
+        var final_total = parseInt(etotal) + parseInt(gtotal) + parseInt(mtotal) +
+            parseInt(ltotal) + parseInt(ntotal) + parseInt(ototal) + parseInt(atotal) + parseInt(btotal) +
+            parseInt(ctotal);
+
+        $("#return_total_cash_amt").val(final_total);
+
+
+    });
+
+});
+</script>
+<!-- -==============================return to customer -->
 
 <script>
 $(document).ready(function() {
@@ -5189,6 +5416,7 @@ $(document).ready(function() {
         // alert(netbanking_payment_type);
         var net_banking_utr_no = $('#net_banking_utr_no').val();
         var net_banking_acc_no = $('#net_banking_acc_no').val();
+        var net_acc_holder_nm = $('#net_acc_holder_nm').val();
         var net_banking_branch_name = $('#net_banking_branch_name').val();
         var netbanking_bank_name = $('#netbanking_bank_name').val();
         var netbanking_date = $('#netbanking_date').val();
@@ -5201,6 +5429,7 @@ $(document).ready(function() {
 
 
         var qr_holder_name = $('#select_qr_upi_no').val();
+        var qr_mobile_number = $('#qr_mobile_number').val();
         var qr_payment_type = $('#qr_payment_type').val();
         var qr_upi_no = $('#qr_upi_no').val();
 
@@ -5223,7 +5452,38 @@ $(document).ready(function() {
         var cash_10 = $('#cash_10').val();
         var total_cash_10 = $('#total_cash_10').val();
 
+        var cash_5 = $('#cash_5').val();
+        var total_cash_5 = $('#total_cash_5').val();
+        // alert(total_cash_5);
+        var cash_2 = $('#cash_2').val();
+        var total_cash_2 = $('#total_cash_2').val();
+        var cash_1 = $('#cash_1').val();
+        var total_cash_1 = $('#total_cash_1').val();
+
         var total_cash_amt = $('#total_cash_amt').val();
+
+        var return_cash_500 = $('#return_cash_500').val();
+        var return_total_cash_500 = $('#return_total_cash_500').val();
+        // alert(return_total_cash_500);
+        var return_cash_200 = $('#return_cash_200').val();
+        var return_total_cash_200 = $('#return_total_cash_200').val();
+        var return_cash_100 = $('#return_cash_100').val();
+        var return_total_cash_100 = $('#return_total_cash_100').val();
+        var return_cash_50 = $('#return_cash_50').val();
+        var return_total_cash_50 = $('#return_total_cash_50').val();
+        var return_cash_20 = $('#return_cash_20').val();
+        var return_total_cash_20 = $('#return_total_cash_20').val();
+        var return_cash_10 = $('#return_cash_10').val();
+        var return_total_cash_10 = $('#return_total_cash_10').val();
+        var return_cash_5 = $('#return_cash_5').val();
+        var return_total_cash_5 = $('#return_total_cash_5').val();
+        var return_cash_2 = $('#return_cash_2').val();
+        var return_total_cash_2 = $('#return_total_cash_2').val();
+        var return_cash_1 = $('#return_cash_1').val();
+        var return_total_cash_1 = $('#return_total_cash_1').val();
+
+        var return_total_cash_amt = $('#return_total_cash_amt').val();
+
         // alert(mobile_no);
         var enquiry_id = $('#enquiry_id').val();
         var package_id = $('#package_id').val();
@@ -5269,6 +5529,7 @@ $(document).ready(function() {
 
                     netbanking_payment_type: netbanking_payment_type,
                     net_banking_acc_no: net_banking_acc_no,
+                    net_acc_holder_nm: net_acc_holder_nm,
                     net_banking_branch_name: net_banking_branch_name,
                     net_banking_utr_no: net_banking_utr_no,
                     netbanking_bank_name: netbanking_bank_name,
@@ -5280,6 +5541,7 @@ $(document).ready(function() {
                     upi_reason: upi_reason,
                     
                     qr_holder_name: qr_holder_name,
+                    qr_mobile_number: qr_mobile_number,
                     qr_payment_type: qr_payment_type,
                     qr_upi_no: qr_upi_no,
                     
@@ -5298,7 +5560,34 @@ $(document).ready(function() {
                     total_cash_20: total_cash_20,
                     cash_10: cash_10,
                     total_cash_10: total_cash_10,
+                    cash_5: cash_5,
+                    total_cash_5: total_cash_5,
+                    cash_2: cash_2,
+                    total_cash_2: total_cash_2,
+                    cash_1: cash_1,
+                    total_cash_1: total_cash_1,
                     total_cash_amt: total_cash_amt,
+
+                    return_cash_500: return_cash_500,
+                    return_total_cash_500: return_total_cash_500,
+                    return_cash_200: return_cash_200,
+                    return_total_cash_200: return_total_cash_200,
+                    return_cash_100: return_cash_100,
+                    return_total_cash_100: return_total_cash_100,
+                    return_cash_50: return_cash_50,
+                    return_total_cash_50: return_total_cash_50,
+                    return_cash_20: return_cash_20,
+                    return_total_cash_20: return_total_cash_20,
+                    return_cash_10: return_cash_10,
+                    return_total_cash_10: return_total_cash_10,
+                    return_cash_5: return_cash_5,
+                    return_total_cash_5: return_total_cash_5,
+                    return_cash_2: return_cash_2,
+                    return_total_cash_2: return_total_cash_2,
+                    return_cash_1: return_cash_1,
+                    return_total_cash_1: return_total_cash_1,
+                    return_total_cash_amt: return_total_cash_amt,
+
                     select_services: select_services,
                     extra_services: extra_services
                 },
@@ -5307,7 +5596,6 @@ $(document).ready(function() {
                     if (responce != false && responce !='') {
                         // alert(responce);
                         var booking_ref_no = $('#booking_ref_no').val(responce);
-                        
                     }
                 }
             });
@@ -6276,47 +6564,6 @@ function empty() {
  });
  </script>
 
-
-<!-- <script type='text/javascript'>
-  // baseURL variable
-  var baseURL= "<?php echo base_url();?>";
- 
-  $(document).ready(function(){
- 
-    // district change
-    $('#select_qr_upi_no').change(function(){
-      var imageUrl='<?php echo base_url(); ?>uploads/QR_code_image/'
-        var qr_did = $('#select_qr_upi_no').val();
-        // alert(qr_did);
-    qrselectedOption = $("#select_qr_upi_no option:selected");
-      var qr_self_data = qrselectedOption.attr('attr_self');
-    //   alert(self_data);
-      var qr_other_data = qrselectedOption.attr('attr_other');
-    //   alert(other_data);
-
-    //   alert(did); 
-      // AJAX request
-      $.ajax({
-        url:'<?=base_url()?>agent/booking_preview/get_QR_code',
-        method: 'post',
-        data: {qr_self_data: qr_self_data,qr_other_data: qr_other_data,qr_did: qr_did},
-        dataType: 'json',
-        success: function(response){
-        console.log(response);
-        
-          $('#qr_mode_code_image').find('img').not(':first').remove();
-       
-          $.each(response,function(index,data){   
-            $('#qr_mode_code_image').append('<img src="' + imageUrl + data['qr_code_image'] + '" alt="' + data['image_name'] + '">'); 
-            // $('#qr_code_image').val(data['upi_id']);
-          });
-         
-        }
-     });
-   });
- });
- </script> -->
-
  <script type='text/javascript'>
   // baseURL variable
   var baseURL = "<?php echo base_url(); ?>";
@@ -6346,10 +6593,12 @@ function empty() {
 
           // Clear existing images
           $('#qr_mode_code_image').empty();
+          $('#qr_mobile_number').find('option').not(':first').remove();
 
           $.each(response, function (index, data) {
             $('#qr_mode_code_image').append('<img src="' + imageUrl + data['qr_code_image'] + '" alt="' + data['image_name'] + '">');
-          });
+            $('#qr_mobile_number').val(data['mobile_number']);
+        });
 
         }
       });
@@ -6400,7 +6649,16 @@ valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_upi_no")) 
 
 function qr_hoder_name_validate() {
 var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_payment_type"));
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_mobile_number"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function qr_mobile_no_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_mobile_number")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
         $("#submit_otp").attr("disabled", true);
         if (valid) {
             $("#submit_otp").attr("disabled", false);
@@ -6409,16 +6667,7 @@ valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no"
 
 function qr_payment_type_validate() {
 var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
-        $("#submit_otp").attr("disabled", true);
-        if (valid) {
-            $("#submit_otp").attr("disabled", false);
-        }
-}
-
-function qr_payment_type_validate() {
-var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_mobile_number")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
         $("#submit_otp").attr("disabled", true);
         if (valid) {
             $("#submit_otp").attr("disabled", false);
@@ -6427,7 +6676,7 @@ valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no"
 
 function qr_utr_no_validate() {
 var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#select_qr_upi_no")) && checkEmpty($("#qr_mobile_number")) && checkEmpty($("#qr_payment_type")) && checkEmpty($("#qr_upi_no"));
         $("#submit_otp").attr("disabled", true);
         if (valid) {
             $("#submit_otp").attr("disabled", false);
@@ -6472,7 +6721,16 @@ valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_paymen
 
 function netbank_accno_validate() {
 var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name"));
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_acc_holder_nm"));
+        $("#submit_otp").attr("disabled", true);
+        if (valid) {
+            $("#submit_otp").attr("disabled", false);
+        }
+}
+
+function netbank_accno_holder_nm_validate() {
+var valid = true;
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_acc_holder_nm")) && checkEmpty($("#net_banking_branch_name"));
         $("#submit_otp").attr("disabled", true);
         if (valid) {
             $("#submit_otp").attr("disabled", false);
@@ -6481,7 +6739,7 @@ valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_paymen
 
 function netbank_branch_nm_validate() {
 var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no"));
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_acc_holder_nm")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no"));
         $("#submit_otp").attr("disabled", true);
         if (valid) {
             $("#submit_otp").attr("disabled", false);
@@ -6490,7 +6748,7 @@ valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_paymen
 
 function netbank_utr_no_validate() {
 var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name"));
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_acc_holder_nm")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name"));
         $("#submit_otp").attr("disabled", true);
         if (valid) {
             $("#submit_otp").attr("disabled", false);
@@ -6499,7 +6757,7 @@ valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_paymen
 
 function netbank_bank_nm_validate() {
 var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name")) && checkEmpty($("#netbanking_date"));
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_acc_holder_nm")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name")) && checkEmpty($("#netbanking_date"));
         $("#submit_otp").attr("disabled", true);
         if (valid) {
             $("#submit_otp").attr("disabled", false);
@@ -6508,7 +6766,7 @@ valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_paymen
 
 function netbank_date_validate() {
 var valid = true;
-valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name")) && checkEmpty($("#netbanking_date"));
+valid = checkEmpty($("#select_transaction")) && checkEmpty($("#netbanking_payment_type_neft")) && checkEmpty($("#netbanking_payment_type_rtgs")) && checkEmpty($("#netbanking_payment_type_imps")) && checkEmpty($("#net_banking_acc_no")) && checkEmpty($("#net_acc_holder_nm")) && checkEmpty($("#net_banking_branch_name")) && checkEmpty($("#net_banking_utr_no")) && checkEmpty($("#netbanking_bank_name")) && checkEmpty($("#netbanking_date"));
         $("#submit_otp").attr("disabled", true);
         if (valid) {
             $("#submit_otp").attr("disabled", false);

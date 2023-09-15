@@ -38,9 +38,9 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Package Type</th>
-                    <th>Tour Details</th>
-                    <th>Tour Date</th>
+                    <th>Expenses Date</th>
+                    <th>Expense Head</th>
+                    <th>Sub-Expenses Head</th>
                     <!-- <th>Advance Payment Done From Accountant</th> -->
                     <th>Action</th>
                   </tr>
@@ -49,36 +49,30 @@
                   <?php  
                   
                    $i=1; 
-                   foreach($arr_data_assign_staff as $info) 
+                   foreach($tour_expenses_all as $info) 
                    { 
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <?php if($info['package_type']!="Special Limited Offer"){
-                      ?>
-                    <td><?php echo $info['package_type'] ?></td>
-                    <?php }else{
-                      ?>
-                      <td>Special Limited Offer</td>
-                    <?php } ?>
-                    <td><?php echo $info['tour_number'] ?> - <?php echo $info['tour_title'] ?></td>
-                    <td><?php echo date("d-m-Y",strtotime($info['journey_date'])) ?></td>
-                    <!-- <td><?php //echo $info['advance_amt'] ?></td> -->
+                    <td><?php echo date("d-m-Y",strtotime($info['expense_date'])) ?></td>
+                    <td><?php echo $info['expense_type_name'] ?></td>
+                    <td><?php echo $info['expense_category'] ?></td>
                     
                     <td>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-default">Action</button>
-                        <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu" role="menu">
-                          <a href="<?php echo $module_url_path;?>/all_expenses/<?php $aid=base64_encode($info['package_id']); 
-					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['package_date_id']); 
-					                  echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">View All Expenses</button></a>
+                          <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($info['id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['add_more_id']);
+					                  echo rtrim($did, '='); ?>" class="itinerary_css"><i class="fas fa-eye" aria-hidden="true" style="color:black" ;=""></i></a> &nbsp;/&nbsp;
+
+                          <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['add_more_id']); 
+					                  echo rtrim($did, '='); ?>" class="itinerary_css"><i class="fas fa-edit" aria-hidden="true" style="color:blue" ;=""></i></a> &nbsp;/&nbsp;
                           
-                          <!-- <a href="<?php //echo $module_url_path;?>/edit/<?php //$aid=base64_encode($info['package_id']); 
-					                  //echo rtrim($aid, '='); ?> /<?php //$did=base64_encode($info['package_date_id']); 
-					                  //echo rtrim($did, '='); ?>" class="itinerary_css"><button class="dropdown-item">show Tour Expenses</button></a> -->
+                          <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; 
+					                  ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>
+                          
+                          <!-- <a href="<?php //echo $module_url_path;?>/delete/<?php //$aid=base64_encode($info['id']); 
+					                  //echo rtrim($aid, '='); ?> /<?php //$did=base64_encode($info['add_more_id']); 
+					                  //echo rtrim($did, '='); ?>" class="itinerary_css"><i class="fa fa-trash" aria-hidden="true" style="color:red" ;=""></i></a> -->
                         </div>
                       </div>
                     </td>

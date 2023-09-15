@@ -186,81 +186,6 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                            <label>Expenses Type</label> <br>
-                                <input type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 d-flex justify-content-center">
-                            <div class="form-group">
-                                <label></label>
-                                <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($tour_expenses_all_info['id']); 
-					            echo rtrim($aid, '='); ?>" title="View">
-                                    <button type="button" class="btn btn-primary add_more_css" name="submit" value="add_more_product" id="add_more_product">Add More Product</button>
-                                </a>
-                                
-                            </div>
-                        </div> 
-
-                        <?php foreach($add_more_tour_expenses_all as $add_more_tour_expenses_all_value){ ?> 
-                        <div class="cash_payment_div" id="sub_main_tour_div1">
-                            <div class="col-md-12">
-                                <div class="row" id="expenses_main_row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Product Name</label>
-                                                <select class="select_css" name="product_name[]" id="product_name" required>
-                                                    <option value="">Select Product Name</option>
-                                                    <?php foreach($expense_category as $expense_category_info){ ?> 
-                                                        <option value="<?php echo $expense_category_info['id']; ?>" <?php if($expense_category_info['id']==$add_more_tour_expenses_all_value['product_name']) { echo "selected"; } ?>><?php echo $expense_category_info['expense_category']; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-1">
-                                        <div class="form-group">
-                                        <label>Unit</label>
-                                            <input type="text" class="form-control" name="measuring_unit[]" id="measuring_unit" value="<?php echo $add_more_tour_expenses_all_value['measuring_unit']; ?>" placeholder="Enter measuring unit" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                        <label>Quantity</label>
-                                            <input type="text" class="form-control" name="quantity[]" id="quantity" value="<?php echo $add_more_tour_expenses_all_value['quantity']; ?>" placeholder="Enter quantity" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                        <label>Rate</label>
-                                            <input type="text" class="form-control" name="rate[]" id="rate" value="<?php echo $add_more_tour_expenses_all_value['rate']; ?>" placeholder="Enter rate" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                        <label>Per Unit Rate</label>
-                                            <input readonly type="text" class="form-control" name="per_unit_rate[]" id="per_unit_rate" value="<?php echo $add_more_tour_expenses_all_value['per_unit_rate']; ?>" placeholder="Enter per unit rate" required>
-                                        </div>
-                                    </div>
-
-                                    <input hidden type="text" class="form-control" name="add_more_tour_expenses_id[]" id="add_more_tour_expenses_id" value="<?php echo $add_more_tour_expenses_all_value['id']; ?>" placeholder="Enter per unit rate" required>
-
-                                    <div class="col-md-2 d-flex justify-content-center delete_css">
-                                        <div class="form-group">
-                                            <label></label>
-                                            <a onclick="return confirm('Are You Sure You Want To Delete This Record? ')" href="<?php echo $module_url_path;?>/add_more_delete/<?php echo $add_more_tour_expenses_all_value['id']; ?>" title="delete"><button value="<?php echo $add_more_tour_expenses_all_value['id']; ?>" class="btn btn-primary delete_instruction">Delete</button></a>
-                                            <!-- <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php //echo $module_url_path;?>/add_more_delete/<?php //$aid=base64_encode($add_more_tour_expenses_all_value['id']); 
-					                            //echo rtrim($aid, '='); ?>" title="Delete"><button class="btn btn-primary">Delete</button></a> -->
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                        <?php } ?>
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Bill Amount</label>
@@ -320,13 +245,93 @@
                             </div>
                         </div>
 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                            <label>Expenses Type</label> <br>
+                                <input type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 d-flex justify-content-center">
+                            <div class="form-group">
+                                <label></label>
+                                <button type="button" class="btn btn-primary add_more_css" name="submit" value="edit_add_more_product" id="edit_add_more_product">Add More Product</button>
+                            </div>
+                        </div> 
+
+                        <?php foreach($add_more_tour_expenses_all as $add_more_tour_expenses_all_value){ ?> 
+                        <div class="row">
+                        <!-- <div class="" id="sub_main_tour_div1"> -->
+                            <div class="col-md-12">
+                                    <div class="row" id="add_more_expenses_main_row"></div>
+                            </div>
+                        </div>
+                        <input type="hidden" class="form-control" name="add_more_tour_exp_id" id="add_more_tour_exp_id" value="<?php echo $add_more_tour_expenses_all_value['tour_expenses_id']; ?>" placeholder="Enter measuring unit" required>
+
+                        <div class="cash_payment_div" id="sub_main_tour_div1">
+                            <div class="col-md-12">
+                                <div class="row" id="expenses_main_row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Product Name</label>
+                                                <select class="select_css" name="product_name[]" id="product_name" required>
+                                                    <option value="">Select Product Name</option>
+                                                    <?php foreach($expense_category as $expense_category_info){ ?> 
+                                                        <option value="<?php echo $expense_category_info['id']; ?>" <?php if($expense_category_info['id']==$add_more_tour_expenses_all_value['product_name']) { echo "selected"; } ?>><?php echo $expense_category_info['expense_category']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                        <label>Unit</label>
+                                            <input type="text" class="form-control" name="measuring_unit[]" id="measuring_unit" value="<?php echo $add_more_tour_expenses_all_value['measuring_unit']; ?>" placeholder="Enter measuring unit" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <label>Quantity</label>
+                                            <input type="text" class="form-control" name="quantity[]" id="quantity" value="<?php echo $add_more_tour_expenses_all_value['quantity']; ?>" placeholder="Enter quantity" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <label>Rate</label>
+                                            <input type="text" class="form-control" name="rate[]" id="rate" value="<?php echo $add_more_tour_expenses_all_value['rate']; ?>" placeholder="Enter rate" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <label>Per Unit Rate</label>
+                                            <input readonly type="text" class="form-control" name="per_unit_rate[]" id="per_unit_rate" value="<?php echo $add_more_tour_expenses_all_value['per_unit_rate']; ?>" placeholder="Enter per unit rate" required>
+                                        </div>
+                                    </div>
+
+                                    <input hidden type="text" class="form-control" name="add_more_tour_expenses_id[]" id="add_more_tour_expenses_id" value="<?php echo $add_more_tour_expenses_all_value['id']; ?>" placeholder="Enter per unit rate" required>
+
+                                    <div class="col-md-2 d-flex justify-content-center delete_css">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <a onclick="return confirm('Are You Sure You Want To Delete This Record? ')" href="<?php echo $module_url_path;?>/add_more_delete/<?php echo $add_more_tour_expenses_all_value['id']; ?>" title="delete"><button value="<?php echo $add_more_tour_expenses_all_value['id']; ?>" class="btn btn-primary delete_instruction">Delete</button></a>
+                                            <!-- <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php //echo $module_url_path;?>/add_more_delete/<?php //$aid=base64_encode($add_more_tour_expenses_all_value['id']); 
+					                            //echo rtrim($aid, '='); ?>" title="Delete"><button class="btn btn-primary">Delete</button></a> -->
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
 
                     </div>
                     <div class="card-footer">
+                        <!-- <div class="float-right"> -->
                         <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button>
                         <!-- <button type="submit" class="btn btn-success" name="booknow_submit" value="Book Now">Submit & Proceed</button>  -->
                         <!-- <a href="<?php //echo $module_booking_basic_info; ?>/add/<?php //echo $enquiry_id;?>/1"><button type="button" class="btn btn-warning" name="back_btn">Back</button></a> -->
                         <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
+                        <!-- </div> -->
                     </div>
                 </form>
                 <?php } ?>

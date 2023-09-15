@@ -37,11 +37,12 @@
           <div class="col-md-12 col-sm-12">
             <!-- jquery validation -->
             <?php $this->load->view('admin/layout/admin_alert'); ?>
+            <div class="card card-primary">
             <?php
                    foreach($tour_expenses_all as $tour_expenses_all_info) 
                    { 
                      ?>
-            <div class="card card-primary">
+            
               <div class="card-header">
                 <h3 class="card-title"><?php echo $page_title; ?></h3>
               </div>
@@ -127,6 +128,7 @@
                 </table>
               </div>
               
+              <?php if($tour_expenses_all_info['tour_expenses_type']=='0'){?>
               <div class="card-body">
                 <div class="accordion accordion-flush" id="accordion">
                   <div class="accordion-item">
@@ -167,10 +169,9 @@
                   </div>
                 </div>
               </div>
+              <?php } ?>
         <br>
         <div class="row">
-
-        
 
             </div>
             <?php } ?>

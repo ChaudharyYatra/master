@@ -95,10 +95,12 @@ class Add_qr_code extends CI_Controller{
                 $full_name = trim($this->input->post('full_name'));
                 $role_name = trim($this->input->post('role_name'));
                 $other_role = trim($this->input->post('other_role'));
+                $mobile_number = trim($this->input->post('mobile_number'));
                 $upi_id = trim($this->input->post('upi_id'));
                 $arr_insert = array(               
                     'full_name'  => $full_name,
                     'Role_name'  => $role_name,
+                    'mobile_number'  => $mobile_number,
                     'other_role_name'  => $other_role,
                     'qr_code_image'      => $filename,
                     'upi_id'  => $upi_id
@@ -119,8 +121,14 @@ class Add_qr_code extends CI_Controller{
                 redirect($this->module_url_path.'/index');
             }   
         }  
-        $this->db->order_by('id','desc');
-        $this->db->where('is_deleted','no');
+        // $this->db->order_by('id','desc');
+        // $this->db->where('is_deleted','no');
+        // $role_type_data = $this->master_model->getRecords('role_type');
+        // // print_r($role_type_data); die;
+
+        $this->db->order_by('id', 'desc');
+        $this->db->where('is_deleted', 'no');
+        $this->db->where('role_name !=', 'agent');
         $role_type_data = $this->master_model->getRecords('role_type');
 
         $this->arr_view_data['action']          = 'add';
@@ -258,11 +266,13 @@ class Add_qr_code extends CI_Controller{
                 
                 $full_name = trim($this->input->post('full_name'));
                 $role_name = trim($this->input->post('role_name'));
+                $mobile_number = trim($this->input->post('mobile_number'));
                 $other_role = trim($this->input->post('other_role'));
                 $upi_id = trim($this->input->post('upi_id'));
                 $arr_update = array(
                     'full_name'  => $full_name,
                     'Role_name'  => $role_name,
+                    'mobile_number'  => $mobile_number,
                     'other_role_name'  => $other_role,
                     'qr_code_image'      => $filename,
                     'upi_id'  => $upi_id
