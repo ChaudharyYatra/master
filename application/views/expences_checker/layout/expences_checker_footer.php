@@ -205,6 +205,8 @@ $('#changepassword').validate({ // initialize the plugin
     // alert(did);
           var attr_approve =$(this).attr('attr_approve');
           //  alert(attr_approve);
+          var tm_id = $('#tour_manager_id').val();
+          var pd_id = $('#package_date_id').val();
 
            
            if(attr_approve != '' && did != '')  
@@ -219,15 +221,17 @@ $('#changepassword').validate({ // initialize the plugin
                          if(responce = 'true')
                          {
                           console.log('now done'); 
-                          // alert('This Expence is Approve Now');
-                          swal("Success", "This Expense is Approved Now", "success");
-                          setTimeout(function(){
-                            location.reload();
-                        }, 4000); 
-                              // alert(responce);
+                          swal({
+                              title: "success!",
+                              text: "This Expense is Approved Now!",
+                              type: "success"}).then(function() {
+                                window.location.href = "<?=base_url()?>expences_checker/asign_tour_manager/tourwise_expences/"+tm_id+'/'+pd_id;
+                          });
                               
-                          // redirect($this->module_url_path.'agent/booking_enquiry/index');
-                          // window.location.href = "<?//=base_url()?>tour_operation_manager/completed_tours/expenses/"+did;
+                          // alert('This Expence is Approve Now');
+                        
+                              // alert(responce);
+                          
                          }
                      }  
                 });  
@@ -244,6 +248,9 @@ $(document).ready(function(){
         // var hold_reason = $(this).attr('hold_reason');
         var hold_reason = $('#hold_reason').val();
         // alert(hold_reason);
+
+        var tm_id = $('#tour_manager_id').val();
+          var pd_id = $('#package_date_id').val();
         
         // Check if hold_reason is empty
         if (hold_reason.trim() === '') {
@@ -258,14 +265,20 @@ $(document).ready(function(){
                 data: {attr_hold: attr_hold, did: did, hold_reason: hold_reason},  
                 dataType: 'json',
                 success: function(response) { 
-                  swal("Hold", "This Expense is Hold Now", "success");
-                  setTimeout(function(){
-                            location.reload();
-                        }, 4000); 
+                  // swal("Hold", "This Expense is Hold Now", "success");
+                  swal({
+                        title: "success!",
+                        text: "This Expense is Hold Now!",
+                        type: "success"}).then(function() {
+                          window.location.href = "<?=base_url()?>expences_checker/asign_tour_manager/tourwise_expences/"+tm_id+'/'+pd_id;
+                    });
+                  // setTimeout(function(){
+                  //           location.reload();
+                  //       }, 4000); 
                   // alert('yess');
                     if (response === 'true') {
                         console.log('now done'); 
-                        alert('doneeeeeeeeeeeee');
+                        // alert('doneeeeeeeeeeeee');
                         // Redirect or perform other actions as needed
                     }
                 }  

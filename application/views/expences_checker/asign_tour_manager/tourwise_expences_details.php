@@ -21,7 +21,18 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">Back</button></a>
+              <?php $iid = $tm_id; // Replace this with your actual data
+                $aid = base64_encode($tm_id);
+                $aid = str_replace('=', '', $aid);
+                $aid; 
+
+                $td_iid = $pd_id; 
+                $td_aid = base64_encode($pd_id);
+                $td_aid = str_replace('=', '', $td_aid);
+                $td_aid; 
+                
+                ?>
+              <a href="<?php echo $module_url_path; ?>/tourwise_expences/<?php echo $aid; ?>/<?php echo $td_aid; ?>"><button class="btn btn-primary">Back</button></a>
               
             </ol>
           </div>
@@ -171,8 +182,13 @@
                 </div>
               </div>
               <?php $expences_id = $tour_expenses_all_info['t_expences_id']; ?>
+
               <input type="hidden" readonly class="form-control" name="expense_id" id="expense_id" value="<?php echo $tour_expenses_all_info['t_expences_id']; ?>" required>
-               <!-- Add Approve and Hold buttons -->
+
+              <input type="hidden" readonly class="form-control" name="tour_manager_id" id="tour_manager_id" value="<?php echo $aid ?>" required>
+              <input type="hidden" readonly class="form-control" name="package_date_id" id="package_date_id" value="<?php echo $td_aid ?>" required>
+               
+              <!-- Add Approve and Hold buttons -->
                 <div class="text-center mt-4">
 
                   <?php 

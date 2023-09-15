@@ -36,7 +36,7 @@
                     <th>Expenses date</th>
                     <th>Expense Head</th>
                     <th>Sub-Expenses Head</th>
-                    <!-- <th>Advance Payment Done From Accountant</th> -->
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -55,13 +55,28 @@
                     <td><?php echo $info['expense_type_name']; ?></td>
                     
                     <td><?php echo $info['expense_category']; ?></td>
-                    
+
+                    <td>
+                    <?php 
+                      if($info['approval']=='no' && $info['hold']=='yes')
+                        {
+                      ?>
+                      Hold
+                      
+                      <?php } else if($info['approval']=='yes'  && $info['hold']=='no'){ ?>
+                        Approved
+                      <?php } ?>
+
+                    </td>
 
                     <td>
                     <a href="<?php echo $module_url_path;?>/tourwise_expences_details/<?php $aid=base64_encode($info['package_id']); 
-					            echo rtrim($aid, '='); ?>/<?php $aid=base64_encode($info['id']); echo rtrim($aid, '='); ?>" title="View"><i class="fas fa-eye" aria-hidden="true" style="color:black";></i></a>&nbsp;/&nbsp;
+					            echo rtrim($aid, '='); ?>/<?php $aid=base64_encode($info['id']); echo rtrim($aid, '='); ?>/<?php $aid=base64_encode($info['package_date_id']); 
+					            echo rtrim($aid, '='); ?>/<?php $aid=base64_encode($info['tour_manager_id']); 
+					            echo rtrim($aid, '='); ?>" title="View"><i class="fas fa-eye" aria-hidden="true" style="color:black";></i></a>
                     
                     </td>
+
                   </tr>
                   <?php $i++; } ?>
                   </tbody>

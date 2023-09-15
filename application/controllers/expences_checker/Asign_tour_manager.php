@@ -111,10 +111,12 @@ class Asign_tour_manager extends CI_Controller{
 	}
 	
 
-        public function tourwise_expences_details($id,$t_did)
+        public function tourwise_expences_details($id,$t_did,$pd_id,$tm_id)
 	{
                 $id=base64_decode($id);
                 $t_did=base64_decode($t_did);
+                $pd_id=base64_decode($pd_id);
+                $tm_id=base64_decode($tm_id);
 
                 $expences_checker_master_sess_name = $this->session->userdata('expences_checker_name');
                 $iid = $this->session->userdata('expences_checker_sess_id');
@@ -147,8 +149,8 @@ class Asign_tour_manager extends CI_Controller{
                 $this->arr_view_data['listing_page']    = 'yes';
                 $this->arr_view_data['tour_expenses_all']  = $tour_expenses_all;
                 $this->arr_view_data['add_more_tour_expenses_all']  = $add_more_tour_expenses_all;
-                $this->arr_view_data['id']  = $id;
-                $this->arr_view_data['t_did']  = $t_did;
+                $this->arr_view_data['tm_id']  = $tm_id;
+                $this->arr_view_data['pd_id']  = $pd_id;
                 $this->arr_view_data['page_title']      = $this->module_title_expences." List";
                 $this->arr_view_data['module_title']    = $this->module_title_expences." List";
                 $this->arr_view_data['module_url_path'] = $this->module_url_path;
