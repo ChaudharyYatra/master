@@ -133,6 +133,7 @@ class Booking_preview extends CI_Controller {
             $upi_reason = $this->input->post('upi_reason');
 
             $qr_holder_name = $this->input->post('qr_holder_name');
+            $qr_mobile_number = $this->input->post('qr_mobile_number');
             $qr_payment_type = $this->input->post('qr_payment_type');
             $qr_upi_no = $this->input->post('qr_upi_no');
 
@@ -144,6 +145,7 @@ class Booking_preview extends CI_Controller {
 
             $netbanking_payment_type = $this->input->post('netbanking_payment_type');
             $net_banking_acc_no = $this->input->post('net_banking_acc_no');
+            $net_acc_holder_nm = $this->input->post('net_acc_holder_nm');
             $net_banking_branch_name = $this->input->post('net_banking_branch_name');
             $net_banking_utr_no = $this->input->post('net_banking_utr_no');
             $netbanking_bank_name = $this->input->post('netbanking_bank_name');
@@ -163,7 +165,36 @@ class Booking_preview extends CI_Controller {
             $total_cash_20 = $this->input->post('total_cash_20');
             $cash_10 = $this->input->post('cash_10');
             $total_cash_10 = $this->input->post('total_cash_10');
+            $cash_5 = $this->input->post('cash_5');
+            $total_cash_5 = $this->input->post('total_cash_5');
+            $cash_2 = $this->input->post('cash_2');
+            $total_cash_2 = $this->input->post('total_cash_2');
+            $cash_1 = $this->input->post('cash_1');
+            $total_cash_1 = $this->input->post('total_cash_1');
             $total_cash_amt = $this->input->post('total_cash_amt');
+
+
+            $return_cash_500 = $this->input->post('return_cash_500');
+            $return_total_cash_500 = $this->input->post('return_total_cash_500');
+            $return_cash_200 = $this->input->post('return_cash_200');
+            $return_total_cash_200 = $this->input->post('return_total_cash_200');
+            $return_cash_100 = $this->input->post('return_cash_100');
+            $return_total_cash_100 = $this->input->post('return_total_cash_100');
+            $return_cash_50 = $this->input->post('return_cash_50');
+            $return_total_cash_50 = $this->input->post('return_total_cash_50');
+            $return_cash_20 = $this->input->post('return_cash_20');
+            $return_total_cash_20 = $this->input->post('return_total_cash_20');
+            $return_cash_10 = $this->input->post('return_cash_10');
+            $return_total_cash_10 = $this->input->post('return_total_cash_10');
+            $return_cash_5 = $this->input->post('return_cash_5');
+            $return_total_cash_5 = $this->input->post('return_total_cash_5');
+            $return_cash_2 = $this->input->post('return_cash_2');
+            $return_total_cash_2 = $this->input->post('return_total_cash_2');
+            $return_cash_1 = $this->input->post('return_cash_1');
+            $return_total_cash_1 = $this->input->post('return_total_cash_1');
+            $return_total_cash_amt = $this->input->post('return_total_cash_amt');
+
+            
 
             $enquiry_id = $this->input->post('enquiry_id');
             $traveller_id = $this->input->post('traveller_id');
@@ -217,6 +248,7 @@ class Booking_preview extends CI_Controller {
                     'UPI_reason'   =>   $upi_reason,
 
                     'QR_holder_name'   =>   $qr_holder_name,
+                    'QR_mobile_number'   =>   $qr_mobile_number,
                     'QR_payment_type'   =>   $qr_payment_type,
                     'QR_transaction_no'   =>   $qr_upi_no,
 
@@ -227,6 +259,7 @@ class Booking_preview extends CI_Controller {
 
                     'netbanking_payment_type'   =>   $netbanking_payment_type,
                     'net_banking_acc_no'   =>   $net_banking_acc_no,
+                    'net_banking_acc_holder_nm'   =>   $net_acc_holder_nm,
                     'net_banking_branch_name'   =>   $net_banking_branch_name,
                     'net_banking'   =>   $net_banking_utr_no,
                     'netbanking_bank_name'   =>   $netbanking_bank_name,
@@ -255,12 +288,49 @@ class Booking_preview extends CI_Controller {
                     'total_cash_20'   =>   $total_cash_20,
                     'cash_10'   =>   $cash_10,
                     'total_cash_10'   =>   $total_cash_10,
+
+                    'cash_5'   =>   $cash_5,
+                    'total_cash_5'   =>   $total_cash_5,
+                    'cash_2'   =>   $cash_2,
+                    'total_cash_2'   =>   $total_cash_2,
+                    'cash_1'   =>   $cash_1,
+                    'total_cash_1'   =>   $total_cash_1,
                     'total_cash_amt'   =>   $total_cash_amt,
+
                     'traveler_otp'   =>   $traveler_otp,
                     'booking_status'   =>  'confirm'
                 );
                 // print_r($arr_insert); die;
                  $inserted_id = $this->master_model->insertRecord('booking_payment_details',$arr_insert,true);
+                 $insertid = $this->db->insert_id();
+                
+                 $arr_insert_return = array(
+                    'select_transaction'   =>   $select_transaction,
+
+                    'return_cash_500'   =>   $return_cash_500,
+                    'return_total_cash_500'   =>   $return_total_cash_500,
+                    'return_cash_200'   =>   $return_cash_200,
+                    'return_total_cash_200'   =>   $return_total_cash_200,
+                    'return_cash_100'   =>   $return_cash_100,
+                    'return_total_cash_100'   =>   $return_total_cash_100,
+                    'return_cash_50'   =>   $return_cash_50,
+                    'return_total_cash_50'   =>   $return_total_cash_50,
+                    'return_cash_20'   =>   $return_cash_20,
+                    'return_total_cash_20'   =>   $return_total_cash_20,
+                    'return_cash_10'   =>   $return_cash_10,
+                    'return_total_cash_10'   =>   $return_total_cash_10,
+
+                    'return_cash_5'   =>   $return_cash_5,
+                    'return_total_cash_5'   =>   $return_total_cash_5,
+                    'return_cash_2'   =>   $return_cash_2,
+                    'return_total_cash_2'   =>   $return_total_cash_2,
+                    'return_cash_1'   =>   $return_cash_1,
+                    'return_total_cash_1'   =>   $return_total_cash_1,
+                    'return_total_cash_amt'   =>   $return_total_cash_amt,
+                    'booking_payment_details_id'   =>   $insertid
+                );
+                // print_r($arr_insert); die;
+                $inserted_id = $this->master_model->insertRecord('return_customer_booking_payment_details',$arr_insert_return,true);
 
                 // $arr_update = array(
                 //     'booking_reference_no'  =>  $booking_reference_no

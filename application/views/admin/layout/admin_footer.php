@@ -8226,6 +8226,11 @@ $('#add_train').validate({ // initialize the plugin
         role_name: {
             required: true,
         },
+        mobile_number: {
+            required: true,
+            maxlength:10,
+            minlength:10
+        },
         upi_id: {
             required: true,
         },
@@ -8250,6 +8255,11 @@ $('#add_train').validate({ // initialize the plugin
         },
         role_name : {
             required : "Please Select Role Name",
+        },
+        mobile_number : {
+            required : "Please Enter Mobile Number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
         },
         other_role : {
             required : "Please Enter other role Name",
@@ -8641,6 +8651,11 @@ $('#edit_QR_code').validate({ // initialize the plugin
         role_name: {
             required: true,
         },
+        mobile_number: {
+            required: true,
+            maxlength:10,
+            minlength:10
+        },
         upi_id: {
             required: true,
         },
@@ -8665,6 +8680,11 @@ $('#edit_QR_code').validate({ // initialize the plugin
         },
         role_name : {
             required : "Please Select Role Name",
+        },
+        mobile_number : {
+            required : "Please Enter Mobile Number",
+            maxlength: "Please enter maximum 10 digit number",
+            minlength: "Please enter minimum 10 digit number"
         },
         other_role : {
             required : "Please Enter other role Name",

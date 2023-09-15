@@ -5164,6 +5164,70 @@ $(document).on('click', '.expenses_btn_remove', function(){
 </script>
 
 <script>
+    var i=1;
+$('#edit_add_more_product').click(function() {
+   // alert('hhhh');
+        i++;
+var structure = $('<div class="row" id="new_row'+i+'">'+
+                    '<div class="col-md-3">'+
+                        '<div class="form-group">'+
+                        // '<label>Product Name</label>'+
+                        //     '<input type="text" class="form-control" name="product_name[]" id="product_name" placeholder="Enter product name" required>'+
+                        '<label>Product Name</label>'+
+                        '<select class="select_css" name="add_product_name[]" id="add_product_name" required>'+
+                            '<option value="">Select Product Name</option>'+
+                            <?php foreach($expense_category as $expense_category_info){ ?>
+                                '<option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>'+
+                            <?php } ?>
+                        '</select>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-1">'+
+                        '<div class="form-group">'+
+                        '<label>Unit</label>'+
+                            '<input type="text" class="form-control" name="add_measuring_unit[]" id="add_measuring_unit" placeholder="Enter measuring unit" required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-2">'+
+                        '<div class="form-group">'+
+                        '<label>Quantity</label>'+
+                            '<input type="text" class="form-control" name="add_quantity[]" id="add_quantity" placeholder="Enter quantity" required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-2">'+
+                        '<div class="form-group">'+
+                        '<label>Rate</label>'+
+                            '<input type="text" class="form-control" name="add_rate[]" id="add_rate" placeholder="Enter rate" required>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-2">'+
+                        '<div class="form-group">'+
+                        '<label>Per Unit Rate</label>'+
+                            '<input type="text" class="form-control" name="add_per_unit_rate[]" id="add_per_unit_rate" placeholder="Enter per unit rate" required>'+
+                        '</div>'+   
+                    '</div>'+
+
+                    '<div class="col-md-2 pt-4 d-flex justify-content-center align-self-center">'+
+                    '<div class="form-group">'+
+                    '<label></label>'+
+                        '<button type="button" name="expenses_remove" id="'+i+'" class="btn btn-danger add_more_expenses_btn_remove">X</button>'+
+                    '</div>'+
+                '</div>'+
+                '</div>');
+$('#add_more_expenses_main_row').append(structure); 
+
+});
+
+
+$(document).on('click', '.add_more_expenses_btn_remove', function(){  
+       var button_id = $(this).attr("id");   
+       $('#new_row'+button_id+'').remove();  
+  });
+
+</script>
+
+
+<script>
     const inputValue1 = document.getElementById('rate');
     const inputValue2 = document.getElementById('quantity');
     const resultSpan = document.getElementById('per_unit_rate');
