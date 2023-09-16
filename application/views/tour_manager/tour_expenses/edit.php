@@ -80,7 +80,8 @@
             <?php $this->load->view('agent/layout/agent_alert'); ?>
             <div class="card card-primary">
                 <div class="card-body">
-                <?php foreach($tour_expenses_all as $tour_expenses_all_info){ ?> 
+                <?php foreach($tour_expenses_all as $tour_expenses_all_info){
+                    // print_r($tour_expenses_all_info); die; ?> 
                     <form method="post" enctype="multipart/form-data" id="edit_tour_expenses">   
                     <div class="row">
                         <!---======================== this tour title and tour date in select field and apply dependancy on tour title wise tour date ====================== -->
@@ -260,15 +261,22 @@
                         <div class="col-md-3">
                             <div class="form-group">
                             <label>Expenses Type</label> <br>
-                                <input type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
+                            <?php if($tour_expenses_all_info['tour_expenses_type'] == '0'){?>
+                                <input disabled type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
+                                <input  type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
+                            <?php }else{ ?>
+                                <input  type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
+                                <input disabled type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
+                            <?php } ?>
                             </div>
                         </div>
 
                         <div class="col-md-3 d-flex justify-content-center">
                             <div class="form-group">
                                 <label></label>
+                                <?php if($tour_expenses_all_info['tour_expenses_type'] == '0'){?>
                                 <button type="button" class="btn btn-primary add_more_css" name="submit" value="edit_add_more_product" id="edit_add_more_product">Add More Product</button>
+                                <?php } ?>
                             </div>
                         </div> 
 

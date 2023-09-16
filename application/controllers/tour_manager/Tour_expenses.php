@@ -731,7 +731,7 @@ class Tour_expenses extends CI_Controller {
         $record = array();
         $fields = "add_more_tour_expenses.*,add_more_tour_expenses.*,expense_category.expense_category";
         $this->db->where('add_more_tour_expenses.is_deleted','no');
-        $this->db->where('add_more_tour_expenses.tour_expenses_id',$package_id);
+        $this->db->where('add_more_tour_expenses.tour_expenses_id',$tour_expenses_id);
         $this->db->join("expense_category", 'add_more_tour_expenses.product_name=expense_category.id','left');
         $add_more_tour_expenses_all = $this->master_model->getRecords('add_more_tour_expenses',array('add_more_tour_expenses.is_deleted'=>'no'),$fields);
         // print_r($add_more_tour_expenses_all); die;

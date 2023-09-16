@@ -141,6 +141,7 @@
                 </table>
               </div>
               
+              <?php if($tour_expenses_all_info['tour_expenses_type']== '0'){?>
               <div class="card-body">
                 <div class="accordion accordion-flush" id="accordion">
                   <div class="accordion-item">
@@ -181,6 +182,7 @@
                   </div>
                 </div>
               </div>
+              <?php } ?>
               <?php $expences_id = $tour_expenses_all_info['t_expences_id']; ?>
 
               <input type="hidden" readonly class="form-control" name="expense_id" id="expense_id" value="<?php echo $tour_expenses_all_info['t_expences_id']; ?>" required>

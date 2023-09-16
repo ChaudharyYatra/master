@@ -23,7 +23,6 @@ class Asign_tour_manager extends CI_Controller{
 
 	public function index()
 	{
-
         $expences_checker_master_sess_name = $this->session->userdata('expences_checker_name');
         $id = $this->session->userdata('expences_checker_sess_id');
 
@@ -95,6 +94,7 @@ class Asign_tour_manager extends CI_Controller{
                 $this->db->join("add_more_tour_expenses", 'tour_expenses.id=add_more_tour_expenses.tour_expenses_id','left');
                 $this->db->join("hotel_advance_payment", 'tour_expenses.package_id=hotel_advance_payment.tour_number','left');
                 $this->db->where('tour_expenses.package_date_id',$t_did);
+                $this->db->group_by('add_more_tour_expenses.tour_expenses_id');
                 $arr_data = $this->master_model->getRecords('tour_expenses',array('tour_expenses.is_deleted'=>'no'),$fields);
                 // print_r($arr_data); die;
                 
@@ -140,7 +140,7 @@ class Asign_tour_manager extends CI_Controller{
                 $record = array();
                 $fields = "add_more_tour_expenses.*,add_more_tour_expenses.*,expense_category.expense_category";
                 $this->db->where('add_more_tour_expenses.is_deleted','no');
-                $this->db->where('add_more_tour_expenses.tour_expenses_id',$id);
+                $this->db->where('add_more_tour_expenses.tour_expenses_id',$t_did);
                 $this->db->join("expense_category", 'add_more_tour_expenses.product_name=expense_category.id','left');
                 $add_more_tour_expenses_all = $this->master_model->getRecords('add_more_tour_expenses',array('add_more_tour_expenses.is_deleted'=>'no'),$fields);
                 // print_r($add_more_tour_expenses_all); die;
@@ -156,7 +156,6 @@ class Asign_tour_manager extends CI_Controller{
                 $this->arr_view_data['module_url_path'] = $this->module_url_path;
                 $this->arr_view_data['middle_content']  = $this->module_view_folder."tourwise_expences_details";
                 $this->load->view('expences_checker/layout/expences_checker_combo',$this->arr_view_data);
-       
 	}
 
 
