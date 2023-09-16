@@ -5215,7 +5215,6 @@ var structure = $('<div class="row" id="new_row'+i+'">'+
                 '</div>'+
                 '</div>');
 $('#add_more_expenses_main_row').append(structure); 
-
 });
 
 
@@ -5225,6 +5224,42 @@ $(document).on('click', '.add_more_expenses_btn_remove', function(){
   });
 
 </script>
+<script>
+$(document).ready(function() {
+    $('#expenses_add_more').click(function() {
+        // Clone the last div and append it
+        const newDiv = $('#sub_main_tour_div1:last').clone();
+        
+        // Clear the input fields in the new div
+        newDiv.find('input[type="text"]').val('');
+        
+        // Append the new div to the container
+        // $('#expenses_main_row').append(newDiv);
+        
+        // Attach the 'keyup' event handler to the 'rate' and 'quantity' fields in the new div
+        newDiv.find('.add_quantity, .add_rate').on('keyup', calculateDivision);
+    });
+
+    function calculateDivision() {
+        const div = $(this).closest("div");
+        const inputValue1 = parseFloat(div.find('.add_quantity').val());
+        const inputValue2 = parseFloat(div.find('.add_rate').val());
+        const resultSpan = div.find('.per_unit_rate');
+
+        if (!isNaN(inputValue1) && !isNaN(inputValue2) && inputValue2 !== 0) {
+            const result = Math.round(inputValue1 / inputValue2);
+            resultSpan.text(result); // Format result to two decimal places and update the content of the resultSpan
+        } else {
+            resultSpan.text('Invalid input');
+        }
+    }
+
+    // Attach the initial 'keyup' event handler to the existing divs
+    $('.add_quantity, .add_rate').on('keyup', calculateDivision);
+});
+</script>
+
+
 
 
 <script>
