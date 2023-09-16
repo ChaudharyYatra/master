@@ -5399,7 +5399,7 @@ $('#add_day_wise_cost_creation').validate({
                 
               </div>
               <div class="col-md-6 mt-2">
-                 <input type="hidden" id="document_file_traveller_img`+img_count+`" name="document_file_traveller_img[]" value=""> 
+                 <input type="hidden" class="document_file_traveller_img" id="document_file_traveller_img`+img_count+`" name="document_file_traveller_img[]" value=""> 
                  <div id="imagePreview_traveller_img`+img_count+`" class="iti_img mt-2 img_size_cast">
                  <img src="<?php echo base_url(); ?>uploads/day_wise_itinerary/" width="25%" /></div>
               </div>
@@ -8269,7 +8269,7 @@ $('#add_train').validate({ // initialize the plugin
         },
         upi_id : {
             required : "Please Enter UPI Id",
-        }
+        },
         train_name: {
             required: true,
         },
@@ -8788,6 +8788,7 @@ $('#edit_measuring_type').validate({ // initialize the plugin
             for (var i = 0; i < n; i++) {
                 var day = i + 1;
                 var input = `
+                <form id="form_123" method="post" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-header" id="heading${day}" data-toggle="collapse" data-target="#collapse${day}" aria-expanded="false" aria-controls="collapse${day}">
                             <h5 class="mb-0">
@@ -8838,7 +8839,7 @@ $('#edit_measuring_type').validate({ // initialize the plugin
                                                             <tr>
                                                                 <td>${day}</td>
                                                                 <td>
-                                                                    <select class="select_css place_name${day}" name="place_name[]" id="place_name" attr_time="${day}" required="required">
+                                                                    <select class="select_css select_place place_name${day}" name="place_name[]" id="place_name" attr_time="${day}" required="required">
                                                                         <option value="">Select Place</option>
                                                                     </select>
                                                                 </td>
@@ -8872,9 +8873,10 @@ $('#edit_measuring_type').validate({ // initialize the plugin
                                     <button class="btn btn-success add-row_district" type="button" data-day="${day}">Add another district</button>
                                 </div>
                             </div>
-
+                            <button type="button" class="btn btn-primary form-control daywise_submit" style="width:10%;">Submit</button>
                         </div>
-                    </div>`;
+                    </div>
+                </form>`;
                 var newInput = $(input);
                 newFields = newFields.add(newInput);
                 newInput.appendTo('#accordion');
@@ -8889,7 +8891,7 @@ $('#edit_measuring_type').validate({ // initialize the plugin
                         <tr>
                             <td>${p}</td>
                             <td>
-                                <select class="select_css place_name${day}" name="place_name[]" id="place_name" required="required">
+                                <select class="select_css select_place place_name${day}" name="place_name[]" id="place_name" required="required">
                                 <option value="">Select Place</option>
                                 </select>
                             </td>
@@ -8989,7 +8991,7 @@ $('#edit_measuring_type').validate({ // initialize the plugin
                                                                         <option value="">Select district</option>
                                                                     </select>
                                                                 </td>
-                                                                <td><input readonly type="input" name="time[]" id="time" value=""></td>
+                                                                <td><input readonly class="time" type="input" name="time[]" id="time" value=""></td>
                                                                 <td><input type="time" class="form-control" name="visit_time[]" id="visit_time" placeholder="Enter Visit Time" required></td>
                                                                 <td><input type="text" class="form-control" name="details[]" id="details" placeholder="Enter Details"></td>
                                                                 <td>
@@ -9167,3 +9169,56 @@ $('#edit_measuring_type').validate({ // initialize the plugin
     });
 
 </script> -->
+
+
+<script>
+      $(document).ready(function(){
+        // alert('hii');
+    $(document).on('click','.daywise_submit', function () {
+        alert('hoooo');
+        // console.log('formData',formData);
+
+        var total_days = $('#total_days').val();
+        var day_number = $('#day_number').val();
+        // alert(total_days);
+        var district = $(".district option:selected").val();
+        // alert(district);
+        var select_place = $(".select_place option:selected").val();
+        alert(select_place);
+
+        // var image_name = $('input[name="document_file_traveller_img[]"]').map(function () {
+        //     return this.value; // $(this).val()
+        // }).get();
+
+        //   alert(image_name);
+        var image_name = $('.document_file_traveller_img').map(function () {
+                return this.value;
+            }).get();
+
+            // alert(image_name);
+
+        $.ajax({
+            method: 'post',
+                          url:'<?=base_url()?>admin/tour_creation_itinerary/insert_daywise_iternary',
+                          data: {tour_number: tour_number,
+                            tour_name: tour_name,
+                            tour_days: tour_days,
+                            image_name   :image_name
+                        },
+                          dataType: 'json',
+                          cache: false,
+                          success: function(response) {
+                            // alert(response);
+                              if (response=true) {
+                                //   alert('success');
+                                // window.location.href = "<?//=base_url()?>admin/day_wise_tour_itinerary/add";
+                              } else {
+                                  alert('error');
+
+                              }
+                          },
+                      });
+    });    
+});
+
+ </script>

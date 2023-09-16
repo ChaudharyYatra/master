@@ -50,7 +50,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               
-              <form id="form_123" method="post" enctype="multipart/form-data">
+              <!-- <form id="form_123" method="post" enctype="multipart/form-data"> -->
                 <div class="card-body">
                     <div class="row" id="">
                     
@@ -66,19 +66,19 @@
                     </div>
                     
                     
-                 <!-- <div class="row" id="main_row">
-                      </div> -->
+                    <!-- <div class="row" id="main_row">
+                    </div> -->
                      
                 </div>
                 <div id="Tourcreation_newFields"></div>
               
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary form-control" name="submit" value="submit" style="width:10%;">Submit</button>
+                  <!-- <button type="submit" class="btn btn-primary form-control" name="submit" value="submit" style="width:10%;">Submit</button> -->
 					        <a href="<?php echo $module_url_path; ?>/index/<?php echo $id; ?>"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 </div>
             </div>
-              </form>
+              <!-- </form> -->
             
             </div>
             <!-- /.card -->

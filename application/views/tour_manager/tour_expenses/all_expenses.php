@@ -41,7 +41,7 @@
                     <th>Expenses Date</th>
                     <th>Expense Head</th>
                     <th>Sub-Expenses Head</th>
-                    <!-- <th>Advance Payment Done From Accountant</th> -->
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -57,15 +57,28 @@
                     <td><?php echo date("d-m-Y",strtotime($info['expense_date'])) ?></td>
                     <td><?php echo $info['expense_type_name'] ?></td>
                     <td><?php echo $info['expense_category'] ?></td>
+                    <td>
+                      <?php 
+                        if($info['approval']=='no' && $info['hold']=='yes')
+                          {
+                        ?>
+                        Hold
+                        
+                        <?php } else if($info['approval']=='yes'  && $info['hold']=='no'){ ?>
+                          Approved
+                      <?php } ?>
+                    </td>
                     
                     <td>
                           <a href="<?php echo $module_url_path;?>/details/<?php $aid=base64_encode($info['id']); 
-					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['add_more_id']);
-					                  echo rtrim($did, '='); ?>" class="itinerary_css"><i class="fas fa-eye" aria-hidden="true" style="color:black" ;=""></i></a> &nbsp;/&nbsp;
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['package_date_id']);
+					                  echo rtrim($did, '='); ?>/<?php $aid=base64_encode($info['package_id']); 
+					                  echo rtrim($aid, '='); ?>" class="itinerary_css"><i class="fas fa-eye" aria-hidden="true" style="color:black" ;=""></i></a> &nbsp;/&nbsp;
 
                           <a href="<?php echo $module_url_path;?>/edit/<?php $aid=base64_encode($info['id']); 
-					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['add_more_id']); 
-					                  echo rtrim($did, '='); ?>" class="itinerary_css"><i class="fas fa-edit" aria-hidden="true" style="color:blue" ;=""></i></a> &nbsp;/&nbsp;
+					                  echo rtrim($aid, '='); ?>/<?php $did=base64_encode($info['package_date_id']); 
+					                  echo rtrim($did, '='); ?>/<?php $aid=base64_encode($info['package_id']); 
+					                  echo rtrim($aid, '='); ?>" class="itinerary_css"><i class="fas fa-edit" aria-hidden="true" style="color:blue" ;=""></i></a> &nbsp;/&nbsp;
                           
                           <a onclick="return confirm('Are You Sure You Want To Delete This Record?')" href="<?php echo $module_url_path;?>/delete/<?php echo $info['id']; 
 					                  ?>" title="Delete"><i class="fa fa-trash" aria-hidden="true" style="color:red";></i></a>

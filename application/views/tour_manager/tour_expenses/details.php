@@ -21,7 +21,18 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="<?php echo $module_url_path; ?>/index"><button class="btn btn-primary">Back</button></a>
+              <?php $iid = $package_id; // Replace this with your actual data
+                $aid = base64_encode($package_id);
+                $aid = str_replace('=', '', $aid);
+                $aid; 
+
+                $td_iid = $package_date_id; 
+                $td_aid = base64_encode($package_date_id);
+                $td_aid = str_replace('=', '', $td_aid);
+                $td_aid; 
+                
+              ?>
+              <a href="<?php echo $module_url_path; ?>/all_expenses/<?php echo $aid; ?>/<?php echo $td_aid; ?>"><button class="btn btn-primary">Back</button></a>
               
             </ol>
           </div>
@@ -171,6 +182,26 @@
               </div>
               <?php } ?>
         <br>
+
+            <div class="row">
+              <div class="col-md-4 col-sm-4">
+
+              </div>
+              <div class="col-md-4 col-sm-4">
+                
+                <?php 
+                  if($tour_expenses_all_info['hold_reason']!='')
+                  { ?>
+                    <label for="holdReason">Hold Reason:</label>
+                    <textarea disabled class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"><?php echo $tour_expenses_all_info['hold_reason'] ?></textarea>
+                <?php } ?>
+              </div>
+              <div class="col-md-4 col-sm-4">
+
+              </div>
+            </div>
+
+            <br>
         <div class="row">
 
             </div>

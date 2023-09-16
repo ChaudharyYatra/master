@@ -51,7 +51,19 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <!-- <a href="<?php //echo $module_url_path; ?>/index"><button class="btn btn-primary">List</button></a> -->
+              <?php $iid = $package_id; // Replace this with your actual data
+                $aid = base64_encode($package_id);
+                $aid = str_replace('=', '', $aid);
+                $aid; 
+
+                $td_iid = $package_date_id; 
+                $td_aid = base64_encode($package_date_id);
+                $td_aid = str_replace('=', '', $td_aid);
+                $td_aid; 
+                
+              ?>
+              <a href="<?php echo $module_url_path; ?>/all_expenses/<?php echo $aid; ?>/<?php echo $td_aid; ?>"><button class="btn btn-primary">Back</button></a>
+              
             </ol>
           </div>
         </div>
@@ -330,7 +342,7 @@
                         <button type="submit" class="btn btn-primary" name="submit" value="submit">Save & Close</button>
                         <!-- <button type="submit" class="btn btn-success" name="booknow_submit" value="Book Now">Submit & Proceed</button>  -->
                         <!-- <a href="<?php //echo $module_booking_basic_info; ?>/add/<?php //echo $enquiry_id;?>/1"><button type="button" class="btn btn-warning" name="back_btn">Back</button></a> -->
-                        <a href="<?php echo $module_url_path; ?>/index"><button type="button" class="btn btn-danger" >Cancel</button></a>
+                        <a href="<?php echo $module_url_path; ?>/all_expenses/<?php echo $aid; ?>/<?php echo $td_aid;?>"><button type="button" class="btn btn-danger" >Cancel</button></a>
                         <!-- </div> -->
                     </div>
                 </form>
