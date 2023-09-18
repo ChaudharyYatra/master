@@ -60,12 +60,12 @@
                     <td><?php echo $info['expense_amt']; ?></td>
                     <td>
                       <?php 
-                        if($info['approval']=='yes'  && $info['reject']=='no')
+                        if($info['approval']=='yes'  && $info['hold']=='no')
                           {
                       ?>
                         Approved
-                      <?php } else if($info['approval']=='no'  && $info['reject']=='yes'){?>
-                        Rejected
+                      <?php } else if($info['approval']=='no'  && $info['hold']=='yes'){?>
+                        Hold
                       <?php } else { ?>
                         Pending
                       <?php } ?>
@@ -190,31 +190,7 @@ foreach($arr_data as $info)
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <!-- <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button> -->
-              <?php 
-                if($info['approval']=='yes'  && $info['reject']=='no')
-                  {
-                ?>
-              <button type="button" disabled class="btn btn-success" name="submit" value="submit">Approved</button>
-              <?php } else if($info['approval']=='no'  && $info['reject']=='no'){ ?>
-                <button type="button" attr_approve="<?php echo $info['id'] ?>" class="btn btn-primary approve" name="submit" value="submit">Approve</button>
-              <?php } else if($info['approval']=='no'  && $info['reject']=='yes'){ ?>
-                
-              <?php } ?>
-
-                <?php 
-                if($info['approval']=='yes' && $info['reject']=='no')
-                  {
-                ?>
-              
-              <?php } else if($info['approval']=='no' && $info['reject']=='no'){ ?>
-                <button type="button" attr_reject="<?php echo $info['id'] ?>" class="btn btn-danger reject" name="submit" value="submit">Reject</button>
-              <?php } else if($info['approval']=='no' && $info['reject']=='yes'){ ?>
-                  <button type="button" disabled class="btn btn-danger" name="submit" value="submit">Rejected</button>
-              <?php } ?>
-            </div>
+            
           </form>
         </div>
       </div>

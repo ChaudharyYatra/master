@@ -29,7 +29,7 @@ class Tour_photos extends CI_Controller{
         $this->db->join("packages", 'tour_photos.package_id=packages.id','left');
         $this->db->join("package_date", 'tour_photos.package_date_id=package_date.id','left');
         $arr_data = $this->master_model->getRecords('tour_photos',array('tour_photos.is_deleted'=>'no'),$fields);
-        print_r($arr_data); die;
+        // print_r($arr_data); die;
 
         // $fields = "tour_photos.*,packages.tour_title,packages.tour_number,package_date.journey_date,
         // package_date.id as did";

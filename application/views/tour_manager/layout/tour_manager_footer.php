@@ -4538,7 +4538,7 @@ $('#suugestion_edit').validate({ // initialize the plugin
 $(document).ready(function () {
 $('#add_tour_expenses').validate({ // initialize the plugin
     errorPlacement: function($error, $element) {
-    $error.appendTo($element.closest("div"));
+    $error.appendTo($element.closest("div td"));
   },
     rules: {
         tour_number: {
@@ -4636,7 +4636,7 @@ $('#add_tour_expenses').validate({ // initialize the plugin
 $(document).ready(function () {
 $('#edit_tour_expenses').validate({ // initialize the plugin
     errorPlacement: function($error, $element) {
-    $error.appendTo($element.closest("div"));
+    $error.appendTo($element.closest("div td"));
   },
   rules: {
         tour_number: {
@@ -5099,8 +5099,147 @@ $('#edit_tour_photo').validate({ // initialize the plugin
 </script>
 
 <!--// tour Expenses add - Rupali-->
+<script>
+    $(document).ready(function() {
+        // Function to update per_unit_rate field for a specific row
+        function updatePerUnitRate(row) {
+            var quantity = parseFloat($(row).find(".quantity").val());
+            var rate = parseFloat($(row).find(".rate").val());
+
+            if (!isNaN(quantity) && !isNaN(rate) && quantity !== 0) {
+                var perUnitRate = rate / quantity;
+                $(row).find(".per_unit_rate").val(perUnitRate.toFixed(2)); // You can adjust the number of decimal places as needed.
+            } else {
+                $(row).find(".per_unit_rate").val('');
+            }
+        }
+
+        // Function to update expense_amt field
+        function updateExpenseAmount() {
+            var totalRate = 0;
+            $(".rate").each(function() {
+                var rate = parseFloat($(this).val());
+                if (!isNaN(rate)) {
+                    totalRate += rate;
+                }
+            });
+
+            $("#expense_amt").val(totalRate.toFixed(2)); // You can adjust the number of decimal places as needed.
+        }
+
+        // Add more rows when the "Add More" button is clicked
+        $("#expenses_add_more").click(function() {
+            var newRow = `
+                <tr>
+                    <td>
+                        <select class="select_css" name="product_name[]" id="product_name" required>
+                            <option value="">Select Product Name</option>
+                            <?php foreach($expense_category as $expense_category_info){ ?>
+                                '<option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>'+
+                            <?php } ?>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control measuring_unit" name="measuring_unit[]" placeholder="Enter measuring unit" required></td>
+                    <td><input type="text" class="form-control quantity" name="quantity[]" placeholder="Enter quantity" required></td>
+                    <td><input type="text" class="form-control rate" name="rate[]" placeholder="Enter rate" required></td>
+                    <td><input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" placeholder="Enter per unit rate" required></td>
+                    <td>
+                        <button type="button" class="btn btn-danger remove-row">Remove</button>
+                    </td>
+                </tr>
+            `;
+            $("#table tbody").append(newRow);
+        });
+
+        // Remove a row when the "Remove" button is clicked
+        $(document).on("click", ".remove-row", function() {
+            $(this).closest("tr").remove();
+            updateExpenseAmount(); // Recalculate the total when a row is removed
+        });
+
+        // Update per_unit_rate when quantity or rate changes in any row
+        $(document).on("input", ".quantity, .rate", function() {
+            // Loop through all rows and update their per_unit_rate
+            $("#table tbody tr").each(function() {
+                updatePerUnitRate(this);
+            });
+
+            updateExpenseAmount(); // Recalculate the total when a rate or quantity changes
+        });
+    });
+</script>
 
 <script>
+    $(document).ready(function() {
+        // Function to update per_unit_rate field for a specific row
+        function updatePerUnitRate(row) {
+            var quantity = parseFloat($(row).find(".quantity").val());
+            var rate = parseFloat($(row).find(".rate").val());
+
+            if (!isNaN(quantity) && !isNaN(rate) && quantity !== 0) {
+                var perUnitRate = rate / quantity;
+                $(row).find(".per_unit_rate").val(perUnitRate.toFixed(2)); // You can adjust the number of decimal places as needed.
+            } else {
+                $(row).find(".per_unit_rate").val('');
+            }
+        }
+
+        // Function to update expense_amt field
+        function updateExpenseAmount() {
+            var totalRate = 0;
+            $(".rate").each(function() {
+                var rate = parseFloat($(this).val());
+                if (!isNaN(rate)) {
+                    totalRate += rate;
+                }
+            });
+
+            $("#expense_amt").val(totalRate.toFixed(2)); // You can adjust the number of decimal places as needed.
+        }
+
+        // Add more rows when the "Add More" button is clicked
+        $("#expenses_edit_more").click(function() {
+            var newRow = `
+                <tr>
+                    <td>
+                        <select class="select_css" name="add_product_name[]" id="add_product_name" required>
+                            <option value="">Select Product Name</option>
+                            <?php foreach($expense_category as $expense_category_info){ ?>
+                                '<option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>'+
+                            <?php } ?>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control measuring_unit" name="add_measuring_unit[]" placeholder="Enter measuring unit" required></td>
+                    <td><input type="text" class="form-control quantity" name="add_quantity[]" placeholder="Enter quantity" required></td>
+                    <td><input type="text" class="form-control rate" name="add_rate[]" placeholder="Enter rate" required></td>
+                    <td><input readonly type="text" class="form-control per_unit_rate" name="add_per_unit_rate[]" placeholder="Enter per unit rate" required></td>
+                    <td>
+                        <button type="button" class="btn btn-danger remove-row">Remove</button>
+                    </td>
+                </tr>
+            `;
+            $("#table tbody").append(newRow);
+        });
+
+        // Remove a row when the "Remove" button is clicked
+        $(document).on("click", ".remove-row", function() {
+            $(this).closest("tr").remove();
+            updateExpenseAmount(); // Recalculate the total when a row is removed
+        });
+
+        // Update per_unit_rate when quantity or rate changes in any row
+        $(document).on("input", ".quantity, .rate", function() {
+            // Loop through all rows and update their per_unit_rate
+            $("#table tbody tr").each(function() {
+                updatePerUnitRate(this);
+            });
+
+            updateExpenseAmount(); // Recalculate the total when a rate or quantity changes
+        });
+    });
+</script>
+
+<!-- <script>
     var i=1;
 $('#expenses_add_more').click(function() {
    // alert('hhhh');
@@ -5113,9 +5252,9 @@ var structure = $('<div class="row" id="new_row'+i+'">'+
                         '<label>Product Name</label>'+
                         '<select class="select_css" name="product_name[]" id="product_name" required>'+
                             '<option value="">Select Product Name</option>'+
-                            <?php foreach($expense_category as $expense_category_info){ ?>
-                                '<option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>'+
-                            <?php } ?>
+                            <?php //foreach($expense_category as $expense_category_info){ ?>
+                                '<option value="<?php //echo $expense_category_info['id'];?>"><?php //echo $expense_category_info['expense_category'];?></option>'+
+                            <?php //} ?>
                         '</select>'+
                         '</div>'+
                     '</div>'+
@@ -5128,13 +5267,13 @@ var structure = $('<div class="row" id="new_row'+i+'">'+
                     '<div class="col-md-2">'+
                         '<div class="form-group">'+
                         '<label>Quantity</label>'+
-                            '<input type="text" class="form-control" name="quantity[]" id="quantity" placeholder="Enter quantity" required>'+
+                            '<input type="text" class="form-control quantity" name="quantity[]" id="quantity" placeholder="Enter quantity" required>'+
                         '</div>'+
                     '</div>'+
                     '<div class="col-md-2">'+
                         '<div class="form-group">'+
                         '<label>Rate</label>'+
-                            '<input type="text" class="form-control" name="rate[]" id="rate" placeholder="Enter rate" required>'+
+                            '<input type="text" class="form-control rate" name="rate[]" id="rate" placeholder="Enter rate" required>'+
                         '</div>'+
                     '</div>'+
                     '<div class="col-md-2">'+
@@ -5161,9 +5300,9 @@ $(document).on('click', '.expenses_btn_remove', function(){
        $('#new_row'+button_id+'').remove();  
   });
 
-</script>
+</script> -->
 
-<script>
+<!-- <script>
     var i=1;
 $('#edit_add_more_product').click(function() {
    // alert('hhhh');
@@ -5176,9 +5315,9 @@ var structure = $('<div class="row" id="new_row'+i+'">'+
                         '<label>Product Name</label>'+
                         '<select class="select_css" name="add_product_name[]" id="add_product_name" required>'+
                             '<option value="">Select Product Name</option>'+
-                            <?php foreach($expense_category as $expense_category_info){ ?>
-                                '<option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>'+
-                            <?php } ?>
+                            <?php //foreach($expense_category as $expense_category_info){ ?>
+                                '<option value="<?php //echo $expense_category_info['id'];?>"><?php //echo $expense_category_info['expense_category'];?></option>'+
+                            <?php //} ?>
                         '</select>'+
                         '</div>'+
                     '</div>'+
@@ -5203,7 +5342,7 @@ var structure = $('<div class="row" id="new_row'+i+'">'+
                     '<div class="col-md-2">'+
                         '<div class="form-group">'+
                         '<label>Per Unit Rate</label>'+
-                            '<input type="text" class="form-control" name="add_per_unit_rate[]" id="add_per_unit_rate" placeholder="Enter per unit rate" required>'+
+                            '<input type="text" class="form-control per_unit_rate" name="add_per_unit_rate[]" id="add_per_unit_rate" placeholder="Enter per unit rate" required>'+
                         '</div>'+   
                     '</div>'+
 
@@ -5223,8 +5362,8 @@ $(document).on('click', '.add_more_expenses_btn_remove', function(){
        $('#new_row'+button_id+'').remove();  
   });
 
-</script>
-<script>
+</script> -->
+<!-- <script>
 $(document).ready(function() {
     $('#expenses_add_more').click(function() {
         // Clone the last div and append it
@@ -5257,12 +5396,12 @@ $(document).ready(function() {
     // Attach the initial 'keyup' event handler to the existing divs
     $('.add_quantity, .add_rate').on('keyup', calculateDivision);
 });
-</script>
+</script> -->
 
 
 
 
-<script>
+<!-- <script>
     const inputValue1 = document.getElementById('rate');
     const inputValue2 = document.getElementById('quantity');
     const resultSpan = document.getElementById('per_unit_rate');
@@ -5281,7 +5420,81 @@ $(document).ready(function() {
             resultSpan.value = 'Invalid input';
         }
     }
-</script>
+</script> -->
+
+<!-- <script>
+    $('.quantity').on('keyup', function() {
+        const inputValue1 = $('#rate');
+        const inputValue2 = $('#quantity');
+        const resultSpan = $('#per_unit_rate');
+
+        inputValue1.on('keyup', calculateDivision);
+        inputValue2.on('keyup', calculateDivision);
+
+        function calculateDivision() {
+            const value1 = parseFloat(inputValue1.val());
+            const value2 = parseFloat(inputValue2.val());
+
+            if (!isNaN(value1) && !isNaN(value2) && value2 !== 0) {
+                const result = value1 / value2;
+                resultSpan.val(result.toFixed(2)); // Limit to 2 decimal places
+            } else {
+                resultSpan.val('Invalid input');
+            }
+        }
+    });
+</script> -->
+
+    <script>
+        // When the Quantity or Rate fields change
+        $(".quantity, .rate").on("input", function () {
+            var container = $(this).closest('.col-md-2');
+            // Get the values of Quantity and Rate
+            var quantityValue = parseInt($(".quantity").val()) || 0;
+            var rateValue = parseInt($(".rate").val()) || 0;
+
+            // Calculate Per Unit Rate
+            var perUnitRate = rateValue === 0 ? 0 : (rateValue / quantityValue);
+
+            // Update the Per Unit Rate input field
+            $(".per_unit_rate").val(perUnitRate.toFixed(2));
+        });
+    </script>
+
+    <!-- <script>
+    $('.quantity').on('keyup', function() {
+
+        var p = $(this).val();
+
+        console.log(p);
+
+        var currentRow = $(this).closest("div");
+
+        var col3 = currentRow.find("div:eq(5)").text();
+
+        console.log(parseInt(col3));
+
+        
+    });
+</script> -->
+
+<!-- <script>
+    $('.quantity').on('keyup', function() {
+
+        var p = $(this).val();
+
+        console.log(p);
+
+        var currentRow = $(this).closest("div");
+
+        var col3 = currentRow.find("div:eq(5)").text();
+
+        console.log(parseInt(col3));
+
+        
+    });
+</script> -->
+
 
 <!-- <script>
   $(".delete_instruction").click(function() { 
@@ -5293,7 +5506,7 @@ $(document).ready(function() {
      {
           $.ajax({
                           type: "POST",
-                          url:'<?=base_url()?>tour_manager/tour_expenses/add_more_delete',
+                          url:'<?//=base_url()?>tour_manager/tour_expenses/add_more_delete',
                           data: {request_id: delete_add_more_tour_expenses_id
                            },
                          //  dataType: 'json',

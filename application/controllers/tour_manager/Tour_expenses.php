@@ -328,6 +328,7 @@ class Tour_expenses extends CI_Controller {
         }
 
         $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
 		$this->db->order_by('expense_category','ASC');
         $expense_category = $this->master_model->getRecords('expense_category');
         //  print_r($expense_category); die;
@@ -632,6 +633,7 @@ class Tour_expenses extends CI_Controller {
         // print_r($tour_expenses_all); die;
 
         $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
 		$this->db->order_by('expense_category','ASC');
         $expense_category = $this->master_model->getRecords('expense_category');
         //  print_r($expense_category); die;

@@ -186,7 +186,7 @@
                             </div>
                         </div>
                         
-                        <div class="cash_payment_div" id="sub_main_tour_div1" style='display:none;'>
+                        <!-- <div class="cash_payment_div" id="sub_main_tour_div1" style='display:none;'>
                             <div class="col-md-12">
                                 <div class="row" id="expenses_main_row">
                                     <div class="col-md-3">
@@ -194,16 +194,13 @@
                                             <label>Product Name</label>
                                                 <select class="select_css" name="product_name[]" id="product_name" required>
                                                     <option value="">Select Product Name</option>
-                                                    <?php foreach($expense_category as $expense_category_info){ ?> 
-                                                        <option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>
-                                                    <?php } ?>
+                                                    <?php //foreach($expense_category as $expense_category_info){ ?> 
+                                                        <option value="<?php //echo $expense_category_info['id'];?>"><?php //echo $expense_category_info['expense_category'];?></option>
+                                                    <?php //} ?>
                                                 </select>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <label>Product Name</label>
-                                            <input type="text" class="form-control" name="product_name[]" id="product_name" placeholder="Enter product name" required>
-                                        </div> -->
+                                    
                                     <div class="col-md-1">
                                         <div class="form-group">
                                         <label>Unit</label>
@@ -213,19 +210,19 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                         <label>Quantity</label>
-                                            <input type="text" class="form-control" name="quantity[]" id="quantity" placeholder="Enter quantity" required>
+                                            <input type="text" class="form-control quantity" name="quantity[]" id="quantity" placeholder="Enter quantity" required>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                         <label>Rate</label>
-                                            <input type="text" class="form-control" name="rate[]" id="rate" placeholder="Enter rate" required>
+                                            <input type="text" class="form-control rate" name="rate[]" id="rate" placeholder="Enter rate" required>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                         <label>Per Unit Rate</label>
-                                            <input readonly type="text" class="form-control" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" required>
+                                            <input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" required>
                                         </div>
                                     </div>
                                     <div class="col-md-2 d-flex justify-content-center">
@@ -236,12 +233,48 @@
                                     </div> 
                                 </div>
                             </div>
+                        </div> -->
+
+                        <div class="col-md-12 cash_payment_div" id="sub_main_tour_div1" style='display:none;'>
+                            <div class="form-group">
+                                <table border="1" class="table table-bordered" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name <span class="text-danger">*</th>
+                                            <th>Unit <span class="text-danger">*</th>
+                                            <th>Quantity <span class="text-danger">*</th>
+                                            <th>Rate <span class="text-danger">*</th>
+                                            <th>Per Unit Rate <span class="text-danger">*</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select class="select_css" name="product_name[]" id="product_name" required>
+                                                    <option value="">Select Product Name</option>
+                                                    <?php foreach($expense_category as $expense_category_info){ ?> 
+                                                        <option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" class="form-control" name="measuring_unit[]" id="measuring_unit" placeholder="Enter measuring unit" required></td>
+                                            <td><input type="text" class="form-control quantity" name="quantity[]" id="quantity" placeholder="Enter quantity" required></td>
+                                            <td><input type="text" class="form-control rate" name="rate[]" id="rate" placeholder="Enter rate" required></td>
+                                            <td><input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" required></td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" name="submit" value="expenses_add_more" id="expenses_add_more">Add More</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Bill Amount</label>
-                                <input type="text" class="form-control" name="expense_amt" id="expense_amt" placeholder="Enter Expense Amount" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                <input readonly type="text" class="form-control" name="expense_amt" id="expense_amt" placeholder="Enter Expense Amount" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
 
