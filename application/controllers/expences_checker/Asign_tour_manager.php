@@ -56,6 +56,8 @@ class Asign_tour_manager extends CI_Controller{
                 $this->db->where('assign_staff.is_deleted','no');
                 $this->db->where('assign_staff.name',$id);
                 $this->db->join("packages", 'assign_staff.package_id=packages.id','left');
+                $this->db->where('packages.is_deleted','no');
+                $this->db->where('packages.is_active','yes');
                 $this->db->join("package_type", 'packages.package_type=package_type.id','left');
                 $this->db->join("package_date", 'assign_staff.package_date_id=package_date.id','left');
                 $this->db->join("supervision", 'assign_staff.role_name=supervision.id','left');
@@ -89,6 +91,8 @@ class Asign_tour_manager extends CI_Controller{
 
                 $this->db->join("expense_type", 'tour_expenses.expense_type=expense_type.id','left');
                 $this->db->join("expense_category", 'tour_expenses.expense_category_id=expense_category.id','left');
+                $this->db->where('packages.is_deleted','no');
+                $this->db->where('packages.is_active','yes');
                 $this->db->join("packages", 'tour_expenses.package_id=packages.id','left');
                 $this->db->join("package_date", 'tour_expenses.package_date_id=package_date.id','left');
                 $this->db->join("add_more_tour_expenses", 'tour_expenses.id=add_more_tour_expenses.tour_expenses_id','left');

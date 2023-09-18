@@ -68,28 +68,7 @@
                     <form method="post" enctype="multipart/form-data" id="add_tour_expenses">   
                     <div class="row">
                         <!---======================== this tour title and tour date in select field and apply dependancy on tour title wise tour date ====================== -->
-                        <!-- <div class="col-md-6">
-                            <div class="form-group">
-                            <label>Tour No / Name</label>
-                                <select class="form-control" name="tour_number" id="tour_number" onfocus='this.size=5;' onblur='this.size=1;' 
-                                    onchange='this.size=1; this.blur();'>
-                                <option value="">Select tour title</option>
-                                <?php //foreach($packages_data as $packages_data_value){ ?> 
-                                    <option value="<?php //echo $packages_data_value['id'];?>"><?php //echo $packages_data_value['tour_number'];?> -  <?php //echo $packages_data_value['tour_title'];?></option>
-                                <?php //} ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tour date</label>
-                                <select class="select_css" name="tour_date" id="tour_date" required>
-                                <option value="">Select Tour Date</option>
-                                        
-                                </select>
-                            </div>
-                        </div> -->
+                        
                         <!---======================== this tour title and tour date in select field and apply dependancy on tour title wise tour date ====================== -->
                         <?php foreach($packages_data as $packages_data_info){ ?> 
                         <div class="col-md-6">
