@@ -40,8 +40,8 @@
                   <div class="row">
                   <div class="col-md-6">
                       <div class="form-group">
-                          <label>Measuring Type</label>
-                          <input type="text" class="form-control" name="measuring_type" id="measuring_type" value="<?php echo $info['unit_type']; ?>" placeholder="Enter measuring type">
+                          <label>Measuring Unit Type</label>
+                          <input type="text" class="form-control" name="measuring_type" id="measuring_type" value="<?php echo $info['unit_type']; ?>" placeholder="Enter measuring type" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                       </div>
                     </div>
                   </div>

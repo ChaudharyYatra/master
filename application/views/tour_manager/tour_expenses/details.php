@@ -78,11 +78,26 @@
                    </tr>
                 
                     <tr>
-                    <th>Expense Head</th>
-                    <td><?php echo $tour_expenses_all_info['expense_type_name']; ?></td>
+                      <?php
+                            if($tour_expenses_all_info['expense_type_name']!='')
+                              { 
+                          ?>
+                            <th>Expense Head</th>
+                            <td><?php echo $tour_expenses_all_info['expense_type_name']; ?></td>
+                      <?php } else{?>
+                            
+                      <?php } ?>
 
-                    <th>Sub-Expenses Head</th>
-                    <td><?php echo $tour_expenses_all_info['expense_category']; ?></td>
+                      <?php
+                            if($tour_expenses_all_info['expense_category']!='')
+                              { 
+                          ?>
+                            <th>Sub-Expenses Head</th>
+                            <td><?php echo $tour_expenses_all_info['expense_category']; ?></td>
+                      <?php } else{?>
+                            
+                      <?php } ?>
+                    
                    </tr>
 
                    <tr>
@@ -102,11 +117,19 @@
                    </tr>
 
                    <tr>
+                   <th>Bill Date</th>
+                    <td><?php echo $tour_expenses_all_info['bill_date']; ?></td>
+
                     <th>Bill Amount</th>
                     <td><?php echo $tour_expenses_all_info['expense_amt']; ?></td>
+                  </tr>
 
-                    <th>Remark(optional)</th>
+                  <tr>
+                    <th>Expence Details(optional)</th>
                     <td><?php echo $tour_expenses_all_info['tour_expenses_remark']; ?></td>
+
+                    <th></th>
+                    <td></td>
                   </tr>
                   
                     <tr>
@@ -152,10 +175,12 @@
                       <thead>
                         <tr>
                           <th>Sr.No</th>
+                          <th>Expense Head</th>
+                          <th>Sub-Expenses Head</th>
                           <th>Product Name</th>
                           <th>Unit</th>
                           <th>Quantity</th>
-                          <th>Rate</th>
+                          <th>Total Amt.</th>
                           <th>Per Unit Rate</th>
                         </tr>
                       </thead>  
@@ -168,6 +193,14 @@
                         ?>
                         <tr>
                           <td><?php echo $i; ?></td>
+                          <td><?php echo $add_more_tour_expenses_all_value['expense_type_name'] ?></td>
+                          <td>
+                            <?php if($add_more_tour_expenses_all_value['other_name'] != ''){?>
+                              <?php echo $add_more_tour_expenses_all_value['expense_category'] ?> - <?php echo $add_more_tour_expenses_all_value['other_name'] ?>
+                            <?php } else{ ?>
+                              <?php echo $add_more_tour_expenses_all_value['expense_category'] ?>
+                            <?php } ?>
+                          </td>
                           <td><?php echo $add_more_tour_expenses_all_value['expense_category'] ?></td>
                           <td><?php echo $add_more_tour_expenses_all_value['measuring_unit'] ?></td>
                           <td><?php echo $add_more_tour_expenses_all_value['quantity'] ?></td>
@@ -184,10 +217,10 @@
         <br>
 
             <div class="row">
-              <div class="col-md-4 col-sm-4">
+              <div class="col-md-2 col-sm-2">
 
               </div>
-              <div class="col-md-4 col-sm-4">
+              <div class="col-md-8 col-sm-8">
                 
                 <?php 
                   if($tour_expenses_all_info['hold_reason']!='')
@@ -196,7 +229,7 @@
                     <textarea disabled class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"><?php echo $tour_expenses_all_info['hold_reason'] ?></textarea>
                 <?php } ?>
               </div>
-              <div class="col-md-4 col-sm-4">
+              <div class="col-md-2 col-sm-2">
 
               </div>
             </div>

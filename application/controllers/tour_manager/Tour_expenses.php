@@ -222,7 +222,7 @@ class Tour_expenses extends CI_Controller {
                 $bill_number  = $this->input->post('bill_number');
                 $total_pax  = $this->input->post('total_pax');
                 $expense_amt  = $this->input->post('expense_amt');
-                $expense_date  = $this->input->post('expense_date');
+                // $expense_date  = $this->input->post('expense_date');
                 $tour_expenses_remark  = $this->input->post('tour_expenses_remark');
                 $tour_number  = $this->input->post('tour_number');
                 $pax_type  = $this->input->post('pax_type');
@@ -238,6 +238,11 @@ class Tour_expenses extends CI_Controller {
                 // print_r($rate);
                 $per_unit_rate  = $this->input->post('per_unit_rate');
 
+                $expense_type_row  = $this->input->post('expense_type_row');
+                $expense_category_row  = $this->input->post('expense_category_row');
+                $other_name  = $this->input->post('other_name');
+                $bill_date  = $this->input->post('bill_date');
+
                 $arr_insert = array(
                     // 'product_name'   =>   $_POST["product_name"][$i],
                     // 'measuring_unit'   =>   $_POST["measuring_unit"][$i],
@@ -250,9 +255,10 @@ class Tour_expenses extends CI_Controller {
                     'expense_place'   =>   $_POST["expense_place"],
                     'expense_date'   =>   $_POST["expense_date"],
                     'bill_number'   =>   $_POST["bill_number"],
+                    'bill_date'   =>   $_POST["bill_date"],
                     'total_pax'   =>   $_POST["total_pax"],
                     'expense_amt'   =>   $_POST["expense_amt"],
-                    'expense_date'   =>   $_POST["expense_date"],
+                    // 'expense_date'   =>   $_POST["expense_date"],
                     'tour_expenses_remark'   =>   $_POST["tour_expenses_remark"],
                     'package_id'   =>   $_POST["tour_number"],
                     'pax_type'   =>   $_POST["pax_type"],
@@ -275,6 +281,9 @@ class Tour_expenses extends CI_Controller {
                 for($i=0;$i<$count;$i++)
                 {
                 $arr_insert = array(
+                'expense_type'   =>   $_POST["expense_type_row"][$i],
+                'expense_category_id'   =>   $_POST["expense_category_row"][$i],
+                'other_name'   =>   $_POST["other_name"][$i],
                 'product_name'   =>   $_POST["product_name"][$i],
                 'measuring_unit'   =>   $_POST["measuring_unit"][$i],
                 'quantity'   =>   $_POST["quantity"][$i],
@@ -333,6 +342,11 @@ class Tour_expenses extends CI_Controller {
         $expense_category = $this->master_model->getRecords('expense_category');
         //  print_r($expense_category); die;
 
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $measuring_unit = $this->master_model->getRecords('measuring_unit');
+        //  print_r($measuring_unit); die;
+
         $record = array();
         $fields = "packages.*,package_date.journey_date,package_date.id as pd_id";
         $this->db->where('packages.is_deleted','no');
@@ -348,6 +362,7 @@ class Tour_expenses extends CI_Controller {
          $this->arr_view_data['expense_type_data']        = $expense_type_data;
          $this->arr_view_data['packages_data']        = $packages_data;
          $this->arr_view_data['expense_category']        = $expense_category;
+         $this->arr_view_data['measuring_unit']        = $measuring_unit;
          $this->arr_view_data['page_title']      = " Add ".$this->module_title;
          $this->arr_view_data['module_title']    = $this->module_title;
          $this->arr_view_data['module_url_path'] = $this->module_url_path;
@@ -504,7 +519,7 @@ class Tour_expenses extends CI_Controller {
                 $bill_number  = $this->input->post('bill_number');
                 $total_pax  = $this->input->post('total_pax');
                 $expense_amt  = $this->input->post('expense_amt');
-                $expense_date  = $this->input->post('expense_date');
+                // $expense_date  = $this->input->post('expense_date');
                 $tour_expenses_remark  = $this->input->post('tour_expenses_remark');
                 $pax_type  = $this->input->post('pax_type');
                 // $tour_number  = $this->input->post('tour_number');
@@ -522,7 +537,12 @@ class Tour_expenses extends CI_Controller {
                 $add_more_tour_expenses_id  = $this->input->post('add_more_tour_expenses_id');
                 // print_r($add_more_tour_expenses_id); die;
 
-
+                $expense_type_row  = $this->input->post('expense_type_row');
+                $expense_category_row  = $this->input->post('expense_category_row');
+                $other_name  = $this->input->post('other_name');
+                $bill_date  = $this->input->post('bill_date');
+                $update_remark  = $this->input->post('update_remark');
+                // print_r($add_more_expenses_id); die;
                 
                 $arr_update = array(
                 'expense_type' =>   $expense_type,
@@ -533,8 +553,9 @@ class Tour_expenses extends CI_Controller {
                 'bill_number' =>   $bill_number,
                 'total_pax' =>   $total_pax,
                 'expense_amt' =>   $expense_amt,
-                'expense_date' =>   $expense_date,
+                'bill_date' =>   $bill_date,
                 'tour_expenses_remark' =>   $tour_expenses_remark,
+                'update_remark' =>   $update_remark,
                 'image_name' =>   $filename,
                 'image_name_2' =>   $new_img_filename,
                 'pax_type' =>   $pax_type
@@ -546,11 +567,14 @@ class Tour_expenses extends CI_Controller {
 
 
                     if($tour_expenses_type == '0'){
-                        $count = count($product_name);
+                        $count = count($expense_type_row);
                         // print_r($count); die;
                         for($i=0;$i<$count;$i++)
                         {
                         $arr_update = array(
+                        'expense_type'   =>   $_POST["expense_type_row"][$i],
+                        'expense_category_id'   =>   $_POST["expense_category_row"][$i],
+                        'other_name'   =>   $_POST["other_name"][$i],
                         'product_name'   =>   $_POST["product_name"][$i],
                         'measuring_unit'   =>   $_POST["measuring_unit"][$i],
                         'quantity'   =>   $_POST["quantity"][$i],
@@ -561,6 +585,7 @@ class Tour_expenses extends CI_Controller {
                         $arr_where     = array("id" => $add_more_tour_expenses_id[$i]);
                         $this->master_model->updateRecord('add_more_tour_expenses',$arr_update,$arr_where);
                         }
+                        
                     }
 
                     // ==================================================================
@@ -573,12 +598,21 @@ class Tour_expenses extends CI_Controller {
 
                     $current_tour_expenses_id  = $this->input->post('add_more_tour_exp_id');
 
+                    $add_expense_type_row  = $this->input->post('add_expense_type_row');
+                    $add_expense_category_row  = $this->input->post('add_expense_category_row');
+                    $add_other_name  = $this->input->post('add_other_name');
+                    $add_bill_date  = $this->input->post('add_bill_date');
+                    $add_update_remark  = $this->input->post('add_update_remark');
+
                     if($add_product_name != ''){
                     $count = count($add_product_name);
                     // print_r($count); die;
                     for($i=0;$i<$count;$i++)
                     {
                     $arr_insert = array(
+                    'expense_type'   =>   $_POST["add_expense_type_row"][$i],
+                    'expense_category_id'   =>   $_POST["add_expense_category_row"][$i],
+                    'other_name'   =>   $_POST["add_other_name"][$i],
                     'product_name'   =>   $_POST["add_product_name"][$i],
                     'measuring_unit'   =>   $_POST["add_measuring_unit"][$i],
                     'quantity'   =>   $_POST["add_quantity"][$i],
@@ -614,10 +648,15 @@ class Tour_expenses extends CI_Controller {
 
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');
-        // $this->db->where('id',$iid);
+        // $this->db->where('id',$id);
         $this->db->order_by('id','ASC');
         $expense_category_data = $this->master_model->getRecords('expense_category');
         // print_r($expense_category_data); die;  
+
+        $this->db->where('is_deleted','no');
+        $this->db->where('is_active','yes');
+        $measuring_unit = $this->master_model->getRecords('measuring_unit');
+        //  print_r($measuring_unit); die;
 
         $record = array();
         $fields = "tour_expenses.*,expense_type.expense_type_name,expense_category.expense_category,
@@ -662,6 +701,7 @@ class Tour_expenses extends CI_Controller {
          $this->arr_view_data['tour_expenses_all'] = $tour_expenses_all;
          $this->arr_view_data['expense_type_data'] = $expense_type_data;
          $this->arr_view_data['expense_category_data'] = $expense_category_data;
+         $this->arr_view_data['measuring_unit'] = $measuring_unit;
          $this->arr_view_data['package_id']        = $package_id;
         $this->arr_view_data['package_date_id']        = $package_date_id;
          $this->arr_view_data['page_title']      = " Edit ".$this->module_title;
@@ -731,10 +771,11 @@ class Tour_expenses extends CI_Controller {
         
 
         $record = array();
-        $fields = "add_more_tour_expenses.*,add_more_tour_expenses.*,expense_category.expense_category";
+        $fields = "add_more_tour_expenses.*,expense_category.expense_category,expense_type.expense_type_name";
         $this->db->where('add_more_tour_expenses.is_deleted','no');
         $this->db->where('add_more_tour_expenses.tour_expenses_id',$tour_expenses_id);
         $this->db->join("expense_category", 'add_more_tour_expenses.product_name=expense_category.id','left');
+        $this->db->join("expense_type", 'add_more_tour_expenses.expense_type=expense_type.id','left');
         $add_more_tour_expenses_all = $this->master_model->getRecords('add_more_tour_expenses',array('add_more_tour_expenses.is_deleted'=>'no'),$fields);
         // print_r($add_more_tour_expenses_all); die;
     

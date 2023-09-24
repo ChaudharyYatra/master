@@ -34,6 +34,8 @@
                   <thead>
                   <tr>
                     <th>SN</th>
+                    <th>Tour No. - Name</th>
+                    <th>Tour Date</th>
                     <th>Role name</th>
                     <th>Name</th>
                     <th>Action</th>
@@ -49,6 +51,8 @@
                      ?>
                   <tr>
                     <td><?php echo $i; ?></td>
+                    <td><?php echo $package_id; ?>-<?php echo $package_info; ?></td>
+                    <td><?php echo $package_date; ?></td>
                     <td><?php echo $info['role_name'] ?></td>
                     <!-- <?php //if($info['staff_role'] !='9'){?> -->
                     <td><?php echo $info['supervision_name'] ?></td>

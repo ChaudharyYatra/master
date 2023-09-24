@@ -225,7 +225,7 @@ class Expences_checker_master extends CI_Controller{
 
 
         
-        $this->arr_view_data['department_data']        = $department_data;
+        // $this->arr_view_data['department_data']        = $department_data;
         $this->arr_view_data['arr_data']        = $arr_data;
         $this->arr_view_data['page_title']      = "Edit ".$this->module_title;
         $this->arr_view_data['module_title']    = $this->module_title;

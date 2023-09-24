@@ -129,8 +129,21 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
+                            <label>Expenses Type</label> <br>
+                            <?php if($tour_expenses_all_info['tour_expenses_type'] == '0'){?>
+                                <input disabled type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
+                                <input  type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
+                            <?php }else{ ?>
+                                <input  type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
+                                <input disabled type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
+                            <?php } ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Expenses date</label>
-                                <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" required value="<?php echo $tour_expenses_all_info['expense_date'];?>">
+                                <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" max="<?php echo date("Y-m-d"); ?>" required value="<?php echo $tour_expenses_all_info['expense_date'];?>">
                             </div>
                         </div>
 
@@ -144,7 +157,7 @@
                                 </select>
                             </div>
                         </div>
-
+                        <?php if($tour_expenses_all_info['tour_expenses_type'] == '1'){?>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Expense Head</label>
@@ -157,6 +170,11 @@
                                 </select>
                             </div>
                         </div>
+                        <?php }else{ ?>
+
+                        <?php } ?>
+
+                        <?php if($tour_expenses_all_info['tour_expenses_type'] == '1'){?>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Sub-Expenses Head</label>
@@ -170,6 +188,9 @@
                                 </select>
                             </div>
                         </div>
+                        <?php }else{ ?>
+
+                        <?php } ?>
 
                         <div class="col-md-6" id="other_expense_category_div" style='display:none;'>
                             <div class="form-group">
@@ -196,6 +217,13 @@
                             <div class="form-group">
                                 <label>Bill Number</label>
                                 <input type="text" class="form-control" name="bill_number" id="bill_number" placeholder="Enter bill Number" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="<?php echo $tour_expenses_all_info['bill_number'];?>">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bill Date</label>
+                                <input type="date" class="form-control" name="bill_date" id="bill_date" placeholder="Enter Bill Date" max="<?php echo date("Y-m-d"); ?>" required value="<?php echo $tour_expenses_all_info['bill_date'];?>">
                             </div>
                         </div>
 
@@ -253,23 +281,31 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Remark(optional)</label>
+                                <label>Expence Details(optional)</label>
                                 <textarea class="form-control" name="tour_expenses_remark" id="tour_expenses_remark" placeholder="Enter Expense Remark"><?php echo $tour_expenses_all_info['tour_expenses_remark'];?></textarea>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <?php 
+                            if($tour_expenses_all_info['hold_reason']!='')
+                            { ?>
+                        <div class="col-md-6">
+                
+                            
+                                <label for="holdReason">Hold Reason:</label>
+                                <textarea disabled class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"><?php echo $tour_expenses_all_info['hold_reason'] ?></textarea>
+                            
+
+                        </div>
+
+                        <div class="col-md-6">
                             <div class="form-group">
-                            <label>Expenses Type</label> <br>
-                            <?php if($tour_expenses_all_info['tour_expenses_type'] == '0'){?>
-                                <input disabled type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
-                                <input  type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
-                            <?php }else{ ?>
-                                <input  type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='1') {echo'checked';}}?> onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
-                                <input disabled type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" <?php if(isset($tour_expenses_all_info['tour_expenses_type'])){if($tour_expenses_all_info['tour_expenses_type']=='0') {echo'checked';}}?> onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
-                            <?php } ?>
+                                <label>Remark(optional)</label>
+                                <textarea class="form-control" name="update_remark" id="update_remark" placeholder="Enter Expense Remark"><?php echo $tour_expenses_all_info['update_remark'];?></textarea>
                             </div>
                         </div>
+                        <?php } ?>
+
 
                         <div class="col-md-3 d-flex justify-content-center">
                             <div class="form-group">
@@ -286,23 +322,50 @@
                         <input type="hidden" class="form-control" name="add_more_tour_exp_id" id="add_more_tour_exp_id" value="<?php echo $add_more_tour_expenses_all_value['tour_expenses_id']; ?>" placeholder="Enter measuring unit" required>
                         <?php } ?>
 
+                    <?php if($tour_expenses_all_info['tour_expenses_type'] == '0'){?>
                         <div class="col-md-12 cash_payment_div" id="sub_main_tour_div1" >
                             <div class="form-group">
                                 <table border="1" class="table table-bordered" id="table">
                                     <thead>
                                         <tr>
-                                            <th>Product Name <span class="text-danger">*</th>
-                                            <th>Unit <span class="text-danger">*</th>
-                                            <th>Quantity <span class="text-danger">*</th>
-                                            <th>Rate <span class="text-danger">*</th>
-                                            <th>Per Unit Rate <span class="text-danger">*</th>
+                                            <th>Expense Head</th>
+                                            <th>Sub-Expenses Head</th>
+                                            <th>Product Name </th>
+                                            <th>Unit </th>
+                                            <th>Quantity </th>
+                                            <th>Total Amt. </th>
+                                            <th>Per Unit Rate </th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php foreach($add_more_tour_expenses_all as $add_more_tour_expenses_all_value){ ?> 
                                         <tr>
-                                            
+                                        <input type="hidden" class="form-control quantity" name="add_more_expenses_id[]" id="add_more_expenses_id" placeholder="Enter quantity" value="<?php echo $add_more_tour_expenses_all_value['id']; ?>" required>
+                                            <td>
+                                                <select class="select_css expense_type" name="expense_type_row[]" id="expense_type_row" >
+                                                    <option value="">Select </option>
+                                                    <?php foreach($expense_type_data as $expense_type_info){ ?> 
+                                                        <option value="<?php echo $expense_type_info['id']; ?>" <?php if($expense_type_info['id']==$add_more_tour_expenses_all_value['expense_type']) { echo "selected"; } ?>><?php echo $expense_type_info['expense_type_name']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="select_css sub_expenses_head" name="expense_category_row[]" id="expense_category_row">
+                                                        <option value="">Select </option>
+                                                        <option value="Other_row" <?php if(isset($add_more_tour_expenses_all_value['other_name'])){if("Other_row" == $add_more_tour_expenses_all_value['expense_category_id']) {echo 'selected';}}?>>Other</option>
+                                                        <?php foreach($expense_category_data as $expense_category_info){ ?> 
+                                                        <option value="<?php echo $expense_category_info['id'];?>" <?php if($expense_category_info['id']==$add_more_tour_expenses_all_value['expense_category_id']){echo "selected";} ?>><?php echo $expense_category_info['expense_category'];?></option>
+                                                        <?php } ?>
+                                                </select>
+                                                <br>
+                                                <?php if($add_more_tour_expenses_all_value['expense_category_id'] == 'Other_row'){?>
+                                                <input style="margin-top: 8px;" type="text" class="form-control other-input" name="other_name[]" id="other_name" value="<?php echo $add_more_tour_expenses_all_value['other_name'];?>" placeholder="Enter name" >
+                                                <?php } else {?>
+
+                                                <?php } ?>
+                                                <input style="display: none;margin-top: 8px;" type="text" class="form-control other-input" name="other_name[]" id="other_name" placeholder="Enter name" >
+                                            </td>
                                             <td>
                                                 <select class="select_css" name="product_name[]" id="product_name" required>
                                                     <option value="">Select Product Name</option>
@@ -311,7 +374,14 @@
                                                     <?php } ?>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control" name="measuring_unit[]" id="measuring_unit" placeholder="Enter measuring unit" value="<?php echo $add_more_tour_expenses_all_value['measuring_unit']; ?>" required></td>
+                                            <td>
+                                                <select class="select_css" name="measuring_unit[]" id="measuring_unit" >
+                                                    <option value="">Select </option>
+                                                    <?php foreach($measuring_unit as $measuring_unit_info){ ?> 
+                                                        <option value="<?php echo $measuring_unit_info['id'];?>" <?php if($measuring_unit_info['id']==$add_more_tour_expenses_all_value['measuring_unit']) { echo "selected"; } ?>><?php echo $measuring_unit_info['unit_type'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                
                                             <td><input type="text" class="form-control quantity" name="quantity[]" id="quantity" placeholder="Enter quantity" value="<?php echo $add_more_tour_expenses_all_value['quantity']; ?>" required></td>
                                             <td><input type="text" class="form-control rate" name="rate[]" id="rate" placeholder="Enter rate" value="<?php echo $add_more_tour_expenses_all_value['rate']; ?>" required></td>
                                             <td><input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" value="<?php echo $add_more_tour_expenses_all_value['per_unit_rate']; ?>" required></td>
@@ -325,6 +395,7 @@
                                 </table>
                             </div>
                         </div>
+                    <?php } ?>
                         
 
                     </div>
@@ -360,12 +431,15 @@
 <script>
     function sub(){
     document.getElementById('sub_main_tour_div1').style.display = 'block';
+    document.getElementById('expenses_head_div').style.display = 'none';
+    document.getElementById('sub_expenses_head_div').style.display = 'none';
     }
     function main(){
     document.getElementById('sub_main_tour_div1').style.display = 'none';
-    document.getElementById('main_tour_id').value = "";
+    document.getElementById('expenses_head_div').style.display = 'block';
+    document.getElementById('sub_expenses_head_div').style.display = 'block';
+    document.getElementById('expense_type').value = "";
+    document.getElementById('expense_category').value = "";
     }
 </script>
 <!-- tour expenses in that single and multiple click script-->
-</body>
-</html>

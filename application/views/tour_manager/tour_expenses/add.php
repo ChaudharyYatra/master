@@ -87,52 +87,11 @@
                             </div>
                         </div>
                         <?php } ?>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Expenses Date</label>
                                 <input type="date" class="form-control" name="expense_date" id="expense_date" placeholder="Enter Expense Date" max="<?php echo date("Y-m-d"); ?>" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Pax type</label>
-                                <select class="select_css" name="pax_type" id="pax_type" required>
-                                    <option value="">Select Pax Type</option>
-                                    <option value="Customer">Customer</option>
-                                    <option value="Staff">Staff</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Expense Head</label>
-                                <select class="select_css" name="expense_type" id="expense_type" required>
-                                    <option value="">Select Expense Head Type</option>
-                                    <?php foreach($expense_type_data as $expense_type_info){ ?> 
-                                        <option value="<?php echo $expense_type_info['id'];?>"><?php echo $expense_type_info['expense_type_name'];?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Sub-Expenses Head</label>
-                                <select class="form-control" name="expense_category" id="expense_category" onchange='Expenses_category(this.value); 
-                                  this.blur();' onfocus='this.size=4;' onblur='this.size=1;'>
-                                        <option value="">Select Sub-Expenses Head </option>
-                                        <?php //foreach($district_data as $district_data_value){ ?> 
-                                        <option value="<?php //echo $district_data_value['id'];?>" <?php //if($district_data_value['id']==$all_traveller_info_value['district_name']){echo "selected";} ?>><?php //echo $district_data_value['district'];?></option>
-                                        <?php //} ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6" id="other_expense_category_div" style='display:none;'>
-                            <div class="form-group">
-                                <label>Other Sub-Expenses Head</label>
-                                <input type="text" class="form-control mealplan_css" name="other_expense_category" id="other_expense_category" placeholder="Enter other sub expense category" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
 
@@ -145,102 +104,144 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Total Pax</label>
-                                <input type="text" class="form-control" name="total_pax" id="total_pax" placeholder="Enter total pax" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                            <label>Expenses Type</label> <br>
+                                <input type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
                             </div>
-                        </div>
+                        </div> 
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Bill Number</label>
                                 <input type="text" class="form-control" name="bill_number" id="bill_number" placeholder="Enter bill Number" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
+                        </div>        
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bill Date</label>
+                                <input type="date" class="form-control" name="bill_date" id="bill_date" placeholder="Enter Bill Date" max="<?php echo date("Y-m-d"); ?>" required>
+                            </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label>Expenses Type</label> <br>
-                                <input type="radio" id="single_expenses_type" name="tour_expenses_type" value="1" onclick="main();"/>&nbsp;&nbsp;&nbsp;Single&nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="multiple_expenses_type" name="tour_expenses_type" value="0" onclick="sub();"/>&nbsp;&nbsp;&nbsp;Multiple
+                                <label>Pax type (Expense for)</label>
+                                <select class="select_css" name="pax_type" id="pax_type" required>
+                                    <option value="">Select Pax Type</option>
+                                    <option value="Customer">Customer</option>
+                                    <option value="Staff">Staff</option>
+                                </select>
                             </div>
                         </div>
-                        
-                        <!-- <div class="cash_payment_div" id="sub_main_tour_div1" style='display:none;'>
-                            <div class="col-md-12">
-                                <div class="row" id="expenses_main_row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Product Name</label>
-                                                <select class="select_css" name="product_name[]" id="product_name" required>
-                                                    <option value="">Select Product Name</option>
-                                                    <?php //foreach($expense_category as $expense_category_info){ ?> 
-                                                        <option value="<?php //echo $expense_category_info['id'];?>"><?php //echo $expense_category_info['expense_category'];?></option>
-                                                    <?php //} ?>
-                                                </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-1">
-                                        <div class="form-group">
-                                        <label>Unit</label>
-                                            <input type="text" class="form-control" name="measuring_unit[]" id="measuring_unit" placeholder="Enter measuring unit" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                        <label>Quantity</label>
-                                            <input type="text" class="form-control quantity" name="quantity[]" id="quantity" placeholder="Enter quantity" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                        <label>Rate</label>
-                                            <input type="text" class="form-control rate" name="rate[]" id="rate" placeholder="Enter rate" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                        <label>Per Unit Rate</label>
-                                            <input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 d-flex justify-content-center">
-                                        <div class="form-group">
-                                            <label></label>
-                                            <button type="button" class="btn btn-primary add_more_css" name="submit" value="expenses_add_more" id="expenses_add_more">Add More</button>
-                                        </div>
-                                    </div> 
-                                </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total Pax</label>
+                                <input type="text" class="form-control" name="total_pax" id="total_pax" placeholder="Enter total pax" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
-                        </div> -->
+                        </div>
+
+                        <div class="col-md-6" id="expenses_head_div" style='display:none;'>
+                            <div class="form-group">
+                                <label>Expense Head</label>
+                                <select class="select_css" name="expense_type" id="expense_type" >
+                                    <option value="">Select Expense Head Type</option>
+                                    <?php foreach($expense_type_data as $expense_type_info){ ?> 
+                                        <option value="<?php echo $expense_type_info['id'];?>"><?php echo $expense_type_info['expense_type_name'];?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="sub_expenses_head_div" style='display:none;'>
+                            <div class="form-group">
+                                <label>Sub-Expenses Head</label>
+                                <select class="form-control" name="expense_category" id="expense_category" onchange='Expenses_category(this.value); 
+                                  this.blur();' onfocus='this.size=4;' onblur='this.size=1;'>
+                                        <option value="">Select Sub-Expenses Head </option>
+                                        <?php //foreach($district_data as $district_data_value){ ?> 
+                                        <option value="<?php //echo $district_data_value['id'];?>" <?php //if($district_data_value['id']==$all_traveller_info_value['district_name']){echo "selected";} ?>><?php //echo $district_data_value['district'];?></option>
+                                        <?php //} ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bill Amount</label>
+                                <input type="text" class="form-control" name="expense_amt" id="expense_amt" placeholder="Enter Expense Amount" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" id="other_expense_category_div" style='display:none;'>
+                            <div class="form-group">
+                                <label>Other Sub-Expenses Head</label>
+                                <input type="text" class="form-control mealplan_css" name="other_expense_category" id="other_expense_category" placeholder="Enter other sub expense category" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '').replace(/(\..*)\./g, '$1');">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Upload Photo/PDF</label><br>
+                                <input type="file" name="image_name" id="image_name">
+                                <br><span class="text-danger">Please select only PDF,JPG,PNG,JPEG,PDF format files.</span>
+                            </div>
+                        </div>
 
                         <div class="col-md-12 cash_payment_div" id="sub_main_tour_div1" style='display:none;'>
                             <div class="form-group">
                                 <table border="1" class="table table-bordered" id="table">
                                     <thead>
                                         <tr>
-                                            <th>Product Name <span class="text-danger">*</th>
-                                            <th>Unit <span class="text-danger">*</th>
-                                            <th>Quantity <span class="text-danger">*</th>
-                                            <th>Rate <span class="text-danger">*</th>
-                                            <th>Per Unit Rate <span class="text-danger">*</th>
+                                            <th>Expense Head</th>
+                                            <th>Sub-Expenses Head</th>
+                                            <th>Product Name</th>
+                                            <th>Unit</th>
+                                            <th>Quantity</th>
+                                            <th>Total Amt.</th>
+                                            <th>Per Unit Rate</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <select class="select_css" name="product_name[]" id="product_name" required>
-                                                    <option value="">Select Product Name</option>
+                                                <select class="select_css expense_type" name="expense_type_row[]" id="expense_type_row" >
+                                                    <option value="">Select </option>
+                                                    <?php foreach($expense_type_data as $expense_type_info){ ?> 
+                                                        <option value="<?php echo $expense_type_info['id'];?>"><?php echo $expense_type_info['expense_type_name'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="select_css sub_expenses_head" name="expense_category_row[]" id="expense_category_row">
+                                                        <option value="">Select </option>
+                                                        
+                                                </select>
+                                                <br>
+                                                <input style="display: none;margin-top: 8px;" type="text" class="form-control other-input" name="other_name[]" id="other_name" placeholder="Enter name" >
+                                            </td>
+                                            
+                                            <td>
+                                                <select class="select_css" name="product_name[]" id="product_name" >
+                                                    <option value="">Select </option>
                                                     <?php foreach($expense_category as $expense_category_info){ ?> 
                                                         <option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>
                                                     <?php } ?>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control" name="measuring_unit[]" id="measuring_unit" placeholder="Enter measuring unit" required></td>
-                                            <td><input type="text" class="form-control quantity" name="quantity[]" id="quantity" placeholder="Enter quantity" required></td>
-                                            <td><input type="text" class="form-control rate" name="rate[]" id="rate" placeholder="Enter rate" required></td>
-                                            <td><input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" required></td>
+                                            <td>
+                                                <select class="select_css" name="measuring_unit[]" id="measuring_unit" >
+                                                    <option value="">Select </option>
+                                                    <?php foreach($measuring_unit as $measuring_unit_info){ ?> 
+                                                        <option value="<?php echo $measuring_unit_info['id'];?>"><?php echo $measuring_unit_info['unit_type'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                
+                                            </td>
+                                            <td><input type="text" class="form-control quantity" name="quantity[]" id="quantity" placeholder="Enter quantity" ></td>
+                                            <td><input type="text" class="form-control rate" name="rate[]" id="rate" placeholder="Enter rate" ></td>
+                                            <td><input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" id="per_unit_rate" placeholder="Enter per unit rate" ></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" name="submit" value="expenses_add_more" id="expenses_add_more">Add More</button>
                                             </td>
@@ -249,21 +250,7 @@
                                 </table>
                             </div>
                         </div>
-                        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Bill Amount</label>
-                                <input readonly type="text" class="form-control" name="expense_amt" id="expense_amt" placeholder="Enter Expense Amount" required oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
-                            </div>
-                        </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Upload Photo/PDF</label>
-                                <input type="file" name="image_name" id="image_name">
-                                <br><span class="text-danger">Please select only PDF,JPG,PNG,JPEG,PDF format files.</span>
-                            </div>
-                        </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
@@ -310,14 +297,16 @@
 <script>
     function sub(){
     document.getElementById('sub_main_tour_div1').style.display = 'block';
+    document.getElementById('expenses_head_div').style.display = 'none';
+    document.getElementById('sub_expenses_head_div').style.display = 'none';
     }
     function main(){
     document.getElementById('sub_main_tour_div1').style.display = 'none';
-    document.getElementById('main_tour_id').value = "";
+    document.getElementById('expenses_head_div').style.display = 'block';
+    document.getElementById('sub_expenses_head_div').style.display = 'block';
+    document.getElementById('expense_type').value = "";
+    document.getElementById('expense_category').value = "";
     }
 </script>
 <!-- tour expenses in that single and multiple click script-->
 
-
-</body>
-</html>

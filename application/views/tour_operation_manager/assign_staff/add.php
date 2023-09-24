@@ -38,7 +38,23 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Select role </label>
+                        <label>Package Name </label>
+                        <input type="text" readonly name="package_name" id="package_name" class="form-control" placeholder="Package Name" value="<?php echo $pid ?>-<?php echo $package_info ?>" required>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Package Date </label>
+                        <input type="text" readonly name="package_date" id="package_date" class="form-control" placeholder="Package Date" value="<?php echo $package_date ?>" required>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Select Role </label>
                         <select class="select_css row_set1 role_name" attr_name="role" name="role_name[]" id="role_name" required="required">
                         <option value="">select role</option>
                           <?php

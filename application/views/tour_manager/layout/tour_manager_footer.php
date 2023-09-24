@@ -5101,6 +5101,47 @@ $('#edit_tour_photo').validate({ // initialize the plugin
 <!--// tour Expenses add - Rupali-->
 <script>
     $(document).ready(function() {
+
+        $("#table").on("change", ".expense_type", function() {
+        var did = $(this).val();
+        var $currentRow = $(this).closest("tr");
+
+        // Make an Ajax request to fetch sub-expense categories
+        $.ajax({
+            url: '<?= base_url() ?>tour_manager/tour_expenses/get_category',
+            method: 'POST',
+            data: { did: did },
+            dataType: 'json',
+            success: function(response) {
+                // Find the "Sub-Expenses Head" dropdown in the current row
+                var $expenseCategoryDropdown = $currentRow.find('.sub_expenses_head');
+
+                // Clear the existing options
+                $expenseCategoryDropdown.empty();
+
+                // Add the new options
+                $expenseCategoryDropdown.append('<option value="">Select </option>');
+                $.each(response, function(index, data) {
+                    $expenseCategoryDropdown.append('<option value="' + data['id'] + '">' + data['expense_category'] + '</option>');
+                });
+                $expenseCategoryDropdown.append('<option value="Other_row">Other</option>');
+            }
+        });
+    });
+
+    $("#table").on("change", ".sub_expenses_head", function() {
+        var selectedOption = $(this).val();
+        var $otherInput = $(this).closest("tr").find(".other-input");
+
+        if (selectedOption === "Other_row") {
+            $otherInput.show();
+            $otherInput.find("input").prop("required", true);
+        } else {
+            $otherInput.hide();
+            $otherInput.find("input").prop("required", false);
+        }
+    });
+
         // Function to update per_unit_rate field for a specific row
         function updatePerUnitRate(row) {
             var quantity = parseFloat($(row).find(".quantity").val());
@@ -5132,17 +5173,41 @@ $('#edit_tour_photo').validate({ // initialize the plugin
             var newRow = `
                 <tr>
                     <td>
-                        <select class="select_css" name="product_name[]" id="product_name" required>
-                            <option value="">Select Product Name</option>
+                        <select class="select_css expense_type" name="expense_type_row[]" id="expense_type_row">
+                            <option value="">Select </option>
+                            <?php foreach($expense_type_data as $expense_type_info){ ?> 
+                                <option value="<?php echo $expense_type_info['id'];?>"><?php echo $expense_type_info['expense_type_name'];?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select_css sub_expenses_head" name="expense_category_row[]" id="expense_category_row">
+                                <option value="">Select </option>
+                                
+                        </select>
+                        <br>
+                        <input style="display: none;margin-top: 8px;" type="text" class="form-control other-input" name="other_name[]" id="other_name" placeholder="Enter name" >
+                    </td>
+                    
+                    <td>
+                        <select class="select_css" name="product_name[]" id="product_name">
+                            <option value="">Select </option>
                             <?php foreach($expense_category as $expense_category_info){ ?>
                                 '<option value="<?php echo $expense_category_info['id'];?>"><?php echo $expense_category_info['expense_category'];?></option>'+
                             <?php } ?>
                         </select>
                     </td>
-                    <td><input type="text" class="form-control measuring_unit" name="measuring_unit[]" placeholder="Enter measuring unit" required></td>
-                    <td><input type="text" class="form-control quantity" name="quantity[]" placeholder="Enter quantity" required></td>
-                    <td><input type="text" class="form-control rate" name="rate[]" placeholder="Enter rate" required></td>
-                    <td><input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" placeholder="Enter per unit rate" required></td>
+                    <td>
+                        <select class="select_css" name="measuring_unit[]" id="measuring_unit" >
+                            <option value="">Select </option>
+                            <?php foreach($measuring_unit as $measuring_unit_info){ ?> 
+                                <option value="<?php echo $measuring_unit_info['id'];?>"><?php echo $measuring_unit_info['unit_type'];?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control quantity" name="quantity[]" placeholder="Enter quantity"></td>
+                    <td><input type="text" class="form-control rate" name="rate[]" placeholder="Enter rate"></td>
+                    <td><input readonly type="text" class="form-control per_unit_rate" name="per_unit_rate[]" placeholder="Enter per unit rate"></td>
                     <td>
                         <button type="button" class="btn btn-danger remove-row">Remove</button>
                     </td>
@@ -5166,11 +5231,64 @@ $('#edit_tour_photo').validate({ // initialize the plugin
 
             updateExpenseAmount(); // Recalculate the total when a rate or quantity changes
         });
+
+        $(document).on("change", ".sub_expenses_head", function() {
+            var selectedOption = $(this).val();
+            var otherNameInput = $(this).closest("tr").find(".other-input");
+
+            if (selectedOption === "Other_row") {
+                otherNameInput.prop("required", true);
+            } else {
+                otherNameInput.prop("required", false);
+            }
+        });
+
     });
 </script>
 
 <script>
     $(document).ready(function() {
+
+        $("#table").on("change", ".expense_type", function() {
+        var did = $(this).val();
+        var $currentRow = $(this).closest("tr");
+
+        // Make an Ajax request to fetch sub-expense categories
+        $.ajax({
+            url: '<?= base_url() ?>tour_manager/tour_expenses/get_category',
+            method: 'POST',
+            data: { did: did },
+            dataType: 'json',
+            success: function(response) {
+                // Find the "Sub-Expenses Head" dropdown in the current row
+                var $expenseCategoryDropdown = $currentRow.find('.sub_expenses_head');
+
+                // Clear the existing options
+                $expenseCategoryDropdown.empty();
+
+                // Add the new options
+                $expenseCategoryDropdown.append('<option value="">Select </option>');
+                $.each(response, function(index, data) {
+                    $expenseCategoryDropdown.append('<option value="' + data['id'] + '">' + data['expense_category'] + '</option>');
+                });
+                $expenseCategoryDropdown.append('<option value="Other_row">Other</option>');
+            }
+        });
+    });
+
+    $("#table").on("change", ".sub_expenses_head", function() {
+        var selectedOption = $(this).val();
+        var $otherInput = $(this).closest("tr").find(".other-input");
+
+        if (selectedOption === "Other_row") {
+            $otherInput.show();
+            $otherInput.find("input").prop("required", true);
+        } else {
+            $otherInput.hide();
+            $otherInput.find("input").prop("required", false);
+        }
+    });
+
         // Function to update per_unit_rate field for a specific row
         function updatePerUnitRate(row) {
             var quantity = parseFloat($(row).find(".quantity").val());
@@ -5202,6 +5320,22 @@ $('#edit_tour_photo').validate({ // initialize the plugin
             var newRow = `
                 <tr>
                     <td>
+                        <select class="select_css expense_type" name="add_expense_type_row[]" id="expense_type_row">
+                            <option value="">Select </option>
+                            <?php foreach($expense_type_data as $expense_type_info){ ?> 
+                                <option value="<?php echo $expense_type_info['id'];?>"><?php echo $expense_type_info['expense_type_name'];?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="select_css sub_expenses_head" name="add_expense_category_row[]" id="expense_category_row">
+                                <option value="">Select </option>
+                                
+                        </select>
+                        <br>
+                        <input style="display: none;margin-top: 8px;" type="text" class="form-control other-input" name="add_other_name[]" id="other_name" placeholder="Enter name" >
+                    </td>
+                    <td>
                         <select class="select_css" name="add_product_name[]" id="add_product_name" required>
                             <option value="">Select Product Name</option>
                             <?php foreach($expense_category as $expense_category_info){ ?>
@@ -5209,7 +5343,14 @@ $('#edit_tour_photo').validate({ // initialize the plugin
                             <?php } ?>
                         </select>
                     </td>
-                    <td><input type="text" class="form-control measuring_unit" name="add_measuring_unit[]" placeholder="Enter measuring unit" required></td>
+                    <td>
+                        <select class="select_css" name="add_measuring_unit[]" id="add_measuring_unit" >
+                            <option value="">Select </option>
+                            <?php foreach($measuring_unit as $measuring_unit_info){ ?> 
+                                <option value="<?php echo $measuring_unit_info['id'];?>"><?php echo $measuring_unit_info['unit_type'];?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
                     <td><input type="text" class="form-control quantity" name="add_quantity[]" placeholder="Enter quantity" required></td>
                     <td><input type="text" class="form-control rate" name="add_rate[]" placeholder="Enter rate" required></td>
                     <td><input readonly type="text" class="form-control per_unit_rate" name="add_per_unit_rate[]" placeholder="Enter per unit rate" required></td>
@@ -5236,6 +5377,9 @@ $('#edit_tour_photo').validate({ // initialize the plugin
 
             updateExpenseAmount(); // Recalculate the total when a rate or quantity changes
         });
+
+        
+        
     });
 </script>
 

@@ -77,11 +77,25 @@
                    </tr>
                 
                     <tr>
-                    <th>Expense Head</th>
-                    <td><?php echo $tour_expenses_all_info['expense_type_name']; ?></td>
+                    <?php
+                            if($tour_expenses_all_info['expense_type_name']!='')
+                              { 
+                          ?>
+                            <th>Expense Head</th>
+                            <td><?php echo $tour_expenses_all_info['expense_type_name']; ?></td>
+                      <?php } else{?>
+                            
+                      <?php } ?>
 
-                    <th>Sub-Expenses Head</th>
-                    <td><?php echo $tour_expenses_all_info['expense_category']; ?></td>
+                      <?php
+                            if($tour_expenses_all_info['expense_category']!='')
+                              { 
+                          ?>
+                            <th>Sub-Expenses Head</th>
+                            <td><?php echo $tour_expenses_all_info['expense_category']; ?></td>
+                      <?php } else{?>
+                            
+                    <?php } ?>
                    </tr>
 
                    <tr>
@@ -104,7 +118,7 @@
                     <th>Bill Amount</th>
                     <td><?php echo $tour_expenses_all_info['expense_amt']; ?></td>
 
-                    <th>Remark(optional)</th>
+                    <th>Expence Details(optional)</th>
                     <td><?php echo $tour_expenses_all_info['tour_expenses_remark']; ?></td>
                   </tr>
                   
@@ -136,6 +150,14 @@
                     </td>
                   </tr>
 
+                  <tr>
+                    <th>Remark(optional)</th>
+                    <td><?php echo $tour_expenses_all_info['update_remark']; ?></td>
+
+                    <th></th>
+                    <td></td>
+                  </tr>
+
                   
 
                 </table>
@@ -153,11 +175,13 @@
                     <table class="table table-bordered table-bordered collapse hide" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
                       <thead>
                         <tr>
-                          <th>Sr.No</th>
+                        <th>Sr.No</th>
+                          <th>Expense Head</th>
+                          <th>Sub-Expenses Head</th>
                           <th>Product Name</th>
                           <th>Unit</th>
                           <th>Quantity</th>
-                          <th>Rate</th>
+                          <th>Total Amt.</th>
                           <th>Per Unit Rate</th>
                         </tr>
                       </thead>  
@@ -170,6 +194,14 @@
                         ?>
                         <tr>
                           <td><?php echo $i; ?></td>
+                          <td><?php echo $add_more_tour_expenses_all_value['expense_type_name'] ?></td>
+                          <td>
+                            <?php if($add_more_tour_expenses_all_value['other_name'] != ''){?>
+                              <?php echo $add_more_tour_expenses_all_value['expense_category'] ?> - <?php echo $add_more_tour_expenses_all_value['other_name'] ?>
+                            <?php } else{ ?>
+                              <?php echo $add_more_tour_expenses_all_value['expense_category'] ?>
+                            <?php } ?>
+                          </td>
                           <td><?php echo $add_more_tour_expenses_all_value['expense_category'] ?></td>
                           <td><?php echo $add_more_tour_expenses_all_value['measuring_unit'] ?></td>
                           <td><?php echo $add_more_tour_expenses_all_value['quantity'] ?></td>
@@ -209,17 +241,21 @@
                       
                     <?php } else if($tour_expenses_all_info['approval']=='no'  && $tour_expenses_all_info['hold']=='yes'){ ?>
                       <button class="btn btn-warning" id="holdButton">Hold</button>
-                      <?php } ?>
+                      <?php } else if($tour_expenses_all_info['approval']=='no' && $tour_expenses_all_info['hold']=='pending'){?>
+                    
+                        <button type="button" attr_approve="<?php echo $tour_expenses_all_info['t_expences_id'] ?>" class="btn btn-primary approve" name="submit" value="submit">Approve</button>
+                        <button class="btn btn-warning" id="holdButton">Hold</button>
+                    <?php } ?>
 
                       
                 </div>
 
                 <br>
                 <div class="row">
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
 
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-6 col-sm-6">
                       
                       <?php 
                         if($tour_expenses_all_info['hold_reason']!='')
@@ -228,24 +264,24 @@
                           <textarea disabled class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"><?php echo $tour_expenses_all_info['hold_reason'] ?></textarea>
                       <?php } ?>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
 
                     </div>
                 </div>
 
                 <div class="row">
                   
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
 
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-6 col-sm-6">
 
                       <!-- Hidden textbox and submit button initially -->
                       <div id="holdSection" style="display: none;" class="mt-4">
                         <form id="holdForm">
                             <div class="form-group">
                                 <label for="holdReason">Hold Reason:</label>
-                                <textarea class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"><?php echo $tour_expenses_all_info['hold_reason'] ?></textarea>
+                                <textarea class="form-control" id="hold_reason" name="hold_reason" placeholder="Enter Hold Reason" required="required"></textarea>
 
                             </div>
                             <!-- <button type="submit" class="btn btn-primary hold" name="submit">Submit Hold</button> -->
@@ -255,7 +291,7 @@
                         
                       </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
 
                     </div>
                   

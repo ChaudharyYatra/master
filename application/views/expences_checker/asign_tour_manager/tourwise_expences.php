@@ -52,9 +52,27 @@
 
                     <td><?php echo date("d-m-Y",strtotime($info['expense_date'])) ?></td>
                     
-                    <td><?php echo $info['expense_type_name']; ?></td>
+                    <td>
+                      <?php
+                        if($info['expense_type_name']!='')
+                          { 
+                      ?>
+                        <?php echo $info['expense_type_name']; ?>
+                      <?php } else{?>
+                        Multiple Expences
+                      <?php } ?>
+                    </td>
                     
-                    <td><?php echo $info['expense_category']; ?></td>
+                    <td>
+                    <?php
+                          if($info['expense_category']!='')
+                            { 
+                        ?>
+                          <?php echo $info['expense_category']; ?>
+                      <?php } else{?>
+                          Multiple Expences
+                      <?php } ?>
+                    </td>
 
                     <td>
                     <?php 
@@ -65,6 +83,8 @@
                       
                       <?php } else if($info['approval']=='yes'  && $info['hold']=='no'){ ?>
                         Approved
+                      <?php } else if($info['approval']=='no'  && $info['hold']=='pending'){ ?>
+                        Pending
                       <?php } ?>
 
                     </td>

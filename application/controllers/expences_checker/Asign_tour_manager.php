@@ -142,10 +142,11 @@ class Asign_tour_manager extends CI_Controller{
                 // print_r($tour_expenses_all); die;
 
                 $record = array();
-                $fields = "add_more_tour_expenses.*,add_more_tour_expenses.*,expense_category.expense_category";
+                $fields = "add_more_tour_expenses.*,expense_category.expense_category,,expense_type.expense_type_name";
                 $this->db->where('add_more_tour_expenses.is_deleted','no');
                 $this->db->where('add_more_tour_expenses.tour_expenses_id',$t_did);
                 $this->db->join("expense_category", 'add_more_tour_expenses.product_name=expense_category.id','left');
+                $this->db->join("expense_type", 'add_more_tour_expenses.expense_type=expense_type.id','left');
                 $add_more_tour_expenses_all = $this->master_model->getRecords('add_more_tour_expenses',array('add_more_tour_expenses.is_deleted'=>'no'),$fields);
                 // print_r($add_more_tour_expenses_all); die;
                 

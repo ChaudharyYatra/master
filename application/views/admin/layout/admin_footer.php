@@ -8928,8 +8928,6 @@ $('#edit_measuring_type').validate({ // initialize the plugin
             });
             }
         });
-        
-
                     // Add a click event handler for the "Remove" buttons in the newly added row
                     $('.remove-row').click(function () {
                         $(this).closest('tr').remove();
@@ -9183,9 +9181,23 @@ $('#edit_measuring_type').validate({ // initialize the plugin
         // alert(total_days);
         var district = $(".district option:selected").val();
         // alert(district);
-        var select_place = $(".select_place option:selected").val();
-        alert(select_place);
+        // var select_place = $('input[name="place_name[]"]').val();
+        var select_place_values = $('select[name="place_name[]"]').map(function() {
+        return $(this).val();
+        }).get();
+        console.log('select_place_values',select_place_values);
 
+        var time_values = $('input[name="time[]"]').map(function() {
+        return $(this).val();
+        }).get();
+        console.log('time_values',time_values);
+
+        var visit_time_values = $('input[name="visit_time[]"]').map(function() {
+        return $(this).val();
+        }).get();
+        console.log('visit_time_values',visit_time_values);
+
+exit();
         // var image_name = $('input[name="document_file_traveller_img[]"]').map(function () {
         //     return this.value; // $(this).val()
         // }).get();

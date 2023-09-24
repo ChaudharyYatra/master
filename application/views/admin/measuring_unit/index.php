@@ -34,7 +34,7 @@
                   <thead>
                   <tr>
                     <th>SN</th>
-                    <th>Measuring Type</th>
+                    <th>Measuring Unit Type</th>
                     <th>Is Active?</th>
                     <th>Action</th>
                   </tr>

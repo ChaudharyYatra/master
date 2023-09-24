@@ -27,12 +27,14 @@ class Assign_staff extends CI_Controller{
         // print_r($arr_data); die;
 
         $record = array();
-        $fields = "packages.*,final_booking.package_id,final_booking.package_date_id,package_date.id,package_date.journey_date,package_type.package_type,package_type.id,package_date.id as p_date_id,packages.id as pid";
+        $fields = "packages.*,packages.id as pid,final_booking.package_id,final_booking.package_date_id,package_date.id,package_date.journey_date,package_type.package_type,package_type.id,package_date.id as p_date_id,bus_open.package_id,bus_open.package_date_id,bus_open.bus_open_status";
         $this->db->where('packages.is_deleted','no');
         $this->db->where('packages.is_active','yes');
         $this->db->join("final_booking", 'final_booking.package_id=packages.id','right');
         $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','right');
         $this->db->join("package_type", 'packages.package_type=package_type.id','left');
+        $this->db->join("bus_open", 'package_date.id=bus_open.package_date_id and packages.id=bus_open.package_id','left');
+        $this->db->where('bus_open.bus_open_status','yes');
         $arr_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
     //    print_r($arr_data); die;
 
@@ -68,10 +70,29 @@ class Assign_staff extends CI_Controller{
         $arr_data = $this->master_model->getRecords('assign_staff',array('assign_staff.is_deleted'=>'no'),$fields);
         // print_r($arr_data); die;
 
+        $record = array();
+        $fields = "packages.*,packages.id as pid,final_booking.package_id,final_booking.package_date_id,package_date.id,package_date.journey_date,package_type.package_type,package_type.id,package_date.id as p_date_id,packages.id as pid";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('packages.id',$pid);
+        $this->db->where('package_date.id',$id);
+        $this->db->join("final_booking", 'final_booking.package_id=packages.id','right');
+        $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','right');
+        $this->db->join("package_type", 'packages.package_type=package_type.id','left');
+        $package_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        foreach($package_data as $package_data_info){
+            $package_id = $package_data_info['pid'];
+            $package_info = $package_data_info['tour_title'];
+            $package_date = $package_data_info['journey_date'];
+        }
+
 
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['listing_page']    = 'yes';
         $this->arr_view_data['arr_data']        = $arr_data;
+        $this->arr_view_data['package_info']        = $package_info;
+        $this->arr_view_data['package_id']        = $package_id;
+        $this->arr_view_data['package_date']        = $package_date;
         $this->arr_view_data['id']        = $id;
         $this->arr_view_data['pid']        = $pid;
         $this->arr_view_data['page_title']      = $this->module_title." List";
@@ -182,8 +203,27 @@ class Assign_staff extends CI_Controller{
         $this->db->where('for_booking_yes_no','yes'); 
         $role_type = $this->master_model->getRecords('role_type');
 
+        $record = array();
+        $fields = "packages.*,final_booking.package_id,final_booking.package_date_id,package_date.id,package_date.journey_date,package_type.package_type,package_type.id,package_date.id as p_date_id,packages.id as pid";
+        $this->db->where('packages.is_deleted','no');
+        $this->db->where('packages.is_active','yes');
+        $this->db->where('packages.id',$pid);
+        $this->db->where('package_date.id',$id);
+        $this->db->join("final_booking", 'final_booking.package_id=packages.id','right');
+        $this->db->join("package_date", 'final_booking.package_date_id=package_date.id','right');
+        $this->db->join("package_type", 'packages.package_type=package_type.id','left');
+        $package_data = $this->master_model->getRecords('packages',array('packages.is_deleted'=>'no'),$fields);
+        
+        foreach($package_data as $package_data_info){
+            $package_info = $package_data_info['tour_title'];
+            $package_date = $package_data_info['journey_date'];
+        }
+
         $this->arr_view_data['supervision_sess_name'] = $supervision_sess_name;
         $this->arr_view_data['role_type']        = $role_type;
+        $this->arr_view_data['package_data']     = $package_data;
+        $this->arr_view_data['package_info']     = $package_info;
+        $this->arr_view_data['package_date']     = $package_date;
         $this->arr_view_data['id']        = $id;
         $this->arr_view_data['pid']        = $pid;
         $this->arr_view_data['action']          = 'add';

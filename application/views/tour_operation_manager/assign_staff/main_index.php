@@ -57,7 +57,7 @@
                       ?>
                       <td>Special Limited Offer</td>
                     <?php } ?>
-                    <td><?php echo $info['tour_title'] ?></td>
+                    <td><?php echo $info['pid'] ?> - <?php echo $info['tour_title'] ?></td>
                     <td><?php echo $info['journey_date'] ?></td>
                    
                     <td>
