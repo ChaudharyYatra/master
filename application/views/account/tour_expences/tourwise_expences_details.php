@@ -152,11 +152,13 @@
                     <table class="table table-bordered table-bordered collapse hide" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
                       <thead>
                         <tr>
-                          <th>Sr.No</th>
+                        <th>Sr.No</th>
+                          <th>Expense Head</th>
+                          <th>Sub-Expenses Head</th>
                           <th>Product Name</th>
                           <th>Unit</th>
                           <th>Quantity</th>
-                          <th>Rate</th>
+                          <th>Total Amt.</th>
                           <th>Per Unit Rate</th>
                         </tr>
                       </thead>  
@@ -169,6 +171,14 @@
                         ?>
                         <tr>
                           <td><?php echo $i; ?></td>
+                          <td><?php echo $add_more_tour_expenses_all_value['expense_type_name'] ?></td>
+                          <td>
+                            <?php if($add_more_tour_expenses_all_value['other_name'] != ''){?>
+                              <?php echo $add_more_tour_expenses_all_value['expense_category'] ?> - <?php echo $add_more_tour_expenses_all_value['other_name'] ?>
+                            <?php } else{ ?>
+                              <?php echo $add_more_tour_expenses_all_value['expense_category'] ?>
+                            <?php } ?>
+                          </td>
                           <td><?php echo $add_more_tour_expenses_all_value['expense_category'] ?></td>
                           <td><?php echo $add_more_tour_expenses_all_value['measuring_unit'] ?></td>
                           <td><?php echo $add_more_tour_expenses_all_value['quantity'] ?></td>
