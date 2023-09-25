@@ -127,10 +127,22 @@ class Assign_expences_checker extends CI_Controller{
         }
 
 
-        $this->db->where('is_deleted','no');
-        $this->db->where('is_active','yes');  
-        $this->db->where('role_type','6'); 
-        $tour_manager_name = $this->master_model->getRecords('supervision');
+        // $this->db->where('is_deleted','no');
+        // $this->db->where('is_active','yes');  
+        // $this->db->where('role_type','6'); 
+        
+        // $tour_manager_name = $this->master_model->getRecords('supervision');
+
+        $fields = "supervision.*,assign_staff.name,assign_staff.role_name";
+        $this->db->where('supervision.is_deleted','no');
+        $this->db->where('assign_staff.is_deleted','no');
+        $this->db->where('supervision.is_active','yes');  
+        $this->db->where('assign_staff.is_active','yes'); 
+        $this->db->where('supervision.role_type','6'); 
+        // $this->db->where('assign_staff.role_name','6'); 
+        $this->db->join("assign_staff", 'supervision.id=assign_staff.name','left');
+        $tour_manager_name = $this->master_model->getRecords('supervision',array('supervision.is_deleted'=>'no'),$fields);
+        // print_r($arr_data); die;
 
         $this->db->where('is_deleted','no');
         $this->db->where('is_active','yes');  
